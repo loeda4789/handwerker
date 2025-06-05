@@ -13,9 +13,21 @@ import Testimonials from '@/components/Testimonials'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import DevButton from '@/components/DevButton'
+import SpeedDial from '@/components/SpeedDial'
 
 export default function Home() {
   const content = getContentData()
+
+  // Function to scroll to contact section
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('kontakt')
+    if (contactSection) {
+      contactSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
 
   // Scroll Animation Observer
   useEffect(() => {
@@ -56,6 +68,12 @@ export default function Home() {
       
       {/* Development Tools */}
       <DevButton />
+      
+      {/* Mobile Speed Dial */}
+      <SpeedDial 
+        phoneNumber={content.contact.phone}
+        onEmailClick={scrollToContact}
+      />
     </main>
   )
 } 

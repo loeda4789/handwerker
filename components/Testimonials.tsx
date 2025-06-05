@@ -11,7 +11,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
     <section id="bewertungen" className="bg-background dark:bg-dark py-16">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
             Was unsere Kunden sagen
           </h2>
@@ -26,7 +26,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
             {content.testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-surface dark:bg-dark-secondary rounded-lg p-6 shadow-lg"
+                className="bg-surface dark:bg-dark-secondary rounded-lg p-6 shadow-lg animate-on-scroll"
               >
                 <div className="flex items-start space-x-4">
                   {/* Avatar */}
@@ -68,7 +68,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
 
           {/* Google Review CTA */}
           <div className="lg:col-span-1">
-            <div className="bg-surface dark:bg-dark-secondary rounded-lg p-8 text-center shadow-lg">
+            <div className="bg-surface dark:bg-dark-secondary rounded-lg p-8 text-center shadow-lg animate-on-scroll">
               {/* Star Icon */}
               <div className="mb-6">
                 <div className="w-20 h-20 bg-primary/10 dark:bg-accent/10 rounded-full flex items-center justify-center mx-auto">

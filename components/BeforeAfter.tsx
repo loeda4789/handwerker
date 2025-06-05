@@ -84,7 +84,7 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
     <section id="vorher-nachher" className="bg-surface dark:bg-dark-secondary py-16">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
             Vorher / Nachher – unsere Transformationen im Vergleich
           </h2>
@@ -94,7 +94,7 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
         </div>
 
         {/* Before/After Slider */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto animate-on-scroll">
           <div 
             ref={containerRef}
             className="relative w-full h-96 md:h-[500px] rounded-lg overflow-hidden shadow-2xl cursor-col-resize select-none"

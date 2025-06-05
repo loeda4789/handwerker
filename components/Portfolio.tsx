@@ -45,7 +45,7 @@ export default function Portfolio({ content }: PortfolioProps) {
     <section id="referenzen" className="bg-surface dark:bg-dark py-16">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
             {content.portfolio.title}
           </h2>
@@ -76,7 +76,7 @@ export default function Portfolio({ content }: PortfolioProps) {
           {filteredProjects.map((project, index) => (
             <div
               key={index}
-              className="group bg-background dark:bg-dark-secondary rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+              className="group bg-background dark:bg-dark-secondary rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer animate-on-scroll"
               onClick={() => openLightbox(index)}
             >
               {/* Project Image */}

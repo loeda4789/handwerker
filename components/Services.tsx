@@ -43,7 +43,7 @@ export default function Services({ content }: ServicesProps) {
     <section id="leistungen" className="bg-background dark:bg-dark-secondary py-16">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
             Unsere Leistungen
           </h2>
@@ -57,12 +57,8 @@ export default function Services({ content }: ServicesProps) {
           {content.services.map((service, index) => (
             <div
               key={index}
-              className="bg-surface dark:bg-dark p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 hover:scale-105 cursor-pointer animate-in slide-in-from-bottom"
-              style={{ 
-                animationDelay: `${index * 150}ms`,
-                animationDuration: '600ms',
-                animationFillMode: 'both'
-              }}
+              className="bg-surface dark:bg-dark p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 hover:scale-105 cursor-pointer animate-on-scroll"
+
             >
               {/* Icon */}
               <div className="text-primary dark:text-accent mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 p-3 bg-primary/10 dark:bg-accent/10 rounded-full w-fit">

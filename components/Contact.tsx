@@ -145,7 +145,7 @@ export default function Contact({ content }: ContactProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Form */}
-          <div>
+          <div className="animate-on-scroll">
             <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
               Jetzt unverbindlich anfragen
             </h2>
@@ -266,14 +266,14 @@ export default function Contact({ content }: ContactProps) {
           </div>
 
           {/* Project Process */}
-          <div>
+          <div className="animate-on-scroll">
             <h3 className="text-2xl md:text-3xl font-bold text-primary dark:text-accent mb-8">
               So läuft ein Projekt bei uns ab
             </h3>
             
             <div className="space-y-8">
               {projectSteps.map((step, index) => (
-                <div key={index} className="flex items-start space-x-4">
+                <div key={index} className="flex items-start space-x-4 animate-on-scroll">
                   {/* Step Number */}
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">
