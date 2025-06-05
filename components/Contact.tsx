@@ -1,11 +1,9 @@
 'use client'
 
-import React, { useState } from 'react'
-import { ContentData } from '@/types/content'
-import Toast from './Toast'
+import { useState } from 'react'
 
 interface ContactProps {
-  content: ContentData
+  content: any
 }
 
 interface FormData {
@@ -41,29 +39,6 @@ export default function Contact({ content }: ContactProps) {
     isVisible: false
   })
 
-  const projectSteps = [
-    {
-      number: 1,
-      title: "Erstberatung & Vor-Ort-Termin",
-      description: "Wir besprechen Ihre Wünsche und Anforderungen in einem persönlichen Gespräch vor Ort."
-    },
-    {
-      number: 2,
-      title: "Individuelle Planung & Angebot",
-      description: "Basierend auf Ihren Wünschen erstellen wir ein detailliertes Angebot mit transparenten Kosten."
-    },
-    {
-      number: 3,
-      title: "Durchführung durch unser Team",
-      description: "Unser erfahrenes Team setzt Ihr Projekt mit höchster Qualität und Sorgfalt um."
-    },
-    {
-      number: 4,
-      title: "Abschluss & Abnahme",
-      description: "Gemeinsam überprüfen wir das Ergebnis und stellen Ihre Zufriedenheit sicher."
-    }
-  ]
-
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
 
@@ -85,35 +60,44 @@ export default function Contact({ content }: ContactProps) {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
     
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }))
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
     }
+  }
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type, isVisible: true })
+    setTimeout(() => {
+      setToast(prev => ({ ...prev, isVisible: false }))
+    }, 5000)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     if (!validateForm()) {
+      showToast('Bitte korrigieren Sie die Fehler im Formular.', 'error')
       return
     }
 
     setIsSubmitting(true)
-
+    
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      // Hier würde normalerweise die API-Anfrage stehen
+      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulierte API-Anfrage
       
-      // Success
-      setToast({
-        message: 'Vielen Dank! Wir haben Ihre Nachricht erhalten und melden uns bald bei Ihnen.',
-        type: 'success',
-        isVisible: true
-      })
+      showToast('Vielen Dank für Ihre Nachricht! Wir melden uns schnellstmöglich bei Ihnen.', 'success')
       
-      // Reset form
+      // Form zurücksetzen
       setFormData({
         name: '',
         email: '',
@@ -122,228 +106,174 @@ export default function Contact({ content }: ContactProps) {
         message: ''
       })
     } catch (error) {
-      setToast({
-        message: 'Entschuldigung, es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.',
-        type: 'error',
-        isVisible: true
-      })
+      showToast('Es gab einen Fehler beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.', 'error')
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
-    setToast({ message, type, isVisible: true })
-  }
-
-  const hideToast = () => {
-    setToast(prev => ({ ...prev, isVisible: false }))
-  }
-
   return (
     <section id="kontakt" className="bg-background dark:bg-dark py-16">
       <div className="max-w-screen-xl mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="max-w-2xl mx-auto">
           {/* Contact Form */}
           <div className="animate-on-scroll">
-            <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
-              Jetzt unverbindlich anfragen
-            </h2>
+            <div className="text-center mb-12">
+              <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent rounded-full text-sm font-medium mb-4">
+                Kontakt
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
+                Jetzt unverbindlich anfragen
+              </h2>
+              <p className="text-text-secondary dark:text-light/80 mb-4">
+                Sie haben ein Anliegen oder möchten mehr über unsere Leistungen erfahren? Dann melden Sie sich bei uns!
+              </p>
+              <p className="text-text-secondary dark:text-light/80 mb-8">
+                Wir freuen uns auf Ihre Nachricht!
+              </p>
+            </div>
             
-            <p className="text-text-secondary dark:text-light/80 mb-4">
-              Sie haben ein Anliegen oder möchten mehr über unsere Leistungen erfahren? Dann melden Sie sich bei uns!
-            </p>
-            
-            <p className="text-text-secondary dark:text-light/80 mb-8">
-              Wir freuen uns auf Ihre Nachricht!
-            </p>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-text dark:text-light mb-2">
-                  Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-surface dark:bg-dark-secondary text-text dark:text-light transition-colors duration-300 ${
-                    errors.name ? 'border-red-500' : 'border-border dark:border-gray-600'
-                  }`}
-                  placeholder=""
-                />
-                {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+            {/* Toast Notification */}
+            {toast.isVisible && (
+              <div className={`mb-6 p-4 rounded-lg border ${
+                toast.type === 'success' ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-400' :
+                toast.type === 'error' ? 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400' :
+                'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400'
+              }`}>
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    {toast.type === 'success' && <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>}
+                    {toast.type === 'error' && <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>}
+                    {toast.type === 'info' && <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"/>}
+                  </svg>
+                  <p className="text-sm font-medium">{toast.message}</p>
+                </div>
               </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-text dark:text-light mb-2">
-                  E-Mail (optional)
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-surface dark:bg-dark-secondary text-text dark:text-light"
-                  placeholder=""
-                />
+            )}
+
+            <form onSubmit={handleSubmit} className="bg-surface dark:bg-dark-secondary rounded-2xl p-8 shadow-lg space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-text dark:text-light mb-2">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light transition-colors duration-300 ${
+                      errors.name ? 'border-red-500' : 'border-border dark:border-gray-600'
+                    }`}
+                    placeholder="Ihr vollständiger Name"
+                  />
+                  {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
+                </div>
+                
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-text dark:text-light mb-2">
+                    E-Mail
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light transition-colors duration-300 ${
+                      errors.email ? 'border-red-500' : 'border-border dark:border-gray-600'
+                    }`}
+                    placeholder="ihre@email.de"
+                  />
+                  {errors.email && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
+                </div>
               </div>
-              
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-text dark:text-light mb-2">
-                  Telefonnummer (optional)
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-surface dark:bg-dark-secondary text-text dark:text-light"
-                  placeholder=""
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-text dark:text-light mb-2">
-                  Ich interessiere mich für...
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-surface dark:bg-dark-secondary text-text dark:text-light"
-                >
-                  <option value="">Bitte wählen</option>
-                  <option value="renovation">Renovierung & Sanierung</option>
-                  <option value="bathroom">Badezimmer & Sanitär</option>
-                  <option value="electrical">Elektroinstallation</option>
-                  <option value="flooring">Fliesen & Böden</option>
-                  <option value="drywall">Trockenbau</option>
-                  <option value="painting">Malerarbeiten</option>
-                  <option value="other">Sonstiges</option>
-                </select>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-text dark:text-light mb-2">
+                    Telefonnummer (optional)
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light transition-colors duration-300 ${
+                      errors.phone ? 'border-red-500' : 'border-border dark:border-gray-600'
+                    }`}
+                    placeholder="+49 123 456 789"
+                  />
+                  {errors.phone && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.phone}</p>}
+                </div>
+                
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-text dark:text-light mb-2">
+                    Ich interessiere mich für...
+                  </label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light"
+                  >
+                    <option value="">Bitte wählen</option>
+                    <option value="renovation">Renovierung & Sanierung</option>
+                    <option value="bathroom">Badezimmer & Sanitär</option>
+                    <option value="electrical">Elektroinstallation</option>
+                    <option value="flooring">Fliesen & Böden</option>
+                    <option value="drywall">Trockenbau</option>
+                    <option value="painting">Malerarbeiten</option>
+                    <option value="other">Sonstiges</option>
+                  </select>
+                </div>
               </div>
               
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-text dark:text-light mb-2">
-                  Nachricht (optional)
+                  Nachricht
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  rows={6}
-                  className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-surface dark:bg-dark-secondary text-text dark:text-light resize-none"
-                  placeholder=""
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={5}
+                  className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light resize-none"
+                  placeholder="Beschreiben Sie Ihr Projekt oder Anliegen..."
                 ></textarea>
               </div>
               
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`w-full font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
-                  isSubmitting 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-primary hover:bg-accent hover:scale-105'
-                } text-white`}
-              >
-                {isSubmitting ? (
-                  <>
-                    <svg className="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                    </svg>
-                    <span>Wird gesendet...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Nachricht senden</span>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                    </svg>
-                  </>
-                )}
-              </button>
+              <div className="text-center">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg hover:shadow-lg transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed group"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Wird gesendet...
+                    </>
+                  ) : (
+                    <>
+                      Nachricht senden
+                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                      </svg>
+                    </>
+                  )}
+                </button>
+              </div>
             </form>
           </div>
-
-          {/* Project Process */}
-          <div className="animate-on-scroll">
-            <h3 className="text-2xl md:text-3xl font-bold text-primary dark:text-accent mb-8">
-              So läuft ein Projekt bei uns ab
-            </h3>
-            
-            <div className="space-y-8">
-              {projectSteps.map((step, index) => (
-                <div key={index} className="flex items-start space-x-4 animate-on-scroll">
-                  {/* Step Number */}
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">
-                      {step.number}
-                    </div>
-                  </div>
-                  
-                  {/* Step Content */}
-                  <div className="flex-1 pt-1">
-                    <h4 className="text-lg font-semibold text-primary dark:text-accent mb-2">
-                      {step.title}
-                    </h4>
-                    <p className="text-text-secondary dark:text-light/80 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Contact Information */}
-            <div className="mt-12 p-6 bg-surface dark:bg-dark-secondary rounded-lg">
-              <h4 className="text-lg font-semibold text-text dark:text-light mb-4">
-                Kontakt Informationen
-              </h4>
-              
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <svg className="w-5 h-5 text-primary dark:text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  </svg>
-                  <span className="text-text-secondary dark:text-light/80">{content.contact.address}</span>
-                </div>
-                
-                <div className="flex items-center space-x-3">
-                  <svg className="w-5 h-5 text-primary dark:text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                  </svg>
-                  <a 
-                    href={`tel:${content.contact.phone}`}
-                    className="text-primary dark:text-accent hover:underline"
-                  >
-                    {content.contact.phone}
-                  </a>
-                </div>
-                
-                <div className="flex items-center space-x-3">
-                  <svg className="w-5 h-5 text-primary dark:text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                  </svg>
-                  <a 
-                    href={`mailto:${content.contact.email}`}
-                    className="text-primary dark:text-accent hover:underline"
-                  >
-                    {content.contact.email}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-
-        {/* Toast Notification */}
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          isVisible={toast.isVisible}
-          onClose={hideToast}
-        />
       </div>
     </section>
   )
