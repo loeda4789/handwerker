@@ -31,34 +31,29 @@
   },
   "services": [
     {
-      "title": "Renovierung & Sanierung",
-      "icon": "paintbrush",
-      "description": "Komplette Renovierungsarbeiten für Wohn- und Geschäftsräume"
-    },
-    {
-      "title": "Badezimmer & Sanitär",
-      "icon": "floor-plan",
-      "description": "Moderne Badgestaltung und Sanitärinstallationen"
-    },
-    {
-      "title": "Elektroinstallation",
-      "icon": "water-drop",
-      "description": "Sichere und moderne Elektroinstallationen"
-    },
-    {
-      "title": "Fliesen & Böden",
+      "title": "Fliesenarbeiten Innen",
       "icon": "grid",
-      "description": "Professionelle Verlegung von Fliesen und Bodenbelägen"
+      "description": "Präzise Verlegung von Wand- und Bodenfliesen in Küche, Bad und Wohnräumen – fachgerecht und langlebig."
     },
     {
-      "title": "Trockenbau",
-      "icon": "square",
-      "description": "Trennwände und Deckengestaltung"
+      "title": "Badezimmer & Dusche", 
+      "icon": "water-drop",
+      "description": "Komplettlösungen für moderne Bäder – von der Abdichtung bis zur Verlegung großformatiger Fliesen."
     },
     {
-      "title": "Malerarbeiten",
-      "icon": "paint-bucket",
-      "description": "Innen- und Außenanstriche in höchster Qualität"
+      "title": "Außenbereiche",
+      "icon": "sun", 
+      "description": "Rutschfeste und wetterfeste Fliesen für Terrassen, Balkone und Außentreppen – funktional und stilvoll."
+    },
+    {
+      "title": "Fugen & Reparatur",
+      "icon": "wrench",
+      "description": "Erneuerung von Fugen, Austausch beschädigter Fliesen oder Ausbesserung bei Feuchtigkeit – schnell & professionell."
+    },
+    {
+      "title": "Mosaik & Design",
+      "icon": "sparkles", 
+      "description": "Kreative Akzente mit Mosaiken, Bordüren oder individuellen Verlegemustern – für besondere Highlights."
     }
   ],
   "team": [
@@ -113,67 +108,67 @@
   ],
   "portfolio": {
     "title": "Unsere Referenzen",
-    "subtitle": "Überzeugen Sie sich von der Qualität unserer Arbeit",
+    "subtitle": "Überzeugen Sie sich von der Qualität unserer Fliesenarbeiten",
     "projects": [
       {
-        "title": "Moderne Küche",
-        "category": "Renovierung",
+        "title": "Moderne Küchenfliesen",
+        "category": "Fliesenarbeiten Innen",
         "image": "/images/portfolio/kitchen.jpg",
-        "description": "Komplette Küchenrenovierung mit neuen Fliesen und Elektrik"
+        "description": "Präzise verlegte Wand- und Bodenfliesen für eine moderne Küche mit langlebiger Qualität"
       },
       {
-        "title": "Luxusbadezimmer",
-        "category": "Badezimmer",
+        "title": "Luxusbadezimmer mit Großformat",
+        "category": "Badezimmer & Dusche",
         "image": "/images/portfolio/bathroom.jpg",
-        "description": "Elegantes Badezimmer mit hochwertigen Materialien"
+        "description": "Komplettlösung mit großformatigen Fliesen, professioneller Abdichtung und modernem Design"
       },
       {
-        "title": "Wohnzimmer Gestaltung",
-        "category": "Malerarbeiten",
+        "title": "Wohnbereich Natursteinfliesen",
+        "category": "Fliesenarbeiten Innen",
         "image": "/images/portfolio/living-room.jpg",
-        "description": "Farbliche Neugestaltung des Wohnbereichs"
+        "description": "Hochwertige Natursteinfliesen im Wohnbereich - elegant und pflegeleicht"
       },
       {
-        "title": "Bürogebäude Sanierung",
-        "category": "Gewerblich",
+        "title": "Mosaikakzente im Büro",
+        "category": "Mosaik & Design",
         "image": "/images/portfolio/office.jpg",
-        "description": "Komplette Sanierung eines Bürogebäudes"
+        "description": "Kreative Mosaik-Highlights und individuelle Verlegemuster für moderne Büroräume"
       },
       {
-        "title": "Dachgeschoss Ausbau",
-        "category": "Trockenbau",
+        "title": "Dachterrasse mit Feinsteinzeug",
+        "category": "Außenbereiche",
         "image": "/images/portfolio/attic.jpg",
-        "description": "Ausbau des Dachgeschosses zu Wohnraum"
+        "description": "Rutschfeste Feinsteinzeugfliesen für eine stilvolle und wetterfeste Dachterrasse"
       },
       {
-        "title": "Terrassenerneuerung",
-        "category": "Außenbereich",
+        "title": "Terrasse Fliesenerneuerung",
+        "category": "Fugen & Reparatur",
         "image": "/images/portfolio/terrace.jpg",
-        "description": "Neue Terrassengestaltung mit Naturstein"
+        "description": "Fachgerechte Sanierung mit Fugenerneuerung und Austausch beschädigter Terrassenfliesen"
       }
     ]
   },
   "beforeAfter": [
     {
-      "title": "Küchenerneuerung Familie Schmidt",
-      "category": "Renovierung",
+      "title": "Küchenfliesen Familie Schmidt",
+      "category": "Fliesenarbeiten Innen",
       "beforeImage": "/images/before-after/kitchen-before.jpg",
       "afterImage": "/images/before-after/kitchen-after.jpg", 
-      "description": "Komplette Modernisierung einer 20 Jahre alten Küche mit neuen Fronten, Arbeitsplatten und Beleuchtung."
+      "description": "Komplette Fliesenerneuerung in der Küche - von alten Fliesen zu modernen großformatigen Wand- und Bodenfliesen."
     },
     {
-      "title": "Badezimmer Komplettumbau",
-      "category": "Badezimmer",
+      "title": "Badezimmer Fliesenerneuerung",
+      "category": "Badezimmer & Dusche",
       "beforeImage": "/images/before-after/bathroom-before.jpg",
       "afterImage": "/images/before-after/bathroom-after.jpg",
-      "description": "Transformation eines veralteten Badezimmers in eine moderne Wellness-Oase."
+      "description": "Transformation eines veralteten Badezimmers mit neuen großformatigen Fliesen und professioneller Abdichtung."
     },
     {
-      "title": "Wohnzimmer Gestaltung",
-      "category": "Malerarbeiten",
+      "title": "Wohnbereich Fliesenverlegung",
+      "category": "Mosaik & Design",
       "beforeImage": "/images/before-after/living-before.jpg",
       "afterImage": "/images/before-after/living-after.jpg",
-      "description": "Farbliche Neugestaltung und Renovierung des Wohnbereichs für ein modernes Ambiente."
+      "description": "Kreative Fliesenverlegung im Wohnbereich mit individuellen Mosaik-Akzenten und modernem Design."
     }
   ],
   "testimonials": [
