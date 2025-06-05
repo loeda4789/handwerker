@@ -1,0 +1,220 @@
+{
+  "company": {
+    "name": "Mustermann Handwerk GmbH",
+    "tagline": "Ihr zuverlässiger Handwerks-Partner",
+    "logo": "/images/logo.png"
+  },
+  "about": {
+    "title": "Über uns",
+    "text": "Seit über 20 Jahren sind wir Ihr verlässlicher Partner für alle Handwerksarbeiten. Mit Qualität, Präzision und Leidenschaft realisieren wir Ihre Projekte von der Planung bis zur Vollendung."
+  },
+  "welcome": {
+    "headline": "Willkommen bei Mustermann Handwerk GmbH",
+    "subline": "Meisterqualität für Ihr Zuhause",
+    "features": [
+      {
+        "icon": "check-circle",
+        "title": "Meisterbetrieb",
+        "text": "Zertifizierte Qualität und jahrelange Erfahrung"
+      },
+      {
+        "icon": "layers",
+        "title": "Komplettservice",
+        "text": "Von der Beratung bis zur Schlüsselübergabe"
+      },
+      {
+        "icon": "life-buoy",
+        "title": "24/7 Service",
+        "text": "Notdienst und Support rund um die Uhr"
+      }
+    ]
+  },
+  "services": [
+    {
+      "title": "Renovierung & Sanierung",
+      "icon": "paintbrush",
+      "description": "Komplette Renovierungsarbeiten für Wohn- und Geschäftsräume"
+    },
+    {
+      "title": "Badezimmer & Sanitär",
+      "icon": "floor-plan",
+      "description": "Moderne Badgestaltung und Sanitärinstallationen"
+    },
+    {
+      "title": "Elektroinstallation",
+      "icon": "water-drop",
+      "description": "Sichere und moderne Elektroinstallationen"
+    },
+    {
+      "title": "Fliesen & Böden",
+      "icon": "grid",
+      "description": "Professionelle Verlegung von Fliesen und Bodenbelägen"
+    },
+    {
+      "title": "Trockenbau",
+      "icon": "square",
+      "description": "Trennwände und Deckengestaltung"
+    },
+    {
+      "title": "Malerarbeiten",
+      "icon": "paint-bucket",
+      "description": "Innen- und Außenanstriche in höchster Qualität"
+    }
+  ],
+  "team": [
+    {
+      "name": "Max Mustermann",
+      "position": "Geschäftsführer & Meister",
+      "photo": "/images/team/person1.jpg",
+      "specialization": "Projektleitung & Kundenberatung"
+    },
+    {
+      "name": "Anna Schmidt",
+      "position": "Projektleiterin",
+      "photo": "/images/team/person2.jpg",
+      "specialization": "Badezimmer & Sanitär"
+    },
+    {
+      "name": "Tom Weber",
+      "position": "Facharbeiter Elektrik",
+      "photo": "/images/team/person3.jpg",
+      "specialization": "Elektroinstallationen"
+    },
+    {
+      "name": "Lisa Müller",
+      "position": "Malerin & Gestalterin",
+      "photo": "/images/team/person4.jpg",
+      "specialization": "Innen- & Außengestaltung"
+    },
+    {
+      "name": "Markus Fischer",
+      "position": "Fliesenleger",
+      "photo": "/images/team/person5.jpg",
+      "specialization": "Fliesen & Naturstein"
+    },
+    {
+      "name": "Sandra Koch",
+      "position": "Büro & Kundenservice",
+      "photo": "/images/team/person6.jpg",
+      "specialization": "Terminplanung & Beratung"
+    },
+    {
+      "name": "Michael Braun",
+      "position": "Trockenbauer",
+      "photo": "/images/team/person7.jpg",
+      "specialization": "Innenausbau & Trockenbau"
+    },
+    {
+      "name": "Julia Hoffmann",
+      "position": "Auszubildende",
+      "photo": "/images/team/person8.jpg",
+      "specialization": "Malerarbeiten"
+    }
+  ],
+  "portfolio": {
+    "title": "Unsere Referenzen",
+    "subtitle": "Überzeugen Sie sich von der Qualität unserer Arbeit",
+    "projects": [
+      {
+        "title": "Moderne Küche",
+        "category": "Renovierung",
+        "image": "/images/portfolio/kitchen.jpg",
+        "description": "Komplette Küchenrenovierung mit neuen Fliesen und Elektrik"
+      },
+      {
+        "title": "Luxusbadezimmer",
+        "category": "Badezimmer",
+        "image": "/images/portfolio/bathroom.jpg",
+        "description": "Elegantes Badezimmer mit hochwertigen Materialien"
+      },
+      {
+        "title": "Wohnzimmer Gestaltung",
+        "category": "Malerarbeiten",
+        "image": "/images/portfolio/living-room.jpg",
+        "description": "Farbliche Neugestaltung des Wohnbereichs"
+      },
+      {
+        "title": "Bürogebäude Sanierung",
+        "category": "Gewerblich",
+        "image": "/images/portfolio/office.jpg",
+        "description": "Komplette Sanierung eines Bürogebäudes"
+      },
+      {
+        "title": "Dachgeschoss Ausbau",
+        "category": "Trockenbau",
+        "image": "/images/portfolio/attic.jpg",
+        "description": "Ausbau des Dachgeschosses zu Wohnraum"
+      },
+      {
+        "title": "Terrassenerneuerung",
+        "category": "Außenbereich",
+        "image": "/images/portfolio/terrace.jpg",
+        "description": "Neue Terrassengestaltung mit Naturstein"
+      }
+    ]
+  },
+  "beforeAfter": [
+    {
+      "title": "Küchenerneuerung Familie Schmidt",
+      "category": "Renovierung",
+      "beforeImage": "/images/before-after/kitchen-before.jpg",
+      "afterImage": "/images/before-after/kitchen-after.jpg", 
+      "description": "Komplette Modernisierung einer 20 Jahre alten Küche mit neuen Fronten, Arbeitsplatten und Beleuchtung."
+    },
+    {
+      "title": "Badezimmer Komplettumbau",
+      "category": "Badezimmer",
+      "beforeImage": "/images/before-after/bathroom-before.jpg",
+      "afterImage": "/images/before-after/bathroom-after.jpg",
+      "description": "Transformation eines veralteten Badezimmers in eine moderne Wellness-Oase."
+    },
+    {
+      "title": "Wohnzimmer Gestaltung",
+      "category": "Malerarbeiten",
+      "beforeImage": "/images/before-after/living-before.jpg",
+      "afterImage": "/images/before-after/living-after.jpg",
+      "description": "Farbliche Neugestaltung und Renovierung des Wohnbereichs für ein modernes Ambiente."
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Familie Müller",
+      "text": "Absolute Profi-Arbeit! Unser Badezimmer wurde termingerecht und in bester Qualität renoviert. Sehr empfehlenswert!"
+    },
+    {
+      "name": "Klaus Bauer",
+      "text": "Schnelle, saubere Arbeit und faire Preise. Das Team war sehr freundlich und zuverlässig."
+    },
+    {
+      "name": "Sarah Klein",
+      "text": "Von der Beratung bis zur Fertigstellung - alles perfekt! Gerne wieder."
+    }
+  ],
+  "socials": {
+    "facebook": "https://facebook.com/mustermann-handwerk",
+    "instagram": "https://instagram.com/mustermann_handwerk",
+    "youtube": null,
+    "tiktok": null,
+    "linkedin": null
+  },
+  "reviews": {
+    "google": "https://www.google.com/maps/place/?q=place_id:EXAMPLE"
+  },
+  "stats": {
+    "projectsCompleted": 500,
+    "happyClients": 450,
+    "yearsExperience": 25,
+    "teamSize": 8
+  },
+  "contact": {
+    "address": "Musterstraße 123, 12345 Musterstadt",
+    "phone": "+49 123 456 789",
+    "email": "info@mustermann-handwerk.de",
+    "openingHours": "Mo-Fr: 7:00-17:00 Uhr, Sa: 8:00-12:00 Uhr"
+  },
+  "meta": {
+    "language": "de",
+    "generator": "Next.js Handwerker Template",
+    "lastUpdated": "2025-06-05"
+  }
+} 

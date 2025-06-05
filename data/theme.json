@@ -1,0 +1,19 @@
+{
+  "colors": {
+    "primary": "#2563eb",
+    "secondary": "#64748b",
+    "accent": "#f59e0b",
+    "background": "#ffffff",
+    "surface": "#f8fafc",
+    "text": "#1e293b",
+    "textSecondary": "#64748b",
+    "border": "#e2e8f0",
+    "dark": "#0f172a",
+    "darkSecondary": "#1e293b",
+    "light": "#f1f5f9"
+  },
+  "fonts": {
+    "sans": ["Inter", "system-ui", "sans-serif"],
+    "heading": ["Inter", "system-ui", "sans-serif"]
+  }
+} 
