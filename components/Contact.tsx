@@ -221,12 +221,11 @@ export default function Contact({ content }: ContactProps) {
                     className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light"
                   >
                     <option value="">Bitte wählen</option>
-                    <option value="renovation">Renovierung & Sanierung</option>
-                    <option value="bathroom">Badezimmer & Sanitär</option>
-                    <option value="electrical">Elektroinstallation</option>
-                    <option value="flooring">Fliesen & Böden</option>
-                    <option value="drywall">Trockenbau</option>
-                    <option value="painting">Malerarbeiten</option>
+                    {content.services?.map((service: any, index: number) => (
+                      <option key={index} value={service.title}>
+                        {service.title}
+                      </option>
+                    ))}
                     <option value="other">Sonstiges</option>
                   </select>
                 </div>

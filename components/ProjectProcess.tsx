@@ -40,12 +40,16 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
         {/* Process Steps */}
         <div className="relative">
           {/* Connection Line - Hidden on mobile */}
-          <div className="hidden lg:block absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-4xl">
-            <div className="relative h-1">
-              {/* Background line */}
-              <div className="absolute inset-0 bg-border dark:bg-gray-600 rounded-full"></div>
-              {/* Animated progress line */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full transform scale-x-0 animate-progress-line origin-left"></div>
+          <div className="hidden lg:block absolute top-10 left-0 right-0 z-0">
+            <div className="flex items-center justify-between max-w-4xl mx-auto px-10">
+              {/* Line segments between steps */}
+              <div className="flex-1 h-0.5 bg-border dark:bg-gray-600 rounded-full relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full transform -translate-x-full animate-progress-line-1"></div>
+              </div>
+              <div className="w-10"></div>
+              <div className="flex-1 h-0.5 bg-border dark:bg-gray-600 rounded-full relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full transform -translate-x-full animate-progress-line-2"></div>
+              </div>
             </div>
           </div>
 
