@@ -55,20 +55,42 @@ export default function Portfolio({ content }: PortfolioProps) {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveFilter(category)}
-              className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                activeFilter === category
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'bg-background dark:bg-dark-secondary text-text-secondary dark:text-light/70 hover:bg-primary/10 dark:hover:bg-primary/20'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+        <div className="mb-12">
+          {/* Mobile: Horizontal Scroll */}
+          <div className="md:hidden overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex gap-4 px-4" style={{ width: 'max-content' }}>
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveFilter(category)}
+                  className={`flex-shrink-0 px-6 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
+                    activeFilter === category
+                      ? 'bg-primary text-white shadow-lg'
+                      : 'bg-background dark:bg-dark-secondary text-text-secondary dark:text-light/70 hover:bg-primary/10 dark:hover:bg-primary/20'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Desktop: Centered Wrap */}
+          <div className="hidden md:flex flex-wrap justify-center gap-4">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveFilter(category)}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  activeFilter === category
+                    ? 'bg-primary text-white shadow-lg'
+                    : 'bg-background dark:bg-dark-secondary text-text-secondary dark:text-light/70 hover:bg-primary/10 dark:hover:bg-primary/20'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Portfolio Grid */}

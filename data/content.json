@@ -6,26 +6,26 @@
   },
   "about": {
     "title": "Über uns",
-    "text": "Seit über 20 Jahren sind wir Ihr verlässlicher Partner für alle Handwerksarbeiten. Mit Qualität, Präzision und Leidenschaft realisieren wir Ihre Projekte von der Planung bis zur Vollendung."
+    "text": "Seit über 20 Jahren sind wir Ihr verlässlicher Partner für professionelle Fliesenarbeiten. Mit Meisterqualität, Präzision und Leidenschaft realisieren wir Ihre Fliesenprojekte von der Beratung bis zur perfekten Verlegung."
   },
   "welcome": {
     "headline": "Willkommen bei Mustermann Handwerk GmbH",
-    "subline": "Meisterqualität für Ihr Zuhause",
+    "subline": "Meisterqualität für Ihre Fliesenprojekte",
     "features": [
       {
         "icon": "check-circle",
-        "title": "Meisterbetrieb",
-        "text": "Zertifizierte Qualität und jahrelange Erfahrung"
+        "title": "Fliesenleger-Meisterbetrieb",
+        "text": "Zertifizierte Qualität und jahrelange Erfahrung in der Fliesenverlegung"
       },
       {
         "icon": "layers",
-        "title": "Komplettservice",
-        "text": "Von der Beratung bis zur Schlüsselübergabe"
+        "title": "Komplettservice Fliesen",
+        "text": "Von der Fliesenberatung bis zur professionellen Verlegung"
       },
       {
         "icon": "life-buoy",
-        "title": "24/7 Service",
-        "text": "Notdienst und Support rund um die Uhr"
+        "title": "24/7 Fliesen-Notdienst",
+        "text": "Schnelle Hilfe bei Fliesenschäden rund um die Uhr"
       }
     ]
   },
@@ -59,51 +59,51 @@
   "team": [
     {
       "name": "Max Mustermann",
-      "position": "Geschäftsführer & Meister",
+      "position": "Geschäftsführer & Fliesenleger-Meister",
       "photo": "/images/team/person1.jpg",
-      "specialization": "Projektleitung & Kundenberatung"
+      "specialization": "Projektleitung & Fliesenberatung"
     },
     {
       "name": "Anna Schmidt",
-      "position": "Projektleiterin",
+      "position": "Projektleiterin Fliesen",
       "photo": "/images/team/person2.jpg",
-      "specialization": "Badezimmer & Sanitär"
+      "specialization": "Badezimmer & Sanitärfliesen"
     },
     {
       "name": "Tom Weber",
-      "position": "Facharbeiter Elektrik",
+      "position": "Fliesenleger Spezialist",
       "photo": "/images/team/person3.jpg",
-      "specialization": "Elektroinstallationen"
+      "specialization": "Großformatfliesen & Naturstein"
     },
     {
       "name": "Lisa Müller",
-      "position": "Malerin & Gestalterin",
+      "position": "Fliesendesignerin",
       "photo": "/images/team/person4.jpg",
-      "specialization": "Innen- & Außengestaltung"
+      "specialization": "Mosaik & kreative Fliesenverlegung"
     },
     {
       "name": "Markus Fischer",
-      "position": "Fliesenleger",
+      "position": "Fliesenleger-Meister",
       "photo": "/images/team/person5.jpg",
       "specialization": "Fliesen & Naturstein"
     },
     {
       "name": "Sandra Koch",
-      "position": "Büro & Kundenservice",
+      "position": "Fliesenberatung & Kundenservice",
       "photo": "/images/team/person6.jpg",
-      "specialization": "Terminplanung & Beratung"
+      "specialization": "Fliesenauswahl & Terminplanung"
     },
     {
       "name": "Michael Braun",
-      "position": "Trockenbauer",
+      "position": "Fliesenleger Außenbereich",
       "photo": "/images/team/person7.jpg",
-      "specialization": "Innenausbau & Trockenbau"
+      "specialization": "Terrassen & Außenfliesen"
     },
     {
       "name": "Julia Hoffmann",
-      "position": "Auszubildende",
+      "position": "Auszubildende Fliesenlegerin",
       "photo": "/images/team/person8.jpg",
-      "specialization": "Malerarbeiten"
+      "specialization": "Fliesenverlegung & Fugenarbeiten"
     }
   ],
   "portfolio": {
@@ -174,15 +174,15 @@
   "testimonials": [
     {
       "name": "Familie Müller",
-      "text": "Absolute Profi-Arbeit! Unser Badezimmer wurde termingerecht und in bester Qualität renoviert. Sehr empfehlenswert!"
+      "text": "Wir sind absolut begeistert von der Arbeit von Mustermann Handwerk! Unser Badezimmer wurde mit großformatigen Feinsteinzeugfliesen neu gestaltet. Die millimetergenaue Verlegung und professionelle Abdichtung haben uns besonders beeindruckt. Ein wahres Meisterwerk - absolute Empfehlung!"
     },
     {
-      "name": "Klaus Bauer",
-      "text": "Schnelle, saubere Arbeit und faire Preise. Das Team war sehr freundlich und zuverlässig."
+      "name": "Klaus Bauer, Architekt",
+      "text": "Als Architekt schätze ich außergewöhnliche Fachkompetenz. Die technisch anspruchsvolle Verlegung unserer Natursteinfliesen mit komplexen Verlegemustern war perfekt umgesetzt. Termintreue, Präzision und faire Preise - gerne wieder!"
     },
     {
-      "name": "Sarah Klein",
-      "text": "Von der Beratung bis zur Fertigstellung - alles perfekt! Gerne wieder."
+      "name": "Sarah Klein, Innenarchitektin",
+      "text": "Für mein eigenes Zuhause habe ich bewusst Mustermann Handwerk gewählt. Die kreative Umsetzung meiner Mosaikideen in der Küche war handwerklich perfekt. Die Kombination aus Wandfliesen und Mosaikakzenten ist ein echtes Kunstwerk geworden!"
     }
   ],
   "socials": {

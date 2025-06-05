@@ -10,7 +10,7 @@ import Team from '@/components/Team'
 import Portfolio from '@/components/Portfolio'
 import BeforeAfter from '@/components/BeforeAfter'
 import Testimonials from '@/components/Testimonials'
-import Contact from '@/components/Contact'
+import ProjectProcess from '@/components/ProjectProcess'
 import Footer from '@/components/Footer'
 import DevButton from '@/components/DevButton'
 import SpeedDial from '@/components/SpeedDial'
@@ -18,11 +18,11 @@ import SpeedDial from '@/components/SpeedDial'
 export default function Home() {
   const content = getContentData()
 
-  // Function to scroll to contact section
+  // Function to scroll to footer section
   const scrollToContact = () => {
-    const contactSection = document.getElementById('kontakt')
-    if (contactSection) {
-      contactSection.scrollIntoView({ 
+    const footerSection = document.getElementById('footer')
+    if (footerSection) {
+      footerSection.scrollIntoView({ 
         behavior: 'smooth',
         block: 'start'
       })
@@ -62,8 +62,8 @@ export default function Home() {
       <Portfolio content={content} />
       <BeforeAfter content={content} />
       <Team content={content} />
+      <ProjectProcess content={content} />
       <Testimonials content={content} />
-      <Contact content={content} />
       <Footer content={content} />
       
       {/* Development Tools */}

@@ -182,4 +182,32 @@ html {
   --color-text: var(--color-light);
   --color-text-secondary: #94a3b8;
   --color-border: #334155;
+}
+
+/* Project Process Animations */
+@keyframes progress-line {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+
+.animate-progress-line {
+  animation: progress-line 2s ease-in-out 1s forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Scrollbar Utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
 } 
