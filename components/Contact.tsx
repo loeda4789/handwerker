@@ -356,7 +356,7 @@ export default function Contact({ content }: ContactProps) {
                 onBlur={handleBlur}
                 className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
               >
-                <option value="">Bitte wählen...</option>
+                <option value="" disabled hidden></option>
                 <option value="Rückruf">Rückruf</option>
                 <option value="Beratungstermin">Beratungstermin</option>
                 <option value="Kostenvoranschlag">Kostenvoranschlag</option>
@@ -366,11 +366,11 @@ export default function Contact({ content }: ContactProps) {
                 htmlFor="requestType" 
                 className={`absolute left-4 transition-all duration-300 pointer-events-none ${
                   formData.requestType || focusedField === 'requestType' 
-                    ? 'top-2 text-xs text-text-secondary dark:text-light/60 font-medium' 
+                    ? 'top-2 text-xs text-primary dark:text-accent font-medium' 
                     : 'top-4 text-text-secondary dark:text-light/60'
                 }`}
               >
-                Art der Anfrage
+                Art der Anfrage {!formData.requestType && !focusedField && '- Bitte wählen'}
               </label>
             </div>
 
@@ -386,7 +386,7 @@ export default function Contact({ content }: ContactProps) {
                    onBlur={handleBlur}
                    className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
                  >
-                   <option value="">Optional - Bitte wählen...</option>
+                   <option value="" disabled hidden></option>
                    <option value="Badezimmer">Badezimmer</option>
                    <option value="Küche">Küche</option>
                    <option value="Heizung">Heizung</option>
@@ -398,11 +398,11 @@ export default function Contact({ content }: ContactProps) {
                    htmlFor="serviceCategory" 
                    className={`absolute left-4 transition-all duration-300 pointer-events-none ${
                      formData.serviceCategory || focusedField === 'serviceCategory' 
-                       ? 'top-2 text-xs text-text-secondary dark:text-light/60 font-medium' 
+                       ? 'top-2 text-xs text-primary dark:text-accent font-medium' 
                        : 'top-4 text-text-secondary dark:text-light/60'
                    }`}
                  >
-                   Worum geht es? (optional)
+                   Worum geht es? {!formData.serviceCategory && focusedField !== 'serviceCategory' && '(optional - bitte wählen)'}
                  </label>
                </div>
              )}
