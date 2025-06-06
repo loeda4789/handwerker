@@ -46,7 +46,7 @@ export default function Header({ content }: HeaderProps) {
   // Active section detection
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['ueber-uns', 'leistungen', 'team', 'bewertungen', 'kontakt']
+      const sections = ['ueber-uns', 'leistungen', 'team', 'bewertungen']
       const scrollPosition = window.scrollY + 100
 
       for (const sectionId of sections) {
@@ -215,19 +215,6 @@ export default function Header({ content }: HeaderProps) {
                 </li>
                 <li>
                   <Link
-                    href="#leistungen"
-                    onClick={(e) => handleSmoothScroll(e, 'leistungen')}
-                    className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                      activeSection === 'leistungen' 
-                        ? 'text-primary dark:text-accent font-semibold' 
-                        : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
-                    }`}
-                  >
-                    Referenzen
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     href="#team"
                     onClick={(e) => handleSmoothScroll(e, 'team')}
                     className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
@@ -252,19 +239,6 @@ export default function Header({ content }: HeaderProps) {
                     Bewertungen
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    href="#kontakt"
-                    onClick={(e) => handleSmoothScroll(e, 'kontakt')}
-                    className={`block py-2 px-3 lg:p-0 uppercase transition-colors duration-300 ${
-                      activeSection === 'kontakt' 
-                        ? 'text-primary dark:text-accent font-semibold' 
-                        : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
-                    }`}
-                  >
-                    Kontakt
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>
@@ -279,7 +253,7 @@ export default function Header({ content }: HeaderProps) {
       }`}>
         {/* Background Overlay */}
         <div 
-          className={`absolute inset-0 bg-background/98 dark:bg-dark/98 backdrop-blur-lg transition-all duration-500 ${
+          className={`absolute inset-0 bg-white dark:bg-gray-900 transition-all duration-500 ${
             mobileMenuOpen ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={closeMobileMenu}
@@ -316,18 +290,6 @@ export default function Header({ content }: HeaderProps) {
             </Link>
             
             <Link
-              href="#leistungen"
-              onClick={(e) => handleSmoothScroll(e, 'leistungen')}
-              className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                activeSection === 'leistungen' 
-                  ? 'text-primary dark:text-accent font-medium' 
-                  : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-              }`}
-            >
-              Referenzen
-            </Link>
-            
-            <Link
               href="#team"
               onClick={(e) => handleSmoothScroll(e, 'team')}
               className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
@@ -349,18 +311,6 @@ export default function Header({ content }: HeaderProps) {
               }`}
             >
               Bewertungen
-            </Link>
-            
-            <Link
-              href="#kontakt"
-              onClick={(e) => handleSmoothScroll(e, 'kontakt')}
-              className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                activeSection === 'kontakt' 
-                  ? 'text-primary dark:text-accent font-medium' 
-                  : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-              }`}
-            >
-              Kontakt
             </Link>
           </nav>
           
