@@ -7,6 +7,7 @@ export interface Company {
 export interface About {
   title: string;
   text: string;
+  image?: string;
 }
 
 export interface Feature {
