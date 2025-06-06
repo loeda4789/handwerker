@@ -33,27 +33,72 @@
     {
       "title": "Fliesenarbeiten Innen",
       "icon": "grid",
-      "description": "Präzise Verlegung von Wand- und Bodenfliesen in Küche, Bad und Wohnräumen – fachgerecht und langlebig."
+      "description": "Präzise Verlegung von Wand- und Bodenfliesen in Küche, Bad und Wohnräumen – fachgerecht und langlebig.",
+      "image": "/images/services/fliesenarbeiten-innen.jpg",
+      "projects": [
+        {
+          "title": "Moderne Küchenfliesen",
+          "image": "/images/portfolio/kitchen.jpg",
+          "description": "Präzise verlegte Wand- und Bodenfliesen für eine moderne Küche mit langlebiger Qualität"
+        },
+        {
+          "title": "Wohnbereich Natursteinfliesen",
+          "image": "/images/portfolio/living-room.jpg",
+          "description": "Hochwertige Natursteinfliesen im Wohnbereich - elegant und pflegeleicht"
+        }
+      ]
     },
     {
       "title": "Badezimmer & Dusche", 
       "icon": "water-drop",
-      "description": "Komplettlösungen für moderne Bäder – von der Abdichtung bis zur Verlegung großformatiger Fliesen."
+      "description": "Komplettlösungen für moderne Bäder – von der Abdichtung bis zur Verlegung großformatiger Fliesen.",
+      "image": "/images/services/badezimmer-dusche.jpg",
+      "projects": [
+        {
+          "title": "Luxusbadezimmer mit Großformat",
+          "image": "/images/portfolio/bathroom.jpg",
+          "description": "Komplettlösung mit großformatigen Fliesen, professioneller Abdichtung und modernem Design"
+        }
+      ]
     },
     {
       "title": "Außenbereiche",
       "icon": "sun", 
-      "description": "Rutschfeste und wetterfeste Fliesen für Terrassen, Balkone und Außentreppen – funktional und stilvoll."
+      "description": "Rutschfeste und wetterfeste Fliesen für Terrassen, Balkone und Außentreppen – funktional und stilvoll.",
+      "image": "/images/services/aussenbereiche.jpg",
+      "projects": [
+        {
+          "title": "Dachterrasse mit Feinsteinzeug",
+          "image": "/images/portfolio/attic.jpg",
+          "description": "Rutschfeste Feinsteinzeugfliesen für eine stilvolle und wetterfeste Dachterrasse"
+        }
+      ]
     },
     {
       "title": "Fugen & Reparatur",
       "icon": "wrench",
-      "description": "Erneuerung von Fugen, Austausch beschädigter Fliesen oder Ausbesserung bei Feuchtigkeit – schnell & professionell."
+      "description": "Erneuerung von Fugen, Austausch beschädigter Fliesen oder Ausbesserung bei Feuchtigkeit – schnell & professionell.",
+      "image": "/images/services/fugen-reparatur.jpg",
+      "projects": [
+        {
+          "title": "Terrasse Fliesenerneuerung",
+          "image": "/images/portfolio/terrace.jpg",
+          "description": "Fachgerechte Sanierung mit Fugenerneuerung und Austausch beschädigter Terrassenfliesen"
+        }
+      ]
     },
     {
       "title": "Mosaik & Design",
       "icon": "sparkles", 
-      "description": "Kreative Akzente mit Mosaiken, Bordüren oder individuellen Verlegemustern – für besondere Highlights."
+      "description": "Kreative Akzente mit Mosaiken, Bordüren oder individuellen Verlegemustern – für besondere Highlights.",
+      "image": "/images/services/mosaik-design.jpg",
+      "projects": [
+        {
+          "title": "Mosaikakzente im Büro",
+          "image": "/images/portfolio/office.jpg",
+          "description": "Kreative Mosaik-Highlights und individuelle Verlegemuster für moderne Büroräume"
+        }
+      ]
     }
   ],
   "team": [
@@ -202,14 +247,14 @@
     "teamSize": 8
   },
   "contact": {
-    "address": "Musterstraße 123, 12345 Musterstadt",
+    "address": "Aloysiusstr. 144, 48429 Rheine",
     "phone": "+49 123 456 789",
     "email": "info@mustermann-handwerk.de",
     "openingHours": "Mo-Fr: 7:00-17:00 Uhr, Sa: 8:00-12:00 Uhr"
   },
   "meta": {
     "language": "de",
-    "generator": "Next.js Handwerker Template",
+    "generator": "ml | websolutions",
     "lastUpdated": "2025-06-05"
   }
 } 

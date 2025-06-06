@@ -7,7 +7,6 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Services from '@/components/Services'
 import Team from '@/components/Team'
-import Portfolio from '@/components/Portfolio'
 import BeforeAfter from '@/components/BeforeAfter'
 import Testimonials from '@/components/Testimonials'
 import ProjectProcess from '@/components/ProjectProcess'
@@ -60,7 +59,6 @@ export default function Home() {
       <Hero content={content} />
       <About content={content} />
       <Services content={content} />
-      <Portfolio content={content} />
       <BeforeAfter content={content} />
       <Team content={content} />
       <ProjectProcess content={content} />

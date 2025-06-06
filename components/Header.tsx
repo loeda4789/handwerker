@@ -46,7 +46,7 @@ export default function Header({ content }: HeaderProps) {
   // Active section detection
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['ueber-uns', 'leistungen', 'referenzen', 'team', 'bewertungen', 'kontakt']
+      const sections = ['ueber-uns', 'leistungen', 'team', 'bewertungen', 'kontakt']
       const scrollPosition = window.scrollY + 100
 
       for (const sectionId of sections) {
@@ -190,10 +190,10 @@ export default function Header({ content }: HeaderProps) {
               </li>
               <li>
                 <Link
-                  href="#referenzen"
-                  onClick={(e) => handleSmoothScroll(e, 'referenzen')}
+                  href="#leistungen"
+                  onClick={(e) => handleSmoothScroll(e, 'leistungen')}
                   className={`block py-2 pr-4 pl-3 border-b border-border lg:border-0 lg:p-0 lg:hover:text-primary dark:border-light/10 uppercase transition-colors duration-300 ${
-                    activeSection === 'referenzen' 
+                    activeSection === 'leistungen' 
                       ? 'text-primary dark:text-accent font-semibold' 
                       : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
                   }`}

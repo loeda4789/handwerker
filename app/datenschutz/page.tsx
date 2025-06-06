@@ -1,1 +1,1 @@
-﻿export default function DatenschutzPage() { return <div><h1>Datenschutz</h1><p>DSGVO-konforme Datenschutzerklärung für Vercel und Formspree</p></div> }
+﻿

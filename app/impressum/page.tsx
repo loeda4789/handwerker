@@ -1,1 +1,1 @@
-﻿export default function ImpressumPage() { return <div><h1>Impressum</h1><p>Mustermann Handwerk GmbH</p></div> }
+﻿

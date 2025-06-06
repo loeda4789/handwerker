@@ -21,10 +21,18 @@ export interface Welcome {
   features: Feature[];
 }
 
+export interface ServiceProject {
+  title: string;
+  image: string;
+  description: string;
+}
+
 export interface Service {
   title: string;
   icon: string;
   description: string;
+  image?: string;
+  projects?: ServiceProject[];
 }
 
 export interface TeamMember {

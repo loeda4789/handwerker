@@ -1,6 +1,6 @@
-# Handwerker Template - Next.js
+# Mustermann Handwerk GmbH - Website
 
-Ein flexibles, JSON-gesteuertes Template für Handwerksbetriebe mit Next.js, TypeScript und Tailwind CSS.
+Eine moderne, JSON-gesteuerte Website für Handwerksbetriebe mit Next.js, TypeScript und Tailwind CSS.
 
 ## 🚀 Features
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { ContentData } from '@/types/content'
+import LocationMap from './LocationMap'
 
 interface FooterProps {
   content: ContentData
@@ -102,36 +103,11 @@ export default function Footer({ content }: FooterProps) {
           <div>
             <h3 className="text-lg font-semibold text-primary dark:text-accent mb-6">Standort</h3>
             
-            {/* Karten-Placeholder */}
-            <div className="bg-gray-300 dark:bg-gray-600 rounded-lg h-48 flex items-center justify-center relative overflow-hidden">
-              {/* Einfache Karten-Simulation */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-green-100 dark:from-blue-900 dark:to-green-900">
-                {/* Straßen-Linien */}
-                <div className="absolute top-8 left-4 right-4 h-0.5 bg-gray-400 transform rotate-12"></div>
-                <div className="absolute top-16 left-2 right-6 h-0.5 bg-gray-400 transform -rotate-12"></div>
-                <div className="absolute top-24 left-6 right-2 h-0.5 bg-gray-400 transform rotate-6"></div>
-                <div className="absolute top-32 left-3 right-5 h-0.5 bg-gray-400 transform -rotate-6"></div>
-                
-                                 {/* Marker */}
-                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-full">
-                   <svg className="w-8 h-8 text-primary dark:text-accent" fill="currentColor" viewBox="0 0 24 24">
-                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                   </svg>
-                 </div>
-                
-                {/* Stadt-Label */}
-                <div className="absolute bottom-4 right-4 bg-white/80 dark:bg-gray-800/80 px-2 py-1 rounded text-xs text-gray-600 dark:text-gray-300">
-                  Musterstadt
-                </div>
-              </div>
-              
-              {/* Zoom Controls */}
-              <div className="absolute top-4 right-4 bg-white dark:bg-gray-800 rounded shadow-md">
-                <button className="block px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 text-lg font-bold">+</button>
-                <div className="border-t border-gray-200 dark:border-gray-600"></div>
-                <button className="block px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 text-lg font-bold">−</button>
-              </div>
-            </div>
+            {/* Leaflet Karte */}
+            <LocationMap 
+              address={content.contact.address}
+              companyName={content.company.name}
+            />
           </div>
         </div>
       </div>
