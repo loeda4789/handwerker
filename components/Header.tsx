@@ -101,8 +101,8 @@ export default function Header({ content }: HeaderProps) {
     <>
       <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled 
-          ? 'bg-background/98 backdrop-blur-md border-b border-border shadow-lg dark:bg-dark-secondary/98 dark:border-gray-600' 
-          : 'bg-background/95 backdrop-blur-sm border-b border-border dark:bg-dark-secondary/95 dark:border-gray-600'
+          ? 'bg-white/98 backdrop-blur-md border-b border-border shadow-lg dark:bg-dark/98 dark:border-gray-700' 
+          : 'bg-white/95 backdrop-blur-sm border-b border-border dark:bg-dark/95 dark:border-gray-700'
       }`}>
         <nav className="px-4 py-2.5 mx-auto max-w-screen-xl">
           <div className="flex flex-wrap items-center justify-between">
