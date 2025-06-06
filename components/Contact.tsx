@@ -10,7 +10,8 @@ interface FormData {
   name: string
   email: string
   phone: string
-  subject: string
+  requestType: string
+  serviceCategory: string
   message: string
   privacy: boolean
 }
@@ -24,7 +25,8 @@ export default function Contact({ content }: ContactProps) {
     name: '',
     email: '',
     phone: '',
-    subject: '',
+    requestType: '',
+    serviceCategory: '',
     message: '',
     privacy: false
   })
@@ -121,14 +123,15 @@ export default function Contact({ content }: ContactProps) {
       showToast('🎉 Vielen Dank für Ihre Nachricht! Wir melden uns innerhalb von 24 Stunden bei Ihnen.', 'success')
       
       // Form zurücksetzen
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-        privacy: false
-      })
+              setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          requestType: '',
+          serviceCategory: '',
+          message: '',
+          privacy: false
+        })
     } catch (error) {
       showToast('❌ Es gab einen Fehler beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.', 'error')
     } finally {
@@ -326,41 +329,69 @@ export default function Contact({ content }: ContactProps) {
                 </p>}
               </div>
               
-              {/* Subject Field */}
-              <div className="relative">
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  onFocus={() => handleFocus('subject')}
-                  onBlur={handleBlur}
-                  className="w-full px-4 pt-6 pb-2 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
-                >
-                  <option value="">Bitte wählen...</option>
-                  {content.services?.map((service: any, index: number) => (
-                    <option key={index} value={service.title}>
-                      {service.title}
-                    </option>
-                  ))}
-                  <option value="Beratungstermin">Beratungstermin</option>
-                  <option value="Kostenvoranschlag">Kostenvoranschlag</option>
-                  <option value="other">Sonstiges</option>
-                </select>
-                <label 
-                  htmlFor="subject" 
-                  className={`absolute left-4 transition-all duration-300 pointer-events-none ${
-                    formData.subject || focusedField === 'subject' 
-                      ? 'top-2 text-xs text-text-secondary dark:text-light/60 font-medium' 
-                      : 'top-4 text-text-secondary dark:text-light/60'
-                  }`}
-                >
-                  Ich interessiere mich für...
-                </label>
-              </div>
-            </div>
-            
-            {/* Message Field */}
+                             {/* Request Type Field */}
+               <div className="relative">
+                 <select
+                   id="requestType"
+                   name="requestType"
+                   value={formData.requestType}
+                   onChange={handleInputChange}
+                   onFocus={() => handleFocus('requestType')}
+                   onBlur={handleBlur}
+                   className="w-full px-4 pt-6 pb-2 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
+                 >
+                   <option value="">Bitte wählen...</option>
+                   <option value="Rückruf">Rückruf</option>
+                   <option value="Beratungstermin">Beratungstermin</option>
+                   <option value="Kostenvoranschlag">Kostenvoranschlag</option>
+                   <option value="Sonstiges">Sonstiges</option>
+                 </select>
+                 <label 
+                   htmlFor="requestType" 
+                   className={`absolute left-4 transition-all duration-300 pointer-events-none ${
+                     formData.requestType || focusedField === 'requestType' 
+                       ? 'top-2 text-xs text-text-secondary dark:text-light/60 font-medium' 
+                       : 'top-4 text-text-secondary dark:text-light/60'
+                   }`}
+                 >
+                   Art der Anfrage
+                 </label>
+               </div>
+                         </div>
+
+             {/* Service Category Field - Only show if request type is selected */}
+             {formData.requestType && formData.requestType !== 'Sonstiges' && (
+               <div className="relative animate-on-scroll">
+                 <select
+                   id="serviceCategory"
+                   name="serviceCategory"
+                   value={formData.serviceCategory}
+                   onChange={handleInputChange}
+                   onFocus={() => handleFocus('serviceCategory')}
+                   onBlur={handleBlur}
+                   className="w-full px-4 pt-6 pb-2 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
+                 >
+                   <option value="">Optional - Bitte wählen...</option>
+                   {content.services?.map((service: any, index: number) => (
+                     <option key={index} value={service.title}>
+                       {service.title}
+                     </option>
+                   ))}
+                 </select>
+                 <label 
+                   htmlFor="serviceCategory" 
+                   className={`absolute left-4 transition-all duration-300 pointer-events-none ${
+                     formData.serviceCategory || focusedField === 'serviceCategory' 
+                       ? 'top-2 text-xs text-text-secondary dark:text-light/60 font-medium' 
+                       : 'top-4 text-text-secondary dark:text-light/60'
+                   }`}
+                 >
+                   Worum geht es? (optional)
+                 </label>
+               </div>
+             )}
+             
+             {/* Message Field */}
             <div className="relative">
               <textarea
                 id="message"
