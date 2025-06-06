@@ -1,8 +1,16 @@
+'use client'
+
+import { useEffect, useState, useRef } from 'react'
+
 interface ProjectProcessProps {
   content: any
 }
 
 export default function ProjectProcess({ content }: ProjectProcessProps) {
+  const [timelineProgress, setTimelineProgress] = useState(0)
+  const sectionRef = useRef<HTMLElement>(null)
+  const timelineRef = useRef<HTMLDivElement>(null)
+
   const projectSteps = [
     {
       number: 1,
@@ -21,8 +29,51 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
     }
   ]
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current || !timelineRef.current) return
+
+      const section = sectionRef.current
+      const timeline = timelineRef.current
+      const sectionRect = section.getBoundingClientRect()
+      const timelineRect = timeline.getBoundingClientRect()
+      
+      // Berechne, wann die Sektion im Viewport ist
+      const sectionTop = sectionRect.top
+      const sectionHeight = sectionRect.height
+      const viewportHeight = window.innerHeight
+      
+      // Starte Animation, wenn Sektion 20% im Viewport ist
+      const startPoint = viewportHeight * 0.8
+      const endPoint = viewportHeight * 0.2
+      
+      if (sectionTop <= startPoint && sectionTop + sectionHeight >= endPoint) {
+        // Berechne Fortschritt basierend auf Scroll-Position
+        const scrollProgress = Math.max(0, Math.min(1, 
+          (startPoint - sectionTop) / (sectionHeight * 0.6)
+        ))
+        
+        setTimelineProgress(scrollProgress * 100)
+      } else if (sectionTop > startPoint) {
+        setTimelineProgress(0)
+      } else {
+        setTimelineProgress(100)
+      }
+    }
+
+    // Initial check
+    handleScroll()
+    
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
-    <section className="bg-surface dark:bg-dark py-20">
+    <section ref={sectionRef} className="bg-surface dark:bg-dark py-20">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
@@ -40,10 +91,15 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
         {/* Vertikale Timeline für alle Bildschirmgrößen */}
         <div className="relative max-w-4xl mx-auto">
           {/* Vertikale Hauptlinie */}
-          <div className="absolute left-8 lg:left-12 top-0 bottom-0 w-1 bg-border dark:bg-gray-600 rounded-full">
-            {/* Animierter Fortschrittsstrich */}
-            <div className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent rounded-full transition-all duration-1000 ease-out animate-timeline-progress" 
-                 style={{height: '100%'}}></div>
+          <div 
+            ref={timelineRef}
+            className="absolute left-8 lg:left-12 top-0 bottom-0 w-1 bg-border dark:bg-gray-600 rounded-full"
+          >
+            {/* Scroll-basierter Fortschrittsstrich */}
+            <div 
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent rounded-full transition-all duration-300 ease-out" 
+              style={{ height: `${timelineProgress}%` }}
+            ></div>
           </div>
 
           {/* Timeline Steps */}
@@ -55,14 +111,26 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                 style={{ animationDelay: `${index * 300}ms` }}
               >
                 {/* Schritt-Nummer Kreis */}
-                <div className="absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-surface dark:border-dark">
+                <div 
+                  className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-surface dark:border-dark transition-all duration-500 ${
+                    timelineProgress >= (index + 1) * (100 / projectSteps.length) 
+                      ? 'scale-110 shadow-xl' 
+                      : 'scale-100'
+                  }`}
+                >
                   <span className="text-xl lg:text-2xl font-bold text-white">
                     {step.number}
                   </span>
                 </div>
 
                 {/* Content Box */}
-                <div className="ml-24 lg:ml-32 bg-white dark:bg-dark-secondary rounded-xl p-6 lg:p-8 shadow-lg border border-border dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105">
+                <div 
+                  className={`ml-24 lg:ml-32 bg-white dark:bg-dark-secondary rounded-xl p-6 lg:p-8 shadow-lg border border-border dark:border-gray-700 hover:shadow-xl transition-all duration-500 hover:transform hover:scale-105 ${
+                    timelineProgress >= (index + 1) * (100 / projectSteps.length)
+                      ? 'opacity-100 transform translate-y-0'
+                      : 'opacity-60 transform translate-y-2'
+                  }`}
+                >
                   <h3 className="text-xl lg:text-2xl font-bold text-text dark:text-light mb-3 lg:mb-4">
                     {step.title}
                   </h3>

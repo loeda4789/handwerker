@@ -200,26 +200,7 @@ html {
   50% { opacity: 0.4; }
 }
 
-@keyframes timeline-progress {
-  0% { height: 0%; }
-  100% { height: 100%; }
-}
-
-.animate-progress-line-1 {
-  animation: progress-line-1 1s ease-in-out 1.5s forwards;
-}
-
-.animate-progress-line-2 {
-  animation: progress-line-2 1s ease-in-out 2.5s forwards;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 3s ease-in-out infinite;
-}
-
-.animate-timeline-progress {
-  animation: timeline-progress 2s ease-out 0.5s both;
-}
+/* Timeline-Animationen werden jetzt scroll-basiert in React gehandhabt */
 
 /* Scrollbar Utilities */
 .scrollbar-hide {
