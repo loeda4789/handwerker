@@ -22,7 +22,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
   ]
 
   return (
-    <section className="bg-gradient-to-br from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10 py-20">
+    <section className="bg-surface dark:bg-dark py-20">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
