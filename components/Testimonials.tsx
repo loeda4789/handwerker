@@ -135,11 +135,131 @@ export default function Testimonials({ content }: TestimonialsProps) {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 items-center">
-          {/* Mobile Slider / Desktop Grid */}
+        {/* Mobile View - Full Width */}
+        <div className="lg:hidden">
+          {/* Mobile Slider View */}
+          <div className="relative overflow-hidden">
+            {/* Slider Container */}
+            <div 
+              ref={sliderRef}
+              className="overflow-hidden touch-pan-y select-none"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onMouseDown={handleMouseDown}
+              onMouseMove={isDragging ? handleMouseMove : undefined}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+            >
+              <div 
+                className="flex transition-transform duration-300 ease-out"
+                style={{
+                  transform: `translateX(${translateX}%)`,
+                  transition: isDragging ? 'none' : 'transform 0.3s ease-out'
+                }}
+              >
+                {content.testimonials.map((testimonial, index) => (
+                  <div
+                    key={index}
+                    className="w-full flex-shrink-0 px-3"
+                  >
+                    <div className="bg-surface dark:bg-dark-secondary rounded-lg p-4 shadow-lg h-full max-w-full">
+                      <div className="flex items-start space-x-3">
+                        {/* Avatar */}
+                        <div className="flex-shrink-0">
+                          <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                            <span className="text-primary font-semibold text-sm">
+                              {testimonial.name.charAt(0)}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center mb-2">
+                            <h4 className="font-semibold text-text dark:text-light text-sm truncate mr-2">
+                              {testimonial.name}
+                            </h4>
+                            {/* 5 Star Rating */}
+                            <div className="flex items-center flex-shrink-0">
+                              {[...Array(5)].map((_, i) => (
+                                <svg
+                                  key={i}
+                                  className="w-3 h-3 text-primary dark:text-accent fill-current"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                              ))}
+                            </div>
+                          </div>
+                          <blockquote className="text-text-secondary dark:text-light/80 italic text-sm leading-relaxed">
+                            &quot;{testimonial.text}&quot;
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              disabled={currentSlide === 0}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
+              aria-label="Vorherige Bewertung"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+
+            <button
+              onClick={nextSlide}
+              disabled={currentSlide === totalSlides - 1}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
+              aria-label="Nächste Bewertung"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+
+            {/* Pagination Dots */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {content.testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                    index === currentSlide 
+                      ? 'bg-primary dark:bg-accent w-6' 
+                      : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                  }`}
+                  aria-label={`Zu Bewertung ${index + 1} wechseln`}
+                />
+              ))}
+            </div>
+
+            {/* Swipe Indicator */}
+            <div className="text-center mt-4">
+              <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center justify-center">
+                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l4-4m0 0l4-4m-4 4v12"/>
+                </svg>
+                Wischen zum Navigieren
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop View - Grid Layout */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-8 items-center">
+          {/* Desktop Grid */}
           <div className="lg:col-span-2">
-            {/* Desktop View - Stack Layout */}
-            <div className="hidden lg:block space-y-6">
+            <div className="space-y-6">
               {content.testimonials.map((testimonial, index) => (
                 <div
                   key={index}
@@ -181,123 +301,6 @@ export default function Testimonials({ content }: TestimonialsProps) {
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Mobile Slider View */}
-            <div className="lg:hidden relative">
-              {/* Slider Container */}
-              <div 
-                ref={sliderRef}
-                className="overflow-hidden rounded-lg touch-pan-y select-none"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-                onMouseDown={handleMouseDown}
-                onMouseMove={isDragging ? handleMouseMove : undefined}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-              >
-                <div 
-                  className="flex transition-transform duration-300 ease-out"
-                  style={{
-                    transform: `translateX(${translateX}%)`,
-                    transition: isDragging ? 'none' : 'transform 0.3s ease-out'
-                  }}
-                >
-                  {content.testimonials.map((testimonial, index) => (
-                    <div
-                      key={index}
-                      className="w-full flex-shrink-0 px-2"
-                    >
-                      <div className="bg-surface dark:bg-dark-secondary rounded-lg p-4 shadow-lg h-full">
-                        <div className="flex items-start space-x-4">
-                          {/* Avatar */}
-                          <div className="flex-shrink-0">
-                            <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                              <span className="text-primary font-semibold text-lg">
-                                {testimonial.name.charAt(0)}
-                              </span>
-                            </div>
-                          </div>
-                          
-                          {/* Content */}
-                          <div className="flex-1">
-                            <div className="flex items-center mb-2">
-                              <h4 className="font-semibold text-text dark:text-light">
-                                {testimonial.name}
-                              </h4>
-                              {/* 5 Star Rating */}
-                              <div className="flex items-center ml-auto">
-                                {[...Array(5)].map((_, i) => (
-                                  <svg
-                                    key={i}
-                                    className="w-4 h-4 text-primary dark:text-accent fill-current"
-                                    viewBox="0 0 20 20"
-                                  >
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                                  </svg>
-                                ))}
-                              </div>
-                            </div>
-                            <blockquote className="text-text-secondary dark:text-light/80 italic text-sm leading-relaxed">
-                              &quot;{testimonial.text}&quot;
-                            </blockquote>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevSlide}
-                disabled={currentSlide === 0}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
-                aria-label="Vorherige Bewertung"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
-                </svg>
-              </button>
-
-              <button
-                onClick={nextSlide}
-                disabled={currentSlide === totalSlides - 1}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
-                aria-label="Nächste Bewertung"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
-                </svg>
-              </button>
-
-              {/* Pagination Dots */}
-              <div className="flex justify-center mt-6 space-x-2">
-                {content.testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToSlide(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                      index === currentSlide 
-                        ? 'bg-primary dark:bg-accent w-6' 
-                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
-                    }`}
-                    aria-label={`Zu Bewertung ${index + 1} wechseln`}
-                  />
-                ))}
-              </div>
-
-              {/* Swipe Indicator */}
-              <div className="text-center mt-4 lg:hidden">
-                <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center justify-center">
-                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l4-4m0 0l4-4m-4 4v12"/>
-                  </svg>
-                  Wischen zum Navigieren
-                </p>
-              </div>
             </div>
           </div>
 
