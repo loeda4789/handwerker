@@ -184,11 +184,11 @@ export default function Testimonials({ content }: TestimonialsProps) {
             </div>
 
             {/* Mobile Slider View */}
-            <div className="lg:hidden relative mx-0">
+            <div className="lg:hidden relative">
               {/* Slider Container */}
               <div 
                 ref={sliderRef}
-                className="overflow-hidden rounded-lg touch-pan-y select-none -mx-4"
+                className="overflow-hidden rounded-lg touch-pan-y select-none"
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
@@ -207,7 +207,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
                   {content.testimonials.map((testimonial, index) => (
                     <div
                       key={index}
-                      className="w-full flex-shrink-0 px-4"
+                      className="w-full flex-shrink-0 px-2"
                     >
                       <div className="bg-surface dark:bg-dark-secondary rounded-lg p-4 shadow-lg h-full">
                         <div className="flex items-start space-x-4">
@@ -254,10 +254,10 @@ export default function Testimonials({ content }: TestimonialsProps) {
               <button
                 onClick={prevSlide}
                 disabled={currentSlide === 0}
-                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
                 aria-label="Vorherige Bewertung"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
                 </svg>
               </button>
@@ -265,10 +265,10 @@ export default function Testimonials({ content }: TestimonialsProps) {
               <button
                 onClick={nextSlide}
                 disabled={currentSlide === totalSlides - 1}
-                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
                 aria-label="Nächste Bewertung"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
                 </svg>
               </button>

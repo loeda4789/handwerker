@@ -312,70 +312,67 @@ export default function Contact({ content }: ContactProps) {
               </div>
             </div>
 
-            {/* Phone & Subject Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Phone Field */}
-              <div className="relative">
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  onFocus={() => handleFocus('phone')}
-                  onBlur={handleBlur}
-                  className={`w-full px-4 pt-6 pb-2 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light transition-all duration-300 peer ${
-                    errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-border dark:border-gray-600 hover:border-primary/50 dark:hover:border-accent/50'
-                  }`}
-                  placeholder=" "
-                />
-                <label 
-                  htmlFor="phone" 
-                  className={`absolute left-4 transition-all duration-300 pointer-events-none ${
-                    formData.phone || focusedField === 'phone' 
-                      ? 'top-2 text-xs text-text-secondary dark:text-light/60 font-medium' 
-                      : 'top-4 text-text-secondary dark:text-light/60'
-                  }`}
-                >
-                  Telefonnummer (optional)
-                </label>
-                {errors.phone && <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
-                  <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"/>
-                  </svg>
-                  {errors.phone}
-                </p>}
-              </div>
-              
-                             {/* Request Type Field */}
-               <div className="relative">
-                 <select
-                   id="requestType"
-                   name="requestType"
-                   value={formData.requestType}
-                   onChange={handleInputChange}
-                   onFocus={() => handleFocus('requestType')}
-                   onBlur={handleBlur}
-                   className="w-full px-4 pt-6 pb-2 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
-                 >
-                   <option value="">Bitte wählen...</option>
-                   <option value="Rückruf">Rückruf</option>
-                   <option value="Beratungstermin">Beratungstermin</option>
-                   <option value="Kostenvoranschlag">Kostenvoranschlag</option>
-                   <option value="Sonstiges">Sonstiges</option>
-                 </select>
-                 <label 
-                   htmlFor="requestType" 
-                   className={`absolute left-4 transition-all duration-300 pointer-events-none ${
-                     formData.requestType || focusedField === 'requestType' 
-                       ? 'top-2 text-xs text-text-secondary dark:text-light/60 font-medium' 
-                       : 'top-4 text-text-secondary dark:text-light/60'
-                   }`}
-                 >
-                   Art der Anfrage
-                 </label>
-               </div>
-                         </div>
+            {/* Phone Field */}
+            <div className="relative">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                onFocus={() => handleFocus('phone')}
+                onBlur={handleBlur}
+                className={`w-full px-4 pt-6 pb-2 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light transition-all duration-300 peer ${
+                  errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-border dark:border-gray-600 hover:border-primary/50 dark:hover:border-accent/50'
+                }`}
+                placeholder=" "
+              />
+              <label 
+                htmlFor="phone" 
+                className={`absolute left-4 transition-all duration-300 pointer-events-none ${
+                  formData.phone || focusedField === 'phone' 
+                    ? 'top-2 text-xs text-text-secondary dark:text-light/60 font-medium' 
+                    : 'top-4 text-text-secondary dark:text-light/60'
+                }`}
+              >
+                Telefonnummer (optional)
+              </label>
+              {errors.phone && <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
+                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"/>
+                </svg>
+                {errors.phone}
+              </p>}
+            </div>
+
+            {/* Request Type Field */}
+            <div className="relative">
+              <select
+                id="requestType"
+                name="requestType"
+                value={formData.requestType}
+                onChange={handleInputChange}
+                onFocus={() => handleFocus('requestType')}
+                onBlur={handleBlur}
+                className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
+              >
+                <option value="">Bitte wählen...</option>
+                <option value="Rückruf">Rückruf</option>
+                <option value="Beratungstermin">Beratungstermin</option>
+                <option value="Kostenvoranschlag">Kostenvoranschlag</option>
+                <option value="Sonstiges">Sonstiges</option>
+              </select>
+              <label 
+                htmlFor="requestType" 
+                className={`absolute left-4 transition-all duration-300 pointer-events-none ${
+                  formData.requestType || focusedField === 'requestType' 
+                    ? 'top-2 text-xs text-text-secondary dark:text-light/60 font-medium' 
+                    : 'top-4 text-text-secondary dark:text-light/60'
+                }`}
+              >
+                Art der Anfrage
+              </label>
+            </div>
 
              {/* Service Category Field - Only show if request type is selected and not 'Sonstiges' */}
              {formData.requestType && formData.requestType !== 'Sonstiges' && (
@@ -387,7 +384,7 @@ export default function Contact({ content }: ContactProps) {
                    onChange={handleInputChange}
                    onFocus={() => handleFocus('serviceCategory')}
                    onBlur={handleBlur}
-                   className="w-full px-4 pt-6 pb-2 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
+                   className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
                  >
                    <option value="">Optional - Bitte wählen...</option>
                    <option value="Badezimmer">Badezimmer</option>
