@@ -200,6 +200,11 @@ html {
   50% { opacity: 0.4; }
 }
 
+@keyframes timeline-progress {
+  0% { height: 0%; }
+  100% { height: 100%; }
+}
+
 .animate-progress-line-1 {
   animation: progress-line-1 1s ease-in-out 1.5s forwards;
 }
@@ -210,6 +215,10 @@ html {
 
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-timeline-progress {
+  animation: timeline-progress 2s ease-out 0.5s both;
 }
 
 /* Scrollbar Utilities */

@@ -387,12 +387,14 @@ export default function Contact({ content }: ContactProps) {
                    className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
                  >
                    <option value="" disabled hidden></option>
-                   <option value="Badezimmer">Badezimmer</option>
-                   <option value="Küche">Küche</option>
-                   <option value="Heizung">Heizung</option>
-                   <option value="Reparaturen">Reparaturen</option>
-                   <option value="Installation">Installation</option>
-                   <option value="Wartung">Wartung</option>
+                   <option value="Badezimmer komplett">Badezimmer komplett</option>
+                   <option value="Küche (Arbeitsplatte/Spritzschutz)">Küche (Arbeitsplatte/Spritzschutz)</option>
+                   <option value="Wohnräume/Flur">Wohnräume/Flur</option>
+                   <option value="Balkon/Terrasse">Balkon/Terrasse</option>
+                   <option value="Sanierung/Renovierung">Sanierung/Renovierung</option>
+                   <option value="Reparaturen (Fliesen/Fugen)">Reparaturen (Fliesen/Fugen)</option>
+                   <option value="Naturstein/Mosaik">Naturstein/Mosaik</option>
+                   <option value="Außenbereich">Außenbereich</option>
                  </select>
                  <label 
                    htmlFor="serviceCategory" 

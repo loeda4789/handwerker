@@ -27,10 +27,6 @@ export default function Team({ content }: TeamProps) {
               Handwerkern, die ihr Handwerk von der Pike auf gelernt haben und täglich mit 
               Herzblut ausüben.
             </p>
-            <p>
-              Von unseren Meistern bis zu den Auszubildenden – wir alle teilen die gleiche Vision: 
-              Ihre Wünsche mit höchster Präzision und persönlichem Engagement umzusetzen.
-            </p>
           </div>
         </div>
 
