@@ -119,7 +119,9 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
           >
             {/* Scroll-basierter Fortschrittsstrich */}
             <div 
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent rounded-full transition-all duration-500 ease-out" 
+              className={`absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent rounded-full transition-all duration-500 ease-out ${
+                timelineProgress === 0 ? 'opacity-0' : 'opacity-100'
+              }`}
               style={{ height: `${timelineProgress}%` }}
             ></div>
           </div>
@@ -129,7 +131,8 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
             {projectSteps.map((step, index) => {
               const stepNumber = index + 1
               const isActive = activeStep >= stepNumber
-              const isStrichReached = timelineProgress >= (stepNumber - 1) * 33 + 16.5 // Strich erreicht Step-Mitte
+              // Strich erreicht Step-Mitte: bei 16.5%, 49.5%, 82.5% (genau mittig zwischen den Kreisen)
+              const isStrichReached = timelineProgress >= (stepNumber - 1) * 33 + 16.5
               
               return (
                 <div 
