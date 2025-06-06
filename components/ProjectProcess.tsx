@@ -8,6 +8,7 @@ interface ProjectProcessProps {
 
 export default function ProjectProcess({ content }: ProjectProcessProps) {
   const [timelineProgress, setTimelineProgress] = useState(0)
+  const [activeStep, setActiveStep] = useState(0)
   const sectionRef = useRef<HTMLElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
 
@@ -34,30 +35,51 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
       if (!sectionRef.current || !timelineRef.current) return
 
       const section = sectionRef.current
-      const timeline = timelineRef.current
       const sectionRect = section.getBoundingClientRect()
-      const timelineRect = timeline.getBoundingClientRect()
       
       // Berechne, wann die Sektion im Viewport ist
       const sectionTop = sectionRect.top
       const sectionHeight = sectionRect.height
       const viewportHeight = window.innerHeight
       
-      // Starte Animation, wenn Sektion 20% im Viewport ist
-      const startPoint = viewportHeight * 0.8
-      const endPoint = viewportHeight * 0.2
+      // Starte Animation später und ende früher für langsamere Animation
+      const startPoint = viewportHeight * 0.7  // Startet später
+      const endPoint = viewportHeight * 0.1    // Endet früher
       
       if (sectionTop <= startPoint && sectionTop + sectionHeight >= endPoint) {
-        // Berechne Fortschritt basierend auf Scroll-Position
+        // Langsamere, feinere Fortschrittsberechnung
+        const totalScrollRange = sectionHeight * 0.8  // Größerer Scroll-Bereich
         const scrollProgress = Math.max(0, Math.min(1, 
-          (startPoint - sectionTop) / (sectionHeight * 0.6)
+          (startPoint - sectionTop) / totalScrollRange
         ))
         
-        setTimelineProgress(scrollProgress * 100)
+        // Strich-Progress: Langsamer und step-basiert
+        let strichProgress = scrollProgress * 100
+        
+        // Step-Aktivierung basierend auf Scroll-Progress
+        let currentActiveStep = 0
+        if (scrollProgress > 0.2) currentActiveStep = 1      // Step 1 bei 20%
+        if (scrollProgress > 0.5) currentActiveStep = 2      // Step 2 bei 50%  
+        if (scrollProgress > 0.8) currentActiveStep = 3      // Step 3 bei 80%
+        
+        // Strich läuft zu den Steps: 0% -> 33% -> 66% -> 100%
+        if (scrollProgress <= 0.33) {
+          strichProgress = (scrollProgress / 0.33) * 33  // 0% bis 33%
+        } else if (scrollProgress <= 0.66) {
+          strichProgress = 33 + ((scrollProgress - 0.33) / 0.33) * 33  // 33% bis 66%
+        } else {
+          strichProgress = 66 + ((scrollProgress - 0.66) / 0.34) * 34  // 66% bis 100%
+        }
+        
+        setTimelineProgress(Math.min(100, strichProgress))
+        setActiveStep(currentActiveStep)
+        
       } else if (sectionTop > startPoint) {
         setTimelineProgress(0)
+        setActiveStep(0)
       } else {
         setTimelineProgress(100)
+        setActiveStep(3)
       }
     }
 
@@ -97,52 +119,58 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
           >
             {/* Scroll-basierter Fortschrittsstrich */}
             <div 
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent rounded-full transition-all duration-300 ease-out" 
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent rounded-full transition-all duration-500 ease-out" 
               style={{ height: `${timelineProgress}%` }}
             ></div>
           </div>
 
           {/* Timeline Steps */}
           <div className="space-y-16 lg:space-y-24">
-            {projectSteps.map((step, index) => (
-              <div 
-                key={index} 
-                className="relative animate-on-scroll"
-                style={{ animationDelay: `${index * 300}ms` }}
-              >
-                {/* Schritt-Nummer Kreis */}
+            {projectSteps.map((step, index) => {
+              const stepNumber = index + 1
+              const isActive = activeStep >= stepNumber
+              const isStrichReached = timelineProgress >= (stepNumber - 1) * 33 + 16.5 // Strich erreicht Step-Mitte
+              
+              return (
                 <div 
-                  className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-surface dark:border-dark transition-all duration-500 ${
-                    timelineProgress >= (index + 1) * (100 / projectSteps.length) 
-                      ? 'scale-110 shadow-xl' 
-                      : 'scale-100'
-                  }`}
+                  key={index} 
+                  className="relative animate-on-scroll"
+                  style={{ animationDelay: `${index * 200}ms` }}
                 >
-                  <span className="text-xl lg:text-2xl font-bold text-white">
-                    {step.number}
-                  </span>
-                </div>
+                  {/* Schritt-Nummer Kreis */}
+                  <div 
+                    className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-surface dark:border-dark transition-all duration-700 ${
+                      isStrichReached 
+                        ? 'scale-110 shadow-xl ring-4 ring-primary/20' 
+                        : 'scale-100'
+                    }`}
+                  >
+                    <span className="text-xl lg:text-2xl font-bold text-white">
+                      {step.number}
+                    </span>
+                  </div>
 
-                {/* Content Box */}
-                <div 
-                  className={`ml-24 lg:ml-32 bg-white dark:bg-dark-secondary rounded-xl p-6 lg:p-8 shadow-lg border border-border dark:border-gray-700 hover:shadow-xl transition-all duration-500 hover:transform hover:scale-105 ${
-                    timelineProgress >= (index + 1) * (100 / projectSteps.length)
-                      ? 'opacity-100 transform translate-y-0'
-                      : 'opacity-60 transform translate-y-2'
-                  }`}
-                >
-                  <h3 className="text-xl lg:text-2xl font-bold text-text dark:text-light mb-3 lg:mb-4">
-                    {step.title}
-                  </h3>
-                  <p className="text-text-secondary dark:text-light/80 leading-relaxed text-base lg:text-lg">
-                    {step.description}
-                  </p>
-                  
-                  {/* Kleiner Pfeil zur Verbindung */}
-                  <div className="absolute left-16 lg:left-20 top-6 lg:top-8 w-0 h-0 border-l-8 border-l-white dark:border-l-dark-secondary border-t-8 border-t-transparent border-b-8 border-b-transparent"></div>
+                  {/* Content Box */}
+                  <div 
+                    className={`ml-24 lg:ml-32 bg-white dark:bg-dark-secondary rounded-xl p-6 lg:p-8 shadow-lg border border-border dark:border-gray-700 hover:shadow-xl transition-all duration-700 hover:transform hover:scale-105 ${
+                      isActive
+                        ? 'opacity-100 transform translate-y-0'
+                        : 'opacity-60 transform translate-y-4'
+                    }`}
+                  >
+                    <h3 className="text-xl lg:text-2xl font-bold text-text dark:text-light mb-3 lg:mb-4">
+                      {step.title}
+                    </h3>
+                    <p className="text-text-secondary dark:text-light/80 leading-relaxed text-base lg:text-lg">
+                      {step.description}
+                    </p>
+                    
+                    {/* Kleiner Pfeil zur Verbindung */}
+                    <div className="absolute left-16 lg:left-20 top-6 lg:top-8 w-0 h-0 border-l-8 border-l-white dark:border-l-dark-secondary border-t-8 border-t-transparent border-b-8 border-b-transparent"></div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
