@@ -34,7 +34,7 @@
       "title": "Fliesenarbeiten Innen",
       "icon": "grid",
       "description": "Präzise Verlegung von Wand- und Bodenfliesen in Küche, Bad und Wohnräumen – fachgerecht und langlebig.",
-      "image": "/images/services/fliesenarbeiten-innen.jpg",
+      "image": "/images/services/fliesenarbeiten-innen.png",
       "projects": [
         {
           "title": "Moderne Küchenfliesen",
@@ -52,7 +52,7 @@
       "title": "Badezimmer & Dusche", 
       "icon": "water-drop",
       "description": "Komplettlösungen für moderne Bäder – von der Abdichtung bis zur Verlegung großformatiger Fliesen.",
-      "image": "/images/services/badezimmer-dusche.jpg",
+      "image": "/images/services/badezimmer-dusche.png",
       "projects": [
         {
           "title": "Luxusbadezimmer mit Großformat",
@@ -65,7 +65,7 @@
       "title": "Außenbereiche",
       "icon": "sun", 
       "description": "Rutschfeste und wetterfeste Fliesen für Terrassen, Balkone und Außentreppen – funktional und stilvoll.",
-      "image": "/images/services/aussenbereiche.jpg",
+      "image": "/images/services/aussenbereiche.png",
       "projects": [
         {
           "title": "Dachterrasse mit Feinsteinzeug",
@@ -78,7 +78,7 @@
       "title": "Fugen & Reparatur",
       "icon": "wrench",
       "description": "Erneuerung von Fugen, Austausch beschädigter Fliesen oder Ausbesserung bei Feuchtigkeit – schnell & professionell.",
-      "image": "/images/services/fugen-reparatur.jpg",
+      "image": "/images/services/fugen-reparatur.png",
       "projects": [
         {
           "title": "Terrasse Fliesenerneuerung",
@@ -91,7 +91,7 @@
       "title": "Mosaik & Design",
       "icon": "sparkles", 
       "description": "Kreative Akzente mit Mosaiken, Bordüren oder individuellen Verlegemustern – für besondere Highlights.",
-      "image": "/images/services/mosaik-design.jpg",
+      "image": "/images/services/mosaik-design.png",
       "projects": [
         {
           "title": "Mosaikakzente im Büro",
