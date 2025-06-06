@@ -77,14 +77,14 @@ export default function Services({ content }: ServicesProps) {
   }
 
   const nextImage = () => {
-    if (currentService && currentService.projects) {
-      setCurrentImageIndex((prev) => (prev + 1) % currentService.projects.length)
+    if (currentService && currentService.projects && currentService.projects.length > 0) {
+      setCurrentImageIndex((prev) => (prev + 1) % currentService.projects!.length)
     }
   }
 
   const prevImage = () => {
-    if (currentService && currentService.projects) {
-      setCurrentImageIndex((prev) => (prev - 1 + currentService.projects.length) % currentService.projects.length)
+    if (currentService && currentService.projects && currentService.projects.length > 0) {
+      setCurrentImageIndex((prev) => (prev - 1 + currentService.projects!.length) % currentService.projects!.length)
     }
   }
 
