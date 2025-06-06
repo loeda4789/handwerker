@@ -37,103 +37,44 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
           </p>
         </div>
 
-        {/* Mobile Timeline - Vertikal */}
-        <div className="block lg:hidden">
-          <div className="relative max-w-md mx-auto">
-            {/* Vertikale Hauptlinie */}
-            <div className="absolute left-8 top-0 bottom-0 w-1 bg-border dark:bg-gray-600 rounded-full">
-              {/* Animierter Fortschrittsstrich */}
-              <div className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent rounded-full transition-all duration-1000 ease-out animate-timeline-progress" 
-                   style={{height: '100%'}}></div>
-            </div>
-
-            {/* Timeline Steps */}
-            <div className="space-y-16">
-              {projectSteps.map((step, index) => (
-                <div 
-                  key={index} 
-                  className="relative animate-on-scroll"
-                  style={{ animationDelay: `${index * 300}ms` }}
-                >
-                  {/* Schritt-Nummer Kreis */}
-                  <div className="absolute left-0 w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-surface dark:border-dark">
-                    <span className="text-xl font-bold text-white">
-                      {step.number}
-                    </span>
-                  </div>
-
-                  {/* Content Box */}
-                  <div className="ml-24 bg-white dark:bg-dark-secondary rounded-xl p-6 shadow-lg border border-border dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105">
-                    <h3 className="text-xl font-bold text-text dark:text-light mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-text-secondary dark:text-light/80 leading-relaxed">
-                      {step.description}
-                    </p>
-                    
-                    {/* Kleiner Pfeil zur Verbindung */}
-                    <div className="absolute left-16 top-6 w-0 h-0 border-l-8 border-l-white dark:border-l-dark-secondary border-t-8 border-t-transparent border-b-8 border-b-transparent"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {/* Vertikale Timeline für alle Bildschirmgrößen */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Vertikale Hauptlinie */}
+          <div className="absolute left-8 lg:left-12 top-0 bottom-0 w-1 bg-border dark:bg-gray-600 rounded-full">
+            {/* Animierter Fortschrittsstrich */}
+            <div className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent rounded-full transition-all duration-1000 ease-out animate-timeline-progress" 
+                 style={{height: '100%'}}></div>
           </div>
-        </div>
 
-        {/* Desktop Layout - Horizontal */}
-        <div className="hidden lg:block">
-          <div className="relative">
-            {/* Connection Line - Desktop */}
-            <div className="absolute top-10 left-0 right-0 z-0">
-              <div className="flex items-center justify-between max-w-4xl mx-auto px-10">
-                {/* Line segments between steps */}
-                <div className="flex-1 h-0.5 bg-border dark:bg-gray-600 rounded-full relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full transform -translate-x-full animate-progress-line-1"></div>
+          {/* Timeline Steps */}
+          <div className="space-y-16 lg:space-y-24">
+            {projectSteps.map((step, index) => (
+              <div 
+                key={index} 
+                className="relative animate-on-scroll"
+                style={{ animationDelay: `${index * 300}ms` }}
+              >
+                {/* Schritt-Nummer Kreis */}
+                <div className="absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-surface dark:border-dark">
+                  <span className="text-xl lg:text-2xl font-bold text-white">
+                    {step.number}
+                  </span>
                 </div>
-                <div className="w-10"></div>
-                <div className="flex-1 h-0.5 bg-border dark:bg-gray-600 rounded-full relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full transform -translate-x-full animate-progress-line-2"></div>
+
+                {/* Content Box */}
+                <div className="ml-24 lg:ml-32 bg-white dark:bg-dark-secondary rounded-xl p-6 lg:p-8 shadow-lg border border-border dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105">
+                  <h3 className="text-xl lg:text-2xl font-bold text-text dark:text-light mb-3 lg:mb-4">
+                    {step.title}
+                  </h3>
+                  <p className="text-text-secondary dark:text-light/80 leading-relaxed text-base lg:text-lg">
+                    {step.description}
+                  </p>
+                  
+                  {/* Kleiner Pfeil zur Verbindung */}
+                  <div className="absolute left-16 lg:left-20 top-6 lg:top-8 w-0 h-0 border-l-8 border-l-white dark:border-l-dark-secondary border-t-8 border-t-transparent border-b-8 border-b-transparent"></div>
                 </div>
               </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-12">
-              {projectSteps.map((step, index) => (
-                <div 
-                  key={index} 
-                  className="relative animate-on-scroll"
-                  style={{ animationDelay: `${index * 200}ms` }}
-                >
-                  {/* Step Container */}
-                  <div className="text-center group">
-                    {/* Step Number */}
-                    <div className="relative mx-auto w-20 h-20 mb-6">
-                      {/* Outer Ring */}
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 group-hover:opacity-30 transition-opacity duration-300 animate-pulse-slow"></div>
-                      {/* Inner Circle */}
-                      <div className="relative w-full h-full bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
-                        <span className="text-2xl font-bold text-white">
-                          {step.number}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Step Content */}
-                    <div className="space-y-4">
-                      <h3 className="text-xl md:text-2xl font-bold text-text dark:text-light group-hover:text-primary dark:group-hover:text-accent transition-colors duration-300">
-                        {step.title}
-                      </h3>
-                      <p className="text-text-secondary dark:text-light/80 leading-relaxed max-w-sm mx-auto">
-                        {step.description}
-                      </p>
-                    </div>
-
-                    {/* Hover Effect */}
-                    <div className="absolute inset-0 rounded-lg bg-white/5 dark:bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
 
