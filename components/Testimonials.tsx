@@ -184,11 +184,11 @@ export default function Testimonials({ content }: TestimonialsProps) {
             </div>
 
             {/* Mobile Slider View */}
-            <div className="lg:hidden relative">
+            <div className="lg:hidden relative mx-0">
               {/* Slider Container */}
               <div 
                 ref={sliderRef}
-                className="overflow-hidden rounded-lg touch-pan-y select-none"
+                className="overflow-hidden rounded-lg touch-pan-y select-none -mx-4"
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
@@ -207,9 +207,9 @@ export default function Testimonials({ content }: TestimonialsProps) {
                   {content.testimonials.map((testimonial, index) => (
                     <div
                       key={index}
-                      className="w-full flex-shrink-0 px-2"
+                      className="w-full flex-shrink-0 px-4"
                     >
-                      <div className="bg-surface dark:bg-dark-secondary rounded-lg p-6 shadow-lg h-full">
+                      <div className="bg-surface dark:bg-dark-secondary rounded-lg p-4 shadow-lg h-full">
                         <div className="flex items-start space-x-4">
                           {/* Avatar */}
                           <div className="flex-shrink-0">
@@ -254,7 +254,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
               <button
                 onClick={prevSlide}
                 disabled={currentSlide === 0}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-8 h-8 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
                 aria-label="Vorherige Bewertung"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -265,7 +265,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
               <button
                 onClick={nextSlide}
                 disabled={currentSlide === totalSlides - 1}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-8 h-8 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
                 aria-label="Nächste Bewertung"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
