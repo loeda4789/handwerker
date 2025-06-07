@@ -11,11 +11,22 @@ export default function Hero({ content }: HeroProps) {
     <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
       {/* Hero Bild als Hintergrund */}
       <div className="absolute inset-0">
+        {/* Desktop Hintergrundbild */}
         <Image
           src="/images/hero-background.png"
           alt="Handwerker bei der Arbeit"
           fill
-          className="object-cover animate-ken-burns"
+          className="object-cover animate-ken-burns hidden md:block"
+          priority
+          quality={90}
+          sizes="100vw"
+        />
+        {/* Mobile Hintergrundbild */}
+        <Image
+          src="/images/hero-background-mobil.png"
+          alt="Handwerker bei der Arbeit"
+          fill
+          className="object-cover animate-ken-burns block md:hidden"
           priority
           quality={90}
           sizes="100vw"
