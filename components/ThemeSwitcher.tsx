@@ -4,17 +4,17 @@ import { useState, useEffect } from 'react'
 
 const themes = {
   handwerker: {
-    name: 'Handwerk Natur',
+    name: 'Stein & Holz',
     icon: '🏗️',
     colors: {
-      primary: '#c49a6c',
-      secondary: '#497174', 
-      accent: '#f4e9dc',
-      background: '#fafafa',
-      surface: '#f5f5f4',
-      text: '#1a1a1a',
-      textSecondary: '#6f6f6f',
-      border: '#e0e0e0'
+      primary: '#a16207',
+      secondary: '#78716c', 
+      accent: '#fef3c7',
+      background: '#fefdf8',
+      surface: '#f7f5f0',
+      text: '#1c1917',
+      textSecondary: '#78716c',
+      border: '#e7e5e4'
     },
     heroImages: {
       desktop: '/images/hero-background.png',
@@ -22,17 +22,17 @@ const themes = {
     }
   },
   elegant: {
-    name: 'Elegant Grau',
-    icon: '🏛️',
+    name: 'Royal Violett',
+    icon: '💎',
     colors: {
-      primary: '#374151',
-      secondary: '#6b7280',
-      accent: '#f3f4f6',
-      background: '#f9fafb',
+      primary: '#7c3aed',
+      secondary: '#a855f7',
+      accent: '#f3e8ff',
+      background: '#faf7ff',
       surface: '#ffffff',
-      text: '#111827',
+      text: '#1f2937',
       textSecondary: '#6b7280',
-      border: '#d1d5db'
+      border: '#d8b4fe'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
@@ -40,17 +40,17 @@ const themes = {
     }
   },
   modern: {
-    name: 'Modern Blau',
-    icon: '🏢',
+    name: 'Fresh Mint',
+    icon: '🌿',
     colors: {
-      primary: '#1d4ed8',
-      secondary: '#3b82f6',
-      accent: '#dbeafe',
-      background: '#f8fafc',
+      primary: '#059669',
+      secondary: '#10b981',
+      accent: '#d1fae5',
+      background: '#f0fdf4',
       surface: '#ffffff',
-      text: '#0f172a',
-      textSecondary: '#475569',
-      border: '#cbd5e1'
+      text: '#064e3b',
+      textSecondary: '#047857',
+      border: '#a7f3d0'
     },
     heroImages: {
       desktop: '/images/hero-background.png',
@@ -58,17 +58,17 @@ const themes = {
     }
   },
   warm: {
-    name: 'Warm Orange',
-    icon: '🔥',
+    name: 'Sunset Red',
+    icon: '🌅',
     colors: {
       primary: '#dc2626',
-      secondary: '#f97316',
-      accent: '#fef3c7',
-      background: '#fffbeb',
-      surface: '#fff7ed',
-      text: '#1c1917',
-      textSecondary: '#78716c',
-      border: '#fed7aa'
+      secondary: '#ef4444',
+      accent: '#fecaca',
+      background: '#fef2f2',
+      surface: '#ffffff',
+      text: '#7f1d1d',
+      textSecondary: '#991b1b',
+      border: '#fca5a5'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
@@ -76,17 +76,17 @@ const themes = {
     }
   },
   dark: {
-    name: 'Dark Professional',
-    icon: '🌙',
+    name: 'Ocean Night',
+    icon: '🌊',
     colors: {
-      primary: '#fbbf24',
-      secondary: '#60a5fa',
-      accent: '#34d399',
-      background: '#0f172a',
-      surface: '#1e293b',
-      text: '#f8fafc',
-      textSecondary: '#cbd5e1',
-      border: '#374151'
+      primary: '#0ea5e9',
+      secondary: '#38bdf8',
+      accent: '#67e8f9',
+      background: '#0c1825',
+      surface: '#1e3a5f',
+      text: '#f0f9ff',
+      textSecondary: '#bae6fd',
+      border: '#0369a1'
     },
     heroImages: {
       desktop: '/images/hero-background.png',
