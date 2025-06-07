@@ -144,9 +144,12 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                   <div 
                     className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-surface dark:border-dark transition-all duration-700 ${
                       isStrichReached 
-                        ? 'scale-110 shadow-xl ring-4 ring-primary/20' 
+                        ? 'scale-110 shadow-xl' 
                         : 'scale-100'
                     }`}
+                    style={isStrichReached ? {
+                      boxShadow: `0 0 0 4px color-mix(in srgb, var(--color-primary) 20%, transparent), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)`
+                    } : {}}
                   >
                     <span className="text-xl lg:text-2xl font-bold text-white">
                       {step.number}
