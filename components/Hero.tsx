@@ -13,7 +13,7 @@ export default function Hero({ content }: HeroProps) {
       <div className="absolute inset-0">
         {/* Desktop Hintergrundbild */}
         <Image
-          src="/images/hero-background.png"
+          src="/images/hero-background2.png"
           alt="Handwerker bei der Arbeit"
           fill
           className="object-cover animate-ken-burns hidden md:block"
