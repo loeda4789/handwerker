@@ -15,6 +15,10 @@ const themes = {
       text: '#1a1a1a',
       textSecondary: '#6f6f6f',
       border: '#e0e0e0'
+    },
+    heroImages: {
+      desktop: '/images/hero-background.png',
+      mobile: '/images/hero-background-mobil.png'
     }
   },
   elegant: {
@@ -29,6 +33,10 @@ const themes = {
       text: '#111827',
       textSecondary: '#6b7280',
       border: '#d1d5db'
+    },
+    heroImages: {
+      desktop: '/images/hero-background2.png',
+      mobile: '/images/hero-background-mobil2.png'
     }
   },
   modern: {
@@ -43,6 +51,10 @@ const themes = {
       text: '#0f172a',
       textSecondary: '#475569',
       border: '#cbd5e1'
+    },
+    heroImages: {
+      desktop: '/images/hero-background.png',
+      mobile: '/images/hero-background-mobil.png'
     }
   },
   warm: {
@@ -57,6 +69,28 @@ const themes = {
       text: '#1c1917',
       textSecondary: '#78716c',
       border: '#fed7aa'
+    },
+    heroImages: {
+      desktop: '/images/hero-background2.png',
+      mobile: '/images/hero-background-mobil2.png'
+    }
+  },
+  dark: {
+    name: 'Dark Professional',
+    icon: '🌙',
+    colors: {
+      primary: '#fbbf24',
+      secondary: '#60a5fa',
+      accent: '#34d399',
+      background: '#0f172a',
+      surface: '#1e293b',
+      text: '#f8fafc',
+      textSecondary: '#cbd5e1',
+      border: '#374151'
+    },
+    heroImages: {
+      desktop: '/images/hero-background.png',
+      mobile: '/images/hero-background-mobil.png'
     }
   }
 }
@@ -67,12 +101,16 @@ export default function ThemeSwitcher() {
   const [activeTheme, setActiveTheme] = useState<ThemeKey>('handwerker')
   const [isOpen, setIsOpen] = useState(false)
 
-  // CSS Custom Properties aktualisieren
+  // CSS Custom Properties und Hero-Bilder aktualisieren
   const updateCSSVariables = (theme: typeof themes[ThemeKey]) => {
     const root = document.documentElement
     Object.entries(theme.colors).forEach(([key, value]) => {
       root.style.setProperty(`--color-${key}`, value)
     })
+    
+    // Hero-Bilder als CSS Custom Properties setzen
+    root.style.setProperty('--hero-image-desktop', `url('${theme.heroImages.desktop}')`)
+    root.style.setProperty('--hero-image-mobile', `url('${theme.heroImages.mobile}')`)
   }
 
   // Theme wechseln
@@ -100,7 +138,7 @@ export default function ThemeSwitcher() {
       {/* Theme Options - nur wenn geöffnet */}
       {isOpen && (
         <div className="absolute bottom-16 right-0 bg-white dark:bg-dark-secondary rounded-xl shadow-2xl border border-border dark:border-text-secondary p-3 mb-2 animate-in slide-in-from-bottom duration-200">
-          <div className="grid grid-cols-2 gap-2 min-w-[200px]">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 min-w-[220px] lg:min-w-[280px]">
             {Object.entries(themes).map(([key, theme]) => (
               <button
                 key={key}

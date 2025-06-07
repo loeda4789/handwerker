@@ -125,6 +125,10 @@ html {
   --color-dark: #0f172a;
   --color-dark-secondary: #1e293b;
   --color-light: #f1f5f9;
+  
+  /* Hero-Hintergrundbilder */
+  --hero-image-desktop: url('/images/hero-background.png');
+  --hero-image-mobile: url('/images/hero-background-mobil.png');
 }
 
 /* Smooth Scrolling */

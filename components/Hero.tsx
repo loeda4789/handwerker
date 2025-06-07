@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { ContentData } from '@/types/content'
 
@@ -11,26 +10,16 @@ export default function Hero({ content }: HeroProps) {
     <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
       {/* Hero Bild als Hintergrund */}
       <div className="absolute inset-0">
-        {/* Desktop Hintergrundbild */}
-        <Image
-          src="/images/hero-background2.png"
-          alt="Handwerker bei der Arbeit"
-          fill
-          className="object-cover animate-ken-burns hidden md:block"
-          priority
-          quality={90}
-          sizes="100vw"
-        />
-        {/* Mobile Hintergrundbild */}
-        <Image
-          src="/images/hero-background-mobil.png"
-          alt="Handwerker bei der Arbeit"
-          fill
-          className="object-cover animate-ken-burns block md:hidden"
-          priority
-          quality={90}
-          sizes="100vw"
-        />
+        {/* Desktop Hintergrundbild - verwendet CSS Custom Property */}
+        <div 
+          className="absolute inset-0 hidden md:block animate-ken-burns bg-cover bg-center bg-no-repeat hero-bg-desktop"
+          style={{ backgroundImage: 'var(--hero-image-desktop, url("/images/hero-background2.png"))' }}
+        ></div>
+        {/* Mobile Hintergrundbild - verwendet CSS Custom Property */}
+        <div 
+          className="absolute inset-0 block md:hidden animate-ken-burns bg-cover bg-center bg-no-repeat hero-bg-mobile"
+          style={{ backgroundImage: 'var(--hero-image-mobile, url("/images/hero-background-mobil.png"))' }}
+        ></div>
         {/* Fallback Gradient wenn Bild lädt */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 -z-10"></div>
       </div>
