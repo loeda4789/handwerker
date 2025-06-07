@@ -10,8 +10,8 @@ const themes = {
       primary: '#c49a6c',
       secondary: '#497174', 
       accent: '#f4e9dc',
-      background: '#ffffff',
-      surface: '#f8f8f8',
+      background: '#fafafa',
+      surface: '#f5f5f4',
       text: '#1a1a1a',
       textSecondary: '#6f6f6f',
       border: '#e0e0e0'
@@ -21,42 +21,42 @@ const themes = {
     name: 'Elegant Grau',
     icon: '🏛️',
     colors: {
-      primary: '#2d3748',
-      secondary: '#4a5568',
-      accent: '#e2e8f0',
-      background: '#ffffff',
-      surface: '#f7fafc',
-      text: '#1a202c',
-      textSecondary: '#718096',
-      border: '#e2e8f0'
+      primary: '#374151',
+      secondary: '#6b7280',
+      accent: '#f3f4f6',
+      background: '#f9fafb',
+      surface: '#ffffff',
+      text: '#111827',
+      textSecondary: '#6b7280',
+      border: '#d1d5db'
     }
   },
   modern: {
     name: 'Modern Blau',
     icon: '🏢',
     colors: {
-      primary: '#2563eb',
+      primary: '#1d4ed8',
       secondary: '#3b82f6',
       accent: '#dbeafe',
-      background: '#ffffff',
-      surface: '#f8fafc',
-      text: '#1e293b',
-      textSecondary: '#64748b',
-      border: '#e2e8f0'
+      background: '#f8fafc',
+      surface: '#ffffff',
+      text: '#0f172a',
+      textSecondary: '#475569',
+      border: '#cbd5e1'
     }
   },
   warm: {
     name: 'Warm Orange',
     icon: '🔥',
     colors: {
-      primary: '#ea580c',
-      secondary: '#fb923c',
-      accent: '#fed7aa',
-      background: '#ffffff',
+      primary: '#dc2626',
+      secondary: '#f97316',
+      accent: '#fef3c7',
+      background: '#fffbeb',
       surface: '#fff7ed',
       text: '#1c1917',
       textSecondary: '#78716c',
-      border: '#e7e5e4'
+      border: '#fed7aa'
     }
   }
 }
