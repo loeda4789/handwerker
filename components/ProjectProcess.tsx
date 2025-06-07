@@ -15,18 +15,18 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
   const projectSteps = [
     {
       number: 1,
-      title: "Beratung & Konzeption",
-      description: "Professionelle Bestandsaufnahme, detaillierte Beratung und maßgeschneiderte Projektkonzeption direkt vor Ort."
+      title: "Beratung & Terminvereinbarung",
+      description: "Rufen Sie uns einfach an oder senden Sie uns eine Nachricht – wir vereinbaren mit Ihnen einen Termin und besprechen Ihr Vorhaben direkt vor Ort."
     },
     {
       number: 2,
-      title: "Präzise Planung & Angebot",
-      description: "Detaillierte Projektplanung mit transparenter Kostenaufstellung und terminlicher Abstimmung nach Ihren Wünschen."
+      title: "Individuelle Planung & Angebot",
+      description: "Gemeinsam finden wir die optimale Lösung für Ihr Projekt. Mit unserer fachkundigen Beratung erstellen wir Ihnen ein maßgeschneidertes Angebot."
     },
     {
       number: 3,
-      title: "Fachgerechte Umsetzung",
-      description: "Meisterhafte Ausführung durch unser qualifiziertes Team mit höchsten Qualitätsstandards und pünktlicher Fertigstellung."
+      title: "Professionelle Umsetzung",
+      description: "Von der ersten bis zur letzten Handbewegung – wir kümmern uns um eine saubere, termingerechte und reibungslose Umsetzung. Haben Sie Fragen? Wir sind jederzeit für Sie da!"
     }
   ]
 
