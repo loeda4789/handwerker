@@ -1,13 +1,13 @@
 {
   "colors": {
-    "primary": "#2563eb",
-    "secondary": "#64748b",
-    "accent": "#f59e0b",
+    "primary": "#c49a6c",
+    "secondary": "#497174",
+    "accent": "#f4e9dc",
     "background": "#ffffff",
-    "surface": "#f8fafc",
-    "text": "#1e293b",
-    "textSecondary": "#64748b",
-    "border": "#e2e8f0",
+    "surface": "#f8f8f8",
+    "text": "#1a1a1a",
+    "textSecondary": "#6f6f6f",
+    "border": "#e0e0e0",
     "dark": "#0f172a",
     "darkSecondary": "#1e293b",
     "light": "#f1f5f9"

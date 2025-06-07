@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { getContentData } from '@/lib/config'
 import { ThemeProvider } from '@/contexts/ThemeContext'
+import ThemeSwitcher from '@/components/ThemeSwitcher'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -60,6 +61,7 @@ export default function RootLayout({
       <body className={`${inter.className} transition-colors duration-300`}>
         <ThemeProvider>
           {children}
+          <ThemeSwitcher />
         </ThemeProvider>
       </body>
     </html>

@@ -114,14 +114,14 @@ html {
 
 :root {
   /* Standard Handwerker Farbschema */
-  --color-primary: #d97706;
-  --color-secondary: #0ea5e9;
-  --color-accent: #f59e0b;
+  --color-primary: #c49a6c;
+  --color-secondary: #497174;
+  --color-accent: #f4e9dc;
   --color-background: #ffffff;
-  --color-surface: #f8fafc;
-  --color-text: #1f2937;
-  --color-text-secondary: #6b7280;
-  --color-border: #e5e7eb;
+  --color-surface: #f8f8f8;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #6f6f6f;
+  --color-border: #e0e0e0;
   --color-dark: #0f172a;
   --color-dark-secondary: #1e293b;
   --color-light: #f1f5f9;
