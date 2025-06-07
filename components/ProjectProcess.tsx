@@ -115,7 +115,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
           {/* Vertikale Hauptlinie */}
           <div 
             ref={timelineRef}
-            className="absolute left-8 lg:left-12 top-0 bottom-0 w-1 bg-border dark:bg-gray-600 rounded-full"
+            className="absolute left-8 lg:left-12 top-0 bottom-0 w-1 bg-border dark:bg-text-secondary rounded-full"
           >
             {/* Scroll-basierter Fortschrittsstrich */}
             <div 
@@ -155,7 +155,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
 
                   {/* Content Box */}
                   <div 
-                    className={`ml-24 lg:ml-32 bg-white dark:bg-dark-secondary rounded-xl p-6 lg:p-8 shadow-lg border border-border dark:border-gray-700 hover:shadow-xl transition-all duration-700 hover:transform hover:scale-105 ${
+                    className={`ml-24 lg:ml-32 bg-white dark:bg-dark-secondary rounded-xl p-6 lg:p-8 shadow-lg border border-border dark:border-text-secondary hover:shadow-xl transition-all duration-700 hover:transform hover:scale-105 ${
                       isActive
                         ? 'opacity-100 transform translate-y-0'
                         : 'opacity-60 transform translate-y-4'
@@ -179,7 +179,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
 
         {/* CTA Section */}
         <div className="text-center mt-16 animate-on-scroll">
-          <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto border border-white/20 dark:border-gray-700/50">
+          <div className="bg-white/50 dark:bg-dark-secondary/50 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto border border-white/20 dark:border-text-secondary/50">
             <h3 className="text-2xl font-bold text-text dark:text-light mb-4">
               Bereit für Ihr nächstes Projekt?
             </h3>
