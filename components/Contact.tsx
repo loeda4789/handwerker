@@ -256,7 +256,7 @@ export default function Contact({ content }: ContactProps) {
                   onFocus={() => handleFocus('name')}
                   onBlur={handleBlur}
                   className={`w-full px-4 pt-6 pb-2 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light transition-all duration-300 peer ${
-                    errors.name ? 'border-red-500 focus:ring-red-500' : 'border-border dark:border-gray-600 hover:border-primary/50 dark:hover:border-accent/50'
+                    errors.name ? 'border-red-500 focus:ring-red-500' : 'border-border dark:border-text-secondary hover:border-primary/50 dark:hover:border-accent/50'
                   }`}
                   placeholder=" "
                 />
@@ -289,7 +289,7 @@ export default function Contact({ content }: ContactProps) {
                   onFocus={() => handleFocus('email')}
                   onBlur={handleBlur}
                   className={`w-full px-4 pt-6 pb-2 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light transition-all duration-300 peer ${
-                    errors.email ? 'border-red-500 focus:ring-red-500' : 'border-border dark:border-gray-600 hover:border-primary/50 dark:hover:border-accent/50'
+                    errors.email ? 'border-red-500 focus:ring-red-500' : 'border-border dark:border-text-secondary hover:border-primary/50 dark:hover:border-accent/50'
                   }`}
                   placeholder=" "
                 />
@@ -323,7 +323,7 @@ export default function Contact({ content }: ContactProps) {
                 onFocus={() => handleFocus('phone')}
                 onBlur={handleBlur}
                 className={`w-full px-4 pt-6 pb-2 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light transition-all duration-300 peer ${
-                  errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-border dark:border-gray-600 hover:border-primary/50 dark:hover:border-accent/50'
+                  errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-border dark:border-text-secondary hover:border-primary/50 dark:hover:border-accent/50'
                 }`}
                 placeholder=" "
               />
@@ -354,7 +354,7 @@ export default function Contact({ content }: ContactProps) {
                 onChange={handleInputChange}
                 onFocus={() => handleFocus('requestType')}
                 onBlur={handleBlur}
-                className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
+                className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-text-secondary rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
               >
                 <option value="" disabled hidden></option>
                 <option value="Rückruf">Rückruf</option>
@@ -384,7 +384,7 @@ export default function Contact({ content }: ContactProps) {
                    onChange={handleInputChange}
                    onFocus={() => handleFocus('serviceCategory')}
                    onBlur={handleBlur}
-                   className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
+                   className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-text-secondary rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
                  >
                    <option value="" disabled hidden></option>
                    <option value="Badezimmer komplett">Badezimmer komplett</option>
@@ -420,7 +420,7 @@ export default function Contact({ content }: ContactProps) {
                 onBlur={handleBlur}
                 rows={5}
                 className={`w-full px-4 pt-6 pb-2 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light resize-none transition-all duration-300 ${
-                  errors.message ? 'border-red-500 focus:ring-red-500' : 'border-border dark:border-gray-600 hover:border-primary/50 dark:hover:border-accent/50'
+                  errors.message ? 'border-red-500 focus:ring-red-500' : 'border-border dark:border-text-secondary hover:border-primary/50 dark:hover:border-accent/50'
                 }`}
                 placeholder=" "
               ></textarea>
@@ -450,7 +450,7 @@ export default function Contact({ content }: ContactProps) {
                 name="privacy"
                 checked={formData.privacy}
                 onChange={handleInputChange}
-                className="mt-1 h-4 w-4 text-primary focus:ring-primary border-border dark:border-gray-600 rounded transition-colors duration-300"
+                className="mt-1 h-4 w-4 text-primary focus:ring-primary border-border dark:border-text-secondary rounded transition-colors duration-300"
               />
               <label htmlFor="privacy" className="text-sm text-text-secondary dark:text-light/80 leading-relaxed">
                 Ich habe die{' '}
