@@ -3,8 +3,28 @@
 import { useState, useEffect } from 'react'
 
 const themes = {
+  marmor: {
+    name: '1. Edel Violett',
+    icon: '💎',
+    colors: {
+      primary: '#6366F1',
+      secondary: '#8B5CF6',
+      accent: '#E0E7FF',
+      background: '#FAFBFF',
+      surface: '#F0F4FF',
+      text: '#1E1B4B',
+      textSecondary: '#3730A3',
+      border: '#C7D2FE',
+      heroText: '#FFFFFF',
+      heroTextSecondary: 'rgba(255,255,255,0.9)'
+    },
+    heroImages: {
+      desktop: '/images/hero-background2.png',
+      mobile: '/images/hero-background-mobil2.png'
+    }
+  },
   beton: {
-    name: '1. Modern Grau',
+    name: '2. Modern Grau',
     icon: '⬜',
     colors: {
       primary: '#6B7280',
@@ -24,7 +44,7 @@ const themes = {
     }
   },
   ziegel: {
-    name: '2. Warmton',
+    name: '3. Warmton',
     icon: '🔶',
     colors: {
       primary: '#B73F2C',
@@ -44,7 +64,7 @@ const themes = {
     }
   },
   holz: {
-    name: '3. Naturton',
+    name: '4. Naturton',
     icon: '🟫',
     colors: {
       primary: '#92400E',
@@ -61,26 +81,6 @@ const themes = {
     heroImages: {
       desktop: '/images/hero-background.png',
       mobile: '/images/hero-background-mobil.png'
-    }
-  },
-  marmor: {
-    name: '4. Edel Violett',
-    icon: '💎',
-    colors: {
-      primary: '#6366F1',
-      secondary: '#8B5CF6',
-      accent: '#E0E7FF',
-      background: '#FAFBFF',
-      surface: '#F0F4FF',
-      text: '#1E1B4B',
-      textSecondary: '#3730A3',
-      border: '#C7D2FE',
-      heroText: '#FFFFFF',
-      heroTextSecondary: 'rgba(255,255,255,0.9)'
-    },
-    heroImages: {
-      desktop: '/images/hero-background2.png',
-      mobile: '/images/hero-background-mobil2.png'
     }
   },
   schiefer: {
