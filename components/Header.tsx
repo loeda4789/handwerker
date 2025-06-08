@@ -46,7 +46,7 @@ export default function Header({ content }: HeaderProps) {
   // Active section detection
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['ueber-uns', 'leistungen', 'team', 'bewertungen']
+      const sections = ['ueber-uns', 'leistungen', 'team', 'projektablauf']
       const scrollPosition = window.scrollY + 100
 
       for (const sectionId of sections) {
@@ -228,15 +228,15 @@ export default function Header({ content }: HeaderProps) {
                 </li>
                 <li>
                   <Link
-                    href="#bewertungen"
-                    onClick={(e) => handleSmoothScroll(e, 'bewertungen')}
+                    href="#projektablauf"
+                    onClick={(e) => handleSmoothScroll(e, 'projektablauf')}
                     className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                      activeSection === 'bewertungen' 
+                      activeSection === 'projektablauf' 
                         ? 'text-primary dark:text-accent font-semibold' 
                         : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
                     }`}
                   >
-                    Bewertungen
+                    Projektablauf
                   </Link>
                 </li>
               </ul>
@@ -302,15 +302,15 @@ export default function Header({ content }: HeaderProps) {
             </Link>
             
             <Link
-              href="#bewertungen"
-              onClick={(e) => handleSmoothScroll(e, 'bewertungen')}
+              href="#projektablauf"
+              onClick={(e) => handleSmoothScroll(e, 'projektablauf')}
               className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                activeSection === 'bewertungen' 
+                activeSection === 'projektablauf' 
                   ? 'text-primary dark:text-accent font-medium' 
                   : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
               }`}
             >
-              Bewertungen
+              Projektablauf
             </Link>
           </nav>
           

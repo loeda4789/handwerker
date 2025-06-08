@@ -95,7 +95,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-surface dark:bg-dark py-20">
+    <section id="projektablauf" ref={sectionRef} className="bg-surface dark:bg-dark py-20">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
