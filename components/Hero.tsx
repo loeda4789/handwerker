@@ -32,12 +32,18 @@ export default function Hero({ content }: HeroProps) {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl lg:max-w-3xl">
             {/* Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight animate-in slide-in-from-left duration-1000">
+            <h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight animate-in slide-in-from-left duration-1000"
+              style={{ color: 'var(--color-text, #ffffff)' }}
+            >
               {content.company.name}
             </h1>
             
             {/* Tagline */}
-            <p className="text-lg md:text-xl text-white/90 mb-8 animate-in slide-in-from-left duration-1000 delay-300">
+            <p 
+              className="text-lg md:text-xl mb-8 animate-in slide-in-from-left duration-1000 delay-300"
+              style={{ color: 'var(--color-textSecondary, rgba(255,255,255,0.9))' }}
+            >
               {content.company.tagline}
             </p>
             
@@ -45,7 +51,17 @@ export default function Hero({ content }: HeroProps) {
             <div className="flex flex-col sm:flex-row gap-4 animate-in slide-in-from-left duration-1000 delay-500">
               <Link
                 href="#kontakt"
-                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary rounded-lg hover:bg-accent focus:ring-4 focus:ring-primary/30 transition-all duration-300 group hover:scale-105 hover:shadow-lg"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg focus:ring-4 transition-all duration-300 group hover:scale-105 hover:shadow-lg"
+                style={{ 
+                  color: 'var(--color-background, #ffffff)', 
+                  backgroundColor: 'var(--color-primary, #0ea5e9)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-accent, #38bdf8)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-primary, #0ea5e9)';
+                }}
               >
                 Jetzt Termin vereinbaren
                 <svg 
