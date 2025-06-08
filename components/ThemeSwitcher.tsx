@@ -3,108 +3,108 @@
 import { useState, useEffect } from 'react'
 
 const themes = {
-  concrete: {
-    name: 'Concrete Pure',
-    icon: '🌫️',
+  beton: {
+    name: 'Beton Modern',
+    icon: '⬜',
     colors: {
-      primary: '#F5F5F5',
-      secondary: '#D3D3D3',
-      accent: '#E0E0E0',
-      background: '#FFFFFF',
-      surface: '#FAFAFA',
-      text: '#0A0A0A',
-      textSecondary: '#333333',
-      border: '#D3D3D3'
+      primary: '#6B7280',
+      secondary: '#9CA3AF',
+      accent: '#D1D5DB',
+      background: '#F9FAFB',
+      surface: '#F3F4F6',
+      text: '#111827',
+      textSecondary: '#374151',
+      border: '#D1D5DB'
     },
     heroImages: {
       desktop: '/images/hero-background.png',
       mobile: '/images/hero-background-mobil.png'
     }
   },
-  studio: {
-    name: 'Studio Weiß',
-    icon: '🧼',
+  bad: {
+    name: 'Bad Elegant',
+    icon: '⚪',
     colors: {
       primary: '#FFFFFF',
-      secondary: '#E6E6E6',
-      accent: '#F8F8F8',
+      secondary: '#E5E7EB',
+      accent: '#F3F4F6',
       background: '#FFFFFF',
-      surface: '#FDFDFD',
-      text: '#2B2B2B',
-      textSecondary: '#525252',
-      border: '#E6E6E6'
+      surface: '#FEFEFE',
+      text: '#1F2937',
+      textSecondary: '#4B5563',
+      border: '#E5E7EB'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
       mobile: '/images/hero-background-mobil2.png'
     }
   },
-  sunset: {
-    name: 'Sunset Red',
-    icon: '🌇',
+  ziegel: {
+    name: 'Ziegel Warm',
+    icon: '🔶',
     colors: {
       primary: '#B73F2C',
-      secondary: '#D4574A',
-      accent: '#E8A598',
-      background: '#FDF3F0',
-      surface: '#FAF0ED',
-      text: '#2F1410',
-      textSecondary: '#5C2C21',
-      border: '#D4A59B'
+      secondary: '#DC2626',
+      accent: '#FEE2E2',
+      background: '#FEF2F2',
+      surface: '#FECACA',
+      text: '#7F1D1D',
+      textSecondary: '#991B1B',
+      border: '#FCA5A5'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
       mobile: '/images/hero-background-mobil2.png'
     }
   },
-  slate: {
-    name: 'Slate Night',
-    icon: '🌌',
+  schiefer: {
+    name: 'Schiefer Dunkel',
+    icon: '⬛',
     colors: {
-      primary: '#58A6FF',
-      secondary: '#7BB3FF',
-      accent: '#A3C7FF',
-      background: '#1C1C1E',
-      surface: '#2C2C2E',
-      text: '#F4F4F4',
-      textSecondary: '#B8B8B8',
-      border: '#3C3C3E'
+      primary: '#3B82F6',
+      secondary: '#60A5FA',
+      accent: '#DBEAFE',
+      background: '#0F172A',
+      surface: '#1E293B',
+      text: '#F8FAFC',
+      textSecondary: '#CBD5E1',
+      border: '#334155'
     },
     heroImages: {
       desktop: '/images/hero-background.png',
       mobile: '/images/hero-background-mobil.png'
     }
   },
-  wood: {
-    name: 'Stone & Wood',
-    icon: '🪵',
+  holz: {
+    name: 'Holz Natur',
+    icon: '🟫',
     colors: {
-      primary: '#A68C6D',
-      secondary: '#C0B49B',
-      accent: '#D4C7B0',
-      background: '#FAF8F5',
-      surface: '#F5F2ED',
-      text: '#3D2B1F',
-      textSecondary: '#5D4E3C',
-      border: '#C0B49B'
+      primary: '#92400E',
+      secondary: '#B45309',
+      accent: '#FED7AA',
+      background: '#FFFBEB',
+      surface: '#FEF3C7',
+      text: '#451A03',
+      textSecondary: '#78350F',
+      border: '#F59E0B'
     },
     heroImages: {
       desktop: '/images/hero-background.png',
       mobile: '/images/hero-background-mobil.png'
     }
   },
-  nordic: {
-    name: 'Nordlicht Blau',
-    icon: '🧊',
+  marmor: {
+    name: 'Marmor Edel',
+    icon: '💎',
     colors: {
-      primary: '#1F3F66',
-      secondary: '#2E5C8A',
-      accent: '#B4C8E1',
-      background: '#F8FAFE',
-      surface: '#DDE6F0',
-      text: '#0F1F33',
-      textSecondary: '#1F3F66',
-      border: '#B4C8E1'
+      primary: '#6366F1',
+      secondary: '#8B5CF6',
+      accent: '#E0E7FF',
+      background: '#FAFBFF',
+      surface: '#F0F4FF',
+      text: '#1E1B4B',
+      textSecondary: '#3730A3',
+      border: '#C7D2FE'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
@@ -116,7 +116,7 @@ const themes = {
 type ThemeKey = keyof typeof themes
 
 export default function ThemeSwitcher() {
-  const [activeTheme, setActiveTheme] = useState<ThemeKey>('concrete')
+  const [activeTheme, setActiveTheme] = useState<ThemeKey>('beton')
   const [isOpen, setIsOpen] = useState(false)
 
   // CSS Custom Properties und Hero-Bilder aktualisieren
@@ -147,7 +147,7 @@ export default function ThemeSwitcher() {
       updateCSSVariables(themes[savedTheme])
     } else {
       // Standardtheme laden
-      updateCSSVariables(themes.concrete)
+      updateCSSVariables(themes.beton)
     }
   }, [])
 
