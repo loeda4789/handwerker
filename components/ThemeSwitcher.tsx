@@ -3,94 +3,112 @@
 import { useState, useEffect } from 'react'
 
 const themes = {
-  handwerker: {
-    name: 'Stein & Holz',
-    icon: '🏗️',
+  concrete: {
+    name: 'Concrete Pure',
+    icon: '🌫️',
     colors: {
-      primary: '#a16207',
-      secondary: '#78716c', 
-      accent: '#fef3c7',
-      background: '#fefdf8',
-      surface: '#f7f5f0',
-      text: '#1c1917',
-      textSecondary: '#78716c',
-      border: '#e7e5e4'
+      primary: '#F5F5F5',
+      secondary: '#D3D3D3',
+      accent: '#E0E0E0',
+      background: '#FFFFFF',
+      surface: '#FAFAFA',
+      text: '#111111',
+      textSecondary: '#4A4A4A',
+      border: '#D3D3D3'
     },
     heroImages: {
       desktop: '/images/hero-background.png',
       mobile: '/images/hero-background-mobil.png'
     }
   },
-  elegant: {
-    name: 'Royal Violett',
-    icon: '💎',
+  studio: {
+    name: 'Studio Weiß',
+    icon: '🧼',
     colors: {
-      primary: '#7c3aed',
-      secondary: '#a855f7',
-      accent: '#f3e8ff',
-      background: '#faf7ff',
-      surface: '#ffffff',
-      text: '#1f2937',
-      textSecondary: '#6b7280',
-      border: '#d8b4fe'
+      primary: '#FFFFFF',
+      secondary: '#E6E6E6',
+      accent: '#F8F8F8',
+      background: '#FFFFFF',
+      surface: '#FDFDFD',
+      text: '#4F4F4F',
+      textSecondary: '#6B6B6B',
+      border: '#E6E6E6'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
       mobile: '/images/hero-background-mobil2.png'
     }
   },
-  modern: {
-    name: 'Fresh Mint',
-    icon: '🌿',
-    colors: {
-      primary: '#059669',
-      secondary: '#10b981',
-      accent: '#d1fae5',
-      background: '#f0fdf4',
-      surface: '#ffffff',
-      text: '#064e3b',
-      textSecondary: '#047857',
-      border: '#a7f3d0'
-    },
-    heroImages: {
-      desktop: '/images/hero-background.png',
-      mobile: '/images/hero-background-mobil.png'
-    }
-  },
-  warm: {
+  sunset: {
     name: 'Sunset Red',
-    icon: '🌅',
+    icon: '🌇',
     colors: {
-      primary: '#dc2626',
-      secondary: '#ef4444',
-      accent: '#fecaca',
-      background: '#fef2f2',
-      surface: '#ffffff',
-      text: '#7f1d1d',
-      textSecondary: '#991b1b',
-      border: '#fca5a5'
+      primary: '#B73F2C',
+      secondary: '#D4574A',
+      accent: '#E8A598',
+      background: '#FDF3F0',
+      surface: '#FAF0ED',
+      text: '#5C2C21',
+      textSecondary: '#8B4A3C',
+      border: '#D4A59B'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
       mobile: '/images/hero-background-mobil2.png'
     }
   },
-  dark: {
-    name: 'Ocean Night',
-    icon: '🌊',
+  slate: {
+    name: 'Slate Night',
+    icon: '🌌',
     colors: {
-      primary: '#0ea5e9',
-      secondary: '#38bdf8',
-      accent: '#67e8f9',
-      background: '#0c1825',
-      surface: '#1e3a5f',
-      text: '#f0f9ff',
-      textSecondary: '#bae6fd',
-      border: '#0369a1'
+      primary: '#58A6FF',
+      secondary: '#7BB3FF',
+      accent: '#A3C7FF',
+      background: '#1C1C1E',
+      surface: '#2C2C2E',
+      text: '#F4F4F4',
+      textSecondary: '#B8B8B8',
+      border: '#3C3C3E'
     },
     heroImages: {
       desktop: '/images/hero-background.png',
       mobile: '/images/hero-background-mobil.png'
+    }
+  },
+  wood: {
+    name: 'Stone & Wood',
+    icon: '🪵',
+    colors: {
+      primary: '#A68C6D',
+      secondary: '#C0B49B',
+      accent: '#D4C7B0',
+      background: '#FAF8F5',
+      surface: '#F5F2ED',
+      text: '#5D4E3C',
+      textSecondary: '#7A6B58',
+      border: '#C0B49B'
+    },
+    heroImages: {
+      desktop: '/images/hero-background.png',
+      mobile: '/images/hero-background-mobil.png'
+    }
+  },
+  nordic: {
+    name: 'Nordlicht Blau',
+    icon: '🧊',
+    colors: {
+      primary: '#1F3F66',
+      secondary: '#2E5C8A',
+      accent: '#B4C8E1',
+      background: '#F8FAFE',
+      surface: '#DDE6F0',
+      text: '#1F3F66',
+      textSecondary: '#4A6B92',
+      border: '#B4C8E1'
+    },
+    heroImages: {
+      desktop: '/images/hero-background2.png',
+      mobile: '/images/hero-background-mobil2.png'
     }
   }
 }
@@ -98,7 +116,7 @@ const themes = {
 type ThemeKey = keyof typeof themes
 
 export default function ThemeSwitcher() {
-  const [activeTheme, setActiveTheme] = useState<ThemeKey>('handwerker')
+  const [activeTheme, setActiveTheme] = useState<ThemeKey>('concrete')
   const [isOpen, setIsOpen] = useState(false)
 
   // CSS Custom Properties und Hero-Bilder aktualisieren
@@ -129,7 +147,7 @@ export default function ThemeSwitcher() {
       updateCSSVariables(themes[savedTheme])
     } else {
       // Standardtheme laden
-      updateCSSVariables(themes.handwerker)
+      updateCSSVariables(themes.concrete)
     }
   }, [])
 
@@ -144,7 +162,7 @@ export default function ThemeSwitcher() {
             <p className="text-gray-300 text-xs">Wählen Sie ein Farbschema zum Testen</p>
           </div>
           
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 min-w-[220px] lg:min-w-[280px]">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 min-w-[240px] lg:min-w-[320px]">
             {Object.entries(themes).map(([key, theme]) => (
               <button
                 key={key}
