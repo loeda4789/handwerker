@@ -61,7 +61,7 @@ export default function RootLayout({
       <body className={`${inter.className} transition-colors duration-300`}>
         <ThemeProvider>
           {children}
-          <ThemeSwitcher />
+          {/* <ThemeSwitcher /> */}
         </ThemeProvider>
       </body>
     </html>
