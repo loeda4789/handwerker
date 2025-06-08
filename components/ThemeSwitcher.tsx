@@ -39,8 +39,8 @@ const themes = {
       heroTextSecondary: 'rgba(255,255,255,0.9)'
     },
     heroImages: {
-      desktop: '/images/hero-background.png',
-      mobile: '/images/hero-background-mobil.png'
+      desktop: '/images/hero-background2.png',
+      mobile: '/images/hero-background-mobil2.png'
     }
   },
   ziegel: {
@@ -59,8 +59,8 @@ const themes = {
       heroTextSecondary: 'rgba(255,255,255,0.9)'
     },
     heroImages: {
-      desktop: '/images/hero-background2.png',
-      mobile: '/images/hero-background-mobil2.png'
+      desktop: '/images/hero-background.png',
+      mobile: '/images/hero-background-mobil.png'
     }
   },
   holz: {
@@ -119,8 +119,8 @@ const themes = {
       heroTextSecondary: 'rgba(255,255,255,0.9)'
     },
     heroImages: {
-      desktop: '/images/hero-background.png',
-      mobile: '/images/hero-background-mobil.png'
+      desktop: '/images/hero-background2.png',
+      mobile: '/images/hero-background-mobil2.png'
     }
   }
 }
