@@ -191,7 +191,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
             </p>
             <a
               href="#footer"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg hover:shadow-lg transition-all duration-300 font-medium group"
+                              className="inline-flex items-center px-8 py-4 bg-primary hover:bg-accent text-white rounded-lg hover:shadow-lg transition-all duration-300 font-medium group"
             >
               Jetzt Beratung anfragen
               <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">

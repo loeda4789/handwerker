@@ -472,7 +472,7 @@ export default function Contact({ content }: ContactProps) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-xl hover:shadow-xl transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed group hover:scale-105 min-w-[200px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-accent text-white rounded-xl hover:shadow-xl transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed group hover:scale-105 min-w-[200px]"
               >
                 {isSubmitting ? (
                   <>
