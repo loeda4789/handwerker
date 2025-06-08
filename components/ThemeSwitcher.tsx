@@ -3,26 +3,8 @@
 import { useState, useEffect } from 'react'
 
 const themes = {
-  beton: {
-    name: 'Beton Modern',
-    icon: '⬜',
-    colors: {
-      primary: '#6B7280',
-      secondary: '#9CA3AF',
-      accent: '#D1D5DB',
-      background: '#F9FAFB',
-      surface: '#F3F4F6',
-      text: '#111827',
-      textSecondary: '#374151',
-      border: '#D1D5DB'
-    },
-    heroImages: {
-      desktop: '/images/hero-background.png',
-      mobile: '/images/hero-background-mobil.png'
-    }
-  },
   bad: {
-    name: 'Bad Elegant',
+    name: 'Clean Weiß',
     icon: '⚪',
     colors: {
       primary: '#FFFFFF',
@@ -39,8 +21,26 @@ const themes = {
       mobile: '/images/hero-background-mobil2.png'
     }
   },
+  beton: {
+    name: 'Modern Grau',
+    icon: '⬜',
+    colors: {
+      primary: '#6B7280',
+      secondary: '#9CA3AF',
+      accent: '#D1D5DB',
+      background: '#F9FAFB',
+      surface: '#F3F4F6',
+      text: '#111827',
+      textSecondary: '#374151',
+      border: '#D1D5DB'
+    },
+    heroImages: {
+      desktop: '/images/hero-background.png',
+      mobile: '/images/hero-background-mobil.png'
+    }
+  },
   ziegel: {
-    name: 'Ziegel Warm',
+    name: 'Warmton',
     icon: '🔶',
     colors: {
       primary: '#B73F2C',
@@ -57,26 +57,8 @@ const themes = {
       mobile: '/images/hero-background-mobil2.png'
     }
   },
-  schiefer: {
-    name: 'Schiefer Dunkel',
-    icon: '⬛',
-    colors: {
-      primary: '#3B82F6',
-      secondary: '#60A5FA',
-      accent: '#DBEAFE',
-      background: '#0F172A',
-      surface: '#1E293B',
-      text: '#F8FAFC',
-      textSecondary: '#CBD5E1',
-      border: '#334155'
-    },
-    heroImages: {
-      desktop: '/images/hero-background.png',
-      mobile: '/images/hero-background-mobil.png'
-    }
-  },
   holz: {
-    name: 'Holz Natur',
+    name: 'Naturton',
     icon: '🟫',
     colors: {
       primary: '#92400E',
@@ -94,7 +76,7 @@ const themes = {
     }
   },
   marmor: {
-    name: 'Marmor Edel',
+    name: 'Edel Violett',
     icon: '💎',
     colors: {
       primary: '#6366F1',
@@ -110,13 +92,31 @@ const themes = {
       desktop: '/images/hero-background2.png',
       mobile: '/images/hero-background-mobil2.png'
     }
+  },
+  schiefer: {
+    name: 'Dark Mode',
+    icon: '⬛',
+    colors: {
+      primary: '#3B82F6',
+      secondary: '#60A5FA',
+      accent: '#DBEAFE',
+      background: '#0F172A',
+      surface: '#1E293B',
+      text: '#F8FAFC',
+      textSecondary: '#CBD5E1',
+      border: '#334155'
+    },
+    heroImages: {
+      desktop: '/images/hero-background.png',
+      mobile: '/images/hero-background-mobil.png'
+    }
   }
 }
 
 type ThemeKey = keyof typeof themes
 
 export default function ThemeSwitcher() {
-  const [activeTheme, setActiveTheme] = useState<ThemeKey>('beton')
+  const [activeTheme, setActiveTheme] = useState<ThemeKey>('bad')
   const [isOpen, setIsOpen] = useState(false)
 
   // CSS Custom Properties und Hero-Bilder aktualisieren
@@ -147,7 +147,7 @@ export default function ThemeSwitcher() {
       updateCSSVariables(themes[savedTheme])
     } else {
       // Standardtheme laden
-      updateCSSVariables(themes.beton)
+      updateCSSVariables(themes.bad)
     }
   }, [])
 
