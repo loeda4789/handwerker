@@ -108,7 +108,7 @@ const themes = {
 type ThemeKey = keyof typeof themes
 
 export default function ThemeSwitcher() {
-  const [activeTheme, setActiveTheme] = useState<ThemeKey>('ziegel')
+  const [activeTheme, setActiveTheme] = useState<ThemeKey>('marmor')
   const [isOpen, setIsOpen] = useState(false)
 
   // CSS Custom Properties und Hero-Bilder aktualisieren
@@ -139,7 +139,7 @@ export default function ThemeSwitcher() {
       updateCSSVariables(themes[savedTheme])
     } else {
       // Standardtheme laden
-      updateCSSVariables(themes.ziegel)
+      updateCSSVariables(themes.marmor)
     }
   }, [])
 
