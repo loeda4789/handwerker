@@ -115,7 +115,10 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
           {/* Vertikale Hauptlinie */}
           <div 
             ref={timelineRef}
-            className="absolute left-8 lg:left-12 top-0 bottom-0 w-1 bg-border dark:bg-text-secondary rounded-full"
+            className="absolute top-8 lg:top-10 bottom-8 lg:bottom-10 w-1 bg-border dark:bg-text-secondary rounded-full"
+            style={{ 
+              left: '4rem' // 64px = mittig der 16x16 Kreise (32px + 32px)
+            }}
           >
             {/* Scroll-basierter Fortschrittsstrich */}
             <div 
@@ -142,7 +145,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                 >
                   {/* Schritt-Nummer Kreis */}
                   <div 
-                    className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-surface dark:border-dark transition-all duration-700 ${
+                    className={`absolute left-8 lg:left-10 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-surface dark:border-dark transition-all duration-700 ${
                       isStrichReached 
                         ? 'scale-110 shadow-xl' 
                         : 'scale-100'

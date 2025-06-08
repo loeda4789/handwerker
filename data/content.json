@@ -105,51 +105,43 @@
   "team": [
     {
       "name": "Max Mustermann",
-      "position": "Geschäftsführer & Fliesenleger-Meister",
-      "photo": "/images/team/person1.png",
-      "specialization": "Projektleitung & Fliesenberatung"
+      "position": "Geschäftsführer",
+      "photo": "/images/team/person1.png"
     },
     {
       "name": "Anna Schmidt",
-      "position": "Projektleiterin Fliesen",
-      "photo": "/images/team/person2.png",
-      "specialization": "Badezimmer & Sanitärfliesen"
+      "position": "Büro",
+      "photo": "/images/team/person2.png"
     },
     {
       "name": "Tom Weber",
-      "position": "Fliesenleger Spezialist",
-      "photo": "/images/team/person3.png",
-      "specialization": "Großformatfliesen & Naturstein"
+      "position": "Fliesenleger",
+      "photo": "/images/team/person3.png"
     },
     {
       "name": "Lisa Müller",
-      "position": "Fliesendesignerin",
-      "photo": "/images/team/person4.png",
-      "specialization": "Mosaik & kreative Fliesenverlegung"
+      "position": "Fachkraft",
+      "photo": "/images/team/person4.png"
     },
     {
       "name": "Markus Fischer",
-      "position": "Fliesenleger-Meister",
-      "photo": "/images/team/person5.png",
-      "specialization": "Fliesen & Naturstein"
+      "position": "Fliesenleger",
+      "photo": "/images/team/person5.png"
     },
     {
       "name": "Sandra Koch",
-      "position": "Fliesenberatung & Kundenservice",
-      "photo": "/images/team/person6.png",
-      "specialization": "Fliesenauswahl & Terminplanung"
+      "position": "Innenraum",
+      "photo": "/images/team/person6.png"
     },
     {
       "name": "Michael Braun",
-      "position": "Fliesenleger Außenbereich",
-      "photo": "/images/team/person7.png",
-      "specialization": "Terrassen & Außenfliesen"
+      "position": "Fliesenleger",
+      "photo": "/images/team/person7.png"
     },
     {
       "name": "Julia Hoffmann",
-      "position": "Auszubildende Fliesenlegerin",
-      "photo": "/images/team/person8.png",
-      "specialization": "Fliesenverlegung & Fugenarbeiten"
+      "position": "Azubi",
+      "photo": "/images/team/person8.png"
     }
   ],
   "portfolio": {

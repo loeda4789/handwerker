@@ -119,15 +119,7 @@ export default function Team({ content }: TeamProps) {
                       {/* Position Badge */}
                       <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
                         <span className="inline-block px-4 py-1 bg-primary text-white text-sm font-medium rounded-full shadow-md">
-                          {member.position.includes('Geschäftsführer') ? 'Geschäftsführer' :
-                           member.position.includes('Projektleiterin') ? 'Büro' :
-                           member.position.includes('Elektrik') ? 'Vorarbeiter' :
-                           member.position.includes('Malerin') || member.position.includes('Gestalterin') ? 'Gestaltung' :
-                           member.position.includes('Fliesenleger') ? 'Fassade' :
-                           member.position.includes('Kundenservice') ? 'Innenraum' :
-                           member.position.includes('Trockenbauer') ? 'Azubi' :
-                           member.position.includes('Auszubildende') ? 'Azubi' :
-                           'Fachkraft'}
+                          {member.position}
                         </span>
                       </div>
                     </div>
@@ -137,12 +129,6 @@ export default function Team({ content }: TeamProps) {
                       <h3 className="text-2xl font-bold text-text dark:text-light group-hover:text-primary dark:group-hover:text-accent transition-colors duration-300">
                         {member.name}
                       </h3>
-                      <p className="text-text-secondary dark:text-light/70 font-medium text-lg">
-                        {member.specialization}
-                      </p>
-                      <p className="text-sm text-text-secondary/60 dark:text-light/50 group-hover:text-text-secondary dark:group-hover:text-light/70 transition-colors duration-300">
-                        {member.position}
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -233,15 +219,7 @@ export default function Team({ content }: TeamProps) {
                 {/* Position Badge */}
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
                   <span className="inline-block px-4 py-1 bg-primary text-white text-sm font-medium rounded-full shadow-md">
-                    {member.position.includes('Geschäftsführer') ? 'Geschäftsführer' :
-                     member.position.includes('Projektleiterin') ? 'Büro' :
-                     member.position.includes('Elektrik') ? 'Vorarbeiter' :
-                     member.position.includes('Malerin') || member.position.includes('Gestalterin') ? 'Gestaltung' :
-                     member.position.includes('Fliesenleger') ? 'Fassade' :
-                     member.position.includes('Kundenservice') ? 'Innenraum' :
-                     member.position.includes('Trockenbauer') ? 'Azubi' :
-                     member.position.includes('Auszubildende') ? 'Azubi' :
-                     'Fachkraft'}
+                    {member.position}
                   </span>
                 </div>
               </div>
@@ -251,12 +229,6 @@ export default function Team({ content }: TeamProps) {
                 <h3 className="text-2xl font-bold text-text dark:text-light group-hover:text-primary dark:group-hover:text-accent transition-colors duration-300">
                   {member.name}
                 </h3>
-                <p className="text-text-secondary dark:text-light/70 font-medium text-lg">
-                  {member.specialization}
-                </p>
-                <p className="text-sm text-text-secondary/60 dark:text-light/50 group-hover:text-text-secondary dark:group-hover:text-light/70 transition-colors duration-300">
-                  {member.position}
-                </p>
               </div>
             </div>
           ))}
