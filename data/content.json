@@ -106,42 +106,50 @@
     {
       "name": "Max Mustermann",
       "position": "Geschäftsführer",
-      "photo": "/images/team/person1.png"
+      "photo": "/images/team/person1.png",
+      "specialization": "Projektleitung & Fliesenberatung"
     },
     {
       "name": "Anna Schmidt",
       "position": "Büro",
-      "photo": "/images/team/person2.png"
+      "photo": "/images/team/person2.png",
+      "specialization": "Badezimmer & Sanitärfliesen"
     },
     {
       "name": "Tom Weber",
       "position": "Fliesenleger",
-      "photo": "/images/team/person3.png"
+      "photo": "/images/team/person3.png",
+      "specialization": "Großformatfliesen & Naturstein"
     },
     {
       "name": "Lisa Müller",
       "position": "Fachkraft",
-      "photo": "/images/team/person4.png"
+      "photo": "/images/team/person4.png",
+      "specialization": "Mosaik & kreative Fliesenverlegung"
     },
     {
       "name": "Markus Fischer",
       "position": "Fliesenleger",
-      "photo": "/images/team/person5.png"
+      "photo": "/images/team/person5.png",
+      "specialization": "Fliesen & Naturstein"
     },
     {
       "name": "Sandra Koch",
       "position": "Innenraum",
-      "photo": "/images/team/person6.png"
+      "photo": "/images/team/person6.png",
+      "specialization": "Fliesenauswahl & Terminplanung"
     },
     {
       "name": "Michael Braun",
       "position": "Fliesenleger",
-      "photo": "/images/team/person7.png"
+      "photo": "/images/team/person7.png",
+      "specialization": "Terrassen & Außenfliesen"
     },
     {
       "name": "Julia Hoffmann",
       "position": "Azubi",
-      "photo": "/images/team/person8.png"
+      "photo": "/images/team/person8.png",
+      "specialization": "Fliesenverlegung & Fugenarbeiten"
     }
   ],
   "portfolio": {

@@ -129,6 +129,9 @@ export default function Team({ content }: TeamProps) {
                       <h3 className="text-2xl font-bold text-text dark:text-light group-hover:text-primary dark:group-hover:text-accent transition-colors duration-300">
                         {member.name}
                       </h3>
+                      <p className="text-text-secondary dark:text-light/70 font-medium text-lg">
+                        {member.specialization}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -229,6 +232,9 @@ export default function Team({ content }: TeamProps) {
                 <h3 className="text-2xl font-bold text-text dark:text-light group-hover:text-primary dark:group-hover:text-accent transition-colors duration-300">
                   {member.name}
                 </h3>
+                <p className="text-text-secondary dark:text-light/70 font-medium text-lg">
+                  {member.specialization}
+                </p>
               </div>
             </div>
           ))}
