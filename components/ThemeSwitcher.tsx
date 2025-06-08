@@ -14,7 +14,9 @@ const themes = {
       surface: '#FEFEFE',
       text: '#1F2937',
       textSecondary: '#4B5563',
-      border: '#E5E7EB'
+      border: '#E5E7EB',
+      heroText: '#FFFFFF',
+      heroTextSecondary: 'rgba(255,255,255,0.9)'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
@@ -32,7 +34,9 @@ const themes = {
       surface: '#F3F4F6',
       text: '#111827',
       textSecondary: '#374151',
-      border: '#D1D5DB'
+      border: '#D1D5DB',
+      heroText: '#FFFFFF',
+      heroTextSecondary: 'rgba(255,255,255,0.9)'
     },
     heroImages: {
       desktop: '/images/hero-background.png',
@@ -50,7 +54,9 @@ const themes = {
       surface: '#FECACA',
       text: '#7F1D1D',
       textSecondary: '#991B1B',
-      border: '#FCA5A5'
+      border: '#FCA5A5',
+      heroText: '#FFFFFF',
+      heroTextSecondary: 'rgba(255,255,255,0.9)'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
@@ -68,7 +74,9 @@ const themes = {
       surface: '#FEF3C7',
       text: '#451A03',
       textSecondary: '#78350F',
-      border: '#F59E0B'
+      border: '#F59E0B',
+      heroText: '#FFFFFF',
+      heroTextSecondary: 'rgba(255,255,255,0.9)'
     },
     heroImages: {
       desktop: '/images/hero-background.png',
@@ -86,7 +94,9 @@ const themes = {
       surface: '#F0F4FF',
       text: '#1E1B4B',
       textSecondary: '#3730A3',
-      border: '#C7D2FE'
+      border: '#C7D2FE',
+      heroText: '#FFFFFF',
+      heroTextSecondary: 'rgba(255,255,255,0.9)'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
@@ -104,7 +114,9 @@ const themes = {
       surface: '#1E293B',
       text: '#F8FAFC',
       textSecondary: '#CBD5E1',
-      border: '#334155'
+      border: '#334155',
+      heroText: '#FFFFFF',
+      heroTextSecondary: 'rgba(255,255,255,0.9)'
     },
     heroImages: {
       desktop: '/images/hero-background.png',

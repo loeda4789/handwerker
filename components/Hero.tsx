@@ -33,14 +33,16 @@ export default function Hero({ content }: HeroProps) {
           <div className="max-w-2xl lg:max-w-3xl">
             {/* Headline */}
             <h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight animate-in slide-in-from-left duration-1000 text-white"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight animate-in slide-in-from-left duration-1000"
+              style={{ color: 'var(--color-heroText, #ffffff)' }}
             >
               {content.company.name}
             </h1>
             
             {/* Tagline */}
             <p 
-              className="text-lg md:text-xl mb-8 animate-in slide-in-from-left duration-1000 delay-300 text-white/90"
+              className="text-lg md:text-xl mb-8 animate-in slide-in-from-left duration-1000 delay-300"
+              style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}
             >
               {content.company.tagline}
             </p>
