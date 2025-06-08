@@ -61,9 +61,9 @@ export default function Home() {
       <Services content={content} />
       <BeforeAfter content={content} />
       <Team content={content} />
+      <Testimonials content={content} />
       <ProjectProcess content={content} />
       <Contact content={content} />
-      <Testimonials content={content} />
       <Footer content={content} />
       
       {/* Development Tools */}
