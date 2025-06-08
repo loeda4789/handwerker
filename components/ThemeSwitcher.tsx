@@ -127,20 +127,15 @@ export default function ThemeSwitcher() {
   const switchTheme = (themeKey: ThemeKey) => {
     setActiveTheme(themeKey)
     updateCSSVariables(themes[themeKey])
-    localStorage.setItem('selectedTheme', themeKey)
+    // localStorage entfernt - Theme wird nicht gespeichert
     setIsOpen(false)
   }
 
   // Theme beim Laden der Seite wiederherstellen
   useEffect(() => {
-    const savedTheme = localStorage.getItem('selectedTheme') as ThemeKey
-    if (savedTheme && themes[savedTheme]) {
-      setActiveTheme(savedTheme)
-      updateCSSVariables(themes[savedTheme])
-    } else {
-      // Standardtheme laden
-      updateCSSVariables(themes.marmor)
-    }
+    // Immer Edel Violett laden, unabhängig von gespeicherten Einstellungen
+    setActiveTheme('marmor')
+    updateCSSVariables(themes.marmor)
   }, [])
 
   return (
