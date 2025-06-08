@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 
 const themes = {
   bad: {
-    name: 'Clean Weiß',
+    name: '1. Clean Weiß',
     icon: '⚪',
     colors: {
       primary: '#FFFFFF',
@@ -22,7 +22,7 @@ const themes = {
     }
   },
   beton: {
-    name: 'Modern Grau',
+    name: '2. Modern Grau',
     icon: '⬜',
     colors: {
       primary: '#6B7280',
@@ -40,7 +40,7 @@ const themes = {
     }
   },
   ziegel: {
-    name: 'Warmton',
+    name: '3. Warmton',
     icon: '🔶',
     colors: {
       primary: '#B73F2C',
@@ -58,7 +58,7 @@ const themes = {
     }
   },
   holz: {
-    name: 'Naturton',
+    name: '4. Naturton',
     icon: '🟫',
     colors: {
       primary: '#92400E',
@@ -76,7 +76,7 @@ const themes = {
     }
   },
   marmor: {
-    name: 'Edel Violett',
+    name: '5. Edel Violett',
     icon: '💎',
     colors: {
       primary: '#6366F1',
@@ -94,7 +94,7 @@ const themes = {
     }
   },
   schiefer: {
-    name: 'Dark Mode',
+    name: '6. Dark Mode',
     icon: '⬛',
     colors: {
       primary: '#3B82F6',
@@ -158,7 +158,7 @@ export default function ThemeSwitcher() {
         <div className="absolute bottom-20 left-0 bg-gray-800 rounded-xl shadow-2xl border border-gray-600 p-4 mb-2 animate-in slide-in-from-bottom duration-200 backdrop-blur-sm">
           {/* Info Header */}
           <div className="text-center mb-3 pb-3 border-b border-gray-600">
-            <p className="text-white text-xs font-medium mb-1">🎨 Design-Vorschau</p>
+            <p className="text-white text-xs font-medium mb-1">Design-Vorschau</p>
             <p className="text-gray-300 text-xs">Wählen Sie ein Farbschema zum Testen</p>
           </div>
           
