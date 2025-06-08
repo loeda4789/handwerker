@@ -3,28 +3,8 @@
 import { useState, useEffect } from 'react'
 
 const themes = {
-  bad: {
-    name: '1. Clean Weiß',
-    icon: '⚪',
-    colors: {
-      primary: '#FFFFFF',
-      secondary: '#E5E7EB',
-      accent: '#F3F4F6',
-      background: '#FFFFFF',
-      surface: '#FEFEFE',
-      text: '#1F2937',
-      textSecondary: '#4B5563',
-      border: '#E5E7EB',
-      heroText: '#FFFFFF',
-      heroTextSecondary: 'rgba(255,255,255,0.9)'
-    },
-    heroImages: {
-      desktop: '/images/hero-background2.png',
-      mobile: '/images/hero-background-mobil2.png'
-    }
-  },
   beton: {
-    name: '2. Modern Grau',
+    name: '1. Modern Grau',
     icon: '⬜',
     colors: {
       primary: '#6B7280',
@@ -44,7 +24,7 @@ const themes = {
     }
   },
   ziegel: {
-    name: '3. Warmton',
+    name: '2. Warmton',
     icon: '🔶',
     colors: {
       primary: '#B73F2C',
@@ -64,7 +44,7 @@ const themes = {
     }
   },
   holz: {
-    name: '4. Naturton',
+    name: '3. Naturton',
     icon: '🟫',
     colors: {
       primary: '#92400E',
@@ -84,7 +64,7 @@ const themes = {
     }
   },
   marmor: {
-    name: '5. Edel Violett',
+    name: '4. Edel Violett',
     icon: '💎',
     colors: {
       primary: '#6366F1',
@@ -104,7 +84,7 @@ const themes = {
     }
   },
   schiefer: {
-    name: '6. Dark Mode',
+    name: '5. Dark Mode',
     icon: '⬛',
     colors: {
       primary: '#3B82F6',
@@ -128,7 +108,7 @@ const themes = {
 type ThemeKey = keyof typeof themes
 
 export default function ThemeSwitcher() {
-  const [activeTheme, setActiveTheme] = useState<ThemeKey>('bad')
+  const [activeTheme, setActiveTheme] = useState<ThemeKey>('ziegel')
   const [isOpen, setIsOpen] = useState(false)
 
   // CSS Custom Properties und Hero-Bilder aktualisieren
@@ -159,7 +139,7 @@ export default function ThemeSwitcher() {
       updateCSSVariables(themes[savedTheme])
     } else {
       // Standardtheme laden
-      updateCSSVariables(themes.bad)
+      updateCSSVariables(themes.ziegel)
     }
   }, [])
 
