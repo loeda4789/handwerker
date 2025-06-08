@@ -112,29 +112,22 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
 
         {/* Vertikale Timeline für alle Bildschirmgrößen */}
         <div className="relative max-w-4xl mx-auto">
-          {/* Vertikale Hauptlinie - perfekt zentriert */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-border dark:via-text-secondary to-transparent">
-            {/* Aktive Hauptlinie */}
+          {/* Vertikale Hauptlinie - links positioniert */}
+          <div 
+            ref={timelineRef}
+            className="absolute left-8 lg:left-12 top-8 lg:top-10 bottom-8 lg:bottom-10 w-1 bg-border dark:bg-text-secondary/30 rounded-full"
+          >
+            {/* Scroll-basierter Fortschrittsstrich */}
             <div 
-              ref={timelineRef}
-              className="absolute top-16 bottom-16 left-1/2 transform -translate-x-1/2 w-1 bg-border dark:bg-text-secondary/30 rounded-full"
-            >
-              {/* Scroll-basierter Fortschrittsstrich */}
-              <div 
-                className={`absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-accent to-primary rounded-full transition-all duration-700 ease-out shadow-sm ${
-                  timelineProgress === 0 ? 'opacity-0 scale-y-0' : 'opacity-100 scale-y-100'
-                }`}
-                style={{ 
-                  height: `${timelineProgress}%`,
-                  transformOrigin: 'top',
-                  boxShadow: '0 0 8px rgba(var(--color-primary-rgb), 0.4)'
-                }}
-              ></div>
-            </div>
+              className={`absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent rounded-full transition-all duration-500 ease-out ${
+                timelineProgress === 0 ? 'opacity-0' : 'opacity-100'
+              }`}
+              style={{ height: `${timelineProgress}%` }}
+            ></div>
           </div>
 
           {/* Timeline Steps */}
-          <div className="space-y-20 lg:space-y-28">
+          <div className="space-y-16 lg:space-y-24">
             {projectSteps.map((step, index) => {
               const stepNumber = index + 1
               const isActive = activeStep >= stepNumber
@@ -146,53 +139,39 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                   className="relative animate-on-scroll"
                   style={{ animationDelay: `${index * 200}ms` }}
                 >
-                  {/* Schritt-Nummer Kreis - zentriert */}
+                  {/* Schritt-Nummer Kreis - links */}
                   <div 
-                    className={`absolute left-1/2 transform -translate-x-1/2 w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-xl z-20 border-4 border-white dark:border-dark transition-all duration-700 ${
+                    className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-white dark:border-dark transition-all duration-700 ${
                       isStrichReached 
-                        ? 'scale-110 shadow-2xl animate-pulse' 
+                        ? 'scale-110 shadow-xl' 
                         : 'scale-100'
                     }`}
                     style={isStrichReached ? {
-                      boxShadow: `0 0 0 6px rgba(var(--color-primary-rgb), 0.2), 0 20px 40px -10px rgba(0, 0, 0, 0.3)`,
-                      background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-primary))'
-                    } : {
-                      boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.2)'
-                    }}
+                      boxShadow: `0 0 0 4px rgba(var(--color-primary-rgb), 0.2), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)`
+                    } : {}}
                   >
-                    <span className="text-2xl lg:text-3xl font-bold text-white drop-shadow-lg">
+                    <span className="text-xl lg:text-2xl font-bold text-white">
                       {step.number}
                     </span>
                   </div>
 
-                  {/* Content Box - links und rechts alternierend */}
+                  {/* Content Box - rechts */}
                   <div 
-                    className={`${index % 2 === 0 ? 'ml-0 mr-auto pl-0 pr-12 lg:pr-16' : 'mr-0 ml-auto pr-0 pl-12 lg:pl-16'} 
-                    max-w-md lg:max-w-lg bg-white dark:bg-dark-secondary rounded-2xl p-8 lg:p-10 shadow-xl border border-border/50 dark:border-text-secondary/30 hover:shadow-2xl transition-all duration-700 hover:transform hover:scale-105 backdrop-blur-sm ${
+                    className={`ml-24 lg:ml-32 bg-white dark:bg-dark-secondary rounded-xl p-6 lg:p-8 shadow-lg border border-border dark:border-text-secondary hover:shadow-xl transition-all duration-700 hover:transform hover:scale-105 ${
                       isActive
                         ? 'opacity-100 transform translate-y-0'
-                        : 'opacity-70 transform translate-y-6'
+                        : 'opacity-60 transform translate-y-4'
                     }`}
-                    style={{ 
-                      background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)',
-                      ...(typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches && {
-                        background: 'linear-gradient(135deg, rgba(var(--color-dark-secondary-rgb), 0.95) 0%, rgba(var(--color-dark-secondary-rgb), 0.9) 100%)'
-                      })
-                    }}
                   >
-                    <h3 className="text-2xl lg:text-3xl font-bold text-text dark:text-light mb-4 lg:mb-6">
+                    <h3 className="text-xl lg:text-2xl font-bold text-text dark:text-light mb-3 lg:mb-4">
                       {step.title}
                     </h3>
-                    <p className="text-text-secondary dark:text-light/80 leading-relaxed text-lg lg:text-xl">
+                    <p className="text-text-secondary dark:text-light/80 leading-relaxed text-base lg:text-lg">
                       {step.description}
                     </p>
                     
-                    {/* Eleganter Verbindungspfeil zum Kreis */}
-                    <div 
-                      className={`absolute top-8 lg:top-10 ${index % 2 === 0 ? 'right-8 lg:right-12' : 'left-8 lg:left-12'} w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center`}
-                    >
-                      <div className={`w-0 h-0 ${index % 2 === 0 ? 'border-l-4 border-l-primary border-t-2 border-t-transparent border-b-2 border-b-transparent' : 'border-r-4 border-r-primary border-t-2 border-t-transparent border-b-2 border-b-transparent'}`}></div>
-                    </div>
+                    {/* Kleiner Pfeil zur Verbindung */}
+                    <div className="absolute left-16 lg:left-20 top-6 lg:top-8 w-0 h-0 border-l-8 border-l-white dark:border-l-dark-secondary border-t-8 border-t-transparent border-b-8 border-b-transparent"></div>
                   </div>
                 </div>
               )
