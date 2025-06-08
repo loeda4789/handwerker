@@ -12,8 +12,8 @@ const themes = {
       accent: '#E0E0E0',
       background: '#FFFFFF',
       surface: '#FAFAFA',
-      text: '#111111',
-      textSecondary: '#4A4A4A',
+      text: '#0A0A0A',
+      textSecondary: '#333333',
       border: '#D3D3D3'
     },
     heroImages: {
@@ -30,8 +30,8 @@ const themes = {
       accent: '#F8F8F8',
       background: '#FFFFFF',
       surface: '#FDFDFD',
-      text: '#4F4F4F',
-      textSecondary: '#6B6B6B',
+      text: '#2B2B2B',
+      textSecondary: '#525252',
       border: '#E6E6E6'
     },
     heroImages: {
@@ -48,8 +48,8 @@ const themes = {
       accent: '#E8A598',
       background: '#FDF3F0',
       surface: '#FAF0ED',
-      text: '#5C2C21',
-      textSecondary: '#8B4A3C',
+      text: '#2F1410',
+      textSecondary: '#5C2C21',
       border: '#D4A59B'
     },
     heroImages: {
@@ -84,8 +84,8 @@ const themes = {
       accent: '#D4C7B0',
       background: '#FAF8F5',
       surface: '#F5F2ED',
-      text: '#5D4E3C',
-      textSecondary: '#7A6B58',
+      text: '#3D2B1F',
+      textSecondary: '#5D4E3C',
       border: '#C0B49B'
     },
     heroImages: {
@@ -102,8 +102,8 @@ const themes = {
       accent: '#B4C8E1',
       background: '#F8FAFE',
       surface: '#DDE6F0',
-      text: '#1F3F66',
-      textSecondary: '#4A6B92',
+      text: '#0F1F33',
+      textSecondary: '#1F3F66',
       border: '#B4C8E1'
     },
     heroImages: {
