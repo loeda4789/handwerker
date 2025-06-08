@@ -12,7 +12,7 @@ import Testimonials from '@/components/Testimonials'
 import ProjectProcess from '@/components/ProjectProcess'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
-import DevButton from '@/components/DevButton'
+// import DevButton from '@/components/DevButton'
 import SpeedDial from '@/components/SpeedDial'
 
 export default function Home() {
@@ -67,7 +67,7 @@ export default function Home() {
       <Footer content={content} />
       
       {/* Development Tools */}
-      <DevButton />
+      {/* <DevButton /> */}
       
       {/* Mobile Speed Dial */}
       <SpeedDial 
