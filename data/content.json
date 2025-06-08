@@ -106,49 +106,49 @@
     {
       "name": "Max Mustermann",
       "position": "Geschäftsführer & Fliesenleger-Meister",
-      "photo": "/images/team/person1.jpg",
+      "photo": "/images/team/person1.png",
       "specialization": "Projektleitung & Fliesenberatung"
     },
     {
       "name": "Anna Schmidt",
       "position": "Projektleiterin Fliesen",
-      "photo": "/images/team/person2.jpg",
+      "photo": "/images/team/person2.png",
       "specialization": "Badezimmer & Sanitärfliesen"
     },
     {
       "name": "Tom Weber",
       "position": "Fliesenleger Spezialist",
-      "photo": "/images/team/person3.jpg",
+      "photo": "/images/team/person3.png",
       "specialization": "Großformatfliesen & Naturstein"
     },
     {
       "name": "Lisa Müller",
       "position": "Fliesendesignerin",
-      "photo": "/images/team/person4.jpg",
+      "photo": "/images/team/person4.png",
       "specialization": "Mosaik & kreative Fliesenverlegung"
     },
     {
       "name": "Markus Fischer",
       "position": "Fliesenleger-Meister",
-      "photo": "/images/team/person5.jpg",
+      "photo": "/images/team/person5.png",
       "specialization": "Fliesen & Naturstein"
     },
     {
       "name": "Sandra Koch",
       "position": "Fliesenberatung & Kundenservice",
-      "photo": "/images/team/person6.jpg",
+      "photo": "/images/team/person6.png",
       "specialization": "Fliesenauswahl & Terminplanung"
     },
     {
       "name": "Michael Braun",
       "position": "Fliesenleger Außenbereich",
-      "photo": "/images/team/person7.jpg",
+      "photo": "/images/team/person7.png",
       "specialization": "Terrassen & Außenfliesen"
     },
     {
       "name": "Julia Hoffmann",
       "position": "Auszubildende Fliesenlegerin",
-      "photo": "/images/team/person8.jpg",
+      "photo": "/images/team/person8.png",
       "specialization": "Fliesenverlegung & Fugenarbeiten"
     }
   ],
