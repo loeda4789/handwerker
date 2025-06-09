@@ -77,14 +77,18 @@ export default function Services({ content }: ServicesProps) {
   }
 
   const nextImage = () => {
-    if (currentService && currentService.projects && currentService.projects.length > 0) {
-      setCurrentImageIndex((prev) => (prev + 1) % currentService.projects!.length)
+    if (currentService) {
+      // Total images = 1 (service image) + project images
+      const totalImages = 1 + (currentService.projects?.length || 0)
+      setCurrentImageIndex((prev) => (prev + 1) % totalImages)
     }
   }
 
   const prevImage = () => {
-    if (currentService && currentService.projects && currentService.projects.length > 0) {
-      setCurrentImageIndex((prev) => (prev - 1 + currentService.projects!.length) % currentService.projects!.length)
+    if (currentService) {
+      // Total images = 1 (service image) + project images
+      const totalImages = 1 + (currentService.projects?.length || 0)
+      setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages)
     }
   }
 
@@ -196,7 +200,7 @@ export default function Services({ content }: ServicesProps) {
         </div>
 
         {/* Lightbox */}
-        {lightboxOpen && currentService && currentService.projects && currentService.projects.length > 0 && (
+        {lightboxOpen && currentService && (
           <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
             {/* Close Button */}
             <button
@@ -209,7 +213,7 @@ export default function Services({ content }: ServicesProps) {
             </button>
 
             {/* Previous Button */}
-            {currentService.projects.length > 1 && (
+            {(1 + (currentService.projects?.length || 0)) > 1 && (
               <button
                 onClick={prevImage}
                 className="absolute left-4 text-white hover:text-gray-300 z-10"
@@ -221,7 +225,7 @@ export default function Services({ content }: ServicesProps) {
             )}
 
             {/* Next Button */}
-            {currentService.projects.length > 1 && (
+            {(1 + (currentService.projects?.length || 0)) > 1 && (
               <button
                 onClick={nextImage}
                 className="absolute right-4 text-white hover:text-gray-300 z-10"
@@ -240,20 +244,73 @@ export default function Services({ content }: ServicesProps) {
 
             {/* Image */}
             <div className="max-w-4xl max-h-full w-full h-full flex items-center justify-center mt-16 mb-16">
-              <div className="relative w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
-                <div className="text-center text-white">
-                  <svg className="w-24 h-24 mx-auto mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                  </svg>
-                  <h4 className="text-2xl font-bold mb-2">{currentService.projects[currentImageIndex]?.title}</h4>
-                  <p className="text-white/80 max-w-md mx-auto">{currentService.projects[currentImageIndex]?.description}</p>
+              {/* Service Main Image (Index 0) or Project Images (Index 1+) */}
+              {currentImageIndex === 0 && currentService.image ? (
+                <div className="relative w-full max-w-3xl">
+                  <img 
+                    src={currentService.image} 
+                    alt={currentService.title}
+                    className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      if (target.nextElementSibling) {
+                        (target.nextElementSibling as HTMLElement).style.display = 'flex';
+                      }
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center" style={{display: 'none'}}>
+                    <div className="text-center text-white">
+                      <svg className="w-24 h-24 mx-auto mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                      </svg>
+                      <h4 className="text-2xl font-bold mb-2">{currentService.title}</h4>
+                      <p className="text-white/80 max-w-md mx-auto">Hauptbild - {currentService.description}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ) : currentImageIndex > 0 && currentService.projects && currentService.projects[currentImageIndex - 1] ? (
+                <div className="relative w-full max-w-3xl">
+                  {currentService.projects[currentImageIndex - 1].image ? (
+                    <img 
+                      src={currentService.projects[currentImageIndex - 1].image} 
+                      alt={currentService.projects[currentImageIndex - 1].title}
+                      className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        if (target.nextElementSibling) {
+                          (target.nextElementSibling as HTMLElement).style.display = 'flex';
+                        }
+                      }}
+                    />
+                  ) : null}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center" style={{display: currentService.projects[currentImageIndex - 1].image ? 'none' : 'flex'}}>
+                    <div className="text-center text-white">
+                      <svg className="w-24 h-24 mx-auto mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                      </svg>
+                      <h4 className="text-2xl font-bold mb-2">{currentService.projects[currentImageIndex - 1]?.title}</h4>
+                      <p className="text-white/80 max-w-md mx-auto">{currentService.projects[currentImageIndex - 1]?.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="relative w-full max-w-3xl bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center h-96">
+                  <div className="text-center text-white">
+                    <svg className="w-24 h-24 mx-auto mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    <h4 className="text-2xl font-bold mb-2">{currentService.title}</h4>
+                    <p className="text-white/80 max-w-md mx-auto">Kein Bild verfügbar</p>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Image Counter */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
-              {currentImageIndex + 1} / {currentService.projects.length}
+              {currentImageIndex + 1} / {1 + (currentService.projects?.length || 0)}
             </div>
           </div>
         )}
