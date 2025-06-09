@@ -108,17 +108,13 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
             {/* After Image (Background) */}
             <div className="absolute inset-0">
               <div 
-                className="w-full h-full bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center text-white text-xl font-bold"
+                className="w-full h-full"
                 style={{
                   backgroundImage: `url(${currentItem.afterImage})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
-              >
-                <div className="bg-black/50 px-4 py-2 rounded">
-                  Nachher
-                </div>
-              </div>
+              />
             </div>
 
             {/* Before Image (Overlay) */}
@@ -127,18 +123,14 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
               style={{ width: `${sliderPosition}%` }}
             >
               <div 
-                className="w-full h-full bg-gradient-to-r from-gray-600 to-gray-800 flex items-center justify-center text-white text-xl font-bold"
+                className="w-full h-full"
                 style={{
                   backgroundImage: `url(${currentItem.beforeImage})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   width: `${100 * (100 / sliderPosition)}%`
                 }}
-              >
-                <div className="bg-black/50 px-4 py-2 rounded">
-                  Vorher
-                </div>
-              </div>
+              />
             </div>
 
             {/* Slider Handle */}
@@ -152,14 +144,6 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
                 </svg>
               </div>
-            </div>
-
-            {/* Labels */}
-            <div className="absolute bottom-4 left-4 bg-primary text-white px-3 py-1 rounded text-sm font-medium">
-              Vorher
-            </div>
-            <div className="absolute bottom-4 right-4 bg-primary text-white px-3 py-1 rounded text-sm font-medium">
-              Nachher
             </div>
           </div>
 
