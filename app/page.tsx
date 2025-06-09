@@ -5,6 +5,7 @@ import { getContentData } from '@/lib/config'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
+import Stats from '@/components/Stats'
 import Services from '@/components/Services'
 import Team from '@/components/Team'
 import BeforeAfter from '@/components/BeforeAfter'
@@ -58,6 +59,7 @@ export default function Home() {
       <Header content={content} />
       <Hero content={content} />
       <About content={content} />
+      <Stats content={content} />
       <Services content={content} />
       <BeforeAfter content={content} />
       <Team content={content} />
