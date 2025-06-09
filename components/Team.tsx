@@ -90,7 +90,7 @@ export default function Team({ content }: TeamProps) {
                   <div className="group text-center animate-on-scroll cursor-pointer">
                     {/* Member Photo */}
                     <div className="relative mb-6">
-                      {member.photo ? (
+                      {member.photo && index === 0 ? (
                         <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-dark shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50 group-hover:rotate-3 relative">
                           <Image
                             src={member.photo}
@@ -193,7 +193,7 @@ export default function Team({ content }: TeamProps) {
             >
               {/* Member Photo */}
               <div className="relative mb-6">
-                {member.photo ? (
+                {member.photo && index === 0 ? (
                   <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-dark shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50 group-hover:rotate-3 relative">
                     <Image
                       src={member.photo}
