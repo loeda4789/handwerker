@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface SpeedDialProps {
   phoneNumber: string;
@@ -9,6 +9,16 @@ interface SpeedDialProps {
 
 export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // SpeedDial nach 7 Sekunden einblenden
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 7000); // 7 Sekunden
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const toggleSpeedDial = () => {
     setIsOpen(!isOpen);
@@ -24,8 +34,13 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
     setIsOpen(false);
   };
 
+  // Nicht rendern, wenn noch nicht sichtbar
+  if (!isVisible) {
+    return null;
+  }
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 md:hidden">
+    <div className="fixed bottom-6 right-6 z-50 md:hidden opacity-0 animate-[fadeInUp_0.5s_ease-out_0s_forwards]">
       {/* Speed Dial Actions */}
       <div className={`flex flex-col space-y-3 mb-3 transition-all duration-300 ${
         isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'

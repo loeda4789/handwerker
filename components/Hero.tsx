@@ -33,7 +33,7 @@ export default function Hero({ content }: HeroProps) {
           <div className="max-w-2xl lg:max-w-3xl">
             {/* Headline */}
             <h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight animate-in slide-in-from-left duration-1000"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]"
               style={{ color: 'var(--color-heroText, #ffffff)' }}
             >
               {content.company.name}
@@ -41,17 +41,17 @@ export default function Hero({ content }: HeroProps) {
             
             {/* Tagline */}
             <p 
-              className="text-lg md:text-xl mb-8 animate-in slide-in-from-left duration-1000 delay-300"
+              className="text-lg md:text-xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
               style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}
             >
               {content.company.tagline}
             </p>
             
             {/* CTA Button */}
-            <div className="flex flex-col sm:flex-row gap-4 animate-in slide-in-from-left duration-1000 delay-500">
+            <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-[fadeInUp_1s_ease-out_1s_forwards]">
               <Link
                 href="#kontakt"
-                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg focus:ring-4 transition-all duration-300 group hover:scale-105 hover:shadow-lg"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg focus:ring-4 transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
                 style={{ 
                   color: 'var(--color-background, #ffffff)', 
                   backgroundColor: 'var(--color-primary, #0ea5e9)',
@@ -82,7 +82,7 @@ export default function Hero({ content }: HeroProps) {
       </div>
       
       {/* Scroll Indicator */}
-      <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 animate-bounce animate-in fade-in duration-1000 delay-1000">
+      <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 animate-bounce opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards]">
         <Link href="#ueber-uns" className="block group">
           <div className="p-2 rounded-full bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-all duration-300">
             <svg 
