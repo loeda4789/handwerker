@@ -179,26 +179,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center mt-16 animate-on-scroll">
-          <div className="bg-white/50 dark:bg-dark-secondary/50 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto border border-white/20 dark:border-text-secondary/50">
-            <h3 className="text-2xl font-bold text-text dark:text-light mb-4">
-              Bereit für Ihr nächstes Projekt?
-            </h3>
-            <p className="text-text-secondary dark:text-light/80 mb-6">
-              Kontaktieren Sie uns für eine kostenlose Erstberatung und lassen Sie uns gemeinsam Ihre Ideen verwirklichen.
-            </p>
-            <a
-              href="#footer"
-                              className="inline-flex items-center px-8 py-4 bg-primary hover:bg-accent text-white rounded-lg hover:shadow-lg transition-all duration-300 font-medium group"
-            >
-              Jetzt Beratung anfragen
-              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
-            </a>
-          </div>
-        </div>
+
       </div>
     </section>
   )
