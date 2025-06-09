@@ -9,7 +9,7 @@ interface BeforeAfterProps {
 
 export default function BeforeAfter({ content }: BeforeAfterProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [sliderPosition, setSliderPosition] = useState(50)
+  const [sliderPosition, setSliderPosition] = useState(25)
   const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   
@@ -145,6 +145,14 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
                 </svg>
               </div>
             </div>
+
+            {/* Labels */}
+            <div className="absolute bottom-4 left-4 bg-primary text-white px-3 py-1 rounded text-sm font-medium">
+              Vorher
+            </div>
+            <div className="absolute bottom-4 right-4 bg-primary text-white px-3 py-1 rounded text-sm font-medium">
+              Nachher
+            </div>
           </div>
 
           {/* Project Info */}
@@ -167,7 +175,7 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
                 key={index}
                 onClick={() => {
                   setCurrentIndex(index)
-                  setSliderPosition(50) // Reset slider position
+                  setSliderPosition(25) // Reset slider position
                 }}
                 className={`w-3 h-3 rounded-full transition-colors duration-300 ${
                   index === currentIndex 
@@ -183,7 +191,7 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
             <button
               onClick={() => {
                 setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : beforeAfterData.length - 1)
-                setSliderPosition(50)
+                setSliderPosition(25)
               }}
               className="flex items-center space-x-2 px-4 py-2 bg-surface dark:bg-dark border border-border dark:border-gray-600 rounded-lg hover:bg-primary hover:text-white transition-colors duration-300"
             >
@@ -195,7 +203,7 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
             <button
               onClick={() => {
                 setCurrentIndex(currentIndex < beforeAfterData.length - 1 ? currentIndex + 1 : 0)
-                setSliderPosition(50)
+                setSliderPosition(25)
               }}
               className="flex items-center space-x-2 px-4 py-2 bg-surface dark:bg-dark border border-border dark:border-gray-600 rounded-lg hover:bg-primary hover:text-white transition-colors duration-300"
             >
