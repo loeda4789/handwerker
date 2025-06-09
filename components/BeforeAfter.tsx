@@ -8,13 +8,12 @@ interface BeforeAfterProps {
 }
 
 export default function BeforeAfter({ content }: BeforeAfterProps) {
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [sliderPosition, setSliderPosition] = useState(25)
   const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   
   const beforeAfterData = content.beforeAfter || []
-  const currentItem = beforeAfterData[currentIndex]
+  const currentItem = beforeAfterData[0]
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true)
@@ -166,52 +165,6 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
             <p className="text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
               {currentItem.description}
             </p>
-          </div>
-
-          {/* Navigation Dots */}
-          <div className="flex justify-center space-x-2 mt-8">
-            {beforeAfterData.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setCurrentIndex(index)
-                  setSliderPosition(25) // Reset slider position
-                }}
-                className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-primary dark:bg-accent' 
-                    : 'bg-border dark:bg-gray-600 hover:bg-primary/50'
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Navigation Arrows */}
-          <div className="flex justify-center space-x-4 mt-6">
-            <button
-              onClick={() => {
-                setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : beforeAfterData.length - 1)
-                setSliderPosition(25)
-              }}
-              className="flex items-center space-x-2 px-4 py-2 bg-surface dark:bg-dark border border-border dark:border-gray-600 rounded-lg hover:bg-primary hover:text-white transition-colors duration-300"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
-              </svg>
-              <span>Vorherige</span>
-            </button>
-            <button
-              onClick={() => {
-                setCurrentIndex(currentIndex < beforeAfterData.length - 1 ? currentIndex + 1 : 0)
-                setSliderPosition(25)
-              }}
-              className="flex items-center space-x-2 px-4 py-2 bg-surface dark:bg-dark border border-border dark:border-gray-600 rounded-lg hover:bg-primary hover:text-white transition-colors duration-300"
-            >
-              <span>Nächste</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </button>
           </div>
         </div>
       </div>
