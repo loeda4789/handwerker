@@ -16,7 +16,7 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 // import DevButton from '@/components/DevButton'
 import SpeedDial from '@/components/SpeedDial'
-import UrlParamsDebug from '@/components/UrlParamsDebug'
+
 
 export default function Home() {
   const baseContent = getContentData()
@@ -74,8 +74,7 @@ export default function Home() {
       {/* Development Tools */}
       {/* <DevButton /> */}
       
-      {/* URL Parameters Debug */}
-      <UrlParamsDebug />
+
       
       {/* Mobile Speed Dial */}
       <SpeedDial 
