@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { getContentData } from '@/lib/config'
+import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
@@ -15,9 +16,11 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 // import DevButton from '@/components/DevButton'
 import SpeedDial from '@/components/SpeedDial'
+import UrlParamsDebug from '@/components/UrlParamsDebug'
 
 export default function Home() {
-  const content = getContentData()
+  const baseContent = getContentData()
+  const content = useContentWithUrlParams(baseContent)
 
   // Function to scroll to footer section
   const scrollToContact = () => {
@@ -70,6 +73,9 @@ export default function Home() {
       
       {/* Development Tools */}
       {/* <DevButton /> */}
+      
+      {/* URL Parameters Debug */}
+      <UrlParamsDebug />
       
       {/* Mobile Speed Dial */}
       <SpeedDial 

@@ -1,0 +1,14 @@
+{
+  "url_params": {
+    "firmenname": "",
+    "strasse": "",
+    "plz": "",
+    "ort": "",
+    "email": "",
+    "telefon": ""
+  },
+  "extracted_data": {
+    "timestamp": "",
+    "source_url": ""
+  }
+} 
