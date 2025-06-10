@@ -87,16 +87,16 @@ const themes = {
     name: '5. Dark Mode',
     icon: '⬛',
     colors: {
-      primary: '#3B82F6',
-      secondary: '#60A5FA',
-      accent: '#DBEAFE',
+      primary: '#60A5FA',
+      secondary: '#93C5FD',
+      accent: '#E0F2FE',
       background: '#0F172A',
       surface: '#1E293B',
-      text: '#F8FAFC',
-      textSecondary: '#CBD5E1',
-      border: '#334155',
+      text: '#FFFFFF',
+      textSecondary: '#E2E8F0',
+      border: '#475569',
       heroText: '#FFFFFF',
-      heroTextSecondary: 'rgba(255,255,255,0.9)'
+      heroTextSecondary: 'rgba(255,255,255,0.95)'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',
