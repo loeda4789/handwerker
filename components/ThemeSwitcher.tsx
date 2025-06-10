@@ -96,7 +96,8 @@ const themes = {
       textSecondary: '#E2E8F0',
       border: '#475569',
       heroText: '#FFFFFF',
-      heroTextSecondary: 'rgba(255,255,255,0.95)'
+      heroTextSecondary: 'rgba(255,255,255,0.95)',
+      darkSecondary: '#0A0F1A'
     },
     heroImages: {
       desktop: '/images/hero-background2.png',

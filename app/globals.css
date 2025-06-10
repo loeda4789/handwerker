@@ -186,6 +186,7 @@ html {
   --color-text: #FFFFFF;
   --color-text-secondary: #E2E8F0;
   --color-border: #475569;
+  --color-dark-secondary: var(--color-darkSecondary, #1e293b);
 }
 
 /* Project Process Animations */
