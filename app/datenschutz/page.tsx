@@ -1,4 +1,12 @@
-﻿export default function Datenschutz() {
+﻿'use client'
+
+import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
+import { getContentData } from '@/lib/config'
+
+export default function Datenschutz() {
+  const baseContent = getContentData()
+  const content = useContentWithUrlParams(baseContent)
+
   return (
     <div className="min-h-screen bg-gray-50 py-16">
       <div className="container mx-auto px-4">
@@ -49,13 +57,12 @@
               Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
             </p>
             <p className="mb-4">
-              Max Mustermann<br />
-              Mustermann Handwerk<br />
-              Aloysiusstr. 144<br />
-              48429 Rheine<br />
+              {content.company.name}<br />
+              {content.contact.address.split(',')[0].trim()}<br />
+              {content.contact.address.split(',').slice(1).join(',').trim()}<br />
               <br />
-              Telefon: +49 (0) 123 456789<br />
-              E-Mail: info@mustermann-handwerk.de
+              Telefon: {content.contact.phone}<br />
+              E-Mail: {content.contact.email}
             </p>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">4. Datenerfassung auf unserer Website</h2>
@@ -95,7 +102,7 @@
               oder Löschung dieser Daten zu verlangen.
             </p>
 
-            <p className="text-sm text-gray-600 mt-8">
+            <p className="mb-6 text-sm text-gray-500">
               Stand: {new Date().toLocaleDateString('de-DE')}
             </p>
           </div>

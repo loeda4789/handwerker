@@ -5,7 +5,27 @@ interface HeroProps {
   content: ContentData
 }
 
+// Hilfsfunktion zum Extrahieren des Ortsnamens aus der Adresse
+function extractCityFromAddress(address: string): string {
+  // Adresse ist normalerweise "Straße, PLZ Ort" oder "Straße, PLZ, Ort"
+  const parts = address.split(',').map(part => part.trim())
+  if (parts.length >= 2) {
+    // Letzter Teil enthält meist PLZ und Ort
+    const lastPart = parts[parts.length - 1]
+    // PLZ am Anfang entfernen (normalerweise 5 Ziffern + Leerzeichen)
+    const cityMatch = lastPart.match(/^\d{5}\s+(.+)$/)
+    if (cityMatch) {
+      return cityMatch[1]
+    }
+    // Falls kein PLZ-Muster gefunden wird, nehme den letzten Teil
+    return lastPart
+  }
+  return 'Ihrer Region'
+}
+
 export default function Hero({ content }: HeroProps) {
+  const cityName = extractCityFromAddress(content.contact.address)
+  
   return (
     <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
       {/* Hero Bild als Hintergrund */}
@@ -31,7 +51,7 @@ export default function Hero({ content }: HeroProps) {
       <div className="relative h-full flex items-center">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl lg:max-w-3xl">
-            {/* Headline */}
+            {/* Headline - Firmenname */}
             <h1 
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]"
               style={{ color: 'var(--color-heroText, #ffffff)' }}
@@ -39,12 +59,12 @@ export default function Hero({ content }: HeroProps) {
               {content.company.name}
             </h1>
             
-            {/* Tagline */}
+            {/* Tagline - Experte aus Ort */}
             <p 
               className="text-lg md:text-xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
               style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}
             >
-              {content.company.tagline}
+              Ihr Experte aus {cityName}
             </p>
             
             {/* CTA Button */}

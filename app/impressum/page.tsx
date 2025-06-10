@@ -1,4 +1,12 @@
-﻿export default function Impressum() {
+﻿'use client'
+
+import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
+import { getContentData } from '@/lib/config'
+
+export default function Impressum() {
+  const baseContent = getContentData()
+  const content = useContentWithUrlParams(baseContent)
+
   return (
     <div className="min-h-screen bg-gray-50 py-16">
       <div className="container mx-auto px-4">
@@ -9,16 +17,15 @@
             <h2 className="text-2xl font-semibold mt-8 mb-4">Angaben gemäß § 5 TMG</h2>
             
             <div className="mb-6">
-              <p className="mb-2"><strong>Max Mustermann</strong></p>
-              <p className="mb-2">Mustermann Handwerk</p>
-              <p className="mb-2">Aloysiusstr. 144</p>
-              <p className="mb-4">48429 Rheine</p>
+              <p className="mb-2"><strong>{content.company.name}</strong></p>
+              <p className="mb-2">{content.contact.address.split(',')[0].trim()}</p>
+              <p className="mb-4">{content.contact.address.split(',').slice(1).join(',').trim()}</p>
             </div>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">Kontakt</h2>
             <div className="mb-6">
-              <p className="mb-2">Telefon: +49 (0) 123 456789</p>
-              <p className="mb-2">E-Mail: info@mustermann-handwerk.de</p>
+              <p className="mb-2">Telefon: {content.contact.phone}</p>
+              <p className="mb-2">E-Mail: {content.contact.email}</p>
             </div>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">Umsatzsteuer-ID</h2>
@@ -52,9 +59,9 @@
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">Redaktionell verantwortlich</h2>
             <div className="mb-6">
-              <p className="mb-2">Max Mustermann</p>
-              <p className="mb-2">Aloysiusstr. 144</p>
-              <p className="mb-2">48429 Rheine</p>
+              <p className="mb-2">{content.company.name}</p>
+              <p className="mb-2">{content.contact.address.split(',')[0].trim()}</p>
+              <p className="mb-2">{content.contact.address.split(',').slice(1).join(',').trim()}</p>
             </div>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">Haftung für Inhalte</h2>

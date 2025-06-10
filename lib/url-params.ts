@@ -73,7 +73,7 @@ export function mergeUrlDataWithContent(contentData: ContentData, urlParams: Url
   // Firmenname übernehmen
   if (decodedParams.firmenname) {
     mergedData.company.name = decodedParams.firmenname;
-    mergedData.welcome.headline = `Willkommen bei ${decodedParams.firmenname}`;
+    mergedData.welcome.headline = `Willkommen bei\n${decodedParams.firmenname}`;
   }
   
   // Kontaktdaten übernehmen
@@ -88,8 +88,15 @@ export function mergeUrlDataWithContent(contentData: ContentData, urlParams: Url
   // Adresse zusammensetzen
   const addressParts = [];
   if (decodedParams.strasse) addressParts.push(decodedParams.strasse);
-  if (decodedParams.plz) addressParts.push(decodedParams.plz);
-  if (decodedParams.ort) addressParts.push(decodedParams.ort);
+  
+  // PLZ und Ort zusammenfassen ohne Komma dazwischen
+  const plzOrtParts = [];
+  if (decodedParams.plz) plzOrtParts.push(decodedParams.plz);
+  if (decodedParams.ort) plzOrtParts.push(decodedParams.ort);
+  
+  if (plzOrtParts.length > 0) {
+    addressParts.push(plzOrtParts.join(' '));
+  }
   
   if (addressParts.length > 0) {
     mergedData.contact.address = addressParts.join(', ');
