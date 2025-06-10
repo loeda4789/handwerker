@@ -74,7 +74,7 @@ export default function Team({ content }: TeamProps) {
         </div>
 
         {/* Mobile Team Swiper (lg:hidden) */}
-        <div className="lg:hidden relative">
+        <div className="lg:hidden relative max-w-sm mx-auto">
           <div 
             className="overflow-hidden"
             onTouchStart={onTouchStart}
@@ -86,7 +86,7 @@ export default function Team({ content }: TeamProps) {
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {teamMembers.map((member, index) => (
-                <div key={index} className="w-full flex-shrink-0 px-4">
+                <div key={index} className="w-full flex-shrink-0 px-2">
                   <div className="group text-center animate-on-scroll cursor-pointer">
                     {/* Member Photo */}
                     <div className="relative mb-6">

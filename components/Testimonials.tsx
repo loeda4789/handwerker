@@ -135,10 +135,10 @@ export default function Testimonials({ content }: TestimonialsProps) {
           </p>
         </div>
 
-        {/* Mobile View - Full Width */}
+        {/* Mobile View - Schmaler */}
         <div className="lg:hidden">
           {/* Mobile Slider View */}
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden max-w-sm mx-auto">
             {/* Slider Container */}
             <div 
               ref={sliderRef}
@@ -161,7 +161,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
                 {content.testimonials.map((testimonial, index) => (
                   <div
                     key={index}
-                    className="w-full flex-shrink-0 px-3"
+                    className="w-full flex-shrink-0 px-2"
                   >
                     <div className="bg-surface dark:bg-dark-secondary rounded-lg p-4 shadow-lg h-full max-w-full">
                       <div className="flex items-start space-x-3">

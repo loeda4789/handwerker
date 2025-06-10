@@ -57,8 +57,8 @@ export default function Portfolio({ content }: PortfolioProps) {
         {/* Filter Buttons */}
         <div className="mb-12">
           {/* Mobile: Horizontal Scroll */}
-          <div className="md:hidden overflow-x-auto pb-2 scrollbar-hide">
-            <div className="flex gap-4 px-4" style={{ width: 'max-content' }}>
+          <div className="md:hidden overflow-x-auto pb-2 scrollbar-hide max-w-lg mx-auto">
+            <div className="flex gap-3 px-4" style={{ width: 'max-content' }}>
               {categories.map((category) => (
                 <button
                   key={category}
