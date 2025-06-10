@@ -375,7 +375,7 @@ export default function Contact({ content }: ContactProps) {
                 onChange={handleInputChange}
                 onFocus={() => handleFocus('requestType')}
                 onBlur={handleBlur}
-                className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-text-secondary rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
+                className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-text-secondary rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300 appearance-none min-h-[52px]"
               >
                 <option value="" disabled hidden></option>
                 <option value="Rückruf">Rückruf</option>
@@ -383,6 +383,11 @@ export default function Contact({ content }: ContactProps) {
                 <option value="Kostenvoranschlag">Kostenvoranschlag</option>
                 <option value="Sonstiges">Sonstiges</option>
               </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                <svg className="w-5 h-5 text-text-secondary dark:text-light/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
               <label 
                 htmlFor="requestType" 
                 className={`absolute left-4 transition-all duration-300 pointer-events-none ${
@@ -405,7 +410,7 @@ export default function Contact({ content }: ContactProps) {
                    onChange={handleInputChange}
                    onFocus={() => handleFocus('serviceCategory')}
                    onBlur={handleBlur}
-                   className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-text-secondary rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300"
+                   className="w-full px-4 pt-6 pb-2 text-base border border-border dark:border-text-secondary rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background dark:bg-dark text-text dark:text-light hover:border-primary/50 dark:hover:border-accent/50 transition-all duration-300 appearance-none min-h-[52px]"
                  >
                    <option value="" disabled hidden></option>
                    <option value="Badezimmer komplett">Badezimmer komplett</option>
@@ -417,6 +422,11 @@ export default function Contact({ content }: ContactProps) {
                    <option value="Naturstein/Mosaik">Naturstein/Mosaik</option>
                    <option value="Außenbereich">Außenbereich</option>
                  </select>
+                 <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                   <svg className="w-5 h-5 text-text-secondary dark:text-light/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                   </svg>
+                 </div>
                  <label 
                    htmlFor="serviceCategory" 
                    className={`absolute left-4 transition-all duration-300 pointer-events-none ${
@@ -464,16 +474,16 @@ export default function Contact({ content }: ContactProps) {
             </div>
 
             {/* Privacy Checkbox */}
-            <div className="flex items-start space-x-3">
+            <div className="flex items-start space-x-3 sm:space-x-4">
               <input
                 type="checkbox"
                 id="privacy"
                 name="privacy"
                 checked={formData.privacy}
                 onChange={handleInputChange}
-                className="mt-1 h-4 w-4 text-primary focus:ring-primary border-border dark:border-text-secondary rounded transition-colors duration-300"
+                className="mt-1 h-5 w-5 sm:h-4 sm:w-4 text-primary focus:ring-primary border-border dark:border-text-secondary rounded transition-colors duration-300 flex-shrink-0"
               />
-              <label htmlFor="privacy" className="text-sm text-text-secondary dark:text-light/80 leading-relaxed">
+              <label htmlFor="privacy" className="text-sm sm:text-base text-text-secondary dark:text-light/80 leading-relaxed cursor-pointer">
                 Ich habe die{' '}
                 <a href="/datenschutz" className="text-primary dark:text-accent hover:underline font-medium">
                   Datenschutzerklärung
@@ -481,19 +491,19 @@ export default function Contact({ content }: ContactProps) {
                 gelesen und stimme der Verarbeitung meiner Daten zu. *
               </label>
             </div>
-            {errors.privacy && <p className="text-sm text-red-600 dark:text-red-400 flex items-center">
-              <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+            {errors.privacy && <p className="ml-8 sm:ml-9 mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
+              <svg className="w-4 h-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"/>
               </svg>
               {errors.privacy}
             </p>}
             
             {/* Submit Button */}
-            <div className="text-center pt-4">
+            <div className="text-center pt-6">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-accent text-white rounded-xl hover:shadow-xl transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed group hover:scale-105 min-w-[200px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-primary hover:bg-accent text-white rounded-xl hover:shadow-xl transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed group hover:scale-105 min-w-[200px] text-base"
               >
                 {isSubmitting ? (
                   <>
