@@ -1,12 +1,11 @@
 ﻿'use client'
 
-import { useContentWithUrlParams, useUrlParams } from '@/lib/hooks/useUrlParams'
+import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 import { getContentData } from '@/lib/config'
 
 export default function Impressum() {
   const baseContent = getContentData()
   const content = useContentWithUrlParams(baseContent)
-  const { hasParams, decodedParams } = useUrlParams()
 
   // Adresse für bessere Darstellung aufteilen
   const formatAddress = (address: string) => {
@@ -99,21 +98,6 @@ export default function Impressum() {
               Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der 
               Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
             </p>
-
-            {/* Debug Info für URL-Parameter */}
-            {hasParams && (
-              <div className="border-t pt-6 mt-8 bg-yellow-50 p-4 rounded-lg">
-                <h3 className="text-lg font-medium mb-4 text-yellow-800">📋 URL-Parameter erkannt</h3>
-                <div className="text-sm text-yellow-700 space-y-1">
-                  {decodedParams.firmenname && <p><strong>Firmenname:</strong> {decodedParams.firmenname}</p>}
-                  {decodedParams.strasse && <p><strong>Straße:</strong> {decodedParams.strasse}</p>}
-                  {decodedParams.plz && <p><strong>PLZ:</strong> {decodedParams.plz}</p>}
-                  {decodedParams.ort && <p><strong>Ort:</strong> {decodedParams.ort}</p>}
-                  {decodedParams.telefon && <p><strong>Telefon:</strong> {decodedParams.telefon}</p>}
-                  {decodedParams.email && <p><strong>E-Mail:</strong> {decodedParams.email}</p>}
-                </div>
-              </div>
-            )}
 
             <div className="border-t pt-6 mt-8">
               <h3 className="text-lg font-medium mb-4">Website-Entwicklung</h3>
