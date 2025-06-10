@@ -64,7 +64,7 @@ export default function Hero({ content }: HeroProps) {
               className="text-lg md:text-xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
               style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}
             >
-              Ihre Handwerksexperten aus {cityName}
+              Ihr Handwerksexperte aus {cityName}
             </p>
             
             {/* CTA Button */}
