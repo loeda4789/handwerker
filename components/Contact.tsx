@@ -117,13 +117,29 @@ export default function Contact({ content }: ContactProps) {
     setIsSubmitting(true)
     
     try {
-      // Hier würde normalerweise die API-Anfrage stehen
-      await new Promise(resolve => setTimeout(resolve, 2000)) // Simulierte API-Anfrage
-      
-      showToast('🎉 Vielen Dank für Ihre Nachricht! Wir melden uns innerhalb von 24 Stunden bei Ihnen.', 'success')
-      
-      // Form zurücksetzen
-              setFormData({
+      // Formspree API-Anfrage
+      const response = await fetch('https://formspree.io/f/xldnjzwv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          requestType: formData.requestType,
+          serviceCategory: formData.serviceCategory,
+          message: formData.message,
+          _subject: `Neue Anfrage von ${formData.name} - ${formData.requestType}`,
+          _replyto: formData.email
+        })
+      })
+
+      if (response.ok) {
+        showToast('🎉 Vielen Dank für Ihre Nachricht! Wir melden uns innerhalb von 24 Stunden bei Ihnen.', 'success')
+        
+        // Form zurücksetzen
+        setFormData({
           name: '',
           email: '',
           phone: '',
@@ -132,6 +148,9 @@ export default function Contact({ content }: ContactProps) {
           message: '',
           privacy: false
         })
+      } else {
+        throw new Error('Formspree error')
+      }
     } catch (error) {
       showToast('❌ Es gab einen Fehler beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.', 'error')
     } finally {
