@@ -1,11 +1,25 @@
 ﻿'use client'
 
-import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
+import { useContentWithUrlParams, useUrlParams } from '@/lib/hooks/useUrlParams'
 import { getContentData } from '@/lib/config'
 
 export default function Impressum() {
   const baseContent = getContentData()
   const content = useContentWithUrlParams(baseContent)
+  const { hasParams, decodedParams } = useUrlParams()
+
+  // Adresse für bessere Darstellung aufteilen
+  const formatAddress = (address: string) => {
+    const parts = address.split(',').map(part => part.trim())
+    if (parts.length >= 2) {
+      const street = parts[0]
+      const cityPart = parts[parts.length - 1]
+      return { street, cityPart }
+    }
+    return { street: address, cityPart: '' }
+  }
+
+  const { street, cityPart } = formatAddress(content.contact.address)
 
   return (
     <div className="min-h-screen bg-gray-50 py-16">
@@ -18,8 +32,8 @@ export default function Impressum() {
             
             <div className="mb-6">
               <p className="mb-2"><strong>{content.company.name}</strong></p>
-              <p className="mb-2">{content.contact.address.split(',')[0].trim()}</p>
-              <p className="mb-4">{content.contact.address.split(',').slice(1).join(',').trim()}</p>
+              <p className="mb-2">{street}</p>
+              {cityPart && <p className="mb-4">{cityPart}</p>}
             </div>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">Kontakt</h2>
@@ -60,8 +74,8 @@ export default function Impressum() {
             <h2 className="text-2xl font-semibold mt-8 mb-4">Redaktionell verantwortlich</h2>
             <div className="mb-6">
               <p className="mb-2">{content.company.name}</p>
-              <p className="mb-2">{content.contact.address.split(',')[0].trim()}</p>
-              <p className="mb-2">{content.contact.address.split(',').slice(1).join(',').trim()}</p>
+              <p className="mb-2">{street}</p>
+              {cityPart && <p className="mb-2">{cityPart}</p>}
             </div>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">Haftung für Inhalte</h2>
@@ -85,6 +99,21 @@ export default function Impressum() {
               Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der 
               Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
             </p>
+
+            {/* Debug Info für URL-Parameter */}
+            {hasParams && (
+              <div className="border-t pt-6 mt-8 bg-yellow-50 p-4 rounded-lg">
+                <h3 className="text-lg font-medium mb-4 text-yellow-800">📋 URL-Parameter erkannt</h3>
+                <div className="text-sm text-yellow-700 space-y-1">
+                  {decodedParams.firmenname && <p><strong>Firmenname:</strong> {decodedParams.firmenname}</p>}
+                  {decodedParams.strasse && <p><strong>Straße:</strong> {decodedParams.strasse}</p>}
+                  {decodedParams.plz && <p><strong>PLZ:</strong> {decodedParams.plz}</p>}
+                  {decodedParams.ort && <p><strong>Ort:</strong> {decodedParams.ort}</p>}
+                  {decodedParams.telefon && <p><strong>Telefon:</strong> {decodedParams.telefon}</p>}
+                  {decodedParams.email && <p><strong>E-Mail:</strong> {decodedParams.email}</p>}
+                </div>
+              </div>
+            )}
 
             <div className="border-t pt-6 mt-8">
               <h3 className="text-lg font-medium mb-4">Website-Entwicklung</h3>

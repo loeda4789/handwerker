@@ -7,6 +7,19 @@ export default function Datenschutz() {
   const baseContent = getContentData()
   const content = useContentWithUrlParams(baseContent)
 
+  // Adresse für bessere Darstellung aufteilen
+  const formatAddress = (address: string) => {
+    const parts = address.split(',').map(part => part.trim())
+    if (parts.length >= 2) {
+      const street = parts[0]
+      const cityPart = parts[parts.length - 1]
+      return { street, cityPart }
+    }
+    return { street: address, cityPart: '' }
+  }
+
+  const { street, cityPart } = formatAddress(content.contact.address)
+
   return (
     <div className="min-h-screen bg-gray-50 py-16">
       <div className="container mx-auto px-4">
@@ -58,8 +71,8 @@ export default function Datenschutz() {
             </p>
             <p className="mb-4">
               {content.company.name}<br />
-              {content.contact.address.split(',')[0].trim()}<br />
-              {content.contact.address.split(',').slice(1).join(',').trim()}<br />
+              {street}<br />
+              {cityPart}<br />
               <br />
               Telefon: {content.contact.phone}<br />
               E-Mail: {content.contact.email}
