@@ -141,12 +141,14 @@ export default function Contact({ content }: ContactProps) {
 
   const handleWhatsAppClick = () => {
     const message = `Hallo! Ich interessiere mich für Ihre Handwerksleistungen und würde gerne mehr erfahren.`
-    const whatsappUrl = `https://wa.me/491234567890?text=${encodeURIComponent(message)}`
+    // Telefonnummer für WhatsApp formatieren (+ und Leerzeichen entfernen)
+    const phoneForWhatsApp = content.contact.phone.replace(/[\s\+\-\(\)]/g, '')
+    const whatsappUrl = `https://wa.me/${phoneForWhatsApp}?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank')
   }
 
   const handlePhoneClick = () => {
-    window.location.href = 'tel:+491234567890'
+    window.location.href = `tel:${content.contact.phone}`
   }
 
   return (
@@ -213,7 +215,7 @@ export default function Contact({ content }: ContactProps) {
               </div>
               <div>
                 <p className="text-sm text-text-secondary dark:text-light/60 mb-1">Rufen Sie uns direkt an:</p>
-                <p className="text-2xl font-bold text-text dark:text-light">+49 123 456 789</p>
+                <p className="text-2xl font-bold text-text dark:text-light">{content.contact.phone}</p>
               </div>
             </div>
           </div>
