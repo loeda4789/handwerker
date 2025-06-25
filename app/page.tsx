@@ -64,28 +64,65 @@ export default function Home() {
     }
   }
 
-  // Scroll Animation Observer
+  // Scroll Animation Observer - mit Verzögerung und Debugging
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    }
+    // Kleine Verzögerung, damit alle Komponenten gerendert sind
+    const setupObserver = () => {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in')
-        }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log('Element wird sichtbar:', entry.target)
+            entry.target.classList.add('animate-in')
+          }
+        })
+      }, observerOptions)
+
+      // Observe all elements with animate-on-scroll class
+      const animateElements = document.querySelectorAll('.animate-on-scroll')
+      console.log('Gefundene animate-on-scroll Elemente:', animateElements.length)
+      
+      animateElements.forEach((el, index) => {
+        console.log(`Element ${index}:`, el)
+        observer.observe(el)
       })
-    }, observerOptions)
 
-    // Observe all elements with animate-on-scroll class
-    const animateElements = document.querySelectorAll('.animate-on-scroll')
-    animateElements.forEach((el) => observer.observe(el))
-
-    return () => {
-      animateElements.forEach((el) => observer.unobserve(el))
+      return observer
     }
+
+    // Verzögerung hinzufügen
+    const timer = setTimeout(() => {
+      const observer = setupObserver()
+      
+      return () => {
+        if (observer) {
+          observer.disconnect()
+        }
+      }
+    }, 500)
+
+          return () => {
+        clearTimeout(timer)
+      }
+    }, [content, loading])
+
+  // Fallback: Aktiviere alle Animationen nach 2 Sekunden falls Observer nicht funktioniert
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      const animateElements = document.querySelectorAll('.animate-on-scroll:not(.animate-in)')
+      if (animateElements.length > 0) {
+        console.log('Fallback: Aktiviere', animateElements.length, 'nicht-animierte Elemente')
+        animateElements.forEach((el) => {
+          el.classList.add('animate-in')
+        })
+      }
+    }, 2000)
+
+    return () => clearTimeout(fallbackTimer)
   }, [content])
 
   // Loading state
