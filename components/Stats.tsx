@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { ContentData } from '@/types/content';
 
 interface StatsProps {
-  content: any;
+  content: ContentData;
 }
 
 interface CounterProps {
@@ -82,27 +83,8 @@ function Counter({ end, duration, label, suffix = '', decimal = false }: Counter
 }
 
 export default function Stats({ content }: StatsProps) {
-  const stats = [
-    {
-      number: 20,
-      label: "Jahre Erfahrung",
-      suffix: "",
-      duration: 2000
-    },
-    {
-      number: 150,
-      label: "Projekte pro Jahr", 
-      suffix: "",
-      duration: 2500
-    },
-    {
-      number: 4.7,
-      label: "Sterne Bewertung",
-      suffix: "",
-      duration: 1800,
-      decimal: true
-    }
-  ];
+  // Verwende Daten aus content.json
+  const stats = content.stats.customStats;
 
   return (
     <section className="bg-surface dark:bg-dark py-16">

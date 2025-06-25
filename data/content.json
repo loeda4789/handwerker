@@ -4,6 +4,14 @@
     "tagline": "Ihr zuverlässiger Handwerks-Partner",
     "logo": "/images/logo.png"
   },
+  "hero": {
+    "backgroundImages": {
+      "desktop": "/images/hero-background.png",
+      "mobile": "/images/hero-background-mobil.png",
+      "desktopAlt": "/images/hero-background2.png",
+      "mobileAlt": "/images/hero-background-mobil2.png"
+    }
+  },
   "about": {
     "title": "Über uns",
     "text": "Wir sind Ihr verlässlicher Partner für professionelle Fliesenarbeiten. Mit Meisterqualität, Präzision und Leidenschaft realisieren wir Ihre Fliesenprojekte von der Beratung bis zur perfekten Verlegung und schaffen Räume, in denen Sie sich wohlfühlen.",
@@ -27,6 +35,27 @@
         "icon": "life-buoy",
         "title": "24/7 Fliesen-Notdienst",
         "text": "Schnelle Hilfe bei Fliesenschäden rund um die Uhr"
+      }
+    ]
+  },
+  "projectProcess": {
+    "title": "So läuft ein Projekt bei uns ab",
+    "subtitle": "Von der ersten Idee bis zur finalen Abnahme - unser strukturierter Prozess garantiert optimale Ergebnisse.",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Beratung & Terminvereinbarung",
+        "description": "Rufen Sie uns einfach an oder senden Sie uns eine Nachricht – wir vereinbaren mit Ihnen einen Termin und besprechen Ihr Vorhaben direkt vor Ort."
+      },
+      {
+        "number": 2,
+        "title": "Individuelle Planung & Angebot",
+        "description": "Gemeinsam finden wir die optimale Lösung für Ihr Projekt. Mit unserer fachkundigen Beratung erstellen wir Ihnen ein maßgeschneidertes Angebot."
+      },
+      {
+        "number": 3,
+        "title": "Professionelle Umsetzung",
+        "description": "Von der ersten bis zur letzten Handbewegung – wir kümmern uns um eine saubere, termingerechte und reibungslose Umsetzung. Haben Sie Fragen? Wir sind jederzeit für Sie da!"
       }
     ]
   },
@@ -230,8 +259,31 @@
   "stats": {
     "projectsCompleted": 500,
     "happyClients": 450,
-    "yearsExperience": 25,
-    "teamSize": 8
+    "yearsExperience": 20,
+    "teamSize": 8,
+    "projectsPerYear": 150,
+    "starRating": 4.7,
+    "customStats": [
+      {
+        "number": 20,
+        "label": "Jahre Erfahrung",
+        "suffix": "",
+        "duration": 2000
+      },
+      {
+        "number": 150,
+        "label": "Projekte pro Jahr",
+        "suffix": "",
+        "duration": 2500
+      },
+      {
+        "number": 4.7,
+        "label": "Sterne Bewertung",
+        "suffix": "",
+        "duration": 1800,
+        "decimal": true
+      }
+    ]
   },
   "contact": {
     "address": "Aloysiusstr. 144, 48429 Rheine",

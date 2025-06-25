@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
+import { ContentData } from '@/types/content'
 
 interface ProjectProcessProps {
-  content: any
+  content: ContentData
 }
 
 export default function ProjectProcess({ content }: ProjectProcessProps) {
@@ -12,23 +13,8 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
 
-  const projectSteps = [
-    {
-      number: 1,
-      title: "Beratung & Terminvereinbarung",
-      description: "Rufen Sie uns einfach an oder senden Sie uns eine Nachricht – wir vereinbaren mit Ihnen einen Termin und besprechen Ihr Vorhaben direkt vor Ort."
-    },
-    {
-      number: 2,
-      title: "Individuelle Planung & Angebot",
-      description: "Gemeinsam finden wir die optimale Lösung für Ihr Projekt. Mit unserer fachkundigen Beratung erstellen wir Ihnen ein maßgeschneidertes Angebot."
-    },
-    {
-      number: 3,
-      title: "Professionelle Umsetzung",
-      description: "Von der ersten bis zur letzten Handbewegung – wir kümmern uns um eine saubere, termingerechte und reibungslose Umsetzung. Haben Sie Fragen? Wir sind jederzeit für Sie da!"
-    }
-  ]
+  // Verwende Daten aus content.json
+  const projectSteps = content.projectProcess.steps
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,10 +89,10 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
             Unser Prozess
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
-            So läuft ein Projekt bei uns ab
+            {content.projectProcess.title}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
-            Von der ersten Idee bis zur finalen Abnahme - unser strukturierter Prozess garantiert optimale Ergebnisse.
+            {content.projectProcess.subtitle}
           </p>
         </div>
 

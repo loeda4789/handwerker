@@ -4,6 +4,17 @@ export interface Company {
   logo: string;
 }
 
+export interface HeroBackgroundImages {
+  desktop: string;
+  mobile: string;
+  desktopAlt: string;
+  mobileAlt: string;
+}
+
+export interface Hero {
+  backgroundImages: HeroBackgroundImages;
+}
+
 export interface About {
   title: string;
   text: string;
@@ -20,6 +31,18 @@ export interface Welcome {
   headline: string;
   subline: string;
   features: Feature[];
+}
+
+export interface ProjectStep {
+  number: number;
+  title: string;
+  description: string;
+}
+
+export interface ProjectProcess {
+  title: string;
+  subtitle: string;
+  steps: ProjectStep[];
 }
 
 export interface ServiceProject {
@@ -81,11 +104,22 @@ export interface Reviews {
   google?: string;
 }
 
+export interface StatItem {
+  number: number;
+  label: string;
+  suffix: string;
+  duration: number;
+  decimal?: boolean;
+}
+
 export interface Stats {
   projectsCompleted: number;
   happyClients: number;
   yearsExperience: number;
   teamSize: number;
+  projectsPerYear: number;
+  starRating: number;
+  customStats: StatItem[];
 }
 
 export interface Contact {
@@ -103,8 +137,10 @@ export interface Meta {
 
 export interface ContentData {
   company: Company;
+  hero: Hero;
   about: About;
   welcome: Welcome;
+  projectProcess: ProjectProcess;
   services: Service[];
   team: TeamMember[];
   portfolio: Portfolio;
