@@ -6,16 +6,16 @@
   },
   "hero": {
     "backgroundImages": {
-      "desktop": "/images/hero-background.png",
-      "mobile": "/images/hero-background-mobil.png",
-      "desktopAlt": "/images/hero-background2.png",
-      "mobileAlt": "/images/hero-background-mobil2.png"
+      "desktop": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop.jpg",
+      "mobile": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile.jpg",
+      "desktopAlt": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop_alt.jpg",
+      "mobileAlt": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile_alt.jpg"
     }
   },
   "about": {
     "title": "Über uns",
-    "text": "Wir sind Ihr verlässlicher Partner für professionelle Fliesenarbeiten. Mit Meisterqualität, Präzision und Leidenschaft realisieren wir Ihre Fliesenprojekte von der Beratung bis zur perfekten Verlegung und schaffen Räume, in denen Sie sich wohlfühlen.",
-    "image": "/images/about.png"
+    "text": "Wir sind Ihr verlässlicher Partner für professionelle Fliesenarbeiten. Mit Meisterqualität, Präzision und jahrzehntelanger Erfahrung verwandeln wir Ihre Räume in wahre Schmuckstücke und schaffen Oberflächen, die Generationen überdauern.",
+    "image": "/images/branchen/fliesenleger/about/about_firma.jpg"
   },
   "welcome": {
     "headline": "Willkommen bei\nMustermann Handwerk GmbH",
