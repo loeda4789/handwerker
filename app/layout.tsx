@@ -4,6 +4,7 @@ import './globals.css'
 import { getContentData } from '@/lib/config'
 // import { ThemeProvider } from '@/contexts/ThemeContext'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -58,11 +59,43 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de" suppressHydrationWarning>
+      <head>
+        {/* DNS Prefetch für bessere Performance */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        
+        {/* Preconnect für kritische Resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        
+        {/* Critical CSS ist bereits in globals.css definiert */}
+      </head>
       <body className={`${inter.className} transition-colors duration-300`}>
         {/* <ThemeProvider> */}
           {children}
           <ThemeSwitcher />
         {/* </ThemeProvider> */}
+        
+        {/* Service Worker für Image Caching */}
+        <Script
+          id="service-worker"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                      console.log('Service Worker registered:', registration.scope);
+                    })
+                    .catch(function(error) {
+                      console.log('Service Worker registration failed:', error);
+                    });
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   )

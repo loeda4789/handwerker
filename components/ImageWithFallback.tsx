@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from 'react'
 import Image from 'next/image'
+import ModernSpinner from './ModernSpinner'
 
 interface ImageWithFallbackProps {
   src: string
@@ -71,7 +72,7 @@ export default function ImageWithFallback({
     <div className="relative">
       {isLoading && (
         <div className={`absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center ${className}`}>
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          <ModernSpinner variant="squares" size="md" color="primary" />
         </div>
       )}
       <Image
