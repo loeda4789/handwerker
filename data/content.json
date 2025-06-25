@@ -6,16 +6,16 @@
   },
   "hero": {
     "backgroundImages": {
-      "desktop": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop.jpg",
-      "mobile": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile.jpg",
-      "desktopAlt": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop_alt.jpg",
-      "mobileAlt": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile_alt.jpg"
+      "desktop": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop.png",
+      "mobile": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile.png",
+      "desktopAlt": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop_alt.png",
+      "mobileAlt": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile_alt.png"
     }
   },
   "about": {
     "title": "Über uns",
     "text": "Wir sind Ihr verlässlicher Partner für professionelle Fliesenarbeiten. Mit Meisterqualität, Präzision und jahrzehntelanger Erfahrung verwandeln wir Ihre Räume in wahre Schmuckstücke und schaffen Oberflächen, die Generationen überdauern.",
-    "image": "/images/branchen/fliesenleger/about/about_firma.jpg"
+    "image": "/images/branchen/fliesenleger/about/about_firma.png"
   },
   "welcome": {
     "headline": "Willkommen bei\nMustermann Handwerk GmbH",
@@ -64,7 +64,7 @@
       "title": "Fliesenarbeiten Innen",
       "icon": "grid",
       "description": "Präzise Verlegung von Wand- und Bodenfliesen in Küche, Bad und Wohnräumen – fachgerecht und langlebig.",
-      "image": "/images/services/fliesenarbeiten-innen.png",
+      "image": "/images/branchen/fliesenleger/services/badezimmer/service_fliesenarbeiten_innen.png",
       "projects": [
         {
           "title": "Moderne Küchenfliesen",
@@ -82,7 +82,7 @@
       "title": "Badezimmer & Dusche", 
       "icon": "water-drop",
       "description": "Komplettlösungen für moderne Bäder – von der Abdichtung bis zur Verlegung großformatiger Fliesen.",
-      "image": "/images/services/badezimmer-dusche.png",
+      "image": "/images/branchen/fliesenleger/services/badezimmer/service_badezimmer_dusche.png",
       "projects": [
         {
           "title": "Luxusbadezimmer mit Großformat",
@@ -95,7 +95,7 @@
       "title": "Außenbereiche",
       "icon": "sun", 
       "description": "Rutschfeste und wetterfeste Fliesen für Terrassen, Balkone und Außentreppen – funktional und stilvoll.",
-      "image": "/images/services/aussenbereiche.png",
+      "image": "/images/branchen/fliesenleger/services/aussenbereiche/service_aussenbereiche_terrasse.png",
       "projects": [
         {
           "title": "Dachterrasse mit Feinsteinzeug",
@@ -108,7 +108,7 @@
       "title": "Fugen & Reparatur",
       "icon": "wrench",
       "description": "Erneuerung von Fugen, Austausch beschädigter Fliesen oder Ausbesserung bei Feuchtigkeit – schnell & professionell.",
-      "image": "/images/services/fugen-reparatur.png",
+      "image": "/images/branchen/fliesenleger/services/reparaturen/service_fugen_reparatur.png",
       "projects": [
         {
           "title": "Terrasse Fliesenerneuerung",
@@ -121,7 +121,7 @@
       "title": "Mosaik & Design",
       "icon": "sparkles", 
       "description": "Kreative Akzente mit Mosaiken, Bordüren oder individuellen Verlegemustern – für besondere Highlights.",
-      "image": "/images/services/mosaik-design.png",
+      "image": "/images/branchen/fliesenleger/services/mosaik/service_mosaik_design.png",
       "projects": [
         {
           "title": "Mosaikakzente im Büro",
@@ -135,7 +135,7 @@
     {
       "name": "Max Mustermann",
       "position": "Geschäftsführer",
-      "photo": "/images/team/person1.png",
+      "photo": "/images/branchen/fliesenleger/team/person1.png",
       "specialization": "Projektleitung & Fliesenberatung"
     },
     {
@@ -227,8 +227,8 @@
     {
       "title": "Badezimmer Fliesenerneuerung",
       "category": "Badezimmer & Dusche",
-      "beforeImage": "/images/before-after/badezimmer_nachher.png",
-      "afterImage": "/images/before-after/badezimmer_vorher.png",
+      "beforeImage": "/images/branchen/fliesenleger/before-after/badezimmer_vorher.png",
+      "afterImage": "/images/branchen/fliesenleger/before-after/badezimmer_nachher.png",
       "description": "Transformation eines veralteten Badezimmers mit neuen großformatigen Fliesen und professioneller Abdichtung."
     }
   ],
