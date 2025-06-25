@@ -468,9 +468,11 @@ function HeroSplit({ content }: HeroProps) {
 
 // Main Hero Component
 export default function Hero({ content }: HeroProps) {
-  const heroType = content.hero?.type || 'single'
+  // Demo-Fallback: localStorage prüfen
+  const demoHeroType = typeof window !== 'undefined' ? localStorage.getItem('demo-hero-type') : null
+  const heroType = demoHeroType || content.hero?.type || 'single'
   
-  console.log('Hero Type:', heroType)
+  console.log('Hero Type:', heroType, demoHeroType ? '(aus localStorage)' : '(aus Content)')
   
   switch (heroType) {
     case 'slider':
