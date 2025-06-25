@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { UrlParams, extractUrlParams, hasUrlParams, decodeUrlParams } from '@/lib/url-params';
 import { ContentData } from '@/types/content';
 import { mergeUrlDataWithContent } from '@/lib/url-params';
+import { getContentDataAsync } from '@/lib/config';
 
 export function useUrlParams() {
   const [urlParams, setUrlParams] = useState<UrlParams>({});
@@ -44,4 +45,32 @@ export function useContentWithUrlParams(baseContent: ContentData): ContentData {
   }
   
   return mergeUrlDataWithContent(baseContent, urlParams);
+}
+
+// Neuer Hook für asynchrones Content-Laden basierend auf Branche-Parameter
+export function useContentWithBranche(baseContent: ContentData) {
+  const [content, setContent] = useState<ContentData>(baseContent);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadContent() {
+      setLoading(true);
+      try {
+        const loadedContent = await getContentDataAsync();
+        setContent(loadedContent);
+      } catch (error) {
+        console.error('Fehler beim Laden des Contents:', error);
+        setContent(baseContent);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadContent();
+  }, []);
+
+  return {
+    content,
+    loading
+  };
 } 

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { getContentData } from '@/lib/config'
-import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
+import { useContentWithBranche } from '@/lib/hooks/useUrlParams'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
@@ -20,7 +20,7 @@ import SpeedDial from '@/components/SpeedDial'
 
 export default function Home() {
   const baseContent = getContentData()
-  const content = useContentWithUrlParams(baseContent)
+  const { content, loading } = useContentWithBranche(baseContent)
 
   // Function to scroll to footer section
   const scrollToContact = () => {
@@ -56,6 +56,18 @@ export default function Home() {
       animateElements.forEach((el) => observer.unobserve(el))
     }
   }, [])
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-text-secondary dark:text-light/80">Content wird geladen...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <main className="min-h-screen">
