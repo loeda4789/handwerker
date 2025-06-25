@@ -12,6 +12,7 @@ export interface HeroBackgroundImages {
 }
 
 export interface Hero {
+  type?: 'single' | 'slider' | '3d' | 'split';
   backgroundImages: HeroBackgroundImages;
 }
 

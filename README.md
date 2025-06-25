@@ -136,4 +136,176 @@ Das Template nutzt:
 
 ## 📄 Lizenz
 
-Dieses Template ist open source und frei verfügbar. 
+Dieses Template ist open source und frei verfügbar.
+
+# Handwerker Template
+
+Ein modernes und responsive Website-Template für Handwerksbetriebe mit Multi-Branchen-Support.
+
+## Features
+
+- ✅ **Multi-Branchen-System**: Über URL-Parameter zwischen verschiedenen Handwerksbranchen wechseln
+- ✅ **Responsive Design**: Optimiert für alle Gerätegrößen
+- ✅ **Modern UI**: Aktuelle Design-Trends und Benutzerfreundlichkeit
+- ✅ **Performance**: Optimierte Bilder und schnelle Ladezeiten
+- ✅ **Theme-System**: Anpassbare Farben und Stile
+- ✅ **Hero-Varianten**: 4 verschiedene Hero-Stile verfügbar
+
+## Hero-Varianten
+
+Das Template unterstützt 4 verschiedene Hero-Varianten, die über die `hero.type` Eigenschaft in der `content.json` konfiguriert werden können:
+
+### 1. Single (Standard)
+```json
+"hero": {
+  "type": "single"
+}
+```
+- **Beschreibung**: Klassischer Hero mit einem Hintergrundbild
+- **Features**: 
+  - Ken Burns Animation für das Hintergrundbild
+  - Linksbündiger Content auf Desktop, zentriert auf Mobile
+  - Fadeup-Animationen für Text und Button
+  - Scroll-Indikator am unteren Rand
+- **Ideal für**: Traditionelle Handwerksbetriebe, erste Eindrücke
+
+### 2. Slider
+```json
+"hero": {
+  "type": "slider"
+}
+```
+- **Beschreibung**: Slideshow mit mehreren Inhalten
+- **Features**:
+  - Automatischer Wechsel alle 5 Sekunden
+  - 2 Slides: Firmenname + Meisterqualität
+  - Slide-Indikatoren am unteren Rand
+  - Klickbare Navigation zwischen Slides
+- **Ideal für**: Betriebe mit mehreren Kernbotschaften
+
+### 3. 3D
+```json
+"hero": {
+  "type": "3d"
+}
+```
+- **Beschreibung**: Moderner 3D-Effekt mit Animationen
+- **Features**:
+  - 3D-Perspektive und Transform-Animationen
+  - Floating Elemente im Hintergrund
+  - Gradient-Overlays für bessere Lesbarkeit
+  - Zwei CTA-Buttons (Primär + Sekundär)
+  - GPU-beschleunigte Animationen
+- **Ideal für**: Moderne, tech-affine Betriebe
+
+### 4. Split
+```json
+"hero": {
+  "type": "split"
+}
+```
+- **Beschreibung**: Geteiltes Layout mit Content links und Bild rechts
+- **Features**:
+  - 50/50 Split auf Desktop
+  - Content-Liste mit Benefits
+  - Helles Theme mit Dark Mode Support
+  - Zwei CTA-Buttons
+  - Vollbild auf Mobile mit transparentem Overlay
+- **Ideal für**: Detailorientierte Betriebe, die Features hervorheben möchten
+
+## Konfiguration
+
+Die Hero-Variante wird in der jeweiligen Content-Datei konfiguriert:
+
+- `data/content.json` (Standard/Fliesenleger)
+- `data/dachdecker_content.json`
+- `data/elektriker_content.json`
+
+### Beispiel-Konfiguration:
+```json
+{
+  "hero": {
+    "type": "slider",  // "single", "slider", "3d", "split"
+    "backgroundImages": {
+      "desktop": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop_alt.png",
+      "mobile": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile.png",
+      "desktopAlt": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop.png",
+      "mobileAlt": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile_alt.png"
+    }
+  }
+}
+```
+
+## Mobile Optimierung
+
+Alle Hero-Varianten sind vollständig für Mobile optimiert:
+- Responsive Schriftgrößen
+- Touch-freundliche Buttons
+- Angepasste Layouts für kleine Bildschirme
+- Optimierte Bildgrößen
+
+## Technische Details
+
+- **Framework**: Next.js 15.3.3 mit TypeScript
+- **Styling**: Tailwind CSS
+- **Animationen**: CSS-basiert mit GPU-Beschleunigung
+- **Bilder**: Next.js Image-Optimierung
+- **Performance**: Preloading für Hero-Bilder
+
+## Branchen-System
+
+Das Template unterstützt verschiedene Handwerksbranchen über URL-Parameter:
+
+### Verfügbare Branchen:
+- **Fliesenleger** (Standard): `/?branche=fliesenleger`
+- **Dachdecker**: `/?branche=dachdecker`
+- **Elektriker**: `/?branche=elektriker`
+
+### Bildstruktur:
+```
+public/images/branchen/[branche]/
+├── about/
+├── before-after/
+├── hero/
+│   ├── desktop/
+│   └── mobile/
+├── portfolio/
+├── services/
+└── team/
+```
+
+## Installation & Setup
+
+1. **Dependencies installieren:**
+```bash
+npm install
+```
+
+2. **Entwicklungsserver starten:**
+```bash
+npm run dev
+```
+
+3. **Build für Produktion:**
+```bash
+npm run build
+npm start
+```
+
+## Anpassungen
+
+- **Farben**: Über CSS-Variablen in `app/globals.css`
+- **Content**: JSON-Dateien in `data/`
+- **Bilder**: Ordnerstruktur in `public/images/branchen/`
+- **Komponenten**: React-Komponenten in `components/`
+
+## Browser-Support
+
+- Chrome/Edge (moderne Versionen)
+- Firefox (moderne Versionen)
+- Safari (moderne Versionen)
+- Mobile Browser (iOS Safari, Chrome Mobile)
+
+---
+
+**Entwickelt für professionelle Handwerksbetriebe** ⚡ 

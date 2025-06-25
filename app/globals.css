@@ -289,4 +289,36 @@ html {
 
 .animate-squares {
   animation: squares 1.5s ease-in-out infinite;
+}
+
+/* 3D Hero Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 3s ease-in-out infinite 1.5s;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-gpu {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.rotate-y-12 {
+  transform: rotateY(12deg);
 } 

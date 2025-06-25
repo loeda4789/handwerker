@@ -5,6 +5,7 @@
     "logo": "/images/logo.png"
   },
   "hero": {
+    "type": "single",
     "backgroundImages": {
       "desktop": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop_alt.png",
       "mobile": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile.png",
