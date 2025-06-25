@@ -34,6 +34,17 @@ Für jede Branche wird eine separate JSON-Datei im `data/` Ordner erstellt:
 - Dachfenster & Gauben
 - Sturmschäden & Reparaturen
 
+### ⚡ Elektriker (`?branche=elektriker`)
+**Firma:** Mustermann Elektrotechnik GmbH
+**Spezialisierung:** Elektroinstallation, Smart Home, Photovoltaik & Solar, Beleuchtung & LED, Elektro-Notdienst
+
+**Services:**
+- Elektroinstallation
+- Smart Home
+- Photovoltaik & Solar
+- Beleuchtung & LED
+- Elektro-Notdienst
+
 ## Neue Branche hinzufügen
 
 ### 1. Content-Datei erstellen

@@ -1,14 +1,15 @@
 import { ContentData, ThemeConfig } from '@/types/content';
 import contentData from '@/data/content.json';
 import dachdeckerContent from '@/data/dachdecker_content.json';
+import elektrikerContent from '@/data/elektriker_content.json';
 import themeData from '@/data/theme.json';
 import { extractUrlParams, mergeUrlDataWithContent, saveUrlParamsToStorage, hasUrlParams } from '@/lib/url-params';
 
 // Statische Content-Dateien für verschiedene Branchen
 const contentMap: Record<string, ContentData> = {
   'dachdecker': dachdeckerContent as ContentData,
+  'elektriker': elektrikerContent as ContentData,
   // Weitere Branchen können hier hinzugefügt werden:
-  // 'elektriker': elektrikerContent as ContentData,
   // 'maler': malerContent as ContentData,
 };
 
