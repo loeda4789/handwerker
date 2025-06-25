@@ -1,25 +1,25 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ContentData } from '@/types/content'
 
 interface HeroProps {
   content: ContentData
 }
 
-// Hilfsfunktion zum Extrahieren des Ortsnamens aus der Adresse
+// Hilfsfunktion um Stadt aus Adresse zu extrahieren
 function extractCityFromAddress(address: string): string {
-  // Adresse ist normalerweise "Straße, PLZ Ort" oder "Straße, PLZ, Ort"
-  const parts = address.split(',').map(part => part.trim())
-  if (parts.length >= 2) {
-    // Letzter Teil enthält meist PLZ und Ort
-    const lastPart = parts[parts.length - 1]
-    // PLZ am Anfang entfernen (normalerweise 5 Ziffern + Leerzeichen)
-    const cityMatch = lastPart.match(/^\d{5}\s+(.+)$/)
-    if (cityMatch) {
-      return cityMatch[1]
-    }
-    // Falls kein PLZ-Muster gefunden wird, nehme den letzten Teil
-    return lastPart
+  // Sucht nach Pattern: PLZ Stadt oder nur Stadt
+  const cityMatch = address.match(/\d{5}\s+([^,]+)|,\s*([^,\d]+?)(?:\s*\d|$)/)
+  if (cityMatch) {
+    return cityMatch[1] || cityMatch[2] || 'Ihrer Region'
   }
+  
+  // Fallback: Nimm das zweite Wort wenn es kein Match gibt
+  const words = address.split(/[,\s]+/).filter(word => word.length > 0)
+  if (words.length >= 2 && !/^\d+$/.test(words[1])) {
+    return words[1]
+  }
+  
   return 'Ihrer Region'
 }
 
@@ -28,18 +28,32 @@ export default function Hero({ content }: HeroProps) {
   
   return (
     <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
-      {/* Hero Bild als Hintergrund */}
+      {/* Hero Bild als Hintergrund mit Next.js Image Optimierung */}
       <div className="absolute inset-0">
-        {/* Desktop Hintergrundbild - verwendet content.hero.backgroundImages */}
-        <div 
-          className="absolute inset-0 hidden md:block animate-ken-burns bg-cover bg-center bg-no-repeat hero-bg-desktop"
-          style={{ backgroundImage: `url('${content.hero.backgroundImages.desktop}')` }}
-        ></div>
-        {/* Mobile Hintergrundbild - verwendet content.hero.backgroundImages */}
-        <div 
-          className="absolute inset-0 block md:hidden animate-ken-burns bg-cover bg-center bg-no-repeat hero-bg-mobile"
-          style={{ backgroundImage: `url('${content.hero.backgroundImages.mobile}')` }}
-        ></div>
+        {/* Desktop Hintergrundbild */}
+        <div className="absolute inset-0 hidden md:block">
+          <Image
+            src={content.hero.backgroundImages.desktop}
+            alt="Hero Hintergrund Desktop"
+            fill
+            priority
+            quality={85}
+            className="object-cover animate-ken-burns"
+            sizes="100vw"
+          />
+        </div>
+        {/* Mobile Hintergrundbild */}
+        <div className="absolute inset-0 block md:hidden">
+          <Image
+            src={content.hero.backgroundImages.mobile}
+            alt="Hero Hintergrund Mobile"
+            fill
+            priority
+            quality={85}
+            className="object-cover animate-ken-burns"
+            sizes="100vw"
+          />
+        </div>
         {/* Fallback Gradient wenn Bild lädt */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 -z-10"></div>
       </div>
@@ -48,7 +62,7 @@ export default function Hero({ content }: HeroProps) {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40"></div>
       
       {/* Hero Content */}
-      <div className="relative h-full flex items-center">
+      <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl lg:max-w-3xl">
             {/* Headline - Firmenname */}
@@ -68,7 +82,7 @@ export default function Hero({ content }: HeroProps) {
             </p>
             
             {/* CTA Button */}
-            <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-[fadeInUp_1s_ease-out_1s_forwards]">
+            <div className="opacity-0 animate-[fadeInUp_1s_ease-out_1s_forwards]">
               <Link
                 href="#kontakt"
                 className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg focus:ring-4 transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
@@ -102,7 +116,7 @@ export default function Hero({ content }: HeroProps) {
       </div>
       
       {/* Scroll Indicator */}
-      <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 animate-bounce opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards]">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 opacity-0 animate-[fadeInUp_1s_ease-out_1.4s_forwards]">
         <Link href="#ueber-uns" className="block group">
           <div className="p-2 rounded-full bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-all duration-300">
             <svg 

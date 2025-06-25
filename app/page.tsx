@@ -16,6 +16,7 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 // import DevButton from '@/components/DevButton'
 import SpeedDial from '@/components/SpeedDial'
+import ImagePerformanceMonitor from '@/components/ImagePerformanceMonitor'
 
 
 export default function Home() {
@@ -122,6 +123,9 @@ export default function Home() {
         phoneNumber={content.contact.phone}
         onEmailClick={scrollToContact}
       />
+      
+      {/* Image Performance Monitor (Development only) */}
+      <ImagePerformanceMonitor content={content} />
     </main>
   )
 } 
