@@ -84,7 +84,7 @@ export default function Hero({ content }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40"></div>
         
         {/* Hero Content */}
-        <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
+        <div className="relative z-10 h-full flex items-center justify-center text-center lg:justify-start lg:text-left px-4">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl lg:max-w-3xl">
               {/* Headline - Firmenname */}
@@ -100,7 +100,7 @@ export default function Hero({ content }: HeroProps) {
                 className="text-lg md:text-xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
                 style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}
               >
-                Ihr Handwerksexperte aus {cityName}
+                {content.company.tagline} aus {cityName}
               </p>
               
               {/* CTA Button */}

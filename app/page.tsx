@@ -18,7 +18,6 @@ import Footer from '@/components/Footer'
 import SpeedDial from '@/components/SpeedDial'
 import ImagePerformanceMonitor from '@/components/ImagePerformanceMonitor'
 import ModernSpinner from '@/components/ModernSpinner'
-import SpinnerDemo from '@/components/SpinnerDemo'
 
 
 export default function Home() {
@@ -94,7 +93,7 @@ export default function Home() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
         <div className="text-center">
-          <ModernSpinner variant="squares" size="xl" color="primary" className="mb-4" />
+          <ModernSpinner variant="dots" size="xl" color="primary" className="mb-4" />
           <p className="text-text-secondary dark:text-light/80">Content wird geladen...</p>
         </div>
       </div>
@@ -117,7 +116,6 @@ export default function Home() {
       
       {/* Development Tools */}
       {/* <DevButton /> */}
-      <SpinnerDemo />
 
       
       {/* Mobile Speed Dial */}

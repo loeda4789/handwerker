@@ -72,7 +72,7 @@ export default function ImageWithFallback({
     <div className="relative">
       {isLoading && (
         <div className={`absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center ${className}`}>
-          <ModernSpinner variant="squares" size="md" color="primary" />
+          <ModernSpinner variant="dots" size="md" color="primary" />
         </div>
       )}
       <Image
