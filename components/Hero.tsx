@@ -30,15 +30,15 @@ export default function Hero({ content }: HeroProps) {
     <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
       {/* Hero Bild als Hintergrund */}
       <div className="absolute inset-0">
-        {/* Desktop Hintergrundbild - verwendet CSS Custom Property */}
+        {/* Desktop Hintergrundbild - verwendet content.hero.backgroundImages */}
         <div 
           className="absolute inset-0 hidden md:block animate-ken-burns bg-cover bg-center bg-no-repeat hero-bg-desktop"
-          style={{ backgroundImage: 'var(--hero-image-desktop, url("/images/hero-background2.png"))' }}
+          style={{ backgroundImage: `url('${content.hero.backgroundImages.desktop}')` }}
         ></div>
-        {/* Mobile Hintergrundbild - verwendet CSS Custom Property */}
+        {/* Mobile Hintergrundbild - verwendet content.hero.backgroundImages */}
         <div 
           className="absolute inset-0 block md:hidden animate-ken-burns bg-cover bg-center bg-no-repeat hero-bg-mobile"
-          style={{ backgroundImage: 'var(--hero-image-mobile, url("/images/hero-background-mobil.png"))' }}
+          style={{ backgroundImage: `url('${content.hero.backgroundImages.mobile}')` }}
         ></div>
         {/* Fallback Gradient wenn Bild lädt */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 -z-10"></div>
