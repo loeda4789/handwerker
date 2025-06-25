@@ -9,23 +9,42 @@ interface HeroProps {
 
 // Hilfsfunktion um Stadt aus Adresse zu extrahieren
 function extractCityFromAddress(address: string): string {
-  // Sucht nach Pattern: PLZ Stadt oder nur Stadt
-  const cityMatch = address.match(/\d{5}\s+([^,]+)|,\s*([^,\d]+?)(?:\s*\d|$)/)
-  if (cityMatch) {
-    return cityMatch[1] || cityMatch[2] || 'Ihrer Region'
+  console.log('Verarbeite Adresse:', address)
+  
+  // Pattern für deutsche Adressen: PLZ Stadt
+  const plzCityMatch = address.match(/\d{5}\s+([^,]+)/)
+  if (plzCityMatch) {
+    const city = plzCityMatch[1].trim()
+    console.log('PLZ-Stadt Match gefunden:', city)
+    return city
   }
   
-  // Fallback: Nimm das zweite Wort wenn es kein Match gibt
-  const words = address.split(/[,\s]+/).filter(word => word.length > 0)
-  if (words.length >= 2 && !/^\d+$/.test(words[1])) {
-    return words[1]
+  // Pattern für Stadt nach Komma
+  const cityAfterCommaMatch = address.match(/,\s*([^,\d]+?)(?:\s*\d|$)/)
+  if (cityAfterCommaMatch) {
+    const city = cityAfterCommaMatch[1].trim()
+    console.log('Stadt nach Komma gefunden:', city)
+    return city
   }
   
+  // Fallback: Nimm das letzte Wort ohne Zahlen
+  const words = address.split(/[,\s]+/).filter(word => word.length > 0 && !/^\d+$/.test(word))
+  if (words.length >= 1) {
+    const city = words[words.length - 1]
+    console.log('Fallback Stadt gefunden:', city)
+    return city
+  }
+  
+  console.log('Keine Stadt gefunden, verwende Fallback')
   return 'Ihrer Region'
 }
 
 export default function Hero({ content }: HeroProps) {
   const cityName = extractCityFromAddress(content.contact.address)
+  
+  // Debug: Zeige Stadt in der Konsole
+  console.log('Adresse:', content.contact.address)
+  console.log('Extrahierte Stadt:', cityName)
   
   return (
     <>
@@ -95,7 +114,7 @@ export default function Hero({ content }: HeroProps) {
                 {content.company.name}
               </h1>
               
-              {/* Tagline - Experte aus Ort */}
+              {/* Tagline - Partner aus Ort */}
               <p 
                 className="text-lg md:text-xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
                 style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}
