@@ -1,18 +1,27 @@
 import { ContentData, ThemeConfig } from '@/types/content';
 import contentData from '@/data/content.json';
+import dachdeckerContent from '@/data/dachdecker_content.json';
 import themeData from '@/data/theme.json';
 import { extractUrlParams, mergeUrlDataWithContent, saveUrlParamsToStorage, hasUrlParams } from '@/lib/url-params';
 
-// Funktion zum dynamischen Laden von Content-Dateien basierend auf Branche
-async function loadContentByBranche(branche: string): Promise<ContentData | null> {
-  try {
-    // Versuche branchenspezifische Content-Datei zu laden
-    const contentModule = await import(`@/data/${branche}_content.json`);
-    return contentModule.default as ContentData;
-  } catch (error) {
-    console.warn(`Content-Datei für Branche "${branche}" nicht gefunden. Fallback zu Standard-Content.`);
-    return null;
+// Statische Content-Dateien für verschiedene Branchen
+const contentMap: Record<string, ContentData> = {
+  'dachdecker': dachdeckerContent as ContentData,
+  // Weitere Branchen können hier hinzugefügt werden:
+  // 'elektriker': elektrikerContent as ContentData,
+  // 'maler': malerContent as ContentData,
+};
+
+// Funktion zum Laden von Content-Dateien basierend auf Branche
+function loadContentByBranche(branche: string): ContentData | null {
+  const content = contentMap[branche.toLowerCase()];
+  if (content) {
+    console.log(`Content für Branche "${branche}" geladen`);
+    return content;
   }
+  
+  console.warn(`Content-Datei für Branche "${branche}" nicht gefunden. Fallback zu Standard-Content.`);
+  return null;
 }
 
 export function getContentData(): ContentData {
@@ -36,8 +45,8 @@ export function getContentData(): ContentData {
   return baseContent;
 }
 
-// Neue asynchrone Funktion für branchenspezifisches Content-Laden
-export async function getContentDataAsync(): Promise<ContentData> {
+// Funktion für branchenspezifisches Content-Laden (synchron)
+export function getContentDataByBranche(): ContentData {
   // Standard Content-Daten laden
   const baseContent = contentData as ContentData;
   
@@ -48,9 +57,8 @@ export async function getContentDataAsync(): Promise<ContentData> {
     
     // Wenn Branche-Parameter vorhanden ist, versuche branchenspezifische Content-Datei zu laden
     if (branche) {
-      const branchenContent = await loadContentByBranche(branche);
+      const branchenContent = loadContentByBranche(branche);
       if (branchenContent) {
-        console.log(`Content für Branche "${branche}" geladen`);
         return branchenContent;
       }
     }

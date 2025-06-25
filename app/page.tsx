@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect } from 'react'
-import { getContentData } from '@/lib/config'
-import { useContentWithBranche } from '@/lib/hooks/useUrlParams'
+import { useEffect, useState } from 'react'
+import { getContentData, getContentDataByBranche } from '@/lib/config'
+import { ContentData } from '@/types/content'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
@@ -14,13 +14,42 @@ import Testimonials from '@/components/Testimonials'
 import ProjectProcess from '@/components/ProjectProcess'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
-// import DevButton from '@/components/DevButton'
+import DevButton from '@/components/DevButton'
 import SpeedDial from '@/components/SpeedDial'
 
 
 export default function Home() {
-  const baseContent = getContentData()
-  const { content, loading } = useContentWithBranche(baseContent)
+  const [content, setContent] = useState<ContentData>(getContentData())
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    // Content basierend auf URL-Parameter laden
+    const loadContent = () => {
+      try {
+        const loadedContent = getContentDataByBranche()
+        setContent(loadedContent)
+      } catch (error) {
+        console.error('Fehler beim Laden des Contents:', error)
+        setContent(getContentData()) // Fallback
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadContent()
+
+    // URL-Änderungen überwachen
+    const handleUrlChange = () => {
+      setLoading(true)
+      loadContent()
+    }
+
+    window.addEventListener('popstate', handleUrlChange)
+    
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange)
+    }
+  }, [])
 
   // Function to scroll to footer section
   const scrollToContact = () => {
@@ -55,7 +84,7 @@ export default function Home() {
     return () => {
       animateElements.forEach((el) => observer.unobserve(el))
     }
-  }, [])
+  }, [content])
 
   // Loading state
   if (loading) {
@@ -84,7 +113,7 @@ export default function Home() {
       <Footer content={content} />
       
       {/* Development Tools */}
-      {/* <DevButton /> */}
+      <DevButton />
       
 
       

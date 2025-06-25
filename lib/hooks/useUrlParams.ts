@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { UrlParams, extractUrlParams, hasUrlParams, decodeUrlParams } from '@/lib/url-params';
 import { ContentData } from '@/types/content';
 import { mergeUrlDataWithContent } from '@/lib/url-params';
-import { getContentDataAsync } from '@/lib/config';
+import { getContentDataByBranche } from '@/lib/config';
 
 export function useUrlParams() {
   const [urlParams, setUrlParams] = useState<UrlParams>({});
@@ -47,16 +47,16 @@ export function useContentWithUrlParams(baseContent: ContentData): ContentData {
   return mergeUrlDataWithContent(baseContent, urlParams);
 }
 
-// Neuer Hook für asynchrones Content-Laden basierend auf Branche-Parameter
+// Hook für branchenspezifisches Content-Laden (jetzt synchron)
 export function useContentWithBranche(baseContent: ContentData) {
   const [content, setContent] = useState<ContentData>(baseContent);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadContent() {
+    function loadContent() {
       setLoading(true);
       try {
-        const loadedContent = await getContentDataAsync();
+        const loadedContent = getContentDataByBranche();
         setContent(loadedContent);
       } catch (error) {
         console.error('Fehler beim Laden des Contents:', error);
@@ -67,7 +67,18 @@ export function useContentWithBranche(baseContent: ContentData) {
     }
 
     loadContent();
-  }, []);
+    
+    // URL-Änderungen überwachen
+    const handleUrlChange = () => {
+      loadContent();
+    };
+
+    window.addEventListener('popstate', handleUrlChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange);
+    };
+  }, [baseContent]);
 
   return {
     content,
