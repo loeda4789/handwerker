@@ -243,18 +243,14 @@ export default function Services({ content }: ServicesProps) {
             <div className="max-w-4xl max-h-full w-full h-full flex items-center justify-center mt-16 mb-16">
               {/* Service Main Image (Index 0) or Project Images (Index 1+) */}
               {currentImageIndex === 0 && currentService.image ? (
-                <div className="relative w-full max-w-3xl">
-                  <img 
-                    src={currentService.image} 
+                <div className="relative w-full max-w-3xl h-[70vh]">
+                  <Image
+                    src={currentService.image}
                     alt={currentService.title}
-                    className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      if (target.nextElementSibling) {
-                        (target.nextElementSibling as HTMLElement).style.display = 'flex';
-                      }
-                    }}
+                    fill
+                    className="object-contain rounded-lg"
+                    sizes="(max-width: 768px) 100vw, 80vw"
+                    quality={90}
                   />
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center" style={{display: 'none'}}>
                     <div className="text-center text-white">
@@ -267,19 +263,15 @@ export default function Services({ content }: ServicesProps) {
                   </div>
                 </div>
               ) : currentImageIndex > 0 && currentService.projects && currentService.projects[currentImageIndex - 1] ? (
-                <div className="relative w-full max-w-3xl">
+                <div className="relative w-full max-w-3xl h-[70vh]">
                   {currentService.projects[currentImageIndex - 1].image ? (
-                    <img 
-                      src={currentService.projects[currentImageIndex - 1].image} 
+                    <Image
+                      src={currentService.projects[currentImageIndex - 1].image}
                       alt={currentService.projects[currentImageIndex - 1].title}
-                      className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        if (target.nextElementSibling) {
-                          (target.nextElementSibling as HTMLElement).style.display = 'flex';
-                        }
-                      }}
+                      fill
+                      className="object-contain rounded-lg"
+                      sizes="(max-width: 768px) 100vw, 80vw"
+                      quality={90}
                     />
                   ) : null}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center" style={{display: currentService.projects[currentImageIndex - 1].image ? 'none' : 'flex'}}>

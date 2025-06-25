@@ -14,7 +14,6 @@ const nextConfig = {
   compress: true,
   // Experimental features für bessere Performance
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['@heroicons/react', 'lucide-react'],
   },
 }

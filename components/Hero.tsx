@@ -30,7 +30,7 @@ export default function Hero({ content }: HeroProps) {
     <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
       {/* Hero Bild als Hintergrund mit Next.js Image Optimierung */}
       <div className="absolute inset-0">
-        {/* Desktop Hintergrundbild */}
+        {/* Desktop Hintergrundbild - ab 768px (md) */}
         <div className="absolute inset-0 hidden md:block">
           <Image
             src={content.hero.backgroundImages.desktop}
@@ -39,10 +39,10 @@ export default function Hero({ content }: HeroProps) {
             priority
             quality={85}
             className="object-cover animate-ken-burns"
-            sizes="100vw"
+            sizes="(min-width: 768px) 100vw, 0px"
           />
         </div>
-        {/* Mobile Hintergrundbild */}
+        {/* Mobile Hintergrundbild - bis 767px mit sm Breakpoint */}
         <div className="absolute inset-0 block md:hidden">
           <Image
             src={content.hero.backgroundImages.mobile}
@@ -51,7 +51,7 @@ export default function Hero({ content }: HeroProps) {
             priority
             quality={85}
             className="object-cover animate-ken-burns"
-            sizes="100vw"
+            sizes="(max-width: 767px) 100vw, 0px"
           />
         </div>
         {/* Fallback Gradient wenn Bild lädt */}
