@@ -453,34 +453,34 @@ export default function HomePage() {
                         <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
                           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                             {[
-                              { 
-                                key: 'blue', 
-                                name: 'Ocean Blue', 
-                                desc: 'Vertrauen & Professionalität',
-                                colors: 'from-blue-500 to-blue-600',
-                                accent: 'bg-blue-500'
-                              },
-                              { 
-                                key: 'green', 
-                                name: 'Nature Green', 
-                                desc: 'Wachstum & Nachhaltigkeit',
-                                colors: 'from-green-500 to-green-600',
-                                accent: 'bg-green-500'
-                              },
-                              { 
-                                key: 'purple', 
-                                name: 'Royal Purple', 
-                                desc: 'Kreativität & Innovation',
-                                colors: 'from-purple-500 to-purple-600',
-                                accent: 'bg-purple-500'
-                              },
-                              { 
-                                key: 'orange', 
-                                name: 'Energy Orange', 
-                                desc: 'Dynamik & Enthusiasmus',
-                                colors: 'from-orange-500 to-orange-600',
-                                accent: 'bg-orange-500'
-                              }
+                                                          { 
+                              key: 'blue', 
+                              name: 'Ocean Blue', 
+                              desc: 'Vertrauen & Professionalität',
+                              colors: ['#3b82f6', '#1d4ed8', '#1e40af', '#1e3a8a'],
+                              accent: 'bg-blue-500'
+                            },
+                            { 
+                              key: 'green', 
+                              name: 'Nature Green', 
+                              desc: 'Wachstum & Nachhaltigkeit',
+                              colors: ['#10b981', '#059669', '#047857', '#065f46'],
+                              accent: 'bg-green-500'
+                            },
+                            { 
+                              key: 'purple', 
+                              name: 'Royal Purple', 
+                              desc: 'Kreativität & Innovation',
+                              colors: ['#8b5cf6', '#7c3aed', '#6d28d9', '#5b21b6'],
+                              accent: 'bg-purple-500'
+                            },
+                            { 
+                              key: 'orange', 
+                              name: 'Energy Orange', 
+                              desc: 'Dynamik & Enthusiasmus',
+                              colors: ['#f97316', '#ea580c', '#dc2626', '#b91c1c'],
+                              accent: 'bg-orange-500'
+                            }
                             ].map((color) => (
                               <button
                                 key={color.key}
@@ -491,7 +491,16 @@ export default function HomePage() {
                                     : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                                 }`}
                               >
-                                <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-r ${color.colors} rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300`}></div>
+                                {/* Color Palette Display */}
+                              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 grid grid-cols-2 gap-0.5 p-1 bg-white dark:bg-gray-800">
+                                {color.colors.map((colorHex, index) => (
+                                  <div 
+                                    key={index}
+                                    className="rounded-lg"
+                                    style={{ backgroundColor: colorHex }}
+                                  ></div>
+                                ))}
+                              </div>
                                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{color.name}</h3>
                                 <p className="text-sm text-gray-600 dark:text-gray-300">{color.desc}</p>
                               </button>
@@ -552,8 +561,8 @@ export default function HomePage() {
             </div>
 
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Show Website Button (when configurator is hidden) */}
       {!showConfigurator && (
