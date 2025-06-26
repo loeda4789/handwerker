@@ -1,4 +1,6 @@
-import React from 'react'
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { ContentData } from '@/types/content'
 
@@ -25,8 +27,35 @@ const iconMap: Record<string, React.ReactElement> = {
 }
 
 export default function About({ content }: AboutProps) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      const animateElements = sectionRef.current.querySelectorAll('.animate-on-scroll');
+      animateElements.forEach((element) => {
+        observer.observe(element);
+      });
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="ueber-uns" className="bg-surface dark:bg-dark py-16">
+    <section id="ueber-uns" className="bg-surface dark:bg-dark py-16" ref={sectionRef}>
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center animate-on-scroll">
           {/* Bildbereich */}
