@@ -17,6 +17,7 @@ import ProjectProcess from '@/components/ProjectProcess'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import SpeedDial from '@/components/SpeedDial'
+import { applyColorScheme } from '@/lib/colorSchemes'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
@@ -112,6 +113,11 @@ export default function HomePage() {
       // Force re-render of Hero component
       window.dispatchEvent(new Event('hero-type-changed'))
     }
+    
+    // Farbschema sofort anwenden
+    if (key === 'colorScheme' && value) {
+      applyColorScheme(value)
+    }
   }
 
   const canGenerate = config.layoutType && config.heroType && config.colorScheme
@@ -129,6 +135,9 @@ export default function HomePage() {
     setSiteMode(config.layoutType as 'onepage' | 'multipage')
     // Speichere site-mode für Header
     localStorage.setItem('site-mode', config.layoutType)
+    
+    // Farbschema anwenden
+    applyColorScheme(config.colorScheme)
     
     // Update URL parameters
     const params = new URLSearchParams()
