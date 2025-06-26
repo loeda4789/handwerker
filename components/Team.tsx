@@ -142,23 +142,23 @@ export default function Team({ content }: TeamProps) {
           {/* Navigation Arrows */}
           <button
             onClick={prevMember}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 transition-all duration-300 z-10 disabled:opacity-30"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/95 dark:bg-gray-800/95 rounded-full shadow-lg flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white dark:hover:bg-accent transition-all duration-300 z-10 disabled:opacity-30 hover:scale-105"
             disabled={teamMembers.length <= 1}
             aria-label="Vorheriger Mitarbeiter"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
             </svg>
           </button>
 
           <button
             onClick={nextMember}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 transition-all duration-300 z-10 disabled:opacity-30"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/95 dark:bg-gray-800/95 rounded-full shadow-lg flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white dark:hover:bg-accent transition-all duration-300 z-10 disabled:opacity-30 hover:scale-105"
             disabled={teamMembers.length <= 1}
             aria-label="Nächster Mitarbeiter"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
             </svg>
           </button>
 
@@ -238,6 +238,64 @@ export default function Team({ content }: TeamProps) {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Team Expertise Section with Modern Icons */}
+        <div className="mt-20 border-t border-gray-200 dark:border-gray-700 pt-16">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
+              Unsere Expertise
+            </h3>
+            <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
+              Mit jahrelanger Erfahrung und moderner Ausstattung garantieren wir höchste Qualität
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {/* Qualität */}
+            <div className="text-center group">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h4 className="font-semibold text-text dark:text-light mb-2">Qualität</h4>
+              <p className="text-sm text-text-secondary dark:text-light/70">Höchste Standards</p>
+            </div>
+
+            {/* Zuverlässigkeit */}
+            <div className="text-center group">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h4 className="font-semibold text-text dark:text-light mb-2">Pünktlichkeit</h4>
+              <p className="text-sm text-text-secondary dark:text-light/70">Termine werden eingehalten</p>
+            </div>
+
+            {/* Innovation */}
+            <div className="text-center group">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/>
+                </svg>
+              </div>
+              <h4 className="font-semibold text-text dark:text-light mb-2">Innovation</h4>
+              <p className="text-sm text-text-secondary dark:text-light/70">Moderne Techniken</p>
+            </div>
+
+            {/* Nachhaltigkeit */}
+            <div className="text-center group">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                </svg>
+              </div>
+              <h4 className="font-semibold text-text dark:text-light mb-2">Nachhaltigkeit</h4>
+              <p className="text-sm text-text-secondary dark:text-light/70">Umweltbewusst</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
