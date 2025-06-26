@@ -23,17 +23,17 @@
     "subline": "Meisterqualität für Ihre Fliesenprojekte",
     "features": [
       {
-        "icon": "check-circle",
+        "icon": "✅",
         "title": "Fliesenleger-Meisterbetrieb",
         "text": "Zertifizierte Qualität und jahrelange Erfahrung in der Fliesenverlegung"
       },
       {
-        "icon": "layers",
+        "icon": "🏗️",
         "title": "Komplettservice Fliesen",
         "text": "Von der Fliesenberatung bis zur professionellen Verlegung"
       },
       {
-        "icon": "life-buoy",
+        "icon": "🛟",
         "title": "24/7 Fliesen-Notdienst",
         "text": "Schnelle Hilfe bei Fliesenschäden rund um die Uhr"
       }
@@ -63,7 +63,7 @@
   "services": [
     {
       "title": "Fliesenarbeiten Innen",
-      "icon": "grid",
+      "icon": "🔲",
       "description": "Präzise Verlegung von Wand- und Bodenfliesen in Küche, Bad und Wohnräumen – fachgerecht und langlebig.",
       "image": "/images/branchen/fliesenleger/services/badezimmer/service_fliesenarbeiten_innen.png",
       "projects": [
@@ -81,7 +81,7 @@
     },
     {
       "title": "Badezimmer & Dusche", 
-      "icon": "water-drop",
+      "icon": "🚿",
       "description": "Komplettlösungen für moderne Bäder – von der Abdichtung bis zur Verlegung großformatiger Fliesen.",
       "image": "/images/branchen/fliesenleger/services/badezimmer/service_badezimmer_dusche.png",
       "projects": [
@@ -94,7 +94,7 @@
     },
     {
       "title": "Außenbereiche",
-      "icon": "sun", 
+      "icon": "🌞", 
       "description": "Rutschfeste und wetterfeste Fliesen für Terrassen, Balkone und Außentreppen – funktional und stilvoll.",
       "image": "/images/branchen/fliesenleger/services/aussenbereiche/service_aussenbereiche_terrasse.png",
       "projects": [
@@ -107,7 +107,7 @@
     },
     {
       "title": "Fugen & Reparatur",
-      "icon": "wrench",
+      "icon": "🔧",
       "description": "Erneuerung von Fugen, Austausch beschädigter Fliesen oder Ausbesserung bei Feuchtigkeit – schnell & professionell.",
       "image": "/images/branchen/fliesenleger/services/reparaturen/service_fugen_reparatur.png",
       "projects": [
@@ -120,7 +120,7 @@
     },
     {
       "title": "Mosaik & Design",
-      "icon": "sparkles", 
+      "icon": "✨", 
       "description": "Kreative Akzente mit Mosaiken, Bordüren oder individuellen Verlegemustern – für besondere Highlights.",
       "image": "/images/branchen/fliesenleger/services/mosaik/service_mosaik_design.png",
       "projects": [

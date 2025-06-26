@@ -22,17 +22,17 @@
     "subline": "Meisterqualität für Ihre Dachprojekte",
     "features": [
       {
-        "icon": "check-circle",
+        "icon": "✅",
         "title": "Dachdecker-Meisterbetrieb",
         "text": "Zertifizierte Qualität und jahrzehntelange Erfahrung im Dachhandwerk"
       },
       {
-        "icon": "layers",
+        "icon": "🏗️",
         "title": "Komplettservice Dach",
         "text": "Von der Dachsanierung bis zum Neubau - alles aus einer Hand"
       },
       {
-        "icon": "life-buoy",
+        "icon": "🛟",
         "title": "24/7 Dach-Notdienst",
         "text": "Schnelle Hilfe bei Sturmschäden und Undichtigkeiten rund um die Uhr"
       }
@@ -62,7 +62,7 @@
   "services": [
     {
       "title": "Dachsanierung",
-      "icon": "wrench",
+      "icon": "🏠",
       "description": "Komplette Sanierung Ihres Daches - von der Dämmung bis zur neuen Dacheindeckung mit modernen Materialien.",
       "image": "/images/services/dachsanierung.png",
       "projects": [
@@ -80,7 +80,7 @@
     },
     {
       "title": "Dachneubau",
-      "icon": "square",
+      "icon": "🔨",
       "description": "Neubau von Dachstühlen und komplette Dachkonstruktionen - individuell geplant und solide ausgeführt.",
       "image": "/images/services/dachneubau.png",
       "projects": [
@@ -93,7 +93,7 @@
     },
     {
       "title": "Dachrinnen & Entwässerung",
-      "icon": "water-drop",
+      "icon": "💧",
       "description": "Installation und Wartung von Dachrinnen, Fallrohren und kompletten Entwässerungssystemen.",
       "image": "/images/services/dachrinnen.png",
       "projects": [
@@ -106,7 +106,7 @@
     },
     {
       "title": "Dachfenster & Gauben",
-      "icon": "sun",
+      "icon": "🪟",
       "description": "Einbau von Dachfenstern, Velux-Fenstern und Gauben für mehr Licht und Wohnraum unterm Dach.",
       "image": "/images/services/dachfenster.png",
       "projects": [
@@ -119,7 +119,7 @@
     },
     {
       "title": "Sturmschäden & Reparaturen",
-      "icon": "wrench",
+      "icon": "⛈️",
       "description": "Schnelle Reparaturen nach Sturmschäden, Undichtigkeiten und allen anderen Dachproblemen.",
       "image": "/images/services/dachreparatur.png",
       "projects": [

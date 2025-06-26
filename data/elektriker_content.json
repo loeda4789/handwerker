@@ -22,17 +22,17 @@
     "subline": "Meisterqualität für Ihre Elektroprojekte",
     "features": [
       {
-        "icon": "check-circle",
+        "icon": "✅",
         "title": "Elektromeister-Betrieb",
         "text": "Zertifizierte Qualität und jahrzehntelange Erfahrung in der Elektrotechnik"
       },
       {
-        "icon": "layers",
+        "icon": "🏗️",
         "title": "Komplettservice Elektro",
         "text": "Von der Hausinstallation bis zum Smart Home - alles aus einer Hand"
       },
       {
-        "icon": "life-buoy",
+        "icon": "🛟",
         "title": "24/7 Elektro-Notdienst",
         "text": "Schnelle Hilfe bei Stromausfall und Elektroproblemen rund um die Uhr"
       }
@@ -62,7 +62,7 @@
   "services": [
     {
       "title": "Elektroinstallation",
-      "icon": "wrench",
+      "icon": "⚡",
       "description": "Komplette Elektroinstallationen für Neubau und Sanierung - von der Planung bis zur Abnahme nach aktuellen Normen.",
       "image": "/images/services/elektroinstallation.png",
       "projects": [
@@ -80,7 +80,7 @@
     },
     {
       "title": "Smart Home",
-      "icon": "sparkles",
+      "icon": "🏠",
       "description": "Intelligente Haussteuerung für Komfort und Effizienz - von der Beleuchtung bis zur kompletten Gebäudeautomation.",
       "image": "/images/services/smart-home.png",
       "projects": [
@@ -93,7 +93,7 @@
     },
     {
       "title": "Photovoltaik & Solar",
-      "icon": "sun",
+      "icon": "☀️",
       "description": "Planung und Installation von Photovoltaikanlagen und Batteriespeichern für nachhaltige Energieversorgung.",
       "image": "/images/services/photovoltaik.png",
       "projects": [
@@ -106,7 +106,7 @@
     },
     {
       "title": "Beleuchtung & LED",
-      "icon": "sun",
+      "icon": "💡",
       "description": "Moderne LED-Beleuchtungskonzepte für Innen und Außen - energieeffizient und stimmungsvoll.",
       "image": "/images/services/led-beleuchtung.png",
       "projects": [
@@ -119,7 +119,7 @@
     },
     {
       "title": "Elektro-Notdienst",
-      "icon": "wrench",
+      "icon": "🚨",
       "description": "Schnelle Hilfe bei Stromausfall, defekten Sicherungen und allen Elektro-Notfällen - 24/7 verfügbar.",
       "image": "/images/services/elektro-notdienst.png",
       "projects": [
