@@ -62,25 +62,83 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     }
   }, [colors])
 
-  const handleColorChange = (colorKey: string, value: string) => {
-    setColors(prev => ({
-      ...prev,
-      [colorKey]: value
-    }))
-  }
 
-  const resetColors = () => {
-    const defaultColors = {
-      primary: '#d97706',
-      secondary: '#0ea5e9', 
-      accent: '#f59e0b',
-      background: '#ffffff',
-      surface: '#f8fafc',
-      text: '#1f2937',
-      textSecondary: '#6b7280',
-      border: '#e5e7eb'
+
+  const themePresets = [
+    {
+      name: 'Orange Handwerk',
+      description: 'Warmes Orange für traditionelle Handwerker',
+      colors: {
+        primary: '#d97706',
+        secondary: '#0ea5e9', 
+        accent: '#f59e0b',
+        background: '#ffffff',
+        surface: '#f8fafc',
+        text: '#1f2937',
+        textSecondary: '#6b7280',
+        border: '#e5e7eb'
+      }
+    },
+    {
+      name: 'Blau Professionell',
+      description: 'Vertrauenswürdiges Blau für moderne Betriebe',
+      colors: {
+        primary: '#2563eb',
+        secondary: '#059669', 
+        accent: '#dc2626',
+        background: '#ffffff',
+        surface: '#f8fafc',
+        text: '#1f2937',
+        textSecondary: '#6b7280',
+        border: '#e5e7eb'
+      }
+    },
+    {
+      name: 'Grün Nachhaltig',
+      description: 'Umweltfreundliches Grün für ökologische Betriebe',
+      colors: {
+        primary: '#059669',
+        secondary: '#7c3aed', 
+        accent: '#f59e0b',
+        background: '#ffffff',
+        surface: '#f8fafc',
+        text: '#1f2937',
+        textSecondary: '#6b7280',
+        border: '#e5e7eb'
+      }
+    },
+    {
+      name: 'Rot Energie',
+      description: 'Kraftvolles Rot für energiegeladene Auftritte',
+      colors: {
+        primary: '#dc2626',
+        secondary: '#2563eb', 
+        accent: '#f59e0b',
+        background: '#ffffff',
+        surface: '#f8fafc',
+        text: '#1f2937',
+        textSecondary: '#6b7280',
+        border: '#e5e7eb'
+      }
+    },
+    {
+      name: 'Grau Elegant',
+      description: 'Elegantes Grau für zeitlose Eleganz',
+      colors: {
+        primary: '#4b5563',
+        secondary: '#059669', 
+        accent: '#f59e0b',
+        background: '#ffffff',
+        surface: '#f8fafc',
+        text: '#1f2937',
+        textSecondary: '#6b7280',
+        border: '#e5e7eb'
+      }
     }
-    setColors(defaultColors)
+  ]
+
+  const applyThemePreset = (preset: typeof themePresets[0]) => {
+    setColors(preset.colors)
   }
 
   const exportTheme = () => {
@@ -214,41 +272,76 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           
           {/* Design Tab - Farben */}
           {activeTab === 'design' && (
-            <div className="space-y-3">
-              <h4 className="text-sm font-semibold text-blue-400 mb-3">Farbschema anpassen</h4>
-              {Object.entries(colors).map(([key, value]) => (
-                <div key={key} className="flex items-center justify-between">
-                  <label className="text-sm font-medium capitalize text-gray-300">
-                    {key.replace(/([A-Z])/g, ' $1').toLowerCase()}
-                  </label>
-                  <div className="flex items-center space-x-2">
+            <div className="space-y-4">
+              <h4 className="text-sm font-semibold text-blue-400 mb-3">Farbschema wählen</h4>
+              
+              <div className="space-y-3">
+                {themePresets.map((preset, index) => (
+                  <button
+                    key={index}
+                    onClick={() => applyThemePreset(preset)}
+                    className="w-full p-3 bg-gray-800 hover:bg-gray-700 rounded-lg text-left transition-colors group"
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-medium text-white">{preset.name}</h5>
+                      <div className="flex space-x-1">
+                        <div 
+                          className="w-4 h-4 rounded-full border border-gray-600"
+                          style={{ backgroundColor: preset.colors.primary }}
+                        ></div>
+                        <div 
+                          className="w-4 h-4 rounded-full border border-gray-600"
+                          style={{ backgroundColor: preset.colors.secondary }}
+                        ></div>
+                        <div 
+                          className="w-4 h-4 rounded-full border border-gray-600"
+                          style={{ backgroundColor: preset.colors.accent }}
+                        ></div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-400 group-hover:text-gray-300">
+                      {preset.description}
+                    </p>
+                  </button>
+                ))}
+              </div>
+
+              {/* Aktuelles Schema anzeigen */}
+              <div className="mt-4 p-3 bg-gray-800 rounded-lg border border-gray-700">
+                <h5 className="text-sm font-medium text-white mb-2">Aktuelles Schema:</h5>
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="text-center">
                     <div 
-                      className="w-6 h-6 rounded border border-gray-600"
-                      style={{ backgroundColor: value }}
+                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-600"
+                      style={{ backgroundColor: colors.primary }}
                     ></div>
-                    <input
-                      type="color"
-                      value={value}
-                      onChange={(e) => handleColorChange(key, e.target.value)}
-                      className="w-8 h-8 border-none bg-transparent cursor-pointer"
-                    />
-                    <input
-                      type="text"
-                      value={value}
-                      onChange={(e) => handleColorChange(key, e.target.value)}
-                      className="w-20 px-2 py-1 text-xs bg-gray-800 border border-gray-600 rounded text-white"
-                    />
+                    <span className="text-xs text-gray-400">Primary</span>
+                  </div>
+                  <div className="text-center">
+                    <div 
+                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-600"
+                      style={{ backgroundColor: colors.secondary }}
+                    ></div>
+                    <span className="text-xs text-gray-400">Secondary</span>
+                  </div>
+                  <div className="text-center">
+                    <div 
+                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-600"
+                      style={{ backgroundColor: colors.accent }}
+                    ></div>
+                    <span className="text-xs text-gray-400">Accent</span>
+                  </div>
+                  <div className="text-center">
+                    <div 
+                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-600"
+                      style={{ backgroundColor: colors.text }}
+                    ></div>
+                    <span className="text-xs text-gray-400">Text</span>
                   </div>
                 </div>
-              ))}
+              </div>
               
-              <div className="mt-4 space-y-2">
-                <button
-                  onClick={resetColors}
-                  className="w-full px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white text-sm rounded transition-colors"
-                >
-                  🔄 Standard zurücksetzen
-                </button>
+              <div className="mt-4">
                 <button
                   onClick={exportTheme}
                   className="w-full px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm rounded transition-colors"
