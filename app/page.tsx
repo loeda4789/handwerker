@@ -202,7 +202,38 @@ export default function HomePage() {
             <About content={content} />
             <Stats content={content} />
             <ServicesPreview />
-            <Testimonials content={content} />
+            
+            {/* Multi-Page Demo Section */}
+            <section className="py-16 bg-blue-50 dark:bg-blue-900/20">
+              <div className="container mx-auto px-4 text-center">
+                <div className="max-w-3xl mx-auto">
+                  <h2 className="text-3xl md:text-4xl font-bold text-blue-900 dark:text-blue-100 mb-6">
+                    🏢 Mehrseiten-Modus aktiv
+                  </h2>
+                  <p className="text-lg text-blue-700 dark:text-blue-200 mb-8">
+                    In der finalen Version würden hier separate Seiten für Services, Team, Portfolio und Kontakt existieren. Diese kompakte Ansicht zeigt nur die wichtigsten Bereiche als Preview.
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                      <h3 className="font-semibold text-gray-900 dark:text-white">Services</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                      <h3 className="font-semibold text-gray-900 dark:text-white">Team</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                      <h3 className="font-semibold text-gray-900 dark:text-white">Portfolio</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                      <h3 className="font-semibold text-gray-900 dark:text-white">Kontakt</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </>
         )}
         
