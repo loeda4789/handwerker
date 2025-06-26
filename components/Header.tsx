@@ -193,11 +193,7 @@ export default function Header({ content }: HeaderProps) {
                       >
                         <Link
                           href={item.href}
-                          className={`flex items-center py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                            (siteMode === 'onepage' && activeSection === item.id) 
-                              ? 'text-primary dark:text-accent font-semibold' 
-                              : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
-                          }`}
+                          className={`flex items-center py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 text-text dark:text-light hover:text-primary dark:hover:text-primary`}
                         >
                           {item.label}
                           <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -228,7 +224,7 @@ export default function Header({ content }: HeaderProps) {
                         href={item.href}
                         onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : undefined}
                         className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                          (siteMode === 'onepage' && activeSection === item.id) 
+                          activeSection === item.id && siteMode === 'onepage'
                             ? 'text-primary dark:text-accent font-semibold' 
                             : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
                         }`}
@@ -270,7 +266,7 @@ export default function Header({ content }: HeaderProps) {
                   href={item.href}
                   onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : closeMobileMenu}
                   className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                    (siteMode === 'onepage' && activeSection === item.id) 
+                    activeSection === item.id && siteMode === 'onepage'
                       ? 'text-primary dark:text-accent font-medium' 
                       : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
                   }`}

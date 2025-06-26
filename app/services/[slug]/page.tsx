@@ -11,17 +11,30 @@ import ModernSpinner from '@/components/ModernSpinner'
 import { notFound } from 'next/navigation'
 
 interface ServicePageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default function ServicePage({ params }: ServicePageProps) {
   const [content, setContent] = useState<ContentData | null>(null)
   const [service, setService] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+  const [slug, setSlug] = useState<string>('')
 
   useEffect(() => {
+    // Params asynchron laden (Next.js 15)
+    const loadParams = async () => {
+      const resolvedParams = await params
+      setSlug(resolvedParams.slug)
+    }
+    
+    loadParams()
+  }, [params])
+
+  useEffect(() => {
+    if (!slug) return
+
     // Content basierend auf URL-Parameter laden
     const loadContent = () => {
       try {
@@ -29,7 +42,7 @@ export default function ServicePage({ params }: ServicePageProps) {
         setContent(loadedContent)
         
         // Service basierend auf Slug finden
-        const serviceIndex = parseInt(params.slug.replace('leistung-', '')) - 1
+        const serviceIndex = parseInt(slug.replace('leistung-', '')) - 1
         if (serviceIndex >= 0 && serviceIndex < loadedContent.services.length) {
           setService(loadedContent.services[serviceIndex])
         } else {
@@ -45,7 +58,7 @@ export default function ServicePage({ params }: ServicePageProps) {
     }
 
     loadContent()
-  }, [params.slug])
+  }, [slug])
 
   if (loading) {
     return (
