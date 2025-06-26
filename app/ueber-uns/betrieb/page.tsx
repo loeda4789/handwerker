@@ -6,12 +6,10 @@ import { ContentData } from '@/types/content'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import About from '@/components/About'
-import Team from '@/components/Team'
 import Stats from '@/components/Stats'
 import ModernSpinner from '@/components/ModernSpinner'
-import Image from 'next/image'
 
-export default function UeberUnsPage() {
+export default function BetriebPage() {
   const [content, setContent] = useState<ContentData | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -35,7 +33,7 @@ export default function UeberUnsPage() {
       <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
         <div className="text-center">
           <ModernSpinner variant="dots" size="xl" color="primary" className="mb-4" />
-          <p className="text-text-secondary dark:text-light/80">Über uns wird geladen...</p>
+          <p className="text-text-secondary dark:text-light/80">Betriebsinfos werden geladen...</p>
         </div>
       </div>
     )
@@ -54,10 +52,10 @@ export default function UeberUnsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Über uns
+              Unser Betrieb
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Lernen Sie uns kennen – erfahren Sie mehr über unser Unternehmen, unsere Werte und das Team, das hinter jedem erfolgreichen Projekt steht.
+              Erfahren Sie mehr über unser Unternehmen, unsere Geschichte und die Werte, die uns seit Jahren erfolgreich machen.
             </p>
           </div>
         </div>
@@ -80,18 +78,27 @@ export default function UeberUnsPage() {
               <div className="space-y-6">
                 <div className="bg-primary/5 dark:bg-primary/10 p-6 rounded-lg">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    Tradition & Innovation
+                    Die Anfänge (2004)
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Was als kleiner Handwerksbetrieb begann, hat sich über die Jahre zu einem erfolgreichen Unternehmen entwickelt. 
-                    Dabei haben wir nie unsere Wurzeln vergessen: Qualität, Zuverlässigkeit und persönlicher Service stehen bei uns 
-                    nach wie vor im Mittelpunkt.
+                    Was als kleiner Handwerksbetrieb mit nur einem Mitarbeiter begann, hat sich über die Jahre zu einem erfolgreichen Unternehmen mit {content.stats.teamSize} Fachkräften entwickelt. 
+                    Dabei haben wir nie unsere Wurzeln vergessen: Qualität, Zuverlässigkeit und persönlicher Service stehen bei uns nach wie vor im Mittelpunkt.
                   </p>
                 </div>
                 
                 <div className="bg-accent/5 dark:bg-accent/10 p-6 rounded-lg">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    Moderne Technik, bewährte Methoden
+                    Wachstum & Entwicklung
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Über {content.stats.yearsExperience} Jahre Erfahrung und mehr als {content.stats.projectsCompleted} erfolgreich abgeschlossene Projekte haben uns zu einem der führenden Handwerksbetriebe in der Region gemacht.
+                    Heute führen wir jährlich über {content.stats.projectsPerYear} Projekte durch.
+                  </p>
+                </div>
+                
+                <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                    Zukunft & Vision
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     Wir kombinieren traditionelle Handwerkskunst mit modernster Technik und innovativen Lösungen. 
@@ -180,9 +187,6 @@ export default function UeberUnsPage() {
         </div>
       </section>
 
-      {/* Team Sektion */}
-      <Team content={content} />
-
       {/* Statistiken */}
       <Stats content={content} />
 
@@ -208,7 +212,7 @@ export default function UeberUnsPage() {
                   Handwerkskammer
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Zertifizierter Meisterbetrieb mit Eintragung in die Handwerksrolle
+                  Zertifizierter Meisterbetrieb mit Eintragung in die Handwerksrolle seit 2004
                 </p>
               </div>
 
@@ -240,46 +244,35 @@ export default function UeberUnsPage() {
         </div>
       </section>
 
-      {/* Warum uns wählen? */}
+      {/* Call to Action */}
       <section className="py-16 bg-gradient-to-br from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-              Warum {content.company.name}?
+              Überzeugt von unserem Betrieb?
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              {content.company.tagline}
+              Lassen Sie uns gemeinsam Ihr nächstes Projekt verwirklichen
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="text-left p-6 bg-white/50 dark:bg-gray-800/50 rounded-lg">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  ✅ Erfahrung seit {new Date().getFullYear() - content.stats.yearsExperience}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Über {content.stats.yearsExperience} Jahre Erfahrung und mehr als {content.stats.projectsCompleted} erfolgreich abgeschlossene Projekte
-                </p>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="/kontakt"
+                className="inline-flex items-center px-8 py-3 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              >
+                Jetzt Beratungstermin vereinbaren
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
               
-              <div className="text-left p-6 bg-white/50 dark:bg-gray-800/50 rounded-lg">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  ✅ Kompetentes Team
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {content.stats.teamSize} Fachkräfte mit unterschiedlichen Spezialisierungen für optimale Ergebnisse
-                </p>
-              </div>
+              <a 
+                href="/referenzen"
+                className="inline-flex items-center px-8 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              >
+                Unsere Referenzen ansehen
+              </a>
             </div>
-            
-            <a 
-              href="/kontakt"
-              className="inline-flex items-center px-8 py-3 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            >
-              Jetzt Beratungstermin vereinbaren
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
-            </a>
           </div>
         </div>
       </section>
