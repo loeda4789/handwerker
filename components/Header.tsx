@@ -22,6 +22,17 @@ export default function Header({ content }: HeaderProps) {
     if (savedMode) {
       setSiteMode(savedMode)
     }
+    
+    // Event listener für site-mode Änderungen
+    const handleSiteModeChange = () => {
+      const newMode = localStorage.getItem('site-mode') as 'onepage' | 'multipage'
+      if (newMode) {
+        setSiteMode(newMode)
+      }
+    }
+    
+    window.addEventListener('site-mode-changed', handleSiteModeChange)
+    return () => window.removeEventListener('site-mode-changed', handleSiteModeChange)
   }, [])
 
   // Note: Dark mode functionality removed

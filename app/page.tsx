@@ -98,8 +98,13 @@ export default function HomePage() {
     if (key === 'layoutType') {
       console.log('Setting siteMode to:', value)
       setSiteMode(value as 'onepage' | 'multipage')
+      // Speichere in localStorage damit Header es auch sieht
+      localStorage.setItem('site-mode', value)
       // Force re-render
       setForceUpdate(prev => prev + 1)
+      
+      // Event dispatchen damit Header sofort reagiert
+      window.dispatchEvent(new Event('site-mode-changed'))
     }
     
     if (key === 'heroType' && value) {
@@ -122,6 +127,8 @@ export default function HomePage() {
     // Set hero type in localStorage
     localStorage.setItem('demo-hero-type', config.heroType)
     setSiteMode(config.layoutType as 'onepage' | 'multipage')
+    // Speichere site-mode für Header
+    localStorage.setItem('site-mode', config.layoutType)
     
     // Update URL parameters
     const params = new URLSearchParams()
