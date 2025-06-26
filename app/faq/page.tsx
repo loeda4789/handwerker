@@ -6,6 +6,7 @@ import { ContentData } from '@/types/content'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ModernSpinner from '@/components/ModernSpinner'
+import ConfiguratorButton from '@/components/ConfiguratorButton'
 
 export default function FAQPage() {
   const [content, setContent] = useState<ContentData | null>(null)
@@ -277,6 +278,7 @@ export default function FAQPage() {
       </section>
 
       <Footer content={content} />
+      <ConfiguratorButton onClick={() => window.location.href = '/'} />
     </main>
   )
-} 
+}
