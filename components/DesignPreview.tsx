@@ -66,73 +66,87 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   const themePresets = [
     {
-      name: 'Orange Handwerk',
-      description: 'Warmes Orange für traditionelle Handwerker',
+      name: 'Coral Modern',
+      description: 'Warmes Coral mit frischen Akzenten - zeitgemäß und freundlich',
       colors: {
-        primary: '#d97706',
-        secondary: '#0ea5e9', 
-        accent: '#f59e0b',
+        primary: '#ff6b6b',
+        secondary: '#4ecdc4', 
+        accent: '#ffe66d',
         background: '#ffffff',
         surface: '#f8fafc',
-        text: '#1f2937',
-        textSecondary: '#6b7280',
-        border: '#e5e7eb'
+        text: '#2d3748',
+        textSecondary: '#718096',
+        border: '#e2e8f0'
       }
     },
     {
-      name: 'Blau Professionell',
-      description: 'Vertrauenswürdiges Blau für moderne Betriebe',
+      name: 'Ocean Blue',
+      description: 'Tiefes Meeresblau mit mineralischen Tönen - vertrauensvoll',
       colors: {
-        primary: '#2563eb',
-        secondary: '#059669', 
-        accent: '#dc2626',
+        primary: '#0d7377',
+        secondary: '#14a085', 
+        accent: '#f39c12',
         background: '#ffffff',
-        surface: '#f8fafc',
-        text: '#1f2937',
-        textSecondary: '#6b7280',
-        border: '#e5e7eb'
+        surface: '#f7fafc',
+        text: '#1a202c',
+        textSecondary: '#4a5568',
+        border: '#e2e8f0'
       }
     },
     {
-      name: 'Grün Nachhaltig',
-      description: 'Umweltfreundliches Grün für ökologische Betriebe',
+      name: 'Forest Green',
+      description: 'Natürliches Waldgrün mit Erdtönen - nachhaltig und ruhig',
       colors: {
-        primary: '#059669',
-        secondary: '#7c3aed', 
-        accent: '#f59e0b',
+        primary: '#38a169',
+        secondary: '#805ad5', 
+        accent: '#ed8936',
         background: '#ffffff',
-        surface: '#f8fafc',
-        text: '#1f2937',
-        textSecondary: '#6b7280',
-        border: '#e5e7eb'
+        surface: '#f7fafc',
+        text: '#1a202c',
+        textSecondary: '#4a5568',
+        border: '#e2e8f0'
       }
     },
     {
-      name: 'Rot Energie',
-      description: 'Kraftvolles Rot für energiegeladene Auftritte',
+      name: 'Purple Tech',
+      description: 'Modernes Lila mit Tech-Akzenten - innovativ und kreativ',
       colors: {
-        primary: '#dc2626',
-        secondary: '#2563eb', 
-        accent: '#f59e0b',
+        primary: '#805ad5',
+        secondary: '#38b2ac', 
+        accent: '#f56565',
         background: '#ffffff',
-        surface: '#f8fafc',
-        text: '#1f2937',
-        textSecondary: '#6b7280',
-        border: '#e5e7eb'
+        surface: '#faf5ff',
+        text: '#1a202c',
+        textSecondary: '#4a5568',
+        border: '#e9d8fd'
       }
     },
     {
-      name: 'Grau Elegant',
-      description: 'Elegantes Grau für zeitlose Eleganz',
+      name: 'Midnight Dark',
+      description: 'Dunkles Premium-Schema - elegant und sophisticated',
       colors: {
-        primary: '#4b5563',
-        secondary: '#059669', 
-        accent: '#f59e0b',
+        primary: '#667eea',
+        secondary: '#f093fb', 
+        accent: '#4fd1c7',
+        background: '#1a202c',
+        surface: '#2d3748',
+        text: '#f7fafc',
+        textSecondary: '#a0aec0',
+        border: '#4a5568'
+      }
+    },
+    {
+      name: 'Sunset Orange',
+      description: 'Warmes Sonnenuntergang-Orange - energiegeladen und einladend',
+      colors: {
+        primary: '#ed8936',
+        secondary: '#9f7aea', 
+        accent: '#38b2ac',
         background: '#ffffff',
-        surface: '#f8fafc',
-        text: '#1f2937',
-        textSecondary: '#6b7280',
-        border: '#e5e7eb'
+        surface: '#fffaf0',
+        text: '#1a202c',
+        textSecondary: '#4a5568',
+        border: '#fed7aa'
       }
     }
   ]
