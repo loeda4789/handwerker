@@ -226,23 +226,18 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-md">
-      <div className="fixed top-4 right-4 w-96 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl">
+    <div className="fixed inset-0 z-[9999] bg-black/50">
+      <div className="fixed top-4 right-4 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-4 rounded-t-2xl">
+        <div className="bg-blue-500 text-white px-4 py-3 rounded-t-lg">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-white/20 rounded-xl flex items-center justify-center">
-                <span className="text-lg">🎨</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-sm">DESIGN VORSCHAU</h3>
-                <span className="text-xs bg-white/20 text-white/90 px-2 py-0.5 rounded-full">LIVE</span>
-              </div>
+            <div className="flex items-center space-x-2">
+              <span className="text-lg">🎨</span>
+              <h3 className="font-semibold text-sm">Design Einstellungen</h3>
             </div>
             <button
               onClick={onClose}
-              className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-xl flex items-center justify-center text-white/90 hover:text-white transition-all duration-200"
+              className="text-white hover:text-gray-200 text-xl"
             >
               ×
             </button>
@@ -250,106 +245,97 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         </div>
 
         {/* Tabs */}
-        <div className="flex bg-white/5 backdrop-blur-sm border-b border-white/10">
+        <div className="flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
           {[
             { key: 'design', label: 'Farben', icon: '🎨' },
-            { key: 'layout', label: 'Layout', icon: '📐' },
-            { key: 'hero', label: 'Hero', icon: '🏆' }
+            { key: 'layout', label: 'Seiten', icon: '📄' },
+            { key: 'hero', label: 'Startbereich', icon: '🏠' }
           ].map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as any)}
-              className={`flex-1 px-4 py-3 text-xs font-medium transition-all duration-300 ${
+              className={`flex-1 px-3 py-2 text-xs font-medium transition-colors ${
                 activeTab === tab.key
-                  ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border-b-2 border-blue-400'
-                  : 'text-white/70 hover:text-white hover:bg-white/10'
+                  ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 border-b-2 border-blue-500'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
               }`}
             >
-              <span className="mr-2 text-sm">{tab.icon}</span>
+              <span className="mr-1">{tab.icon}</span>
               {tab.label}
             </button>
           ))}
         </div>
 
         {/* Content */}
-        <div className="p-6 max-h-[480px] overflow-y-auto text-white scrollbar-thin scrollbar-track-white/5 scrollbar-thumb-white/20 hover:scrollbar-thumb-white/30">
+        <div className="p-4 max-h-96 overflow-y-auto text-gray-800 dark:text-white">
           
           {/* Design Tab - Farben */}
           {activeTab === 'design' && (
-            <div className="space-y-6">
-              <div className="text-center">
-                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-4 py-2 rounded-full border border-white/20">
-                  <span className="text-lg">🎨</span>
-                  <h4 className="text-sm font-semibold text-white">Farbschema wählen</h4>
-                </div>
-              </div>
+            <div className="space-y-4">
+              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">Farbschema auswählen</h4>
               
-              <div className="grid gap-4">
+              <div className="space-y-3">
                 {themePresets.map((preset, index) => (
                   <button
                     key={index}
                     onClick={() => applyThemePreset(preset)}
-                    className="group relative w-full p-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-xl text-left transition-all duration-300 border border-white/10 hover:border-white/30 hover:scale-[1.02] hover:shadow-lg"
+                    className="w-full p-3 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-lg text-left transition-colors border border-gray-200 dark:border-gray-600"
                   >
-                    <div className="flex items-center justify-between mb-3">
-                      <h5 className="font-semibold text-white group-hover:text-blue-100 transition-colors">{preset.name}</h5>
-                      <div className="flex space-x-2">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-medium text-gray-800 dark:text-white">{preset.name}</h5>
+                      <div className="flex space-x-1">
                         <div 
-                          className="w-6 h-6 rounded-full border-2 border-white/30 shadow-lg group-hover:scale-110 transition-transform duration-200"
+                          className="w-5 h-5 rounded-full border border-gray-300 dark:border-gray-500"
                           style={{ backgroundColor: preset.colors.primary }}
                         ></div>
                         <div 
-                          className="w-6 h-6 rounded-full border-2 border-white/30 shadow-lg group-hover:scale-110 transition-transform duration-200 delay-75"
+                          className="w-5 h-5 rounded-full border border-gray-300 dark:border-gray-500"
                           style={{ backgroundColor: preset.colors.secondary }}
                         ></div>
                         <div 
-                          className="w-6 h-6 rounded-full border-2 border-white/30 shadow-lg group-hover:scale-110 transition-transform duration-200 delay-150"
+                          className="w-5 h-5 rounded-full border border-gray-300 dark:border-gray-500"
                           style={{ backgroundColor: preset.colors.accent }}
                         ></div>
                       </div>
                     </div>
-                    <p className="text-xs text-white/70 group-hover:text-white/90 transition-colors">
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
                       {preset.description}
                     </p>
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 ))}
               </div>
 
               {/* Aktuelles Schema anzeigen */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-                <div className="flex items-center space-x-2 mb-4">
-                  <span className="text-lg">🌈</span>
-                  <h5 className="text-sm font-semibold text-white">Aktuelles Schema</h5>
-                </div>
-                <div className="grid grid-cols-4 gap-3">
-                  <div className="text-center group">
+              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
+                <h5 className="text-sm font-medium text-gray-800 dark:text-white mb-3">Aktuelle Farben</h5>
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="text-center">
                     <div 
-                      className="w-10 h-10 rounded-xl mx-auto mb-2 border-2 border-white/20 shadow-lg group-hover:scale-110 transition-transform duration-200"
+                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-300 dark:border-gray-500"
                       style={{ backgroundColor: colors.primary }}
                     ></div>
-                    <span className="text-xs text-white/70 font-medium">Primary</span>
+                    <span className="text-xs text-gray-600 dark:text-gray-400">Haupt</span>
                   </div>
-                  <div className="text-center group">
+                  <div className="text-center">
                     <div 
-                      className="w-10 h-10 rounded-xl mx-auto mb-2 border-2 border-white/20 shadow-lg group-hover:scale-110 transition-transform duration-200"
+                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-300 dark:border-gray-500"
                       style={{ backgroundColor: colors.secondary }}
                     ></div>
-                    <span className="text-xs text-white/70 font-medium">Secondary</span>
+                    <span className="text-xs text-gray-600 dark:text-gray-400">Zweit</span>
                   </div>
-                  <div className="text-center group">
+                  <div className="text-center">
                     <div 
-                      className="w-10 h-10 rounded-xl mx-auto mb-2 border-2 border-white/20 shadow-lg group-hover:scale-110 transition-transform duration-200"
+                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-300 dark:border-gray-500"
                       style={{ backgroundColor: colors.accent }}
                     ></div>
-                    <span className="text-xs text-white/70 font-medium">Accent</span>
+                    <span className="text-xs text-gray-600 dark:text-gray-400">Akzent</span>
                   </div>
-                  <div className="text-center group">
+                  <div className="text-center">
                     <div 
-                      className="w-10 h-10 rounded-xl mx-auto mb-2 border-2 border-white/20 shadow-lg group-hover:scale-110 transition-transform duration-200"
+                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-300 dark:border-gray-500"
                       style={{ backgroundColor: colors.text }}
                     ></div>
-                    <span className="text-xs text-white/70 font-medium">Text</span>
+                    <span className="text-xs text-gray-600 dark:text-gray-400">Text</span>
                   </div>
                 </div>
               </div>
@@ -357,10 +343,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               <div>
                 <button
                   onClick={exportTheme}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-sm font-medium rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex items-center justify-center space-x-2"
+                  className="w-full px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-lg transition-colors"
                 >
-                  <span>📁</span>
-                  <span>Theme exportieren</span>
+                  📁 Theme exportieren
                 </button>
               </div>
             </div>
@@ -368,64 +353,50 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
           {/* Layout Tab - Site Mode */}
           {activeTab === 'layout' && (
-            <div className="space-y-6">
-              <div className="text-center">
-                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-500/20 to-blue-500/20 px-4 py-2 rounded-full border border-white/20">
-                  <span className="text-lg">🌐</span>
-                  <h4 className="text-sm font-semibold text-white">Website-Struktur</h4>
-                  <span className="text-xs bg-white/20 text-white/90 px-2 py-1 rounded-full">
-                    {currentSiteMode === 'onepage' ? 'One-Page' : 'Multi-Page'}
-                  </span>
-                </div>
-              </div>
+            <div className="space-y-4">
+              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">
+                Seitenaufbau - Aktuell: {currentSiteMode === 'onepage' ? 'Eine Seite' : 'Mehrere Seiten'}
+              </h4>
               
-              <div className="grid gap-4">
+              <div className="space-y-3">
                 <button
                   onClick={() => changeSiteMode('onepage')}
-                  className={`group relative w-full p-5 backdrop-blur-sm rounded-xl text-left transition-all duration-300 border hover:scale-[1.02] hover:shadow-lg ${
+                  className={`w-full p-4 rounded-lg text-left transition-colors border ${
                     currentSiteMode === 'onepage'
-                      ? 'bg-gradient-to-r from-green-500/30 to-blue-500/30 border-green-400/50 text-white shadow-lg'
-                      : 'bg-white/10 hover:bg-white/20 border-white/10 hover:border-white/30 text-white/80 hover:text-white'
+                      ? 'bg-blue-50 border-blue-500 dark:bg-blue-900/20 dark:border-blue-400'
+                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600'
                   }`}
                 >
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                      <span className="text-2xl">📄</span>
-                    </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">📄</span>
                     <div>
-                      <div className="font-semibold">One-Page Modus</div>
-                      <div className="text-xs opacity-75 mt-1">Alle Inhalte auf einer Seite</div>
+                      <div className="font-medium text-gray-800 dark:text-white">Eine Seite</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Alle Inhalte untereinander auf einer langen Seite</div>
                     </div>
+                    {currentSiteMode === 'onepage' && (
+                      <span className="ml-auto text-blue-500">✓</span>
+                    )}
                   </div>
-                  {currentSiteMode === 'onepage' && (
-                    <div className="absolute top-3 right-3 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
-                      <span className="text-white text-xs">✓</span>
-                    </div>
-                  )}
                 </button>
                 
                 <button
                   onClick={() => changeSiteMode('multipage')}
-                  className={`group relative w-full p-5 backdrop-blur-sm rounded-xl text-left transition-all duration-300 border hover:scale-[1.02] hover:shadow-lg ${
+                  className={`w-full p-4 rounded-lg text-left transition-colors border ${
                     currentSiteMode === 'multipage'
-                      ? 'bg-gradient-to-r from-green-500/30 to-blue-500/30 border-green-400/50 text-white shadow-lg'
-                      : 'bg-white/10 hover:bg-white/20 border-white/10 hover:border-white/30 text-white/80 hover:text-white'
+                      ? 'bg-blue-50 border-blue-500 dark:bg-blue-900/20 dark:border-blue-400'
+                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600'
                   }`}
                 >
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                      <span className="text-2xl">🗂️</span>
-                    </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">🗂️</span>
                     <div>
-                      <div className="font-semibold">Multi-Page Modus</div>
-                      <div className="text-xs opacity-75 mt-1">Separate Unterseiten</div>
+                      <div className="font-medium text-gray-800 dark:text-white">Mehrere Seiten</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Getrennte Seiten für Services, Referenzen, etc.</div>
                     </div>
+                    {currentSiteMode === 'multipage' && (
+                      <span className="ml-auto text-blue-500">✓</span>
+                    )}
                   </div>
-                  {currentSiteMode === 'multipage' && (
-                    <div className="absolute top-3 right-3 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
-                      <span className="text-white text-xs">✓</span>
-                    </div>
-                  )}
                 </button>
               </div>
             </div>
@@ -433,43 +404,32 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
           {/* Hero Tab - Hero Varianten */}
           {activeTab === 'hero' && (
-            <div className="space-y-6">
-              <div className="text-center">
-                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500/20 to-red-500/20 px-4 py-2 rounded-full border border-white/20">
-                  <span className="text-lg">🏆</span>
-                  <h4 className="text-sm font-semibold text-white">Startbereich-Varianten</h4>
-                  <span className="text-xs bg-white/20 text-white/90 px-2 py-1 rounded-full capitalize">
-                    {currentHeroType}
-                  </span>
-                </div>
-              </div>
+            <div className="space-y-4">
+              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">
+                Startbereich-Design - Aktuell: {currentHeroType}
+              </h4>
               
-              <div className="grid gap-4">
+              <div className="space-y-3">
                 {heroVariants.map((variant) => (
                   <button
                     key={variant.key}
                     onClick={() => changeHeroType(variant.key as any)}
-                    className={`group relative w-full p-5 backdrop-blur-sm rounded-xl text-left transition-all duration-300 border hover:scale-[1.02] hover:shadow-lg ${
+                    className={`w-full p-4 rounded-lg text-left transition-colors border ${
                       currentHeroType === variant.key
-                        ? 'bg-gradient-to-r from-orange-500/30 to-red-500/30 border-orange-400/50 text-white shadow-lg'
-                        : 'bg-white/10 hover:bg-white/20 border-white/10 hover:border-white/30 text-white/80 hover:text-white'
+                        ? 'bg-blue-50 border-blue-500 dark:bg-blue-900/20 dark:border-blue-400'
+                        : 'bg-gray-50 border-gray-200 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600'
                     }`}
                   >
-                    <div className="flex items-center space-x-3 mb-3">
-                      <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                        <span className="text-2xl">{variant.icon}</span>
-                      </div>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">{variant.icon}</span>
                       <div className="flex-1">
-                        <div className="font-semibold">{variant.name}</div>
-                        <div className="text-xs opacity-75 mt-1">{variant.description}</div>
+                        <div className="font-medium text-gray-800 dark:text-white">{variant.name}</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">{variant.description}</div>
                       </div>
+                      {currentHeroType === variant.key && (
+                        <span className="text-blue-500">✓</span>
+                      )}
                     </div>
-                    {currentHeroType === variant.key && (
-                      <div className="absolute top-3 right-3 w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs">✓</span>
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-red-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 ))}
               </div>
@@ -477,13 +437,10 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           )}
 
           {/* Info */}
-          <div className="mt-6 p-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-xl border border-white/10">
-            <div className="flex items-center space-x-2">
-              <span className="text-lg">💡</span>
-              <p className="text-xs text-white/90">
-                <strong>Hinweis:</strong> Alle Änderungen werden automatisch gespeichert und sofort angewendet.
-              </p>
-            </div>
+          <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+            <p className="text-xs text-gray-600 dark:text-gray-400">
+              💡 <strong>Hinweis:</strong> Alle Änderungen werden sofort angewendet und automatisch gespeichert.
+            </p>
           </div>
         </div>
       </div>
