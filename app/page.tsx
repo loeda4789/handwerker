@@ -14,7 +14,7 @@ import Testimonials from '@/components/Testimonials'
 import ProjectProcess from '@/components/ProjectProcess'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
-import DevButton from '@/components/DevButton'
+import DesignPreviewButton from '@/components/DesignPreviewButton'
 import SpeedDial from '@/components/SpeedDial'
 import ImagePerformanceMonitor from '@/components/ImagePerformanceMonitor'
 import ModernSpinner from '@/components/ModernSpinner'
@@ -280,9 +280,8 @@ export default function Home() {
       
       <Footer content={content} />
       
-      {/* Development Tools */}
-      <DevButton />
-
+      {/* Design Vorschau */}
+      <DesignPreviewButton />
       
       {/* Mobile Speed Dial */}
       <SpeedDial 
