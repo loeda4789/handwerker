@@ -5,8 +5,9 @@ import { useState, useEffect } from 'react'
 export default function DevButton() {
   const [isOpen, setIsOpen] = useState(false)
   const [currentHeroType, setCurrentHeroType] = useState<string>('single')
+  const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
 
-  // Aktuellen Hero-Typ beim Laden ermitteln
+  // Aktuellen Hero-Typ und Site-Mode beim Laden ermitteln
   useEffect(() => {
     // Demo-Fallback aus localStorage prüfen
     const demoType = localStorage.getItem('demo-hero-type')
@@ -14,6 +15,12 @@ export default function DevButton() {
       setCurrentHeroType(demoType)
     } else {
       setCurrentHeroType('single') // Standard-Fallback
+    }
+
+    // Site-Mode aus localStorage laden
+    const siteMode = localStorage.getItem('site-mode') as 'onepage' | 'multipage'
+    if (siteMode) {
+      setCurrentSiteMode(siteMode)
     }
   }, [])
 
@@ -101,6 +108,34 @@ export default function DevButton() {
     }
   }
 
+  const changeSiteMode = (mode: 'onepage' | 'multipage') => {
+    setCurrentSiteMode(mode)
+    localStorage.setItem('site-mode', mode)
+    console.log('🔄 Site-Mode geändert zu:', mode)
+    
+    // Seite neu laden für sofortige Änderung
+    window.location.reload()
+  }
+
+  const previewMultiPageRoutes = () => {
+    console.log('=== MULTI-PAGE STRUKTUR ===')
+    const baseUrl = window.location.origin
+    console.log('Verfügbare Routen:')
+    console.log('Startseite:', baseUrl)
+    console.log('Services:', baseUrl + '/services')
+    console.log('Referenzen:', baseUrl + '/referenzen')
+    console.log('Kontakt:', baseUrl + '/kontakt')
+    console.log('FAQ:', baseUrl + '/faq')
+    console.log('Über uns:', baseUrl + '/ueber-uns')
+    console.log('')
+    console.log('Service-Einzelseiten:')
+    console.log('Dachfenster:', baseUrl + '/services/dachfenster')
+    console.log('Dachrinnen:', baseUrl + '/services/dachrinnen')
+    console.log('Neubau:', baseUrl + '/services/neubau')
+    console.log('Reparaturen:', baseUrl + '/services/reparaturen')
+    console.log('Sanierung:', baseUrl + '/services/sanierung')
+  }
+
   const heroVariants = [
     { key: 'single', name: '1. Single', icon: '🏠', description: 'Klassischer Hero' },
     { key: 'slider', name: '2. Slider', icon: '🎬', description: 'Slideshow mit 2 Slides' },
@@ -121,7 +156,7 @@ export default function DevButton() {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 z-50 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xl border max-w-sm">
+    <div className="fixed bottom-4 left-4 z-50 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xl border max-w-sm max-h-[80vh] overflow-y-auto">
       <div className="flex justify-between items-center mb-3">
         <h3 className="font-bold text-gray-800 dark:text-white">Dev Tools</h3>
         <button
@@ -132,6 +167,49 @@ export default function DevButton() {
         </button>
       </div>
       
+      {/* Site-Mode Sektion */}
+      <div className="mb-4 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
+        <h4 className="font-semibold text-sm text-purple-800 dark:text-purple-200 mb-2 flex items-center">
+          🌐 Website-Modus
+          <span className="ml-2 text-xs bg-purple-100 dark:bg-purple-800 px-2 py-1 rounded">
+            {currentSiteMode === 'onepage' ? 'One-Page' : 'Multi-Page'}
+          </span>
+        </h4>
+        <div className="grid grid-cols-1 gap-2">
+          <button
+            onClick={() => changeSiteMode('onepage')}
+            className={`p-2 text-xs rounded transition-all duration-200 text-left hover:scale-105 ${
+              currentSiteMode === 'onepage'
+                ? 'bg-purple-500 text-white shadow-md'
+                : 'bg-purple-100 dark:bg-purple-800 text-purple-800 dark:text-purple-200 hover:bg-purple-200 dark:hover:bg-purple-700'
+            }`}
+          >
+            <div className="font-medium">📄 One-Page Modus</div>
+            <div className="text-xs opacity-75 mt-1">Alle Inhalte auf einer Seite</div>
+          </button>
+          <button
+            onClick={() => changeSiteMode('multipage')}
+            className={`p-2 text-xs rounded transition-all duration-200 text-left hover:scale-105 ${
+              currentSiteMode === 'multipage'
+                ? 'bg-purple-500 text-white shadow-md'
+                : 'bg-purple-100 dark:bg-purple-800 text-purple-800 dark:text-purple-200 hover:bg-purple-200 dark:hover:bg-purple-700'
+            }`}
+          >
+            <div className="font-medium">🗂️ Multi-Page Modus</div>
+            <div className="text-xs opacity-75 mt-1">Separate Unterseiten</div>
+          </button>
+        </div>
+        <button
+          onClick={previewMultiPageRoutes}
+          className="w-full mt-2 px-2 py-1 bg-purple-200 dark:bg-purple-700 text-purple-800 dark:text-purple-200 rounded text-xs hover:bg-purple-300 dark:hover:bg-purple-600 transition-colors"
+        >
+          🔍 Routen anzeigen
+        </button>
+        <p className="text-xs text-purple-600 dark:text-purple-300 mt-2">
+          💡 Klicken zum Wechseln - Seite wird neu geladen
+        </p>
+      </div>
+
       {/* Hero-Varianten Sektion */}
       <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
         <h4 className="font-semibold text-sm text-blue-800 dark:text-blue-200 mb-2 flex items-center">

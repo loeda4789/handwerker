@@ -13,7 +13,16 @@ export default function Header({ content }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [isScrolled, setIsScrolled] = useState(false)
+  const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   
+  // Site-Mode aus localStorage laden
+  useEffect(() => {
+    const savedMode = localStorage.getItem('site-mode') as 'onepage' | 'multipage'
+    if (savedMode) {
+      setSiteMode(savedMode)
+    }
+  }, [])
+
   // Note: Dark mode functionality removed
 
   // Scroll detection for header background
@@ -25,8 +34,10 @@ export default function Header({ content }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Active section detection
+  // Active section detection (nur für One-Page Modus)
   useEffect(() => {
+    if (siteMode !== 'onepage') return
+
     const handleScroll = () => {
       const sections = ['ueber-uns', 'leistungen', 'team', 'projektablauf']
       const scrollPosition = window.scrollY + 100
@@ -47,7 +58,7 @@ export default function Header({ content }: HeaderProps) {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [siteMode])
 
   // Prevent scroll when mobile menu is open
   useEffect(() => {
@@ -62,8 +73,10 @@ export default function Header({ content }: HeaderProps) {
     }
   }, [mobileMenuOpen])
 
-  // Smooth scrolling
+  // Smooth scrolling (nur für One-Page Modus)
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    if (siteMode !== 'onepage') return
+    
     e.preventDefault()
     const element = document.getElementById(targetId)
     if (element) {
@@ -78,6 +91,28 @@ export default function Header({ content }: HeaderProps) {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false)
   }
+
+  // Navigation Items basierend auf Site-Mode
+  const getNavItems = () => {
+    if (siteMode === 'multipage') {
+      return [
+        { href: '/services', label: 'Leistungen', id: 'leistungen' },
+        { href: '/referenzen', label: 'Referenzen', id: 'referenzen' },
+        { href: '/ueber-uns', label: content.about.title, id: 'ueber-uns' },
+        { href: '/faq', label: 'FAQ', id: 'faq' },
+        { href: '/kontakt', label: 'Kontakt', id: 'kontakt' }
+      ]
+    } else {
+      return [
+        { href: '#ueber-uns', label: content.about.title, id: 'ueber-uns' },
+        { href: '#leistungen', label: 'Leistungen', id: 'leistungen' },
+        { href: '#team', label: 'Team', id: 'team' },
+        { href: '#projektablauf', label: 'Projektablauf', id: 'projektablauf' }
+      ]
+    }
+  }
+
+  const navItems = getNavItems()
 
   return (
     <>
@@ -102,7 +137,8 @@ export default function Header({ content }: HeaderProps) {
 
               {/* Desktop CTA Button */}
               <Link
-                href="#kontakt"
+                href={siteMode === 'multipage' ? '/kontakt' : '#kontakt'}
+                onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, 'kontakt') : undefined}
                 className="hidden lg:inline-flex items-center px-5 py-2.5 mr-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-accent focus:ring-4 focus:ring-primary/30 dark:bg-primary dark:hover:bg-accent/90"
               >
                 Jetzt Termin vereinbaren
@@ -136,58 +172,21 @@ export default function Header({ content }: HeaderProps) {
             {/* Desktop Navigation Menu */}
             <div className="hidden lg:flex lg:w-auto lg:order-1" id="desktop-menu">
               <ul className="flex flex-row font-medium space-x-8">
-                <li>
-                  <Link
-                    href="#ueber-uns"
-                    onClick={(e) => handleSmoothScroll(e, 'ueber-uns')}
-                    className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                      activeSection === 'ueber-uns' 
-                        ? 'text-primary dark:text-accent font-semibold' 
-                        : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
-                    }`}
-                  >
-                    {content.about.title}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#leistungen"
-                    onClick={(e) => handleSmoothScroll(e, 'leistungen')}
-                    className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                      activeSection === 'leistungen' 
-                        ? 'text-primary dark:text-accent font-semibold' 
-                        : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
-                    }`}
-                  >
-                    Leistungen
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#team"
-                    onClick={(e) => handleSmoothScroll(e, 'team')}
-                    className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                      activeSection === 'team' 
-                        ? 'text-primary dark:text-accent font-semibold' 
-                        : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
-                    }`}
-                  >
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#projektablauf"
-                    onClick={(e) => handleSmoothScroll(e, 'projektablauf')}
-                    className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                      activeSection === 'projektablauf' 
-                        ? 'text-primary dark:text-accent font-semibold' 
-                        : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
-                    }`}
-                  >
-                    Projektablauf
-                  </Link>
-                </li>
+                {navItems.map((item) => (
+                  <li key={item.id}>
+                    <Link
+                      href={item.href}
+                      onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : undefined}
+                      className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
+                        (siteMode === 'onepage' && activeSection === item.id) 
+                          ? 'text-primary dark:text-accent font-semibold' 
+                          : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -214,53 +213,20 @@ export default function Header({ content }: HeaderProps) {
         }`}>
           {/* Navigation Links */}
           <nav className="text-center space-y-8">
-            <Link
-              href="#ueber-uns"
-              onClick={(e) => handleSmoothScroll(e, 'ueber-uns')}
-              className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                activeSection === 'ueber-uns' 
-                  ? 'text-primary dark:text-accent font-medium' 
-                  : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-              }`}
-            >
-              {content.about.title}
-            </Link>
-            
-            <Link
-              href="#leistungen"
-              onClick={(e) => handleSmoothScroll(e, 'leistungen')}
-              className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                activeSection === 'leistungen' 
-                  ? 'text-primary dark:text-accent font-medium' 
-                  : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-              }`}
-            >
-              Leistungen
-            </Link>
-            
-            <Link
-              href="#team"
-              onClick={(e) => handleSmoothScroll(e, 'team')}
-              className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                activeSection === 'team' 
-                  ? 'text-primary dark:text-accent font-medium' 
-                  : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-              }`}
-            >
-              Team
-            </Link>
-            
-            <Link
-              href="#projektablauf"
-              onClick={(e) => handleSmoothScroll(e, 'projektablauf')}
-              className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                activeSection === 'projektablauf' 
-                  ? 'text-primary dark:text-accent font-medium' 
-                  : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-              }`}
-            >
-              Projektablauf
-            </Link>
+            {navItems.map((item) => (
+              <Link
+                key={item.id}
+                href={item.href}
+                onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : closeMobileMenu}
+                className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
+                  (siteMode === 'onepage' && activeSection === item.id) 
+                    ? 'text-primary dark:text-accent font-medium' 
+                    : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
           
           {/* CTA Button */}
@@ -268,9 +234,9 @@ export default function Header({ content }: HeaderProps) {
             mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}>
             <Link
-              href="#kontakt"
-              onClick={(e) => handleSmoothScroll(e, 'kontakt')}
-                              className="inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-primary hover:bg-accent rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300 focus:ring-4 focus:ring-primary/30"
+              href={siteMode === 'multipage' ? '/kontakt' : '#kontakt'}
+              onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, 'kontakt') : closeMobileMenu}
+              className="inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-primary hover:bg-accent rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300 focus:ring-4 focus:ring-primary/30"
             >
               Jetzt Termin vereinbaren
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
