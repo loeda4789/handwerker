@@ -34,6 +34,7 @@ export default function HomePage() {
   const [showConfigurator, setShowConfigurator] = useState(true)
   const [content, setContent] = useState<ContentData | null>(null)
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
+  const [forceUpdate, setForceUpdate] = useState(0)
   const router = useRouter()
 
   useEffect(() => {
@@ -66,7 +67,12 @@ export default function HomePage() {
     }
   }, [])
 
+  useEffect(() => {
+    console.log('Current siteMode:', siteMode)
+  }, [siteMode])
+
   const handleConfigChange = (key: keyof ConfigState, value: string) => {
+    console.log('Config Change:', key, value)
     setConfig(prev => ({
       ...prev,
       [key]: value
@@ -74,7 +80,10 @@ export default function HomePage() {
     
     // Sofortiges Update der Website im Hintergrund
     if (key === 'layoutType') {
+      console.log('Setting siteMode to:', value)
       setSiteMode(value as 'onepage' | 'multipage')
+      // Force re-render
+      setForceUpdate(prev => prev + 1)
     }
     
     if (key === 'heroType' && value) {
@@ -423,7 +432,8 @@ export default function HomePage() {
           {/* Debug Info */}
           <div className="px-3 py-2 bg-black/80 text-white rounded-lg text-xs backdrop-blur-sm">
             <div>Modus: {siteMode === 'onepage' ? 'One-Page' : 'Mehrseiten'}</div>
-            <div>Hero: {localStorage.getItem('demo-hero-type') || 'single'}</div>
+            <div>Hero: {typeof window !== 'undefined' ? localStorage.getItem('demo-hero-type') || 'single' : 'single'}</div>
+            <div>Config: {config.layoutType || 'none'}</div>
           </div>
         </div>
       )}
