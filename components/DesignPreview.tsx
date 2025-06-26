@@ -183,7 +183,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     window.location.reload()
   }
 
-  const changeHeroType = async (heroType: 'single' | 'slider' | '3d' | 'split') => {
+  const changeHeroType = async (heroType: 'single' | 'slider' | 'video' | 'split') => {
     try {
       console.log('🎨 Ändere Hero-Typ zu:', heroType)
       
@@ -233,7 +233,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const heroVariants = [
     { key: 'single', name: 'Single', icon: '🏠', description: 'Klassischer Hero' },
     { key: 'slider', name: 'Slider', icon: '🎬', description: 'Slideshow' },
-    { key: '3d', name: '3D', icon: '🎨', description: '3D-Effekte' },
+                            { key: 'video', name: 'Video', icon: '🎬', description: 'Video-Hintergrund' },
     { key: 'split', name: 'Split', icon: '📱', description: 'Geteiltes Layout' }
   ]
 

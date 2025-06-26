@@ -288,8 +288,8 @@ function HeroSlider({ content }: HeroProps) {
   )
 }
 
-// Hero 3D Variant
-function Hero3D({ content }: HeroProps) {
+// Hero Video Variant (previously 3D)
+function HeroVideo({ content }: HeroProps) {
   const cityName = extractCityFromAddress(content.contact.address)
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -313,7 +313,7 @@ function Hero3D({ content }: HeroProps) {
           <div className="absolute inset-0 hidden md:block">
             <Image
               src={content.hero.backgroundImages.desktop}
-              alt="Hero 3D Desktop"
+              alt="Hero Video Desktop"
               fill
               priority
               quality={85}
@@ -324,7 +324,7 @@ function Hero3D({ content }: HeroProps) {
           <div className="absolute inset-0 block md:hidden">
             <Image
               src={content.hero.backgroundImages.mobile}
-              alt="Hero 3D Mobile"
+              alt="Hero Video Mobile"
               fill
               priority
               quality={85}
@@ -497,8 +497,8 @@ export default function Hero({ content }: HeroProps) {
   switch (currentHeroType) {
     case 'slider':
       return <HeroSlider content={content} />
-    case '3d':
-      return <Hero3D content={content} />
+    case 'video':
+      return <HeroVideo content={content} />
     case 'split':
       return <HeroSplit content={content} />
     case 'single':

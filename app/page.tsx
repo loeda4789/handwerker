@@ -21,7 +21,7 @@ import { applyColorScheme } from '@/lib/colorSchemes'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
-  heroType: 'single' | 'slider' | '3d' | 'split' | ''
+  heroType: 'single' | 'slider' | 'video' | 'split' | ''
   colorScheme: 'blue' | 'green' | 'purple' | 'orange' | ''
   heroExpanded: boolean
   colorExpanded: boolean
@@ -405,10 +405,10 @@ export default function HomePage() {
                                 gradient: 'from-purple-500 to-pink-600'
                               },
                               { 
-                                key: '3d', 
-                                name: '3D Effekt', 
-                                desc: 'Interaktiv & innovativ',
-                                icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10',
+                                key: 'video', 
+                                name: 'Video', 
+                                desc: 'Dynamisch & eindrucksvoll',
+                                icon: 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
                                 gradient: 'from-orange-500 to-red-600'
                               },
                               { 

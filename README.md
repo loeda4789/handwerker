@@ -183,20 +183,20 @@ Das Template unterstützt 4 verschiedene Hero-Varianten, die über die `hero.typ
   - Klickbare Navigation zwischen Slides
 - **Ideal für**: Betriebe mit mehreren Kernbotschaften
 
-### 3. 3D
+### 3. Video
 ```json
 "hero": {
-  "type": "3d"
+  "type": "video"
 }
 ```
-- **Beschreibung**: Moderner 3D-Effekt mit Animationen
+- **Beschreibung**: Dynamischer Video-Hintergrund mit Animationen
 - **Features**:
-  - 3D-Perspektive und Transform-Animationen
+  - Video-Hintergrund (oder animierte Übergänge als Vorbereitung)
   - Floating Elemente im Hintergrund
   - Gradient-Overlays für bessere Lesbarkeit
   - Zwei CTA-Buttons (Primär + Sekundär)
   - GPU-beschleunigte Animationen
-- **Ideal für**: Moderne, tech-affine Betriebe
+- **Ideal für**: Moderne, tech-affine Betriebe mit Video-Content
 
 ### 4. Split
 ```json
@@ -225,7 +225,7 @@ Die Hero-Variante wird in der jeweiligen Content-Datei konfiguriert:
 ```json
 {
   "hero": {
-    "type": "slider",  // "single", "slider", "3d", "split"
+    "type": "slider",  // "single", "slider", "video", "split"
     "backgroundImages": {
       "desktop": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop_alt.png",
       "mobile": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile.png",
