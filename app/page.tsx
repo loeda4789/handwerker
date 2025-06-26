@@ -22,13 +22,17 @@ interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
   heroType: 'single' | 'slider' | '3d' | 'split' | ''
   colorScheme: 'blue' | 'green' | 'purple' | 'orange' | ''
+  heroExpanded: boolean
+  colorExpanded: boolean
 }
 
 export default function HomePage() {
   const [config, setConfig] = useState<ConfigState>({
     layoutType: '',
     heroType: '',
-    colorScheme: ''
+    colorScheme: '',
+    heroExpanded: false,
+    colorExpanded: false
   })
   const [isGenerating, setIsGenerating] = useState(false)
   const [showConfigurator, setShowConfigurator] = useState(true)
@@ -73,10 +77,22 @@ export default function HomePage() {
 
   const handleConfigChange = (key: keyof ConfigState, value: string) => {
     console.log('Config Change:', key, value)
-    setConfig(prev => ({
-      ...prev,
-      [key]: value
-    }))
+    setConfig(prev => {
+      const newConfig = {
+        ...prev,
+        [key]: value
+      }
+      
+      // Auto-expand next sections
+      if (key === 'layoutType') {
+        newConfig.heroExpanded = true
+      }
+      if (key === 'heroType') {
+        newConfig.colorExpanded = true
+      }
+      
+      return newConfig
+    })
     
     // Sofortiges Update der Website im Hintergrund
     if (key === 'layoutType') {
@@ -263,145 +279,225 @@ export default function HomePage() {
               </div>
 
               {/* Configuration Steps */}
-              <div className="space-y-8">
+              <div className="space-y-6">
                 
                 {/* Schritt 1: Layout Type */}
-                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50">
+                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
                   <div className="flex items-center mb-6">
-                    <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold mr-4">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-lg">
                       1
                     </div>
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                       Website-Umfang wählen
                     </h2>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <button
                       onClick={() => handleConfigChange('layoutType', 'onepage')}
-                      className={`p-4 rounded-xl border-2 transition-all duration-300 text-left ${
+                      className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-left transform hover:scale-105 ${
                         config.layoutType === 'onepage'
-                          ? 'border-blue-500 bg-blue-50/80 dark:bg-blue-900/20'
-                          : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                          ? 'border-blue-500 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 shadow-xl scale-105'
+                          : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-lg'
                       }`}
                     >
-                      <div className="flex items-center mb-2">
-                        <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mr-3">
-                          <svg className="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="flex items-center mb-4">
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mr-4 transition-colors duration-300 ${
+                          config.layoutType === 'onepage' 
+                            ? 'bg-blue-500 text-white' 
+                            : 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 group-hover:bg-blue-200 dark:group-hover:bg-blue-800'
+                        }`}>
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                           </svg>
                         </div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">Kompakte Website</h3>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Kompakte Website</h3>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">
-                        Alle Informationen auf einer Seite zum Durchscrollen
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Alle Informationen auf einer scrollbaren Seite - perfekt für kleinere Betriebe
                       </p>
                     </button>
 
                     <button
                       onClick={() => handleConfigChange('layoutType', 'multipage')}
-                      className={`p-4 rounded-xl border-2 transition-all duration-300 text-left ${
+                      className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-left transform hover:scale-105 ${
                         config.layoutType === 'multipage'
-                          ? 'border-blue-500 bg-blue-50/80 dark:bg-blue-900/20'
-                          : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                          ? 'border-green-500 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 shadow-xl scale-105'
+                          : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500 hover:shadow-lg'
                       }`}
                     >
-                      <div className="flex items-center mb-2">
-                        <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mr-3">
-                          <svg className="w-4 h-4 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="flex items-center mb-4">
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mr-4 transition-colors duration-300 ${
+                          config.layoutType === 'multipage' 
+                            ? 'bg-green-500 text-white' 
+                            : 'bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 group-hover:bg-green-200 dark:group-hover:bg-green-800'
+                        }`}>
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                           </svg>
                         </div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">Erweiterte Website</h3>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Erweiterte Website</h3>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">
-                        Mehrere Unterseiten für umfangreichere Inhalte
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Separate Unterseiten für umfangreichere Inhalte und bessere Navigation
                       </p>
                     </button>
                   </div>
                 </div>
 
-                {/* Schritt 2: Hero Type */}
-                <div className={`bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 transition-opacity duration-300 ${
-                  config.layoutType ? 'opacity-100' : 'opacity-50 pointer-events-none'
-                }`}>
-                  <div className="flex items-center mb-6">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 ${
-                      config.layoutType ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-500'
-                    }`}>
-                      2
-                    </div>
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                      Design-Stil wählen
-                    </h2>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {[
-                      { key: 'single', name: 'Klassisch', icon: 'M4 6h16M4 12h16M4 18h16' },
-                      { key: 'slider', name: 'Slider', icon: 'M9 5l7 7-7 7' },
-                      { key: '3d', name: '3D Effekt', icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10' },
-                      { key: 'split', name: 'Geteilt', icon: 'M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h2m8-6V7a2 2 0 00-2-2h-2m2 2v6a2 2 0 002 2h2' }
-                    ].map((hero) => (
-                      <button
-                        key={hero.key}
-                        onClick={() => handleConfigChange('heroType', hero.key)}
-                        disabled={!config.layoutType}
-                        className={`p-3 rounded-xl border-2 transition-all duration-300 text-center ${
-                          config.heroType === hero.key
-                            ? 'border-blue-500 bg-blue-50/80 dark:bg-blue-900/20'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
-                        }`}
-                      >
-                        <div className="w-8 h-8 mx-auto mb-2 flex items-center justify-center">
-                          <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={hero.icon}/>
-                          </svg>
+                {/* Schritt 2: Hero Design - Collapsible */}
+                {config.layoutType && (
+                  <div className={`bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-500 ${
+                    config.layoutType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                  }`}>
+                    <button
+                      onClick={() => setConfig(prev => ({ ...prev, heroExpanded: !prev.heroExpanded }))}
+                      className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50/50 dark:hover:bg-gray-700/50 rounded-2xl transition-colors duration-300"
+                    >
+                      <div className="flex items-center">
+                        <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-lg">
+                          2
                         </div>
-                        <h3 className="text-xs font-semibold text-gray-900 dark:text-white">{hero.name}</h3>
-                      </button>
-                    ))}
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                          Design-Stil wählen
+                        </h2>
+                      </div>
+                      <svg className={`w-6 h-6 text-gray-500 transition-transform duration-300 ${config.heroExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                      </svg>
+                    </button>
+                    
+                    {config.heroExpanded && (
+                      <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                          {[
+                            { 
+                              key: 'single', 
+                              name: 'Klassisch', 
+                              desc: 'Zeitlos & elegant',
+                              icon: 'M4 6h16M4 12h16M4 18h16',
+                              gradient: 'from-blue-500 to-indigo-600'
+                            },
+                            { 
+                              key: 'slider', 
+                              name: 'Slider', 
+                              desc: 'Dynamisch & modern',
+                              icon: 'M9 5l7 7-7 7',
+                              gradient: 'from-purple-500 to-pink-600'
+                            },
+                            { 
+                              key: '3d', 
+                              name: '3D Effekt', 
+                              desc: 'Interaktiv & innovativ',
+                              icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10',
+                              gradient: 'from-orange-500 to-red-600'
+                            },
+                            { 
+                              key: 'split', 
+                              name: 'Geteilt', 
+                              desc: 'Strukturiert & klar',
+                              icon: 'M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h2m8-6V7a2 2 0 00-2-2h-2m2 2v6a2 2 0 002 2h2',
+                              gradient: 'from-green-500 to-teal-600'
+                            }
+                          ].map((hero) => (
+                            <button
+                              key={hero.key}
+                              onClick={() => handleConfigChange('heroType', hero.key)}
+                              className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-center transform hover:scale-105 ${
+                                config.heroType === hero.key
+                                  ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/20 shadow-xl scale-105'
+                                  : 'border-gray-200 dark:border-gray-600 hover:border-purple-300 dark:hover:border-purple-500 hover:shadow-lg'
+                              }`}
+                            >
+                              <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r ${hero.gradient} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={hero.icon}/>
+                                </svg>
+                              </div>
+                              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{hero.name}</h3>
+                              <p className="text-sm text-gray-600 dark:text-gray-300">{hero.desc}</p>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
+                )}
 
-                {/* Schritt 3: Color Scheme */}
-                <div className={`bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 transition-opacity duration-300 ${
-                  config.heroType ? 'opacity-100' : 'opacity-50 pointer-events-none'
-                }`}>
-                  <div className="flex items-center mb-6">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 ${
-                      config.heroType ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-500'
-                    }`}>
-                      3
-                    </div>
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                      Farbschema wählen
-                    </h2>
+                {/* Schritt 3: Color Scheme - Collapsible */}
+                {config.heroType && (
+                  <div className={`bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-500 ${
+                    config.heroType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                  }`}>
+                    <button
+                      onClick={() => setConfig(prev => ({ ...prev, colorExpanded: !prev.colorExpanded }))}
+                      className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50/50 dark:hover:bg-gray-700/50 rounded-2xl transition-colors duration-300"
+                    >
+                      <div className="flex items-center">
+                        <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-lg">
+                          3
+                        </div>
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                          Farbschema wählen
+                        </h2>
+                      </div>
+                      <svg className={`w-6 h-6 text-gray-500 transition-transform duration-300 ${config.colorExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                      </svg>
+                    </button>
+                    
+                    {config.colorExpanded && (
+                      <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                          {[
+                            { 
+                              key: 'blue', 
+                              name: 'Ocean Blue', 
+                              desc: 'Vertrauen & Professionalität',
+                              colors: 'from-blue-500 to-blue-600',
+                              accent: 'bg-blue-500'
+                            },
+                            { 
+                              key: 'green', 
+                              name: 'Nature Green', 
+                              desc: 'Wachstum & Nachhaltigkeit',
+                              colors: 'from-green-500 to-green-600',
+                              accent: 'bg-green-500'
+                            },
+                            { 
+                              key: 'purple', 
+                              name: 'Royal Purple', 
+                              desc: 'Kreativität & Innovation',
+                              colors: 'from-purple-500 to-purple-600',
+                              accent: 'bg-purple-500'
+                            },
+                            { 
+                              key: 'orange', 
+                              name: 'Energy Orange', 
+                              desc: 'Dynamik & Enthusiasmus',
+                              colors: 'from-orange-500 to-orange-600',
+                              accent: 'bg-orange-500'
+                            }
+                          ].map((color) => (
+                            <button
+                              key={color.key}
+                              onClick={() => handleConfigChange('colorScheme', color.key)}
+                              className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-center transform hover:scale-105 ${
+                                config.colorScheme === color.key
+                                  ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
+                                  : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
+                              }`}
+                            >
+                              <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-r ${color.colors} rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300`}></div>
+                              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{color.name}</h3>
+                              <p className="text-sm text-gray-600 dark:text-gray-300">{color.desc}</p>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {[
-                      { key: 'blue', name: 'Blau', colors: 'from-blue-500 to-blue-600' },
-                      { key: 'green', name: 'Grün', colors: 'from-green-500 to-green-600' },
-                      { key: 'purple', name: 'Lila', colors: 'from-purple-500 to-purple-600' },
-                      { key: 'orange', name: 'Orange', colors: 'from-orange-500 to-orange-600' }
-                    ].map((color) => (
-                      <button
-                        key={color.key}
-                        onClick={() => handleConfigChange('colorScheme', color.key)}
-                        disabled={!config.heroType}
-                        className={`p-3 rounded-xl border-2 transition-all duration-300 ${
-                          config.colorScheme === color.key
-                            ? 'border-blue-500 bg-blue-50/80 dark:bg-blue-900/20'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
-                        }`}
-                      >
-                        <div className={`w-full h-12 bg-gradient-to-r ${color.colors} rounded-lg mb-2`}></div>
-                        <h3 className="text-xs font-semibold text-gray-900 dark:text-white">{color.name}</h3>
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                )}
 
               </div>
 
