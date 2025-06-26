@@ -71,6 +71,17 @@ export default function HomePage() {
       ...prev,
       [key]: value
     }))
+    
+    // Sofortiges Update der Website im Hintergrund
+    if (key === 'layoutType') {
+      setSiteMode(value as 'onepage' | 'multipage')
+    }
+    
+    if (key === 'heroType' && value) {
+      localStorage.setItem('demo-hero-type', value)
+      // Force re-render of Hero component
+      window.dispatchEvent(new Event('hero-type-changed'))
+    }
   }
 
   const canGenerate = config.layoutType && config.heroType && config.colorScheme
@@ -204,10 +215,10 @@ export default function HomePage() {
               {/* Header */}
               <div className="text-center mb-12">
                 <h1 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                  Website Konfigurator
+                  Webseiten Erstellung
                 </h1>
                 <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                  Gestalten Sie Ihre perfekte Handwerker-Website in nur 3 einfachen Schritten
+                  Ich habe bereits eine Webseite für Sie vorbereitet. Sie haben nun die Möglichkeit zwischen Umfang, Design und Farbe zu entscheiden. Dies dient als Inspiration für Ihre finale Website.
                 </p>
               </div>
 
@@ -221,7 +232,7 @@ export default function HomePage() {
                       1
                     </div>
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                      Website-Typ wählen
+                      Website-Umfang wählen
                     </h2>
                   </div>
                   
@@ -240,10 +251,10 @@ export default function HomePage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                           </svg>
                         </div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">One-Page</h3>
+                        <h3 className="font-semibold text-gray-900 dark:text-white">Kompakte Website</h3>
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-300">
-                        Scrolling durch verschiedene Bereiche
+                        Alle Informationen auf einer Seite zum Durchscrollen
                       </p>
                     </button>
 
@@ -261,10 +272,10 @@ export default function HomePage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                           </svg>
                         </div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">Mehrseiten</h3>
+                        <h3 className="font-semibold text-gray-900 dark:text-white">Erweiterte Website</h3>
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-300">
-                        Separate Seiten für Services, Team etc.
+                        Mehrere Unterseiten für umfangreichere Inhalte
                       </p>
                     </button>
                   </div>
@@ -281,7 +292,7 @@ export default function HomePage() {
                       2
                     </div>
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                      Startseiten-Design wählen
+                      Design-Stil wählen
                     </h2>
                   </div>
                   
@@ -368,10 +379,10 @@ export default function HomePage() {
                   {isGenerating ? (
                     <div className="flex items-center">
                       <ModernSpinner variant="dots" size="sm" color="white" className="mr-3" />
-                      Website wird generiert...
+                      Website wird angepasst...
                     </div>
                   ) : (
-                    'Website jetzt generieren'
+                    'Anpassungen übernehmen'
                   )}
                 </button>
               </div>
@@ -380,7 +391,7 @@ export default function HomePage() {
               <div className="mt-6">
                 <div className="flex justify-center space-x-4">
                   {[
-                    { step: 1, completed: !!config.layoutType, label: 'Typ' },
+                    { step: 1, completed: !!config.layoutType, label: 'Umfang' },
                     { step: 2, completed: !!config.heroType, label: 'Design' },
                     { step: 3, completed: !!config.colorScheme, label: 'Farbe' }
                   ].map((item) => (
@@ -401,12 +412,20 @@ export default function HomePage() {
 
       {/* Show Website Button (when configurator is hidden) */}
       {!showConfigurator && (
-        <button
-          onClick={() => setShowConfigurator(true)}
-          className="fixed top-4 right-4 z-40 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg transition-all duration-300 text-sm"
-        >
-          Konfigurator öffnen
-        </button>
+        <div className="fixed top-4 right-4 z-40 flex flex-col gap-2">
+          <button
+            onClick={() => setShowConfigurator(true)}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg transition-all duration-300 text-sm"
+          >
+            Konfigurator öffnen
+          </button>
+          
+          {/* Debug Info */}
+          <div className="px-3 py-2 bg-black/80 text-white rounded-lg text-xs backdrop-blur-sm">
+            <div>Modus: {siteMode === 'onepage' ? 'One-Page' : 'Mehrseiten'}</div>
+            <div>Hero: {localStorage.getItem('demo-hero-type') || 'single'}</div>
+          </div>
+        </div>
       )}
     </div>
   )

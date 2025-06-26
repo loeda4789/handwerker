@@ -468,13 +468,33 @@ function HeroSplit({ content }: HeroProps) {
 
 // Main Hero Component
 export default function Hero({ content }: HeroProps) {
-  // Demo-Fallback: localStorage prüfen
-  const demoHeroType = typeof window !== 'undefined' ? localStorage.getItem('demo-hero-type') : null
-  const heroType = demoHeroType || content.hero?.type || 'single'
+  const [currentHeroType, setCurrentHeroType] = useState<string>('single')
   
-  console.log('Hero Type:', heroType, demoHeroType ? '(aus localStorage)' : '(aus Content)')
+  useEffect(() => {
+    // Initial load
+    const demoHeroType = typeof window !== 'undefined' ? localStorage.getItem('demo-hero-type') : null
+    const heroType = demoHeroType || content.hero?.type || 'single'
+    setCurrentHeroType(heroType)
+    
+    // Listen for changes
+    const handleHeroTypeChange = () => {
+      const newHeroType = localStorage.getItem('demo-hero-type') || content.hero?.type || 'single'
+      setCurrentHeroType(newHeroType)
+    }
+    
+    // Listen for custom event and storage changes
+    window.addEventListener('hero-type-changed', handleHeroTypeChange)
+    window.addEventListener('storage', handleHeroTypeChange)
+    
+    return () => {
+      window.removeEventListener('hero-type-changed', handleHeroTypeChange)
+      window.removeEventListener('storage', handleHeroTypeChange)
+    }
+  }, [content.hero?.type])
   
-  switch (heroType) {
+  console.log('Hero Type:', currentHeroType)
+  
+  switch (currentHeroType) {
     case 'slider':
       return <HeroSlider content={content} />
     case '3d':
