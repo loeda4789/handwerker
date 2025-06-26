@@ -210,9 +210,8 @@ export default function Header({ content }: HeaderProps) {
                               <Link
                                 key={index}
                                 href={dropdownItem.href}
-                                className="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary transition-colors duration-200"
+                                className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary transition-colors duration-200"
                               >
-                                <span className="text-xl mr-3">{dropdownItem.icon}</span>
                                 <span className="font-medium">{dropdownItem.label}</span>
                               </Link>
                             ))}
@@ -282,9 +281,8 @@ export default function Header({ content }: HeaderProps) {
                         key={index}
                         href={dropdownItem.href}
                         onClick={closeMobileMenu}
-                        className="flex items-center justify-center text-xl font-light text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-300"
+                        className="block text-center text-xl font-light text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-300"
                       >
-                        <span className="text-2xl mr-3">{dropdownItem.icon}</span>
                         <span>{dropdownItem.label}</span>
                       </Link>
                     ))}
