@@ -20,6 +20,7 @@ import SpeedDial from '@/components/SpeedDial'
 import { applyColorScheme } from '@/lib/colorSchemes'
 import { MdDescription, MdViewCarousel, MdVideoLibrary, MdViewQuilt } from 'react-icons/md'
 import ConfiguratorButton from '@/components/ConfiguratorButton'
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
@@ -43,6 +44,9 @@ export default function HomePage() {
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [forceUpdate, setForceUpdate] = useState(0)
   const router = useRouter()
+
+  // Initialize scroll animations
+  useScrollAnimation()
 
   useEffect(() => {
     const loadContent = () => {
