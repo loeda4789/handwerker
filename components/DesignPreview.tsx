@@ -243,11 +243,11 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     <div className="fixed inset-0 z-[9999] bg-black/50">
       <div className="fixed top-4 right-4 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
         {/* Header */}
-        <div className="bg-blue-500 text-white px-4 py-3 rounded-t-lg">
+        <div className="bg-gray-600 text-white px-4 py-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <span className="text-lg">🎨</span>
-              <h3 className="font-semibold text-sm">Design Einstellungen</h3>
+              <span className="text-lg">⚙️</span>
+              <h3 className="font-semibold text-sm">Einstellungen</h3>
             </div>
             <button
               onClick={onClose}
@@ -261,9 +261,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Tabs */}
         <div className="flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
           {[
-            { key: 'design', label: 'Farben', icon: '🎨' },
-            { key: 'layout', label: 'Seiten', icon: '📄' },
-            { key: 'hero', label: 'Startbereich', icon: '🏠' }
+            { key: 'design', label: 'Aussehen', icon: '🎨' },
+            { key: 'layout', label: 'Aufbau', icon: '📄' },
+            { key: 'hero', label: 'Startbild', icon: '🏠' }
           ].map((tab) => (
             <button
               key={tab.key}
@@ -286,7 +286,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           {/* Design Tab - Farben */}
           {activeTab === 'design' && (
             <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">Farbschema auswählen</h4>
+              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">Farbe wählen</h4>
               
               <div className="space-y-3">
                 {themePresets.map((preset, index) => (
@@ -297,20 +297,10 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   >
                     <div className="flex items-center justify-between mb-2">
                       <h5 className="font-medium text-gray-800 dark:text-white">{preset.name}</h5>
-                      <div className="flex space-x-1">
-                        <div 
-                          className="w-5 h-5 rounded-full border border-gray-300 dark:border-gray-500"
-                          style={{ backgroundColor: preset.colors.primary }}
-                        ></div>
-                        <div 
-                          className="w-5 h-5 rounded-full border border-gray-300 dark:border-gray-500"
-                          style={{ backgroundColor: preset.colors.secondary }}
-                        ></div>
-                        <div 
-                          className="w-5 h-5 rounded-full border border-gray-300 dark:border-gray-500"
-                          style={{ backgroundColor: preset.colors.accent }}
-                        ></div>
-                      </div>
+                      <div 
+                        className="w-6 h-6 rounded-full border border-gray-300 dark:border-gray-500"
+                        style={{ backgroundColor: preset.colors.primary }}
+                      ></div>
                     </div>
                     <p className="text-xs text-gray-600 dark:text-gray-400">
                       {preset.description}
@@ -357,9 +347,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               <div>
                 <button
                   onClick={exportTheme}
-                  className="w-full px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-lg transition-colors"
+                  className="w-full px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white text-sm rounded-lg transition-colors"
                 >
-                  📁 Theme exportieren
+                  💾 Speichern
                 </button>
               </div>
             </div>
@@ -369,7 +359,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           {activeTab === 'layout' && (
             <div className="space-y-4">
               <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">
-                Seitenaufbau - Aktuell: {currentSiteMode === 'onepage' ? 'Eine Seite' : 'Mehrere Seiten'}
+                Aufbau - Aktuell: {currentSiteMode === 'onepage' ? 'Eine Seite (79€ mtl)' : 'Mehrere Seiten (99€ mtl)'}
               </h4>
               
               <div className="space-y-3">
@@ -384,7 +374,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   <div className="flex items-center space-x-3">
                     <span className="text-2xl">📄</span>
                     <div>
-                      <div className="font-medium text-gray-800 dark:text-white">Eine Seite</div>
+                      <div className="font-medium text-gray-800 dark:text-white">Eine Seite (79€ mtl)</div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">Alle Inhalte untereinander auf einer langen Seite</div>
                     </div>
                     {currentSiteMode === 'onepage' && (
@@ -404,7 +394,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   <div className="flex items-center space-x-3">
                     <span className="text-2xl">🗂️</span>
                     <div>
-                      <div className="font-medium text-gray-800 dark:text-white">Mehrere Seiten</div>
+                      <div className="font-medium text-gray-800 dark:text-white">Mehrere Seiten (99€ mtl)</div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">Getrennte Seiten für Services, Referenzen, etc.</div>
                     </div>
                     {currentSiteMode === 'multipage' && (
@@ -420,7 +410,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           {activeTab === 'hero' && (
             <div className="space-y-4">
               <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">
-                Startbereich-Design - Aktuell: {currentHeroType}
+                Startbild - Aktuell: {currentHeroType}
               </h4>
               
               <div className="space-y-3">

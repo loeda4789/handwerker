@@ -10,10 +10,10 @@ export default function DesignPreviewButton() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-4 z-40 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-200 hover:scale-105"
-        title="Design Vorschau"
+        className="fixed bottom-4 right-4 z-40 bg-gray-600 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
+        title="Einstellungen"
       >
-        🎨
+        ⚙️
       </button>
       
       <DesignPreview 
