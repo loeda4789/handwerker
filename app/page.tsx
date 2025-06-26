@@ -18,6 +18,7 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import SpeedDial from '@/components/SpeedDial'
 import { applyColorScheme } from '@/lib/colorSchemes'
+import { MdDescription, MdViewCarousel, MdVideoLibrary, MdViewQuilt } from 'react-icons/md'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
@@ -301,12 +302,12 @@ export default function HomePage() {
                 <div className="space-y-6">
                   
                   {/* Schritt 1: Layout Type */}
-                  <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/30 dark:border-gray-700/30 shadow-lg">
+                  <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm">
                     <div className="flex items-center mb-6">
-                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-lg">
+                      <div className="w-8 h-8 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-medium mr-4 text-sm">
                         1
                       </div>
-                      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                         Website-Umfang wählen
                       </h2>
                     </div>
@@ -314,50 +315,50 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <button
                         onClick={() => handleConfigChange('layoutType', 'onepage')}
-                        className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-left transform hover:scale-105 ${
+                        className={`p-6 rounded-xl border transition-all duration-200 text-left group hover:shadow-md ${
                           config.layoutType === 'onepage'
-                            ? 'border-blue-500 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 shadow-xl scale-105'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-lg'
+                            ? 'border-gray-900 bg-gray-50 dark:border-gray-100 dark:bg-gray-800 shadow-sm'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                         }`}
                       >
-                        <div className="flex items-center mb-4">
-                          <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mr-4 transition-colors duration-300 ${
+                        <div className="flex items-center mb-3">
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 ${
                             config.layoutType === 'onepage' 
-                              ? 'bg-blue-500 text-white' 
-                              : 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 group-hover:bg-blue-200 dark:group-hover:bg-blue-800'
+                              ? 'bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900' 
+                              : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
                           }`}>
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"/>
                             </svg>
                           </div>
-                          <h3 className="text-xl font-bold text-gray-900 dark:text-white">Kompakte Website</h3>
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Kompakte Website</h3>
                         </div>
-                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
                           Alle Informationen auf einer scrollbaren Seite - perfekt für kleinere Betriebe
                         </p>
                       </button>
 
                       <button
                         onClick={() => handleConfigChange('layoutType', 'multipage')}
-                        className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-left transform hover:scale-105 ${
+                        className={`p-6 rounded-xl border transition-all duration-200 text-left group hover:shadow-md ${
                           config.layoutType === 'multipage'
-                            ? 'border-green-500 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 shadow-xl scale-105'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500 hover:shadow-lg'
+                            ? 'border-gray-900 bg-gray-50 dark:border-gray-100 dark:bg-gray-800 shadow-sm'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                         }`}
                       >
-                        <div className="flex items-center mb-4">
-                          <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mr-4 transition-colors duration-300 ${
+                        <div className="flex items-center mb-3">
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 ${
                             config.layoutType === 'multipage' 
-                              ? 'bg-green-500 text-white' 
-                              : 'bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 group-hover:bg-green-200 dark:group-hover:bg-green-800'
+                              ? 'bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900' 
+                              : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
                           }`}>
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
                             </svg>
                           </div>
-                          <h3 className="text-xl font-bold text-gray-900 dark:text-white">Erweiterte Website</h3>
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Erweiterte Website</h3>
                         </div>
-                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
                           Separate Unterseiten für umfangreichere Inhalte und bessere Navigation
                         </p>
                       </button>
@@ -366,22 +367,22 @@ export default function HomePage() {
 
                   {/* Schritt 2: Hero Design - Collapsible */}
                   {config.layoutType && (
-                    <div className={`bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200/30 dark:border-gray-700/30 shadow-lg transition-all duration-500 ${
+                    <div className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
                       config.layoutType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
                     }`}>
                       <button
                         onClick={() => setConfig(prev => ({ ...prev, heroExpanded: !prev.heroExpanded }))}
-                        className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50/50 dark:hover:bg-gray-700/50 rounded-2xl transition-colors duration-300"
+                        className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-xl transition-colors duration-200"
                       >
                         <div className="flex items-center">
-                          <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-lg">
+                          <div className="w-8 h-8 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-medium mr-4 text-sm">
                             2
                           </div>
-                          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                             Design-Stil wählen
                           </h2>
                         </div>
-                        <svg className={`w-6 h-6 text-gray-500 transition-transform duration-300 ${config.heroExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.heroExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                       </button>
@@ -394,47 +395,45 @@ export default function HomePage() {
                                 key: 'single', 
                                 name: 'Klassisch', 
                                 desc: 'Zeitlos & elegant',
-                                icon: 'M4 6h16M4 12h16M4 18h16',
-                                gradient: 'from-blue-500 to-indigo-600'
+                                Icon: MdDescription
                               },
                               { 
                                 key: 'slider', 
                                 name: 'Slider', 
                                 desc: 'Dynamisch & modern',
-                                icon: 'M9 5l7 7-7 7',
-                                gradient: 'from-purple-500 to-pink-600'
+                                Icon: MdViewCarousel
                               },
                               { 
                                 key: 'video', 
                                 name: 'Video', 
                                 desc: 'Dynamisch & eindrucksvoll',
-                                icon: 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
-                                gradient: 'from-orange-500 to-red-600'
+                                Icon: MdVideoLibrary
                               },
                               { 
                                 key: 'split', 
                                 name: 'Geteilt', 
                                 desc: 'Strukturiert & klar',
-                                icon: 'M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h2m8-6V7a2 2 0 00-2-2h-2m2 2v6a2 2 0 002 2h2',
-                                gradient: 'from-green-500 to-teal-600'
+                                Icon: MdViewQuilt
                               }
                             ].map((hero) => (
                               <button
                                 key={hero.key}
                                 onClick={() => handleConfigChange('heroType', hero.key)}
-                                className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-center transform hover:scale-105 ${
+                                className={`group p-6 rounded-xl border transition-all duration-200 text-center hover:shadow-md ${
                                   config.heroType === hero.key
-                                    ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/20 shadow-xl scale-105'
-                                    : 'border-gray-200 dark:border-gray-600 hover:border-purple-300 dark:hover:border-purple-500 hover:shadow-lg'
+                                    ? 'border-gray-900 bg-gray-50 dark:border-gray-100 dark:bg-gray-800 shadow-sm'
+                                    : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                                 }`}
                               >
-                                <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r ${hero.gradient} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
-                                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={hero.icon}/>
-                                  </svg>
+                                <div className="w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                                  <hero.Icon className={`w-8 h-8 ${
+                                    config.heroType === hero.key 
+                                      ? 'text-gray-900 dark:text-gray-100' 
+                                      : 'text-gray-500 dark:text-gray-400'
+                                  }`} />
                                 </div>
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{hero.name}</h3>
-                                <p className="text-sm text-gray-600 dark:text-gray-300">{hero.desc}</p>
+                                <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-1">{hero.name}</h3>
+                                <p className="text-xs text-gray-500 dark:text-gray-400">{hero.desc}</p>
                               </button>
                             ))}
                           </div>
@@ -445,22 +444,22 @@ export default function HomePage() {
 
                   {/* Schritt 3: Color Scheme - Collapsible */}
                   {config.heroType && (
-                    <div className={`bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200/30 dark:border-gray-700/30 shadow-lg transition-all duration-500 ${
+                    <div className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
                       config.heroType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
                     }`}>
                       <button
                         onClick={() => setConfig(prev => ({ ...prev, colorExpanded: !prev.colorExpanded }))}
-                        className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50/50 dark:hover:bg-gray-700/50 rounded-2xl transition-colors duration-300"
+                        className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-xl transition-colors duration-200"
                       >
                         <div className="flex items-center">
-                          <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-lg">
+                          <div className="w-8 h-8 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-medium mr-4 text-sm">
                             3
                           </div>
-                          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                             Farbschema wählen
                           </h2>
                         </div>
-                        <svg className={`w-6 h-6 text-gray-500 transition-transform duration-300 ${config.colorExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.colorExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                       </button>
@@ -551,16 +550,16 @@ export default function HomePage() {
             </div>
 
             {/* Fixed Footer with Button */}
-            <div className="border-t border-gray-200/30 dark:border-gray-700/30 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-b-3xl">
+            <div className="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-b-2xl">
               <div className="p-6">
                 <div className="text-center">
                   <button
                     onClick={handleGenerate}
                     disabled={!canGenerate || isGenerating}
-                    className={`px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
+                    className={`px-8 py-3 rounded-lg font-medium text-base transition-all duration-200 ${
                       canGenerate && !isGenerating
-                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
-                        : 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                        ? 'bg-gray-900 hover:bg-gray-800 text-white shadow-sm hover:shadow-md'
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
                     }`}
                   >
                     {isGenerating ? (
