@@ -304,7 +304,7 @@ export default function HomePage() {
                   {/* Schritt 1: Layout Type */}
                   <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm">
                     <div className="flex items-center mb-6">
-                      <div className="w-8 h-8 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-medium mr-4 text-sm">
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-medium mr-4 text-sm">
                         1
                       </div>
                       <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -317,15 +317,15 @@ export default function HomePage() {
                         onClick={() => handleConfigChange('layoutType', 'onepage')}
                         className={`p-6 rounded-xl border transition-all duration-200 text-left group hover:shadow-md ${
                           config.layoutType === 'onepage'
-                            ? 'border-gray-900 bg-gray-50 dark:border-gray-100 dark:bg-gray-800 shadow-sm'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                            ? 'border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-900/30 shadow-sm'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500'
                         }`}
                       >
                         <div className="flex items-center mb-3">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 ${
                             config.layoutType === 'onepage' 
-                              ? 'bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900' 
-                              : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
+                              ? 'bg-blue-600 text-white dark:bg-blue-500' 
+                              : 'bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400'
                           }`}>
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"/>
@@ -342,15 +342,15 @@ export default function HomePage() {
                         onClick={() => handleConfigChange('layoutType', 'multipage')}
                         className={`p-6 rounded-xl border transition-all duration-200 text-left group hover:shadow-md ${
                           config.layoutType === 'multipage'
-                            ? 'border-gray-900 bg-gray-50 dark:border-gray-100 dark:bg-gray-800 shadow-sm'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                            ? 'border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-900/30 shadow-sm'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500'
                         }`}
                       >
                         <div className="flex items-center mb-3">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 ${
                             config.layoutType === 'multipage' 
-                              ? 'bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900' 
-                              : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
+                              ? 'bg-green-600 text-white dark:bg-green-500' 
+                              : 'bg-green-100 text-green-600 dark:bg-green-900/50 dark:text-green-400'
                           }`}>
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
@@ -375,7 +375,7 @@ export default function HomePage() {
                         className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-xl transition-colors duration-200"
                       >
                         <div className="flex items-center">
-                          <div className="w-8 h-8 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-medium mr-4 text-sm">
+                          <div className="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-medium mr-4 text-sm">
                             2
                           </div>
                           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -395,25 +395,29 @@ export default function HomePage() {
                                 key: 'single', 
                                 name: 'Klassisch', 
                                 desc: 'Zeitlos & elegant',
-                                Icon: MdDescription
+                                Icon: MdDescription,
+                                color: 'indigo'
                               },
                               { 
                                 key: 'slider', 
                                 name: 'Slider', 
                                 desc: 'Dynamisch & modern',
-                                Icon: MdViewCarousel
+                                Icon: MdViewCarousel,
+                                color: 'purple'
                               },
                               { 
                                 key: 'video', 
                                 name: 'Video', 
                                 desc: 'Dynamisch & eindrucksvoll',
-                                Icon: MdVideoLibrary
+                                Icon: MdVideoLibrary,
+                                color: 'orange'
                               },
                               { 
                                 key: 'split', 
                                 name: 'Geteilt', 
                                 desc: 'Strukturiert & klar',
-                                Icon: MdViewQuilt
+                                Icon: MdViewQuilt,
+                                color: 'teal'
                               }
                             ].map((hero) => (
                               <button
@@ -421,15 +425,15 @@ export default function HomePage() {
                                 onClick={() => handleConfigChange('heroType', hero.key)}
                                 className={`group p-6 rounded-xl border transition-all duration-200 text-center hover:shadow-md ${
                                   config.heroType === hero.key
-                                    ? 'border-gray-900 bg-gray-50 dark:border-gray-100 dark:bg-gray-800 shadow-sm'
-                                    : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                                    ? `border-${hero.color}-500 bg-${hero.color}-50 dark:border-${hero.color}-400 dark:bg-${hero.color}-900/30 shadow-sm`
+                                    : `border-gray-200 dark:border-gray-600 hover:border-${hero.color}-300 dark:hover:border-${hero.color}-500`
                                 }`}
                               >
                                 <div className="w-12 h-12 mx-auto mb-3 flex items-center justify-center">
                                   <hero.Icon className={`w-8 h-8 ${
                                     config.heroType === hero.key 
-                                      ? 'text-gray-900 dark:text-gray-100' 
-                                      : 'text-gray-500 dark:text-gray-400'
+                                      ? `text-${hero.color}-600 dark:text-${hero.color}-400` 
+                                      : `text-${hero.color}-500 dark:text-${hero.color}-400`
                                   }`} />
                                 </div>
                                 <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-1">{hero.name}</h3>
@@ -452,7 +456,7 @@ export default function HomePage() {
                         className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-xl transition-colors duration-200"
                       >
                         <div className="flex items-center">
-                          <div className="w-8 h-8 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-medium mr-4 text-sm">
+                          <div className="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-medium mr-4 text-sm">
                             3
                           </div>
                           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -579,24 +583,17 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Show Website Button (when configurator is hidden) */}
-      {!showConfigurator && (
-        <div className="fixed top-4 right-4 z-40 flex flex-col gap-2">
-          <button
-            onClick={() => setShowConfigurator(true)}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg transition-all duration-300 text-sm"
-          >
-            Konfigurator öffnen
-          </button>
-          
-          {/* Debug Info */}
-          <div className="px-3 py-2 bg-black/80 text-white rounded-lg text-xs backdrop-blur-sm">
-            <div>Modus: {siteMode === 'onepage' ? 'One-Page' : 'Mehrseiten'}</div>
-            <div>Hero: {typeof window !== 'undefined' ? localStorage.getItem('demo-hero-type') || 'single' : 'single'}</div>
-            <div>Config: {config.layoutType || 'none'}</div>
-          </div>
-        </div>
-      )}
+      {/* Configurator Toggle Button */}
+      <button
+        onClick={() => setShowConfigurator(true)}
+        className="fixed bottom-6 left-6 z-40 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+        aria-label="Website Konfigurator öffnen"
+      >
+        <svg className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+      </button>
     </div>
   )
 } 
