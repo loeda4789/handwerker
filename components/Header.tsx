@@ -98,18 +98,6 @@ export default function Header({ content }: HeaderProps) {
     if (siteMode === 'multipage') {
       return [
         { 
-          href: '/services', 
-          label: 'Leistungen', 
-          id: 'leistungen',
-          hasDropdown: true,
-          dropdownItems: content.services.map((service: any, index: number) => ({
-            href: `/services/leistung-${index + 1}`,
-            label: service.title,
-            icon: service.icon
-          }))
-        },
-        { href: '/referenzen', label: 'Referenzen', id: 'referenzen' },
-        { 
           href: '/ueber-uns', 
           label: 'Über uns', 
           id: 'ueber-uns',
@@ -121,6 +109,18 @@ export default function Header({ content }: HeaderProps) {
             { href: '/ueber-uns/zertifikate', label: 'Zertifikate & Auszeichnungen' }
           ]
         },
+        { 
+          href: '/services', 
+          label: 'Leistungen', 
+          id: 'leistungen',
+          hasDropdown: true,
+          dropdownItems: content.services.map((service: any, index: number) => ({
+            href: `/services/leistung-${index + 1}`,
+            label: service.title,
+            icon: service.icon
+          }))
+        },
+        { href: '/referenzen', label: 'Referenzen', id: 'referenzen' },
         { href: '/faq', label: 'FAQ', id: 'faq' },
         { href: '/kontakt', label: 'Kontakt', id: 'kontakt' }
       ]
