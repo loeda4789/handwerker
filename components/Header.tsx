@@ -109,7 +109,18 @@ export default function Header({ content }: HeaderProps) {
           }))
         },
         { href: '/referenzen', label: 'Referenzen', id: 'referenzen' },
-        { href: '/ueber-uns', label: content.about.title, id: 'ueber-uns' },
+        { 
+          href: '/ueber-uns', 
+          label: 'Über uns', 
+          id: 'ueber-uns',
+          hasDropdown: true,
+          dropdownItems: [
+            { href: '/ueber-uns/team', label: 'Unser Team' },
+            { href: '/ueber-uns/betrieb', label: 'Unser Betrieb' },
+            { href: '/ueber-uns/partner', label: 'Partner & Zulieferer' },
+            { href: '/ueber-uns/zertifikate', label: 'Zertifikate & Auszeichnungen' }
+          ]
+        },
         { href: '/faq', label: 'FAQ', id: 'faq' },
         { href: '/kontakt', label: 'Kontakt', id: 'kontakt' }
       ]
