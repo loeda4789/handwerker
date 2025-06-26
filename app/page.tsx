@@ -1,296 +1,303 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getContentData, getContentDataByBranche } from '@/lib/config'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { getContentDataByBranche } from '@/lib/config'
 import { ContentData } from '@/types/content'
-import Header from '@/components/Header'
-import Hero from '@/components/Hero'
-import About from '@/components/About'
-import Stats from '@/components/Stats'
-import Services from '@/components/Services'
-import Team from '@/components/Team'
-import BeforeAfter from '@/components/BeforeAfter'
-import Testimonials from '@/components/Testimonials'
-import ProjectProcess from '@/components/ProjectProcess'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
-import DesignPreviewButton from '@/components/DesignPreviewButton'
-import SpeedDial from '@/components/SpeedDial'
-import ImagePerformanceMonitor from '@/components/ImagePerformanceMonitor'
 import ModernSpinner from '@/components/ModernSpinner'
-import Link from 'next/link'
 
+interface ConfigState {
+  layoutType: 'onepage' | 'multipage' | ''
+  heroType: 'default' | 'alternative' | ''
+  colorScheme: 'blue' | 'green' | 'purple' | 'orange' | ''
+}
 
-export default function Home() {
-  const [content, setContent] = useState<ContentData>(getContentData())
-  const [loading, setLoading] = useState(true)
-  const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
+export default function HomePage() {
+  const [config, setConfig] = useState<ConfigState>({
+    layoutType: '',
+    heroType: '',
+    colorScheme: ''
+  })
+  const [isGenerating, setIsGenerating] = useState(false)
+  const [content, setContent] = useState<ContentData | null>(null)
+  const router = useRouter()
 
-  // Site-Mode aus localStorage laden
   useEffect(() => {
-    const savedMode = localStorage.getItem('site-mode') as 'onepage' | 'multipage'
-    if (savedMode) {
-      setSiteMode(savedMode)
-    }
-  }, [])
-
-  useEffect(() => {
-    // Content basierend auf URL-Parameter laden
     const loadContent = () => {
       try {
         const loadedContent = getContentDataByBranche()
         setContent(loadedContent)
       } catch (error) {
         console.error('Fehler beim Laden des Contents:', error)
-        setContent(getContentData()) // Fallback
-      } finally {
-        setLoading(false)
       }
     }
-
     loadContent()
-
-    // URL-Änderungen überwachen
-    const handleUrlChange = () => {
-      setLoading(true)
-      loadContent()
-    }
-
-    window.addEventListener('popstate', handleUrlChange)
-    
-    return () => {
-      window.removeEventListener('popstate', handleUrlChange)
-    }
   }, [])
 
-  // Function to scroll to footer section
-  const scrollToContact = () => {
-    const footerSection = document.getElementById('footer')
-    if (footerSection) {
-      footerSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      })
-    }
+  const handleConfigChange = (key: keyof ConfigState, value: string) => {
+    setConfig(prev => ({
+      ...prev,
+      [key]: value
+    }))
   }
 
-  // Scroll Animation Observer - mit Verzögerung und Debugging
-  useEffect(() => {
-    // Nur für One-Page Modus
-    if (siteMode !== 'onepage') return
+  const canGenerate = config.layoutType && config.heroType && config.colorScheme
 
-    // Kleine Verzögerung, damit alle Komponenten gerendert sind
-    const setupObserver = () => {
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            console.log('Element wird sichtbar:', entry.target)
-            entry.target.classList.add('animate-in')
-          }
-        })
-      }, observerOptions)
-
-      // Observe all elements with animate-on-scroll class
-      const animateElements = document.querySelectorAll('.animate-on-scroll')
-      console.log('Gefundene animate-on-scroll Elemente:', animateElements.length)
-      
-      animateElements.forEach((el, index) => {
-        console.log(`Element ${index}:`, el)
-        observer.observe(el)
-      })
-
-      return observer
+  const handleGenerate = async () => {
+    if (!canGenerate) return
+    
+    setIsGenerating(true)
+    
+    // Simulate generation process
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    
+    // Update URL parameters and navigate
+    const params = new URLSearchParams()
+    params.set('layout', config.layoutType)
+    params.set('hero', config.heroType)
+    params.set('color', config.colorScheme)
+    
+    // Navigate to the generated page
+    if (config.layoutType === 'onepage') {
+      router.push(`/?${params.toString()}`)
+    } else {
+      router.push(`/?${params.toString()}`)
     }
+    
+    setIsGenerating(false)
+  }
 
-    // Verzögerung hinzufügen
-    const timer = setTimeout(() => {
-      const observer = setupObserver()
-      
-      return () => {
-        if (observer) {
-          observer.disconnect()
-        }
-      }
-    }, 500)
-
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [content, loading, siteMode])
-
-  // Fallback: Aktiviere alle Animationen nach 2 Sekunden falls Observer nicht funktioniert
-  useEffect(() => {
-    if (siteMode !== 'onepage') return
-
-    const fallbackTimer = setTimeout(() => {
-      const animateElements = document.querySelectorAll('.animate-on-scroll:not(.animate-in)')
-      if (animateElements.length > 0) {
-        console.log('Fallback: Aktiviere', animateElements.length, 'nicht-animierte Elemente')
-        animateElements.forEach((el) => {
-          el.classList.add('animate-in')
-        })
-      }
-    }, 2000)
-
-    return () => clearTimeout(fallbackTimer)
-  }, [content, siteMode])
-
-  // Services Preview Komponente für Multi-Page Modus
-  const ServicesPreview = () => (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Unsere Leistungen
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Professionelle Handwerksarbeit in allen Bereichen
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {content.services.slice(0, 3).map((service: any, index: number) => (
-            <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-2xl">{service.icon}</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                {service.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                {service.description}
-              </p>
-            </div>
-          ))}
-        </div>
-        
-        <div className="text-center">
-          <Link
-            href="/services"
-            className="inline-flex items-center px-8 py-3 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
-          >
-            Alle Leistungen ansehen
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-          </Link>
-        </div>
-      </div>
-    </section>
-  )
-
-  // Referenzen Preview Komponente für Multi-Page Modus  
-  const ReferenzenPreview = () => (
-    <section className="py-16 bg-white dark:bg-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Unsere Referenzen
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Erfolgreiche Projekte sprechen für sich
-          </p>
-        </div>
-        
-        <div className="text-center">
-          <Link
-            href="/referenzen"
-            className="inline-flex items-center px-8 py-3 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
-          >
-            Referenzen ansehen
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-          </Link>
-        </div>
-      </div>
-    </section>
-  )
-
-  // Contact CTA Komponente für Multi-Page Modus
-  const ContactCTA = () => (
-    <section className="py-16 bg-primary">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Bereit für Ihr Projekt?
-        </h2>
-        <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-          Kontaktieren Sie uns für eine kostenlose Beratung
-        </p>
-        <Link
-          href="/kontakt"
-          className="inline-flex items-center px-8 py-3 bg-white hover:bg-gray-100 text-primary rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
-        >
-          Jetzt Kontakt aufnehmen
-          <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </Link>
-      </div>
-    </section>
-  )
-
-  // Loading state
-  if (loading) {
+  if (!content) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="text-center">
           <ModernSpinner variant="dots" size="xl" color="primary" className="mb-4" />
-          <p className="text-text-secondary dark:text-light/80">Content wird geladen...</p>
+          <p className="text-gray-600 dark:text-gray-400">Wird geladen...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <main className="min-h-screen">
-      <Header content={content} />
-      <Hero content={content} />
-      
-      {/* One-Page Modus: Alle Sektionen */}
-      {siteMode === 'onepage' && (
-        <>
-          <About content={content} />
-          <Stats content={content} />
-          <Services content={content} />
-          <BeforeAfter content={content} />
-          <Team content={content} />
-          <Testimonials content={content} />
-          <ProjectProcess content={content} />
-          <Contact content={content} />
-        </>
-      )}
-      
-      {/* Multi-Page Modus: Nur Previews */}
-      {siteMode === 'multipage' && (
-        <>
-          <About content={content} />
-          <Stats content={content} />
-          <ServicesPreview />
-          <ReferenzenPreview />
-          <Testimonials content={content} />
-          <ContactCTA />
-        </>
-      )}
-      
-      <Footer content={content} />
-      
-      {/* Design Vorschau */}
-      <DesignPreviewButton />
-      
-      {/* Mobile Speed Dial */}
-      <SpeedDial 
-        phoneNumber={content.contact.phone}
-        onEmailClick={scrollToContact}
-      />
-      
-      {/* Image Performance Monitor (Development only) */}
-      <ImagePerformanceMonitor content={content} />
-    </main>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-4 py-12">
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+            Website Konfigurator
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Gestalten Sie Ihre perfekte Handwerker-Website in nur 3 einfachen Schritten
+          </p>
+        </div>
+
+        <div className="max-w-4xl mx-auto">
+          
+          {/* Configuration Steps */}
+          <div className="space-y-12">
+            
+            {/* Schritt 1: Layout Type */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex items-center mb-6">
+                <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold mr-4">
+                  1
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Website-Typ wählen
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <button
+                  onClick={() => handleConfigChange('layoutType', 'onepage')}
+                  className={`p-6 rounded-xl border-2 transition-all duration-300 text-left ${
+                    config.layoutType === 'onepage'
+                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                      : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                  }`}
+                >
+                  <div className="flex items-center mb-3">
+                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">One-Page Website</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Alles auf einer Seite - Scrolling durch verschiedene Bereiche
+                  </p>
+                </button>
+
+                <button
+                  onClick={() => handleConfigChange('layoutType', 'multipage')}
+                  className={`p-6 rounded-xl border-2 transition-all duration-300 text-left ${
+                    config.layoutType === 'multipage'
+                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                      : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                  }`}
+                >
+                  <div className="flex items-center mb-3">
+                    <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Mehrseiten-Website</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Separate Seiten für Kontakt, Services, Team etc.
+                  </p>
+                </button>
+              </div>
+            </div>
+
+            {/* Schritt 2: Hero Type */}
+            <div className={`bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 transition-opacity duration-300 ${
+              config.layoutType ? 'opacity-100' : 'opacity-50 pointer-events-none'
+            }`}>
+              <div className="flex items-center mb-6">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 ${
+                  config.layoutType ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-500'
+                }`}>
+                  2
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Startseiten-Design wählen
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <button
+                  onClick={() => handleConfigChange('heroType', 'default')}
+                  disabled={!config.layoutType}
+                  className={`p-6 rounded-xl border-2 transition-all duration-300 text-left ${
+                    config.heroType === 'default'
+                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                      : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                  }`}
+                >
+                  <div className="flex items-center mb-3">
+                    <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Standard Design</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Klassisches Layout mit Fokus auf Services und Portfolio
+                  </p>
+                </button>
+
+                <button
+                  onClick={() => handleConfigChange('heroType', 'alternative')}
+                  disabled={!config.layoutType}
+                  className={`p-6 rounded-xl border-2 transition-all duration-300 text-left ${
+                    config.heroType === 'alternative'
+                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                      : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                  }`}
+                >
+                  <div className="flex items-center mb-3">
+                    <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4l-2 16h14l-2-16M11 9h2m-2 4h2"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Modernes Design</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Innovatives Layout mit Bildrotation und dynamischen Elementen
+                  </p>
+                </button>
+              </div>
+            </div>
+
+            {/* Schritt 3: Color Scheme */}
+            <div className={`bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 transition-opacity duration-300 ${
+              config.heroType ? 'opacity-100' : 'opacity-50 pointer-events-none'
+            }`}>
+              <div className="flex items-center mb-6">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 ${
+                  config.heroType ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-500'
+                }`}>
+                  3
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Farbschema wählen
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  { key: 'blue', name: 'Blau', colors: 'from-blue-500 to-blue-600', accent: 'bg-blue-500' },
+                  { key: 'green', name: 'Grün', colors: 'from-green-500 to-green-600', accent: 'bg-green-500' },
+                  { key: 'purple', name: 'Lila', colors: 'from-purple-500 to-purple-600', accent: 'bg-purple-500' },
+                  { key: 'orange', name: 'Orange', colors: 'from-orange-500 to-orange-600', accent: 'bg-orange-500' }
+                ].map((color) => (
+                  <button
+                    key={color.key}
+                    onClick={() => handleConfigChange('colorScheme', color.key)}
+                    disabled={!config.heroType}
+                    className={`p-4 rounded-xl border-2 transition-all duration-300 ${
+                      config.colorScheme === color.key
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                        : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                    }`}
+                  >
+                    <div className={`w-full h-16 bg-gradient-to-r ${color.colors} rounded-lg mb-3`}></div>
+                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{color.name}</h3>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+          {/* Generate Button */}
+          <div className="text-center mt-12">
+            <button
+              onClick={handleGenerate}
+              disabled={!canGenerate || isGenerating}
+              className={`px-12 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
+                canGenerate && !isGenerating
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
+            >
+              {isGenerating ? (
+                <div className="flex items-center">
+                  <ModernSpinner variant="dots" size="sm" color="white" className="mr-3" />
+                  Website wird generiert...
+                </div>
+              ) : (
+                'Website jetzt generieren'
+              )}
+            </button>
+          </div>
+
+          {/* Progress Indicator */}
+          <div className="mt-8">
+            <div className="flex justify-center space-x-4">
+              {[
+                { step: 1, completed: !!config.layoutType, label: 'Website-Typ' },
+                { step: 2, completed: !!config.heroType, label: 'Design' },
+                { step: 3, completed: !!config.colorScheme, label: 'Farbe' }
+              ].map((item) => (
+                <div key={item.step} className="flex items-center">
+                  <div className={`w-4 h-4 rounded-full ${
+                    item.completed ? 'bg-blue-500' : 'bg-gray-300'
+                  }`}></div>
+                  <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
   )
 } 
