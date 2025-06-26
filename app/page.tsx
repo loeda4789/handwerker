@@ -194,7 +194,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen relative">
       {/* Background Website */}
-      <div className={`transition-all duration-500 ${showConfigurator ? 'opacity-30 blur-sm' : 'opacity-100 blur-0'}`}>
+      <div className={`transition-all duration-500 ${showConfigurator ? 'opacity-60 blur-[2px]' : 'opacity-100 blur-0'}`}>
         <Header content={content} />
         <Hero content={content} />
         
@@ -264,8 +264,8 @@ export default function HomePage() {
 
       {/* Configurator Overlay */}
       {showConfigurator && (
-        <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 max-w-4xl w-full max-h-[90vh] flex flex-col">
+        <div className="fixed inset-0 z-50 bg-black/10 backdrop-blur-[1px] flex items-center justify-center p-4">
+          <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200/30 dark:border-gray-700/30 max-w-4xl w-full max-h-[90vh] flex flex-col">
             
             {/* Scrollable Content */}
             <div className="flex-1 overflow-y-auto">
@@ -285,7 +285,7 @@ export default function HomePage() {
                 <div className="space-y-6">
                   
                   {/* Schritt 1: Layout Type */}
-                  <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
+                  <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/30 dark:border-gray-700/30 shadow-lg">
                     <div className="flex items-center mb-6">
                       <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-lg">
                         1
@@ -350,7 +350,7 @@ export default function HomePage() {
 
                   {/* Schritt 2: Hero Design - Collapsible */}
                   {config.layoutType && (
-                    <div className={`bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-500 ${
+                    <div className={`bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200/30 dark:border-gray-700/30 shadow-lg transition-all duration-500 ${
                       config.layoutType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
                     }`}>
                       <button
@@ -429,7 +429,7 @@ export default function HomePage() {
 
                   {/* Schritt 3: Color Scheme - Collapsible */}
                   {config.heroType && (
-                    <div className={`bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-500 ${
+                    <div className={`bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200/30 dark:border-gray-700/30 shadow-lg transition-all duration-500 ${
                       config.heroType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
                     }`}>
                       <button
@@ -535,7 +535,7 @@ export default function HomePage() {
             </div>
 
             {/* Fixed Footer with Button */}
-            <div className="border-t border-gray-200/50 dark:border-gray-700/50 bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-b-3xl">
+            <div className="border-t border-gray-200/30 dark:border-gray-700/30 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-b-3xl">
               <div className="p-6">
                 <div className="text-center">
                   <button
