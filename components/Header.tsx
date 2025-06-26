@@ -14,6 +14,7 @@ export default function Header({ content }: HeaderProps) {
   const [activeSection, setActiveSection] = useState('')
   const [isScrolled, setIsScrolled] = useState(false)
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
+  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   
   // Site-Mode aus localStorage laden
   useEffect(() => {
@@ -96,7 +97,17 @@ export default function Header({ content }: HeaderProps) {
   const getNavItems = () => {
     if (siteMode === 'multipage') {
       return [
-        { href: '/services', label: 'Leistungen', id: 'leistungen' },
+        { 
+          href: '/services', 
+          label: 'Leistungen', 
+          id: 'leistungen',
+          hasDropdown: true,
+          dropdownItems: content.services.map((service: any, index: number) => ({
+            href: `/services/leistung-${index + 1}`,
+            label: service.title,
+            icon: service.icon
+          }))
+        },
         { href: '/referenzen', label: 'Referenzen', id: 'referenzen' },
         { href: '/ueber-uns', label: content.about.title, id: 'ueber-uns' },
         { href: '/faq', label: 'FAQ', id: 'faq' },
@@ -172,19 +183,59 @@ export default function Header({ content }: HeaderProps) {
             {/* Desktop Navigation Menu */}
             <div className="hidden lg:flex lg:w-auto lg:order-1" id="desktop-menu">
               <ul className="flex flex-row font-medium space-x-8">
-                {navItems.map((item) => (
-                  <li key={item.id}>
-                    <Link
-                      href={item.href}
-                      onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : undefined}
-                      className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                        (siteMode === 'onepage' && activeSection === item.id) 
-                          ? 'text-primary dark:text-accent font-semibold' 
-                          : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
+                {navItems.map((item: any) => (
+                  <li key={item.id} className="relative">
+                    {item.hasDropdown && siteMode === 'multipage' ? (
+                      <div
+                        className="relative"
+                        onMouseEnter={() => setDropdownOpen(item.id)}
+                        onMouseLeave={() => setDropdownOpen(null)}
+                      >
+                        <Link
+                          href={item.href}
+                          className={`flex items-center py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
+                            (siteMode === 'onepage' && activeSection === item.id) 
+                              ? 'text-primary dark:text-accent font-semibold' 
+                              : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
+                          }`}
+                        >
+                          {item.label}
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                          </svg>
+                        </Link>
+                        
+                        {/* Dropdown Menu */}
+                        <div className={`absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 z-50 ${
+                          dropdownOpen === item.id ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
+                        }`}>
+                          <div className="py-2">
+                            {item.dropdownItems?.map((dropdownItem: any, index: number) => (
+                              <Link
+                                key={index}
+                                href={dropdownItem.href}
+                                className="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary transition-colors duration-200"
+                              >
+                                <span className="text-xl mr-3">{dropdownItem.icon}</span>
+                                <span className="font-medium">{dropdownItem.label}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : undefined}
+                        className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
+                          (siteMode === 'onepage' && activeSection === item.id) 
+                            ? 'text-primary dark:text-accent font-semibold' 
+                            : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -213,19 +264,37 @@ export default function Header({ content }: HeaderProps) {
         }`}>
           {/* Navigation Links */}
           <nav className="text-center space-y-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                href={item.href}
-                onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : closeMobileMenu}
-                className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                  (siteMode === 'onepage' && activeSection === item.id) 
-                    ? 'text-primary dark:text-accent font-medium' 
-                    : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-                }`}
-              >
-                {item.label}
-              </Link>
+            {navItems.map((item: any) => (
+              <div key={item.id}>
+                <Link
+                  href={item.href}
+                  onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : closeMobileMenu}
+                  className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
+                    (siteMode === 'onepage' && activeSection === item.id) 
+                      ? 'text-primary dark:text-accent font-medium' 
+                      : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+                
+                {/* Mobile Dropdown Items */}
+                {item.hasDropdown && siteMode === 'multipage' && (
+                  <div className="mt-4 space-y-4">
+                    {item.dropdownItems?.map((dropdownItem: any, index: number) => (
+                      <Link
+                        key={index}
+                        href={dropdownItem.href}
+                        onClick={closeMobileMenu}
+                        className="flex items-center justify-center text-xl font-light text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-300"
+                      >
+                        <span className="text-2xl mr-3">{dropdownItem.icon}</span>
+                        <span>{dropdownItem.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
           
