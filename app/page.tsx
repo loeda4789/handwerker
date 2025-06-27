@@ -350,26 +350,24 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <button
                         onClick={() => handleConfigChange('layoutType', 'onepage')}
-                        className={`p-6 border transition-all duration-200 text-left group hover:shadow-md ${
+                        className={`group p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 ${
                           config.layoutType === 'onepage'
-                            ? 'border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-900/30 shadow-sm'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500'
+                            ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                         }`}
                         style={{ borderRadius: 'var(--radius-card)' }}
                       >
-                        <div className="flex items-center mb-3">
-                          <div className={`w-10 h-10 flex items-center justify-center mr-3 ${
+                        <div className="w-12 h-12 mx-auto mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center bg-gray-100 dark:bg-gray-700"
+                          style={{ borderRadius: 'var(--radius-card)' }}>
+                          <svg className={`w-6 h-6 ${
                             config.layoutType === 'onepage' 
-                              ? 'bg-blue-600 text-white dark:bg-blue-500' 
-                              : 'bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400'
-                          }`}
-                            style={{ borderRadius: 'var(--radius-card)' }}>
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                            </svg>
-                          </div>
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Kompakte Website</h3>
+                              ? 'text-orange-600 dark:text-orange-400' 
+                              : 'text-gray-600 dark:text-gray-400'
+                          }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                          </svg>
                         </div>
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Kompakte Website</h3>
                         <p className="text-sm text-gray-600 dark:text-gray-300">
                           Alle Inhalte auf einer Seite - perfekt für kleinere Betriebe
                         </p>
@@ -377,26 +375,24 @@ export default function HomePage() {
 
                       <button
                         onClick={() => handleConfigChange('layoutType', 'multipage')}
-                        className={`p-6 border transition-all duration-200 text-left group hover:shadow-md ${
+                        className={`group p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 ${
                           config.layoutType === 'multipage'
-                            ? 'border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-900/30 shadow-sm'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500'
+                            ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                         }`}
                         style={{ borderRadius: 'var(--radius-card)' }}
                       >
-                        <div className="flex items-center mb-3">
-                          <div className={`w-10 h-10 flex items-center justify-center mr-3 ${
+                        <div className="w-12 h-12 mx-auto mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center bg-gray-100 dark:bg-gray-700"
+                          style={{ borderRadius: 'var(--radius-card)' }}>
+                          <svg className={`w-6 h-6 ${
                             config.layoutType === 'multipage' 
-                              ? 'bg-green-600 text-white dark:bg-green-500' 
-                              : 'bg-green-100 text-green-600 dark:bg-green-900/50 dark:text-green-400'
-                          }`}
-                            style={{ borderRadius: 'var(--radius-card)' }}>
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
-                            </svg>
-                          </div>
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Erweiterte Website</h3>
+                              ? 'text-orange-600 dark:text-orange-400' 
+                              : 'text-gray-600 dark:text-gray-400'
+                          }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
+                          </svg>
                         </div>
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Erweiterte Website</h3>
                         <p className="text-sm text-gray-600 dark:text-gray-300">
                           Separate Unterseiten für umfangreichere Inhalte und bessere Navigation
                         </p>
