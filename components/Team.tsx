@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ContentData } from '@/types/content'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
@@ -16,6 +16,29 @@ export default function Team({ content }: TeamProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  
+  // Design-Style aus localStorage abrufen
+  const [designStyle, setDesignStyle] = useState<string>('angular')
+  
+  useEffect(() => {
+    const savedDesignStyle = localStorage.getItem('design-style')
+    if (savedDesignStyle) {
+      setDesignStyle(savedDesignStyle)
+    }
+    
+    const handleDesignStyleChange = () => {
+      const newDesignStyle = localStorage.getItem('design-style')
+      if (newDesignStyle) {
+        setDesignStyle(newDesignStyle)
+      }
+    }
+    
+    window.addEventListener('storage', handleDesignStyleChange)
+    return () => window.removeEventListener('storage', handleDesignStyleChange)
+  }, [])
+  
+  // Moderne Ansichten (curved, circular) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'curved' || designStyle === 'circular'
 
   const teamMembers = content.team
 
@@ -59,23 +82,35 @@ export default function Team({ content }: TeamProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
-          <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4"
-            style={{ borderRadius: 'var(--radius-button)' }}>
-            Unser Team
-          </span>
+          {isModernStyle ? (
+            <span className="inline-block px-6 py-2 bg-primary text-white text-sm font-medium mb-4"
+              style={{ borderRadius: 'var(--radius-button)' }}>
+              Unser Team
+            </span>
+          ) : (
+            <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4"
+              style={{ borderRadius: 'var(--radius-button)' }}>
+              Unser Team
+            </span>
+          )}
           <h2 className="text-4xl md:text-5xl font-bold text-text dark:text-light mb-6">
-            Die Experten hinter jedem Projekt
+            {isModernStyle ? 'Unser Team' : 'Die Experten hinter jedem Projekt'}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto mb-8">
-            Erfahren, engagiert & nah dran – lernen Sie unsere Fachkräfte kennen.
+            {isModernStyle 
+              ? 'Lernen Sie unser erfahrenes Team kennen, das mit Leidenschaft und Fachwissen Ihre Projekte zum Erfolg führt.'
+              : 'Erfahren, engagiert & nah dran – lernen Sie unsere Fachkräfte kennen.'
+            }
           </p>
-          <div className="max-w-4xl mx-auto space-y-4 text-text-secondary dark:text-light/80">
-            <p>
-              Hinter jedem gelungenen Projekt steht ein Team aus leidenschaftlichen 
-              Handwerkern, die ihr Handwerk von der Pike auf gelernt haben und täglich mit 
-              Herzblut ausüben.
-            </p>
-          </div>
+          {!isModernStyle && (
+            <div className="max-w-4xl mx-auto space-y-4 text-text-secondary dark:text-light/80">
+              <p>
+                Hinter jedem gelungenen Projekt steht ein Team aus leidenschaftlichen 
+                Handwerkern, die ihr Handwerk von der Pike auf gelernt haben und täglich mit 
+                Herzblut ausüben.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Mobile Team Swiper (lg:hidden) */}

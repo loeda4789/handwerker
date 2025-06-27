@@ -17,6 +17,29 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
   const [visibleSteps, setVisibleSteps] = useState<number[]>([])
+  
+  // Design-Style aus localStorage abrufen
+  const [designStyle, setDesignStyle] = useState<string>('angular')
+  
+  useEffect(() => {
+    const savedDesignStyle = localStorage.getItem('design-style')
+    if (savedDesignStyle) {
+      setDesignStyle(savedDesignStyle)
+    }
+    
+    const handleDesignStyleChange = () => {
+      const newDesignStyle = localStorage.getItem('design-style')
+      if (newDesignStyle) {
+        setDesignStyle(newDesignStyle)
+      }
+    }
+    
+    window.addEventListener('storage', handleDesignStyleChange)
+    return () => window.removeEventListener('storage', handleDesignStyleChange)
+  }, [])
+  
+  // Moderne Ansichten (curved, circular) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'curved' || designStyle === 'circular'
 
   // Verwende Daten aus content.json
   const projectSteps = content.projectProcess.steps
@@ -90,15 +113,25 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
-          <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4"
-            style={{ borderRadius: 'var(--radius-button)' }}>
-            Unser Prozess
-          </span>
+          {isModernStyle ? (
+            <span className="inline-block px-6 py-2 bg-primary text-white text-sm font-medium mb-4"
+              style={{ borderRadius: 'var(--radius-button)' }}>
+              Unser Prozess
+            </span>
+          ) : (
+            <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4"
+              style={{ borderRadius: 'var(--radius-button)' }}>
+              Unser Prozess
+            </span>
+          )}
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
-            {content.projectProcess.title}
+            {isModernStyle ? 'Unser Arbeitsprozess' : content.projectProcess.title}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
-            {content.projectProcess.subtitle}
+            {isModernStyle
+              ? 'Von der ersten Beratung bis zur finalen Abnahme - unser strukturierter Projektablauf garantiert Qualität und Transparenz.'
+              : content.projectProcess.subtitle
+            }
           </p>
         </div>
 

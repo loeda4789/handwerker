@@ -357,7 +357,7 @@ function HeroVideo({ content }: HeroProps) {
                   {content.company.tagline} aus {cityName}
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col gap-4 justify-center items-center">
                   <Link
                     href="#kontakt"
                     className="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1"
