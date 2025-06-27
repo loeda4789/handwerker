@@ -359,7 +359,8 @@ function HeroVideo({ content }: HeroProps) {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     href="#kontakt"
-                    className="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1"
+                    className="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1"
+                    style={{ borderRadius: 'var(--radius-button)' }}
                   >
                     <span className="relative z-10">Jetzt Termin vereinbaren</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -367,7 +368,8 @@ function HeroVideo({ content }: HeroProps) {
                   
                   <Link
                     href="#ueber-uns"
-                    className="px-8 py-4 border-2 border-white text-white rounded-lg font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105 transform hover:-translate-y-1"
+                    className="px-8 py-4 border-2 border-white text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105 transform hover:-translate-y-1"
+                    style={{ borderRadius: 'var(--radius-button)' }}
                   >
                     Mehr erfahren
                   </Link>

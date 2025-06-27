@@ -14,18 +14,19 @@ export default function ConfiguratorButton({ onClick }: ConfiguratorButtonProps)
       <div className="relative">
         {/* Tooltip */}
         {showTooltip && (
-          <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-3 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg whitespace-nowrap shadow-lg">
-            Website Konfigurator
-            <div className="absolute right-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-r-gray-900"></div>
+          <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-3 px-3 py-2 bg-gray-900 text-white text-sm whitespace-nowrap shadow-lg"
+            style={{ borderRadius: 'var(--radius-card)' }}>
+            Website konfigurieren
           </div>
         )}
         
         {/* Button */}
         <button
           onClick={onClick}
+          className="bg-blue-600 hover:bg-blue-700 text-white p-4 shadow-lg hover:shadow-xl transition-all duration-300 group"
+          style={{ borderRadius: 'var(--radius-button)' }}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
-          className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
           aria-label="Website Konfigurator öffnen"
         >
           <svg className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">

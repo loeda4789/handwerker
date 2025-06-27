@@ -187,8 +187,10 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {content?.services.slice(0, 3).map((service: any, index: number) => (
-            <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+            <div key={index} className="bg-white dark:bg-gray-800 p-6 shadow-lg"
+              style={{ borderRadius: 'var(--radius-card)' }}>
+              <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4"
+                style={{ borderRadius: 'var(--radius-card)' }}>
                 <span className="text-2xl">{service.icon}</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
@@ -254,19 +256,23 @@ export default function HomePage() {
                     In der finalen Version würden hier separate Seiten für Services, Team, Portfolio und Kontakt existieren. Diese kompakte Ansicht zeigt nur die wichtigsten Bereiche als Preview.
                   </p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div className="bg-white dark:bg-gray-800 p-4 shadow"
+                      style={{ borderRadius: 'var(--radius-card)' }}>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Services</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
                     </div>
-                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div className="bg-white dark:bg-gray-800 p-4 shadow"
+                      style={{ borderRadius: 'var(--radius-card)' }}>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Team</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
                     </div>
-                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div className="bg-white dark:bg-gray-800 p-4 shadow"
+                      style={{ borderRadius: 'var(--radius-card)' }}>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Portfolio</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
                     </div>
-                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div className="bg-white dark:bg-gray-800 p-4 shadow"
+                      style={{ borderRadius: 'var(--radius-card)' }}>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Kontakt</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
                     </div>
@@ -289,7 +295,8 @@ export default function HomePage() {
       {/* Configurator Overlay */}
       {showConfigurator && (
         <div className="fixed inset-0 z-50 bg-black/10 backdrop-blur-[1px] flex items-center justify-center p-4">
-          <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200/30 dark:border-gray-700/30 max-w-4xl w-full max-h-[90vh] flex flex-col">
+          <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-2xl border border-gray-200/30 dark:border-gray-700/30 max-w-4xl w-full max-h-[90vh] flex flex-col"
+            style={{ borderRadius: 'var(--radius-modal)' }}>
             
             {/* Scrollable Content */}
             <div className="flex-1 overflow-y-auto">
@@ -309,238 +316,72 @@ export default function HomePage() {
                 <div className="space-y-6">
                   
                   {/* Schritt 1: Layout Type */}
-                  <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm">
-                    <div className="flex items-center mb-6">
-                      <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-medium mr-4 text-sm">
-                        1
-                      </div>
-                      <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        Website-Umfang wählen
-                      </h2>
+                  <div className="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700 shadow-sm"
+                    style={{ borderRadius: 'var(--radius-card)' }}>
+                    <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
+                      style={{ borderRadius: 'var(--radius-button)' }}>
+                      1
                     </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <button
-                        onClick={() => handleConfigChange('layoutType', 'onepage')}
-                        className={`p-6 rounded-xl border transition-all duration-200 text-left group hover:shadow-md ${
-                          config.layoutType === 'onepage'
-                            ? 'border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-900/30 shadow-sm'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500'
-                        }`}
-                      >
-                        <div className="flex items-center mb-3">
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 ${
-                            config.layoutType === 'onepage' 
-                              ? 'bg-blue-600 text-white dark:bg-blue-500' 
-                              : 'bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400'
-                          }`}>
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"/>
-                            </svg>
-                          </div>
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Kompakte Website</h3>
-                        </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
-                          Alle Informationen auf einer scrollbaren Seite - perfekt für kleinere Betriebe
-                        </p>
-                      </button>
-
-                      <button
-                        onClick={() => handleConfigChange('layoutType', 'multipage')}
-                        className={`p-6 rounded-xl border transition-all duration-200 text-left group hover:shadow-md ${
-                          config.layoutType === 'multipage'
-                            ? 'border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-900/30 shadow-sm'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500'
-                        }`}
-                      >
-                        <div className="flex items-center mb-3">
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 ${
-                            config.layoutType === 'multipage' 
-                              ? 'bg-green-600 text-white dark:bg-green-500' 
-                              : 'bg-green-100 text-green-600 dark:bg-green-900/50 dark:text-green-400'
-                          }`}>
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
-                            </svg>
-                          </div>
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Erweiterte Website</h3>
-                        </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
-                          Separate Unterseiten für umfangreichere Inhalte und bessere Navigation
-                        </p>
-                      </button>
-                    </div>
+                    <h2 className="text-xl font-semibold text-gray-900 dark:text-white ml-12 -mt-8">
+                      Website-Umfang festlegen
+                    </h2>
                   </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <button
+                      onClick={() => handleConfigChange('layoutType', 'onepage')}
+                      className={`p-6 border transition-all duration-200 text-left group hover:shadow-md ${
+                        config.layoutType === 'onepage'
+                          ? 'border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-900/30 shadow-sm'
+                          : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500'
+                      }`}
+                      style={{ borderRadius: 'var(--radius-card)' }}
+                    >
+                      <div className="flex items-center mb-3">
+                        <div className={`w-10 h-10 flex items-center justify-center mr-3 ${
+                          config.layoutType === 'onepage' 
+                            ? 'bg-blue-600 text-white dark:bg-blue-500' 
+                            : 'bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400'
+                        }`}
+                          style={{ borderRadius: 'var(--radius-card)' }}>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                          </svg>
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Kompakte Website</h3>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        Alle Inhalte auf einer Seite - perfekt für kleinere Betriebe
+                      </p>
+                    </button>
 
-                  {/* Schritt 2: Hero Design - Collapsible */}
-                  {config.layoutType && (
-                    <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
-                      config.layoutType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
-                    }`} style={{ borderRadius: 'var(--radius-card)' }}>
-                      <button
-                        onClick={() => setConfig(prev => ({ ...prev, designExpanded: !prev.designExpanded }))}
-                        className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
-                        style={{ borderRadius: 'var(--radius-card)' }}
-                      >
-                        <div className="flex items-center">
-                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
-                            style={{ borderRadius: 'var(--radius-button)' }}>
-                            2
-                          </div>
-                          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                            Design-Stil wählen
-                          </h2>
+                    <button
+                      onClick={() => handleConfigChange('layoutType', 'multipage')}
+                      className={`p-6 border transition-all duration-200 text-left group hover:shadow-md ${
+                        config.layoutType === 'multipage'
+                          ? 'border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-900/30 shadow-sm'
+                          : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500'
+                      }`}
+                      style={{ borderRadius: 'var(--radius-card)' }}
+                    >
+                      <div className="flex items-center mb-3">
+                        <div className={`w-10 h-10 flex items-center justify-center mr-3 ${
+                          config.layoutType === 'multipage' 
+                            ? 'bg-green-600 text-white dark:bg-green-500' 
+                            : 'bg-green-100 text-green-600 dark:bg-green-900/50 dark:text-green-400'
+                        }`}
+                          style={{ borderRadius: 'var(--radius-card)' }}>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
+                          </svg>
                         </div>
-                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.designExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                      </button>
-                      
-                      {config.designExpanded && (
-                        <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
-                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                            {[
-                              { 
-                                key: 'angular', 
-                                name: 'Eckig', 
-                                desc: 'Scharfe, moderne Kanten',
-                                Icon: MdCrop32,
-                                color: 'indigo'
-                              },
-                              { 
-                                key: 'rounded', 
-                                name: 'Abgerundet', 
-                                desc: 'Sanfte, moderne Rundungen',
-                                Icon: MdRoundedCorner,
-                                color: 'purple'
-                              },
-                              { 
-                                key: 'curved', 
-                                name: 'Geschwungen', 
-                                desc: 'Organische, fließende Formen',
-                                Icon: MdWaves,
-                                color: 'orange'
-                              },
-                              { 
-                                key: 'circular', 
-                                name: 'Rund', 
-                                desc: 'Maximale Rundungen, organisch',
-                                Icon: MdCircle,
-                                color: 'teal'
-                              }
-                            ].map((design) => (
-                              <button
-                                key={design.key}
-                                onClick={() => handleConfigChange('designStyle', design.key)}
-                                className={`group p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 ${
-                                  config.designStyle === design.key
-                                    ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
-                                    : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
-                                }`}
-                                style={{ borderRadius: 'var(--radius-card)' }}
-                              >
-                                <div className="w-12 h-12 mx-auto mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center bg-gray-100 dark:bg-gray-700"
-                                  style={{ borderRadius: 'var(--radius-card)' }}>
-                                  <design.Icon className={`w-6 h-6 ${
-                                    config.designStyle === design.key 
-                                      ? 'text-orange-600 dark:text-orange-400' 
-                                      : 'text-gray-600 dark:text-gray-400'
-                                  }`} />
-                                </div>
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{design.name}</h3>
-                                <p className="text-sm text-gray-600 dark:text-gray-300">{design.desc}</p>
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Schritt 3: Color Scheme - Collapsible */}
-                  {config.designStyle && (
-                    <div className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
-                      config.designStyle ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
-                    }`}>
-                      <button
-                        onClick={() => setConfig(prev => ({ ...prev, colorExpanded: !prev.colorExpanded }))}
-                        className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-xl transition-colors duration-200"
-                      >
-                        <div className="flex items-center">
-                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-medium mr-4 text-sm">
-                            3
-                          </div>
-                          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                            Farbschema wählen
-                          </h2>
-                        </div>
-                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.colorExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                      </button>
-                      
-                      {config.colorExpanded && (
-                        <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
-                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                            {[
-                              { 
-                                key: 'blue', 
-                                name: 'Ocean Blue', 
-                                desc: 'Vertrauen & Professionalität',
-                                colors: ['#3b82f6', '#1d4ed8', '#1e40af', '#1e3a8a'],
-                                accent: 'bg-blue-500'
-                              },
-                              { 
-                                key: 'green', 
-                                name: 'Nature Green', 
-                                desc: 'Wachstum & Nachhaltigkeit',
-                                colors: ['#10b981', '#059669', '#047857', '#065f46'],
-                                accent: 'bg-green-500'
-                              },
-                              { 
-                                key: 'purple', 
-                                name: 'Royal Purple', 
-                                desc: 'Kreativität & Innovation',
-                                colors: ['#8b5cf6', '#7c3aed', '#6d28d9', '#5b21b6'],
-                                accent: 'bg-purple-500'
-                              },
-                              { 
-                                key: 'orange', 
-                                name: 'Energy Orange', 
-                                desc: 'Dynamik & Enthusiasmus',
-                                colors: ['#f97316', '#ea580c', '#dc2626', '#b91c1c'],
-                                accent: 'bg-orange-500'
-                              }
-                            ].map((color) => (
-                              <button
-                                key={color.key}
-                                onClick={() => handleConfigChange('colorScheme', color.key)}
-                                className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-center transform hover:scale-105 ${
-                                  config.colorScheme === color.key
-                                    ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
-                                    : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
-                                }`}
-                              >
-                                {/* Color Palette Display */}
-                              <div className="w-12 h-12 mx-auto mb-4 rounded-xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 grid grid-cols-2 gap-0.5 p-1 bg-white dark:bg-gray-800">
-                                {color.colors.map((colorHex, index) => (
-                                  <div 
-                                    key={index}
-                                    className="rounded-lg"
-                                    style={{ backgroundColor: colorHex }}
-                                  ></div>
-                                ))}
-                              </div>
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{color.name}</h3>
-                                <p className="text-sm text-gray-600 dark:text-gray-300">{color.desc}</p>
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Erweiterte Website</h3>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        Separate Unterseiten für umfangreichere Inhalte und bessere Navigation
+                      </p>
+                    </button>
+                  </div>
                 </div>
 
                 {/* Progress Indicator */}
@@ -569,13 +410,14 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="text-center">
                   <button
+                    className={`px-8 py-3 font-medium text-base transition-all duration-200 ${
+                      canGenerate && !isGenerating
+                        ? 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg hover:shadow-xl hover:scale-105'
+                        : 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-600 dark:text-gray-400'
+                    }`}
+                    style={{ borderRadius: 'var(--radius-button)' }}
                     onClick={handleGenerate}
                     disabled={!canGenerate || isGenerating}
-                    className={`px-8 py-3 rounded-lg font-medium text-base transition-all duration-200 ${
-                      canGenerate && !isGenerating
-                        ? 'bg-gray-900 hover:bg-gray-800 text-white shadow-sm hover:shadow-md'
-                        : 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
-                    }`}
                   >
                     {isGenerating ? (
                       <div className="flex items-center">

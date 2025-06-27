@@ -183,10 +183,12 @@ export default function Contact({ content }: ContactProps) {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white transition-all duration-300 ${
-                    errors.name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-500 hover:border-gray-400 dark:hover:border-gray-400'
+                  required
+                  className={`w-full px-4 py-3 border focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white transition-all duration-300 ${
+                    errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-500'
                   }`}
-                  placeholder="Ihr vollständiger Name"
+                  style={{ borderRadius: 'var(--radius-input)' }}
+                  placeholder="Ihr Name"
                 />
                 {errors.name && <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
               </div>
@@ -202,10 +204,12 @@ export default function Contact({ content }: ContactProps) {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white transition-all duration-300 ${
-                    errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-500 hover:border-gray-400 dark:hover:border-gray-400'
+                  required
+                  className={`w-full px-4 py-3 border focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white transition-all duration-300 ${
+                    errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-500'
                   }`}
-                  placeholder="ihre@email.de"
+                  style={{ borderRadius: 'var(--radius-input)' }}
+                  placeholder="ihre.email@beispiel.de"
                 />
                 {errors.email && <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
               </div>
@@ -222,10 +226,11 @@ export default function Contact({ content }: ContactProps) {
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white transition-all duration-300 ${
-                  errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-500 hover:border-gray-400 dark:hover:border-gray-400'
+                className={`w-full px-4 py-3 border focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white transition-all duration-300 ${
+                  errors.phone ? 'border-red-500' : 'border-gray-300 dark:border-gray-500'
                 }`}
-                placeholder="Ihre Telefonnummer"
+                style={{ borderRadius: 'var(--radius-input)' }}
+                placeholder="0123 456789"
               />
               {errors.phone && <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.phone}</p>}
             </div>
@@ -240,11 +245,13 @@ export default function Contact({ content }: ContactProps) {
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                rows={6}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white resize-none transition-all duration-300 ${
-                  errors.message ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-500 hover:border-gray-400 dark:hover:border-gray-400'
+                rows={5}
+                required
+                className={`w-full px-4 py-3 border focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white resize-none transition-all duration-300 ${
+                  errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-500'
                 }`}
-                placeholder="Beschreiben Sie uns Ihr Anliegen. Je detaillierter Ihre Beschreibung, desto besser können wir Ihnen helfen."
+                style={{ borderRadius: 'var(--radius-input)' }}
+                placeholder="Beschreiben Sie Ihr Projekt oder stellen Sie Ihre Frage..."
               ></textarea>
               {errors.message && <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.message}</p>}
             </div>
@@ -274,11 +281,13 @@ export default function Contact({ content }: ContactProps) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-primary hover:bg-accent text-white rounded-lg hover:shadow-lg transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-lg"
+                className="w-full px-8 py-4 bg-primary hover:bg-accent text-white hover:shadow-lg transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-lg"
+                style={{ borderRadius: 'var(--radius-button)' }}
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                    <div className="animate-spin h-5 w-5 border-b-2 border-white mr-3"
+                      style={{ borderRadius: 'var(--radius-button)' }}></div>
                     Wird gesendet...
                   </div>
                 ) : (

@@ -173,7 +173,8 @@ export default function Header({ content }: HeaderProps) {
               <Link
                 href={siteMode === 'multipage' ? '/kontakt' : '#kontakt'}
                 onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, 'kontakt') : undefined}
-                className="hidden lg:inline-flex items-center px-5 py-2.5 mr-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-accent focus:ring-4 focus:ring-primary/30 dark:bg-primary dark:hover:bg-accent/90"
+                className="hidden lg:inline-flex items-center px-5 py-2.5 mr-2 text-sm font-medium text-white bg-primary hover:bg-accent focus:ring-4 focus:ring-primary/30 dark:bg-primary dark:hover:bg-accent/90"
+                style={{ borderRadius: 'var(--radius-button)' }}
               >
                 Jetzt Termin vereinbaren
               </Link>
@@ -182,8 +183,9 @@ export default function Header({ content }: HeaderProps) {
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 type="button"
-                className="inline-flex items-center p-2 ml-1 text-sm rounded-lg lg:hidden hover:bg-light focus:outline-none focus:ring-2 focus:ring-primary/20 dark:hover:bg-dark dark:focus:ring-light/20 z-50 relative transition-colors duration-300"
-                aria-controls="mobile-menu"
+                className="inline-flex items-center p-2 ml-1 text-sm hover:bg-light focus:outline-none focus:ring-2 focus:ring-primary/20 dark:hover:bg-dark dark:focus:ring-light/20 z-50 relative transition-colors duration-300"
+                style={{ borderRadius: 'var(--radius-button)' }}
+                aria-controls="navbar-mobile"
                 aria-expanded={mobileMenuOpen}
               >
                 <span className="sr-only">Menü öffnen</span>
@@ -323,7 +325,8 @@ export default function Header({ content }: HeaderProps) {
             <Link
               href={siteMode === 'multipage' ? '/kontakt' : '#kontakt'}
               onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, 'kontakt') : closeMobileMenu}
-              className="inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-primary hover:bg-accent rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300 focus:ring-4 focus:ring-primary/30"
+              className="inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-primary hover:bg-accent hover:shadow-xl hover:scale-105 transition-all duration-300 focus:ring-4 focus:ring-primary/30"
+              style={{ borderRadius: 'var(--radius-button)' }}
             >
               Jetzt Termin vereinbaren
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
