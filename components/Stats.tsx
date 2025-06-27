@@ -71,12 +71,12 @@ function Counter({ end, duration, label, suffix = '', decimal = false }: Counter
 
   return (
     <div ref={counterRef} className="text-center group">
-      <div className="bg-white dark:bg-dark-secondary p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105 border border-border/50 dark:border-text-secondary/20"
+      <div className="bg-white dark:bg-dark-secondary p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out hover:transform hover:scale-105 hover:-translate-y-2 border border-border/50 dark:border-text-secondary/20 cursor-default"
         style={{ borderRadius: 'var(--radius-card)' }}>
-        <div className="text-4xl lg:text-5xl font-bold text-primary dark:text-accent mb-2 group-hover:scale-110 transition-transform duration-300">
+        <div className="text-4xl lg:text-5xl font-bold text-primary dark:text-accent mb-2 group-hover:scale-110 transition-transform duration-500 ease-out">
           {decimal ? count.toFixed(1) : count}{suffix}
         </div>
-        <div className="text-text-secondary dark:text-light/80 font-medium text-lg">
+        <div className="text-text-secondary dark:text-light/80 font-medium text-lg transition-colors duration-300 group-hover:text-primary dark:group-hover:text-accent">
           {label}
         </div>
       </div>
@@ -120,20 +120,20 @@ export default function Stats({ content }: StatsProps) {
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
           {isModernStyle ? (
-            <span className="inline-block px-6 py-2 bg-primary text-white text-sm font-medium mb-4"
+            <span className="inline-block px-6 py-2 bg-primary text-white text-sm font-medium mb-4 transition-all duration-300 hover:scale-105 hover:shadow-lg"
               style={{ borderRadius: 'var(--radius-button)' }}>
               Unsere Erfolge
             </span>
           ) : (
-            <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4"
+            <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4 transition-all duration-300 hover:scale-105"
               style={{ borderRadius: 'var(--radius-button)' }}>
               Unsere Erfolge
             </span>
           )}
-          <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 transition-colors duration-300">
             Zahlen, die für sich sprechen
           </h2>
-          <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
+          <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto transition-colors duration-300">
             Diese Zahlen spiegeln unser Engagement für Qualität und Kundenzufriedenheit wider.
           </p>
         </div>

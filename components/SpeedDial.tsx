@@ -42,17 +42,20 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
   return (
     <div className="fixed bottom-6 right-6 z-50 md:hidden opacity-0 animate-[fadeInUp_0.5s_ease-out_0s_forwards]">
       {/* Speed Dial Actions */}
-      <div className={`flex flex-col space-y-3 mb-3 transition-all duration-300 ${
-        isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+      <div className={`flex flex-col space-y-3 mb-3 transition-all duration-300 ease-out ${
+        isOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
       }`}>
         {/* Phone Action */}
         <button
           onClick={handlePhoneClick}
-          className="w-12 h-12 bg-primary hover:bg-primary/90 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
-          style={{ borderRadius: 'var(--radius-button)' }}
+          className="w-12 h-12 bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 active:scale-95 active:translate-y-0 group"
+          style={{ 
+            borderRadius: 'var(--radius-button)',
+            animation: isOpen ? 'fadeInScale 0.4s ease-out 0.1s both' : 'none'
+          }}
           aria-label="Anrufen"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
           </svg>
         </button>
@@ -60,11 +63,14 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
         {/* Email Action */}
         <button
           onClick={handleEmailClick}
-          className="w-12 h-12 bg-primary hover:bg-primary/90 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
-          style={{ borderRadius: 'var(--radius-button)' }}
+          className="w-12 h-12 bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 active:scale-95 active:translate-y-0 group"
+          style={{ 
+            borderRadius: 'var(--radius-button)',
+            animation: isOpen ? 'fadeInScale 0.4s ease-out 0.05s both' : 'none'
+          }}
           aria-label="E-Mail senden"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
           </svg>
         </button>
@@ -73,17 +79,17 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
       {/* Main Speed Dial Button */}
       <button
         onClick={toggleSpeedDial}
-        className="w-14 h-14 bg-primary hover:bg-primary/90 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
+        className="w-14 h-14 bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 active:scale-95 group"
         style={{ borderRadius: 'var(--radius-button)' }}
         aria-label={isOpen ? 'Menü schließen' : 'Kontakt-Menü öffnen'}
       >
-        <div className={`transition-transform duration-200 ${isOpen ? 'rotate-45' : 'rotate-0'}`}>
+        <div className={`transition-all duration-300 ease-out ${isOpen ? 'rotate-45 scale-110' : 'rotate-0 scale-100'}`}>
           {isOpen ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
           ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
             </svg>
           )}
@@ -93,7 +99,7 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
       {/* Overlay for closing when clicking outside */}
       {isOpen && (
         <div
-          className="fixed inset-0 -z-10"
+          className="fixed inset-0 -z-10 animate-[fadeIn_0.2s_ease-out]"
           onClick={() => setIsOpen(false)}
           aria-hidden="true"
         />

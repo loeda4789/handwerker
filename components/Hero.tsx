@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { ContentData } from '@/types/content'
 import { useState, useEffect } from 'react'
 import { MdVerified, MdAccessTime, MdSupportAgent } from 'react-icons/md'
+import FloatingTools3D from './FloatingTools3D'
 
 interface HeroProps {
   content: ContentData
@@ -341,7 +342,10 @@ function HeroVideo({ content }: HeroProps) {
         
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70"></div>
         
-        <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
+        {/* 3D Floating Tools Integration */}
+        <FloatingTools3D isVisible={isLoaded} />
+        
+        <div className="relative z-20 h-full flex items-center justify-center text-center px-4">
           <div 
             className={`container mx-auto px-4 transition-all duration-1000 delay-300 transform-gpu ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
@@ -360,19 +364,29 @@ function HeroVideo({ content }: HeroProps) {
                 <div className="flex flex-col gap-4 justify-center items-center">
                   <Link
                     href="#kontakt"
-                    className="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1"
+                    className="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1 hover:shadow-primary/25"
                     style={{ borderRadius: 'var(--radius-button)' }}
                   >
-                    <span className="relative z-10">Jetzt Termin vereinbaren</span>
+                    <span className="relative z-10 flex items-center">
+                      Jetzt Termin vereinbaren
+                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                    </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </Link>
                   
                   <Link
                     href="#ueber-uns"
-                    className="px-8 py-4 border-2 border-white text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105 transform hover:-translate-y-1"
+                    className="group px-8 py-4 border-2 border-white text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105 transform hover:-translate-y-1 hover:shadow-lg backdrop-blur-sm"
                     style={{ borderRadius: 'var(--radius-button)' }}
                   >
-                    Mehr erfahren
+                    <span className="flex items-center">
+                      Mehr erfahren
+                      <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+                      </svg>
+                    </span>
                   </Link>
                 </div>
               </div>
@@ -380,11 +394,46 @@ function HeroVideo({ content }: HeroProps) {
           </div>
         </div>
 
-        {/* Floating Elements */}
-        <div className="absolute top-1/4 right-10 w-20 h-20 bg-white/10 backdrop-blur-sm animate-float hidden lg:block"
-          style={{ borderRadius: 'var(--radius-button)' }}></div>
-        <div className="absolute bottom-1/4 left-10 w-12 h-12 bg-primary/30 backdrop-blur-sm animate-float-delayed hidden lg:block"
-          style={{ borderRadius: 'var(--radius-button)' }}></div>
+        {/* Enhanced Floating Elements mit Glasmorphismus */}
+        <div className="absolute top-1/4 right-10 w-20 h-20 bg-white/10 backdrop-blur-md animate-float hidden lg:block border border-white/20 shadow-2xl"
+          style={{ borderRadius: 'var(--radius-button)' }}>
+          <div className="w-full h-full flex items-center justify-center">
+            <svg className="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+        </div>
+        
+        <div className="absolute bottom-1/4 left-10 w-12 h-12 bg-primary/20 backdrop-blur-md animate-float-delayed hidden lg:block border border-primary/30 shadow-xl"
+          style={{ borderRadius: 'var(--radius-button)' }}>
+          <div className="w-full h-full flex items-center justify-center">
+            <svg className="w-6 h-6 text-primary/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Scroll Down Indicator mit 3D-Effekt */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 opacity-0 animate-[fadeInUp_1s_ease-out_2s_forwards]">
+          <Link href="#ueber-uns" className="block group">
+            <div className="p-3 bg-white/10 backdrop-blur-md group-hover:bg-white/20 transition-all duration-300 border border-white/20 group-hover:scale-110 transform group-hover:-translate-y-1 shadow-2xl"
+              style={{ borderRadius: 'var(--radius-button)' }}>
+              <svg 
+                className="w-6 h-6 text-white group-hover:text-primary transition-colors duration-300 animate-bounce" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth="2" 
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </div>
+          </Link>
+        </div>
       </section>
     </>
   )
