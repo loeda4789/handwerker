@@ -18,7 +18,7 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import SpeedDial from '@/components/SpeedDial'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
-import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle } from 'react-icons/md'
+import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
 import ConfiguratorButton from '@/components/ConfiguratorButton'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 
@@ -143,6 +143,25 @@ export default function HomePage() {
     setSiteMode(config.layoutType as 'onepage' | 'multipage')
     // Speichere site-mode für Header
     localStorage.setItem('site-mode', config.layoutType)
+    
+    // Hero-Typ basierend auf Design-Stil setzen
+    let heroType = 'single'
+    switch (config.designStyle) {
+      case 'angular':
+        heroType = 'split' // Klassisch = Geteilter Hero
+        break
+      case 'rounded':
+        heroType = 'single' // Halb Modern = Hintergrundbild
+        break
+      case 'curved':
+        heroType = 'slider' // Modern = Slider
+        break
+      case 'circular':
+        heroType = 'video' // Sehr Modern = Video
+        break
+    }
+    localStorage.setItem('demo-hero-type', heroType)
+    window.dispatchEvent(new Event('hero-type-changed'))
     
     // Farbschema anwenden
     applyColorScheme(config.colorScheme)
@@ -415,30 +434,30 @@ export default function HomePage() {
                             {[
                               { 
                                 key: 'angular', 
-                                name: 'Eckig', 
-                                desc: 'Scharfe, moderne Kanten',
-                                Icon: MdCrop32,
+                                name: 'Klassisch', 
+                                desc: 'Geteilter Hero, scharfe Kanten',
+                                Icon: MdViewQuilt,
                                 color: 'indigo'
                               },
                               { 
                                 key: 'rounded', 
-                                name: 'Abgerundet', 
-                                desc: 'Sanfte, moderne Rundungen',
-                                Icon: MdRoundedCorner,
+                                name: 'Halb Modern', 
+                                desc: 'Hintergrundbild, sanfte Rundungen',
+                                Icon: MdImage,
                                 color: 'purple'
                               },
                               { 
                                 key: 'curved', 
-                                name: 'Geschwungen', 
-                                desc: 'Organische, fließende Formen',
-                                Icon: MdWaves,
+                                name: 'Modern', 
+                                desc: 'Slider, fließende Formen',
+                                Icon: MdViewCarousel,
                                 color: 'orange'
                               },
                               { 
                                 key: 'circular', 
-                                name: 'Rund', 
-                                desc: 'Maximale Rundungen, organisch',
-                                Icon: MdCircle,
+                                name: 'Sehr Modern', 
+                                desc: 'Video-Hero, maximale Rundungen',
+                                Icon: MdPlayCircleFilled,
                                 color: 'teal'
                               }
                             ].map((design) => (

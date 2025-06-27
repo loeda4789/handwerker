@@ -15,6 +15,7 @@ export default function Header({ content }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null)
   
   // Site-Mode aus localStorage laden
   useEffect(() => {
@@ -102,6 +103,11 @@ export default function Header({ content }: HeaderProps) {
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false)
+    setMobileDropdownOpen(null) // Reset mobile dropdowns when closing menu
+  }
+
+  const toggleMobileDropdown = (itemId: string) => {
+    setMobileDropdownOpen(mobileDropdownOpen === itemId ? null : itemId)
   }
 
   // Navigation Items basierend auf Site-Mode
@@ -287,32 +293,57 @@ export default function Header({ content }: HeaderProps) {
           <nav className="text-center space-y-8">
             {navItems.map((item: any) => (
               <div key={item.id}>
-                <Link
-                  href={item.href}
-                  onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : closeMobileMenu}
-                  className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                    activeSection === item.id && siteMode === 'onepage'
-                      ? 'text-primary dark:text-accent font-medium' 
-                      : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-                
-                {/* Mobile Dropdown Items */}
-                {item.hasDropdown && siteMode === 'multipage' && (
-                  <div className="mt-4 space-y-4">
-                    {item.dropdownItems?.map((dropdownItem: any, index: number) => (
-                      <Link
-                        key={index}
-                        href={dropdownItem.href}
-                        onClick={closeMobileMenu}
-                        className="block text-center text-xl font-light text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-300"
-                      >
-                        <span>{dropdownItem.label}</span>
-                      </Link>
-                    ))}
+                {item.hasDropdown && siteMode === 'multipage' ? (
+                  <div>
+                    {/* Main dropdown trigger - no link behavior */}
+                    <button
+                      onClick={() => toggleMobileDropdown(item.id)}
+                      className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
+                        mobileDropdownOpen === item.id
+                          ? 'text-primary dark:text-accent font-medium' 
+                          : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
+                      }`}
+                    >
+                      <span className="flex items-center justify-center">
+                        {item.label}
+                        <svg className={`w-6 h-6 ml-2 transition-transform duration-300 ${
+                          mobileDropdownOpen === item.id ? 'rotate-180' : ''
+                        }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </span>
+                    </button>
+                    
+                    {/* Mobile Dropdown Items - Collapsible */}
+                    <div className={`overflow-hidden transition-all duration-300 ${
+                      mobileDropdownOpen === item.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}>
+                      <div className="mt-4 space-y-4">
+                        {item.dropdownItems?.map((dropdownItem: any, index: number) => (
+                          <Link
+                            key={index}
+                            href={dropdownItem.href}
+                            onClick={closeMobileMenu}
+                            className="block text-center text-xl font-light text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-300"
+                          >
+                            <span>{dropdownItem.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   </div>
+                ) : (
+                  <Link
+                    href={item.href}
+                    onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : closeMobileMenu}
+                    className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
+                      activeSection === item.id && siteMode === 'onepage'
+                        ? 'text-primary dark:text-accent font-medium' 
+                        : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
                 )}
               </div>
             ))}
