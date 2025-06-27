@@ -248,10 +248,10 @@ export default function Header({ content }: HeaderProps) {
               className={`w-10 h-10 ${headerStyles.logoStyle} border-2 border-current flex items-center justify-center font-bold text-sm`}
               style={{ borderRadius: 'var(--radius-button)' }}
             >
-              {getCompanyInitials(content?.company?.name || 'Ihr Handwerk')}
+              IL
             </div>
             <span className={`text-xl font-bold ${headerStyles.logoStyle} hidden sm:block`}>
-              {content?.company?.name?.split(' ')[0] || 'Ihr'} {getCompanyType(content?.company?.name || 'Handwerk')}
+              Ihr Logo
             </span>
           </Link>
 
