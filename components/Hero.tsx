@@ -114,10 +114,11 @@ function HeroSingle({ content }: HeroProps) {
               <div className="opacity-0 animate-[fadeInUp_1s_ease-out_1s_forwards]">
                 <Link
                   href="#kontakt"
-                  className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg focus:ring-4 transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
+                  className="inline-flex items-center justify-center px-6 py-3 text-base font-medium focus:ring-4 transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
                   style={{ 
                     color: 'var(--color-background, #ffffff)', 
                     backgroundColor: 'var(--color-primary, #0ea5e9)',
+                    borderRadius: 'var(--radius-button)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--color-accent, #38bdf8)';
@@ -146,7 +147,8 @@ function HeroSingle({ content }: HeroProps) {
         
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 opacity-0 animate-[fadeInUp_1s_ease-out_1.4s_forwards]">
           <Link href="#ueber-uns" className="block group">
-            <div className="p-2 rounded-full bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-all duration-300">
+            <div className="p-2 bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-all duration-300"
+              style={{ borderRadius: 'var(--radius-button)' }}>
               <svg 
                 className="w-6 h-6 text-white group-hover:text-primary transition-colors duration-300" 
                 fill="none" 
@@ -259,7 +261,8 @@ function HeroSlider({ content }: HeroProps) {
               <div>
                 <Link
                   href="#kontakt"
-                  className="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 bg-primary hover:bg-accent text-white"
+                  className="inline-flex items-center justify-center px-8 py-4 text-base font-medium transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 bg-primary hover:bg-accent text-white"
+                  style={{ borderRadius: 'var(--radius-button)' }}
                 >
                   {slides[currentSlide].cta}
                   <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
@@ -277,9 +280,10 @@ function HeroSlider({ content }: HeroProps) {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-3 h-3 transition-all duration-300 ${
                 index === currentSlide ? 'bg-white' : 'bg-white/50'
               }`}
+              style={{ borderRadius: 'var(--radius-button)' }}
             />
           ))}
         </div>
@@ -374,8 +378,10 @@ function HeroVideo({ content }: HeroProps) {
         </div>
 
         {/* Floating Elements */}
-        <div className="absolute top-1/4 right-10 w-20 h-20 bg-white/10 rounded-full backdrop-blur-sm animate-float hidden lg:block"></div>
-        <div className="absolute bottom-1/4 left-10 w-12 h-12 bg-primary/30 rounded-full backdrop-blur-sm animate-float-delayed hidden lg:block"></div>
+        <div className="absolute top-1/4 right-10 w-20 h-20 bg-white/10 backdrop-blur-sm animate-float hidden lg:block"
+          style={{ borderRadius: 'var(--radius-button)' }}></div>
+        <div className="absolute bottom-1/4 left-10 w-12 h-12 bg-primary/30 backdrop-blur-sm animate-float-delayed hidden lg:block"
+          style={{ borderRadius: 'var(--radius-button)' }}></div>
       </section>
     </>
   )
@@ -417,7 +423,8 @@ function HeroSplit({ content }: HeroProps) {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="#kontakt"
-                className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-accent text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
+                style={{ borderRadius: 'var(--radius-button)' }}
               >
                 Jetzt Termin vereinbaren
                 <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
@@ -427,7 +434,8 @@ function HeroSplit({ content }: HeroProps) {
               
               <Link
                 href="#ueber-uns"
-                className="inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-lg font-medium transition-all duration-300"
+                className="inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium transition-all duration-300"
+                style={{ borderRadius: 'var(--radius-button)' }}
               >
                 Mehr erfahren
               </Link>

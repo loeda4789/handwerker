@@ -158,7 +158,8 @@ export default function Header({ content }: HeaderProps) {
           <div className="flex flex-wrap items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center z-50 relative">
-              <div className="h-12 px-4 bg-primary rounded-lg flex items-center justify-center">
+              <div className="h-12 px-4 bg-primary flex items-center justify-center"
+                style={{ borderRadius: 'var(--radius-button)' }}>
                 <span className="text-white font-bold text-sm whitespace-nowrap">
                   Ihr Logo
                 </span>
@@ -224,9 +225,10 @@ export default function Header({ content }: HeaderProps) {
                         </Link>
                         
                         {/* Dropdown Menu */}
-                        <div className={`absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 z-50 ${
+                        <div className={`absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 z-50 ${
                           dropdownOpen === item.id ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
-                        }`}>
+                        }`}
+                          style={{ borderRadius: 'var(--radius-card)' }}>
                           <div className="py-2">
                             {item.dropdownItems?.map((dropdownItem: any, index: number) => (
                               <Link
