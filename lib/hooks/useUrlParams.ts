@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { UrlParams, extractUrlParams, hasUrlParams, decodeUrlParams } from '@/lib/url-params';
+import { UrlParams, getEffectiveUrlParams, hasUrlParams, decodeUrlParams } from '@/lib/url-params';
 import { ContentData } from '@/types/content';
 import { mergeUrlDataWithContent } from '@/lib/url-params';
 import { getContentDataByBranche } from '@/lib/config';
@@ -11,13 +11,14 @@ export function useUrlParams() {
   const [hasParams, setHasParams] = useState(false);
 
   useEffect(() => {
-    const params = extractUrlParams();
+    // Lade effektive URL-Parameter (URL oder LocalStorage)
+    const params = getEffectiveUrlParams();
     setUrlParams(params);
     setHasParams(hasUrlParams(params));
 
     // URL-Änderungen überwachen
     const handleUrlChange = () => {
-      const newParams = extractUrlParams();
+      const newParams = getEffectiveUrlParams();
       setUrlParams(newParams);
       setHasParams(hasUrlParams(newParams));
     };
@@ -25,8 +26,12 @@ export function useUrlParams() {
     // Event Listener für URL-Änderungen
     window.addEventListener('popstate', handleUrlChange);
     
+    // Event Listener für Storage-Änderungen (zwischen Tabs)
+    window.addEventListener('storage', handleUrlChange);
+    
     return () => {
       window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('storage', handleUrlChange);
     };
   }, []);
 
@@ -47,7 +52,7 @@ export function useContentWithUrlParams(baseContent: ContentData): ContentData {
   return mergeUrlDataWithContent(baseContent, urlParams);
 }
 
-// Hook für branchenspezifisches Content-Laden (jetzt synchron)
+// Hook für branchenspezifisches Content-Laden mit URL-Parameter-Unterstützung
 export function useContentWithBranche(baseContent: ContentData) {
   const [content, setContent] = useState<ContentData>(baseContent);
   const [loading, setLoading] = useState(true);
@@ -56,8 +61,16 @@ export function useContentWithBranche(baseContent: ContentData) {
     function loadContent() {
       setLoading(true);
       try {
+        // Lade Content mit Branche und URL-Parametern
         const loadedContent = getContentDataByBranche();
-        setContent(loadedContent);
+        
+        // Wende URL-Parameter auf den geladenen Content an
+        const urlParams = getEffectiveUrlParams();
+        const finalContent = hasUrlParams(urlParams) 
+          ? mergeUrlDataWithContent(loadedContent, urlParams)
+          : loadedContent;
+          
+        setContent(finalContent);
       } catch (error) {
         console.error('Fehler beim Laden des Contents:', error);
         setContent(baseContent);
@@ -74,9 +87,11 @@ export function useContentWithBranche(baseContent: ContentData) {
     };
 
     window.addEventListener('popstate', handleUrlChange);
+    window.addEventListener('storage', handleUrlChange);
     
     return () => {
       window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('storage', handleUrlChange);
     };
   }, [baseContent]);
 

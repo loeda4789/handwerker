@@ -21,6 +21,8 @@ import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
 import ConfiguratorButton from '@/components/ConfiguratorButton'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
+import UrlParamsDebug from '@/components/UrlParamsDebug'
+import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
@@ -28,6 +30,39 @@ interface ConfigState {
   colorScheme: 'blue' | 'green' | 'purple' | 'orange' | ''
   designExpanded: boolean
   colorExpanded: boolean
+}
+
+// Helper component für abwechselnde Sektionshintergründe in klassischer Variante
+interface SectionWrapperProps {
+  children: React.ReactNode
+  index: number
+  designStyle: string
+  className?: string
+}
+
+const SectionWrapper = ({ children, index, designStyle, className = '' }: SectionWrapperProps) => {
+  if (designStyle !== 'angular') {
+    // Für moderne Varianten: Standard-Styling der Komponenten beibehalten
+    return <>{children}</>
+  }
+
+  // Für klassische Variante: Abwechselnde Hintergründe
+  const isEven = index % 2 === 0
+  const bgClass = isEven 
+    ? 'bg-white dark:bg-gray-900' 
+    : 'bg-primary dark:bg-primary'
+  
+  const textClass = isEven 
+    ? 'text-gray-900 dark:text-white' 
+    : 'text-white'
+
+  return (
+    <div className={`${bgClass} ${className}`}>
+      <div className={textClass}>
+        {children}
+      </div>
+    </div>
+  )
 }
 
 export default function HomePage() {
@@ -40,24 +75,34 @@ export default function HomePage() {
   })
   const [isGenerating, setIsGenerating] = useState(false)
   const [showConfigurator, setShowConfigurator] = useState(true)
-  const [content, setContent] = useState<ContentData | null>(null)
+  const [baseContent, setBaseContent] = useState<ContentData | null>(null)
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [forceUpdate, setForceUpdate] = useState(0)
+  const [designStyle, setDesignStyle] = useState<string>('angular')
   const router = useRouter()
 
   // Initialize scroll animations
   useScrollAnimation()
 
+  // Verwende den URL-Parameter-Hook für automatische URL-Parameter-Integration
+  const content = useContentWithUrlParams(baseContent || {} as ContentData)
+
   useEffect(() => {
     const loadContent = () => {
       try {
         const loadedContent = getContentDataByBranche()
-        setContent(loadedContent)
+        setBaseContent(loadedContent)
       } catch (error) {
         console.error('Fehler beim Laden des Contents:', error)
       }
     }
     loadContent()
+
+    // Design-Style aus localStorage laden
+    const savedDesignStyle = localStorage.getItem('design-style')
+    if (savedDesignStyle) {
+      setDesignStyle(savedDesignStyle)
+    }
 
     // Check URL parameters to determine if we should show the configurator
     const urlParams = new URLSearchParams(window.location.search)
@@ -71,11 +116,23 @@ export default function HomePage() {
       }
       
       // Set design style in localStorage for components
-      const designStyle = urlParams.get('design')
-      if (designStyle) {
-        localStorage.setItem('demo-design-style', designStyle)
+      const designStyleParam = urlParams.get('design')
+      if (designStyleParam) {
+        localStorage.setItem('demo-design-style', designStyleParam)
+        setDesignStyle(designStyleParam)
       }
     }
+
+    // Event listener für design-style Änderungen
+    const handleDesignStyleChange = () => {
+      const newDesignStyle = localStorage.getItem('design-style')
+      if (newDesignStyle) {
+        setDesignStyle(newDesignStyle)
+      }
+    }
+    
+    window.addEventListener('storage', handleDesignStyleChange)
+    return () => window.removeEventListener('storage', handleDesignStyleChange)
   }, [])
 
   useEffect(() => {
@@ -83,223 +140,207 @@ export default function HomePage() {
   }, [siteMode])
 
   const handleConfigChange = (key: keyof ConfigState, value: string) => {
-    console.log('Config Change:', key, value)
     setConfig(prev => {
-      const newConfig = {
-        ...prev,
-        [key]: value
-      }
+      const newConfig = { ...prev, [key]: value }
       
-      // Auto-expand next sections
-      if (key === 'layoutType') {
+      // Auto-expand next section
+      if (key === 'layoutType' && value && !prev.designStyle) {
         newConfig.designExpanded = true
-      }
-      if (key === 'designStyle') {
+      } else if (key === 'designStyle' && value && !prev.colorScheme) {
         newConfig.colorExpanded = true
+        newConfig.designExpanded = false
       }
       
       return newConfig
     })
-    
-    // Sofortiges Update der Website im Hintergrund
-    if (key === 'layoutType') {
-      console.log('Setting siteMode to:', value)
-      setSiteMode(value as 'onepage' | 'multipage')
-      // Speichere in localStorage damit Header es auch sieht
-      localStorage.setItem('site-mode', value)
-      // Force re-render
-      setForceUpdate(prev => prev + 1)
-      
-      // Event dispatchen damit Header sofort reagiert
-      window.dispatchEvent(new Event('site-mode-changed'))
-    }
-    
-    if (key === 'designStyle' && value) {
-      applyBorderRadiusScheme(value)
-      localStorage.setItem('design-style', value)
-      // Force re-render of components
-      window.dispatchEvent(new Event('design-style-changed'))
-    }
-    
-    // Farbschema sofort anwenden
-    if (key === 'colorScheme' && value) {
-      applyColorScheme(value)
-    }
   }
 
-  const canGenerate = config.layoutType && config.designStyle && config.colorScheme
-
   const handleGenerate = async () => {
-    if (!canGenerate) return
-    
+    if (!config.layoutType || !config.designStyle || !config.colorScheme) {
+      alert('Bitte füllen Sie alle Schritte aus.')
+      return
+    }
+
     setIsGenerating(true)
     
-    // Simulate generation process
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    // Anwenden der Design-Schemas
-    applyBorderRadiusScheme(config.designStyle)
-    localStorage.setItem('design-style', config.designStyle)
-    window.dispatchEvent(new Event('storage'))
-    setSiteMode(config.layoutType as 'onepage' | 'multipage')
-    // Speichere site-mode für Header
-    localStorage.setItem('site-mode', config.layoutType)
-    
-    // Hero-Typ basierend auf Design-Stil setzen
-    let heroType = 'single'
-    switch (config.designStyle) {
-      case 'angular':
-        heroType = 'split' // Klassisch = Geteilter Hero
-        break
-      case 'rounded':
-        heroType = 'single' // Halb Modern = Hintergrundbild
-        break
-      case 'curved':
-        heroType = 'slider' // Modern = Slider
-        break
-      case 'circular':
-        heroType = 'video' // Sehr Modern = Video
-        break
+    try {
+      // Site mode setzen
+      setSiteMode(config.layoutType)
+      localStorage.setItem('site-mode', config.layoutType)
+      
+      // Design style setzen
+      setDesignStyle(config.designStyle)
+      localStorage.setItem('design-style', config.designStyle)
+      
+      // Hero type basierend auf design style setzen
+      const heroTypeMap = {
+        'angular': 'split',
+        'rounded': 'single', 
+        'curved': 'slider',
+        'circular': 'video'
+      }
+      localStorage.setItem('demo-hero-type', heroTypeMap[config.designStyle as keyof typeof heroTypeMap])
+      
+      // Border radius scheme anwenden
+      applyBorderRadiusScheme(config.designStyle)
+      
+      // Color scheme anwenden
+      applyColorScheme(config.colorScheme)
+      
+      // Event dispatchen für andere Komponenten
+      window.dispatchEvent(new Event('site-mode-changed'))
+      window.dispatchEvent(new Event('storage'))
+      
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      setShowConfigurator(false)
+      setForceUpdate(prev => prev + 1)
+      
+    } catch (error) {
+      console.error('Fehler beim Generieren:', error)
+    } finally {
+      setIsGenerating(false)
     }
-    localStorage.setItem('demo-hero-type', heroType)
-    window.dispatchEvent(new Event('hero-type-changed'))
-    
-    // Farbschema anwenden
-    applyColorScheme(config.colorScheme)
-    
-    // Update URL parameters
-    const params = new URLSearchParams()
-    params.set('layout', config.layoutType)
-    params.set('design', config.designStyle)
-    params.set('color', config.colorScheme)
-    
-    // Hide configurator and show website
-    setShowConfigurator(false)
-    
-    // Update URL without page reload
-    window.history.pushState({}, '', `/?${params.toString()}`)
-    
-    setIsGenerating(false)
   }
 
   const scrollToContact = () => {
-    const footerSection = document.getElementById('footer')
-    if (footerSection) {
-      footerSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      })
+    const contactSection = document.getElementById('kontakt')
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
   // Services Preview Component for Multi-Page Mode
   const ServicesPreview = () => (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Unsere Leistungen
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Professionelle Handwerksarbeit in allen Bereichen
-          </p>
-        </div>
+    <SectionWrapper index={2} designStyle={designStyle}>
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Unsere Leistungen
+            </h2>
+            <p className="text-lg max-w-2xl mx-auto opacity-90">
+              Professionelle Handwerksarbeit in allen Bereichen
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {content?.services.slice(0, 3).map((service: any, index: number) => (
-            <div key={index} className="bg-white dark:bg-gray-800 p-6 shadow-lg"
-              style={{ borderRadius: 'var(--radius-card)' }}>
-              <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {content?.services.slice(0, 3).map((service: any, index: number) => (
+              <div key={index} className="bg-white/10 backdrop-blur-sm p-6 shadow-lg border border-white/20"
                 style={{ borderRadius: 'var(--radius-card)' }}>
-                <span className="text-2xl">{service.icon}</span>
+                <div className="w-12 h-12 bg-white/20 flex items-center justify-center mb-4"
+                  style={{ borderRadius: 'var(--radius-card)' }}>
+                  <span className="text-2xl">{service.icon}</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">
+                  {service.title}
+                </h3>
+                <p className="opacity-90 mb-4">
+                  {service.description}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                {service.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                {service.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </SectionWrapper>
   )
 
-  if (!content) {
+  if (!baseContent) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
         <div className="text-center">
           <ModernSpinner variant="dots" size="xl" color="primary" className="mb-4" />
-          <p className="text-gray-600 dark:text-gray-400">Wird geladen...</p>
+          <p className="text-text-secondary dark:text-light/80">Website wird geladen...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen relative">
+    <div className="relative">
+      {/* URL-Parameter Debug (nur in Development) */}
+      {process.env.NODE_ENV === 'development' && <UrlParamsDebug />}
+      
       {/* Background Website */}
       <div className={`transition-all duration-500 ${showConfigurator ? 'opacity-60 blur-[2px]' : 'opacity-100 blur-0'}`}>
         <Header content={content} />
         <Hero content={content} />
         
-        {/* One-Page Mode: All Sections */}
+        {/* One-Page Mode: All Sections mit abwechselnden Hintergründen für klassisch */}
         {siteMode === 'onepage' && (
           <>
-            <About content={content} />
-            <Stats content={content} />
-            <Services content={content} />
-            <BeforeAfter content={content} />
-            <Team content={content} />
-            <Testimonials content={content} />
-            <ProjectProcess content={content} />
-            <Contact content={content} />
+            <SectionWrapper index={0} designStyle={designStyle}>
+              <About content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={1} designStyle={designStyle}>
+              <Stats content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={2} designStyle={designStyle}>
+              <Services content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={3} designStyle={designStyle}>
+              <BeforeAfter content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={4} designStyle={designStyle}>
+              <Team content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={5} designStyle={designStyle}>
+              <Testimonials content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={6} designStyle={designStyle}>
+              <ProjectProcess content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={7} designStyle={designStyle}>
+              <Contact content={content} />
+            </SectionWrapper>
           </>
         )}
         
         {/* Multi-Page Mode: Only Previews */}
         {siteMode === 'multipage' && (
           <>
-            <About content={content} />
-            <Stats content={content} />
+            <SectionWrapper index={0} designStyle={designStyle}>
+              <About content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={1} designStyle={designStyle}>
+              <Stats content={content} />
+            </SectionWrapper>
+            
             <ServicesPreview />
             
             {/* Multi-Page Demo Section */}
-            <section className="py-16 bg-blue-50 dark:bg-blue-900/20">
-              <div className="container mx-auto px-4 text-center">
-                <div className="max-w-3xl mx-auto">
-                  <h2 className="text-3xl md:text-4xl font-bold text-blue-900 dark:text-blue-100 mb-6">
-                    🏢 Mehrseiten-Modus aktiv
-                  </h2>
-                  <p className="text-lg text-blue-700 dark:text-blue-200 mb-8">
-                    In der finalen Version würden hier separate Seiten für Services, Team, Portfolio und Kontakt existieren. Diese kompakte Ansicht zeigt nur die wichtigsten Bereiche als Preview.
-                  </p>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="bg-white dark:bg-gray-800 p-4 shadow"
-                      style={{ borderRadius: 'var(--radius-card)' }}>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Services</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
-                    </div>
-                    <div className="bg-white dark:bg-gray-800 p-4 shadow"
-                      style={{ borderRadius: 'var(--radius-card)' }}>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Team</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
-                    </div>
-                    <div className="bg-white dark:bg-gray-800 p-4 shadow"
-                      style={{ borderRadius: 'var(--radius-card)' }}>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Portfolio</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
-                    </div>
-                    <div className="bg-white dark:bg-gray-800 p-4 shadow"
-                      style={{ borderRadius: 'var(--radius-card)' }}>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Kontakt</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Eigene Seite</p>
+            <SectionWrapper index={3} designStyle={designStyle}>
+              <section className="py-16">
+                <div className="container mx-auto px-4 text-center">
+                  <div className="max-w-3xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                      🏢 Mehrseiten-Modus aktiv
+                    </h2>
+                    <p className="text-lg mb-8 opacity-90">
+                      In der finalen Version würden hier separate Seiten für Services, Team, Portfolio und Kontakt existieren. Diese kompakte Ansicht zeigt nur die wichtigsten Bereiche als Preview.
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {['Services', 'Team', 'Portfolio', 'Kontakt'].map((item, index) => (
+                        <div key={index} className="bg-white/10 backdrop-blur-sm p-4 shadow border border-white/20"
+                          style={{ borderRadius: 'var(--radius-card)' }}>
+                          <h3 className="font-semibold">{item}</h3>
+                          <p className="text-sm opacity-80">Eigene Seite</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </SectionWrapper>
           </>
         )}
         
@@ -636,13 +677,13 @@ export default function HomePage() {
                 <div className="text-center">
                   <button
                     className={`w-full md:w-auto px-6 md:px-8 py-4 md:py-3 font-medium text-base md:text-base transition-all duration-200 ${
-                      canGenerate && !isGenerating
+                      config.layoutType && config.designStyle && config.colorScheme && !isGenerating
                         ? 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg hover:shadow-xl hover:scale-105'
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-600 dark:text-gray-400'
                     }`}
                     style={{ borderRadius: 'var(--radius-button)' }}
                     onClick={handleGenerate}
-                    disabled={!canGenerate || isGenerating}
+                    disabled={!config.layoutType || !config.designStyle || !config.colorScheme || isGenerating}
                   >
                     {isGenerating ? (
                       <div className="flex items-center justify-center">
@@ -666,7 +707,11 @@ export default function HomePage() {
       )}
 
       {/* Configurator Toggle Button */}
-      <ConfiguratorButton onClick={() => setShowConfigurator(true)} />
+      <ConfiguratorButton
+        onGenerateClick={() => setShowConfigurator(false)}
+        isMultipage={siteMode === 'multipage'}
+        onToggleMode={() => setSiteMode(prev => prev === 'onepage' ? 'multipage' : 'onepage')}
+      />
     </div>
   )
 } 

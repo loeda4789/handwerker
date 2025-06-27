@@ -447,60 +447,92 @@ html {
 }
 
 /* 3D Floating Tools Animationen */
-@keyframes float3D {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) translateZ(0px) rotateX(5deg) rotateY(5deg);
-  }
-  25% {
-    transform: translateY(-20px) translateX(10px) translateZ(10px) rotateX(10deg) rotateY(-5deg);
-  }
-  50% {
-    transform: translateY(-10px) translateX(-5px) translateZ(20px) rotateX(-5deg) rotateY(10deg);
-  }
-  75% {
-    transform: translateY(-25px) translateX(15px) translateZ(5px) rotateX(15deg) rotateY(0deg);
-  }
+/* 
+@keyframes float3D { ... }
+@keyframes rotate3D { ... }
+.perspective-1000 { ... }
+.transform-gpu { ... }
+.tool-3d { ... }
+.floating-tools-container { ... }
+*/
+
+/* 3D Floating Tools Animationen - ENTFERNT */
+/*
+@keyframes float3D { ... }
+@keyframes rotate3D { ... }
+.perspective-1000 { ... }
+.transform-gpu { ... }
+.tool-3d { ... }
+.floating-tools-container { ... }
+*/
+
+/* Klassische Variante: Abwechselnde Sektionshintergründe */
+.section-on-primary {
+  /* Styles für Sektionen auf Primärfarbe-Hintergrund */
 }
 
-@keyframes rotate3D {
-  0% {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  }
-  33% {
-    transform: rotateX(120deg) rotateY(120deg) rotateZ(120deg);
-  }
-  66% {
-    transform: rotateX(240deg) rotateY(240deg) rotateZ(240deg);
-  }
-  100% {
-    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-  }
+.section-on-primary h1,
+.section-on-primary h2,
+.section-on-primary h3,
+.section-on-primary h4,
+.section-on-primary h5,
+.section-on-primary h6 {
+  color: white !important;
 }
 
-.perspective-1000 {
-  perspective: 1000px;
+.section-on-primary p,
+.section-on-primary span,
+.section-on-primary div {
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
-.transform-gpu {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  will-change: transform;
+.section-on-primary .bg-white {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
-/* 3D Hover Effekte für bessere Interaktivität */
-.tool-3d {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.section-on-primary .text-gray-900 {
+  color: white !important;
 }
 
-.tool-3d:hover {
-  transform: scale(1.1) translateZ(20px);
-  filter: brightness(1.2) saturate(1.3);
+.section-on-primary .text-gray-700 {
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
-/* Performance-Optimierung für 3D-Elemente */
-.floating-tools-container {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  will-change: transform;
-  contain: layout style paint;
+.section-on-primary .text-gray-600 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.section-on-primary .border-gray-200 {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Spezielle Anpassungen für Cards auf Primärfarbe */
+.section-on-primary .bg-gray-50 {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.section-on-primary .hover\:bg-gray-100:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Buttons auf Primärfarbe-Hintergrund */
+.section-on-primary .bg-primary {
+  background-color: white !important;
+  color: var(--color-primary) !important;
+}
+
+.section-on-primary .bg-primary:hover {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Icons und andere Elemente */
+.section-on-primary .text-primary {
+  color: white !important;
+}
+
+/* Schatten für bessere Sichtbarkeit */
+.section-on-primary .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
 } 

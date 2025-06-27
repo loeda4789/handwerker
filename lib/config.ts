@@ -3,7 +3,7 @@ import contentData from '@/data/content.json';
 import dachdeckerContent from '@/data/dachdecker_content.json';
 import elektrikerContent from '@/data/elektriker_content.json';
 import themeData from '@/data/theme.json';
-import { extractUrlParams, mergeUrlDataWithContent, saveUrlParamsToStorage, hasUrlParams } from '@/lib/url-params';
+import { getEffectiveUrlParams, mergeUrlDataWithContent, hasUrlParams } from '@/lib/url-params';
 
 // Statische Content-Dateien für verschiedene Branchen
 const contentMap: Record<string, ContentData> = {
@@ -31,13 +31,10 @@ export function getContentData(): ContentData {
   
   // URL-Parameter extrahieren (nur im Browser)
   if (typeof window !== 'undefined') {
-    const urlParams = extractUrlParams();
+    const urlParams = getEffectiveUrlParams();
     
-    // URL-Parameter speichern wenn vorhanden (für Debugging)
+    // URL-Daten mit Standard-Content zusammenführen wenn vorhanden
     if (hasUrlParams(urlParams)) {
-      saveUrlParamsToStorage(urlParams);
-      
-      // URL-Daten mit Standard-Content zusammenführen
       return mergeUrlDataWithContent(baseContent, urlParams);
     }
   }
@@ -46,7 +43,7 @@ export function getContentData(): ContentData {
   return baseContent;
 }
 
-// Funktion für branchenspezifisches Content-Laden (synchron)
+// Funktion für branchenspezifisches Content-Laden mit URL-Parameter-Unterstützung
 export function getContentDataByBranche(): ContentData {
   // Standard Content-Daten laden
   const baseContent = contentData as ContentData;
@@ -57,19 +54,21 @@ export function getContentDataByBranche(): ContentData {
     const branche = urlSearchParams.get('branche');
     
     // Wenn Branche-Parameter vorhanden ist, versuche branchenspezifische Content-Datei zu laden
+    let contentToUse = baseContent;
     if (branche) {
       const branchenContent = loadContentByBranche(branche);
       if (branchenContent) {
-        return branchenContent;
+        contentToUse = branchenContent;
       }
     }
     
-    // Normale URL-Parameter verarbeiten
-    const urlParams = extractUrlParams();
+    // Normale URL-Parameter verarbeiten (aus URL oder LocalStorage)
+    const urlParams = getEffectiveUrlParams();
     if (hasUrlParams(urlParams)) {
-      saveUrlParamsToStorage(urlParams);
-      return mergeUrlDataWithContent(baseContent, urlParams);
+      return mergeUrlDataWithContent(contentToUse, urlParams);
     }
+    
+    return contentToUse;
   }
   
   // Fallback zu Standard-Content
