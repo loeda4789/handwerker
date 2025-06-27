@@ -185,8 +185,20 @@ export default function Header({ content }: HeaderProps) {
         nav: 'px-6 py-3',
         borderRadius: '2rem'
       }
+    } else if (designStyle === 'angular') {
+      // Klassisch: Immer weiß, nicht durchsichtig
+      return {
+        container: 'sticky top-0 z-50 w-full',
+        header: `transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-white border-b border-border shadow-lg dark:bg-gray-900 dark:border-gray-700' 
+            : 'bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700'
+        }`,
+        nav: 'px-4 py-2.5 mx-auto max-w-screen-xl',
+        borderRadius: 'var(--radius-modal)'
+      }
     } else {
-      // Alle anderen Design-Stile: Standard sticky Navigation
+      // Andere Design-Stile: Standard sticky Navigation mit Transparenz
       return {
         container: 'sticky top-0 z-50 w-full',
         header: `transition-all duration-300 ${
