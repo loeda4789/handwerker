@@ -69,6 +69,7 @@ export default function About({ content }: AboutProps) {
                     alt="Über uns - Mustermann Handwerk"
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-300"
+                    style={{ borderRadius: 'var(--radius-image)' }}
                     sizes="(max-width: 768px) 100vw, 50vw"
                     quality={80}
                   />

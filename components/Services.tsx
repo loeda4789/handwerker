@@ -126,6 +126,7 @@ export default function Services({ content }: ServicesProps) {
                     alt={service.title}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    style={{ borderRadius: 'var(--radius-image)' }}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     quality={80}
                   />

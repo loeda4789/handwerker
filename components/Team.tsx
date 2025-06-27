@@ -102,6 +102,7 @@ export default function Team({ content }: TeamProps) {
                             alt={member.name}
                             fill
                             className="object-cover"
+                            style={{ borderRadius: 'var(--radius-image)' }}
                             sizes="192px"
                           />
                           {/* Hover Overlay */}
@@ -210,6 +211,7 @@ export default function Team({ content }: TeamProps) {
                       alt={member.name}
                       fill
                       className="object-cover"
+                      style={{ borderRadius: 'var(--radius-image)' }}
                       sizes="192px"
                     />
                     {/* Hover Overlay */}
