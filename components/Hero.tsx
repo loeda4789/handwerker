@@ -390,53 +390,80 @@ function HeroVideo({ content }: HeroProps) {
   )
 }
 
-// Hero Split Variant - Klassische Variante mit Primärfarbe
+// Hero Split Variant - Klassische Variante mit weißem Hintergrund
 function HeroSplit({ content }: HeroProps) {
   const cityName = extractCityFromAddress(content.contact.address)
 
   return (
     <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
       <div className="flex h-full">
-        {/* Left Side - Content mit Primärfarbe-Hintergrund */}
-        <div className="w-full lg:w-1/2 bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center relative z-10">
+        {/* Left Side - Content mit weißem Hintergrund */}
+        <div className="w-full lg:w-1/2 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center relative z-10">
           <div className="px-6 lg:px-12 max-w-lg">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-white">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
               {content.company.name}
             </h1>
             
-            <p className="text-lg md:text-xl mb-8 text-white/90">
+            <p className="text-lg md:text-xl mb-8 text-gray-700 dark:text-gray-300">
               {content.company.tagline} aus {cityName}
             </p>
             
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/30"
-                  style={{ borderRadius: 'var(--radius-button)' }}>
-                  <MdVerified className="w-5 h-5 text-white" />
+                <div 
+                  className="w-10 h-10 flex items-center justify-center border border-gray-200 dark:border-gray-700"
+                  style={{ 
+                    borderRadius: 'var(--radius-button)',
+                    backgroundColor: 'var(--color-primary)',
+                    color: 'white'
+                  }}
+                >
+                  <MdVerified className="w-5 h-5" />
                 </div>
-                <span className="text-white/90">Meisterqualität seit Jahren</span>
+                <span className="text-gray-600 dark:text-gray-400">Meisterqualität seit Jahren</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/30"
-                  style={{ borderRadius: 'var(--radius-button)' }}>
-                  <MdAccessTime className="w-5 h-5 text-white" />
+                <div 
+                  className="w-10 h-10 flex items-center justify-center border border-gray-200 dark:border-gray-700"
+                  style={{ 
+                    borderRadius: 'var(--radius-button)',
+                    backgroundColor: 'var(--color-primary)',
+                    color: 'white'
+                  }}
+                >
+                  <MdAccessTime className="w-5 h-5" />
                 </div>
-                <span className="text-white/90">24/7 Notdienst verfügbar</span>
+                <span className="text-gray-600 dark:text-gray-400">24/7 Notdienst verfügbar</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/30"
-                  style={{ borderRadius: 'var(--radius-button)' }}>
-                  <MdSupportAgent className="w-5 h-5 text-white" />
+                <div 
+                  className="w-10 h-10 flex items-center justify-center border border-gray-200 dark:border-gray-700"
+                  style={{ 
+                    borderRadius: 'var(--radius-button)',
+                    backgroundColor: 'var(--color-primary)',
+                    color: 'white'
+                  }}
+                >
+                  <MdSupportAgent className="w-5 h-5" />
                 </div>
-                <span className="text-white/90">Kostenlose Beratung</span>
+                <span className="text-gray-600 dark:text-gray-400">Kostenlose Beratung</span>
               </div>
             </div>
             
             <div className="flex flex-col gap-4">
               <Link
                 href="#kontakt"
-                className="inline-flex items-center justify-center px-6 py-3 bg-white hover:bg-gray-100 text-orange-600 hover:text-orange-700 font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
-                style={{ borderRadius: 'var(--radius-button)' }}
+                className="inline-flex items-center justify-center px-6 py-3 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
+                style={{ 
+                  borderRadius: 'var(--radius-button)',
+                  backgroundColor: 'var(--color-primary)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                }}
               >
                 Jetzt Termin vereinbaren
                 <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
@@ -446,8 +473,19 @@ function HeroSplit({ content }: HeroProps) {
               
               <Link
                 href="#ueber-uns"
-                className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white hover:bg-white hover:text-orange-600 font-medium transition-all duration-300"
-                style={{ borderRadius: 'var(--radius-button)' }}
+                className="inline-flex items-center justify-center px-6 py-3 border-2 text-gray-900 dark:text-white hover:text-white font-medium transition-all duration-300"
+                style={{ 
+                  borderRadius: 'var(--radius-button)',
+                  borderColor: 'var(--color-primary)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                  e.currentTarget.style.color = 'white';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = 'var(--color-primary)';
+                }}
               >
                 Mehr erfahren
               </Link>
@@ -480,7 +518,6 @@ function HeroSplit({ content }: HeroProps) {
             className="object-cover opacity-20"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-600/90 to-orange-700/90"></div>
         </div>
       </div>
     </section>

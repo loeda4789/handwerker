@@ -46,16 +46,27 @@ const SectionWrapper = ({ children, index, designStyle, className = '' }: Sectio
     return <>{children}</>
   }
 
-  // Für klassische Variante: Abwechselnde Hintergründe
-  const isEven = index % 2 === 0
+  // Für klassische Variante: Hero (Index 0) überspringen, ab Index 1 beginnen
+  if (index === 0) {
+    // Hero-Sektion: Normale Darstellung ohne Farbänderung
+    return <div className={className}>{children}</div>
+  }
+
+  // Ab zweiter Sektion (Index 1): Abwechselnde Hintergründe
+  const isEven = (index - 1) % 2 === 0 // -1 weil wir bei Index 1 beginnen
   
   if (isEven) {
-    // Gerade Sektionen: Weiß/Standard
+    // Gerade Sektionen nach Hero: Weiß/Standard
     return <div className={className}>{children}</div>
   } else {
-    // Ungerade Sektionen: Primärfarbe-Hintergrund mit angepassten Styles
+    // Ungerade Sektionen nach Hero: Primärfarbe-Hintergrund
     return (
-      <div className={`bg-gradient-to-br from-orange-600 to-orange-700 section-on-primary ${className}`}>
+      <div 
+        className={`section-on-primary ${className}`}
+        style={{
+          background: 'linear-gradient(to bottom right, var(--color-primary), var(--color-secondary))'
+        }}
+      >
         {children}
       </div>
     )

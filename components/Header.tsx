@@ -186,18 +186,31 @@ export default function Header({ content }: HeaderProps) {
         borderRadius: designStyle === 'circular' ? '2rem' : '1.5rem',
         textColor: 'text-gray-900 dark:text-white',
         logoStyle: 'text-gray-900 dark:text-white',
-        ctaStyle: 'bg-blue-600 hover:bg-blue-700 text-white'
+        ctaStyle: 'bg-blue-600 hover:bg-blue-700 text-white',
+        mobileMenuStyle: 'bg-white dark:bg-gray-800'
       }
     } else if (designStyle === 'angular') {
-      // Klassisch: Primärfarbe-Hintergrund mit weißer Schrift
+      // Klassisch: Primärfarbe aus Konfigurator mit weißer Schrift
       return {
         container: 'sticky top-0 z-50 w-full',
-        header: `transition-all duration-300 bg-gradient-to-r from-orange-600 to-orange-700 shadow-lg border-b border-orange-800`,
+        header: `transition-all duration-300 shadow-lg border-b`,
+        headerStyle: {
+          background: 'linear-gradient(to right, var(--color-primary), var(--color-secondary))',
+          borderBottomColor: 'var(--color-primary)'
+        },
         nav: 'px-4 py-2.5 mx-auto max-w-screen-xl',
         borderRadius: 'var(--radius-modal)',
         textColor: 'text-white',
         logoStyle: 'text-white',
-        ctaStyle: 'bg-white hover:bg-gray-100 text-orange-600 hover:text-orange-700'
+        ctaStyle: 'bg-white hover:bg-gray-100 text-gray-900',
+        ctaStyleDynamic: {
+          color: 'var(--color-primary)'
+        },
+        mobileMenuStyle: 'border-t',
+        mobileMenuStyleDynamic: {
+          background: 'linear-gradient(to right, var(--color-primary), var(--color-secondary))',
+          borderTopColor: 'var(--color-primary)'
+        }
       }
     } else {
       // Halb Modern: Standard weiß mit Rundung
@@ -212,7 +225,8 @@ export default function Header({ content }: HeaderProps) {
         borderRadius: 'var(--radius-modal)',
         textColor: 'text-gray-900 dark:text-white',
         logoStyle: 'text-gray-900 dark:text-white',
-        ctaStyle: 'bg-blue-600 hover:bg-blue-700 text-white'
+        ctaStyle: 'bg-blue-600 hover:bg-blue-700 text-white',
+        mobileMenuStyle: 'bg-white dark:bg-gray-800'
       }
     }
   }
@@ -239,7 +253,10 @@ export default function Header({ content }: HeaderProps) {
     <div className={headerStyles.container}>
       <header 
         className={headerStyles.header}
-        style={{ borderRadius: headerStyles.borderRadius }}
+        style={{ 
+          borderRadius: headerStyles.borderRadius,
+          ...headerStyles.headerStyle
+        }}
       >
         <nav className={`${headerStyles.nav} flex items-center justify-between`}>
           {/* Logo */}
@@ -266,7 +283,7 @@ export default function Header({ content }: HeaderProps) {
                     onMouseLeave={() => setDropdownOpen(null)}
                   >
                     <button 
-                      className={`${headerStyles.textColor} hover:text-orange-300 font-medium transition-colors duration-200 flex items-center`}
+                      className={`${headerStyles.textColor} hover:opacity-80 font-medium transition-colors duration-200 flex items-center`}
                     >
                       {item.label}
                       <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -295,8 +312,8 @@ export default function Header({ content }: HeaderProps) {
                   <Link
                     href={item.href || '#'}
                     onClick={item.isClickable && item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.id) : undefined}
-                    className={`${headerStyles.textColor} hover:text-orange-300 font-medium transition-colors duration-200 ${
-                      activeSection === item.id && siteMode === 'onepage' ? 'text-orange-300' : ''
+                    className={`${headerStyles.textColor} hover:opacity-80 font-medium transition-colors duration-200 ${
+                      activeSection === item.id && siteMode === 'onepage' ? 'opacity-80' : ''
                     }`}
                   >
                     {item.label}
@@ -309,7 +326,10 @@ export default function Header({ content }: HeaderProps) {
               href="#kontakt"
               onClick={(e) => handleSmoothScroll(e, 'kontakt')}
               className={`px-6 py-2 font-medium transition-all duration-200 ${headerStyles.ctaStyle}`}
-              style={{ borderRadius: 'var(--radius-button)' }}
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                ...headerStyles.ctaStyleDynamic
+              }}
             >
               Kontakt
             </Link>
@@ -330,7 +350,10 @@ export default function Header({ content }: HeaderProps) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-orange-800 bg-gradient-to-r from-orange-600 to-orange-700">
+          <div 
+            className={`lg:hidden ${headerStyles.mobileMenuStyle}`}
+            style={headerStyles.mobileMenuStyleDynamic}
+          >
             <div className="px-4 py-4 space-y-2">
               {getNavItems().map((item) => (
                 <div key={item.id}>
@@ -359,7 +382,7 @@ export default function Header({ content }: HeaderProps) {
                             <Link
                               key={index}
                               href={dropdownItem.href}
-                              className="block py-2 text-orange-100 hover:text-white transition-colors duration-200"
+                              className="block py-2 text-white/80 hover:text-white transition-colors duration-200"
                               onClick={closeMobileMenu}
                             >
                               {dropdownItem.label}
@@ -375,7 +398,7 @@ export default function Header({ content }: HeaderProps) {
                         handleSmoothScroll(e, item.id)
                         closeMobileMenu()
                       } : closeMobileMenu}
-                      className="block py-3 text-white hover:text-orange-200 font-medium transition-colors duration-200"
+                      className="block py-3 text-white hover:text-white/80 font-medium transition-colors duration-200"
                     >
                       {item.label}
                     </Link>
@@ -389,8 +412,11 @@ export default function Header({ content }: HeaderProps) {
                   handleSmoothScroll(e, 'kontakt')
                   closeMobileMenu()
                 }}
-                className="block mt-4 px-6 py-3 text-center bg-white text-orange-600 hover:bg-gray-100 font-medium transition-all duration-200"
-                style={{ borderRadius: 'var(--radius-button)' }}
+                className="block mt-4 px-6 py-3 text-center bg-white hover:bg-gray-100 font-medium transition-all duration-200"
+                style={{ 
+                  borderRadius: 'var(--radius-button)',
+                  color: 'var(--color-primary)'
+                }}
               >
                 Kontakt
               </Link>
