@@ -54,8 +54,6 @@ export default function Header({ content }: HeaderProps) {
     }
   }, [])
 
-  // Note: Dark mode functionality removed
-
   // Scroll detection for header background
   useEffect(() => {
     const handleScroll = () => {
@@ -185,10 +183,24 @@ export default function Header({ content }: HeaderProps) {
             : 'bg-white/60 dark:bg-gray-900/60'
         }`,
         nav: 'px-6 py-3',
-        borderRadius: designStyle === 'circular' ? '2rem' : '1.5rem'
+        borderRadius: designStyle === 'circular' ? '2rem' : '1.5rem',
+        textColor: 'text-gray-900 dark:text-white',
+        logoStyle: 'text-gray-900 dark:text-white',
+        ctaStyle: 'bg-blue-600 hover:bg-blue-700 text-white'
       }
     } else if (designStyle === 'angular') {
-      // Klassisch: Immer weiß, nicht durchsichtig
+      // Klassisch: Primärfarbe-Hintergrund mit weißer Schrift
+      return {
+        container: 'sticky top-0 z-50 w-full',
+        header: `transition-all duration-300 bg-gradient-to-r from-orange-600 to-orange-700 shadow-lg border-b border-orange-800`,
+        nav: 'px-4 py-2.5 mx-auto max-w-screen-xl',
+        borderRadius: 'var(--radius-modal)',
+        textColor: 'text-white',
+        logoStyle: 'text-white',
+        ctaStyle: 'bg-white hover:bg-gray-100 text-orange-600 hover:text-orange-700'
+      }
+    } else {
+      // Halb Modern: Standard weiß mit Rundung
       return {
         container: 'sticky top-0 z-50 w-full',
         header: `transition-all duration-300 ${
@@ -197,19 +209,10 @@ export default function Header({ content }: HeaderProps) {
             : 'bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700'
         }`,
         nav: 'px-4 py-2.5 mx-auto max-w-screen-xl',
-        borderRadius: 'var(--radius-modal)'
-      }
-    } else {
-      // Halb modern: Standard sticky Navigation mit Transparenz
-      return {
-        container: 'sticky top-0 z-50 w-full',
-        header: `transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-white/98 backdrop-blur-md border-b border-border shadow-lg dark:bg-dark/98 dark:border-gray-700' 
-            : 'bg-white/80 backdrop-blur-sm border-b border-transparent dark:bg-transparent dark:border-transparent'
-        }`,
-        nav: 'px-4 py-2.5 mx-auto max-w-screen-xl',
-        borderRadius: 'var(--radius-modal)'
+        borderRadius: 'var(--radius-modal)',
+        textColor: 'text-gray-900 dark:text-white',
+        logoStyle: 'text-gray-900 dark:text-white',
+        ctaStyle: 'bg-blue-600 hover:bg-blue-700 text-white'
       }
     }
   }
@@ -217,260 +220,168 @@ export default function Header({ content }: HeaderProps) {
   const headerStyles = getHeaderStyles()
 
   return (
-    <>
-      <div className={headerStyles.container}>
-        <header className={headerStyles.header} style={{ borderRadius: headerStyles.borderRadius }}>
-          <nav className={headerStyles.nav}>
-          <div className="flex flex-wrap items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex items-center z-50 relative">
-              <div className="h-12 px-4 bg-primary flex items-center justify-center"
-                style={{ borderRadius: 'var(--radius-button)' }}>
-                <span className="text-white font-bold text-sm whitespace-nowrap">
-                  Ihr Logo
-                </span>
-              </div>
-            </Link>
-
-            {/* Mobile Menu Button & CTA */}
-            <div className="flex items-center lg:order-2">
-
-              {/* Desktop CTA Button */}
-              <Link
-                href={siteMode === 'multipage' ? '/kontakt' : '#kontakt'}
-                onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, 'kontakt') : undefined}
-                className="hidden lg:inline-flex items-center px-5 py-2.5 mr-2 text-sm font-medium text-white bg-primary hover:bg-accent focus:ring-4 focus:ring-primary/30 dark:bg-primary dark:hover:bg-accent/90"
-                style={{ borderRadius: 'var(--radius-button)' }}
-              >
-                Jetzt Termin vereinbaren
-              </Link>
-
-              {/* Mobile Menu Button - Only visible on mobile */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                type="button"
-                className="lg:hidden inline-flex items-center p-2 ml-1 text-sm hover:bg-light focus:outline-none focus:ring-2 focus:ring-primary/20 dark:hover:bg-dark dark:focus:ring-light/20 z-50 relative transition-colors duration-300"
-                style={{ borderRadius: 'var(--radius-button)' }}
-                aria-controls="navbar-mobile"
-                aria-expanded={mobileMenuOpen}
-              >
-                <span className="sr-only">Menü öffnen</span>
-                
-                {/* Animated Hamburger */}
-                <div className="w-6 h-6 flex flex-col justify-center items-center">
-                  <span className={`w-6 h-0.5 bg-current transition-all duration-300 origin-center ${
-                    mobileMenuOpen ? 'rotate-45 translate-y-0' : 'translate-y-[-6px]'
-                  }`}></span>
-                  <span className={`w-6 h-0.5 bg-current transition-all duration-300 ${
-                    mobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
-                  }`}></span>
-                  <span className={`w-6 h-0.5 bg-current transition-all duration-300 origin-center ${
-                    mobileMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-[6px]'
-                  }`}></span>
-                </div>
-              </button>
+    <div className={headerStyles.container}>
+      <header 
+        className={headerStyles.header}
+        style={{ borderRadius: headerStyles.borderRadius }}
+      >
+        <nav className={`${headerStyles.nav} flex items-center justify-between`}>
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-3">
+            <div 
+              className={`w-10 h-10 ${headerStyles.logoStyle} border-2 border-current flex items-center justify-center font-bold text-sm`}
+              style={{ borderRadius: 'var(--radius-button)' }}
+            >
+              {content?.company?.initials || 'IH'}
             </div>
+            <span className={`text-xl font-bold ${headerStyles.logoStyle} hidden sm:block`}>
+              {content?.company?.initials || 'Ihr'} {content?.company?.type || 'Handwerk'}
+            </span>
+          </Link>
 
-            {/* Desktop Navigation Menu */}
-            <div className="hidden lg:flex lg:w-auto lg:order-1" id="desktop-menu">
-              <ul className="flex flex-row font-medium space-x-8">
-                {navItems.map((item: any) => (
-                  <li key={item.id} className="relative">
-                    {item.hasDropdown && siteMode === 'multipage' ? (
-                      <div
-                        className="relative"
-                        onMouseEnter={() => setDropdownOpen(item.id)}
-                        onMouseLeave={() => setDropdownOpen(null)}
-                      >
-                        {item.isClickable ? (
-                          <Link
-                            href={item.href}
-                            className={`flex items-center py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 text-text dark:text-light hover:text-primary dark:hover:text-primary`}
-                          >
-                            {item.label}
-                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                          </Link>
-                        ) : (
-                          <span
-                            className={`flex items-center py-2 px-3 lg:p-0 uppercase transition-colors duration-300 text-text dark:text-light cursor-default`}
-                          >
-                            {item.label}
-                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                          </span>
-                        )}
-                        
-                        {/* Dropdown Menu */}
-                        <div className={`absolute top-full left-0 mt-2 w-64 shadow-xl border transition-all duration-300 z-50 ${
-                          designStyle === 'circular' || designStyle === 'curved'
-                            ? 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border-white/30 dark:border-gray-600/30' 
-                            : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
-                        } ${
-                          dropdownOpen === item.id ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
-                        }`}
-                          style={{ borderRadius: (designStyle === 'circular' || designStyle === 'curved') ? '1rem' : 'var(--radius-card)' }}>
-                          <div className="py-2">
-                            {item.dropdownItems?.map((dropdownItem: any, index: number) => (
-                              <Link
-                                key={index}
-                                href={dropdownItem.href}
-                                className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary transition-colors duration-200"
-                              >
-                                <span className="font-medium">{dropdownItem.label}</span>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      item.isClickable ? (
-                        <Link
-                          href={item.href}
-                          onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : undefined}
-                          className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                            activeSection === item.id && siteMode === 'onepage'
-                              ? 'text-primary dark:text-accent font-semibold' 
-                              : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
-                          }`}
-                        >
-                          {item.label}
-                        </Link>
-                      ) : (
-                        <span
-                          className={`block py-2 px-3 lg:p-0 uppercase transition-colors duration-300 cursor-default text-text dark:text-light`}
-                        >
-                          {item.label}
-                        </span>
-                      )
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
-      </div>
-
-      {/* Mobile Fullscreen Navigation Overlay */}
-      <div className={`fixed inset-0 ${designStyle === 'circular' ? 'z-30' : 'z-40'} lg:hidden transition-all duration-500 ease-in-out ${
-        mobileMenuOpen 
-          ? 'opacity-100 visible' 
-          : 'opacity-0 invisible'
-      }`}>
-        {/* Background Overlay */}
-        <div 
-          className={`absolute inset-0 bg-white dark:bg-gray-900 transition-all duration-500 ${
-            mobileMenuOpen ? 'opacity-100' : 'opacity-0'
-          }`}
-          onClick={closeMobileMenu}
-        ></div>
-        
-        {/* Navigation Content */}
-        <div className={`relative h-full flex flex-col justify-center items-center transition-all duration-700 ${
-          mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-        }`}>
-          {/* Navigation Links */}
-          <nav className="text-center space-y-8">
-            {navItems.map((item: any) => (
-              <div key={item.id}>
-                {item.hasDropdown && siteMode === 'multipage' ? (
-                  <div>
-                    {/* Main dropdown trigger - no link behavior */}
-                    <button
-                      onClick={() => toggleMobileDropdown(item.id)}
-                      className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                        mobileDropdownOpen === item.id
-                          ? 'text-primary dark:text-accent font-medium' 
-                          : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-                      }`}
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {getNavItems().map((item) => (
+              <div key={item.id} className="relative">
+                {item.hasDropdown ? (
+                  <div 
+                    className="relative"
+                    onMouseEnter={() => setDropdownOpen(item.id)}
+                    onMouseLeave={() => setDropdownOpen(null)}
+                  >
+                    <button 
+                      className={`${headerStyles.textColor} hover:text-orange-300 font-medium transition-colors duration-200 flex items-center`}
                     >
-                      <span className="flex items-center justify-center">
-                        {item.label}
-                        <svg className={`w-6 h-6 ml-2 transition-transform duration-300 ${
-                          mobileDropdownOpen === item.id ? 'rotate-180' : ''
-                        }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                      </span>
+                      {item.label}
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                      </svg>
                     </button>
                     
-                    {/* Mobile Dropdown Items - Collapsible */}
-                    <div className={`overflow-hidden transition-all duration-300 ${
-                      mobileDropdownOpen === item.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                    }`}>
-                      <div className="mt-4 space-y-4">
-                        {item.dropdownItems?.map((dropdownItem: any, index: number) => (
+                    {dropdownOpen === item.id && (
+                      <div 
+                        className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 z-50"
+                        style={{ borderRadius: 'var(--radius-card)' }}
+                      >
+                        {item.dropdownItems?.map((dropdownItem, index) => (
                           <Link
                             key={index}
                             href={dropdownItem.href}
-                            onClick={closeMobileMenu}
-                            className="block text-center text-xl font-light text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-300"
+                            className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
                           >
-                            <span>{dropdownItem.label}</span>
+                            {dropdownItem.label}
                           </Link>
                         ))}
                       </div>
-                    </div>
+                    )}
                   </div>
                 ) : (
-                  item.isClickable ? (
-                    <Link
-                      href={item.href}
-                      onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : closeMobileMenu}
-                      className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                        activeSection === item.id && siteMode === 'onepage'
-                          ? 'text-primary dark:text-accent font-medium' 
-                          : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <span
-                      className={`block text-4xl font-light tracking-wide transition-all duration-300 cursor-default text-text dark:text-light`}
-                    >
-                      {item.label}
-                    </span>
-                  )
+                  <Link
+                    href={item.href || '#'}
+                    onClick={item.isClickable && item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.id) : undefined}
+                    className={`${headerStyles.textColor} hover:text-orange-300 font-medium transition-colors duration-200 ${
+                      activeSection === item.id && siteMode === 'onepage' ? 'text-orange-300' : ''
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
                 )}
               </div>
             ))}
-          </nav>
-          
-          {/* CTA Button */}
-          <div className={`mt-16 transition-all duration-700 ${
-            mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-          }`}>
+            
             <Link
-              href={siteMode === 'multipage' ? '/kontakt' : '#kontakt'}
-              onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, 'kontakt') : closeMobileMenu}
-              className="inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-primary hover:bg-accent hover:shadow-xl hover:scale-105 transition-all duration-300 focus:ring-4 focus:ring-primary/30"
+              href="#kontakt"
+              onClick={(e) => handleSmoothScroll(e, 'kontakt')}
+              className={`px-6 py-2 font-medium transition-all duration-200 ${headerStyles.ctaStyle}`}
               style={{ borderRadius: 'var(--radius-button)' }}
             >
-              Jetzt Termin vereinbaren
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
+              Kontakt
             </Link>
           </div>
-          
-          {/* Company Info */}
-          <div className={`absolute bottom-8 left-0 right-0 text-center transition-all duration-700 ${
-            mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-          }`}>
-            <p className="text-text-secondary dark:text-light/60 text-sm">
-              {content.company.name}
-            </p>
-            <p className="text-text-secondary dark:text-light/60 text-sm mt-1">
-              {content.company.tagline}
-            </p>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`lg:hidden p-2 ${headerStyles.textColor}`}
+            aria-label="Menü öffnen"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
+                    d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            </svg>
+          </button>
+        </nav>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden border-t border-orange-800 bg-gradient-to-r from-orange-600 to-orange-700">
+            <div className="px-4 py-4 space-y-2">
+              {getNavItems().map((item) => (
+                <div key={item.id}>
+                  {item.hasDropdown ? (
+                    <div>
+                      <button
+                        onClick={() => toggleMobileDropdown(item.id)}
+                        className="w-full flex items-center justify-between py-3 text-white font-medium text-left"
+                      >
+                        {item.label}
+                        <svg 
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            mobileDropdownOpen === item.id ? 'rotate-180' : ''
+                          }`} 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </button>
+                      
+                      {mobileDropdownOpen === item.id && (
+                        <div className="ml-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
+                          {item.dropdownItems?.map((dropdownItem, index) => (
+                            <Link
+                              key={index}
+                              href={dropdownItem.href}
+                              className="block py-2 text-orange-100 hover:text-white transition-colors duration-200"
+                              onClick={closeMobileMenu}
+                            >
+                              {dropdownItem.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href || '#'}
+                      onClick={item.isClickable && item.href?.startsWith('#') ? (e) => {
+                        handleSmoothScroll(e, item.id)
+                        closeMobileMenu()
+                      } : closeMobileMenu}
+                      className="block py-3 text-white hover:text-orange-200 font-medium transition-colors duration-200"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </div>
+              ))}
+              
+              <Link
+                href="#kontakt"
+                onClick={(e) => {
+                  handleSmoothScroll(e, 'kontakt')
+                  closeMobileMenu()
+                }}
+                className="block mt-4 px-6 py-3 text-center bg-white text-orange-600 hover:bg-gray-100 font-medium transition-all duration-200"
+                style={{ borderRadius: 'var(--radius-button)' }}
+              >
+                Kontakt
+              </Link>
+            </div>
           </div>
-        </div>
-      </div>
-    </>
+        )}
+      </header>
+    </div>
   )
 } 

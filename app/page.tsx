@@ -48,21 +48,18 @@ const SectionWrapper = ({ children, index, designStyle, className = '' }: Sectio
 
   // Für klassische Variante: Abwechselnde Hintergründe
   const isEven = index % 2 === 0
-  const bgClass = isEven 
-    ? 'bg-white dark:bg-gray-900' 
-    : 'bg-primary dark:bg-primary'
   
-  const textClass = isEven 
-    ? 'text-gray-900 dark:text-white' 
-    : 'text-white'
-
-  return (
-    <div className={`${bgClass} ${className}`}>
-      <div className={textClass}>
+  if (isEven) {
+    // Gerade Sektionen: Weiß/Standard
+    return <div className={className}>{children}</div>
+  } else {
+    // Ungerade Sektionen: Primärfarbe-Hintergrund mit angepassten Styles
+    return (
+      <div className={`bg-gradient-to-br from-orange-600 to-orange-700 section-on-primary ${className}`}>
         {children}
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default function HomePage() {
