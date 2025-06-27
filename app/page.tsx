@@ -374,15 +374,17 @@ export default function HomePage() {
 
                   {/* Schritt 2: Hero Design - Collapsible */}
                   {config.layoutType && (
-                    <div className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
+                    <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
                       config.layoutType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
-                    }`}>
+                    }`} style={{ borderRadius: 'var(--radius-card)' }}>
                       <button
                         onClick={() => setConfig(prev => ({ ...prev, designExpanded: !prev.designExpanded }))}
-                        className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-xl transition-colors duration-200"
+                        className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
+                        style={{ borderRadius: 'var(--radius-card)' }}
                       >
                         <div className="flex items-center">
-                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-medium mr-4 text-sm">
+                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
+                            style={{ borderRadius: 'var(--radius-button)' }}>
                             2
                           </div>
                           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -430,13 +432,15 @@ export default function HomePage() {
                               <button
                                 key={design.key}
                                 onClick={() => handleConfigChange('designStyle', design.key)}
-                                className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-center transform hover:scale-105 ${
+                                className={`group p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 ${
                                   config.designStyle === design.key
                                     ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
                                     : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                                 }`}
+                                style={{ borderRadius: 'var(--radius-card)' }}
                               >
-                                <div className="w-12 h-12 mx-auto mb-4 rounded-xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center bg-gray-100 dark:bg-gray-700">
+                                <div className="w-12 h-12 mx-auto mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center bg-gray-100 dark:bg-gray-700"
+                                  style={{ borderRadius: 'var(--radius-card)' }}>
                                   <design.Icon className={`w-6 h-6 ${
                                     config.designStyle === design.key 
                                       ? 'text-orange-600 dark:text-orange-400' 

@@ -110,7 +110,8 @@ export default function Services({ content }: ServicesProps) {
           {content.services.map((service, index) => (
             <div
               key={index}
-              className="bg-surface dark:bg-dark rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 hover:scale-105 cursor-pointer animate-on-scroll"
+              className="bg-surface dark:bg-dark overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 hover:scale-105 cursor-pointer animate-on-scroll"
+              style={{ borderRadius: 'var(--radius-card)' }}
               onClick={() => openLightbox(service)}
             >
               {/* Service Image */}
@@ -288,7 +289,7 @@ export default function Services({ content }: ServicesProps) {
                 <div className="relative w-full max-w-3xl bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center h-96">
                   <div className="text-center text-white">
                     <svg className="w-24 h-24 mx-auto mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
                     <h4 className="text-2xl font-bold mb-2">{currentService.title}</h4>
                     <p className="text-white/80 max-w-md mx-auto">Kein Bild verfügbar</p>

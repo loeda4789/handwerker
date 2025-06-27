@@ -59,7 +59,8 @@ export default function Toast({ message, type, isVisible, onClose }: ToastProps)
 
   return (
     <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-right duration-300">
-      <div className={`flex items-center p-4 rounded-lg shadow-lg ${getToastStyles()} max-w-sm`}>
+      <div className={`flex items-center p-4 shadow-lg ${getToastStyles()} max-w-sm`}
+        style={{ borderRadius: 'var(--radius-card)' }}>
         <div className="flex-shrink-0 mr-3">
           {getIcon()}
         </div>

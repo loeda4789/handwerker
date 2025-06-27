@@ -163,11 +163,13 @@ export default function Testimonials({ content }: TestimonialsProps) {
                     key={index}
                     className="w-full flex-shrink-0 px-2"
                   >
-                    <div className="bg-surface dark:bg-dark-secondary rounded-lg p-4 shadow-lg h-full max-w-full">
+                    <div className="bg-surface dark:bg-dark-secondary p-4 shadow-lg h-full max-w-full"
+                      style={{ borderRadius: 'var(--radius-card)' }}>
                       <div className="flex items-start space-x-3">
                         {/* Avatar */}
                         <div className="flex-shrink-0">
-                          <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                          <div className="w-10 h-10 bg-primary/20 flex items-center justify-center"
+                            style={{ borderRadius: 'var(--radius-button)' }}>
                             <span className="text-primary font-semibold text-sm">
                               {testimonial.name.charAt(0)}
                             </span>
@@ -263,12 +265,14 @@ export default function Testimonials({ content }: TestimonialsProps) {
               {content.testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="bg-surface dark:bg-dark-secondary rounded-lg p-6 shadow-lg animate-on-scroll"
+                  className="bg-surface dark:bg-dark-secondary p-6 shadow-lg animate-on-scroll"
+                  style={{ borderRadius: 'var(--radius-card)' }}
                 >
                   <div className="flex items-start space-x-4">
                     {/* Avatar */}
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                      <div className="w-12 h-12 bg-primary/20 flex items-center justify-center"
+                        style={{ borderRadius: 'var(--radius-button)' }}>
                         <span className="text-primary font-semibold text-lg">
                           {testimonial.name.charAt(0)}
                         </span>
@@ -306,10 +310,12 @@ export default function Testimonials({ content }: TestimonialsProps) {
 
           {/* Google Review CTA */}
           <div className="lg:col-span-1">
-            <div className="bg-surface dark:bg-dark-secondary rounded-lg p-8 text-center shadow-lg animate-on-scroll">
+            <div className="bg-surface dark:bg-dark-secondary p-8 text-center shadow-lg animate-on-scroll"
+              style={{ borderRadius: 'var(--radius-card)' }}>
               {/* Star Icon */}
               <div className="mb-6">
-                <div className="w-20 h-20 bg-primary/10 dark:bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                <div className="w-20 h-20 bg-primary/10 dark:bg-accent/10 flex items-center justify-center mx-auto"
+                  style={{ borderRadius: 'var(--radius-button)' }}>
                   <svg className="w-10 h-10 text-primary dark:text-accent" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                   </svg>
@@ -329,7 +335,8 @@ export default function Testimonials({ content }: TestimonialsProps) {
                   href={content.reviews.google}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-primary hover:bg-accent text-white rounded-lg transition-colors duration-300 font-medium"
+                  className="inline-flex items-center px-6 py-3 bg-primary hover:bg-accent text-white transition-colors duration-300 font-medium"
+                  style={{ borderRadius: 'var(--radius-button)' }}
                 >
                   Jetzt bewerten
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

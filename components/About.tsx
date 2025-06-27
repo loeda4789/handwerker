@@ -61,7 +61,8 @@ export default function About({ content }: AboutProps) {
           {/* Bildbereich */}
           <div className="order-2 lg:order-1">
             <div className="relative h-full max-w-md mx-auto">
-              <div className="w-full h-80 rounded-lg shadow-xl dark:shadow-primary/20 overflow-hidden">
+              <div className="w-full h-80 shadow-xl dark:shadow-primary/20 overflow-hidden"
+                style={{ borderRadius: 'var(--radius-image)' }}>
                 {content.about.image ? (
                   <Image
                     src={content.about.image}
@@ -80,7 +81,8 @@ export default function About({ content }: AboutProps) {
                 )}
               </div>
               {/* Dekorativer Hintergrund */}
-              <div className="absolute -z-10 top-4 right-4 w-full h-full bg-primary/10 dark:bg-primary/20 rounded-lg"></div>
+              <div className="absolute -z-10 top-4 right-4 w-full h-full bg-primary/10 dark:bg-primary/20"
+                style={{ borderRadius: 'var(--radius-image)' }}></div>
             </div>
           </div>
           
