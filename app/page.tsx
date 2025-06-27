@@ -428,21 +428,21 @@ export default function HomePage() {
                               <button
                                 key={hero.key}
                                 onClick={() => handleConfigChange('heroType', hero.key)}
-                                className={`group p-6 rounded-xl border transition-all duration-200 text-center hover:shadow-md ${
+                                className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-center transform hover:scale-105 ${
                                   config.heroType === hero.key
-                                    ? `border-${hero.color}-500 bg-${hero.color}-50 dark:border-${hero.color}-400 dark:bg-${hero.color}-900/30 shadow-sm`
-                                    : `border-gray-200 dark:border-gray-600 hover:border-${hero.color}-300 dark:hover:border-${hero.color}-500`
+                                    ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
+                                    : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                                 }`}
                               >
-                                <div className="w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                                <div className="w-12 h-12 mx-auto mb-4 rounded-xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center bg-gray-100 dark:bg-gray-700">
                                   <hero.Icon className={`w-6 h-6 ${
                                     config.heroType === hero.key 
-                                      ? `text-${hero.color}-600 dark:text-${hero.color}-400` 
-                                      : `text-${hero.color}-500 dark:text-${hero.color}-400`
+                                      ? 'text-orange-600 dark:text-orange-400' 
+                                      : 'text-gray-600 dark:text-gray-400'
                                   }`} />
                                 </div>
-                                <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-1">{hero.name}</h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">{hero.desc}</p>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{hero.name}</h3>
+                                <p className="text-sm text-gray-600 dark:text-gray-300">{hero.desc}</p>
                               </button>
                             ))}
                           </div>
