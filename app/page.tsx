@@ -568,9 +568,20 @@ export default function HomePage() {
                       { step: 3, completed: !!config.colorScheme, label: 'Farbe' }
                     ].map((item) => (
                       <div key={item.step} className="flex items-center">
-                        <div className={`w-3 h-3 rounded-full ${
-                          item.completed ? 'bg-blue-500' : 'bg-gray-300'
-                        }`}></div>
+                        <div className={`w-5 h-5 flex items-center justify-center ${
+                          item.completed 
+                            ? 'bg-green-500 text-white' 
+                            : 'bg-gray-300 dark:bg-gray-600'
+                        }`}
+                        style={{ borderRadius: 'var(--radius-button)' }}>
+                          {item.completed ? (
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/>
+                            </svg>
+                          ) : (
+                            <div className="w-2 h-2 bg-gray-500 dark:bg-gray-400" style={{ borderRadius: 'var(--radius-button)' }}></div>
+                          )}
+                        </div>
                         <span className="ml-2 text-xs text-gray-600 dark:text-gray-400">{item.label}</span>
                       </div>
                     ))}

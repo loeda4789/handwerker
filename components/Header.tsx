@@ -179,11 +179,11 @@ export default function Header({ content }: HeaderProps) {
                 Jetzt Termin vereinbaren
               </Link>
 
-              {/* Mobile Menu Button */}
+              {/* Mobile Menu Button - Only visible on mobile */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 type="button"
-                className="inline-flex items-center p-2 ml-1 text-sm hover:bg-light focus:outline-none focus:ring-2 focus:ring-primary/20 dark:hover:bg-dark dark:focus:ring-light/20 z-50 relative transition-colors duration-300"
+                className="lg:hidden inline-flex items-center p-2 ml-1 text-sm hover:bg-light focus:outline-none focus:ring-2 focus:ring-primary/20 dark:hover:bg-dark dark:focus:ring-light/20 z-50 relative transition-colors duration-300"
                 style={{ borderRadius: 'var(--radius-button)' }}
                 aria-controls="navbar-mobile"
                 aria-expanded={mobileMenuOpen}
