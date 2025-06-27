@@ -158,9 +158,9 @@ export default function Header({ content }: HeaderProps) {
           <div className="flex flex-wrap items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center z-50 relative">
-              <div className="h-12 w-12 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">
-                  {content.company.name.charAt(0)}
+              <div className="h-12 px-4 bg-primary rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm whitespace-nowrap">
+                  Ihr Logo
                 </span>
               </div>
             </Link>
