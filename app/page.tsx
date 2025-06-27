@@ -70,10 +70,10 @@ export default function HomePage() {
         setSiteMode(layout)
       }
       
-      // Set hero type in localStorage for Hero component
-      const heroType = urlParams.get('hero')
-      if (heroType) {
-        localStorage.setItem('demo-hero-type', heroType)
+      // Set design style in localStorage for components
+      const designStyle = urlParams.get('design')
+      if (designStyle) {
+        localStorage.setItem('demo-design-style', designStyle)
       }
     }
   }, [])
@@ -378,7 +378,7 @@ export default function HomePage() {
                       config.layoutType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
                     }`}>
                       <button
-                        onClick={() => setConfig(prev => ({ ...prev, heroExpanded: !prev.heroExpanded }))}
+                        onClick={() => setConfig(prev => ({ ...prev, designExpanded: !prev.designExpanded }))}
                         className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-xl transition-colors duration-200"
                       >
                         <div className="flex items-center">
@@ -389,62 +389,62 @@ export default function HomePage() {
                             Design-Stil wählen
                           </h2>
                         </div>
-                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.heroExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.designExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                       </button>
                       
-                      {config.heroExpanded && (
+                      {config.designExpanded && (
                         <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
                           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                             {[
                               { 
-                                key: 'single', 
-                                name: 'Klassisch', 
-                                desc: 'Zeitlos & elegant',
-                                Icon: MdDescription,
+                                key: 'angular', 
+                                name: 'Eckig', 
+                                desc: 'Scharfe, moderne Kanten',
+                                Icon: MdCrop32,
                                 color: 'indigo'
                               },
                               { 
-                                key: 'slider', 
-                                name: 'Slider', 
-                                desc: 'Dynamisch & modern',
-                                Icon: MdViewCarousel,
+                                key: 'rounded', 
+                                name: 'Abgerundet', 
+                                desc: 'Sanfte, moderne Rundungen',
+                                Icon: MdRoundedCorner,
                                 color: 'purple'
                               },
                               { 
-                                key: 'video', 
-                                name: 'Video', 
-                                desc: 'Dynamisch & eindrucksvoll',
-                                Icon: MdVideoLibrary,
+                                key: 'curved', 
+                                name: 'Geschwungen', 
+                                desc: 'Organische, fließende Formen',
+                                Icon: MdWaves,
                                 color: 'orange'
                               },
                               { 
-                                key: 'split', 
-                                name: 'Geteilt', 
-                                desc: 'Strukturiert & klar',
-                                Icon: MdViewQuilt,
+                                key: 'circular', 
+                                name: 'Rund', 
+                                desc: 'Maximale Rundungen, organisch',
+                                Icon: MdCircle,
                                 color: 'teal'
                               }
-                            ].map((hero) => (
+                            ].map((design) => (
                               <button
-                                key={hero.key}
-                                onClick={() => handleConfigChange('heroType', hero.key)}
+                                key={design.key}
+                                onClick={() => handleConfigChange('designStyle', design.key)}
                                 className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-center transform hover:scale-105 ${
-                                  config.heroType === hero.key
+                                  config.designStyle === design.key
                                     ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
                                     : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                                 }`}
                               >
                                 <div className="w-12 h-12 mx-auto mb-4 rounded-xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center bg-gray-100 dark:bg-gray-700">
-                                  <hero.Icon className={`w-6 h-6 ${
-                                    config.heroType === hero.key 
+                                  <design.Icon className={`w-6 h-6 ${
+                                    config.designStyle === design.key 
                                       ? 'text-orange-600 dark:text-orange-400' 
                                       : 'text-gray-600 dark:text-gray-400'
                                   }`} />
                                 </div>
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{hero.name}</h3>
-                                <p className="text-sm text-gray-600 dark:text-gray-300">{hero.desc}</p>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{design.name}</h3>
+                                <p className="text-sm text-gray-600 dark:text-gray-300">{design.desc}</p>
                               </button>
                             ))}
                           </div>
@@ -454,9 +454,9 @@ export default function HomePage() {
                   )}
 
                   {/* Schritt 3: Color Scheme - Collapsible */}
-                  {config.heroType && (
+                  {config.designStyle && (
                     <div className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
-                      config.heroType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                      config.designStyle ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
                     }`}>
                       <button
                         onClick={() => setConfig(prev => ({ ...prev, colorExpanded: !prev.colorExpanded }))}
@@ -479,34 +479,34 @@ export default function HomePage() {
                         <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
                           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                             {[
-                                                          { 
-                              key: 'blue', 
-                              name: 'Ocean Blue', 
-                              desc: 'Vertrauen & Professionalität',
-                              colors: ['#3b82f6', '#1d4ed8', '#1e40af', '#1e3a8a'],
-                              accent: 'bg-blue-500'
-                            },
-                            { 
-                              key: 'green', 
-                              name: 'Nature Green', 
-                              desc: 'Wachstum & Nachhaltigkeit',
-                              colors: ['#10b981', '#059669', '#047857', '#065f46'],
-                              accent: 'bg-green-500'
-                            },
-                            { 
-                              key: 'purple', 
-                              name: 'Royal Purple', 
-                              desc: 'Kreativität & Innovation',
-                              colors: ['#8b5cf6', '#7c3aed', '#6d28d9', '#5b21b6'],
-                              accent: 'bg-purple-500'
-                            },
-                            { 
-                              key: 'orange', 
-                              name: 'Energy Orange', 
-                              desc: 'Dynamik & Enthusiasmus',
-                              colors: ['#f97316', '#ea580c', '#dc2626', '#b91c1c'],
-                              accent: 'bg-orange-500'
-                            }
+                              { 
+                                key: 'blue', 
+                                name: 'Ocean Blue', 
+                                desc: 'Vertrauen & Professionalität',
+                                colors: ['#3b82f6', '#1d4ed8', '#1e40af', '#1e3a8a'],
+                                accent: 'bg-blue-500'
+                              },
+                              { 
+                                key: 'green', 
+                                name: 'Nature Green', 
+                                desc: 'Wachstum & Nachhaltigkeit',
+                                colors: ['#10b981', '#059669', '#047857', '#065f46'],
+                                accent: 'bg-green-500'
+                              },
+                              { 
+                                key: 'purple', 
+                                name: 'Royal Purple', 
+                                desc: 'Kreativität & Innovation',
+                                colors: ['#8b5cf6', '#7c3aed', '#6d28d9', '#5b21b6'],
+                                accent: 'bg-purple-500'
+                              },
+                              { 
+                                key: 'orange', 
+                                name: 'Energy Orange', 
+                                desc: 'Dynamik & Enthusiasmus',
+                                colors: ['#f97316', '#ea580c', '#dc2626', '#b91c1c'],
+                                accent: 'bg-orange-500'
+                              }
                             ].map((color) => (
                               <button
                                 key={color.key}
@@ -544,7 +544,7 @@ export default function HomePage() {
                   <div className="flex justify-center space-x-4">
                     {[
                       { step: 1, completed: !!config.layoutType, label: 'Umfang' },
-                      { step: 2, completed: !!config.heroType, label: 'Design' },
+                      { step: 2, completed: !!config.designStyle, label: 'Design' },
                       { step: 3, completed: !!config.colorScheme, label: 'Farbe' }
                     ].map((item) => (
                       <div key={item.step} className="flex items-center">
