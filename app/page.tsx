@@ -539,30 +539,30 @@ export default function HomePage() {
                             {[
                               { 
                                 key: 'blue', 
-                                name: 'Ocean Blue', 
-                                desc: 'Vertrauen & Professionalität',
-                                colors: ['#3b82f6', '#1d4ed8', '#1e40af', '#1e3a8a'],
+                                name: 'Digital Blue', 
+                                desc: 'Modern & technologisch',
+                                colors: ['#0066ff', '#0052cc', '#3d8bff', '#1a4cff'],
                                 accent: 'bg-blue-500'
                               },
                               { 
                                 key: 'green', 
-                                name: 'Nature Green', 
-                                desc: 'Wachstum & Nachhaltigkeit',
-                                colors: ['#10b981', '#059669', '#047857', '#065f46'],
+                                name: 'Fresh Mint', 
+                                desc: 'Innovativ & nachhaltig',
+                                colors: ['#00d9aa', '#00b894', '#26e5b8', '#00c49a'],
                                 accent: 'bg-green-500'
                               },
                               { 
                                 key: 'purple', 
-                                name: 'Royal Purple', 
-                                desc: 'Kreativität & Innovation',
-                                colors: ['#8b5cf6', '#7c3aed', '#6d28d9', '#5b21b6'],
+                                name: 'Modern Purple', 
+                                desc: 'Premium & elegant',
+                                colors: ['#7c3aed', '#6d28d9', '#a855f7', '#8b5cf6'],
                                 accent: 'bg-purple-500'
                               },
                               { 
                                 key: 'orange', 
-                                name: 'Energy Orange', 
-                                desc: 'Dynamik & Enthusiasmus',
-                                colors: ['#f97316', '#ea580c', '#dc2626', '#b91c1c'],
+                                name: 'Vibrant Coral', 
+                                desc: 'Energisch & warm',
+                                colors: ['#ff6b35', '#e55527', '#ff8a5b', '#ff5722'],
                                 accent: 'bg-orange-500'
                               }
                             ].map((color) => (

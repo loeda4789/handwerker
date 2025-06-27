@@ -1,43 +1,43 @@
 export const colorSchemes = {
   blue: {
-    primary: '#3b82f6',
-    secondary: '#1e40af',
-    accent: '#60a5fa',
+    primary: '#0066ff',
+    secondary: '#0052cc',
+    accent: '#3d8bff',
     background: '#ffffff',
-    surface: '#f8fafc',
-    text: '#1e293b',
-    textSecondary: '#64748b',
-    border: '#e2e8f0'
+    surface: '#f7faff',
+    text: '#0f1419',
+    textSecondary: '#6b7280',
+    border: '#e1ecff'
   },
   green: {
-    primary: '#10b981',
-    secondary: '#065f46',
-    accent: '#34d399',
+    primary: '#00d9aa',
+    secondary: '#00b894',
+    accent: '#26e5b8',
     background: '#ffffff',
-    surface: '#f0fdf4',
-    text: '#1e293b',
-    textSecondary: '#64748b',
-    border: '#d1fae5'
+    surface: '#f0fffe',
+    text: '#0f1419',
+    textSecondary: '#6b7280',
+    border: '#ccf7ed'
   },
   purple: {
-    primary: '#8b5cf6',
-    secondary: '#5b21b6',
-    accent: '#a78bfa',
+    primary: '#7c3aed',
+    secondary: '#6d28d9',
+    accent: '#a855f7',
     background: '#ffffff',
-    surface: '#faf5ff',
-    text: '#1e293b',
-    textSecondary: '#64748b',
-    border: '#e9d5ff'
+    surface: '#faf7ff',
+    text: '#0f1419',
+    textSecondary: '#6b7280',
+    border: '#ede9fe'
   },
   orange: {
-    primary: '#f97316',
-    secondary: '#c2410c',
-    accent: '#fb923c',
+    primary: '#ff6b35',
+    secondary: '#e55527',
+    accent: '#ff8a5b',
     background: '#ffffff',
-    surface: '#fffbeb',
-    text: '#1e293b',
-    textSecondary: '#64748b',
-    border: '#fed7aa'
+    surface: '#fff8f5',
+    text: '#0f1419',
+    textSecondary: '#6b7280',
+    border: '#fed7cc'
   }
 }
 
