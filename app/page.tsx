@@ -708,9 +708,7 @@ export default function HomePage() {
 
       {/* Configurator Toggle Button */}
       <ConfiguratorButton
-        onGenerateClick={() => setShowConfigurator(false)}
-        isMultipage={siteMode === 'multipage'}
-        onToggleMode={() => setSiteMode(prev => prev === 'onepage' ? 'multipage' : 'onepage')}
+        onClick={() => setShowConfigurator(true)}
       />
     </div>
   )
