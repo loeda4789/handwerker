@@ -202,14 +202,23 @@ export default function Header({ content }: HeaderProps) {
         borderRadius: 'var(--radius-modal)',
         textColor: 'text-white',
         logoStyle: 'text-white',
-        ctaStyle: 'bg-white hover:bg-gray-100 text-gray-900',
+        ctaStyle: 'text-white font-medium transition-all duration-200',
         ctaStyleDynamic: {
-          color: 'var(--color-primary)'
+          backgroundColor: 'var(--color-secondary)',
+          borderColor: 'var(--color-secondary)'
+        },
+        ctaHoverStyle: {
+          backgroundColor: 'var(--color-accent)',
+          borderColor: 'var(--color-accent)'
         },
         mobileMenuStyle: 'border-t',
         mobileMenuStyleDynamic: {
           background: 'linear-gradient(to right, var(--color-primary), var(--color-secondary))',
           borderTopColor: 'var(--color-primary)'
+        },
+        mobileCtaStyle: {
+          backgroundColor: 'var(--color-secondary)',
+          color: 'white'
         }
       }
     } else {
@@ -325,10 +334,20 @@ export default function Header({ content }: HeaderProps) {
             <Link
               href="#kontakt"
               onClick={(e) => handleSmoothScroll(e, 'kontakt')}
-              className={`px-6 py-2 font-medium transition-all duration-200 ${headerStyles.ctaStyle}`}
+              className={`px-6 py-2 ${headerStyles.ctaStyle}`}
               style={{ 
                 borderRadius: 'var(--radius-button)',
                 ...headerStyles.ctaStyleDynamic
+              }}
+              onMouseEnter={(e) => {
+                if (headerStyles.ctaHoverStyle) {
+                  Object.assign(e.currentTarget.style, headerStyles.ctaHoverStyle);
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (headerStyles.ctaStyleDynamic) {
+                  Object.assign(e.currentTarget.style, headerStyles.ctaStyleDynamic);
+                }
               }}
             >
               Kontakt
@@ -412,10 +431,10 @@ export default function Header({ content }: HeaderProps) {
                   handleSmoothScroll(e, 'kontakt')
                   closeMobileMenu()
                 }}
-                className="block mt-4 px-6 py-3 text-center bg-white hover:bg-gray-100 font-medium transition-all duration-200"
+                className="block mt-4 px-6 py-3 text-center font-medium transition-all duration-200"
                 style={{ 
                   borderRadius: 'var(--radius-button)',
-                  color: 'var(--color-primary)'
+                  ...headerStyles.mobileCtaStyle
                 }}
               >
                 Kontakt

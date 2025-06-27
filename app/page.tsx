@@ -53,13 +53,12 @@ const SectionWrapper = ({ children, index, designStyle, className = '' }: Sectio
   }
 
   // Ab zweiter Sektion (Index 1): Abwechselnde Hintergründe
-  const isEven = (index - 1) % 2 === 0 // -1 weil wir bei Index 1 beginnen
+  // Index 1, 3, 5, 7... sollen Primärfarbe haben
+  // Index 2, 4, 6, 8... sollen weiß bleiben
+  const shouldUsePrimaryColor = index % 2 === 1 // Ungerade Indizes (1, 3, 5, 7...)
   
-  if (isEven) {
-    // Gerade Sektionen nach Hero: Weiß/Standard
-    return <div className={className}>{children}</div>
-  } else {
-    // Ungerade Sektionen nach Hero: Primärfarbe-Hintergrund
+  if (shouldUsePrimaryColor) {
+    // Ungerade Sektionen: Primärfarbe-Hintergrund
     return (
       <div 
         className={`section-on-primary ${className}`}
@@ -70,6 +69,9 @@ const SectionWrapper = ({ children, index, designStyle, className = '' }: Sectio
         {children}
       </div>
     )
+  } else {
+    // Gerade Sektionen: Weiß/Standard
+    return <div className={className}>{children}</div>
   }
 }
 
