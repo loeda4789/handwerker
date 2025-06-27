@@ -3,12 +3,16 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { ContentData } from '@/types/content'
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 
 interface TestimonialsProps {
   content: ContentData
 }
 
 export default function Testimonials({ content }: TestimonialsProps) {
+  // Aktiviere Scroll-Animationen
+  useScrollAnimation()
+  
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)

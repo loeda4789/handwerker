@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ContentData } from '@/types/content';
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation';
 
 interface StatsProps {
   content: ContentData;
@@ -84,6 +85,9 @@ function Counter({ end, duration, label, suffix = '', decimal = false }: Counter
 }
 
 export default function Stats({ content }: StatsProps) {
+  // Aktiviere Scroll-Animationen
+  useScrollAnimation();
+  
   // Verwende Daten aus content.json
   const stats = content.stats.customStats;
 

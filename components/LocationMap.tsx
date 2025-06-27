@@ -146,9 +146,9 @@ export default function LocationMap({
         style={{ 
           height: '100%', 
           width: '100%',
-          zIndex: isDialog ? 9998 : 1
+          zIndex: isDialog ? 9998 : 1,
+          borderRadius: 'var(--radius-image)'
         }}
-        className="rounded-lg"
         attributionControl={false}
         zoomControl={isDialog}
       >
@@ -169,9 +169,11 @@ export default function LocationMap({
 
   if (isLoading) {
     return (
-      <div className="bg-gray-300 dark:bg-gray-600 rounded-lg h-48 flex items-center justify-center">
+      <div className="bg-gray-300 dark:bg-gray-600 h-48 flex items-center justify-center"
+        style={{ borderRadius: 'var(--radius-image)' }}>
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary dark:border-accent mx-auto mb-2"></div>
+          <div className="animate-spin h-8 w-8 border-b-2 border-primary dark:border-accent mx-auto mb-2"
+            style={{ borderRadius: 'var(--radius-full)' }}></div>
           <p className="text-gray-600 dark:text-gray-300 text-sm">Karte wird geladen...</p>
         </div>
       </div>
@@ -180,7 +182,8 @@ export default function LocationMap({
 
   if (error || !coordinates) {
     return (
-      <div className="bg-gray-300 dark:bg-gray-600 rounded-lg h-48 flex items-center justify-center">
+      <div className="bg-gray-300 dark:bg-gray-600 h-48 flex items-center justify-center"
+        style={{ borderRadius: 'var(--radius-image)' }}>
         <div className="text-center text-gray-600 dark:text-gray-300">
           <svg className="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
@@ -195,9 +198,9 @@ export default function LocationMap({
   return (
     <>
       <div 
-        className={`footer-map rounded-lg overflow-hidden h-48 relative z-0 ${isClickable && !showDialog ? 'cursor-pointer hover:opacity-90 transition-opacity' : ''}`}
+        className={`footer-map overflow-hidden h-48 relative z-0 ${isClickable && !showDialog ? 'cursor-pointer hover:opacity-90 transition-opacity' : ''}`}
         onClick={handleMapClick}
-        style={{ zIndex: 1 }}
+        style={{ borderRadius: 'var(--radius-image)' }}
       >
         {renderMap(false)}
         
@@ -223,7 +226,8 @@ export default function LocationMap({
           </button>
 
                      {/* Map Dialog */}
-           <div className="dialog-map bg-white dark:bg-gray-800 rounded-lg overflow-hidden w-full max-w-4xl h-96 md:h-[500px] relative">
+           <div className="dialog-map bg-white dark:bg-gray-800 overflow-hidden w-full max-w-4xl h-96 md:h-[500px] relative"
+             style={{ borderRadius: 'var(--radius-modal)' }}>
              {/* Header */}
              <div className="bg-primary dark:bg-accent text-white p-4">
                <h3 className="text-lg font-semibold">{companyName}</h3>

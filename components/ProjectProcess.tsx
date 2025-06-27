@@ -2,16 +2,21 @@
 
 import { useEffect, useState, useRef } from 'react'
 import { ContentData } from '@/types/content'
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 
 interface ProjectProcessProps {
   content: ContentData
 }
 
 export default function ProjectProcess({ content }: ProjectProcessProps) {
+  // Aktiviere Scroll-Animationen
+  useScrollAnimation()
+  
   const [timelineProgress, setTimelineProgress] = useState(0)
   const [activeStep, setActiveStep] = useState(0)
   const sectionRef = useRef<HTMLElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
+  const [visibleSteps, setVisibleSteps] = useState<number[]>([])
 
   // Verwende Daten aus content.json
   const projectSteps = content.projectProcess.steps

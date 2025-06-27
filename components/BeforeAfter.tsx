@@ -2,13 +2,17 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import { ContentData } from '@/types/content'
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 
 interface BeforeAfterProps {
   content: ContentData
 }
 
 export default function BeforeAfter({ content }: BeforeAfterProps) {
-  const [sliderPosition, setSliderPosition] = useState(25)
+  // Aktiviere Scroll-Animationen
+  useScrollAnimation()
+  
+  const [sliderPosition, setSliderPosition] = useState(50)
   const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   
@@ -96,7 +100,8 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
         <div className="max-w-4xl mx-auto animate-on-scroll">
           <div 
             ref={containerRef}
-            className="relative w-full h-96 md:h-[500px] rounded-lg overflow-hidden shadow-2xl cursor-col-resize select-none"
+            className="relative w-full h-96 md:h-[500px] overflow-hidden shadow-2xl cursor-col-resize select-none"
+            style={{ borderRadius: 'var(--radius-image)' }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}

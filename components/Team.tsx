@@ -3,12 +3,16 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { ContentData } from '@/types/content'
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 
 interface TeamProps {
   content: ContentData
 }
 
 export default function Team({ content }: TeamProps) {
+  // Aktiviere Scroll-Animationen
+  useScrollAnimation()
+
   const [currentIndex, setCurrentIndex] = useState(0)
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
@@ -91,7 +95,8 @@ export default function Team({ content }: TeamProps) {
                     {/* Member Photo */}
                     <div className="relative mb-6">
                       {member.photo && index === 0 ? (
-                        <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-dark shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50 group-hover:rotate-3 relative">
+                        <div className="w-48 h-48 mx-auto overflow-hidden border-4 border-white dark:border-dark shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50 group-hover:rotate-3 relative"
+                          style={{ borderRadius: 'var(--radius-image)' }}>
                           <Image
                             src={member.photo}
                             alt={member.name}
@@ -100,19 +105,23 @@ export default function Team({ content }: TeamProps) {
                             sizes="192px"
                           />
                           {/* Hover Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ borderRadius: 'var(--radius-image)' }}></div>
                         </div>
                       ) : (
-                        <div className="w-48 h-48 mx-auto rounded-full overflow-hidden bg-gradient-to-br from-primary/10 via-accent/10 to-primary/20 flex items-center justify-center border-4 border-white dark:border-dark shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50 group-hover:rotate-3">
+                        <div className="w-48 h-48 mx-auto overflow-hidden bg-gradient-to-br from-primary/10 via-accent/10 to-primary/20 flex items-center justify-center border-4 border-white dark:border-dark shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50 group-hover:rotate-3"
+                          style={{ borderRadius: 'var(--radius-image)' }}>
                           <div className="text-center">
-                            <div className="w-36 h-36 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-inner">
+                            <div className="w-36 h-36 bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-inner"
+                              style={{ borderRadius: 'var(--radius-image)' }}>
                               <span className="text-4xl font-bold text-white drop-shadow-lg">
                                 {member.name.split(' ').map(n => n.charAt(0)).join('')}
                               </span>
                             </div>
                           </div>
                           {/* Hover Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ borderRadius: 'var(--radius-image)' }}></div>
                         </div>
                       )}
                       
@@ -194,7 +203,8 @@ export default function Team({ content }: TeamProps) {
               {/* Member Photo */}
               <div className="relative mb-6">
                 {member.photo && index === 0 ? (
-                  <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-dark shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50 group-hover:rotate-3 relative">
+                  <div className="w-48 h-48 mx-auto overflow-hidden border-4 border-white dark:border-dark shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50 group-hover:rotate-3 relative"
+                    style={{ borderRadius: 'var(--radius-image)' }}>
                     <Image
                       src={member.photo}
                       alt={member.name}
@@ -203,19 +213,23 @@ export default function Team({ content }: TeamProps) {
                       sizes="192px"
                     />
                     {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ borderRadius: 'var(--radius-image)' }}></div>
                   </div>
                 ) : (
-                  <div className="w-48 h-48 mx-auto rounded-full overflow-hidden bg-gradient-to-br from-primary/10 via-accent/10 to-primary/20 flex items-center justify-center border-4 border-white dark:border-dark shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50 group-hover:rotate-3">
+                  <div className="w-48 h-48 mx-auto overflow-hidden bg-gradient-to-br from-primary/10 via-accent/10 to-primary/20 flex items-center justify-center border-4 border-white dark:border-dark shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50 group-hover:rotate-3"
+                    style={{ borderRadius: 'var(--radius-image)' }}>
                     <div className="text-center">
-                      <div className="w-36 h-36 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-inner">
+                      <div className="w-36 h-36 bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-inner"
+                        style={{ borderRadius: 'var(--radius-image)' }}>
                         <span className="text-4xl font-bold text-white drop-shadow-lg">
                           {member.name.split(' ').map(n => n.charAt(0)).join('')}
                         </span>
                       </div>
                     </div>
                     {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ borderRadius: 'var(--radius-image)' }}></div>
                   </div>
                 )}
                 
