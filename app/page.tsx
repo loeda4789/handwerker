@@ -140,6 +140,7 @@ export default function HomePage() {
     // Anwenden der Design-Schemas
     applyBorderRadiusScheme(config.designStyle)
     localStorage.setItem('design-style', config.designStyle)
+    window.dispatchEvent(new Event('storage'))
     setSiteMode(config.layoutType as 'onepage' | 'multipage')
     // Speichere site-mode für Header
     localStorage.setItem('site-mode', config.layoutType)

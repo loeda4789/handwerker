@@ -16,12 +16,18 @@ export default function Header({ content }: HeaderProps) {
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null)
+  const [designStyle, setDesignStyle] = useState<string>('angular')
   
-  // Site-Mode aus localStorage laden
+  // Site-Mode und Design-Style aus localStorage laden
   useEffect(() => {
     const savedMode = localStorage.getItem('site-mode') as 'onepage' | 'multipage'
     if (savedMode) {
       setSiteMode(savedMode)
+    }
+    
+    const savedDesignStyle = localStorage.getItem('design-style')
+    if (savedDesignStyle) {
+      setDesignStyle(savedDesignStyle)
     }
     
     // Event listener für site-mode Änderungen
@@ -32,8 +38,20 @@ export default function Header({ content }: HeaderProps) {
       }
     }
     
+    // Event listener für design-style Änderungen
+    const handleDesignStyleChange = () => {
+      const newDesignStyle = localStorage.getItem('design-style')
+      if (newDesignStyle) {
+        setDesignStyle(newDesignStyle)
+      }
+    }
+    
     window.addEventListener('site-mode-changed', handleSiteModeChange)
-    return () => window.removeEventListener('site-mode-changed', handleSiteModeChange)
+    window.addEventListener('storage', handleDesignStyleChange)
+    return () => {
+      window.removeEventListener('site-mode-changed', handleSiteModeChange)
+      window.removeEventListener('storage', handleDesignStyleChange)
+    }
   }, [])
 
   // Note: Dark mode functionality removed
@@ -153,14 +171,42 @@ export default function Header({ content }: HeaderProps) {
 
   const navItems = getNavItems()
 
+  // Header-Stile basierend auf Design-Stil
+  const getHeaderStyles = () => {
+    if (designStyle === 'circular') {
+      // Sehr Modern: Floating Navigation mit maximaler Rundung
+      return {
+        container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4',
+        header: `transition-all duration-300 backdrop-blur-xl shadow-2xl border border-white/20 ${
+          isScrolled 
+            ? 'bg-white/70 dark:bg-gray-900/70' 
+            : 'bg-white/60 dark:bg-gray-900/60'
+        }`,
+        nav: 'px-6 py-3',
+        borderRadius: '2rem'
+      }
+    } else {
+      // Alle anderen Design-Stile: Standard sticky Navigation
+      return {
+        container: 'sticky top-0 z-50 w-full',
+        header: `transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-white/98 backdrop-blur-md border-b border-border shadow-lg dark:bg-dark/98 dark:border-gray-700' 
+            : 'bg-white/80 backdrop-blur-sm border-b border-transparent dark:bg-transparent dark:border-transparent'
+        }`,
+        nav: 'px-4 py-2.5 mx-auto max-w-screen-xl',
+        borderRadius: 'var(--radius-modal)'
+      }
+    }
+  }
+
+  const headerStyles = getHeaderStyles()
+
   return (
     <>
-      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/98 backdrop-blur-md border-b border-border shadow-lg dark:bg-dark/98 dark:border-gray-700' 
-          : 'bg-white/80 backdrop-blur-sm border-b border-transparent dark:bg-transparent dark:border-transparent'
-      }`}>
-        <nav className="px-4 py-2.5 mx-auto max-w-screen-xl">
+      <div className={headerStyles.container}>
+        <header className={headerStyles.header} style={{ borderRadius: headerStyles.borderRadius }}>
+          <nav className={headerStyles.nav}>
           <div className="flex flex-wrap items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center z-50 relative">
@@ -233,10 +279,14 @@ export default function Header({ content }: HeaderProps) {
                         </Link>
                         
                         {/* Dropdown Menu */}
-                        <div className={`absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 z-50 ${
+                        <div className={`absolute top-full left-0 mt-2 w-64 shadow-xl border transition-all duration-300 z-50 ${
+                          designStyle === 'circular' 
+                            ? 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border-white/30 dark:border-gray-600/30' 
+                            : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
+                        } ${
                           dropdownOpen === item.id ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
                         }`}
-                          style={{ borderRadius: 'var(--radius-card)' }}>
+                          style={{ borderRadius: designStyle === 'circular' ? '1rem' : 'var(--radius-card)' }}>
                           <div className="py-2">
                             {item.dropdownItems?.map((dropdownItem: any, index: number) => (
                               <Link
@@ -270,9 +320,10 @@ export default function Header({ content }: HeaderProps) {
           </div>
         </nav>
       </header>
+      </div>
 
       {/* Mobile Fullscreen Navigation Overlay */}
-      <div className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ease-in-out ${
+      <div className={`fixed inset-0 ${designStyle === 'circular' ? 'z-30' : 'z-40'} lg:hidden transition-all duration-500 ease-in-out ${
         mobileMenuOpen 
           ? 'opacity-100 visible' 
           : 'opacity-0 invisible'
