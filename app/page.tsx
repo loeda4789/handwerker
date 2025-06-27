@@ -46,24 +46,18 @@ const SectionWrapper = ({ children, index, designStyle, className = '' }: Sectio
     return <>{children}</>
   }
 
-  // Für klassische Variante: Hero (Index 0) überspringen, ab Index 1 beginnen
-  if (index === 0) {
-    // Hero-Sektion: Normale Darstellung ohne Farbänderung
-    return <div className={className}>{children}</div>
-  }
-
-  // Ab zweiter Sektion (Index 1): Abwechselnde Hintergründe
-  // Index 1, 3, 5, 7... sollen Primärfarbe haben
-  // Index 2, 4, 6, 8... sollen weiß bleiben
+  // Für klassische Variante: Abwechselnde Hintergründe
+  // Index 1, 3, 5, 7... sollen Primärfarbe haben (ungerade Indizes)
+  // Index 0, 2, 4, 6... sollen weiß bleiben (gerade Indizes)
   const shouldUsePrimaryColor = index % 2 === 1 // Ungerade Indizes (1, 3, 5, 7...)
   
   if (shouldUsePrimaryColor) {
-    // Ungerade Sektionen: Primärfarbe-Hintergrund
+    // Ungerade Sektionen: Kräftige Primärfarbe-Hintergrund (KEINE Verwässerung)
     return (
       <div 
         className={`section-on-primary ${className}`}
         style={{
-          background: 'linear-gradient(to bottom right, var(--color-primary), var(--color-secondary))'
+          backgroundColor: 'var(--color-primary)' // Direkte kräftige Primärfarbe
         }}
       >
         {children}

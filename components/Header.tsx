@@ -190,12 +190,12 @@ export default function Header({ content }: HeaderProps) {
         mobileMenuStyle: 'bg-white dark:bg-gray-800'
       }
     } else if (designStyle === 'angular') {
-      // Klassisch: Primärfarbe aus Konfigurator mit weißer Schrift
+      // Klassisch: Kräftige Primärfarbe aus Konfigurator (NICHT verwässert)
       return {
         container: 'sticky top-0 z-50 w-full',
         header: `transition-all duration-300 shadow-lg border-b`,
         headerStyle: {
-          background: 'linear-gradient(to right, var(--color-primary), var(--color-secondary))',
+          backgroundColor: 'var(--color-primary)', // Kräftige Primärfarbe ohne Gradient
           borderBottomColor: 'var(--color-primary)'
         },
         nav: 'px-4 py-2.5 mx-auto max-w-screen-xl',
@@ -208,12 +208,13 @@ export default function Header({ content }: HeaderProps) {
           borderColor: 'var(--color-secondary)'
         },
         ctaHoverStyle: {
-          backgroundColor: 'var(--color-accent)',
-          borderColor: 'var(--color-accent)'
+          backgroundColor: 'white',
+          borderColor: 'white',
+          color: 'var(--color-primary)'
         },
         mobileMenuStyle: 'border-t',
         mobileMenuStyleDynamic: {
-          background: 'linear-gradient(to right, var(--color-primary), var(--color-secondary))',
+          backgroundColor: 'var(--color-primary)', // Auch mobile menu kräftig
           borderTopColor: 'var(--color-primary)'
         },
         mobileCtaStyle: {
