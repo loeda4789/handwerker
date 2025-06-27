@@ -90,7 +90,8 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
-          <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent rounded-full text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4"
+            style={{ borderRadius: 'var(--radius-button)' }}>
             Unser Prozess
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
@@ -106,14 +107,15 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
           {/* Vertikale Hauptlinie - links positioniert */}
           <div 
             ref={timelineRef}
-            className="absolute left-8 lg:left-12 top-8 lg:top-10 bottom-8 lg:bottom-10 w-1 bg-border dark:bg-text-secondary/30 rounded-full"
+            className="absolute left-8 lg:left-12 top-8 lg:top-10 bottom-8 lg:bottom-10 w-1 bg-border dark:bg-text-secondary/30"
+            style={{ borderRadius: 'var(--radius-button)' }}
           >
             {/* Scroll-basierter Fortschrittsstrich */}
             <div 
-              className={`absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent rounded-full transition-all duration-500 ease-out ${
+              className={`absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent transition-all duration-500 ease-out ${
                 timelineProgress === 0 ? 'opacity-0' : 'opacity-100'
               }`}
-              style={{ height: `${timelineProgress}%` }}
+              style={{ borderRadius: 'var(--radius-button)', height: `${timelineProgress}%` }}
             ></div>
           </div>
 
@@ -132,14 +134,17 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                 >
                   {/* Schritt-Nummer Kreis - links */}
                   <div 
-                    className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg z-10 border-4 border-white dark:border-dark transition-all duration-700 ${
+                    className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg z-10 border-4 border-white dark:border-dark transition-all duration-700 ${
                       isStrichReached 
                         ? 'scale-110 shadow-xl' 
                         : 'scale-100'
                     }`}
-                    style={isStrichReached ? {
-                      boxShadow: `0 0 0 4px rgba(var(--color-primary-rgb), 0.2), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)`
-                    } : {}}
+                    style={{ 
+                      borderRadius: 'var(--radius-button)',
+                      boxShadow: isStrichReached ? 
+                        `0 0 0 4px rgba(var(--color-primary-rgb), 0.2), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` : 
+                        undefined
+                    }}
                   >
                     <span className="text-xl lg:text-2xl font-bold text-white">
                       {step.number}
@@ -148,11 +153,12 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
 
                   {/* Content Box - rechts */}
                   <div 
-                    className={`ml-24 lg:ml-32 bg-white dark:bg-dark-secondary rounded-xl p-6 lg:p-8 shadow-lg border border-border dark:border-text-secondary hover:shadow-xl transition-all duration-700 hover:transform hover:scale-105 ${
+                    className={`ml-24 lg:ml-32 bg-white dark:bg-dark-secondary p-6 lg:p-8 shadow-lg border border-border dark:border-text-secondary hover:shadow-xl transition-all duration-700 hover:transform hover:scale-105 ${
                       isActive
                         ? 'opacity-100 transform translate-y-0'
                         : 'opacity-60 transform translate-y-4'
                     }`}
+                    style={{ borderRadius: 'var(--radius-card)' }}
                   >
                     <h3 className="text-xl lg:text-2xl font-bold text-text dark:text-light mb-3 lg:mb-4">
                       {step.title}

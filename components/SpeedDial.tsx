@@ -48,7 +48,8 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
         {/* Phone Action */}
         <button
           onClick={handlePhoneClick}
-          className="w-12 h-12 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
+          className="w-12 h-12 bg-primary hover:bg-primary/90 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
+          style={{ borderRadius: 'var(--radius-button)' }}
           aria-label="Anrufen"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,7 +60,8 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
         {/* Email Action */}
         <button
           onClick={handleEmailClick}
-          className="w-12 h-12 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
+          className="w-12 h-12 bg-primary hover:bg-primary/90 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
+          style={{ borderRadius: 'var(--radius-button)' }}
           aria-label="E-Mail senden"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -71,7 +73,8 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
       {/* Main Speed Dial Button */}
       <button
         onClick={toggleSpeedDial}
-        className="w-14 h-14 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
+        className="w-14 h-14 bg-primary hover:bg-primary/90 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
+        style={{ borderRadius: 'var(--radius-button)' }}
         aria-label={isOpen ? 'Menü schließen' : 'Kontakt-Menü öffnen'}
       >
         <div className={`transition-transform duration-200 ${isOpen ? 'rotate-45' : 'rotate-0'}`}>

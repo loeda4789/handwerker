@@ -143,7 +143,8 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
               style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
             >
               {/* Handle Circle */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-primary border-4 border-white rounded-full flex items-center justify-center shadow-lg">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-primary border-4 border-white flex items-center justify-center shadow-lg"
+                style={{ borderRadius: 'var(--radius-button)' }}>
                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
                 </svg>
@@ -164,7 +165,8 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
             <h3 className="text-2xl font-bold text-text dark:text-light mb-2">
               {currentItem.title}
             </h3>
-            <span className="inline-block px-3 py-1 bg-primary/10 text-primary dark:text-accent rounded-full text-sm font-medium mb-4">
+            <span className="inline-block px-3 py-1 bg-primary/10 text-primary dark:text-accent text-sm font-medium mb-4"
+              style={{ borderRadius: 'var(--radius-button)' }}>
               {currentItem.category}
             </span>
             <p className="text-text-secondary dark:text-light/80 max-w-2xl mx-auto">

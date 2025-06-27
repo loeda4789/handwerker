@@ -67,11 +67,12 @@ export default function Portfolio({ content }: PortfolioProps) {
                 <button
                   key={category}
                   onClick={() => setActiveFilter(category)}
-                  className={`flex-shrink-0 px-6 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
+                  className={`flex-shrink-0 px-6 py-2 transition-all duration-300 whitespace-nowrap ${
                     activeFilter === category
                       ? 'bg-primary text-white shadow-lg'
                       : 'bg-background dark:bg-dark-secondary text-text-secondary dark:text-light/70 hover:bg-primary/10 dark:hover:bg-primary/20'
                   }`}
+                  style={{ borderRadius: 'var(--radius-button)' }}
                 >
                   {category}
                 </button>
@@ -85,11 +86,12 @@ export default function Portfolio({ content }: PortfolioProps) {
               <button
                 key={category}
                 onClick={() => setActiveFilter(category)}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                className={`px-6 py-2 transition-all duration-300 ${
                   activeFilter === category
                     ? 'bg-primary text-white shadow-lg'
                     : 'bg-background dark:bg-dark-secondary text-text-secondary dark:text-light/70 hover:bg-primary/10 dark:hover:bg-primary/20'
                 }`}
+                style={{ borderRadius: 'var(--radius-button)' }}
               >
                 {category}
               </button>
@@ -102,7 +104,8 @@ export default function Portfolio({ content }: PortfolioProps) {
           {filteredProjects.map((project, index) => (
             <div
               key={index}
-              className="group bg-background dark:bg-dark-secondary rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer animate-on-scroll"
+              className="group bg-background dark:bg-dark-secondary overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer animate-on-scroll"
+              style={{ borderRadius: 'var(--radius-card)' }}
               onClick={() => openLightbox(index)}
             >
               {/* Project Image */}
@@ -115,7 +118,8 @@ export default function Portfolio({ content }: PortfolioProps) {
                  </div>
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
-                  <span className="bg-primary/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <span className="bg-primary/90 text-white px-3 py-1 text-sm font-medium"
+                    style={{ borderRadius: 'var(--radius-button)' }}>
                     {project.category}
                   </span>
                 </div>
@@ -146,7 +150,8 @@ export default function Portfolio({ content }: PortfolioProps) {
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-8">
+          <div className="bg-primary/10 dark:bg-primary/20 p-8"
+            style={{ borderRadius: 'var(--radius-card)' }}>
             <h3 className="text-2xl font-bold text-text dark:text-light mb-4">
               Ihr Projekt ist nicht dabei?
             </h3>
@@ -155,7 +160,8 @@ export default function Portfolio({ content }: PortfolioProps) {
             </p>
             <a
               href="#kontakt"
-              className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-accent transition-colors duration-300 font-medium"
+              className="inline-flex items-center px-6 py-3 bg-primary text-white hover:bg-accent transition-colors duration-300 font-medium"
+              style={{ borderRadius: 'var(--radius-button)' }}
             >
               Jetzt Beratung anfragen
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

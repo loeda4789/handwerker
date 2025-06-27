@@ -214,7 +214,8 @@ export default function Testimonials({ content }: TestimonialsProps) {
             <button
               onClick={prevSlide}
               disabled={currentSlide === 0}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 dark:bg-gray-800/90 shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
+              style={{ borderRadius: 'var(--radius-button)' }}
               aria-label="Vorherige Bewertung"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -225,7 +226,8 @@ export default function Testimonials({ content }: TestimonialsProps) {
             <button
               onClick={nextSlide}
               disabled={currentSlide === totalSlides - 1}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 dark:bg-gray-800/90 shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
+              style={{ borderRadius: 'var(--radius-button)' }}
               aria-label="Nächste Bewertung"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,11 +241,10 @@ export default function Testimonials({ content }: TestimonialsProps) {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                    index === currentSlide 
-                      ? 'bg-primary dark:bg-accent w-6' 
-                      : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                  className={`w-2 h-2 transition-all duration-200 ${
+                    index === currentSlide ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600'
                   }`}
+                  style={{ borderRadius: 'var(--radius-button)' }}
                   aria-label={`Zu Bewertung ${index + 1} wechseln`}
                 />
               ))}

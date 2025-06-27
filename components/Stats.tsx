@@ -96,7 +96,8 @@ export default function Stats({ content }: StatsProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
-          <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent rounded-full text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4"
+            style={{ borderRadius: 'var(--radius-button)' }}>
             Unsere Erfolge
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">

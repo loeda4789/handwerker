@@ -158,17 +158,19 @@ export default function Contact({ content }: ContactProps) {
           
           {/* Toast Notification */}
           {toast.isVisible && (
-            <div className={`mb-8 p-4 rounded-xl shadow-lg ${
+            <div className={`mb-8 p-4 shadow-lg ${
               toast.type === 'success' ? 'bg-green-50 border border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-700 dark:text-green-400' :
               toast.type === 'error' ? 'bg-red-50 border border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-700 dark:text-red-400' :
               'bg-blue-50 border border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-700 dark:text-blue-400'
-            }`}>
+            }`}
+              style={{ borderRadius: 'var(--radius-card)' }}>
               <p className="font-medium">{toast.message}</p>
             </div>
           )}
 
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-700 rounded-2xl p-8 shadow-lg space-y-6">
+          <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-700 p-8 shadow-lg space-y-6"
+            style={{ borderRadius: 'var(--radius-card)' }}>
             
             {/* Name & Email Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

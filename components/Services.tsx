@@ -144,7 +144,8 @@ export default function Services({ content }: ServicesProps) {
                 {/* Projects Counter Badge */}
                 {service.projects && service.projects.length > 0 && (
                   <div className="absolute top-4 right-4">
-                    <span className="bg-primary/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-primary/90 text-white px-3 py-1 text-sm font-medium"
+                      style={{ borderRadius: 'var(--radius-button)' }}>
                       {service.projects.length} Projekt{service.projects.length !== 1 ? 'e' : ''}
                     </span>
                   </div>
@@ -165,7 +166,8 @@ export default function Services({ content }: ServicesProps) {
               {/* Service Info */}
               <div className="p-6">
                 {/* Icon */}
-                <div className="text-primary dark:text-accent mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 p-3 bg-primary/10 dark:bg-accent/10 rounded-full w-fit">
+                <div className="text-primary dark:text-accent mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 p-3 bg-primary/10 dark:bg-accent/10 w-fit"
+                  style={{ borderRadius: 'var(--radius-button)' }}>
                   {serviceIconMap[service.icon] || serviceIconMap['paintbrush']}
                 </div>
                 
@@ -183,7 +185,8 @@ export default function Services({ content }: ServicesProps) {
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-8">
+          <div className="bg-primary/10 dark:bg-primary/20 p-8"
+            style={{ borderRadius: 'var(--radius-card)' }}>
             <h3 className="text-2xl font-bold text-text dark:text-light mb-4">
               Ihr Projekt ist nicht dabei?
             </h3>
@@ -192,7 +195,8 @@ export default function Services({ content }: ServicesProps) {
             </p>
             <a
               href="#kontakt"
-              className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-accent transition-colors duration-300 font-medium"
+              className="inline-flex items-center px-6 py-3 bg-primary text-white hover:bg-accent transition-colors duration-300 font-medium"
+              style={{ borderRadius: 'var(--radius-button)' }}
             >
               Jetzt Beratung anfragen
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
