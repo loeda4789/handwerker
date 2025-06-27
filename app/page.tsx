@@ -17,25 +17,25 @@ import ProjectProcess from '@/components/ProjectProcess'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import SpeedDial from '@/components/SpeedDial'
-import { applyColorScheme } from '@/lib/colorSchemes'
-import { MdDescription, MdViewCarousel, MdVideoLibrary, MdViewQuilt } from 'react-icons/md'
+import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
+import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle } from 'react-icons/md'
 import ConfiguratorButton from '@/components/ConfiguratorButton'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
-  heroType: 'single' | 'slider' | 'video' | 'split' | ''
+  designStyle: 'angular' | 'rounded' | 'curved' | 'circular' | ''
   colorScheme: 'blue' | 'green' | 'purple' | 'orange' | ''
-  heroExpanded: boolean
+  designExpanded: boolean
   colorExpanded: boolean
 }
 
 export default function HomePage() {
   const [config, setConfig] = useState<ConfigState>({
     layoutType: '',
-    heroType: '',
+    designStyle: '',
     colorScheme: '',
-    heroExpanded: false,
+    designExpanded: false,
     colorExpanded: false
   })
   const [isGenerating, setIsGenerating] = useState(false)
@@ -92,9 +92,9 @@ export default function HomePage() {
       
       // Auto-expand next sections
       if (key === 'layoutType') {
-        newConfig.heroExpanded = true
+        newConfig.designExpanded = true
       }
-      if (key === 'heroType') {
+      if (key === 'designStyle') {
         newConfig.colorExpanded = true
       }
       
@@ -114,10 +114,11 @@ export default function HomePage() {
       window.dispatchEvent(new Event('site-mode-changed'))
     }
     
-    if (key === 'heroType' && value) {
-      localStorage.setItem('demo-hero-type', value)
-      // Force re-render of Hero component
-      window.dispatchEvent(new Event('hero-type-changed'))
+    if (key === 'designStyle' && value) {
+      applyBorderRadiusScheme(value)
+      localStorage.setItem('design-style', value)
+      // Force re-render of components
+      window.dispatchEvent(new Event('design-style-changed'))
     }
     
     // Farbschema sofort anwenden
@@ -126,7 +127,7 @@ export default function HomePage() {
     }
   }
 
-  const canGenerate = config.layoutType && config.heroType && config.colorScheme
+  const canGenerate = config.layoutType && config.designStyle && config.colorScheme
 
   const handleGenerate = async () => {
     if (!canGenerate) return
@@ -136,8 +137,9 @@ export default function HomePage() {
     // Simulate generation process
     await new Promise(resolve => setTimeout(resolve, 2000))
     
-    // Set hero type in localStorage
-    localStorage.setItem('demo-hero-type', config.heroType)
+    // Anwenden der Design-Schemas
+    applyBorderRadiusScheme(config.designStyle)
+    localStorage.setItem('design-style', config.designStyle)
     setSiteMode(config.layoutType as 'onepage' | 'multipage')
     // Speichere site-mode für Header
     localStorage.setItem('site-mode', config.layoutType)
@@ -148,7 +150,7 @@ export default function HomePage() {
     // Update URL parameters
     const params = new URLSearchParams()
     params.set('layout', config.layoutType)
-    params.set('hero', config.heroType)
+    params.set('design', config.designStyle)
     params.set('color', config.colorScheme)
     
     // Hide configurator and show website
