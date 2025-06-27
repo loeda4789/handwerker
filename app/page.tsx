@@ -315,246 +315,249 @@ export default function HomePage() {
                 {/* Configuration Steps */}
                 <div className="space-y-6">
                   
-                  {/* Schritt 1: Layout Type */}
+                  {/* Schritt 1: Layout Type - Collapsible */}
                   <div className="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700 shadow-sm"
                     style={{ borderRadius: 'var(--radius-card)' }}>
-                    <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
-                      style={{ borderRadius: 'var(--radius-button)' }}>
-                      1
+                    <div className="flex items-center mb-6">
+                      <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
+                        style={{ borderRadius: 'var(--radius-button)' }}>
+                        1
+                      </div>
+                      <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                        Website-Umfang festlegen
+                      </h2>
                     </div>
-                    <h2 className="text-xl font-semibold text-gray-900 dark:text-white ml-12 -mt-8">
-                      Website-Umfang festlegen
-                    </h2>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <button
-                      onClick={() => handleConfigChange('layoutType', 'onepage')}
-                      className={`p-6 border transition-all duration-200 text-left group hover:shadow-md ${
-                        config.layoutType === 'onepage'
-                          ? 'border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-900/30 shadow-sm'
-                          : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500'
-                      }`}
-                      style={{ borderRadius: 'var(--radius-card)' }}
-                    >
-                      <div className="flex items-center mb-3">
-                        <div className={`w-10 h-10 flex items-center justify-center mr-3 ${
-                          config.layoutType === 'onepage' 
-                            ? 'bg-blue-600 text-white dark:bg-blue-500' 
-                            : 'bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400'
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <button
+                        onClick={() => handleConfigChange('layoutType', 'onepage')}
+                        className={`p-6 border transition-all duration-200 text-left group hover:shadow-md ${
+                          config.layoutType === 'onepage'
+                            ? 'border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-900/30 shadow-sm'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500'
                         }`}
-                          style={{ borderRadius: 'var(--radius-card)' }}>
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                          </svg>
+                        style={{ borderRadius: 'var(--radius-card)' }}
+                      >
+                        <div className="flex items-center mb-3">
+                          <div className={`w-10 h-10 flex items-center justify-center mr-3 ${
+                            config.layoutType === 'onepage' 
+                              ? 'bg-blue-600 text-white dark:bg-blue-500' 
+                              : 'bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400'
+                          }`}
+                            style={{ borderRadius: 'var(--radius-card)' }}>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                          </div>
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Kompakte Website</h3>
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Kompakte Website</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">
-                        Alle Inhalte auf einer Seite - perfekt für kleinere Betriebe
-                      </p>
-                    </button>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Alle Inhalte auf einer Seite - perfekt für kleinere Betriebe
+                        </p>
+                      </button>
 
-                    <button
-                      onClick={() => handleConfigChange('layoutType', 'multipage')}
-                      className={`p-6 border transition-all duration-200 text-left group hover:shadow-md ${
-                        config.layoutType === 'multipage'
-                          ? 'border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-900/30 shadow-sm'
-                          : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500'
-                      }`}
-                      style={{ borderRadius: 'var(--radius-card)' }}
-                    >
-                      <div className="flex items-center mb-3">
-                        <div className={`w-10 h-10 flex items-center justify-center mr-3 ${
-                          config.layoutType === 'multipage' 
-                            ? 'bg-green-600 text-white dark:bg-green-500' 
-                            : 'bg-green-100 text-green-600 dark:bg-green-900/50 dark:text-green-400'
+                      <button
+                        onClick={() => handleConfigChange('layoutType', 'multipage')}
+                        className={`p-6 border transition-all duration-200 text-left group hover:shadow-md ${
+                          config.layoutType === 'multipage'
+                            ? 'border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-900/30 shadow-sm'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500'
                         }`}
-                          style={{ borderRadius: 'var(--radius-card)' }}>
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
-                          </svg>
+                        style={{ borderRadius: 'var(--radius-card)' }}
+                      >
+                        <div className="flex items-center mb-3">
+                          <div className={`w-10 h-10 flex items-center justify-center mr-3 ${
+                            config.layoutType === 'multipage' 
+                              ? 'bg-green-600 text-white dark:bg-green-500' 
+                              : 'bg-green-100 text-green-600 dark:bg-green-900/50 dark:text-green-400'
+                          }`}
+                            style={{ borderRadius: 'var(--radius-card)' }}>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
+                            </svg>
+                          </div>
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Erweiterte Website</h3>
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Erweiterte Website</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">
-                        Separate Unterseiten für umfangreichere Inhalte und bessere Navigation
-                      </p>
-                    </button>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Separate Unterseiten für umfangreichere Inhalte und bessere Navigation
+                        </p>
+                      </button>
+                    </div>
                   </div>
+
+                  {/* Schritt 2: Design-Stil - Collapsible */}
+                  {config.layoutType && (
+                    <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
+                      config.layoutType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                    }`} style={{ borderRadius: 'var(--radius-card)' }}>
+                      <button
+                        onClick={() => setConfig(prev => ({ ...prev, designExpanded: !prev.designExpanded }))}
+                        className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
+                        style={{ borderRadius: 'var(--radius-card)' }}
+                      >
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
+                            style={{ borderRadius: 'var(--radius-button)' }}>
+                            2
+                          </div>
+                          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                            Design-Stil wählen
+                          </h2>
+                        </div>
+                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.designExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </button>
+                      
+                      {config.designExpanded && (
+                        <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
+                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                            {[
+                              { 
+                                key: 'angular', 
+                                name: 'Eckig', 
+                                desc: 'Scharfe, moderne Kanten',
+                                Icon: MdCrop32,
+                                color: 'indigo'
+                              },
+                              { 
+                                key: 'rounded', 
+                                name: 'Abgerundet', 
+                                desc: 'Sanfte, moderne Rundungen',
+                                Icon: MdRoundedCorner,
+                                color: 'purple'
+                              },
+                              { 
+                                key: 'curved', 
+                                name: 'Geschwungen', 
+                                desc: 'Organische, fließende Formen',
+                                Icon: MdWaves,
+                                color: 'orange'
+                              },
+                              { 
+                                key: 'circular', 
+                                name: 'Rund', 
+                                desc: 'Maximale Rundungen, organisch',
+                                Icon: MdCircle,
+                                color: 'teal'
+                              }
+                            ].map((design) => (
+                              <button
+                                key={design.key}
+                                onClick={() => handleConfigChange('designStyle', design.key)}
+                                className={`group p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 ${
+                                  config.designStyle === design.key
+                                    ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
+                                    : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
+                                }`}
+                                style={{ borderRadius: 'var(--radius-card)' }}
+                              >
+                                <div className="w-12 h-12 mx-auto mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center bg-gray-100 dark:bg-gray-700"
+                                  style={{ borderRadius: 'var(--radius-card)' }}>
+                                  <design.Icon className={`w-6 h-6 ${
+                                    config.designStyle === design.key 
+                                      ? 'text-orange-600 dark:text-orange-400' 
+                                      : 'text-gray-600 dark:text-gray-400'
+                                  }`} />
+                                </div>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{design.name}</h3>
+                                <p className="text-sm text-gray-600 dark:text-gray-300">{design.desc}</p>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Schritt 3: Farbschema - Collapsible */}
+                  {config.designStyle && (
+                    <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
+                      config.designStyle ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                    }`} style={{ borderRadius: 'var(--radius-card)' }}>
+                      <button
+                        onClick={() => setConfig(prev => ({ ...prev, colorExpanded: !prev.colorExpanded }))}
+                        className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
+                        style={{ borderRadius: 'var(--radius-card)' }}
+                      >
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
+                            style={{ borderRadius: 'var(--radius-button)' }}>
+                            3
+                          </div>
+                          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                            Farbschema wählen
+                          </h2>
+                        </div>
+                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.colorExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </button>
+                      
+                      {config.colorExpanded && (
+                        <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
+                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                            {[
+                              { 
+                                key: 'blue', 
+                                name: 'Ocean Blue', 
+                                desc: 'Vertrauen & Professionalität',
+                                colors: ['#3b82f6', '#1d4ed8', '#1e40af', '#1e3a8a'],
+                                accent: 'bg-blue-500'
+                              },
+                              { 
+                                key: 'green', 
+                                name: 'Nature Green', 
+                                desc: 'Wachstum & Nachhaltigkeit',
+                                colors: ['#10b981', '#059669', '#047857', '#065f46'],
+                                accent: 'bg-green-500'
+                              },
+                              { 
+                                key: 'purple', 
+                                name: 'Royal Purple', 
+                                desc: 'Kreativität & Innovation',
+                                colors: ['#8b5cf6', '#7c3aed', '#6d28d9', '#5b21b6'],
+                                accent: 'bg-purple-500'
+                              },
+                              { 
+                                key: 'orange', 
+                                name: 'Energy Orange', 
+                                desc: 'Dynamik & Enthusiasmus',
+                                colors: ['#f97316', '#ea580c', '#dc2626', '#b91c1c'],
+                                accent: 'bg-orange-500'
+                              }
+                            ].map((color) => (
+                              <button
+                                key={color.key}
+                                onClick={() => handleConfigChange('colorScheme', color.key)}
+                                className={`group p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 ${
+                                  config.colorScheme === color.key
+                                    ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
+                                    : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
+                                }`}
+                                style={{ borderRadius: 'var(--radius-card)' }}
+                              >
+                                {/* Color Palette Display */}
+                                <div className="w-12 h-12 mx-auto mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 grid grid-cols-2 gap-0.5 p-1 bg-white dark:bg-gray-800"
+                                  style={{ borderRadius: 'var(--radius-card)' }}>
+                                  {color.colors.map((colorHex, index) => (
+                                    <div 
+                                      key={index}
+                                      style={{ backgroundColor: colorHex, borderRadius: 'var(--radius-sm)' }}
+                                    ></div>
+                                  ))}
+                                </div>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{color.name}</h3>
+                                <p className="text-sm text-gray-600 dark:text-gray-300">{color.desc}</p>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                 </div>
-
-                {/* Schritt 2: Design-Stil - Collapsible */}
-                {config.layoutType && (
-                  <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
-                    config.layoutType ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
-                  }`} style={{ borderRadius: 'var(--radius-card)' }}>
-                    <button
-                      onClick={() => setConfig(prev => ({ ...prev, designExpanded: !prev.designExpanded }))}
-                      className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
-                      style={{ borderRadius: 'var(--radius-card)' }}
-                    >
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
-                          style={{ borderRadius: 'var(--radius-button)' }}>
-                          2
-                        </div>
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                          Design-Stil wählen
-                        </h2>
-                      </div>
-                      <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.designExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                      </svg>
-                    </button>
-                    
-                    {config.designExpanded && (
-                      <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
-                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                          {[
-                            { 
-                              key: 'angular', 
-                              name: 'Eckig', 
-                              desc: 'Scharfe, moderne Kanten',
-                              Icon: MdCrop32,
-                              color: 'indigo'
-                            },
-                            { 
-                              key: 'rounded', 
-                              name: 'Abgerundet', 
-                              desc: 'Sanfte, moderne Rundungen',
-                              Icon: MdRoundedCorner,
-                              color: 'purple'
-                            },
-                            { 
-                              key: 'curved', 
-                              name: 'Geschwungen', 
-                              desc: 'Organische, fließende Formen',
-                              Icon: MdWaves,
-                              color: 'orange'
-                            },
-                            { 
-                              key: 'circular', 
-                              name: 'Rund', 
-                              desc: 'Maximale Rundungen, organisch',
-                              Icon: MdCircle,
-                              color: 'teal'
-                            }
-                          ].map((design) => (
-                            <button
-                              key={design.key}
-                              onClick={() => handleConfigChange('designStyle', design.key)}
-                              className={`group p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 ${
-                                config.designStyle === design.key
-                                  ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
-                                  : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
-                              }`}
-                              style={{ borderRadius: 'var(--radius-card)' }}
-                            >
-                              <div className="w-12 h-12 mx-auto mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center bg-gray-100 dark:bg-gray-700"
-                                style={{ borderRadius: 'var(--radius-card)' }}>
-                                <design.Icon className={`w-6 h-6 ${
-                                  config.designStyle === design.key 
-                                    ? 'text-orange-600 dark:text-orange-400' 
-                                    : 'text-gray-600 dark:text-gray-400'
-                                }`} />
-                              </div>
-                              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{design.name}</h3>
-                              <p className="text-sm text-gray-600 dark:text-gray-300">{design.desc}</p>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* Schritt 3: Farbschema - Collapsible */}
-                {config.designStyle && (
-                  <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ${
-                    config.designStyle ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
-                  }`} style={{ borderRadius: 'var(--radius-card)' }}>
-                    <button
-                      onClick={() => setConfig(prev => ({ ...prev, colorExpanded: !prev.colorExpanded }))}
-                      className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
-                      style={{ borderRadius: 'var(--radius-card)' }}
-                    >
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
-                          style={{ borderRadius: 'var(--radius-button)' }}>
-                          3
-                        </div>
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                          Farbschema wählen
-                        </h2>
-                      </div>
-                      <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.colorExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                      </svg>
-                    </button>
-                    
-                    {config.colorExpanded && (
-                      <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
-                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                          {[
-                            { 
-                              key: 'blue', 
-                              name: 'Ocean Blue', 
-                              desc: 'Vertrauen & Professionalität',
-                              colors: ['#3b82f6', '#1d4ed8', '#1e40af', '#1e3a8a'],
-                              accent: 'bg-blue-500'
-                            },
-                            { 
-                              key: 'green', 
-                              name: 'Nature Green', 
-                              desc: 'Wachstum & Nachhaltigkeit',
-                              colors: ['#10b981', '#059669', '#047857', '#065f46'],
-                              accent: 'bg-green-500'
-                            },
-                            { 
-                              key: 'purple', 
-                              name: 'Royal Purple', 
-                              desc: 'Kreativität & Innovation',
-                              colors: ['#8b5cf6', '#7c3aed', '#6d28d9', '#5b21b6'],
-                              accent: 'bg-purple-500'
-                            },
-                            { 
-                              key: 'orange', 
-                              name: 'Energy Orange', 
-                              desc: 'Dynamik & Enthusiasmus',
-                              colors: ['#f97316', '#ea580c', '#dc2626', '#b91c1c'],
-                              accent: 'bg-orange-500'
-                            }
-                          ].map((color) => (
-                            <button
-                              key={color.key}
-                              onClick={() => handleConfigChange('colorScheme', color.key)}
-                              className={`group p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 ${
-                                config.colorScheme === color.key
-                                  ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
-                                  : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
-                              }`}
-                              style={{ borderRadius: 'var(--radius-card)' }}
-                            >
-                              {/* Color Palette Display */}
-                              <div className="w-12 h-12 mx-auto mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 grid grid-cols-2 gap-0.5 p-1 bg-white dark:bg-gray-800"
-                                style={{ borderRadius: 'var(--radius-card)' }}>
-                                {color.colors.map((colorHex, index) => (
-                                  <div 
-                                    key={index}
-                                    style={{ backgroundColor: colorHex, borderRadius: 'var(--radius-sm)' }}
-                                  ></div>
-                                ))}
-                              </div>
-                              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{color.name}</h3>
-                              <p className="text-sm text-gray-600 dark:text-gray-300">{color.desc}</p>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
 
                 {/* Progress Indicator */}
                 <div className="mt-8 mb-6">
