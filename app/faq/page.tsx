@@ -139,13 +139,13 @@ export default function FAQPage() {
       <Header content={content} />
       
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary to-accent">
-        <div className="container mx-auto px-4">
+      <section className="relative py-24 md:py-32 bg-gradient-to-br from-primary to-accent">
+        <div className="container mx-auto px-6 md:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">
               Häufig gestellte Fragen
             </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               Hier finden Sie Antworten auf die am häufigsten gestellten Fragen. Falls Sie weitere Fragen haben, kontaktieren Sie uns gerne direkt.
             </p>
           </div>
@@ -153,18 +153,18 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-24 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-6 md:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="space-y-4">
+            <div className="space-y-6">
               {faqData.map((faq, index) => (
                 <div key={index} className="bg-gray-50 dark:bg-gray-800 shadow-lg overflow-hidden"
                   style={{ borderRadius: 'var(--radius-card)' }}>
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                    className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
                   >
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white pr-6">
                       {faq.question}
                     </h3>
                     <svg
@@ -185,8 +185,8 @@ export default function FAQPage() {
                         : 'max-h-0 opacity-0'
                     } overflow-hidden`}
                   >
-                    <div className="px-6 pb-4">
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    <div className="px-8 pb-6 pt-2">
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base md:text-lg">
                         {faq.answer}
                       </p>
                     </div>
@@ -199,58 +199,58 @@ export default function FAQPage() {
       </section>
 
       {/* Kontakt Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-24 bg-gray-50 dark:bg-gray-800">
+        <div className="container mx-auto px-6 md:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">
               Weitere Fragen?
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
               Falls Sie Ihre Frage hier nicht gefunden haben, zögern Sie nicht uns zu kontaktieren. Wir helfen gerne weiter!
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-16">
               {/* Telefon */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary flex items-center justify-center mx-auto mb-4"
+              <div className="text-center p-6">
+                <div className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
                   style={{ borderRadius: 'var(--radius-image)' }}>
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Anrufen</h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Anrufen</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Mo-Fr: 7:00-18:00 Uhr<br/>
                   Sa: 8:00-14:00 Uhr
                 </p>
               </div>
 
               {/* E-Mail */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary flex items-center justify-center mx-auto mb-4"
+              <div className="text-center p-6">
+                <div className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
                   style={{ borderRadius: 'var(--radius-image)' }}>
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">E-Mail</h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">E-Mail</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Antwort innerhalb<br/>
                   von 24 Stunden
                 </p>
               </div>
 
               {/* Vor Ort */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary flex items-center justify-center mx-auto mb-4"
+              <div className="text-center p-6">
+                <div className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
                   style={{ borderRadius: 'var(--radius-image)' }}>
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Vor Ort</h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Vor Ort</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Kostenlose Beratung<br/>
                   nach Terminvereinbarung
                 </p>

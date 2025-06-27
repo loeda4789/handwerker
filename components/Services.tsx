@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ContentData } from '@/types/content'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
@@ -65,6 +65,29 @@ export default function Services({ content }: ServicesProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentService, setCurrentService] = useState<typeof content.services[0] | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  
+  // Design-Style aus localStorage abrufen
+  const [designStyle, setDesignStyle] = useState<string>('angular')
+  
+  useEffect(() => {
+    const savedDesignStyle = localStorage.getItem('design-style')
+    if (savedDesignStyle) {
+      setDesignStyle(savedDesignStyle)
+    }
+    
+    const handleDesignStyleChange = () => {
+      const newDesignStyle = localStorage.getItem('design-style')
+      if (newDesignStyle) {
+        setDesignStyle(newDesignStyle)
+      }
+    }
+    
+    window.addEventListener('storage', handleDesignStyleChange)
+    return () => window.removeEventListener('storage', handleDesignStyleChange)
+  }, [])
+  
+  // Moderne Ansichten (curved, circular) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'curved' || designStyle === 'circular'
 
   // Lightbox functions
   const openLightbox = (service: typeof content.services[0]) => {
@@ -101,11 +124,20 @@ export default function Services({ content }: ServicesProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
+          {isModernStyle && (
+            <span className="inline-block px-6 py-2 bg-primary text-white text-sm font-medium mb-4"
+              style={{ borderRadius: 'var(--radius-button)' }}>
+              Dienstleistungen
+            </span>
+          )}
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
-            Unsere Leistungen & Referenzen
+            {isModernStyle ? 'Was wir anbieten' : 'Unsere Leistungen & Referenzen'}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
-            Von der Planung bis zur Fertigstellung - wir bieten Ihnen den kompletten Service rund um Ihr Handwerksprojekt. Klicken Sie auf eine Leistung, um unsere Referenzen zu sehen.
+            {isModernStyle 
+              ? 'Bei uns erhalten Sie alles aus einer Hand. Von der Beratung über den Verkauf bis hin zur professionellen Verlegung Ihrer Fliesen kümmern wir uns um jedes Detail. Profitieren Sie von unserer Expertise und unserem umfassenden Service.'
+              : 'Von der Planung bis zur Fertigstellung - wir bieten Ihnen den kompletten Service rund um Ihr Handwerksprojekt. Klicken Sie auf eine Leistung, um unsere Referenzen zu sehen.'
+            }
           </p>
         </div>
 
