@@ -133,10 +133,11 @@ export default function Header({ content }: HeaderProps) {
     if (siteMode === 'multipage') {
       return [
         { 
-          href: '/ueber-uns', 
+          href: null, 
           label: 'Über uns', 
           id: 'ueber-uns',
           hasDropdown: true,
+          isClickable: false,
           dropdownItems: [
             { href: '/ueber-uns/team', label: 'Unser Team' },
             { href: '/ueber-uns/betrieb', label: 'Unser Betrieb' },
@@ -145,26 +146,27 @@ export default function Header({ content }: HeaderProps) {
           ]
         },
         { 
-          href: '/services', 
+          href: null, 
           label: 'Leistungen', 
           id: 'leistungen',
           hasDropdown: true,
+          isClickable: false,
           dropdownItems: content.services.map((service: any, index: number) => ({
             href: `/services/leistung-${index + 1}`,
             label: service.title,
             icon: service.icon
           }))
         },
-        { href: '/referenzen', label: 'Referenzen', id: 'referenzen' },
-        { href: '/faq', label: 'FAQ', id: 'faq' },
-        { href: '/kontakt', label: 'Kontakt', id: 'kontakt' }
+        { href: '/referenzen', label: 'Referenzen', id: 'referenzen', isClickable: true },
+        { href: '/faq', label: 'FAQ', id: 'faq', isClickable: true },
+        { href: '/kontakt', label: 'Kontakt', id: 'kontakt', isClickable: true }
       ]
     } else {
       return [
-        { href: '#ueber-uns', label: content.about.title, id: 'ueber-uns' },
-        { href: '#leistungen', label: 'Leistungen', id: 'leistungen' },
-        { href: '#team', label: 'Team', id: 'team' },
-        { href: '#projektablauf', label: 'Projektablauf', id: 'projektablauf' }
+        { href: '#ueber-uns', label: content.about.title, id: 'ueber-uns', isClickable: true },
+        { href: '#leistungen', label: 'Leistungen', id: 'leistungen', isClickable: true },
+        { href: '#team', label: 'Team', id: 'team', isClickable: true },
+        { href: '#projektablauf', label: 'Projektablauf', id: 'projektablauf', isClickable: true }
       ]
     }
   }
@@ -280,15 +282,26 @@ export default function Header({ content }: HeaderProps) {
                         onMouseEnter={() => setDropdownOpen(item.id)}
                         onMouseLeave={() => setDropdownOpen(null)}
                       >
-                        <Link
-                          href={item.href}
-                          className={`flex items-center py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 text-text dark:text-light hover:text-primary dark:hover:text-primary`}
-                        >
-                          {item.label}
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                          </svg>
-                        </Link>
+                        {item.isClickable ? (
+                          <Link
+                            href={item.href}
+                            className={`flex items-center py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 text-text dark:text-light hover:text-primary dark:hover:text-primary`}
+                          >
+                            {item.label}
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                          </Link>
+                        ) : (
+                          <span
+                            className={`flex items-center py-2 px-3 lg:p-0 uppercase transition-colors duration-300 text-text dark:text-light cursor-default`}
+                          >
+                            {item.label}
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                          </span>
+                        )}
                         
                         {/* Dropdown Menu */}
                         <div className={`absolute top-full left-0 mt-2 w-64 shadow-xl border transition-all duration-300 z-50 ${
@@ -313,17 +326,25 @@ export default function Header({ content }: HeaderProps) {
                         </div>
                       </div>
                     ) : (
-                      <Link
-                        href={item.href}
-                        onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : undefined}
-                        className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
-                          activeSection === item.id && siteMode === 'onepage'
-                            ? 'text-primary dark:text-accent font-semibold' 
-                            : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
+                      item.isClickable ? (
+                        <Link
+                          href={item.href}
+                          onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : undefined}
+                          className={`block py-2 px-3 lg:p-0 lg:hover:text-primary uppercase transition-colors duration-300 ${
+                            activeSection === item.id && siteMode === 'onepage'
+                              ? 'text-primary dark:text-accent font-semibold' 
+                              : 'text-text dark:text-light hover:text-primary dark:hover:text-primary'
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <span
+                          className={`block py-2 px-3 lg:p-0 uppercase transition-colors duration-300 cursor-default text-text dark:text-light`}
+                        >
+                          {item.label}
+                        </span>
+                      )
                     )}
                   </li>
                 ))}
@@ -396,17 +417,25 @@ export default function Header({ content }: HeaderProps) {
                     </div>
                   </div>
                 ) : (
-                  <Link
-                    href={item.href}
-                    onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : closeMobileMenu}
-                    className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
-                      activeSection === item.id && siteMode === 'onepage'
-                        ? 'text-primary dark:text-accent font-medium' 
-                        : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
+                  item.isClickable ? (
+                    <Link
+                      href={item.href}
+                      onClick={siteMode === 'onepage' ? (e) => handleSmoothScroll(e, item.id) : closeMobileMenu}
+                      className={`block text-4xl font-light tracking-wide transition-all duration-300 hover:scale-110 ${
+                        activeSection === item.id && siteMode === 'onepage'
+                          ? 'text-primary dark:text-accent font-medium' 
+                          : 'text-text dark:text-light hover:text-primary dark:hover:text-accent'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <span
+                      className={`block text-4xl font-light tracking-wide transition-all duration-300 cursor-default text-text dark:text-light`}
+                    >
+                      {item.label}
+                    </span>
+                  )
                 )}
               </div>
             ))}
