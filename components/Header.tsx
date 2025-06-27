@@ -219,6 +219,22 @@ export default function Header({ content }: HeaderProps) {
 
   const headerStyles = getHeaderStyles()
 
+  // Helper function to generate initials from company name
+  const getCompanyInitials = (companyName: string): string => {
+    return companyName
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .toUpperCase()
+      .slice(0, 2) // Max 2 Buchstaben
+  }
+
+  // Helper function to extract company type
+  const getCompanyType = (companyName: string): string => {
+    const parts = companyName.split(' ')
+    return parts[parts.length - 1] // Letztes Wort (z.B. "GmbH", "Handwerk")
+  }
+
   return (
     <div className={headerStyles.container}>
       <header 
@@ -232,10 +248,10 @@ export default function Header({ content }: HeaderProps) {
               className={`w-10 h-10 ${headerStyles.logoStyle} border-2 border-current flex items-center justify-center font-bold text-sm`}
               style={{ borderRadius: 'var(--radius-button)' }}
             >
-              {content?.company?.initials || 'IH'}
+              {getCompanyInitials(content?.company?.name || 'Ihr Handwerk')}
             </div>
             <span className={`text-xl font-bold ${headerStyles.logoStyle} hidden sm:block`}>
-              {content?.company?.initials || 'Ihr'} {content?.company?.type || 'Handwerk'}
+              {content?.company?.name?.split(' ')[0] || 'Ihr'} {getCompanyType(content?.company?.name || 'Handwerk')}
             </span>
           </Link>
 
