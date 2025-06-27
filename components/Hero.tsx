@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import { ContentData } from '@/types/content'
 import { useState, useEffect } from 'react'
+import { MdVerified, MdAccessTime, MdSupportAgent } from 'react-icons/md'
 
 interface HeroProps {
   content: ContentData
@@ -409,15 +410,24 @@ function HeroSplit({ content }: HeroProps) {
             
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <div className="w-10 h-10 bg-primary/10 flex items-center justify-center"
+                  style={{ borderRadius: 'var(--radius-button)' }}>
+                  <MdVerified className="w-5 h-5 text-primary" />
+                </div>
                 <span className="text-gray-600 dark:text-gray-400">Meisterqualität seit Jahren</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <div className="w-10 h-10 bg-primary/10 flex items-center justify-center"
+                  style={{ borderRadius: 'var(--radius-button)' }}>
+                  <MdAccessTime className="w-5 h-5 text-primary" />
+                </div>
                 <span className="text-gray-600 dark:text-gray-400">24/7 Notdienst verfügbar</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <div className="w-10 h-10 bg-primary/10 flex items-center justify-center"
+                  style={{ borderRadius: 'var(--radius-button)' }}>
+                  <MdSupportAgent className="w-5 h-5 text-primary" />
+                </div>
                 <span className="text-gray-600 dark:text-gray-400">Kostenlose Beratung</span>
               </div>
             </div>

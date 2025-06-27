@@ -175,8 +175,8 @@ export default function Header({ content }: HeaderProps) {
 
   // Header-Stile basierend auf Design-Stil
   const getHeaderStyles = () => {
-    if (designStyle === 'circular') {
-      // Sehr Modern: Floating Navigation mit maximaler Rundung
+    if (designStyle === 'circular' || designStyle === 'curved') {
+      // Sehr Modern & Modern: Floating Navigation mit Rundung
       return {
         container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4',
         header: `transition-all duration-300 backdrop-blur-xl shadow-2xl border border-white/20 ${
@@ -185,7 +185,7 @@ export default function Header({ content }: HeaderProps) {
             : 'bg-white/60 dark:bg-gray-900/60'
         }`,
         nav: 'px-6 py-3',
-        borderRadius: '2rem'
+        borderRadius: designStyle === 'circular' ? '2rem' : '1.5rem'
       }
     } else if (designStyle === 'angular') {
       // Klassisch: Immer weiß, nicht durchsichtig
@@ -200,7 +200,7 @@ export default function Header({ content }: HeaderProps) {
         borderRadius: 'var(--radius-modal)'
       }
     } else {
-      // Andere Design-Stile: Standard sticky Navigation mit Transparenz
+      // Halb modern: Standard sticky Navigation mit Transparenz
       return {
         container: 'sticky top-0 z-50 w-full',
         header: `transition-all duration-300 ${
@@ -305,13 +305,13 @@ export default function Header({ content }: HeaderProps) {
                         
                         {/* Dropdown Menu */}
                         <div className={`absolute top-full left-0 mt-2 w-64 shadow-xl border transition-all duration-300 z-50 ${
-                          designStyle === 'circular' 
+                          designStyle === 'circular' || designStyle === 'curved'
                             ? 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border-white/30 dark:border-gray-600/30' 
                             : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
                         } ${
                           dropdownOpen === item.id ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
                         }`}
-                          style={{ borderRadius: designStyle === 'circular' ? '1rem' : 'var(--radius-card)' }}>
+                          style={{ borderRadius: (designStyle === 'circular' || designStyle === 'curved') ? '1rem' : 'var(--radius-card)' }}>
                           <div className="py-2">
                             {item.dropdownItems?.map((dropdownItem: any, index: number) => (
                               <Link

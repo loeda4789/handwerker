@@ -158,7 +158,8 @@ export default function FAQPage() {
           <div className="max-w-4xl mx-auto">
             <div className="space-y-4">
               {faqData.map((faq, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+                <div key={index} className="bg-gray-50 dark:bg-gray-800 shadow-lg overflow-hidden"
+                  style={{ borderRadius: 'var(--radius-card)' }}>
                   <button
                     onClick={() => toggleFAQ(index)}
                     className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
@@ -211,7 +212,8 @@ export default function FAQPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               {/* Telefon */}
               <div className="text-center">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-primary flex items-center justify-center mx-auto mb-4"
+                  style={{ borderRadius: 'var(--radius-image)' }}>
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                   </svg>
@@ -225,7 +227,8 @@ export default function FAQPage() {
 
               {/* E-Mail */}
               <div className="text-center">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-primary flex items-center justify-center mx-auto mb-4"
+                  style={{ borderRadius: 'var(--radius-image)' }}>
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                   </svg>
@@ -239,7 +242,8 @@ export default function FAQPage() {
 
               {/* Vor Ort */}
               <div className="text-center">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-primary flex items-center justify-center mx-auto mb-4"
+                  style={{ borderRadius: 'var(--radius-image)' }}>
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -256,7 +260,8 @@ export default function FAQPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/kontakt"
-                className="inline-flex items-center px-8 py-4 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                className="inline-flex items-center px-8 py-4 bg-primary hover:bg-accent text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                style={{ borderRadius: 'var(--radius-button)' }}
               >
                 Jetzt Kontakt aufnehmen
                 <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -265,7 +270,8 @@ export default function FAQPage() {
               </a>
               <a
                 href={`tel:${content.contact?.phone || '+49123456789'}`}
-                className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-lg font-medium transition-all duration-300"
+                className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium transition-all duration-300"
+                style={{ borderRadius: 'var(--radius-button)' }}
               >
                 <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
