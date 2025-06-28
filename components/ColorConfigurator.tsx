@@ -293,11 +293,11 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
                     <div key={shade} className="text-center">
                       <div 
                         className="w-full h-16 border border-gray-200 dark:border-gray-600 cursor-pointer group relative overflow-hidden"
-                        style={{ backgroundColor: color, borderRadius: 'var(--radius-card)' }}
+                        style={{ backgroundColor: color as string, borderRadius: 'var(--radius-card)' }}
                         onClick={() => {
                           const input = document.createElement('input')
                           input.type = 'color'
-                          input.value = color
+                          input.value = color as string
                           input.onchange = (e) => handleShadeChange(
                             paletteKey as keyof ColorPalettes, 
                             shade as keyof ColorPalette, 
@@ -318,7 +318,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
                           {shade === '500' && ' ⭐'}
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400 font-mono">
-                          {color.toUpperCase()}
+                          {(color as string).toUpperCase()}
                         </div>
                       </div>
                     </div>
