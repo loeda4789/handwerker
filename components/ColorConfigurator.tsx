@@ -300,7 +300,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
                           input.value = color as string
                           input.onchange = (e) => handleShadeChange(
                             paletteKey as keyof ColorPalettes, 
-                            shade as keyof ColorPalette, 
+                            shade as unknown as keyof ColorPalette, 
                             (e.target as HTMLInputElement).value
                           )
                           input.click()
