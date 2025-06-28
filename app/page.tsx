@@ -80,11 +80,11 @@ export default function HomePage() {
   })
   const [isGenerating, setIsGenerating] = useState(false)
   const [showConfigurator, setShowConfigurator] = useState(true)
+  const [showColorConfigurator, setShowColorConfigurator] = useState(false)
   const [baseContent, setBaseContent] = useState<ContentData | null>(null)
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [forceUpdate, setForceUpdate] = useState(0)
   const [designStyle, setDesignStyle] = useState<string>('angular')
-  const [showColorConfigurator, setShowColorConfigurator] = useState(false)
   const router = useRouter()
 
   // Initialize scroll animations
@@ -712,22 +712,23 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Configurator Toggle Button - erweitert */}
-      <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-40 flex flex-col space-y-2">
-        <ConfiguratorButton
-          onClick={() => setShowConfigurator(true)}
-        />
-        
-        {/* Farbkonfigurator Button */}
+      {/* Configurator Toggle Button - links unten */}
+      <ConfiguratorButton
+        onClick={() => setShowConfigurator(true)}
+      />
+      
+      {/* Farbkonfigurator Button - Mitte unten */}
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
         <button
           onClick={() => setShowColorConfigurator(true)}
-          className="bg-purple-600 hover:bg-purple-700 text-white p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 group"
+          className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 group flex items-center space-x-2"
           style={{ borderRadius: 'var(--radius-button)' }}
           title="Farbkonfigurator öffnen"
         >
-          <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v6a2 2 0 002 2h4a2 2 0 002-2V5zM21 15a2 2 0 00-2-2h-4a2 2 0 00-2 2v2a2 2 0 002 2h4a2 2 0 002-2v-2z"/>
           </svg>
+          <span className="font-medium">Farben anpassen</span>
         </button>
       </div>
 
