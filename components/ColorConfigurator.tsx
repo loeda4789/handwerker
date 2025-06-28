@@ -7,64 +7,143 @@ interface ColorConfiguratorProps {
   onClose: () => void
 }
 
-interface CustomColors {
-  primary: string
-  secondary: string
-  accent: string
-  background: string
-  surface: string
-  text: string
-  textSecondary: string
-  border: string
+interface ColorPalette {
+  50: string
+  100: string
+  200: string
+  300: string
+  400: string
+  500: string // Hauptfarbe
+  600: string
+  700: string
+  800: string
+  900: string
+}
+
+interface ColorPalettes {
+  primary: ColorPalette
+  secondary: ColorPalette
+  accent: ColorPalette
+}
+
+// Hilfsfunktion um Farbpalette aus Hauptfarbe zu generieren
+const generateColorPalette = (baseColor: string): ColorPalette => {
+  // Konvertiere Hex zu HSL für bessere Farbmanipulation
+  const hexToHsl = (hex: string) => {
+    const r = parseInt(hex.slice(1, 3), 16) / 255
+    const g = parseInt(hex.slice(3, 5), 16) / 255
+    const b = parseInt(hex.slice(5, 7), 16) / 255
+
+    const max = Math.max(r, g, b)
+    const min = Math.min(r, g, b)
+    let h = 0, s = 0, l = (max + min) / 2
+
+    if (max !== min) {
+      const d = max - min
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+      switch (max) {
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break
+        case g: h = (b - r) / d + 2; break
+        case b: h = (r - g) / d + 4; break
+      }
+      h /= 6
+    }
+
+    return [h * 360, s * 100, l * 100]
+  }
+
+  const hslToHex = (h: number, s: number, l: number) => {
+    l /= 100
+    const a = s * Math.min(l, 1 - l) / 100
+    const f = (n: number) => {
+      const k = (n + h / 30) % 12
+      const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1)
+      return Math.round(255 * color).toString(16).padStart(2, '0')
+    }
+    return `#${f(0)}${f(8)}${f(4)}`
+  }
+
+  const [h, s, l] = hexToHsl(baseColor)
+
+  return {
+    50: hslToHex(h, Math.max(s - 40, 10), Math.min(l + 40, 95)),
+    100: hslToHex(h, Math.max(s - 30, 15), Math.min(l + 30, 90)),
+    200: hslToHex(h, Math.max(s - 20, 20), Math.min(l + 20, 85)),
+    300: hslToHex(h, Math.max(s - 10, 25), Math.min(l + 10, 75)),
+    400: hslToHex(h, s, Math.min(l + 5, 65)),
+    500: baseColor, // Originalfarbe
+    600: hslToHex(h, Math.min(s + 10, 100), Math.max(l - 10, 35)),
+    700: hslToHex(h, Math.min(s + 20, 100), Math.max(l - 20, 25)),
+    800: hslToHex(h, Math.min(s + 30, 100), Math.max(l - 30, 15)),
+    900: hslToHex(h, Math.min(s + 40, 100), Math.max(l - 40, 5))
+  }
 }
 
 export default function ColorConfigurator({ isOpen, onClose }: ColorConfiguratorProps) {
-  const [colors, setColors] = useState<CustomColors>({
-    primary: '#ff6b35',
-    secondary: '#e55527',
-    accent: '#ff8a5b',
-    background: '#ffffff',
-    surface: '#fff8f5',
-    text: '#0f1419',
-    textSecondary: '#6b7280',
-    border: '#fed7cc'
+  const [palettes, setPalettes] = useState<ColorPalettes>({
+    primary: generateColorPalette('#ff6b35'),
+    secondary: generateColorPalette('#e55527'),
+    accent: generateColorPalette('#ff8a5b')
   })
 
   const [previewMode, setPreviewMode] = useState(false)
 
-  // Farben aus localStorage laden
+  // Paletten aus localStorage laden
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedColors = localStorage.getItem('custom-colors')
-      if (savedColors) {
-        setColors(JSON.parse(savedColors))
+      const savedPalettes = localStorage.getItem('color-palettes')
+      if (savedPalettes) {
+        setPalettes(JSON.parse(savedPalettes))
       }
     }
   }, [])
 
-  // Farben anwenden
-  const applyColors = (newColors: CustomColors, save: boolean = false) => {
+  // Paletten anwenden
+  const applyPalettes = (newPalettes: ColorPalettes, save: boolean = false) => {
     if (typeof window === 'undefined') return
 
     const root = document.documentElement
-    Object.entries(newColors).forEach(([key, value]) => {
-      root.style.setProperty(`--color-${key}`, value)
+    
+    // Alle Paletten-Farben als CSS-Variablen setzen
+    Object.entries(newPalettes).forEach(([paletteKey, palette]) => {
+      Object.entries(palette).forEach(([shade, color]) => {
+        root.style.setProperty(`--color-${paletteKey}-${shade}`, color)
+      })
+      // Hauptfarbe auch als Legacy-Variable setzen
+      root.style.setProperty(`--color-${paletteKey}`, palette[500])
     })
 
     if (save) {
-      localStorage.setItem('custom-colors', JSON.stringify(newColors))
-      localStorage.setItem('color-scheme', 'custom')
-      console.log('🎨 Custom Farben gespeichert:', newColors)
+      localStorage.setItem('color-palettes', JSON.stringify(newPalettes))
+      localStorage.setItem('color-scheme', 'custom-palette')
+      console.log('🎨 Custom Farbpaletten gespeichert:', newPalettes)
     }
   }
 
-  // Farbe ändern
-  const handleColorChange = (colorKey: keyof CustomColors, value: string) => {
-    const newColors = { ...colors, [colorKey]: value }
-    setColors(newColors)
+  // Hauptfarbe ändern und Palette neu generieren
+  const handleMainColorChange = (paletteKey: keyof ColorPalettes, mainColor: string) => {
+    const newPalette = generateColorPalette(mainColor)
+    const newPalettes = { ...palettes, [paletteKey]: newPalette }
+    setPalettes(newPalettes)
     
     if (previewMode) {
-      applyColors(newColors, false)
+      applyPalettes(newPalettes, false)
+    }
+  }
+
+  // Einzelne Farbe in Palette ändern
+  const handleShadeChange = (paletteKey: keyof ColorPalettes, shade: keyof ColorPalette, color: string) => {
+    const newPalettes = {
+      ...palettes,
+      [paletteKey]: {
+        ...palettes[paletteKey],
+        [shade]: color
+      }
+    }
+    setPalettes(newPalettes)
+    
+    if (previewMode) {
+      applyPalettes(newPalettes, false)
     }
   }
 
@@ -72,82 +151,48 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
   const togglePreview = () => {
     setPreviewMode(!previewMode)
     if (!previewMode) {
-      applyColors(colors, false)
+      applyPalettes(palettes, false)
     }
   }
 
-  // Farben speichern
-  const saveColors = () => {
-    applyColors(colors, true)
+  // Paletten speichern
+  const savePalettes = () => {
+    applyPalettes(palettes, true)
     window.dispatchEvent(new Event('storage'))
     onClose()
   }
 
-  // Farben zurücksetzen
-  const resetColors = () => {
-    const defaultColors: CustomColors = {
-      primary: '#ff6b35',
-      secondary: '#e55527', 
-      accent: '#ff8a5b',
-      background: '#ffffff',
-      surface: '#fff8f5',
-      text: '#0f1419',
-      textSecondary: '#6b7280',
-      border: '#fed7cc'
+  // Paletten zurücksetzen
+  const resetPalettes = () => {
+    const defaultPalettes: ColorPalettes = {
+      primary: generateColorPalette('#ff6b35'),
+      secondary: generateColorPalette('#e55527'),
+      accent: generateColorPalette('#ff8a5b')
     }
-    setColors(defaultColors)
-    applyColors(defaultColors, false)
+    setPalettes(defaultPalettes)
+    applyPalettes(defaultPalettes, false)
   }
 
-  // Farbschema-Presets
-  const presets = {
-    orange: {
-      primary: '#ff6b35',
-      secondary: '#e55527',
-      accent: '#ff8a5b',
-      background: '#ffffff',
-      surface: '#fff8f5',
-      text: '#0f1419',
-      textSecondary: '#6b7280',
-      border: '#fed7cc'
-    },
-    blue: {
-      primary: '#0066ff',
-      secondary: '#0052cc',
-      accent: '#3d8bff',
-      background: '#ffffff',
-      surface: '#f7faff',
-      text: '#0f1419',
-      textSecondary: '#6b7280',
-      border: '#e1ecff'
-    },
-    green: {
-      primary: '#00d9aa',
-      secondary: '#00b894',
-      accent: '#26e5b8',
-      background: '#ffffff',
-      surface: '#f0fffe',
-      text: '#0f1419',
-      textSecondary: '#6b7280',
-      border: '#ccf7ed'
-    },
-    purple: {
-      primary: '#7c3aed',
-      secondary: '#6d28d9',
-      accent: '#a855f7',
-      background: '#ffffff',
-      surface: '#faf7ff',
-      text: '#0f1419',
-      textSecondary: '#6b7280',
-      border: '#ede9fe'
-    }
+  // Vordefinierte Hauptfarben
+  const presetMainColors = {
+    orange: { primary: '#ff6b35', secondary: '#e55527', accent: '#ff8a5b' },
+    blue: { primary: '#0066ff', secondary: '#0052cc', accent: '#3d8bff' },
+    green: { primary: '#00d9aa', secondary: '#00b894', accent: '#26e5b8' },
+    purple: { primary: '#7c3aed', secondary: '#6d28d9', accent: '#a855f7' },
+    red: { primary: '#ef4444', secondary: '#dc2626', accent: '#f87171' },
+    teal: { primary: '#14b8a6', secondary: '#0d9488', accent: '#5eead4' }
   }
 
-  const applyPreset = (preset: keyof typeof presets) => {
-    const presetColors = presets[preset]
-    setColors(presetColors)
+  const applyPreset = (preset: keyof typeof presetMainColors) => {
+    const colors = presetMainColors[preset]
+    const newPalettes: ColorPalettes = {
+      primary: generateColorPalette(colors.primary),
+      secondary: generateColorPalette(colors.secondary),
+      accent: generateColorPalette(colors.accent)
+    }
+    setPalettes(newPalettes)
     if (previewMode) {
-      applyColors(presetColors, false)
+      applyPalettes(newPalettes, false)
     }
   }
 
@@ -155,17 +200,17 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-6xl max-h-[90vh] overflow-y-auto"
         style={{ borderRadius: 'var(--radius-modal)' }}>
         
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              🎨 Farbkonfigurator
+              🎨 Erweiterte Farbpaletten
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Passen Sie alle Farben individuell an Ihre Bedürfnisse an
+              Erstellen Sie professionelle Farbsysteme mit 10 Abstufungen pro Farbe
             </p>
           </div>
           <button
@@ -183,28 +228,28 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
           {/* Preset Buttons */}
           <div className="mb-8">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              Schnelle Presets
+              Schnelle Farbschema-Presets
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {Object.entries(presets).map(([key, preset]) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              {Object.entries(presetMainColors).map(([key, colors]) => (
                 <button
                   key={key}
-                  onClick={() => applyPreset(key as keyof typeof presets)}
-                  className="p-3 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors text-center"
+                  onClick={() => applyPreset(key as keyof typeof presetMainColors)}
+                  className="p-3 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors text-center group"
                   style={{ borderRadius: 'var(--radius-card)' }}
                 >
                   <div className="flex space-x-1 mb-2 justify-center">
                     <div 
-                      className="w-4 h-4" 
-                      style={{ backgroundColor: preset.primary, borderRadius: 'var(--radius-sm)' }}
+                      className="w-4 h-4 group-hover:scale-110 transition-transform" 
+                      style={{ backgroundColor: colors.primary, borderRadius: 'var(--radius-sm)' }}
                     ></div>
                     <div 
-                      className="w-4 h-4" 
-                      style={{ backgroundColor: preset.secondary, borderRadius: 'var(--radius-sm)' }}
+                      className="w-4 h-4 group-hover:scale-110 transition-transform" 
+                      style={{ backgroundColor: colors.secondary, borderRadius: 'var(--radius-sm)' }}
                     ></div>
                     <div 
-                      className="w-4 h-4" 
-                      style={{ backgroundColor: preset.accent, borderRadius: 'var(--radius-sm)' }}
+                      className="w-4 h-4 group-hover:scale-110 transition-transform" 
+                      style={{ backgroundColor: colors.accent, borderRadius: 'var(--radius-sm)' }}
                     ></div>
                   </div>
                   <span className="text-sm font-medium text-gray-900 dark:text-white capitalize">
@@ -215,211 +260,92 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
             </div>
           </div>
 
-          {/* Farbeinstellungen */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            {/* Hauptfarben */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Hauptfarben
-              </h3>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Primärfarbe (Header, Sektionen)
-                  </label>
+          {/* Farbpaletten */}
+          <div className="space-y-8">
+            {Object.entries(palettes).map(([paletteKey, palette]) => (
+              <div key={paletteKey}>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white capitalize">
+                    {paletteKey === 'primary' ? '🎯 Primärfarbe' : 
+                     paletteKey === 'secondary' ? '🔧 Sekundärfarbe' : 
+                     '✨ Akzentfarbe'} ({paletteKey})
+                  </h3>
                   <div className="flex items-center space-x-3">
+                    <label className="text-sm text-gray-600 dark:text-gray-400">Hauptfarbe:</label>
                     <input
                       type="color"
-                      value={colors.primary}
-                      onChange={(e) => handleColorChange('primary', e.target.value)}
-                      className="w-12 h-10 border border-gray-300 dark:border-gray-600"
+                      value={palette[500]}
+                      onChange={(e) => handleMainColorChange(paletteKey as keyof ColorPalettes, e.target.value)}
+                      className="w-12 h-8 border border-gray-300 dark:border-gray-600"
                       style={{ borderRadius: 'var(--radius-button)' }}
                     />
                     <input
                       type="text"
-                      value={colors.primary}
-                      onChange={(e) => handleColorChange('primary', e.target.value)}
-                      className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      value={palette[500]}
+                      onChange={(e) => handleMainColorChange(paletteKey as keyof ColorPalettes, e.target.value)}
+                      className="w-24 px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                       style={{ borderRadius: 'var(--radius-input)' }}
-                      placeholder="#ff6b35"
                     />
                   </div>
                 </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Sekundärfarbe (Buttons, Akzente)
-                  </label>
-                  <div className="flex items-center space-x-3">
-                    <input
-                      type="color"
-                      value={colors.secondary}
-                      onChange={(e) => handleColorChange('secondary', e.target.value)}
-                      className="w-12 h-10 border border-gray-300 dark:border-gray-600"
-                      style={{ borderRadius: 'var(--radius-button)' }}
-                    />
-                    <input
-                      type="text"
-                      value={colors.secondary}
-                      onChange={(e) => handleColorChange('secondary', e.target.value)}
-                      className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                      style={{ borderRadius: 'var(--radius-input)' }}
-                      placeholder="#e55527"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Akzentfarbe (Hover, Highlights)
-                  </label>
-                  <div className="flex items-center space-x-3">
-                    <input
-                      type="color"
-                      value={colors.accent}
-                      onChange={(e) => handleColorChange('accent', e.target.value)}
-                      className="w-12 h-10 border border-gray-300 dark:border-gray-600"
-                      style={{ borderRadius: 'var(--radius-button)' }}
-                    />
-                    <input
-                      type="text"
-                      value={colors.accent}
-                      onChange={(e) => handleColorChange('accent', e.target.value)}
-                      className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                      style={{ borderRadius: 'var(--radius-input)' }}
-                      placeholder="#ff8a5b"
-                    />
-                  </div>
+                
+                {/* Farbpalette anzeigen */}
+                <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
+                  {Object.entries(palette).map(([shade, color]) => (
+                    <div key={shade} className="text-center">
+                      <div 
+                        className="w-full h-16 border border-gray-200 dark:border-gray-600 cursor-pointer group relative overflow-hidden"
+                        style={{ backgroundColor: color, borderRadius: 'var(--radius-card)' }}
+                        onClick={() => {
+                          const input = document.createElement('input')
+                          input.type = 'color'
+                          input.value = color
+                          input.onchange = (e) => handleShadeChange(
+                            paletteKey as keyof ColorPalettes, 
+                            shade as keyof ColorPalette, 
+                            (e.target as HTMLInputElement).value
+                          )
+                          input.click()
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-center justify-center">
+                          <svg className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="mt-1">
+                        <div className="text-xs font-medium text-gray-900 dark:text-white">
+                          {shade}
+                          {shade === '500' && ' ⭐'}
+                        </div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 font-mono">
+                          {color.toUpperCase()}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
 
-            {/* Hintergrund & Text */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Hintergrund & Text
-              </h3>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Hintergrundfarbe
-                  </label>
-                  <div className="flex items-center space-x-3">
-                    <input
-                      type="color"
-                      value={colors.background}
-                      onChange={(e) => handleColorChange('background', e.target.value)}
-                      className="w-12 h-10 border border-gray-300 dark:border-gray-600"
-                      style={{ borderRadius: 'var(--radius-button)' }}
-                    />
-                    <input
-                      type="text"
-                      value={colors.background}
-                      onChange={(e) => handleColorChange('background', e.target.value)}
-                      className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                      style={{ borderRadius: 'var(--radius-input)' }}
-                      placeholder="#ffffff"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Oberflächenfarbe (Cards)
-                  </label>
-                  <div className="flex items-center space-x-3">
-                    <input
-                      type="color"
-                      value={colors.surface}
-                      onChange={(e) => handleColorChange('surface', e.target.value)}
-                      className="w-12 h-10 border border-gray-300 dark:border-gray-600"
-                      style={{ borderRadius: 'var(--radius-button)' }}
-                    />
-                    <input
-                      type="text"
-                      value={colors.surface}
-                      onChange={(e) => handleColorChange('surface', e.target.value)}
-                      className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                      style={{ borderRadius: 'var(--radius-input)' }}
-                      placeholder="#fff8f5"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Textfarbe
-                  </label>
-                  <div className="flex items-center space-x-3">
-                    <input
-                      type="color"
-                      value={colors.text}
-                      onChange={(e) => handleColorChange('text', e.target.value)}
-                      className="w-12 h-10 border border-gray-300 dark:border-gray-600"
-                      style={{ borderRadius: 'var(--radius-button)' }}
-                    />
-                    <input
-                      type="text"
-                      value={colors.text}
-                      onChange={(e) => handleColorChange('text', e.target.value)}
-                      className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                      style={{ borderRadius: 'var(--radius-input)' }}
-                      placeholder="#0f1419"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Sekundäre Textfarbe
-                  </label>
-                  <div className="flex items-center space-x-3">
-                    <input
-                      type="color"
-                      value={colors.textSecondary}
-                      onChange={(e) => handleColorChange('textSecondary', e.target.value)}
-                      className="w-12 h-10 border border-gray-300 dark:border-gray-600"
-                      style={{ borderRadius: 'var(--radius-button)' }}
-                    />
-                    <input
-                      type="text"
-                      value={colors.textSecondary}
-                      onChange={(e) => handleColorChange('textSecondary', e.target.value)}
-                      className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                      style={{ borderRadius: 'var(--radius-input)' }}
-                      placeholder="#6b7280"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Rahmenfarbe
-                  </label>
-                  <div className="flex items-center space-x-3">
-                    <input
-                      type="color"
-                      value={colors.border}
-                      onChange={(e) => handleColorChange('border', e.target.value)}
-                      className="w-12 h-10 border border-gray-300 dark:border-gray-600"
-                      style={{ borderRadius: 'var(--radius-button)' }}
-                    />
-                    <input
-                      type="text"
-                      value={colors.border}
-                      onChange={(e) => handleColorChange('border', e.target.value)}
-                      className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                      style={{ borderRadius: 'var(--radius-input)' }}
-                      placeholder="#fed7cc"
-                    />
-                  </div>
-                </div>
-              </div>
+          {/* Verwendungshinweise */}
+          <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700"
+            style={{ borderRadius: 'var(--radius-card)' }}>
+            <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+              💡 Verwendungstipps:
+            </h4>
+            <div className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
+              <p><strong>50-300:</strong> Helle Töne für Hintergründe, Hover-Zustände</p>
+              <p><strong>400-500:</strong> Mittlere Töne für Standard-Buttons, Icons</p>
+              <p><strong>600-900:</strong> Dunkle Töne für Text, starke Kontraste</p>
+              <p><strong>⭐ 500:</strong> Hauptfarbe - Ihre Markenfarbe</p>
             </div>
           </div>
 
           {/* Vorschau & Kontrollen */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
             <div className="flex items-center space-x-4">
               <button
                 onClick={togglePreview}
@@ -434,7 +360,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
               </button>
               
               <button
-                onClick={resetColors}
+                onClick={resetPalettes}
                 className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-medium transition-all duration-200 hover:bg-gray-300 dark:hover:bg-gray-600"
                 style={{ borderRadius: 'var(--radius-button)' }}
               >
@@ -452,11 +378,11 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
               </button>
               
               <button
-                onClick={saveColors}
+                onClick={savePalettes}
                 className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-medium transition-all duration-200"
                 style={{ borderRadius: 'var(--radius-button)' }}
               >
-                ✅ Farben speichern
+                ✅ Paletten speichern
               </button>
             </div>
           </div>
