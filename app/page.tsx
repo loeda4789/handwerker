@@ -47,26 +47,27 @@ const SectionWrapper = ({ children, index, designStyle, className = '' }: Sectio
     return <>{children}</>
   }
 
-  // Für klassische Variante: Abwechselnde Hintergründe
-  // Index 1, 3, 5, 7... sollen Primärfarbe haben (ungerade Indizes)
-  // Index 0, 2, 4, 6... sollen weiß bleiben (gerade Indizes)
-  const shouldUsePrimaryColor = index % 2 === 1 // Ungerade Indizes (1, 3, 5, 7...)
+  // Für klassische Variante: Abwechselnde Hintergründe zwischen background und surface
+  // Index 1, 3, 5, 7... sollen surface haben (ungerade Indizes)
+  // Index 0, 2, 4, 6... sollen background bleiben (gerade Indizes)
+  const shouldUseSurface = index % 2 === 1 // Ungerade Indizes (1, 3, 5, 7...)
   
-  if (shouldUsePrimaryColor) {
-    // Ungerade Sektionen: Kräftige Primärfarbe-Hintergrund (KEINE Verwässerung)
+  if (shouldUseSurface) {
+    // Ungerade Sektionen: Surface-Hintergrund (helles Grau)
     return (
       <div 
-        className={`section-on-primary ${className}`}
-        style={{
-          backgroundColor: 'var(--color-primary)' // Direkte kräftige Primärfarbe
-        }}
+        className={`bg-surface dark:bg-dark-secondary ${className}`}
       >
         {children}
       </div>
     )
   } else {
-    // Gerade Sektionen: Weiß/Standard
-    return <div className={className}>{children}</div>
+    // Gerade Sektionen: Background (weiß)
+    return (
+      <div className={`bg-background dark:bg-dark ${className}`}>
+        {children}
+      </div>
+    )
   }
 }
 
@@ -166,14 +167,14 @@ export default function HomePage() {
       alert('Bitte füllen Sie alle Schritte aus.')
       return
     }
-
+    
     setIsGenerating(true)
     
     try {
       // Site mode setzen
       setSiteMode(config.layoutType)
-      localStorage.setItem('site-mode', config.layoutType)
-      
+    localStorage.setItem('site-mode', config.layoutType)
+    
       // Design style setzen
       setDesignStyle(config.designStyle)
       localStorage.setItem('design-style', config.designStyle)
@@ -191,21 +192,21 @@ export default function HomePage() {
       applyBorderRadiusScheme(config.designStyle)
       
       // Color scheme anwenden
-      applyColorScheme(config.colorScheme)
-      
+    applyColorScheme(config.colorScheme)
+    
       // Event dispatchen für andere Komponenten
       window.dispatchEvent(new Event('site-mode-changed'))
       window.dispatchEvent(new Event('storage'))
       
       await new Promise(resolve => setTimeout(resolve, 1500))
       
-      setShowConfigurator(false)
+    setShowConfigurator(false)
       setForceUpdate(prev => prev + 1)
       
     } catch (error) {
       console.error('Fehler beim Generieren:', error)
     } finally {
-      setIsGenerating(false)
+    setIsGenerating(false)
     }
   }
 
@@ -220,35 +221,35 @@ export default function HomePage() {
   const ServicesPreview = () => (
     <SectionWrapper index={2} designStyle={designStyle}>
       <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Unsere Leistungen
-            </h2>
+            Unsere Leistungen
+          </h2>
             <p className="text-lg max-w-2xl mx-auto opacity-90">
-              Professionelle Handwerksarbeit in allen Bereichen
-            </p>
-          </div>
+            Professionelle Handwerksarbeit in allen Bereichen
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {content?.services.slice(0, 3).map((service: any, index: number) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {content?.services.slice(0, 3).map((service: any, index: number) => (
               <div key={index} className="bg-white/10 backdrop-blur-sm p-6 shadow-lg border border-white/20"
                 style={{ borderRadius: 'var(--radius-card)' }}>
                 <div className="w-12 h-12 bg-white/20 flex items-center justify-center mb-4"
                   style={{ borderRadius: 'var(--radius-card)' }}>
-                  <span className="text-2xl">{service.icon}</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">
-                  {service.title}
-                </h3>
-                <p className="opacity-90 mb-4">
-                  {service.description}
-                </p>
+                <span className="text-2xl">{service.icon}</span>
               </div>
-            ))}
-          </div>
+                <h3 className="text-xl font-semibold mb-3">
+                {service.title}
+              </h3>
+                <p className="opacity-90 mb-4">
+                {service.description}
+              </p>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
     </SectionWrapper>
   )
 
@@ -277,35 +278,35 @@ export default function HomePage() {
         {siteMode === 'onepage' && (
           <>
             <SectionWrapper index={0} designStyle={designStyle}>
-              <About content={content} />
+            <About content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={1} designStyle={designStyle}>
-              <Stats content={content} />
+            <Stats content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={2} designStyle={designStyle}>
-              <Services content={content} />
+            <Services content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={3} designStyle={designStyle}>
-              <BeforeAfter content={content} />
+            <BeforeAfter content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={4} designStyle={designStyle}>
-              <Team content={content} />
+            <Team content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={5} designStyle={designStyle}>
-              <Testimonials content={content} />
+            <Testimonials content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={6} designStyle={designStyle}>
-              <ProjectProcess content={content} />
+            <ProjectProcess content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={7} designStyle={designStyle}>
-              <Contact content={content} />
+            <Contact content={content} />
             </SectionWrapper>
           </>
         )}
@@ -314,11 +315,11 @@ export default function HomePage() {
         {siteMode === 'multipage' && (
           <>
             <SectionWrapper index={0} designStyle={designStyle}>
-              <About content={content} />
+            <About content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={1} designStyle={designStyle}>
-              <Stats content={content} />
+            <Stats content={content} />
             </SectionWrapper>
             
             <ServicesPreview />
@@ -326,26 +327,26 @@ export default function HomePage() {
             {/* Multi-Page Demo Section */}
             <SectionWrapper index={3} designStyle={designStyle}>
               <section className="py-16">
-                <div className="container mx-auto px-4 text-center">
-                  <div className="max-w-3xl mx-auto">
+              <div className="container mx-auto px-4 text-center">
+                <div className="max-w-3xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                      🏢 Mehrseiten-Modus aktiv
-                    </h2>
+                    🏢 Mehrseiten-Modus aktiv
+                  </h2>
                     <p className="text-lg mb-8 opacity-90">
-                      In der finalen Version würden hier separate Seiten für Services, Team, Portfolio und Kontakt existieren. Diese kompakte Ansicht zeigt nur die wichtigsten Bereiche als Preview.
-                    </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    In der finalen Version würden hier separate Seiten für Services, Team, Portfolio und Kontakt existieren. Diese kompakte Ansicht zeigt nur die wichtigsten Bereiche als Preview.
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {['Services', 'Team', 'Portfolio', 'Kontakt'].map((item, index) => (
                         <div key={index} className="bg-white/10 backdrop-blur-sm p-4 shadow border border-white/20"
                           style={{ borderRadius: 'var(--radius-card)' }}>
                           <h3 className="font-semibold">{item}</h3>
                           <p className="text-sm opacity-80">Eigene Seite</p>
-                        </div>
-                      ))}
                     </div>
+                      ))}
                   </div>
                 </div>
-              </section>
+              </div>
+            </section>
             </SectionWrapper>
           </>
         )}
@@ -436,8 +437,8 @@ export default function HomePage() {
                               : 'text-gray-600 dark:text-gray-400'
                           }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                          </svg>
-                        </div>
+                            </svg>
+                          </div>
                         <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1 md:mb-2">Kompakte Website</h3>
                         <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300">
                           Alle Inhalte auf einer Seite - perfekt für kleinere Betriebe
@@ -460,9 +461,9 @@ export default function HomePage() {
                               ? 'text-orange-600 dark:text-orange-400' 
                               : 'text-gray-600 dark:text-gray-400'
                           }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
-                          </svg>
-                        </div>
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
+                            </svg>
+                          </div>
                         <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1 md:mb-2">Erweiterte Website</h3>
                         <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300">
                           Separate Unterseiten für umfangreichere Inhalte und bessere Navigation
@@ -584,33 +585,33 @@ export default function HomePage() {
                         <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
                           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4">
                             {[
-                              { 
-                                key: 'blue', 
-                                name: 'Ocean Blue', 
+                                                          { 
+                              key: 'blue', 
+                              name: 'Ocean Blue', 
                                 desc: 'Professionell & vertrauenswürdig',
                                 colors: ['#2563eb', '#1d4ed8', '#60a5fa', '#3b82f6'],
-                                accent: 'bg-blue-500'
-                              },
-                              { 
-                                key: 'green', 
-                                name: 'Nature Green', 
+                              accent: 'bg-blue-500'
+                            },
+                            { 
+                              key: 'green', 
+                              name: 'Nature Green', 
                                 desc: 'Nachhaltig & frisch',
                                 colors: ['#059669', '#047857', '#34d399', '#10b981'],
-                                accent: 'bg-green-500'
-                              },
-                              { 
-                                key: 'purple', 
-                                name: 'Royal Purple', 
+                              accent: 'bg-green-500'
+                            },
+                            { 
+                              key: 'purple', 
+                              name: 'Royal Purple', 
                                 desc: 'Premium & elegant',
                                 colors: ['#7c3aed', '#6d28d9', '#a78bfa', '#8b5cf6'],
-                                accent: 'bg-purple-500'
-                              },
-                              { 
-                                key: 'orange', 
+                              accent: 'bg-purple-500'
+                            },
+                            { 
+                              key: 'orange', 
                                 name: 'Vibrant Orange', 
                                 desc: 'Energisch & warm',
                                 colors: ['#ea580c', '#c2410c', '#fb923c', '#f97316'],
-                                accent: 'bg-orange-500'
+                              accent: 'bg-orange-500'
                               },
                               { 
                                 key: 'red', 
@@ -625,7 +626,7 @@ export default function HomePage() {
                                 desc: 'Modern & ausgewogen',
                                 colors: ['#0d9488', '#0f766e', '#5eead4', '#14b8a6'],
                                 accent: 'bg-teal-500'
-                              }
+                            }
                             ].map((color) => (
                               <button
                                 key={color.key}
@@ -640,14 +641,14 @@ export default function HomePage() {
                                 {/* Color Palette Display */}
                                 <div className="w-8 h-8 md:w-12 md:h-12 mx-auto mb-2 md:mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 grid grid-cols-2 gap-0.5 p-1 bg-white dark:bg-gray-800"
                                   style={{ borderRadius: 'var(--radius-card)' }}>
-                                  {color.colors.map((colorHex, index) => (
-                                    <div 
-                                      key={index}
+                                {color.colors.map((colorHex, index) => (
+                                  <div 
+                                    key={index}
                                       className="transition-transform duration-300 group-hover:scale-110"
                                       style={{ backgroundColor: colorHex, borderRadius: 'var(--radius-sm)' }}
-                                    ></div>
-                                  ))}
-                                </div>
+                                  ></div>
+                                ))}
+                              </div>
                                 <h3 className="text-sm md:text-lg font-bold text-gray-900 dark:text-white mb-1 md:mb-2">{color.name}</h3>
                                 <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 hidden md:block">{color.desc}</p>
                               </button>
