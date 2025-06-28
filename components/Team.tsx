@@ -78,7 +78,7 @@ export default function Team({ content }: TeamProps) {
   }
 
   return (
-    <section id="team" className="bg-surface dark:bg-dark-secondary py-20">
+    <section id="team" className="py-20">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">

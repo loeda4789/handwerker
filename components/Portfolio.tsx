@@ -46,7 +46,7 @@ export default function Portfolio({ content }: PortfolioProps) {
   }
 
   return (
-    <section id="referenzen" className="bg-surface dark:bg-dark py-16">
+    <section id="referenzen" className="py-16">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">

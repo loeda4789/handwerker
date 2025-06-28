@@ -84,7 +84,7 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
   }
 
   return (
-    <section id="vorher-nachher" className="bg-surface dark:bg-dark-secondary py-16">
+    <section id="vorher-nachher" className="py-16">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">

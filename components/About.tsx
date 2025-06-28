@@ -55,7 +55,7 @@ export default function About({ content }: AboutProps) {
   }, []);
 
   return (
-    <section id="ueber-uns" className="bg-surface dark:bg-dark py-16" ref={sectionRef}>
+    <section id="ueber-uns" className="py-16" ref={sectionRef}>
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center animate-on-scroll">
           {/* Bildbereich */}

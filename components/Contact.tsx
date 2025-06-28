@@ -142,7 +142,7 @@ export default function Contact({ content }: ContactProps) {
   }
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-800">
+    <section id="kontakt" className="py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           

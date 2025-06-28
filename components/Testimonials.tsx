@@ -127,7 +127,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
   }, [currentSlide, isDragging])
 
   return (
-    <section id="bewertungen" className="bg-background dark:bg-dark py-16">
+    <section id="testimonials" className="py-16">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
