@@ -582,35 +582,49 @@ export default function HomePage() {
                       
                       {config.colorExpanded && (
                         <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
-                          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4">
                             {[
                               { 
                                 key: 'blue', 
-                                name: 'Digital Blue', 
-                                desc: 'Modern & technologisch',
-                                colors: ['#0066ff', '#0052cc', '#3d8bff', '#1a4cff'],
+                                name: 'Ocean Blue', 
+                                desc: 'Professionell & vertrauenswürdig',
+                                colors: ['#2563eb', '#1d4ed8', '#60a5fa', '#3b82f6'],
                                 accent: 'bg-blue-500'
                               },
                               { 
                                 key: 'green', 
-                                name: 'Fresh Mint', 
-                                desc: 'Innovativ & nachhaltig',
-                                colors: ['#00d9aa', '#00b894', '#26e5b8', '#00c49a'],
+                                name: 'Nature Green', 
+                                desc: 'Nachhaltig & frisch',
+                                colors: ['#059669', '#047857', '#34d399', '#10b981'],
                                 accent: 'bg-green-500'
                               },
                               { 
                                 key: 'purple', 
-                                name: 'Modern Purple', 
+                                name: 'Royal Purple', 
                                 desc: 'Premium & elegant',
-                                colors: ['#7c3aed', '#6d28d9', '#a855f7', '#8b5cf6'],
+                                colors: ['#7c3aed', '#6d28d9', '#a78bfa', '#8b5cf6'],
                                 accent: 'bg-purple-500'
                               },
                               { 
                                 key: 'orange', 
-                                name: 'Vibrant Coral', 
+                                name: 'Vibrant Orange', 
                                 desc: 'Energisch & warm',
-                                colors: ['#ff6b35', '#e55527', '#ff8a5b', '#ff5722'],
+                                colors: ['#ea580c', '#c2410c', '#fb923c', '#f97316'],
                                 accent: 'bg-orange-500'
+                              },
+                              { 
+                                key: 'red', 
+                                name: 'Power Red', 
+                                desc: 'Stark & aufmerksamkeitsstark',
+                                colors: ['#dc2626', '#b91c1c', '#f87171', '#ef4444'],
+                                accent: 'bg-red-500'
+                              },
+                              { 
+                                key: 'teal', 
+                                name: 'Modern Teal', 
+                                desc: 'Modern & ausgewogen',
+                                colors: ['#0d9488', '#0f766e', '#5eead4', '#14b8a6'],
+                                accent: 'bg-teal-500'
                               }
                             ].map((color) => (
                               <button
@@ -629,6 +643,7 @@ export default function HomePage() {
                                   {color.colors.map((colorHex, index) => (
                                     <div 
                                       key={index}
+                                      className="transition-transform duration-300 group-hover:scale-110"
                                       style={{ backgroundColor: colorHex, borderRadius: 'var(--radius-sm)' }}
                                     ></div>
                                   ))}
@@ -637,6 +652,31 @@ export default function HomePage() {
                                 <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 hidden md:block">{color.desc}</p>
                               </button>
                             ))}
+                          </div>
+                          
+                          {/* Hinweis auf erweiterte Farbpaletten */}
+                          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700"
+                            style={{ borderRadius: 'var(--radius-card)' }}>
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-1">
+                                  🎨 Erweiterte Farbpaletten verfügbar
+                                </h4>
+                                <p className="text-sm text-blue-800 dark:text-blue-200">
+                                  Jedes Schema enthält jetzt 10 Abstufungen (50-900) für professionelle Designs
+                                </p>
+                              </div>
+                              <button
+                                onClick={() => {
+                                  setShowConfigurator(false)
+                                  setShowColorConfigurator(true)
+                                }}
+                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors"
+                                style={{ borderRadius: 'var(--radius-button)' }}
+                              >
+                                Anpassen
+                              </button>
+                            </div>
                           </div>
                         </div>
                       )}

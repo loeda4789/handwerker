@@ -20,6 +20,7 @@ module.exports = {
           700: 'var(--color-primary-700)',
           800: 'var(--color-primary-800)',
           900: 'var(--color-primary-900)',
+          DEFAULT: 'var(--color-primary)',
         },
         secondary: {
           50: 'var(--color-secondary-50)',
@@ -32,6 +33,7 @@ module.exports = {
           700: 'var(--color-secondary-700)',
           800: 'var(--color-secondary-800)',
           900: 'var(--color-secondary-900)',
+          DEFAULT: 'var(--color-secondary)',
         },
         accent: {
           50: 'var(--color-accent-50)',
@@ -44,6 +46,7 @@ module.exports = {
           700: 'var(--color-accent-700)',
           800: 'var(--color-accent-800)',
           900: 'var(--color-accent-900)',
+          DEFAULT: 'var(--color-accent)',
         },
         background: 'var(--color-background)',
         surface: 'var(--color-surface)',

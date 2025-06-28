@@ -111,7 +111,7 @@
 
 /* Button hover effects */
 .btn-primary {
-  @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary hover:bg-accent transition-all duration-300;
+  @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary hover:bg-secondary transition-all duration-300;
   border-radius: var(--radius-button);
   transform: translateY(0);
 }
@@ -183,6 +183,40 @@ html {
   --color-dark: #0f172a;
   --color-dark-secondary: #1e293b;
   --color-light: #f1f5f9;
+  
+  /* Farbpaletten für Tailwind */
+  --color-primary-50: #faf9f7;
+  --color-primary-100: #f4f1ec;
+  --color-primary-200: #e8ddd0;
+  --color-primary-300: #dcc9b4;
+  --color-primary-400: #d0b598;
+  --color-primary-500: #c49a6c;
+  --color-primary-600: #b08756;
+  --color-primary-700: #9c7440;
+  --color-primary-800: #88612a;
+  --color-primary-900: #744e14;
+  
+  --color-secondary-50: #f2f4f4;
+  --color-secondary-100: #e5e9ea;
+  --color-secondary-200: #cbd3d4;
+  --color-secondary-300: #b1bdbf;
+  --color-secondary-400: #97a7a9;
+  --color-secondary-500: #497174;
+  --color-secondary-600: #426569;
+  --color-secondary-700: #3b595e;
+  --color-secondary-800: #344d53;
+  --color-secondary-900: #2d4148;
+  
+  --color-accent-50: #fefcfa;
+  --color-accent-100: #fcf9f5;
+  --color-accent-200: #f9f3eb;
+  --color-accent-300: #f6ede1;
+  --color-accent-400: #f3e7d7;
+  --color-accent-500: #f4e9dc;
+  --color-accent-600: #f0e1cd;
+  --color-accent-700: #ecd9be;
+  --color-accent-800: #e8d1af;
+  --color-accent-900: #e4c9a0;
   
   /* Hero-Hintergrundbilder */
   --hero-image-desktop: url('/images/hero-background.png');
