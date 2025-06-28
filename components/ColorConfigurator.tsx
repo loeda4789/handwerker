@@ -100,14 +100,12 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
 
   // Paletten anwenden
   const applyPalettes = (newPalettes: ColorPalettes, save: boolean = false) => {
-    if (typeof window === 'undefined') return
-
     const root = document.documentElement
     
     // Alle Paletten-Farben als CSS-Variablen setzen
     Object.entries(newPalettes).forEach(([paletteKey, palette]) => {
       Object.entries(palette).forEach(([shade, color]) => {
-        root.style.setProperty(`--color-${paletteKey}-${shade}`, color)
+        root.style.setProperty(`--color-${paletteKey}-${shade}`, color as string)
       })
       // Hauptfarbe auch als Legacy-Variable setzen
       root.style.setProperty(`--color-${paletteKey}`, palette[500])
