@@ -51,41 +51,21 @@ const formatHeroTitle = (tagline: string) => {
 const formatHeroText = (tagline: string, cityName: string) => {
   // Für Fliesenleger
   if (tagline.includes('Handwerks-Partner')) {
-    return (
-      <>
-        <span className="text-primary font-semibold">Meisterqualität</span>{' '}
-        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre Räume</span>
-      </>
-    )
+    return "Meisterqualität für Ihre Räume"
   }
   
   // Für Elektriker
   if (tagline.includes('Elektro-Partner')) {
-    return (
-      <>
-        <span className="text-primary font-semibold">Meisterqualität</span>{' '}
-        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre Elektroinstallationen</span>
-      </>
-    )
+    return "Meisterqualität für Ihre Elektroinstallationen"
   }
   
   // Für Dachdecker
   if (tagline.includes('Dach-Partner')) {
-    return (
-      <>
-        <span className="text-primary font-semibold">Meisterqualität</span>{' '}
-        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihr Dach</span>
-      </>
-    )
+    return "Meisterqualität für Ihr Dach"
   }
   
   // Fallback für andere Branchen
-  return (
-    <>
-      <span className="text-primary font-semibold">Meisterqualität</span>{' '}
-      <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre Projekte</span>
-    </>
-  )
+  return "Meisterqualität für Ihre Projekte"
 }
 
 // Hero Single Variant (Standard)
