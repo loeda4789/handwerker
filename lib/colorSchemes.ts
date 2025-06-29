@@ -1,128 +1,90 @@
-// Hilfsfunktion um Farbpalette aus Hauptfarbe zu generieren
-const generateColorPalette = (baseColor: string) => {
-  const hexToHsl = (hex: string) => {
-    const r = parseInt(hex.slice(1, 3), 16) / 255
-    const g = parseInt(hex.slice(3, 5), 16) / 255
-    const b = parseInt(hex.slice(5, 7), 16) / 255
+// VEREINFACHTES FARBSYSTEM - Nur 8 essenzielle Farben
 
-    const max = Math.max(r, g, b)
-    const min = Math.min(r, g, b)
-    let h = 0, s = 0, l = (max + min) / 2
-
-    if (max !== min) {
-      const d = max - min
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
-      switch (max) {
-        case r: h = (g - b) / d + (g < b ? 6 : 0); break
-        case g: h = (b - r) / d + 2; break
-        case b: h = (r - g) / d + 4; break
-      }
-      h /= 6
-    }
-
-    return [h * 360, s * 100, l * 100]
-  }
-
-  const hslToHex = (h: number, s: number, l: number) => {
-    l /= 100
-    const a = s * Math.min(l, 1 - l) / 100
-    const f = (n: number) => {
-      const k = (n + h / 30) % 12
-      const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1)
-      return Math.round(255 * color).toString(16).padStart(2, '0')
-    }
-    return `#${f(0)}${f(8)}${f(4)}`
-  }
-
-  const [h, s, l] = hexToHsl(baseColor)
-
-  return {
-    50: hslToHex(h, Math.max(s - 40, 10), Math.min(l + 40, 95)),
-    100: hslToHex(h, Math.max(s - 30, 15), Math.min(l + 30, 90)),
-    200: hslToHex(h, Math.max(s - 20, 20), Math.min(l + 20, 85)),
-    300: hslToHex(h, Math.max(s - 10, 25), Math.min(l + 10, 75)),
-    400: hslToHex(h, s, Math.min(l + 5, 65)),
-    500: baseColor, // Originalfarbe
-    600: hslToHex(h, Math.min(s + 10, 100), Math.max(l - 10, 35)),
-    700: hslToHex(h, Math.min(s + 20, 100), Math.max(l - 20, 25)),
-    800: hslToHex(h, Math.min(s + 30, 100), Math.max(l - 30, 15)),
-    900: hslToHex(h, Math.min(s + 40, 100), Math.max(l - 40, 5))
-  }
+interface SimpleColorScheme {
+  name: string
+  description: string
+  primary: string
+  secondary: string  
+  accent: string
+  background: string
+  surface: string
+  text: string
+  textLight: string
+  textSecondary: string
 }
 
-// Erweiterte Farbschemata mit besseren, professionelleren Farben
-export const colorSchemes = {
+export const colorSchemes: Record<string, SimpleColorScheme> = {
+  handwerker: {
+    name: 'Handwerker Classic',
+    description: 'Traditionell & vertrauenswürdig',
+    primary: '#c49a6c',
+    secondary: '#497174',
+    accent: '#f4a261',
+    background: '#ffffff',
+    surface: '#f8f8f8',
+    text: '#1a1a1a',
+    textLight: '#ffffff',
+    textSecondary: '#6f6f6f'
+  },
   blue: {
-    name: 'Ocean Blue',
-    description: 'Professionell & vertrauenswürdig',
-    primary: '#2563eb',      // Kräftiges Blau
-    secondary: '#1d4ed8',    // Dunkleres Blau
-    accent: '#60a5fa',       // Helles Blau
+    name: 'Modern Blue',
+    description: 'Professionell & modern',
+    primary: '#3b82f6',
+    secondary: '#1e40af',
+    accent: '#60a5fa',
     background: '#ffffff',
     surface: '#f8fafc',
     text: '#0f172a',
-    textSecondary: '#64748b',
-    border: '#e2e8f0'
+    textLight: '#ffffff',
+    textSecondary: '#64748b'
   },
   green: {
     name: 'Nature Green',
     description: 'Nachhaltig & frisch',
-    primary: '#059669',      // Kräftiges Grün
-    secondary: '#047857',    // Dunkleres Grün
-    accent: '#34d399',       // Helles Grün
+    primary: '#059669',
+    secondary: '#047857',
+    accent: '#34d399',
     background: '#ffffff',
     surface: '#f0fdf4',
     text: '#0f172a',
-    textSecondary: '#64748b',
-    border: '#bbf7d0'
-  },
-  purple: {
-    name: 'Royal Purple',
-    description: 'Premium & elegant',
-    primary: '#7c3aed',      // Kräftiges Lila
-    secondary: '#6d28d9',    // Dunkleres Lila
-    accent: '#a78bfa',       // Helles Lila
-    background: '#ffffff',
-    surface: '#faf5ff',
-    text: '#0f172a',
-    textSecondary: '#64748b',
-    border: '#e9d5ff'
+    textLight: '#ffffff',
+    textSecondary: '#64748b'
   },
   orange: {
     name: 'Vibrant Orange',
     description: 'Energisch & warm',
-    primary: '#ea580c',      // Kräftiges Orange
-    secondary: '#c2410c',    // Dunkleres Orange
-    accent: '#fb923c',       // Helles Orange
+    primary: '#ea580c',
+    secondary: '#c2410c',
+    accent: '#fb923c',
     background: '#ffffff',
     surface: '#fff7ed',
     text: '#0f172a',
-    textSecondary: '#64748b',
-    border: '#fed7aa'
+    textLight: '#ffffff',
+    textSecondary: '#64748b'
   },
   red: {
     name: 'Power Red',
     description: 'Stark & aufmerksamkeitsstark',
-    primary: '#dc2626',      // Kräftiges Rot
-    secondary: '#b91c1c',    // Dunkleres Rot
-    accent: '#f87171',       // Helles Rot
+    primary: '#dc2626',
+    secondary: '#b91c1c',
+    accent: '#f87171',
     background: '#ffffff',
     surface: '#fef2f2',
     text: '#0f172a',
-    textSecondary: '#64748b',
-    border: '#fecaca'
+    textLight: '#ffffff',
+    textSecondary: '#64748b'
   },
   teal: {
     name: 'Modern Teal',
     description: 'Modern & ausgewogen',
-    primary: '#0d9488',      // Kräftiges Teal
-    secondary: '#0f766e',    // Dunkleres Teal
-    accent: '#5eead4',       // Helles Teal
+    primary: '#0d9488',
+    secondary: '#0f766e',
+    accent: '#5eead4',
     background: '#ffffff',
     surface: '#f0fdfa',
     text: '#0f172a',
-    textSecondary: '#64748b',
-    border: '#99f6e4'
+    textLight: '#ffffff',
+    textSecondary: '#64748b'
   }
 }
 
@@ -131,43 +93,35 @@ export const applyColorScheme = (scheme: string) => {
   if (colors && typeof window !== 'undefined') {
     const root = document.documentElement
     
-    // Basis-Farben setzen (Legacy-Kompatibilität)
-    Object.entries(colors).forEach(([key, value]) => {
-      if (key !== 'name' && key !== 'description') {
-        root.style.setProperty(`--color-${key}`, value)
-      }
-    })
+    // Alle 8 Farben als CSS-Variablen setzen
+    root.style.setProperty('--color-primary', colors.primary)
+    root.style.setProperty('--color-secondary', colors.secondary)
+    root.style.setProperty('--color-accent', colors.accent)
+    root.style.setProperty('--color-background', colors.background)
+    root.style.setProperty('--color-surface', colors.surface)
+    root.style.setProperty('--color-text', colors.text)
+    root.style.setProperty('--color-text-light', colors.textLight)
+    root.style.setProperty('--color-text-secondary', colors.textSecondary)
     
-    // Erweiterte Paletten generieren und setzen
-    const primaryPalette = generateColorPalette(colors.primary)
-    const secondaryPalette = generateColorPalette(colors.secondary)
-    const accentPalette = generateColorPalette(colors.accent)
-    
-    // Primärfarben-Palette
-    Object.entries(primaryPalette).forEach(([shade, color]) => {
-      root.style.setProperty(`--color-primary-${shade}`, color)
-    })
-    
-    // Sekundärfarben-Palette
-    Object.entries(secondaryPalette).forEach(([shade, color]) => {
-      root.style.setProperty(`--color-secondary-${shade}`, color)
-    })
-    
-    // Akzentfarben-Palette
-    Object.entries(accentPalette).forEach(([shade, color]) => {
-      root.style.setProperty(`--color-accent-${shade}`, color)
-    })
+    // Legacy Support für Border etc.
+    root.style.setProperty('--color-border', '#e0e0e0')
+    root.style.setProperty('--color-dark', '#0f172a')
+    root.style.setProperty('--color-dark-secondary', '#1e293b')
     
     // In localStorage speichern
     localStorage.setItem('color-scheme', scheme)
-    localStorage.setItem('theme-colors', JSON.stringify(colors))
-    localStorage.setItem('color-palettes', JSON.stringify({
-      primary: primaryPalette,
-      secondary: secondaryPalette,
-      accent: accentPalette
+    localStorage.setItem('simple-colors', JSON.stringify({
+      primary: colors.primary,
+      secondary: colors.secondary,
+      accent: colors.accent,
+      background: colors.background,
+      surface: colors.surface,
+      text: colors.text,
+      'text-light': colors.textLight,
+      'text-secondary': colors.textSecondary
     }))
     
-    console.log('🎨 Erweitertes Farbschema angewendet:', scheme, colors)
+    console.log('🎨 Vereinfachtes Farbschema angewendet:', scheme, colors)
   }
 }
 

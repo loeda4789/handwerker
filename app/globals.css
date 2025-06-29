@@ -171,58 +171,32 @@ html {
 }
 
 :root {
-  /* Standard Handwerker Farbschema */
-  --color-primary: #c49a6c;
-  --color-secondary: #497174;
-  --color-accent: #f4e9dc;
-  --color-background: #ffffff;
-  --color-surface: #f8f8f8;
-  --color-text: #1a1a1a;
-  --color-text-secondary: #6f6f6f;
-  --color-border: #e0e0e0;
-  --color-dark: #0f172a;
-  --color-dark-secondary: #1e293b;
-  --color-light: #f1f5f9;
+  /* VEREINFACHTES FARBSYSTEM - Nur 8 essenzielle Farben */
   
-  /* Farbpaletten für Tailwind */
-  --color-primary-50: #faf9f7;
-  --color-primary-100: #f4f1ec;
-  --color-primary-200: #e8ddd0;
-  --color-primary-300: #dcc9b4;
-  --color-primary-400: #d0b598;
-  --color-primary-500: #c49a6c;
-  --color-primary-600: #b08756;
-  --color-primary-700: #9c7440;
-  --color-primary-800: #88612a;
-  --color-primary-900: #744e14;
+  /* HAUPTFARBEN */
+  --color-primary: #c49a6c;        /* Hauptfarbe (Handwerker-Orange) */
+  --color-secondary: #497174;      /* Kontrastfarbe (Dunkelblau-Grün) */
+  --color-accent: #f4a261;         /* Highlight/Hover-Farbe (helles Orange) */
   
-  --color-secondary-50: #f2f4f4;
-  --color-secondary-100: #e5e9ea;
-  --color-secondary-200: #cbd3d4;
-  --color-secondary-300: #b1bdbf;
-  --color-secondary-400: #97a7a9;
-  --color-secondary-500: #497174;
-  --color-secondary-600: #426569;
-  --color-secondary-700: #3b595e;
-  --color-secondary-800: #344d53;
-  --color-secondary-900: #2d4148;
+  /* HINTERGRUND */
+  --color-background: #ffffff;     /* Haupt-Hintergrund (Weiß) */
+  --color-surface: #f8f8f8;       /* Sekundärer Hintergrund (helles Grau) */
   
-  --color-accent-50: #fefcfa;
-  --color-accent-100: #fcf9f5;
-  --color-accent-200: #f9f3eb;
-  --color-accent-300: #f6ede1;
-  --color-accent-400: #f3e7d7;
-  --color-accent-500: #f4e9dc;
-  --color-accent-600: #f0e1cd;
-  --color-accent-700: #ecd9be;
-  --color-accent-800: #e8d1af;
-  --color-accent-900: #e4c9a0;
+  /* TEXT */
+  --color-text: #1a1a1a;          /* Dunkler Text (für helle Hintergründe) */
+  --color-text-light: #ffffff;    /* Weißer Text (für dunkle Hintergründe) */
+  --color-text-secondary: #6f6f6f; /* Grauer Text (für sekundäre Infos) */
+  
+  /* LEGACY SUPPORT - Für Border etc. */
+  --color-border: #e0e0e0;        /* Rahmen-Farbe */
+  --color-dark: #0f172a;          /* Dark Mode Hauptfarbe */
+  --color-dark-secondary: #1e293b; /* Dark Mode Sekundärfarbe */
   
   /* Hero-Hintergrundbilder */
   --hero-image-desktop: url('/images/hero-background.png');
   --hero-image-mobile: url('/images/hero-background-mobil.png');
   
-  /* Border-Radius Design-System - Standard (Abgerundet) */
+  /* Border-Radius Design-System */
   --radius-none: 0px;
   --radius-sm: 0.125rem;
   --radius-base: 0.25rem;
