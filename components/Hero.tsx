@@ -41,6 +41,53 @@ function extractCityFromAddress(address: string): string {
   return 'Ihrer Region'
 }
 
+// Neue Hilfsfunktion für zweifarbige Texte
+const formatHeroText = (tagline: string, cityName: string) => {
+  // Für Fliesenleger
+  if (tagline.includes('Handwerks-Partner')) {
+    return (
+      <>
+        <span className="text-primary font-semibold">Meisterqualität</span>{' '}
+        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre</span>{' '}
+        <span className="text-primary font-semibold">Fliesenprojekte</span>{' '}
+        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>aus {cityName}</span>
+      </>
+    )
+  }
+  
+  // Für Elektriker
+  if (tagline.includes('Elektro-Partner')) {
+    return (
+      <>
+        <span className="text-primary font-semibold">Meisterqualität</span>{' '}
+        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre</span>{' '}
+        <span className="text-primary font-semibold">Elektroprojekte</span>{' '}
+        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>aus {cityName}</span>
+      </>
+    )
+  }
+  
+  // Für Dachdecker
+  if (tagline.includes('Dach-Partner')) {
+    return (
+      <>
+        <span className="text-primary font-semibold">Meisterqualität</span>{' '}
+        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre</span>{' '}
+        <span className="text-primary font-semibold">Dachprojekte</span>{' '}
+        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>aus {cityName}</span>
+      </>
+    )
+  }
+  
+  // Fallback für andere Branchen
+  return (
+    <>
+      <span className="text-primary font-semibold">Meisterqualität</span>{' '}
+      <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre Projekte aus {cityName}</span>
+    </>
+  )
+}
+
 // Hero Single Variant (Standard)
 function HeroSingle({ content }: HeroProps) {
   const cityName = extractCityFromAddress(content.contact.address)
@@ -109,7 +156,7 @@ function HeroSingle({ content }: HeroProps) {
                 className="text-lg md:text-xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
                 style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}
               >
-                {content.company.tagline} aus {cityName}
+                {formatHeroText(content.company.tagline, cityName)}
               </p>
               
               <div className="opacity-0 animate-[fadeInUp_1s_ease-out_1s_forwards]">
@@ -181,7 +228,7 @@ function HeroSlider({ content }: HeroProps) {
       desktop: content.hero.backgroundImages.desktop,
       mobile: content.hero.backgroundImages.mobile,
       title: content.company.name,
-      subtitle: `${content.company.tagline} aus ${cityName}`,
+      subtitle: formatHeroText(content.company.tagline, cityName),
       cta: "Jetzt Termin vereinbaren"
     },
     {
@@ -253,7 +300,7 @@ function HeroSlider({ content }: HeroProps) {
               </h1>
               
               <p 
-                className="text-lg md:text-xl mb-8 text-white/90"
+                className="text-lg md:text-xl mb-8"
                 key={`subtitle-${currentSlide}`}
               >
                 {slides[currentSlide].subtitle}
@@ -353,8 +400,8 @@ function HeroVideo({ content }: HeroProps) {
                   {content.company.name}
                 </h1>
                 
-                <p className="text-xl md:text-2xl mb-8 text-white/95 drop-shadow-lg">
-                  {content.company.tagline} aus {cityName}
+                <p className="text-xl md:text-2xl mb-8 drop-shadow-lg">
+                  {formatHeroText(content.company.tagline, cityName)}
                 </p>
                 
                 <div className="flex flex-col gap-4 justify-center items-center">
@@ -404,8 +451,8 @@ function HeroSplit({ content }: HeroProps) {
               {content.company.name}
             </h1>
             
-            <p className="text-lg md:text-xl mb-8 text-gray-700 dark:text-gray-300">
-              {content.company.tagline} aus {cityName}
+            <p className="text-lg md:text-xl mb-8">
+              {formatHeroText(content.company.tagline, cityName)}
             </p>
             
             <div className="space-y-4 mb-8">
