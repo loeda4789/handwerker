@@ -738,132 +738,91 @@ export default function HomePage() {
                       
                       {config.featuresExpanded && (
                         <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
-                          <div className="space-y-4">
-                            {/* Sonderangebot-Banner */}
-                            <div className="flex items-start space-x-3 p-4 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                              style={{ borderRadius: 'var(--radius-card)' }}>
-                              <input
-                                type="checkbox"
-                                id="promoBanner"
-                                checked={features.promoBanner}
-                                onChange={(e) => setFeatures(prev => ({ ...prev, promoBanner: e.target.checked }))}
-                                className="mt-1 w-4 h-4 text-orange-600 border-gray-300 focus:ring-orange-500"
-                                style={{ borderRadius: 'var(--radius-sm)' }}
-                              />
-                              <div className="flex-1">
-                                <label htmlFor="promoBanner" className="font-medium text-gray-900 dark:text-white cursor-pointer">
-                                  Sonderangebot-Banner
-                                </label>
-                                <p className="text-sm text-gray-600 dark:text-gray-300">
-                                  Animierter Banner mit Countdown-Timer für zeitlich begrenzte Angebote
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* Kontakt-Leiste */}
-                            <div className="flex items-start space-x-3 p-4 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                              style={{ borderRadius: 'var(--radius-card)' }}>
-                              <input
-                                type="checkbox"
-                                id="contactBar"
-                                checked={features.contactBar}
-                                onChange={(e) => setFeatures(prev => ({ ...prev, contactBar: e.target.checked }))}
-                                className="mt-1 w-4 h-4 text-orange-600 border-gray-300 focus:ring-orange-500"
-                                style={{ borderRadius: 'var(--radius-sm)' }}
-                              />
-                              <div className="flex-1">
-                                <label htmlFor="contactBar" className="font-medium text-gray-900 dark:text-white cursor-pointer">
-                                  Fixe Kontakt-Leiste
-                                </label>
-                                <p className="text-sm text-gray-600 dark:text-gray-300">
-                                  Telefon, E-Mail und Öffnungszeiten immer sichtbar über dem Header
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* Notdienst-Alert */}
-                            <div className="flex items-start space-x-3 p-4 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                              style={{ borderRadius: 'var(--radius-card)' }}>
-                              <input
-                                type="checkbox"
-                                id="notdienstAlert"
-                                checked={features.notdienstAlert}
-                                onChange={(e) => setFeatures(prev => ({ ...prev, notdienstAlert: e.target.checked }))}
-                                className="mt-1 w-4 h-4 text-orange-600 border-gray-300 focus:ring-orange-500"
-                                style={{ borderRadius: 'var(--radius-sm)' }}
-                              />
-                              <div className="flex-1">
-                                <label htmlFor="notdienstAlert" className="font-medium text-gray-900 dark:text-white cursor-pointer">
-                                  Notdienst-Alert
-                                </label>
-                                <p className="text-sm text-gray-600 dark:text-gray-300">
-                                  Auffällige rote Leiste für 24h-Notdienst mit direktem Anruf-Button
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* WhatsApp Widget */}
-                            <div className="flex items-start space-x-3 p-4 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                              style={{ borderRadius: 'var(--radius-card)' }}>
-                              <input
-                                type="checkbox"
-                                id="whatsappWidget"
-                                checked={features.whatsappWidget}
-                                onChange={(e) => setFeatures(prev => ({ ...prev, whatsappWidget: e.target.checked }))}
-                                className="mt-1 w-4 h-4 text-orange-600 border-gray-300 focus:ring-orange-500"
-                                style={{ borderRadius: 'var(--radius-sm)' }}
-                              />
-                              <div className="flex-1">
-                                <label htmlFor="whatsappWidget" className="font-medium text-gray-900 dark:text-white cursor-pointer">
-                                  WhatsApp Chat
-                                </label>
-                                <p className="text-sm text-gray-600 dark:text-gray-300">
-                                  Floating WhatsApp-Button für schnelle Kundenanfragen
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* Callback Popup */}
-                            <div className="flex items-start space-x-3 p-4 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                              style={{ borderRadius: 'var(--radius-card)' }}>
-                              <input
-                                type="checkbox"
-                                id="callbackPopup"
-                                checked={features.callbackPopup}
-                                onChange={(e) => setFeatures(prev => ({ ...prev, callbackPopup: e.target.checked }))}
-                                className="mt-1 w-4 h-4 text-orange-600 border-gray-300 focus:ring-orange-500"
-                                style={{ borderRadius: 'var(--radius-sm)' }}
-                              />
-                              <div className="flex-1">
-                                <label htmlFor="callbackPopup" className="font-medium text-gray-900 dark:text-white cursor-pointer">
-                                  Rückruf-Service
-                                </label>
-                                                                 <p className="text-sm text-gray-600 dark:text-gray-300">
-                                   &quot;Wir rufen Sie zurück&quot; Popup nach 30 Sekunden Verweildauer
-                                 </p>
-                              </div>
-                            </div>
-
-                            {/* Speed Dial */}
-                            <div className="flex items-start space-x-3 p-4 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                              style={{ borderRadius: 'var(--radius-card)' }}>
-                              <input
-                                type="checkbox"
-                                id="speedDial"
-                                checked={features.speedDial}
-                                onChange={(e) => setFeatures(prev => ({ ...prev, speedDial: e.target.checked }))}
-                                className="mt-1 w-4 h-4 text-orange-600 border-gray-300 focus:ring-orange-500"
-                                style={{ borderRadius: 'var(--radius-sm)' }}
-                              />
-                              <div className="flex-1">
-                                <label htmlFor="speedDial" className="font-medium text-gray-900 dark:text-white cursor-pointer">
-                                  Speed Dial Buttons
-                                </label>
-                                <p className="text-sm text-gray-600 dark:text-gray-300">
-                                  Floating Action Buttons für Anruf, E-Mail und Kontakt
-                                </p>
-                              </div>
-                            </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4">
+                            {[
+                              { 
+                                key: 'promoBanner', 
+                                name: 'Sonderangebot-Banner', 
+                                desc: 'Animierter Banner mit Countdown-Timer für zeitlich begrenzte Angebote',
+                                icon: (
+                                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                  </svg>
+                                )
+                              },
+                              { 
+                                key: 'contactBar', 
+                                name: 'Fixe Kontakt-Leiste', 
+                                desc: 'Telefon, E-Mail und Öffnungszeiten immer sichtbar über dem Header',
+                                icon: (
+                                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                  </svg>
+                                )
+                              },
+                              { 
+                                key: 'notdienstAlert', 
+                                name: 'Notdienst-Alert', 
+                                desc: 'Auffällige rote Leiste für 24h-Notdienst mit direktem Anruf-Button',
+                                icon: (
+                                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                                  </svg>
+                                )
+                              },
+                              { 
+                                key: 'whatsappWidget', 
+                                name: 'WhatsApp Chat', 
+                                desc: 'Floating WhatsApp-Button für schnelle Kundenanfragen',
+                                icon: (
+                                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.700"/>
+                                  </svg>
+                                )
+                              },
+                              { 
+                                key: 'callbackPopup', 
+                                name: 'Rückruf-Service', 
+                                desc: '&quot;Wir rufen Sie zurück&quot; Popup nach 30 Sekunden Verweildauer',
+                                icon: (
+                                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                  </svg>
+                                )
+                              },
+                              { 
+                                key: 'speedDial', 
+                                name: 'Speed Dial Buttons', 
+                                desc: 'Floating Action Buttons für Anruf, E-Mail und Kontakt',
+                                icon: (
+                                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                  </svg>
+                                )
+                              }
+                            ].map((feature) => (
+                              <button
+                                key={feature.key}
+                                onClick={() => setFeatures(prev => ({ ...prev, [feature.key]: !prev[feature.key as keyof FeaturesState] }))}
+                                className={`group p-3 md:p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 min-h-[120px] md:min-h-auto ${
+                                  features[feature.key as keyof FeaturesState]
+                                    ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
+                                    : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
+                                }`}
+                                style={{ borderRadius: 'var(--radius-card)' }}
+                              >
+                                <div className={`w-8 h-8 md:w-12 md:h-12 mx-auto mb-2 md:mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center ${
+                                  features[feature.key as keyof FeaturesState] 
+                                    ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' 
+                                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                                }`}
+                                  style={{ borderRadius: 'var(--radius-card)' }}>
+                                  {feature.icon}
+                                </div>
+                                <h3 className="text-sm md:text-lg font-bold text-gray-900 dark:text-white mb-1 md:mb-2">{feature.name}</h3>
+                                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 hidden md:block" dangerouslySetInnerHTML={{ __html: feature.desc }}></p>
+                              </button>
+                            ))}
                           </div>
                         </div>
                       )}
