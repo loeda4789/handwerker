@@ -30,45 +30,21 @@ function extractCityFromAddress(address: string): string {
 const formatHeroTitle = (tagline: string) => {
   // Für Fliesenleger
   if (tagline.includes('Handwerks-Partner')) {
-    return (
-      <>
-        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Ihr</span>{' '}
-        <span className="text-primary font-semibold">verlässlicher</span>{' '}
-        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Fliesenleger</span>
-      </>
-    )
+    return "Ihr verlässlicher Fliesenleger"
   }
   
   // Für Elektriker
   if (tagline.includes('Elektro-Partner')) {
-    return (
-      <>
-        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Ihr</span>{' '}
-        <span className="text-primary font-semibold">verlässlicher</span>{' '}
-        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Elektriker</span>
-      </>
-    )
+    return "Ihr verlässlicher Elektriker"
   }
   
   // Für Dachdecker
   if (tagline.includes('Dach-Partner')) {
-    return (
-      <>
-        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Ihr</span>{' '}
-        <span className="text-primary font-semibold">verlässlicher</span>{' '}
-        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Dachdecker</span>
-      </>
-    )
+    return "Ihr verlässlicher Dachdecker"
   }
   
   // Fallback für andere Branchen
-  return (
-    <>
-      <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Ihr</span>{' '}
-      <span className="text-primary font-semibold">verlässlicher</span>{' '}
-      <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Partner</span>
-    </>
-  )
+  return "Ihr verlässlicher Partner"
 }
 
 // Neue Hilfsfunktion für zweifarbige Texte
@@ -171,6 +147,7 @@ function HeroSingle({ content }: HeroProps) {
             <div className="max-w-2xl lg:max-w-3xl">
               <h1 
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]"
+                style={{ color: 'var(--color-heroText, #ffffff)' }}
               >
                 {formatHeroTitle(content.company.tagline)}
               </h1>
@@ -420,7 +397,7 @@ function HeroVideo({ content }: HeroProps) {
             <div className="max-w-4xl mx-auto">
               <div className="transform-gpu hover:scale-105 transition-transform duration-300">
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-white drop-shadow-2xl">
-                  {content.company.name}
+                  {formatHeroTitle(content.company.tagline)}
                 </h1>
                 
                 <p className="text-xl md:text-2xl mb-8 drop-shadow-lg">
@@ -471,7 +448,7 @@ function HeroSplit({ content }: HeroProps) {
         <div className="w-full lg:w-1/2 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center relative z-10">
           <div className="px-6 lg:px-12 max-w-lg">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
-              {content.company.name}
+              {formatHeroTitle(content.company.tagline)}
             </h1>
             
             <p className="text-lg md:text-xl mb-8">
