@@ -32,7 +32,7 @@ import CallbackPopup from '@/components/CallbackPopup'
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
   designStyle: 'angular' | 'rounded' | 'modern' | ''
-  colorScheme: 'handwerker' | 'rot' | 'blau' | 'schlicht' | ''
+  colorScheme: 'handwerker' | 'rot' | 'blau' | ''
   designExpanded: boolean
   colorExpanded: boolean
   featuresExpanded: boolean
@@ -608,9 +608,24 @@ export default function HomePage() {
                             style={{ borderRadius: 'var(--radius-button)' }}>
                             3
                           </div>
-                          <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
-                            Farbschema wählen
-                          </h2>
+                          <div className="flex items-center">
+                            <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mr-2">
+                              Farbschema wählen
+                            </h2>
+                            <button
+                              onClick={() => {
+                                setShowConfigurator(false)
+                                setShowColorConfigurator(true)
+                              }}
+                              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+                              title="Erweiterte Farbpaletten"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                              </svg>
+                            </button>
+                          </div>
                         </div>
                         <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.colorExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
@@ -619,7 +634,7 @@ export default function HomePage() {
                       
                       {config.colorExpanded && (
                         <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
-                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                             {[
                               { 
                                 key: 'handwerker', 
@@ -641,13 +656,6 @@ export default function HomePage() {
                                 desc: 'Professionell & vertrauensvoll',
                                 colors: ['#1565C0', '#0D47A1', '#42A5F5', '#1976D2'],
                                 accent: 'bg-blue-600'
-                              },
-                              { 
-                                key: 'schlicht', 
-                                name: 'Schlicht', 
-                                desc: 'Minimalistisch & elegant',
-                                colors: ['#212121', '#424242', '#757575', '#616161'],
-                                accent: 'bg-gray-600'
                               }
                             ].map((color) => (
                               <button
@@ -675,31 +683,6 @@ export default function HomePage() {
                                 <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 hidden md:block">{color.desc}</p>
                               </button>
                             ))}
-                          </div>
-                          
-                          {/* Hinweis auf erweiterte Farbpaletten */}
-                          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700"
-                            style={{ borderRadius: 'var(--radius-card)' }}>
-                            <div className="flex items-center justify-between">
-                              <div>
-                                <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-1">
-                                  🎨 Erweiterte Farbpaletten verfügbar
-                                </h4>
-                                <p className="text-sm text-blue-800 dark:text-blue-200">
-                                  Jedes Schema enthält jetzt 10 Abstufungen (50-900) für professionelle Designs
-                                </p>
-                              </div>
-                              <button
-                                onClick={() => {
-                                  setShowConfigurator(false)
-                                  setShowColorConfigurator(true)
-                                }}
-                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors"
-                                style={{ borderRadius: 'var(--radius-button)' }}
-                              >
-                                Anpassen
-                              </button>
-                            </div>
                           </div>
                         </div>
                       )}

@@ -50,18 +50,7 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     textLight: '#ffffff',
     textSecondary: '#455a64'
   },
-  schlicht: {
-    name: 'Schlicht',
-    description: 'Minimalistisch & elegant',
-    primary: '#212121',      // Dunkelgrau
-    secondary: '#424242',    // Mittelgrau
-    accent: '#757575',       // Helles Grau
-    background: '#ffffff',
-    surface: '#fafafa',      // Sehr helles Grau
-    text: '#212121',
-    textLight: '#ffffff',
-    textSecondary: '#757575'
-  }
+
 }
 
 export const applyColorScheme = (scheme: string) => {
