@@ -31,7 +31,7 @@ import CallbackPopup from '@/components/CallbackPopup'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
-  designStyle: 'angular' | 'rounded' | 'curved' | 'circular' | ''
+  designStyle: 'angular' | 'rounded' | 'modern' | ''
   colorScheme: 'handwerker' | 'rot' | 'blau' | 'schlicht' | ''
   designExpanded: boolean
   colorExpanded: boolean
@@ -206,8 +206,7 @@ export default function HomePage() {
       const heroTypeMap = {
         'angular': 'split',
         'rounded': 'single', 
-        'curved': 'slider',
-        'circular': 'video'
+        'modern': 'slider'
       }
       localStorage.setItem('demo-hero-type', heroTypeMap[config.designStyle as keyof typeof heroTypeMap])
       
@@ -542,7 +541,7 @@ export default function HomePage() {
                       
                       {config.designExpanded && (
                         <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
-                          <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                             {[
                               { 
                                 key: 'angular', 
@@ -553,24 +552,17 @@ export default function HomePage() {
                               },
                               { 
                                 key: 'rounded', 
-                                name: 'Halb Modern', 
+                                name: 'Freundlich', 
                                 desc: 'Hintergrundbild, sanfte Rundungen',
                                 Icon: MdImage,
-                                color: 'purple'
+                                color: 'green'
                               },
                               { 
-                                key: 'curved', 
+                                key: 'modern', 
                                 name: 'Modern', 
-                                desc: 'Slider, fließende Formen',
+                                desc: 'Slider-Hero, sehr moderne Buttons',
                                 Icon: MdViewCarousel,
-                                color: 'orange'
-                              },
-                              { 
-                                key: 'circular', 
-                                name: 'Sehr Modern', 
-                                desc: 'Video-Hero, maximale Rundungen',
-                                Icon: MdPlayCircleFilled,
-                                color: 'teal'
+                                color: 'purple'
                               }
                             ].map((design) => (
                               <button

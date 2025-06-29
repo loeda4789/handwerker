@@ -139,27 +139,9 @@ export const borderRadiusSchemes = {
     modal: '1rem',
     input: '0.375rem'
   },
-  curved: {
-    name: 'Geschwungen',
-    description: 'Organische, fließende Formen',
-    none: '0px',
-    sm: '0.25rem',
-    base: '0.5rem',
-    md: '0.75rem',
-    lg: '1rem',
-    xl: '1.5rem',
-    '2xl': '2rem',
-    '3xl': '3rem',
-    full: '9999px',
-    button: '1rem',
-    card: '1.5rem',
-    image: '1rem',
-    modal: '2rem',
-    input: '0.75rem'
-  },
-  circular: {
-    name: 'Rund',
-    description: 'Maximale Rundungen, organisch',
+  modern: {
+    name: 'Modern',
+    description: 'Sehr moderne, dynamische Rundungen',
     none: '0px',
     sm: '0.5rem',
     base: '1rem',
