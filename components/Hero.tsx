@@ -11,34 +11,64 @@ interface HeroProps {
 
 // Hilfsfunktion um Stadt aus Adresse zu extrahieren
 function extractCityFromAddress(address: string): string {
-  console.log('Verarbeite Adresse:', address)
-  
-  // Pattern für deutsche Adressen: PLZ Stadt
-  const plzCityMatch = address.match(/\d{5}\s+([^,]+)/)
-  if (plzCityMatch) {
-    const city = plzCityMatch[1].trim()
-    console.log('PLZ-Stadt Match gefunden:', city)
-    return city
+  try {
+    // Extrahiert die Stadt aus einer deutschen Adresse
+    // Format: "Straße Hausnummer, PLZ Stadt"
+    const parts = address.split(',')
+    if (parts.length >= 2) {
+      const cityPart = parts[1].trim()
+      // Entfernt PLZ (erste 5 Ziffern) und gibt nur die Stadt zurück
+      const city = cityPart.replace(/^\d{5}\s*/, '').trim()
+      return city || 'Ihrer Region'
+    }
+    return 'Ihrer Region'
+  } catch (error) {
+    return 'Ihrer Region'
+  }
+}
+
+const formatHeroTitle = (tagline: string) => {
+  // Für Fliesenleger
+  if (tagline.includes('Handwerks-Partner')) {
+    return (
+      <>
+        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Ihr</span>{' '}
+        <span className="text-primary font-semibold">verlässlicher</span>{' '}
+        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Fliesenleger</span>
+      </>
+    )
   }
   
-  // Pattern für Stadt nach Komma
-  const cityAfterCommaMatch = address.match(/,\s*([^,\d]+?)(?:\s*\d|$)/)
-  if (cityAfterCommaMatch) {
-    const city = cityAfterCommaMatch[1].trim()
-    console.log('Stadt nach Komma gefunden:', city)
-    return city
+  // Für Elektriker
+  if (tagline.includes('Elektro-Partner')) {
+    return (
+      <>
+        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Ihr</span>{' '}
+        <span className="text-primary font-semibold">verlässlicher</span>{' '}
+        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Elektriker</span>
+      </>
+    )
   }
   
-  // Fallback: Nimm das letzte Wort ohne Zahlen
-  const words = address.split(/[,\s]+/).filter(word => word.length > 0 && !/^\d+$/.test(word))
-  if (words.length >= 1) {
-    const city = words[words.length - 1]
-    console.log('Fallback Stadt gefunden:', city)
-    return city
+  // Für Dachdecker
+  if (tagline.includes('Dach-Partner')) {
+    return (
+      <>
+        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Ihr</span>{' '}
+        <span className="text-primary font-semibold">verlässlicher</span>{' '}
+        <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Dachdecker</span>
+      </>
+    )
   }
   
-  console.log('Keine Stadt gefunden, verwende Fallback')
-  return 'Ihrer Region'
+  // Fallback für andere Branchen
+  return (
+    <>
+      <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Ihr</span>{' '}
+      <span className="text-primary font-semibold">verlässlicher</span>{' '}
+      <span style={{ color: 'var(--color-heroText, #ffffff)' }}>Partner</span>
+    </>
+  )
 }
 
 // Neue Hilfsfunktion für zweifarbige Texte
@@ -48,9 +78,7 @@ const formatHeroText = (tagline: string, cityName: string) => {
     return (
       <>
         <span className="text-primary font-semibold">Meisterqualität</span>{' '}
-        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre</span>{' '}
-        <span className="text-primary font-semibold">Fliesenprojekte</span>{' '}
-        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>aus {cityName}</span>
+        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre Räume</span>
       </>
     )
   }
@@ -60,9 +88,7 @@ const formatHeroText = (tagline: string, cityName: string) => {
     return (
       <>
         <span className="text-primary font-semibold">Meisterqualität</span>{' '}
-        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre</span>{' '}
-        <span className="text-primary font-semibold">Elektroprojekte</span>{' '}
-        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>aus {cityName}</span>
+        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre Elektroinstallationen</span>
       </>
     )
   }
@@ -72,9 +98,7 @@ const formatHeroText = (tagline: string, cityName: string) => {
     return (
       <>
         <span className="text-primary font-semibold">Meisterqualität</span>{' '}
-        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre</span>{' '}
-        <span className="text-primary font-semibold">Dachprojekte</span>{' '}
-        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>aus {cityName}</span>
+        <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihr Dach</span>
       </>
     )
   }
@@ -83,7 +107,7 @@ const formatHeroText = (tagline: string, cityName: string) => {
   return (
     <>
       <span className="text-primary font-semibold">Meisterqualität</span>{' '}
-      <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre Projekte aus {cityName}</span>
+      <span style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}>für Ihre Projekte</span>
     </>
   )
 }
@@ -147,9 +171,8 @@ function HeroSingle({ content }: HeroProps) {
             <div className="max-w-2xl lg:max-w-3xl">
               <h1 
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]"
-                style={{ color: 'var(--color-heroText, #ffffff)' }}
               >
-                {content.company.name}
+                {formatHeroTitle(content.company.tagline)}
               </h1>
               
               <p 
@@ -227,7 +250,7 @@ function HeroSlider({ content }: HeroProps) {
     {
       desktop: content.hero.backgroundImages.desktop,
       mobile: content.hero.backgroundImages.mobile,
-      title: content.company.name,
+      title: formatHeroTitle(content.company.tagline),
       subtitle: formatHeroText(content.company.tagline, cityName),
       cta: "Jetzt Termin vereinbaren"
     },
