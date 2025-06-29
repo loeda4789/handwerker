@@ -10,7 +10,6 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Stats from '@/components/Stats'
 import Services from '@/components/Services'
-import Team from '@/components/Team'
 import BeforeAfter from '@/components/BeforeAfter'
 import Testimonials from '@/components/Testimonials'
 import ProjectProcess from '@/components/ProjectProcess'
@@ -294,18 +293,14 @@ export default function HomePage() {
             </SectionWrapper>
             
             <SectionWrapper index={4} designStyle={designStyle}>
-            <Team content={content} />
-            </SectionWrapper>
-            
-            <SectionWrapper index={5} designStyle={designStyle}>
             <Testimonials content={content} />
             </SectionWrapper>
             
-            <SectionWrapper index={6} designStyle={designStyle}>
+            <SectionWrapper index={5} designStyle={designStyle}>
             <ProjectProcess content={content} />
             </SectionWrapper>
             
-            <SectionWrapper index={7} designStyle={designStyle}>
+            <SectionWrapper index={6} designStyle={designStyle}>
             <Contact content={content} />
             </SectionWrapper>
           </>

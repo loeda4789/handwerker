@@ -186,7 +186,7 @@ export default function Header({ content }: HeaderProps) {
         borderRadius: designStyle === 'circular' ? '2rem' : '1.5rem',
         textColor: 'text-gray-900 dark:text-white',
         logoStyle: 'text-gray-900 dark:text-white',
-        ctaStyle: 'bg-blue-600 hover:bg-blue-700 text-white',
+        ctaStyle: 'bg-primary hover:bg-accent text-text-light',
         mobileMenuStyle: 'bg-white dark:bg-gray-800'
       }
     } else if (designStyle === 'angular') {
@@ -235,7 +235,7 @@ export default function Header({ content }: HeaderProps) {
         borderRadius: 'var(--radius-modal)',
         textColor: 'text-gray-900 dark:text-white',
         logoStyle: 'text-gray-900 dark:text-white',
-        ctaStyle: 'bg-blue-600 hover:bg-blue-700 text-white',
+        ctaStyle: 'bg-primary hover:bg-accent text-text-light',
         mobileMenuStyle: 'bg-white dark:bg-gray-800'
       }
     }
