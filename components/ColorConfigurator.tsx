@@ -73,55 +73,55 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
   // Vordefinierte Farbschemata
   const presetSchemes = {
     handwerker: {
-      name: 'Handwerker Classic',
+      name: 'Braun',
       colors: {
-        primary: '#c49a6c',
-        secondary: '#497174',
-        accent: '#f4a261',
+        primary: '#8B4513',
+        secondary: '#5D4037',
+        accent: '#D2691E',
         background: '#ffffff',
-        surface: '#f8f8f8',
-        text: '#1a1a1a',
+        surface: '#faf8f5',
+        text: '#2c1810',
         'text-light': '#ffffff',
-        'text-secondary': '#6f6f6f'
+        'text-secondary': '#6d4c41'
       }
     },
-    modern: {
-      name: 'Modern Blue',
+    rot: {
+      name: 'Rot',
       colors: {
-        primary: '#3b82f6',
-        secondary: '#1e40af',
-        accent: '#60a5fa',
+        primary: '#C62828',
+        secondary: '#8E24AA',
+        accent: '#FF5722',
         background: '#ffffff',
-        surface: '#f8fafc',
-        text: '#0f172a',
+        surface: '#fef5f5',
+        text: '#1a0e0e',
         'text-light': '#ffffff',
-        'text-secondary': '#64748b'
+        'text-secondary': '#8d4444'
       }
     },
-    warm: {
-      name: 'Warm Earth',
+    blau: {
+      name: 'Blau',
       colors: {
-        primary: '#d97706',
-        secondary: '#92400e',
-        accent: '#fbbf24',
+        primary: '#1565C0',
+        secondary: '#0D47A1',
+        accent: '#42A5F5',
         background: '#ffffff',
-        surface: '#fffbeb',
-        text: '#1f2937',
+        surface: '#f3f8ff',
+        text: '#0d1421',
         'text-light': '#ffffff',
-        'text-secondary': '#6b7280'
+        'text-secondary': '#455a64'
       }
     },
-    green: {
-      name: 'Nature Green',
+    schlicht: {
+      name: 'Schlicht',
       colors: {
-        primary: '#059669',
-        secondary: '#047857',
-        accent: '#34d399',
+        primary: '#212121',
+        secondary: '#424242',
+        accent: '#757575',
         background: '#ffffff',
-        surface: '#f0fdf4',
-        text: '#0f172a',
+        surface: '#fafafa',
+        text: '#212121',
         'text-light': '#ffffff',
-        'text-secondary': '#64748b'
+        'text-secondary': '#757575'
       }
     }
   }

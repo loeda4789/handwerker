@@ -15,76 +15,52 @@ interface SimpleColorScheme {
 
 export const colorSchemes: Record<string, SimpleColorScheme> = {
   handwerker: {
-    name: 'Handwerker Classic',
+    name: 'Braun',
     description: 'Traditionell & vertrauenswürdig',
-    primary: '#c49a6c',
-    secondary: '#497174',
-    accent: '#f4a261',
+    primary: '#8B4513',      // Warmes Braun
+    secondary: '#5D4037',    // Dunkleres Braun
+    accent: '#D2691E',       // Helles Orange-Braun
     background: '#ffffff',
-    surface: '#f8f8f8',
-    text: '#1a1a1a',
+    surface: '#faf8f5',      // Sehr helles Beige
+    text: '#2c1810',         // Dunkles Braun
     textLight: '#ffffff',
-    textSecondary: '#6f6f6f'
+    textSecondary: '#6d4c41'
   },
-  blue: {
-    name: 'Modern Blue',
-    description: 'Professionell & modern',
-    primary: '#3b82f6',
-    secondary: '#1e40af',
-    accent: '#60a5fa',
+  rot: {
+    name: 'Rot',
+    description: 'Kraftvoll & energisch',
+    primary: '#C62828',      // Kräftiges Rot
+    secondary: '#8E24AA',    // Dunkles Rot-Lila
+    accent: '#FF5722',       // Orange-Rot
     background: '#ffffff',
-    surface: '#f8fafc',
-    text: '#0f172a',
+    surface: '#fef5f5',      // Sehr helles Rosa
+    text: '#1a0e0e',
     textLight: '#ffffff',
-    textSecondary: '#64748b'
+    textSecondary: '#8d4444'
   },
-  green: {
-    name: 'Nature Green',
-    description: 'Nachhaltig & frisch',
-    primary: '#059669',
-    secondary: '#047857',
-    accent: '#34d399',
+  blau: {
+    name: 'Blau',
+    description: 'Professionell & vertrauensvoll',
+    primary: '#1565C0',      // Kräftiges Blau
+    secondary: '#0D47A1',    // Dunkleres Blau
+    accent: '#42A5F5',       // Helles Blau
     background: '#ffffff',
-    surface: '#f0fdf4',
-    text: '#0f172a',
+    surface: '#f3f8ff',      // Sehr helles Blau
+    text: '#0d1421',
     textLight: '#ffffff',
-    textSecondary: '#64748b'
+    textSecondary: '#455a64'
   },
-  orange: {
-    name: 'Vibrant Orange',
-    description: 'Energisch & warm',
-    primary: '#ea580c',
-    secondary: '#c2410c',
-    accent: '#fb923c',
+  schlicht: {
+    name: 'Schlicht',
+    description: 'Minimalistisch & elegant',
+    primary: '#212121',      // Dunkelgrau
+    secondary: '#424242',    // Mittelgrau
+    accent: '#757575',       // Helles Grau
     background: '#ffffff',
-    surface: '#fff7ed',
-    text: '#0f172a',
+    surface: '#fafafa',      // Sehr helles Grau
+    text: '#212121',
     textLight: '#ffffff',
-    textSecondary: '#64748b'
-  },
-  red: {
-    name: 'Power Red',
-    description: 'Stark & aufmerksamkeitsstark',
-    primary: '#dc2626',
-    secondary: '#b91c1c',
-    accent: '#f87171',
-    background: '#ffffff',
-    surface: '#fef2f2',
-    text: '#0f172a',
-    textLight: '#ffffff',
-    textSecondary: '#64748b'
-  },
-  teal: {
-    name: 'Modern Teal',
-    description: 'Modern & ausgewogen',
-    primary: '#0d9488',
-    secondary: '#0f766e',
-    accent: '#5eead4',
-    background: '#ffffff',
-    surface: '#f0fdfa',
-    text: '#0f172a',
-    textLight: '#ffffff',
-    textSecondary: '#64748b'
+    textSecondary: '#757575'
   }
 }
 

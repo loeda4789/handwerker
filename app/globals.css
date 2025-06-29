@@ -208,43 +208,41 @@ html {
   --radius-full: 9999px;
   
   /* Komponent-spezifische Border-Radius */
-  --radius-button: 0.5rem;
-  --radius-card: 0.75rem;
-  --radius-image: 0.5rem;
-  --radius-modal: 1rem;
-  --radius-input: 0.375rem;
+  --radius-button: var(--radius-lg);
+  --radius-card: var(--radius-xl);
+  --radius-image: var(--radius-lg);
+  --radius-modal: var(--radius-2xl);
+  --radius-input: var(--radius-md);
 }
 
-/* Smooth Scrolling */
+/* Mobile-first responsive breakpoints */
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  font-size: 16px;
 }
 
 @media (max-width: 768px) {
   html {
-    scroll-padding-top: 60px;
+    font-size: 14px;
   }
 }
 
-/* Custom Animation Keyframes */
+/* Fade animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
 @keyframes fadeInUp {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px); 
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Utilities */
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out;
 }
@@ -253,88 +251,90 @@ html {
   animation: fadeInUp 0.6s ease-out;
 }
 
-/* Dark Mode Unterstützung */
+/* Dark mode */
 .dark {
-  --color-background: var(--color-dark);
-  --color-surface: var(--color-dark-secondary);
-  --color-text: #FFFFFF;
-  --color-text-secondary: #E2E8F0;
-  --color-border: #475569;
-  --color-dark-secondary: var(--color-darkSecondary, #1e293b);
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-border: #334155;
 }
 
-/* Project Process Animations */
+/* Progress animations */
 @keyframes progress-line-1 {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(0); }
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
 }
 
 @keyframes progress-line-2 {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(0); }
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 20; }
 }
 
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.4; }
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
-/* Timeline-Animationen werden jetzt scroll-basiert in React gehandhabt */
-
-/* Scrollbar Utilities */
+/* Scrollbar styling */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Safari and Chrome */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Modern Spinner Animations */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Spinner animations */
 @keyframes wave {
-  0%, 100% { height: 1rem; }
-  50% { height: 1.5rem; }
+  0%, 40%, 100% { transform: scaleY(0.4); }
+  20% { transform: scaleY(1.0); }
 }
 
 @keyframes bars {
-  0%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(0.5); }
+  0%, 40%, 100% { transform: scaleY(0.4); opacity: 0.5; }
+  20% { transform: scaleY(1.0); opacity: 1; }
 }
 
 @keyframes squares {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
+  0%, 70%, 100% { transform: scale3D(1, 1, 1); }
+  35% { transform: scale3D(0, 0, 1); }
 }
 
 .animate-wave {
-  animation: wave 1s ease-in-out infinite;
+  animation: wave 1.2s infinite ease-in-out;
 }
 
 .animate-bars {
-  animation: bars 1.2s ease-in-out infinite;
+  animation: bars 1.2s infinite ease-in-out;
 }
 
 .animate-squares {
-  animation: squares 1.5s ease-in-out infinite;
+  animation: squares 1.2s infinite ease-in-out;
 }
 
-/* 3D Hero Animations */
+/* Float animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
+  0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
 }
 
 @keyframes float-delayed {
-  0%, 100% { transform: translateY(0); }
+  0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-15px); }
 }
 
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
 }
 
 .animate-float-delayed {
-  animation: float-delayed 3s ease-in-out infinite 1.5s;
+  animation: float-delayed 6s ease-in-out infinite 2s;
 }
 
 .perspective-1000 {
@@ -343,40 +343,41 @@ html {
 
 .transform-gpu {
   transform: translateZ(0);
-  will-change: transform;
+  backface-visibility: hidden;
 }
 
+/* 3D transforms */
 .rotate-y-12 {
   transform: rotateY(12deg);
 }
 
-/* Keyframe Animationen für Micro-Interactions */
+/* Enhanced Micro-Animation System */
 @keyframes fadeInScale {
-  0% {
+  from {
     opacity: 0;
-    transform: scale(0.8) translateY(20px);
+    transform: scale(0.8);
   }
-  100% {
+  to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1);
   }
 }
 
 @keyframes fadeIn {
-  0% {
+  from {
     opacity: 0;
   }
-  100% {
+  to {
     opacity: 1;
   }
 }
 
 @keyframes fadeInUp {
-  0% {
+  from {
     opacity: 0;
     transform: translateY(20px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
@@ -384,97 +385,84 @@ html {
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(var(--primary-rgb), 0);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
   }
 }
 
 @keyframes slideInFromRight {
-  0% {
+  from {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(30px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateX(0);
   }
 }
 
 @keyframes slideInFromLeft {
-  0% {
+  from {
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateX(-30px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateX(0);
   }
 }
 
-/* Verbesserte Hover-Effekte */
+/* Utility classes for micro-animations */
 .hover-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hover-lift:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .hover-glow {
-  transition: all 0.3s ease;
-  position: relative;
+  transition: box-shadow 0.3s ease;
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.3);
+  animation: pulseGlow 2s infinite;
 }
 
 .smooth-bounce {
-  animation: bounce 2s infinite;
+  transition: transform 0.1s ease;
 }
 
 @keyframes bounce {
   0%, 20%, 53%, 80%, 100% {
-    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-    transform: translate3d(0,0,0);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
   }
   40%, 43% {
-    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-    transform: translate3d(0, -8px, 0);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -30px, 0) scaleY(1.1);
   }
   70% {
-    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-    transform: translate3d(0, -4px, 0);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -15px, 0) scaleY(1.05);
+  }
+  80% {
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0) scaleY(0.95);
   }
   90% {
-    transform: translate3d(0,-2px,0);
+    transform: translate3d(0, -4px, 0) scaleY(1.02);
   }
 }
 
-/* 3D Floating Tools Animationen */
-/* 
-@keyframes float3D { ... }
-@keyframes rotate3D { ... }
-.perspective-1000 { ... }
-.transform-gpu { ... }
-.tool-3d { ... }
-.floating-tools-container { ... }
-*/
+.smooth-bounce:active {
+  transform: scale(0.95);
+}
 
-/* 3D Floating Tools Animationen - ENTFERNT */
-/*
-@keyframes float3D { ... }
-@keyframes rotate3D { ... }
-.perspective-1000 { ... }
-.transform-gpu { ... }
-.tool-3d { ... }
-.floating-tools-container { ... }
-*/
-
-/* Klassische Variante: Primärfarbe-Sektionen */
+/* Klassische Variante - Sektions-Styling */
 .section-on-primary {
   color: white;
 }
@@ -485,61 +473,101 @@ html {
 .section-on-primary h4,
 .section-on-primary h5,
 .section-on-primary h6 {
-  color: white !important;
+  color: white;
 }
 
 .section-on-primary p,
 .section-on-primary span,
 .section-on-primary div {
-  color: white !important;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-/* Anpassung für Cards auf Primärfarbe-Hintergrund */
 .section-on-primary .bg-white {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .section-on-primary .text-gray-900 {
-  color: white !important;
+  color: white;
 }
 
 .section-on-primary .text-gray-700 {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .section-on-primary .text-gray-600 {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .section-on-primary .border-gray-200 {
-  border-color: rgba(255, 255, 255, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Buttons auf Primärfarbe-Hintergrund */
-.section-on-primary .bg-gray-50 {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+.section-on-primary .bg-gray-50:hover,
+.section-on-primary .bg-gray-100:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .section-on-primary .hover\:bg-gray-100:hover {
-  background-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Primary buttons auf primary background */
 .section-on-primary .bg-primary {
-  background-color: white !important;
-  color: var(--color-primary) !important;
+  background-color: var(--color-accent);
 }
 
 .section-on-primary .bg-primary:hover {
-  background-color: rgba(255, 255, 255, 0.9) !important;
+  background-color: var(--color-secondary);
 }
 
 .section-on-primary .text-primary {
-  color: white !important;
+  color: var(--color-accent);
 }
 
 .section-on-primary .shadow-lg {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Neue Animationen für Marketing Features */
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slideInFromBottom {
+  animation: slideInFromBottom 0.5s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
 } 
