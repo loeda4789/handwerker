@@ -83,8 +83,11 @@ export default function Team({ content }: TeamProps) {
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
           {isModernStyle ? (
-            <span className="inline-block px-6 py-2 bg-primary text-white text-sm font-medium mb-4"
-              style={{ borderRadius: 'var(--radius-button)' }}>
+            <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4"
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                backgroundColor: 'var(--color-secondary)'
+              }}>
               Unser Team
             </span>
           ) : (

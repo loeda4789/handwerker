@@ -125,8 +125,11 @@ export default function Services({ content }: ServicesProps) {
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
           {isModernStyle && (
-            <span className="inline-block px-6 py-2 bg-primary text-white text-sm font-medium mb-4"
-              style={{ borderRadius: 'var(--radius-button)' }}>
+            <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4"
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                backgroundColor: 'var(--color-secondary)'
+              }}>
               Dienstleistungen
             </span>
           )}
@@ -227,8 +230,17 @@ export default function Services({ content }: ServicesProps) {
             </p>
             <a
               href="#kontakt"
-              className="inline-flex items-center px-6 py-3 bg-primary text-white hover:bg-accent transition-colors duration-300 font-medium"
-              style={{ borderRadius: 'var(--radius-button)' }}
+              className="inline-flex items-center px-6 py-3 text-white transition-colors duration-300 font-medium"
+              style={{ 
+                backgroundColor: 'var(--color-secondary)',
+                borderRadius: 'var(--radius-button)' 
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+              }}
             >
               Jetzt Beratung anfragen
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

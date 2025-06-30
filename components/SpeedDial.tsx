@@ -48,10 +48,17 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
         {/* Phone Action */}
         <button
           onClick={handlePhoneClick}
-          className="w-12 h-12 bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 active:scale-95 active:translate-y-0 group"
+          className="w-12 h-12 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 active:scale-95 active:translate-y-0 group"
           style={{ 
+            backgroundColor: 'var(--color-secondary)',
             borderRadius: 'var(--radius-button)',
             animation: isOpen ? 'fadeInScale 0.4s ease-out 0.1s both' : 'none'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
           }}
           aria-label="Anrufen"
         >
@@ -63,10 +70,17 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
         {/* Email Action */}
         <button
           onClick={handleEmailClick}
-          className="w-12 h-12 bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 active:scale-95 active:translate-y-0 group"
+          className="w-12 h-12 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 active:scale-95 active:translate-y-0 group"
           style={{ 
+            backgroundColor: 'var(--color-secondary)',
             borderRadius: 'var(--radius-button)',
             animation: isOpen ? 'fadeInScale 0.4s ease-out 0.05s both' : 'none'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
           }}
           aria-label="E-Mail senden"
         >
@@ -79,8 +93,17 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
       {/* Main Speed Dial Button */}
       <button
         onClick={toggleSpeedDial}
-        className="w-14 h-14 bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 active:scale-95 group"
-        style={{ borderRadius: 'var(--radius-button)' }}
+                            className="w-14 h-14 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 active:scale-95 group"
+          style={{ 
+            backgroundColor: 'var(--color-secondary)',
+            borderRadius: 'var(--radius-button)' 
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+          }}
         aria-label={isOpen ? 'Menü schließen' : 'Kontakt-Menü öffnen'}
       >
         <div className={`transition-all duration-300 ease-out ${isOpen ? 'rotate-45 scale-110' : 'rotate-0 scale-100'}`}>

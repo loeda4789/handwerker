@@ -120,8 +120,11 @@ export default function Stats({ content }: StatsProps) {
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
           {isModernStyle ? (
-            <span className="inline-block px-6 py-2 bg-primary text-white text-sm font-medium mb-4 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              style={{ borderRadius: 'var(--radius-button)' }}>
+            <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                backgroundColor: 'var(--color-secondary)'
+              }}>
               Unsere Erfolge
             </span>
           ) : (
