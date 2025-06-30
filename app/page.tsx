@@ -805,36 +805,6 @@ export default function HomePage() {
 
                 </div>
 
-                {/* Progress Indicator */}
-                <div className="mt-6 md:mt-8 mb-4 md:mb-6">
-                  <div className="flex justify-center space-x-3 md:space-x-4">
-                    {[
-                      { step: 1, completed: !!config.layoutType, label: 'Umfang' },
-                      { step: 2, completed: !!config.designStyle, label: 'Design' },
-                      { step: 3, completed: !!config.colorScheme, label: 'Farbe' },
-                      { step: 4, completed: config.featuresExpanded, label: 'Features' }
-                    ].map((item) => (
-                      <div key={item.step} className="flex items-center">
-                        <div className={`w-5 h-5 md:w-6 md:h-6 flex items-center justify-center ${
-                          item.completed 
-                            ? 'bg-green-500 text-white' 
-                            : 'bg-gray-300 dark:bg-gray-600'
-                        }`}
-                        style={{ borderRadius: 'var(--radius-button)' }}>
-                          {item.completed ? (
-                            <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/>
-                            </svg>
-                          ) : (
-                            <div className="w-2 h-2 bg-gray-500 dark:bg-gray-400" style={{ borderRadius: 'var(--radius-button)' }}></div>
-                          )}
-                        </div>
-                        <span className="ml-2 text-xs md:text-sm text-gray-600 dark:text-gray-400">{item.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
               </div>
             </div>
 
