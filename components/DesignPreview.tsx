@@ -7,8 +7,83 @@ interface DesignPreviewProps {
   onClose: () => void
 }
 
+interface TabNavigationProps {
+  activeTab: string
+  onTabChange: (tab: string) => void
+  currentSettings: {
+    layoutType: string
+    designStyle: string
+    colorScheme: string
+  }
+}
+
+const TabNavigation: React.FC<TabNavigationProps> = ({ activeTab, onTabChange, currentSettings }) => {
+  return (
+    <div className="mb-6">
+      {/* Current Settings Display */}
+      <div className="text-center mb-6">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+          🚀 Quick-Edit Modus (Preview)
+        </h2>
+        <div className="flex flex-wrap justify-center gap-2 mb-4 text-sm text-gray-600 dark:text-gray-400">
+          <span className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+            {currentSettings.layoutType === 'onepage' ? 'Kompakte Website' : currentSettings.layoutType === 'multipage' ? 'Erweiterte Website' : 'Nicht gewählt'}
+          </span>
+          <span className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+            {currentSettings.designStyle === 'angular' ? 'Klassisch' : currentSettings.designStyle === 'rounded' ? 'Freundlich' : currentSettings.designStyle === 'modern' ? 'Modern' : 'Nicht gewählt'}
+          </span>
+          <span className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+            <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+            {currentSettings.colorScheme === 'handwerker' ? 'Braun' : currentSettings.colorScheme === 'rot' ? 'Rot' : currentSettings.colorScheme === 'blau' ? 'Blau' : 'Nicht gewählt'}
+          </span>
+        </div>
+        
+        {/* Tab Navigation */}
+        <div className="flex justify-center">
+          <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
+            {[
+              { key: 'layout', label: 'Umfang', icon: '📄' },
+              { key: 'design', label: 'Design', icon: '🎨' },
+              { key: 'color', label: 'Farbe', icon: '🌈' },
+              { key: 'features', label: 'Features', icon: '⚡' }
+            ].map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => onTabChange(tab.key)}
+                className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                  activeTab === tab.key
+                    ? 'bg-white dark:bg-gray-700 text-orange-600 dark:text-orange-400 shadow-sm'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                }`}
+                style={{ borderRadius: '8px' }}
+              >
+                <span>{tab.icon}</span>
+                <span className="hidden sm:inline">{tab.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        
+        <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+          <p className="text-sm text-blue-700 dark:text-blue-300">
+            <strong>Aktiver Tab:</strong> {activeTab} - So funktioniert das Quick-Edit System!
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
-  const [activeTab, setActiveTab] = useState<'design' | 'layout' | 'hero'>('design')
+  const [activeTab, setActiveTab] = useState('layout')
+  const [currentSettings] = useState({
+    layoutType: 'onepage',
+    designStyle: 'modern', 
+    colorScheme: 'handwerker'
+  })
+
   const [currentHeroType, setCurrentHeroType] = useState<string>('single')
   const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   
@@ -61,8 +136,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       localStorage.setItem('theme-colors', JSON.stringify(colors))
     }
   }, [colors])
-
-
 
   const themePresets = [
     {
@@ -258,27 +331,11 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className="flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
-          {[
-            { key: 'design', label: 'Aussehen', icon: '🎨' },
-            { key: 'layout', label: 'Aufbau', icon: '📄' },
-            { key: 'hero', label: 'Startbild', icon: '🏠' }
-          ].map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key as any)}
-              className={`flex-1 px-3 py-2 text-xs font-medium transition-colors ${
-                activeTab === tab.key
-                  ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 border-b-2 border-blue-500'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
-              }`}
-            >
-              <span className="mr-1">{tab.icon}</span>
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        <TabNavigation 
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          currentSettings={currentSettings}
+        />
 
         {/* Content */}
         <div className="p-4 max-h-96 overflow-y-auto text-gray-800 dark:text-white">
