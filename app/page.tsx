@@ -36,6 +36,10 @@ interface ConfigState {
   designExpanded: boolean
   colorExpanded: boolean
   featuresExpanded: boolean
+  // Adaptive Modi-System
+  isFirstVisit: boolean
+  quickEditMode: boolean
+  activeTab: 'layout' | 'design' | 'color' | 'features'
 }
 
 interface FeaturesState {
@@ -92,7 +96,10 @@ export default function HomePage() {
     colorScheme: '',
     designExpanded: false,
     colorExpanded: false,
-    featuresExpanded: false
+    featuresExpanded: false,
+    isFirstVisit: true,
+    quickEditMode: false,
+    activeTab: 'layout'
   })
   const [features, setFeatures] = useState<FeaturesState>({
     promoBanner: false,
@@ -116,6 +123,37 @@ export default function HomePage() {
 
   // Verwende den URL-Parameter-Hook für automatische URL-Parameter-Integration
   const content = useContentWithUrlParams(baseContent || {} as ContentData)
+
+  // Check if user has visited before and set appropriate mode
+  useEffect(() => {
+    const hasVisitedBefore = localStorage.getItem('handwerker-config-saved')
+    const savedLayoutType = localStorage.getItem('site-mode')
+    const savedDesignStyle = localStorage.getItem('design-style')
+    const savedColorScheme = localStorage.getItem('selected-color-scheme')
+    
+    if (hasVisitedBefore && (savedLayoutType || savedDesignStyle || savedColorScheme)) {
+      // Returning user - enable Quick-Edit mode
+      setConfig(prev => ({
+        ...prev,
+        isFirstVisit: false,
+        quickEditMode: true,
+        layoutType: (savedLayoutType as any) || '',
+        designStyle: (savedDesignStyle as any) || '',
+        colorScheme: (savedColorScheme as any) || '',
+        // In Quick-Edit mode, don't auto-expand sections
+        designExpanded: false,
+        colorExpanded: false,
+        featuresExpanded: false
+      }))
+    } else {
+      // New user - setup mode
+      setConfig(prev => ({
+        ...prev,
+        isFirstVisit: true,
+        quickEditMode: false
+      }))
+    }
+  }, [])
 
   useEffect(() => {
     const loadContent = () => {
@@ -195,11 +233,17 @@ export default function HomePage() {
     try {
       // Site mode setzen
       setSiteMode(config.layoutType)
-    localStorage.setItem('site-mode', config.layoutType)
+      localStorage.setItem('site-mode', config.layoutType)
     
       // Design style setzen
       setDesignStyle(config.designStyle)
       localStorage.setItem('design-style', config.designStyle)
+      
+      // Color scheme für Quick-Edit speichern
+      localStorage.setItem('selected-color-scheme', config.colorScheme)
+      
+      // Mark user as having configured the site
+      localStorage.setItem('handwerker-config-saved', 'true')
       
       // Hero type basierend auf design style setzen
       const heroTypeMap = {
@@ -213,7 +257,7 @@ export default function HomePage() {
       applyBorderRadiusScheme(config.designStyle)
       
       // Color scheme anwenden
-    applyColorScheme(config.colorScheme)
+      applyColorScheme(config.colorScheme)
     
       // Event dispatchen für andere Komponenten
       window.dispatchEvent(new Event('site-mode-changed'))
@@ -221,13 +265,13 @@ export default function HomePage() {
       
       await new Promise(resolve => setTimeout(resolve, 1500))
       
-    setShowConfigurator(false)
+      setShowConfigurator(false)
       setForceUpdate(prev => prev + 1)
       
     } catch (error) {
       console.error('Fehler beim Generieren:', error)
     } finally {
-    setIsGenerating(false)
+      setIsGenerating(false)
     }
   }
 
