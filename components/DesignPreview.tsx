@@ -7,97 +7,11 @@ interface DesignPreviewProps {
   onClose: () => void
 }
 
-interface TabNavigationProps {
-  activeTab: string
-  onTabChange: (tab: string) => void
-  currentSettings: {
-    layoutType: string
-    designStyle: string
-    colorScheme: string
-  }
-}
-
-const TabNavigation: React.FC<TabNavigationProps> = ({ activeTab, onTabChange, currentSettings }) => {
-  return (
-    <div className="mb-6">
-      {/* Current Settings Display */}
-      <div className="text-center mb-6">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-          🚀 Quick-Edit Modus (Preview)
-        </h2>
-        <div className="flex flex-wrap justify-center gap-2 mb-4 text-sm text-gray-600 dark:text-gray-400">
-          <span className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
-            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-            {currentSettings.layoutType === 'onepage' ? 'Kompakte Website' : currentSettings.layoutType === 'multipage' ? 'Erweiterte Website' : 'Nicht gewählt'}
-          </span>
-          <span className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
-            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-            {currentSettings.designStyle === 'angular' ? 'Klassisch' : currentSettings.designStyle === 'rounded' ? 'Freundlich' : currentSettings.designStyle === 'modern' ? 'Modern' : 'Nicht gewählt'}
-          </span>
-          <span className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
-            <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-            {currentSettings.colorScheme === 'handwerker' ? 'Braun' : currentSettings.colorScheme === 'rot' ? 'Rot' : currentSettings.colorScheme === 'blau' ? 'Blau' : 'Nicht gewählt'}
-          </span>
-        </div>
-        
-        {/* Tab Navigation */}
-        <div className="flex justify-center">
-          <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
-            {[
-              { key: 'layout', label: 'Umfang', icon: '📄' },
-              { key: 'design', label: 'Design', icon: '🎨' },
-              { key: 'color', label: 'Farbe', icon: '🌈' },
-              { key: 'features', label: 'Features', icon: '⚡' }
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => onTabChange(tab.key)}
-                className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-200 ${
-                  activeTab === tab.key
-                    ? 'bg-white dark:bg-gray-700 text-orange-600 dark:text-orange-400 shadow-sm'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
-                }`}
-                style={{ borderRadius: '8px' }}
-              >
-                <span>{tab.icon}</span>
-                <span className="hidden sm:inline">{tab.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-        
-        <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-          <p className="text-sm text-blue-700 dark:text-blue-300">
-            <strong>Aktiver Tab:</strong> {activeTab} - So funktioniert das Quick-Edit System!
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
-  const [activeTab, setActiveTab] = useState('layout')
-  const [currentSettings] = useState({
-    layoutType: 'onepage',
-    designStyle: 'modern', 
-    colorScheme: 'handwerker'
-  })
-
+  const [activeTab, setActiveTab] = useState('design')
   const [currentHeroType, setCurrentHeroType] = useState<string>('single')
   const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   
-  const [colors, setColors] = useState({
-    primary: '#d97706',
-    secondary: '#0ea5e9', 
-    accent: '#f59e0b',
-    background: '#ffffff',
-    surface: '#f8fafc',
-    text: '#1f2937',
-    textSecondary: '#6b7280',
-    border: '#e5e7eb'
-  })
-
   // Aktuelle Einstellungen beim Laden ermitteln
   useEffect(() => {
     // Hero-Typ laden
@@ -111,398 +25,225 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     if (siteMode) {
       setCurrentSiteMode(siteMode)
     }
-
-    // Gespeicherte Farben laden
-    const saved = localStorage.getItem('theme-colors')
-    if (saved) {
-      try {
-        const savedColors = JSON.parse(saved)
-        setColors(savedColors)
-      } catch (e) {
-        console.log('Fehler beim Laden der gespeicherten Farben')
-      }
-    }
   }, [])
 
-  // CSS Custom Properties in Echtzeit aktualisieren
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const root = document.documentElement
-      Object.entries(colors).forEach(([key, value]) => {
-        root.style.setProperty(`--color-${key}`, value)
-      })
-      
-      // In localStorage speichern
-      localStorage.setItem('theme-colors', JSON.stringify(colors))
-    }
-  }, [colors])
-
-  const themePresets = [
-    {
-      name: 'Coral Modern',
-      description: 'Warmes Coral mit frischen Akzenten - zeitgemäß und freundlich',
-      colors: {
-        primary: '#ff6b6b',
-        secondary: '#4ecdc4', 
-        accent: '#ffe66d',
-        background: '#ffffff',
-        surface: '#f8fafc',
-        text: '#2d3748',
-        textSecondary: '#718096',
-        border: '#e2e8f0'
-      }
-    },
-    {
-      name: 'Ocean Blue',
-      description: 'Tiefes Meeresblau mit mineralischen Tönen - vertrauensvoll',
-      colors: {
-        primary: '#0d7377',
-        secondary: '#14a085', 
-        accent: '#f39c12',
-        background: '#ffffff',
-        surface: '#f7fafc',
-        text: '#1a202c',
-        textSecondary: '#4a5568',
-        border: '#e2e8f0'
-      }
-    },
-    {
-      name: 'Forest Green',
-      description: 'Natürliches Waldgrün mit Erdtönen - nachhaltig und ruhig',
-      colors: {
-        primary: '#38a169',
-        secondary: '#805ad5', 
-        accent: '#ed8936',
-        background: '#ffffff',
-        surface: '#f7fafc',
-        text: '#1a202c',
-        textSecondary: '#4a5568',
-        border: '#e2e8f0'
-      }
-    },
-    {
-      name: 'Purple Tech',
-      description: 'Modernes Lila mit Tech-Akzenten - innovativ und kreativ',
-      colors: {
-        primary: '#805ad5',
-        secondary: '#38b2ac', 
-        accent: '#f56565',
-        background: '#ffffff',
-        surface: '#faf5ff',
-        text: '#1a202c',
-        textSecondary: '#4a5568',
-        border: '#e9d8fd'
-      }
-    },
-    {
-      name: 'Midnight Dark',
-      description: 'Dunkles Premium-Schema - elegant und sophisticated',
-      colors: {
-        primary: '#667eea',
-        secondary: '#f093fb', 
-        accent: '#4fd1c7',
-        background: '#1a202c',
-        surface: '#2d3748',
-        text: '#f7fafc',
-        textSecondary: '#a0aec0',
-        border: '#4a5568'
-      }
-    },
-    {
-      name: 'Sunset Orange',
-      description: 'Warmes Sonnenuntergang-Orange - energiegeladen und einladend',
-      colors: {
-        primary: '#ed8936',
-        secondary: '#9f7aea', 
-        accent: '#38b2ac',
-        background: '#ffffff',
-        surface: '#fffaf0',
-        text: '#1a202c',
-        textSecondary: '#4a5568',
-        border: '#fed7aa'
-      }
-    }
-  ]
-
-  const applyThemePreset = (preset: typeof themePresets[0]) => {
-    setColors(preset.colors)
-  }
-
-  const exportTheme = () => {
-    const themeConfig = {
-      colors: colors,
-      fonts: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        heading: ["Inter", "system-ui", "sans-serif"]
-      }
-    }
-    
-    const dataStr = JSON.stringify(themeConfig, null, 2)
-    const dataBlob = new Blob([dataStr], { type: 'application/json' })
-    const url = URL.createObjectURL(dataBlob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'theme.json'
-    link.click()
-    URL.revokeObjectURL(url)
-  }
-
   const changeSiteMode = (mode: 'onepage' | 'multipage') => {
-    setCurrentSiteMode(mode)
     localStorage.setItem('site-mode', mode)
-    console.log('🔄 Site-Mode geändert zu:', mode)
-    
-    // Seite neu laden für sofortige Änderung
+    setCurrentSiteMode(mode)
+    window.location.reload()
+  }
+
+  const changeDesignStyle = (style: 'angular' | 'rounded' | 'modern') => {
+    localStorage.setItem('design-style', style)
+    localStorage.setItem('demo-design-style', style)
+    window.location.reload()
+  }
+
+  const changeColorScheme = (scheme: 'handwerker' | 'rot' | 'blau') => {
+    localStorage.setItem('selected-color-scheme', scheme)
+    localStorage.setItem('demo-color-scheme', scheme)
     window.location.reload()
   }
 
   const changeHeroType = async (heroType: 'single' | 'slider' | 'video' | 'split') => {
     try {
-      console.log('🎨 Ändere Hero-Typ zu:', heroType)
-      
-      // Content-Datei basierend auf aktueller Branche ermitteln
-      const urlParams = new URLSearchParams(window.location.search)
-      const branche = urlParams.get('branche')
-      
-      let contentFile = 'content.json'
-      if (branche === 'dachdecker') {
-        contentFile = 'dachdecker_content.json'
-      } else if (branche === 'elektriker') {
-        contentFile = 'elektriker_content.json'
-      }
-
-      // API-Aufruf zum Ändern des Hero-Typs
-      const response = await fetch('/api/update-hero-type', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          heroType,
-          contentFile
-        })
-      })
-
-      if (response.ok) {
-        setCurrentHeroType(heroType)
-        // Seite neu laden, um Änderungen zu sehen
-        window.location.reload()
-      } else {
-        console.error('Fehler beim Ändern des Hero-Typs')
-        // Fallback: Direkte Änderung über localStorage für Demo
-        localStorage.setItem('demo-hero-type', heroType)
-        setCurrentHeroType(heroType)
-        window.location.reload()
-      }
-    } catch (error) {
-      console.error('Fehler:', error)
-      // Fallback für Demo
       localStorage.setItem('demo-hero-type', heroType)
       setCurrentHeroType(heroType)
       window.location.reload()
+    } catch (error) {
+      console.error('Fehler beim Ändern des Hero-Typs:', error)
     }
   }
-
-  const heroVariants = [
-    { key: 'single', name: 'Single', icon: '🏠', description: 'Klassischer Hero' },
-    { key: 'slider', name: 'Slider', icon: '🎬', description: 'Slideshow' },
-                            { key: 'video', name: 'Video', icon: '🎬', description: 'Video-Hintergrund' },
-    { key: 'split', name: 'Split', icon: '📱', description: 'Geteiltes Layout' }
-  ]
 
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/50">
-      <div className="fixed top-4 right-4 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
+    <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center">
+      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-md mx-4 max-h-[80vh] flex flex-col"
+        style={{ borderRadius: 'var(--radius-modal)' }}>
+        
         {/* Header */}
-        <div className="bg-gray-600 text-white px-4 py-3 rounded-t-lg">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <span className="text-lg">⚙️</span>
-              <h3 className="font-semibold text-sm">Einstellungen</h3>
-            </div>
-            <button
-              onClick={onClose}
-              className="text-white hover:text-gray-200 text-xl"
-            >
-              ×
-            </button>
-          </div>
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            ⚙️ Quick-Einstellungen
+          </h3>
+          <button
+            onClick={onClose}
+            className="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+            style={{ borderRadius: 'var(--radius-button)' }}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
         </div>
 
-        <TabNavigation 
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          currentSettings={currentSettings}
-        />
+        {/* Tab Navigation */}
+        <div className="flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+          {[
+            { key: 'design', label: 'Design', icon: '🎨' },
+            { key: 'layout', label: 'Umfang', icon: '📄' },
+            { key: 'color', label: 'Farben', icon: '🌈' },
+            { key: 'hero', label: 'Hero', icon: '🖼️' }
+          ].map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`flex-1 flex items-center justify-center gap-1 px-3 py-3 text-sm font-medium transition-all duration-200 ${
+                activeTab === tab.key
+                  ? 'text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-700 border-b-2 border-blue-600 dark:border-blue-400'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+              }`}
+            >
+              <span className="text-sm">{tab.icon}</span>
+              <span className="hidden sm:inline">{tab.label}</span>
+            </button>
+          ))}
+        </div>
 
         {/* Content */}
-        <div className="p-4 max-h-96 overflow-y-auto text-gray-800 dark:text-white">
+        <div className="flex-1 overflow-y-auto p-4">
           
-          {/* Design Tab - Farben */}
+          {/* Design Tab */}
           {activeTab === 'design' && (
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">Farbe wählen</h4>
+            <div className="space-y-3">
+              <h4 className="text-sm font-semibold text-gray-800 dark:text-white">Design-Stil wählen</h4>
               
-              <div className="space-y-3">
-                {themePresets.map((preset, index) => (
-                  <button
-                    key={index}
-                    onClick={() => applyThemePreset(preset)}
-                    className="w-full p-3 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-lg text-left transition-colors border border-gray-200 dark:border-gray-600"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <h5 className="font-medium text-gray-800 dark:text-white">{preset.name}</h5>
-                      <div 
-                        className="w-6 h-6 rounded-full border border-gray-300 dark:border-gray-500"
-                        style={{ backgroundColor: preset.colors.primary }}
-                      ></div>
-                    </div>
-                    <p className="text-xs text-gray-600 dark:text-gray-400">
-                      {preset.description}
-                    </p>
-                  </button>
-                ))}
-              </div>
-
-              {/* Aktuelles Schema anzeigen */}
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
-                <h5 className="text-sm font-medium text-gray-800 dark:text-white mb-3">Aktuelle Farben</h5>
-                <div className="grid grid-cols-4 gap-2">
-                  <div className="text-center">
-                    <div 
-                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-300 dark:border-gray-500"
-                      style={{ backgroundColor: colors.primary }}
-                    ></div>
-                    <span className="text-xs text-gray-600 dark:text-gray-400">Haupt</span>
-                  </div>
-                  <div className="text-center">
-                    <div 
-                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-300 dark:border-gray-500"
-                      style={{ backgroundColor: colors.secondary }}
-                    ></div>
-                    <span className="text-xs text-gray-600 dark:text-gray-400">Zweit</span>
-                  </div>
-                  <div className="text-center">
-                    <div 
-                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-300 dark:border-gray-500"
-                      style={{ backgroundColor: colors.accent }}
-                    ></div>
-                    <span className="text-xs text-gray-600 dark:text-gray-400">Akzent</span>
-                  </div>
-                  <div className="text-center">
-                    <div 
-                      className="w-8 h-8 rounded mx-auto mb-1 border border-gray-300 dark:border-gray-500"
-                      style={{ backgroundColor: colors.text }}
-                    ></div>
-                    <span className="text-xs text-gray-600 dark:text-gray-400">Text</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div>
+              {[
+                { key: 'angular', name: 'Klassisch', desc: 'Eckige Formen, traditionell', icon: '📐' },
+                { key: 'rounded', name: 'Freundlich', desc: 'Runde Ecken, modern', icon: '⭕' },
+                { key: 'modern', name: 'Modern', desc: 'Minimalistisch, clean', icon: '✨' }
+              ].map((style) => (
                 <button
-                  onClick={exportTheme}
-                  className="w-full px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white text-sm rounded-lg transition-colors"
+                  key={style.key}
+                  onClick={() => changeDesignStyle(style.key as any)}
+                  className="w-full p-3 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-lg text-left transition-colors border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500"
                 >
-                  💾 Speichern
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">{style.icon}</span>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-800 dark:text-white">{style.name}</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400">{style.desc}</div>
+                    </div>
+                  </div>
                 </button>
-              </div>
+              ))}
             </div>
           )}
 
-          {/* Layout Tab - Site Mode */}
+          {/* Layout Tab */}
           {activeTab === 'layout' && (
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">
-                Aufbau - Aktuell: {currentSiteMode === 'onepage' ? 'Eine Seite (79€ mtl)' : 'Mehrere Seiten (99€ mtl)'}
-              </h4>
+            <div className="space-y-3">
+              <h4 className="text-sm font-semibold text-gray-800 dark:text-white">Website-Umfang</h4>
               
-              <div className="space-y-3">
+              {[
+                { key: 'onepage', name: 'Eine Seite', desc: 'Alles auf einer langen Seite', icon: '📄', price: '79€/mtl' },
+                { key: 'multipage', name: 'Mehrere Seiten', desc: 'Getrennte Unterseiten', icon: '🗂️', price: '99€/mtl' }
+              ].map((layout) => (
                 <button
-                  onClick={() => changeSiteMode('onepage')}
-                  className={`w-full p-4 rounded-lg text-left transition-colors border ${
-                    currentSiteMode === 'onepage'
+                  key={layout.key}
+                  onClick={() => changeSiteMode(layout.key as any)}
+                  className={`w-full p-3 rounded-lg text-left transition-colors border ${
+                    currentSiteMode === layout.key
                       ? 'bg-blue-50 border-blue-500 dark:bg-blue-900/20 dark:border-blue-400'
                       : 'bg-gray-50 border-gray-200 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600'
                   }`}
                 >
                   <div className="flex items-center space-x-3">
-                    <span className="text-2xl">📄</span>
-                    <div>
-                      <div className="font-medium text-gray-800 dark:text-white">Eine Seite (79€ mtl)</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">Alle Inhalte untereinander auf einer langen Seite</div>
-                    </div>
-                    {currentSiteMode === 'onepage' && (
-                      <span className="ml-auto text-blue-500">✓</span>
-                    )}
-                  </div>
-                </button>
-                
-                <button
-                  onClick={() => changeSiteMode('multipage')}
-                  className={`w-full p-4 rounded-lg text-left transition-colors border ${
-                    currentSiteMode === 'multipage'
-                      ? 'bg-blue-50 border-blue-500 dark:bg-blue-900/20 dark:border-blue-400'
-                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600'
-                  }`}
-                >
-                  <div className="flex items-center space-x-3">
-                    <span className="text-2xl">🗂️</span>
-                    <div>
-                      <div className="font-medium text-gray-800 dark:text-white">Mehrere Seiten (99€ mtl)</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">Getrennte Seiten für Services, Referenzen, etc.</div>
-                    </div>
-                    {currentSiteMode === 'multipage' && (
-                      <span className="ml-auto text-blue-500">✓</span>
-                    )}
-                  </div>
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Hero Tab - Hero Varianten */}
-          {activeTab === 'hero' && (
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">
-                Startbild - Aktuell: {currentHeroType}
-              </h4>
-              
-              <div className="space-y-3">
-                {heroVariants.map((variant) => (
-                  <button
-                    key={variant.key}
-                    onClick={() => changeHeroType(variant.key as any)}
-                    className={`w-full p-4 rounded-lg text-left transition-colors border ${
-                      currentHeroType === variant.key
-                        ? 'bg-blue-50 border-blue-500 dark:bg-blue-900/20 dark:border-blue-400'
-                        : 'bg-gray-50 border-gray-200 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600'
-                    }`}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <span className="text-2xl">{variant.icon}</span>
-                      <div className="flex-1">
-                        <div className="font-medium text-gray-800 dark:text-white">{variant.name}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">{variant.description}</div>
+                    <span className="text-lg">{layout.icon}</span>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <div className="font-medium text-gray-800 dark:text-white">{layout.name}</div>
+                        <span className="text-xs text-blue-600 dark:text-blue-400 font-medium">{layout.price}</span>
                       </div>
-                      {currentHeroType === variant.key && (
-                        <span className="text-blue-500">✓</span>
-                      )}
+                      <div className="text-xs text-gray-600 dark:text-gray-400">{layout.desc}</div>
                     </div>
-                  </button>
-                ))}
-              </div>
+                    {currentSiteMode === layout.key && (
+                      <span className="text-blue-500">✓</span>
+                    )}
+                  </div>
+                </button>
+              ))}
             </div>
           )}
 
-          {/* Info */}
-          <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
-            <p className="text-xs text-gray-600 dark:text-gray-400">
-              💡 <strong>Hinweis:</strong> Alle Änderungen werden sofort angewendet und automatisch gespeichert.
-            </p>
-          </div>
+          {/* Color Tab */}
+          {activeTab === 'color' && (
+            <div className="space-y-3">
+              <h4 className="text-sm font-semibold text-gray-800 dark:text-white">Farbschema wählen</h4>
+              
+              {[
+                { key: 'handwerker', name: 'Braun', desc: 'Traditionell & vertrauenswürdig', colors: ['#8B4513', '#5D4037', '#D2691E'] },
+                { key: 'rot', name: 'Rot', desc: 'Kraftvoll & energisch', colors: ['#C62828', '#8E24AA', '#FF5722'] },
+                { key: 'blau', name: 'Blau', desc: 'Professionell & vertrauensvoll', colors: ['#1565C0', '#0D47A1', '#42A5F5'] }
+              ].map((color) => (
+                <button
+                  key={color.key}
+                  onClick={() => changeColorScheme(color.key as any)}
+                  className="w-full p-3 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-lg text-left transition-colors border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500"
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className="flex gap-1">
+                      {color.colors.map((colorHex, i) => (
+                        <div 
+                          key={i}
+                          className="w-4 h-4 rounded-sm border border-gray-200 dark:border-gray-500" 
+                          style={{ backgroundColor: colorHex }}
+                        ></div>
+                      ))}
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-800 dark:text-white">{color.name}</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400">{color.desc}</div>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Hero Tab */}
+          {activeTab === 'hero' && (
+            <div className="space-y-3">
+              <h4 className="text-sm font-semibold text-gray-800 dark:text-white">Startbereich-Stil</h4>
+              
+              {[
+                { key: 'single', name: 'Klassisch', desc: 'Ein großes Bild', icon: '🏠' },
+                { key: 'slider', name: 'Slideshow', desc: 'Mehrere Bilder', icon: '🎬' },
+                { key: 'video', name: 'Video', desc: 'Video-Hintergrund', icon: '📹' },
+                { key: 'split', name: 'Geteilt', desc: 'Text + Bild nebeneinander', icon: '📱' }
+              ].map((hero) => (
+                <button
+                  key={hero.key}
+                  onClick={() => changeHeroType(hero.key as any)}
+                  className={`w-full p-3 rounded-lg text-left transition-colors border ${
+                    currentHeroType === hero.key
+                      ? 'bg-blue-50 border-blue-500 dark:bg-blue-900/20 dark:border-blue-400'
+                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600'
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">{hero.icon}</span>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-800 dark:text-white">{hero.name}</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400">{hero.desc}</div>
+                    </div>
+                    {currentHeroType === hero.key && (
+                      <span className="text-blue-500">✓</span>
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
+
+        </div>
+
+        {/* Footer */}
+        <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+          <p className="text-xs text-gray-600 dark:text-gray-400 text-center">
+            💡 Änderungen werden sofort angewendet
+          </p>
         </div>
       </div>
     </div>
