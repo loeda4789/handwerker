@@ -69,7 +69,7 @@ export default function RootLayout({
         
         {/* Critical CSS ist bereits in globals.css definiert */}
       </head>
-      <body className={inter.className + " transition-colors duration-300"}>
+      <body className={inter.className}>
         {/* <ThemeProvider> */}
           {children}
         {/* </ThemeProvider> */}
