@@ -167,8 +167,11 @@ export default function Team({ content }: TeamProps) {
                       
                       {/* Position Badge */}
                       <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                        <span className="inline-block px-4 py-1 bg-primary text-white text-sm font-medium shadow-md"
-                          style={{ borderRadius: 'var(--radius-button)' }}>
+                        <span className="inline-block px-4 py-1 text-white text-sm font-medium shadow-md"
+                          style={{ 
+                            backgroundColor: 'var(--color-secondary)',
+                            borderRadius: 'var(--radius-button)' 
+                          }}>
                           {member.position}
                         </span>
                       </div>
@@ -278,8 +281,11 @@ export default function Team({ content }: TeamProps) {
                 
                 {/* Position Badge */}
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                  <span className="inline-block px-4 py-1 bg-primary text-white text-sm font-medium shadow-md"
-                    style={{ borderRadius: 'var(--radius-button)' }}>
+                  <span className="inline-block px-4 py-1 text-white text-sm font-medium shadow-md"
+                    style={{ 
+                      backgroundColor: 'var(--color-secondary)',
+                      borderRadius: 'var(--radius-button)' 
+                    }}>
                     {member.position}
                   </span>
                 </div>

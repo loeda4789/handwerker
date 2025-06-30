@@ -335,7 +335,14 @@ export default function PartnerPage() {
             
             <a 
               href={`mailto:${content.contact.email}?subject=Partnerschaftsanfrage&body=Sehr geehrte Damen und Herren,%0D%0A%0D%0Awir interessieren uns für eine Partnerschaft mit Ihrem Unternehmen.%0D%0A%0D%0AMit freundlichen Grüßen`}
-              className="inline-flex items-center px-8 py-3 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                              className="inline-flex items-center px-8 py-3 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                style={{ backgroundColor: 'var(--color-secondary)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                }}
             >
               Partnerschaftsanfrage senden
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

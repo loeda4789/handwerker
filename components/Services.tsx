@@ -179,8 +179,11 @@ export default function Services({ content }: ServicesProps) {
                 {/* Projects Counter Badge */}
                 {service.projects && service.projects.length > 0 && (
                   <div className="absolute top-4 right-4">
-                    <span className="bg-primary/90 text-white px-3 py-1 text-sm font-medium"
-                      style={{ borderRadius: 'var(--radius-button)' }}>
+                    <span className="text-white px-3 py-1 text-sm font-medium"
+                      style={{ 
+                        backgroundColor: 'var(--color-secondary)',
+                        borderRadius: 'var(--radius-button)' 
+                      }}>
                       {service.projects.length} Projekt{service.projects.length !== 1 ? 'e' : ''}
                     </span>
                   </div>

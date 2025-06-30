@@ -289,8 +289,17 @@ function HeroSlider({ content }: HeroProps) {
               <div>
                 <Link
                   href="#kontakt"
-                  className="inline-flex items-center justify-center px-8 py-4 text-base font-medium transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 bg-primary hover:bg-accent text-white"
-                  style={{ borderRadius: 'var(--radius-button)' }}
+                  className="inline-flex items-center justify-center px-8 py-4 text-base font-medium transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 text-white"
+                  style={{ 
+                    backgroundColor: 'var(--color-secondary)',
+                    borderRadius: 'var(--radius-button)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                  }}
                 >
                   {slides[currentSlide].cta}
                   <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">

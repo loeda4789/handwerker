@@ -255,7 +255,14 @@ export default function ServicePage({ params }: ServicePageProps) {
           <div className="text-center mt-12">
             <Link
               href="/services"
-              className="inline-flex items-center px-6 py-3 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                              className="inline-flex items-center px-6 py-3 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                style={{ backgroundColor: 'var(--color-secondary)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                }}
             >
               Alle Leistungen ansehen
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -152,10 +152,12 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
             </div>
 
             {/* Labels */}
-            <div className="absolute bottom-4 left-4 bg-primary text-white px-3 py-1 rounded text-sm font-medium">
+                            <div className="absolute bottom-4 left-4 text-white px-3 py-1 rounded text-sm font-medium"
+                  style={{ backgroundColor: 'var(--color-secondary)' }}>
               Vorher
             </div>
-            <div className="absolute bottom-4 right-4 bg-primary text-white px-3 py-1 rounded text-sm font-medium">
+                            <div className="absolute bottom-4 right-4 text-white px-3 py-1 rounded text-sm font-medium"
+                  style={{ backgroundColor: 'var(--color-secondary)' }}>
               Nachher
             </div>
           </div>

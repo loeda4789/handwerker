@@ -258,7 +258,14 @@ export default function BetriebPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/kontakt"
-                className="inline-flex items-center px-8 py-3 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                className="inline-flex items-center px-8 py-3 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                style={{ backgroundColor: 'var(--color-secondary)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                }}
               >
                 Jetzt Beratungstermin vereinbaren
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -82,7 +82,14 @@ export default function ServicesPage() {
                     
                     <Link
                       href={`/services/${serviceSlug}`}
-                      className="inline-flex items-center px-6 py-3 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      className="inline-flex items-center px-6 py-3 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{ backgroundColor: 'var(--color-secondary)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+              }}
                     >
                       Mehr erfahren
                       <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,7 +115,14 @@ export default function ServicesPage() {
           </p>
           <Link
             href="/kontakt"
-            className="inline-flex items-center px-8 py-4 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg text-lg"
+                          className="inline-flex items-center px-8 py-4 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg text-lg"
+              style={{ backgroundColor: 'var(--color-secondary)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+              }}
           >
             Jetzt Kontakt aufnehmen
             <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

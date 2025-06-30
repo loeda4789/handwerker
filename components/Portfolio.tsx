@@ -118,10 +118,13 @@ export default function Portfolio({ content }: PortfolioProps) {
                  </div>
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
-                  <span className="bg-primary/90 text-white px-3 py-1 text-sm font-medium"
-                    style={{ borderRadius: 'var(--radius-button)' }}>
-                    {project.category}
-                  </span>
+                                      <span className="text-white px-3 py-1 text-sm font-medium"
+                        style={{ 
+                          backgroundColor: 'var(--color-secondary)',
+                          borderRadius: 'var(--radius-button)' 
+                        }}>
+                        {project.category}
+                      </span>
                 </div>
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

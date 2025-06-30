@@ -183,7 +183,14 @@ export default function KontaktPage() {
             </p>
             <a 
               href="/faq"
-              className="inline-block px-12 py-4 bg-primary hover:bg-accent text-white rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              className="inline-block px-12 py-4 text-white rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              style={{ backgroundColor: 'var(--color-secondary)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+              }}
             >
               Häufige Fragen ansehen
             </a>
