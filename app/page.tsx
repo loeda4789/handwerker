@@ -28,6 +28,7 @@ import ContactBar from '@/components/ContactBar'
 import NotdienstAlert from '@/components/NotdienstAlert'
 import WhatsAppWidget from '@/components/WhatsAppWidget'
 import CallbackPopup from '@/components/CallbackPopup'
+import DesignPreviewButton from '@/components/DesignPreviewButton'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
@@ -897,6 +898,9 @@ export default function HomePage() {
         isOpen={showColorConfigurator}
         onClose={() => setShowColorConfigurator(false)}
       />
+
+      {/* Design Preview Button (Tab-Navigation) */}
+      <DesignPreviewButton />
     </div>
   )
 } 
