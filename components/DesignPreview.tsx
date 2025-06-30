@@ -49,21 +49,33 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const changeSiteMode = (mode: 'onepage' | 'multipage') => {
     localStorage.setItem('site-mode', mode)
     setCurrentSiteMode(mode)
-    window.location.reload()
+    // Modal schließen und Änderungen direkt anwenden
+    setTimeout(() => {
+      onClose()
+      window.location.reload()
+    }, 300)
   }
 
   const changeDesignStyle = (style: 'angular' | 'rounded' | 'modern') => {
     localStorage.setItem('design-style', style)
     localStorage.setItem('demo-design-style', style)
     setCurrentDesignStyle(style)
-    window.location.reload()
+    // Modal schließen und Änderungen direkt anwenden
+    setTimeout(() => {
+      onClose()
+      window.location.reload()
+    }, 300)
   }
 
   const changeColorScheme = (scheme: 'handwerker' | 'rot' | 'blau') => {
     localStorage.setItem('selected-color-scheme', scheme)
     localStorage.setItem('demo-color-scheme', scheme)
     setCurrentColorScheme(scheme)
-    window.location.reload()
+    // Modal schließen und Änderungen direkt anwenden
+    setTimeout(() => {
+      onClose()
+      window.location.reload()
+    }, 300)
   }
 
   const openMainConfigurator = () => {
