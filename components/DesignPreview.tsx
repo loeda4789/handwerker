@@ -10,11 +10,8 @@ import {
   MdPalette,
   MdColorLens,
   MdBrush,
-  MdHome,
-  MdSlideshow,
-  MdVideoLibrary,
-  MdSplitscreen,
-  MdClose
+  MdClose,
+  MdSettings
 } from 'react-icons/md'
 
 interface DesignPreviewProps {
@@ -24,17 +21,10 @@ interface DesignPreviewProps {
 
 export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const [activeTab, setActiveTab] = useState('design')
-  const [currentHeroType, setCurrentHeroType] = useState<string>('single')
   const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   
   // Aktuelle Einstellungen beim Laden ermitteln
   useEffect(() => {
-    // Hero-Typ laden
-    const demoType = localStorage.getItem('demo-hero-type')
-    if (demoType) {
-      setCurrentHeroType(demoType)
-    }
-
     // Site-Mode laden
     const siteMode = localStorage.getItem('site-mode') as 'onepage' | 'multipage'
     if (siteMode) {
@@ -60,13 +50,12 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     window.location.reload()
   }
 
-  const changeHeroType = async (heroType: 'single' | 'slider' | 'video' | 'split') => {
-    try {
-      localStorage.setItem('demo-hero-type', heroType)
-      setCurrentHeroType(heroType)
-      window.location.reload()
-    } catch (error) {
-      console.error('Fehler beim Ändern des Hero-Typs:', error)
+  const openMainConfigurator = () => {
+    onClose()
+    // Trigger the main configurator to open
+    const configuratorButton = document.querySelector('[aria-label="Website Konfigurator öffnen"]') as HTMLButtonElement
+    if (configuratorButton) {
+      configuratorButton.click()
     }
   }
 
@@ -74,11 +63,11 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center">
-      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-lg mx-4 max-h-[85vh] flex flex-col"
+      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[500px] h-[600px] flex flex-col"
         style={{ borderRadius: 'var(--radius-modal)' }}>
         
         {/* Header */}
-        <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white">
             Quick-Einstellungen
           </h3>
@@ -96,8 +85,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           {[
             { key: 'design', label: 'Design', Icon: MdBrush },
             { key: 'layout', label: 'Umfang', Icon: MdDescription },
-            { key: 'color', label: 'Farben', Icon: MdPalette },
-            { key: 'hero', label: 'Hero', Icon: MdImage }
+            { key: 'color', label: 'Farben', Icon: MdPalette }
           ].map((tab) => (
             <button
               key={tab.key}
@@ -115,7 +103,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-6">
+        <div className="flex-1 overflow-y-auto p-6">
           
           {/* Design Tab */}
           {activeTab === 'design' && (
@@ -296,79 +284,18 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             </div>
           )}
 
-          {/* Hero Tab */}
-          {activeTab === 'hero' && (
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-4">Startbereich-Stil</h4>
-              
-              <div className="grid grid-cols-1 gap-3">
-                {[
-                  { 
-                    key: 'single', 
-                    name: 'Klassisches Bild', 
-                    desc: 'Ein großes Hintergrundbild', 
-                    Icon: MdHome,
-                    color: 'bg-slate-100 text-slate-600 dark:bg-slate-900/30 dark:text-slate-400'
-                  },
-                  { 
-                    key: 'slider', 
-                    name: 'Bildergalerie', 
-                    desc: 'Mehrere Bilder als Slideshow', 
-                    Icon: MdSlideshow,
-                    color: 'bg-cyan-100 text-cyan-600 dark:bg-cyan-900/30 dark:text-cyan-400'
-                  },
-                  { 
-                    key: 'video', 
-                    name: 'Video-Hintergrund', 
-                    desc: 'Bewegtes Video als Eyecatcher', 
-                    Icon: MdVideoLibrary,
-                    color: 'bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400'
-                  },
-                  { 
-                    key: 'split', 
-                    name: 'Geteiltes Layout', 
-                    desc: 'Text und Bild nebeneinander', 
-                    Icon: MdSplitscreen,
-                    color: 'bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400'
-                  }
-                ].map((hero) => (
-                  <button
-                    key={hero.key}
-                    onClick={() => changeHeroType(hero.key as any)}
-                    className={`group p-4 border-2 transition-all duration-300 text-left transform hover:scale-105 ${
-                      currentHeroType === hero.key
-                        ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
-                        : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
-                    }`}
-                    style={{ borderRadius: 'var(--radius-card)' }}
-                  >
-                    <div className="flex items-center space-x-4">
-                      <div className={`w-12 h-12 flex items-center justify-center shadow-md ${hero.color}`}
-                        style={{ borderRadius: 'var(--radius-card)' }}>
-                        <hero.Icon className="w-6 h-6" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-semibold text-gray-900 dark:text-white">{hero.name}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">{hero.desc}</div>
-                      </div>
-                      {currentHeroType === hero.key && (
-                        <div className="text-orange-500">
-                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
         </div>
 
-        {/* Footer */}
-        <div className="px-4 py-3 md:px-6 md:py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+        {/* Footer with Main Configurator Button */}
+        <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+          <button
+            onClick={openMainConfigurator}
+            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-3"
+            style={{ borderRadius: 'var(--radius-button)' }}
+          >
+            <MdSettings className="w-5 h-5" />
+            <span>Erweiterte Einstellungen</span>
+          </button>
           <p className="text-xs text-gray-600 dark:text-gray-400 text-center">
             💡 Alle Änderungen werden sofort angewendet
           </p>
