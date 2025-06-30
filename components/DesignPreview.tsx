@@ -22,6 +22,8 @@ interface DesignPreviewProps {
 export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const [activeTab, setActiveTab] = useState('design')
   const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
+  const [currentColorScheme, setCurrentColorScheme] = useState<'handwerker' | 'rot' | 'blau'>('handwerker')
+  const [currentDesignStyle, setCurrentDesignStyle] = useState<'angular' | 'rounded' | 'modern'>('angular')
   
   // Aktuelle Einstellungen beim Laden ermitteln
   useEffect(() => {
@@ -29,6 +31,18 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     const siteMode = localStorage.getItem('site-mode') as 'onepage' | 'multipage'
     if (siteMode) {
       setCurrentSiteMode(siteMode)
+    }
+    
+    // Color-Scheme laden
+    const colorScheme = localStorage.getItem('selected-color-scheme') as 'handwerker' | 'rot' | 'blau'
+    if (colorScheme) {
+      setCurrentColorScheme(colorScheme)
+    }
+    
+    // Design-Style laden
+    const designStyle = localStorage.getItem('design-style') as 'angular' | 'rounded' | 'modern'
+    if (designStyle) {
+      setCurrentDesignStyle(designStyle)
     }
   }, [])
 
@@ -41,12 +55,14 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const changeDesignStyle = (style: 'angular' | 'rounded' | 'modern') => {
     localStorage.setItem('design-style', style)
     localStorage.setItem('demo-design-style', style)
+    setCurrentDesignStyle(style)
     window.location.reload()
   }
 
   const changeColorScheme = (scheme: 'handwerker' | 'rot' | 'blau') => {
     localStorage.setItem('selected-color-scheme', scheme)
     localStorage.setItem('demo-color-scheme', scheme)
+    setCurrentColorScheme(scheme)
     window.location.reload()
   }
 
@@ -138,14 +154,18 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     key={style.key}
                     onClick={() => changeDesignStyle(style.key as any)}
                     className={`group p-4 border-2 transition-all duration-300 text-left transform hover:scale-105 ${
-                      false // Temporarily disable selection styling
+                      currentDesignStyle === style.key
                         ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
                         : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                     }`}
                     style={{ borderRadius: 'var(--radius-card)' }}
                   >
                     <div className="flex items-center space-x-4">
-                      <div className={`w-12 h-12 flex items-center justify-center shadow-md ${style.color}`}
+                      <div className={`w-12 h-12 flex items-center justify-center shadow-md ${
+                        currentDesignStyle === style.key 
+                          ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+                          : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                      }`}
                         style={{ borderRadius: 'var(--radius-card)' }}>
                         <style.Icon className="w-6 h-6" />
                       </div>
@@ -229,55 +249,46 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 {[
                   { 
                     key: 'handwerker', 
-                    name: 'Braun-Töne', 
-                    desc: 'Traditionell & vertrauenswürdig', 
-                    colors: ['#8B4513', '#5D4037', '#D2691E'],
-                    Icon: MdColorLens
+                    name: 'Handwerker Braun', 
+                    desc: 'Traditionell & warm', 
+                    colors: ['#8B4513', '#A0522D', '#CD853F', '#DEB887']
                   },
                   { 
                     key: 'rot', 
-                    name: 'Rot-Töne', 
-                    desc: 'Kraftvoll & energisch', 
-                    colors: ['#C62828', '#8E24AA', '#FF5722'],
-                    Icon: MdBrush
+                    name: 'Kraftvoll Rot', 
+                    desc: 'Dynamisch & energisch', 
+                    colors: ['#DC2626', '#B91C1C', '#EF4444', '#F87171']
                   },
                   { 
                     key: 'blau', 
-                    name: 'Blau-Töne', 
+                    name: 'Professionell Blau', 
                     desc: 'Professionell & vertrauensvoll', 
-                    colors: ['#1565C0', '#0D47A1', '#42A5F5'],
-                    Icon: MdPalette
+                    colors: ['#1565C0', '#0D47A1', '#42A5F5', '#1976D2']
                   }
                 ].map((color) => (
                   <button
                     key={color.key}
                     onClick={() => changeColorScheme(color.key as any)}
-                    className={`group p-4 border-2 transition-all duration-300 text-left transform hover:scale-105 ${
-                      false // Temporarily disable selection styling
+                    className={`group p-3 border-2 transition-all duration-500 text-center transform hover:scale-105 ${
+                      currentColorScheme === color.key
                         ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
                         : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                     }`}
                     style={{ borderRadius: 'var(--radius-card)' }}
                   >
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-700 shadow-md"
-                        style={{ borderRadius: 'var(--radius-card)' }}>
-                        <color.Icon className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-semibold text-gray-900 dark:text-white">{color.name}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">{color.desc}</div>
-                        <div className="flex gap-1">
-                          {color.colors.map((colorHex, i) => (
-                            <div 
-                              key={i}
-                              className="w-5 h-5 rounded-sm border border-gray-200 dark:border-gray-500 shadow-sm" 
-                              style={{ backgroundColor: colorHex }}
-                            ></div>
-                          ))}
-                        </div>
-                      </div>
+                    {/* Color Palette Display wie im Hauptkonfigurator */}
+                    <div className="w-12 h-12 mx-auto mb-3 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 grid grid-cols-2 gap-0.5 p-1 bg-white dark:bg-gray-800"
+                      style={{ borderRadius: 'var(--radius-card)' }}>
+                      {color.colors.map((colorHex, index) => (
+                        <div 
+                          key={index}
+                          className="transition-transform duration-300 group-hover:scale-110"
+                          style={{ backgroundColor: colorHex, borderRadius: 'var(--radius-sm)' }}
+                        ></div>
+                      ))}
                     </div>
+                    <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{color.name}</h4>
+                    <p className="text-xs text-gray-600 dark:text-gray-300">{color.desc}</p>
                   </button>
                 ))}
               </div>
