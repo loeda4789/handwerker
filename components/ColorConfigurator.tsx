@@ -72,43 +72,43 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
 
   // Vordefinierte Farbschemata
   const presetSchemes = {
-    handwerker: {
-      name: 'Braun',
+    warm: {
+      name: 'Warm & Elegant',
       colors: {
-        primary: '#8B4513',
-        secondary: '#5D4037',
-        accent: '#D2691E',
+        primary: '#291D1E',
+        secondary: '#F5A454',
+        accent: '#F6D7AC',
         background: '#ffffff',
         surface: '#faf8f5',
-        text: '#2c1810',
+        text: '#291D1E',
         'text-light': '#ffffff',
-        'text-secondary': '#6d4c41'
+        'text-secondary': '#8B6F47'
       }
     },
-    rot: {
-      name: 'Rot',
+    modern: {
+      name: 'Modern & Energetisch',
       colors: {
-        primary: '#C62828',
-        secondary: '#8E24AA',
-        accent: '#FF5722',
+        primary: '#1C1C1C',
+        secondary: '#FA3D3B',
+        accent: '#C6C6C6',
         background: '#ffffff',
-        surface: '#fef5f5',
-        text: '#1a0e0e',
+        surface: '#f8f8f8',
+        text: '#1C1C1C',
         'text-light': '#ffffff',
-        'text-secondary': '#8d4444'
+        'text-secondary': '#666666'
       }
     },
-    blau: {
-      name: 'Blau',
+    elegant: {
+      name: 'Elegant & Frisch',
       colors: {
-        primary: '#1565C0',
-        secondary: '#0D47A1',
-        accent: '#42A5F5',
+        primary: '#1D2D50',
+        secondary: '#B0D7FF',
+        accent: '#FAF7F2',
         background: '#ffffff',
-        surface: '#f3f8ff',
-        text: '#0d1421',
+        surface: '#f8fafe',
+        text: '#1D2D50',
         'text-light': '#ffffff',
-        'text-secondary': '#455a64'
+        'text-secondary': '#5A6B8C'
       }
     }
   }

@@ -33,7 +33,7 @@ import DesignPreviewButton from '@/components/DesignPreviewButton'
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
   designStyle: 'angular' | 'rounded' | 'modern' | ''
-  colorScheme: 'handwerker' | 'rot' | 'blau' | ''
+  colorScheme: 'warm' | 'modern' | 'elegant' | ''
   designExpanded: boolean
   colorExpanded: boolean
   featuresExpanded: boolean
@@ -681,24 +681,24 @@ export default function HomePage() {
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                             {[
                               { 
-                                key: 'handwerker', 
-                                name: 'Braun', 
+                                key: 'warm', 
+                                name: 'Warm & Elegant', 
                                 desc: 'Traditionell & vertrauenswürdig',
-                                colors: ['#8B4513', '#5D4037', '#D2691E', '#A0522D'],
-                                accent: 'bg-amber-700'
+                                colors: ['#291D1E', '#F5A454', '#F6D7AC', '#8B6F47'],
+                                accent: 'bg-orange-600'
                               },
                               { 
-                                key: 'rot', 
-                                name: 'Rot', 
-                                desc: 'Kraftvoll & energisch',
-                                colors: ['#C62828', '#8E24AA', '#FF5722', '#D32F2F'],
+                                key: 'modern', 
+                                name: 'Modern & Energetisch', 
+                                desc: 'Kraftvoll & dynamisch',
+                                colors: ['#1C1C1C', '#FA3D3B', '#C6C6C6', '#666666'],
                                 accent: 'bg-red-600'
                               },
                               { 
-                                key: 'blau', 
-                                name: 'Blau', 
+                                key: 'elegant', 
+                                name: 'Elegant & Frisch', 
                                 desc: 'Professionell & vertrauensvoll',
-                                colors: ['#1565C0', '#0D47A1', '#42A5F5', '#1976D2'],
+                                colors: ['#1D2D50', '#B0D7FF', '#FAF7F2', '#5A6B8C'],
                                 accent: 'bg-blue-600'
                             }
                             ].map((color) => (

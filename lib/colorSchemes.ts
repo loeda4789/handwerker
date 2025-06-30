@@ -14,41 +14,41 @@ interface SimpleColorScheme {
 }
 
 export const colorSchemes: Record<string, SimpleColorScheme> = {
-  handwerker: {
-    name: 'Braun',
+  warm: {
+    name: 'Warm & Elegant',
     description: 'Traditionell & vertrauenswürdig',
-    primary: '#8B4513',      // Warmes Braun
-    secondary: '#5D4037',    // Dunkleres Braun
-    accent: '#D2691E',       // Helles Orange-Braun
+    primary: '#291D1E',      // Dunkelbraun
+    secondary: '#F5A454',    // Orange
+    accent: '#F6D7AC',       // Creme
     background: '#ffffff',
     surface: '#faf8f5',      // Sehr helles Beige
-    text: '#2c1810',         // Dunkles Braun
+    text: '#291D1E',         // Dunkelbraun für Text
     textLight: '#ffffff',
-    textSecondary: '#6d4c41'
+    textSecondary: '#8B6F47'
   },
-  rot: {
-    name: 'Rot',
-    description: 'Kraftvoll & energisch',
-    primary: '#C62828',      // Kräftiges Rot
-    secondary: '#8E24AA',    // Dunkles Rot-Lila
-    accent: '#FF5722',       // Orange-Rot
+  modern: {
+    name: 'Modern & Energetisch',
+    description: 'Kraftvoll & dynamisch',
+    primary: '#1C1C1C',      // Anthrazit
+    secondary: '#FA3D3B',    // Signalrot
+    accent: '#C6C6C6',       // Hellgrau
     background: '#ffffff',
-    surface: '#fef5f5',      // Sehr helles Rosa
-    text: '#1a0e0e',
+    surface: '#f8f8f8',      // Sehr helles Grau
+    text: '#1C1C1C',         // Anthrazit für Text
     textLight: '#ffffff',
-    textSecondary: '#8d4444'
+    textSecondary: '#666666'
   },
-  blau: {
-    name: 'Blau',
+  elegant: {
+    name: 'Elegant & Frisch',
     description: 'Professionell & vertrauensvoll',
-    primary: '#1565C0',      // Kräftiges Blau
-    secondary: '#0D47A1',    // Dunkleres Blau
-    accent: '#42A5F5',       // Helles Blau
+    primary: '#1D2D50',      // Tiefblau (Midnight Blue)
+    secondary: '#B0D7FF',    // Hellblau (Sky Mist)
+    accent: '#FAF7F2',       // Cremeweiß (Seashell)
     background: '#ffffff',
-    surface: '#f3f8ff',      // Sehr helles Blau
-    text: '#0d1421',
+    surface: '#f8fafe',      // Sehr helles Blau
+    text: '#1D2D50',         // Tiefblau für Text
     textLight: '#ffffff',
-    textSecondary: '#455a64'
+    textSecondary: '#5A6B8C'
   },
 
 }

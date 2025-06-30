@@ -22,7 +22,7 @@ interface DesignPreviewProps {
 export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const [activeTab, setActiveTab] = useState('design')
   const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
-  const [currentColorScheme, setCurrentColorScheme] = useState<'handwerker' | 'rot' | 'blau'>('handwerker')
+  const [currentColorScheme, setCurrentColorScheme] = useState<'warm' | 'modern' | 'elegant'>('warm')
   const [currentDesignStyle, setCurrentDesignStyle] = useState<'angular' | 'rounded' | 'modern'>('angular')
   
   // Aktuelle Einstellungen beim Laden ermitteln
@@ -34,7 +34,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     }
     
     // Color-Scheme laden
-    const colorScheme = localStorage.getItem('selected-color-scheme') as 'handwerker' | 'rot' | 'blau'
+    const colorScheme = localStorage.getItem('selected-color-scheme') as 'warm' | 'modern' | 'elegant'
     if (colorScheme) {
       setCurrentColorScheme(colorScheme)
     }
@@ -67,7 +67,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     }, 300)
   }
 
-  const changeColorScheme = (scheme: 'handwerker' | 'rot' | 'blau') => {
+  const changeColorScheme = (scheme: 'warm' | 'modern' | 'elegant') => {
     localStorage.setItem('selected-color-scheme', scheme)
     localStorage.setItem('demo-color-scheme', scheme)
     setCurrentColorScheme(scheme)
@@ -260,22 +260,22 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               <div className="grid grid-cols-1 gap-3">
                 {[
                   { 
-                    key: 'handwerker', 
-                    name: 'Handwerker Braun', 
-                    desc: 'Traditionell & warm', 
-                    colors: ['#8B4513', '#A0522D', '#CD853F', '#DEB887']
+                    key: 'warm', 
+                    name: 'Warm & Elegant', 
+                    desc: 'Traditionell & vertrauenswürdig', 
+                    colors: ['#291D1E', '#F5A454', '#F6D7AC', '#8B6F47']
                   },
                   { 
-                    key: 'rot', 
-                    name: 'Kraftvoll Rot', 
-                    desc: 'Dynamisch & energisch', 
-                    colors: ['#DC2626', '#B91C1C', '#EF4444', '#F87171']
+                    key: 'modern', 
+                    name: 'Modern & Energetisch', 
+                    desc: 'Kraftvoll & dynamisch', 
+                    colors: ['#1C1C1C', '#FA3D3B', '#C6C6C6', '#666666']
                   },
                   { 
-                    key: 'blau', 
-                    name: 'Professionell Blau', 
+                    key: 'elegant', 
+                    name: 'Elegant & Frisch', 
                     desc: 'Professionell & vertrauensvoll', 
-                    colors: ['#1565C0', '#0D47A1', '#42A5F5', '#1976D2']
+                    colors: ['#1D2D50', '#B0D7FF', '#FAF7F2', '#5A6B8C']
                   }
                 ].map((color) => (
                   <button

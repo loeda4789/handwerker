@@ -173,19 +173,19 @@ html {
 :root {
   /* VEREINFACHTES FARBSYSTEM - Nur 8 essenzielle Farben */
   
-  /* HAUPTFARBEN */
-  --color-primary: #c49a6c;        /* Hauptfarbe (Handwerker-Orange) */
-  --color-secondary: #497174;      /* Kontrastfarbe (Dunkelblau-Grün) */
-  --color-accent: #f4a261;         /* Highlight/Hover-Farbe (helles Orange) */
+  /* HAUPTFARBEN - Warm & Elegant als Standard */
+  --color-primary: #291D1E;        /* Dunkelbraun (Hauptfarbe) */
+  --color-secondary: #F5A454;      /* Orange (Kontrastfarbe) */
+  --color-accent: #F6D7AC;         /* Creme (Highlight/Hover-Farbe) */
   
   /* HINTERGRUND */
   --color-background: #ffffff;     /* Haupt-Hintergrund (Weiß) */
-  --color-surface: #f8f8f8;       /* Sekundärer Hintergrund (helles Grau) */
+  --color-surface: #faf8f5;       /* Sekundärer Hintergrund (helles Beige) */
   
   /* TEXT */
-  --color-text: #1a1a1a;          /* Dunkler Text (für helle Hintergründe) */
+  --color-text: #291D1E;          /* Dunkelbraun (für helle Hintergründe) */
   --color-text-light: #ffffff;    /* Weißer Text (für dunkle Hintergründe) */
-  --color-text-secondary: #6f6f6f; /* Grauer Text (für sekundäre Infos) */
+  --color-text-secondary: #8B6F47; /* Warmes Braun (für sekundäre Infos) */
   
   /* LEGACY SUPPORT - Für Border etc. */
   --color-border: #e0e0e0;        /* Rahmen-Farbe */
