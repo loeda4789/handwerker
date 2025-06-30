@@ -235,7 +235,16 @@ export default function Header({ content }: HeaderProps) {
         borderRadius: 'var(--radius-modal)',
         textColor: 'text-gray-900 dark:text-white',
         logoStyle: 'text-gray-900 dark:text-white',
-        ctaStyle: 'bg-primary hover:bg-accent text-text-light',
+        ctaStyle: 'text-white font-medium transition-all duration-200',
+        ctaStyleDynamic: {
+          backgroundColor: 'var(--color-secondary)',
+          borderColor: 'var(--color-secondary)'
+        },
+        ctaHoverStyle: {
+          backgroundColor: 'white',
+          borderColor: 'white', 
+          color: 'var(--color-primary)'
+        },
         mobileMenuStyle: 'bg-white dark:bg-gray-800'
       }
     }

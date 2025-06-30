@@ -396,8 +396,17 @@ function HeroVideo({ content }: HeroProps) {
                 <div className="flex flex-col gap-4 justify-center items-center">
                   <Link
                     href="#kontakt"
-                    className="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1"
-                    style={{ borderRadius: 'var(--radius-button)' }}
+                    className="group relative overflow-hidden px-8 py-4 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1"
+                    style={{ 
+                      backgroundColor: 'var(--color-secondary)',
+                      borderRadius: 'var(--radius-button)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                    }}
                   >
                     <span className="relative z-10">Jetzt Termin vereinbaren</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -492,13 +501,13 @@ function HeroSplit({ content }: HeroProps) {
                 className="inline-flex items-center justify-center px-6 py-3 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
                 style={{ 
                   borderRadius: 'var(--radius-button)',
-                  backgroundColor: 'var(--color-primary)'
+                  backgroundColor: 'var(--color-secondary)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
                 }}
               >
                 Jetzt Termin vereinbaren
