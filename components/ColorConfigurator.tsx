@@ -110,19 +110,6 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
         'text-light': '#ffffff',
         'text-secondary': '#455a64'
       }
-    },
-    schlicht: {
-      name: 'Schlicht',
-      colors: {
-        primary: '#212121',
-        secondary: '#424242',
-        accent: '#757575',
-        background: '#ffffff',
-        surface: '#fafafa',
-        text: '#212121',
-        'text-light': '#ffffff',
-        'text-secondary': '#757575'
-      }
     }
   }
 
@@ -210,7 +197,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
             <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
               🎯 Individuelle Anpassung
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {Object.entries(colors).map(([colorKey, colorValue]) => {
                 const label = colorLabels[colorKey as keyof typeof colorLabels]
                 return (

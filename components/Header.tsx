@@ -269,7 +269,7 @@ export default function Header({ content }: HeaderProps) {
         }}
       >
         <nav className={`${headerStyles.nav} flex items-center justify-between`}>
-          {/* Logo */}
+            {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
             <div 
               className={`w-10 h-10 ${headerStyles.logoStyle} border-2 border-current flex items-center justify-center font-bold text-sm`}
@@ -287,50 +287,50 @@ export default function Header({ content }: HeaderProps) {
             {getNavItems().map((item) => (
               <div key={item.id} className="relative">
                 {item.hasDropdown ? (
-                  <div 
-                    className="relative"
-                    onMouseEnter={() => setDropdownOpen(item.id)}
-                    onMouseLeave={() => setDropdownOpen(null)}
-                  >
+                      <div
+                        className="relative"
+                        onMouseEnter={() => setDropdownOpen(item.id)}
+                        onMouseLeave={() => setDropdownOpen(null)}
+                      >
                     <button 
                       className={`${headerStyles.textColor} hover:opacity-80 font-medium transition-colors duration-200 flex items-center`}
-                    >
-                      {item.label}
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                      </svg>
+                        >
+                          {item.label}
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                          </svg>
                     </button>
-                    
+                        
                     {dropdownOpen === item.id && (
                       <div 
                         className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 z-50"
                         style={{ borderRadius: 'var(--radius-card)' }}
                       >
                         {item.dropdownItems?.map((dropdownItem, index) => (
-                          <Link
-                            key={index}
-                            href={dropdownItem.href}
+                              <Link
+                                key={index}
+                                href={dropdownItem.href}
                             className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
-                          >
+                              >
                             {dropdownItem.label}
-                          </Link>
-                        ))}
-                      </div>
+                              </Link>
+                            ))}
+                          </div>
                     )}
-                  </div>
-                ) : (
-                  <Link
+                      </div>
+                    ) : (
+                      <Link
                     href={item.href || '#'}
                     onClick={item.isClickable && item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.id) : undefined}
                     className={`${headerStyles.textColor} hover:opacity-80 font-medium transition-colors duration-200 ${
                       activeSection === item.id && siteMode === 'onepage' ? 'opacity-80' : ''
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                )}
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    )}
               </div>
-            ))}
+                ))}
             
             <Link
               href="#kontakt"
@@ -370,20 +370,20 @@ export default function Header({ content }: HeaderProps) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div 
+        <div 
             className={`lg:hidden ${headerStyles.mobileMenuStyle}`}
             style={headerStyles.mobileMenuStyleDynamic}
           >
             <div className="px-4 py-4 space-y-2">
               {getNavItems().map((item) => (
-                <div key={item.id}>
+              <div key={item.id}>
                   {item.hasDropdown ? (
                     <div>
                       <button
                         onClick={() => toggleMobileDropdown(item.id)}
                         className="w-full flex items-center justify-between py-3 text-white font-medium text-left"
-                      >
-                        {item.label}
+                >
+                  {item.label}
                         <svg 
                           className={`w-4 h-4 transition-transform duration-200 ${
                             mobileDropdownOpen === item.id ? 'rotate-180' : ''
@@ -399,16 +399,16 @@ export default function Header({ content }: HeaderProps) {
                       {mobileDropdownOpen === item.id && (
                         <div className="ml-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
                           {item.dropdownItems?.map((dropdownItem, index) => (
-                            <Link
-                              key={index}
-                              href={dropdownItem.href}
+                      <Link
+                        key={index}
+                        href={dropdownItem.href}
                               className="block py-2 text-white/80 hover:text-white transition-colors duration-200"
-                              onClick={closeMobileMenu}
-                            >
+                        onClick={closeMobileMenu}
+                      >
                               {dropdownItem.label}
-                            </Link>
-                          ))}
-                        </div>
+                      </Link>
+                    ))}
+                  </div>
                       )}
                     </div>
                   ) : (
@@ -422,11 +422,11 @@ export default function Header({ content }: HeaderProps) {
                     >
                       {item.label}
                     </Link>
-                  )}
-                </div>
-              ))}
-              
-              <Link
+                )}
+              </div>
+            ))}
+          
+            <Link
                 href="#kontakt"
                 onClick={(e) => {
                   handleSmoothScroll(e, 'kontakt')
@@ -439,11 +439,11 @@ export default function Header({ content }: HeaderProps) {
                 }}
               >
                 Kontakt
-              </Link>
-            </div>
+            </Link>
+          </div>
           </div>
         )}
       </header>
-    </div>
+      </div>
   )
 } 

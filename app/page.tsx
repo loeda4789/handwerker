@@ -178,7 +178,6 @@ export default function HomePage() {
         newConfig.designExpanded = true
       } else if (key === 'designStyle' && value && !prev.colorScheme) {
         newConfig.colorExpanded = true
-        newConfig.designExpanded = false
       }
       
       return newConfig
@@ -382,10 +381,10 @@ export default function HomePage() {
         
         {/* Mobile Speed Dial - nur wenn aktiviert */}
         {features.speedDial && (
-          <SpeedDial 
-            phoneNumber={content.contact.phone}
-            onEmailClick={scrollToContact}
-          />
+        <SpeedDial 
+          phoneNumber={content.contact.phone}
+          onEmailClick={scrollToContact}
+        />
         )}
       </div>
 
@@ -424,7 +423,7 @@ export default function HomePage() {
                 </svg>
               </button>
             </div>
-
+            
             {/* Scrollable Content */}
             <div className="flex-1 overflow-y-auto">
               <div className="p-4 md:p-8 pb-4">
@@ -610,8 +609,8 @@ export default function HomePage() {
                           </div>
                           <div className="flex items-center">
                             <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mr-2">
-                              Farbschema wählen
-                            </h2>
+                            Farbschema wählen
+                          </h2>
                             <button
                               onClick={() => {
                                 setShowConfigurator(false)
@@ -656,7 +655,7 @@ export default function HomePage() {
                                 desc: 'Professionell & vertrauensvoll',
                                 colors: ['#1565C0', '#0D47A1', '#42A5F5', '#1976D2'],
                                 accent: 'bg-blue-600'
-                              }
+                            }
                             ].map((color) => (
                               <button
                                 key={color.key}
