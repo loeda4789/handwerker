@@ -684,21 +684,21 @@ export default function HomePage() {
                                 key: 'warm', 
                                 name: 'Warm & Elegant', 
                                 desc: 'Traditionell & vertrauenswürdig',
-                                colors: ['#291D1E', '#F5A454', '#F6D7AC', '#8B6F47'],
+                                colors: ['#291D1E', '#F5A454', '#F6D7AC', '#faf8f5'],
                                 accent: 'bg-orange-600'
                               },
                               { 
                                 key: 'modern', 
                                 name: 'Modern & Energetisch', 
                                 desc: 'Kraftvoll & dynamisch',
-                                colors: ['#1C1C1C', '#FA3D3B', '#C6C6C6', '#666666'],
+                                colors: ['#1C1C1C', '#FA3D3B', '#C6C6C6', '#f8f8f8'],
                                 accent: 'bg-red-600'
                               },
                               { 
                                 key: 'elegant', 
                                 name: 'Elegant & Frisch', 
                                 desc: 'Professionell & vertrauensvoll',
-                                colors: ['#1D2D50', '#B0D7FF', '#FAF7F2', '#5A6B8C'],
+                                colors: ['#1D2D50', '#B0D7FF', '#FAF7F2', '#f8fafe'],
                                 accent: 'bg-blue-600'
                             }
                             ].map((color) => (
