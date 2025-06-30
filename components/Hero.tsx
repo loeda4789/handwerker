@@ -417,135 +417,205 @@ function HeroVideo({ content }: HeroProps) {
   )
 }
 
-// Hero Split Variant - Klassische Variante mit weißem Hintergrund
+// Hero Split Variant - Asymmetrische Überlappung mit interaktiven Elementen
 function HeroSplit({ content }: HeroProps) {
   const cityName = extractCityFromAddress(content.contact.address)
 
   return (
     <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
-      <div className="flex h-full">
-        {/* Left Side - Content mit weißem Hintergrund */}
-        <div className="w-full lg:w-1/2 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center relative z-10">
-          <div className="px-6 lg:px-12 max-w-lg">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
-              {formatHeroTitle(content.company.tagline)}
-            </h1>
-            
-            <p className="text-lg md:text-xl mb-8">
-              {formatHeroText(content.company.tagline, cityName)}
-            </p>
-            
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center space-x-3">
-                <div 
-                  className="w-10 h-10 flex items-center justify-center border border-gray-200 dark:border-gray-700"
-                  style={{ 
-                    borderRadius: 'var(--radius-button)',
-                    backgroundColor: 'var(--color-primary)',
-                    color: 'white'
-                  }}
-                >
-                  <MdVerified className="w-5 h-5" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-400">Meisterqualität seit Jahren</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div 
-                  className="w-10 h-10 flex items-center justify-center border border-gray-200 dark:border-gray-700"
-                  style={{ 
-                    borderRadius: 'var(--radius-button)',
-                    backgroundColor: 'var(--color-primary)',
-                    color: 'white'
-                  }}
-                >
-                  <MdAccessTime className="w-5 h-5" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-400">24/7 Notdienst verfügbar</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div 
-                  className="w-10 h-10 flex items-center justify-center border border-gray-200 dark:border-gray-700"
-                  style={{ 
-                    borderRadius: 'var(--radius-button)',
-                    backgroundColor: 'var(--color-primary)',
-                    color: 'white'
-                  }}
-                >
-                  <MdSupportAgent className="w-5 h-5" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-400">Kostenlose Beratung</span>
-              </div>
-            </div>
-            
-            <div className="flex flex-col gap-4">
-              <Link
-                href="#kontakt"
-                className="inline-flex items-center justify-center px-6 py-3 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
-                style={{ 
-                  borderRadius: 'var(--radius-button)',
-                  backgroundColor: 'var(--color-primary)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
-                }}
-              >
-                Jetzt Termin vereinbaren
-                <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </Link>
-              
-              <Link
-                href="#ueber-uns"
-                className="inline-flex items-center justify-center px-6 py-3 border-2 text-gray-900 dark:text-white hover:text-white font-medium transition-all duration-300"
-                style={{ 
-                  borderRadius: 'var(--radius-button)',
-                  borderColor: 'var(--color-primary)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
-                  e.currentTarget.style.color = 'white';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = 'var(--color-primary)';
-                }}
-              >
-                Mehr erfahren
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Side - Image */}
-        <div className="hidden lg:block lg:w-1/2 relative">
+      {/* Background Image - Full Width */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 hidden md:block">
           <Image
             src={content.hero.backgroundImages.desktop}
-            alt="Hero Split Image"
+            alt="Hero Split Background"
             fill
             priority
             quality={85}
             className="object-cover"
-            sizes="50vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/20"></div>
-        </div>
-
-        {/* Mobile Background */}
-        <div className="absolute inset-0 lg:hidden">
-          <Image
-            src={content.hero.backgroundImages.mobile}
-            alt="Hero Split Mobile"
-            fill
-            priority
-            quality={85}
-            className="object-cover opacity-20"
             sizes="100vw"
           />
         </div>
+        <div className="absolute inset-0 block md:hidden">
+          <Image
+            src={content.hero.backgroundImages.mobile}
+            alt="Hero Split Mobile Background"
+            fill
+            priority
+            quality={85}
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+        {/* Diagonal Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+      </div>
+
+      {/* Content Container with Asymmetric Layout */}
+      <div className="relative z-10 h-full flex items-center">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-12 gap-8 items-center">
+            {/* Left Content - Overlapping */}
+            <div className="lg:col-span-7 xl:col-span-6">
+              {/* Main Content Card with Glassmorphism */}
+              <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl p-8 lg:p-12 shadow-2xl border border-white/20 dark:border-gray-700/30 relative overflow-hidden"
+                style={{ borderRadius: 'var(--radius-button)' }}>
+                
+                {/* Decorative Elements */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-accent/10 -translate-y-16 translate-x-16 rotate-45"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-secondary/10 to-primary/10 translate-y-12 -translate-x-12 rotate-45"></div>
+                
+                <div className="relative z-10">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
+                    {formatHeroTitle(content.company.tagline)}
+                  </h1>
+                  
+                  <p className="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {formatHeroText(content.company.tagline, cityName)}
+                  </p>
+                  
+                  {/* Feature Points */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div className="flex items-center space-x-3 group">
+                      <div 
+                        className="w-12 h-12 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                        style={{ 
+                          borderRadius: 'var(--radius-button)',
+                          backgroundColor: 'var(--color-primary)',
+                          color: 'white'
+                        }}
+                      >
+                        <MdVerified className="w-6 h-6" />
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300 font-medium">Meisterqualität seit Jahren</span>
+                    </div>
+                    
+                    <div className="flex items-center space-x-3 group">
+                      <div 
+                        className="w-12 h-12 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                        style={{ 
+                          borderRadius: 'var(--radius-button)',
+                          backgroundColor: 'var(--color-primary)',
+                          color: 'white'
+                        }}
+                      >
+                        <MdAccessTime className="w-6 h-6" />
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300 font-medium">24/7 Notdienst</span>
+                    </div>
+                    
+                    <div className="flex items-center space-x-3 group sm:col-span-2">
+                      <div 
+                        className="w-12 h-12 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                        style={{ 
+                          borderRadius: 'var(--radius-button)',
+                          backgroundColor: 'var(--color-primary)',
+                          color: 'white'
+                        }}
+                      >
+                        <MdSupportAgent className="w-6 h-6" />
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300 font-medium">Kostenlose Beratung & Angebot</span>
+                    </div>
+                  </div>
+                  
+                  {/* CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link
+                      href="#kontakt"
+                      className="inline-flex items-center justify-center px-8 py-4 text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl transform hover:-translate-y-1 group"
+                      style={{ 
+                        borderRadius: 'var(--radius-button)',
+                        backgroundColor: 'var(--color-primary)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                      }}
+                    >
+                      Jetzt Termin vereinbaren
+                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                    </Link>
+                    
+                    <Link
+                      href="#ueber-uns"
+                      className="inline-flex items-center justify-center px-8 py-4 border-2 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
+                      style={{ 
+                        borderRadius: 'var(--radius-button)',
+                        borderColor: 'var(--color-primary)',
+                        color: 'var(--color-primary)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                        e.currentTarget.style.color = 'white';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.color = 'var(--color-primary)';
+                      }}
+                    >
+                      Mehr erfahren
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Empty space for image visibility */}
+            <div className="hidden lg:block lg:col-span-5 xl:col-span-6"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Interactive Elements */}
+      <div className="absolute top-1/4 right-8 xl:right-16 w-20 h-20 bg-white/10 backdrop-blur-sm animate-float hidden lg:block cursor-pointer group hover:bg-white/20 transition-all duration-300"
+        style={{ borderRadius: 'var(--radius-button)' }}>
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-primary/80 group-hover:bg-primary transition-colors duration-300"
+            style={{ borderRadius: 'var(--radius-button)' }}></div>
+        </div>
+      </div>
+      
+      <div className="absolute bottom-1/3 right-4 xl:right-12 w-16 h-16 bg-primary/20 backdrop-blur-sm animate-float-delayed hidden lg:block cursor-pointer group hover:bg-primary/30 transition-all duration-300"
+        style={{ borderRadius: 'var(--radius-button)' }}>
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-6 h-6 bg-white/80 group-hover:bg-white transition-colors duration-300"
+            style={{ borderRadius: 'var(--radius-button)' }}></div>
+        </div>
+      </div>
+
+      <div className="absolute top-1/2 left-4 w-12 h-12 bg-accent/20 backdrop-blur-sm animate-float hidden lg:block cursor-pointer group hover:bg-accent/30 transition-all duration-300"
+        style={{ borderRadius: 'var(--radius-button)' }}>
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-4 h-4 bg-accent group-hover:scale-110 transition-transform duration-300"
+            style={{ borderRadius: 'var(--radius-button)' }}></div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-float">
+        <Link href="#ueber-uns" className="block group">
+          <div className="p-3 bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-all duration-300"
+            style={{ borderRadius: 'var(--radius-button)' }}>
+            <svg 
+              className="w-6 h-6 text-white group-hover:text-primary transition-colors duration-300" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth="2" 
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </div>
+        </Link>
       </div>
     </section>
   )
