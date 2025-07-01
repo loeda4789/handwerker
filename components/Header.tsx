@@ -281,12 +281,12 @@ export default function Header({ content }: HeaderProps) {
             {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
             <div 
-              className={`w-10 h-10 ${headerStyles.logoStyle} border-2 border-current flex items-center justify-center font-bold text-sm`}
+              className={`w-10 h-10 ${headerStyles.logoStyle} border-2 border-current flex items-center justify-center logo-font text-lg`}
               style={{ borderRadius: 'var(--radius-button)' }}
             >
               IL
             </div>
-            <span className={`text-xl font-bold ${headerStyles.logoStyle} hidden sm:block`}>
+            <span className={`text-2xl logo-font ${headerStyles.logoStyle} hidden sm:block`}>
               Ihr Logo
             </span>
           </Link>

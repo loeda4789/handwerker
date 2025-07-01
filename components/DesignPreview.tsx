@@ -11,7 +11,12 @@ import {
   MdColorLens,
   MdBrush,
   MdClose,
-  MdSettings
+  MdSettings,
+  MdStar,
+  MdPhoneInTalk,
+  MdWhatsapp,
+  MdCall,
+  MdNotifications
 } from 'react-icons/md'
 
 interface DesignPreviewProps {
@@ -24,6 +29,16 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [currentColorScheme, setCurrentColorScheme] = useState<'warm' | 'modern' | 'elegant'>('warm')
   const [currentDesignStyle, setCurrentDesignStyle] = useState<'angular' | 'rounded' | 'modern'>('angular')
+  
+  // Marketing Features State
+  const [features, setFeatures] = useState({
+    promoBanner: false,
+    contactBar: false,
+    notdienstAlert: false,
+    whatsappWidget: false,
+    callbackPopup: false,
+    speedDial: true
+  })
   
   // Aktuelle Einstellungen beim Laden ermitteln
   useEffect(() => {
@@ -44,6 +59,17 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     if (designStyle) {
       setCurrentDesignStyle(designStyle)
     }
+    
+    // Features laden
+    const savedFeatures = {
+      promoBanner: localStorage.getItem('feature-promoBanner') === 'true',
+      contactBar: localStorage.getItem('feature-contactBar') === 'true',
+      notdienstAlert: localStorage.getItem('feature-notdienstAlert') === 'true',
+      whatsappWidget: localStorage.getItem('feature-whatsappWidget') === 'true',
+      callbackPopup: localStorage.getItem('feature-callbackPopup') === 'true',
+      speedDial: localStorage.getItem('feature-speedDial') !== 'false' // Default true
+    }
+    setFeatures(savedFeatures)
   }, [])
 
   const changeSiteMode = (mode: 'onepage' | 'multipage') => {
@@ -71,6 +97,23 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     localStorage.setItem('selected-color-scheme', scheme)
     localStorage.setItem('demo-color-scheme', scheme)
     setCurrentColorScheme(scheme)
+    // Modal schließen und Änderungen direkt anwenden
+    setTimeout(() => {
+      onClose()
+      window.location.reload()
+    }, 300)
+  }
+
+  const toggleFeature = (featureKey: keyof typeof features) => {
+    const newValue = !features[featureKey]
+    localStorage.setItem(`feature-${featureKey}`, newValue.toString())
+    setFeatures(prev => ({ ...prev, [featureKey]: newValue }))
+    
+    // Dispatch event für andere Komponenten
+    window.dispatchEvent(new CustomEvent(`feature-${featureKey}-changed`, { 
+      detail: { enabled: newValue } 
+    }))
+    
     // Modal schließen und Änderungen direkt anwenden
     setTimeout(() => {
       onClose()
@@ -113,7 +156,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           {[
             { key: 'design', label: 'Design', Icon: MdBrush },
             { key: 'layout', label: 'Umfang', Icon: MdDescription },
-            { key: 'color', label: 'Farben', Icon: MdPalette }
+            { key: 'color', label: 'Farben', Icon: MdPalette },
+            { key: 'features', label: 'Features', Icon: MdStar }
           ].map((tab) => (
             <button
               key={tab.key}
@@ -133,6 +177,91 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6">
           
+          {/* Features Tab */}
+          {activeTab === 'features' && (
+            <div className="space-y-4">
+              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-4">Marketing-Features</h4>
+              
+              <div className="space-y-3">
+                {[
+                  {
+                    key: 'speedDial',
+                    name: 'Speed Dial Buttons',
+                    desc: 'Mobile Schnellkontakt-Buttons',
+                    Icon: MdCall,
+                    color: 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
+                  },
+                  {
+                    key: 'whatsappWidget',
+                    name: 'WhatsApp Chat',
+                    desc: 'Floating WhatsApp-Button',
+                    Icon: MdWhatsapp,
+                    color: 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
+                  },
+                  {
+                    key: 'notdienstAlert',
+                    name: 'Notdienst-Alert',
+                    desc: 'Auffällige Notdienst-Leiste',
+                    Icon: MdNotifications,
+                    color: 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400'
+                  },
+                  {
+                    key: 'contactBar',
+                    name: 'Kontakt-Leiste',
+                    desc: 'Fixe Leiste über Header',
+                    Icon: MdPhoneInTalk,
+                    color: 'bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400'
+                  },
+                  {
+                    key: 'promoBanner',
+                    name: 'Sonderangebot-Banner',
+                    desc: 'Animierter Aktions-Banner',
+                    Icon: MdStar,
+                    color: 'bg-yellow-100 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400'
+                  }
+                ].map((feature) => (
+                  <button
+                    key={feature.key}
+                    onClick={() => toggleFeature(feature.key as keyof typeof features)}
+                    className={`group w-full p-3 border-2 transition-all duration-300 text-left transform hover:scale-105 ${
+                      features[feature.key as keyof typeof features]
+                        ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-lg scale-105'
+                        : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-md'
+                    }`}
+                    style={{ borderRadius: 'var(--radius-card)' }}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className={`w-10 h-10 flex items-center justify-center shadow-sm ${
+                        features[feature.key as keyof typeof features]
+                          ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+                          : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                      }`}
+                        style={{ borderRadius: 'var(--radius-button)' }}>
+                        <feature.Icon className="w-5 h-5" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-semibold text-gray-900 dark:text-white text-sm">{feature.name}</div>
+                        <div className="text-xs text-gray-600 dark:text-gray-400">{feature.desc}</div>
+                      </div>
+                      <div className={`w-5 h-5 border-2 transition-all duration-200 ${
+                        features[feature.key as keyof typeof features]
+                          ? 'bg-orange-500 border-orange-500'
+                          : 'border-gray-300 dark:border-gray-600'
+                      }`}
+                        style={{ borderRadius: 'var(--radius-sm)' }}>
+                        {features[feature.key as keyof typeof features] && (
+                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/>
+                          </svg>
+                        )}
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Design Tab */}
           {activeTab === 'design' && (
             <div className="space-y-4">

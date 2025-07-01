@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -570,4 +572,238 @@ html {
 
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-out;
+}
+
+/* Custom Logo Font */
+.logo-font {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Utility Classes für bessere Performance */
+@screen lg {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .animate-on-scroll.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile: Sofort sichtbar für bessere Performance */
+@screen max-lg {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero-Animationen - Nur für Desktop für Performance */
+@screen lg {
+  .animate-typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid var(--color-primary, #0ea5e9);
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.1em;
+    animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--color-primary, #0ea5e9); }
+  }
+}
+
+/* Fade-In Animationen für verschiedene Richtungen */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Ken Burns Effekt für Hero-Bilder */
+@keyframes ken-burns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 20s ease-out infinite alternate;
+}
+
+/* Floating Animation für dekorative Elemente */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary, #0ea5e9) 0%, var(--color-accent, #38bdf8) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Button Hover Effects */
+.btn-hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Glassmorphism Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background, #f1f5f9);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary, #0ea5e9);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent, #38bdf8);
+}
+
+/* Focus States für Barrierefreiheit */
+.focus-visible:focus-visible {
+  outline: 2px solid var(--color-primary, #0ea5e9);
+  outline-offset: 2px;
+}
+
+/* CSS Variables für dynamische Farben */
+:root {
+  /* VEREINFACHTES FARBSYSTEM - Nur 8 essenzielle Farben */
+  
+  /* HAUPTFARBEN - Warm & Elegant als Standard */
+  --color-primary: #291D1E;        /* Dunkelbraun (Hauptfarbe) */
+  --color-secondary: #F5A454;      /* Orange (Kontrastfarbe) */
+  --color-accent: #F6D7AC;         /* Creme (Highlight/Hover-Farbe) */
+  
+  /* HINTERGRUND */
+  --color-background: #ffffff;     /* Haupt-Hintergrund (Weiß) */
+  --color-surface: #faf8f5;       /* Sekundärer Hintergrund (helles Beige) */
+  
+  /* TEXT */
+  --color-text: #291D1E;          /* Dunkelbraun (für helle Hintergründe) */
+  --color-text-light: #ffffff;    /* Weißer Text (für dunkle Hintergründe) */
+  --color-text-secondary: #8B6F47; /* Warmes Braun (für sekundäre Infos) */
+  
+  /* LEGACY SUPPORT - Für Border etc. */
+  --color-border: #e0e0e0;        /* Rahmen-Farbe */
+  --color-dark: #0f172a;          /* Dark Mode Hauptfarbe */
+  --color-dark-secondary: #1e293b; /* Dark Mode Sekundärfarbe */
+  
+  /* Hero-Hintergrundbilder */
+  --hero-image-desktop: url('/images/hero-background.png');
+  --hero-image-mobile: url('/images/hero-background-mobil.png');
+  
+  /* Border-Radius Design-System */
+  --radius-none: 0px;
+  --radius-sm: 0.125rem;
+  --radius-base: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
+  
+  /* Komponent-spezifische Border-Radius */
+  --radius-button: var(--radius-lg);
+  --radius-card: var(--radius-xl);
+  --radius-image: var(--radius-lg);
+  --radius-modal: var(--radius-2xl);
+  --radius-input: var(--radius-md);
 } 

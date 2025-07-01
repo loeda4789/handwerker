@@ -20,6 +20,26 @@ export default function Testimonials({ content }: TestimonialsProps) {
   const [translateX, setTranslateX] = useState(0)
   const sliderRef = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(false)
+  
+  // Design-Style aus localStorage abrufen
+  const [designStyle, setDesignStyle] = useState<string>('angular')
+  
+  useEffect(() => {
+    const savedDesignStyle = localStorage.getItem('design-style')
+    if (savedDesignStyle) {
+      setDesignStyle(savedDesignStyle)
+    }
+    
+    const handleDesignStyleChange = () => {
+      const newDesignStyle = localStorage.getItem('design-style')
+      if (newDesignStyle) {
+        setDesignStyle(newDesignStyle)
+      }
+    }
+    
+    window.addEventListener('storage', handleDesignStyleChange)
+    return () => window.removeEventListener('storage', handleDesignStyleChange)
+  }, [])
 
   // Check if mobile
   useEffect(() => {
@@ -33,6 +53,9 @@ export default function Testimonials({ content }: TestimonialsProps) {
   }, [])
 
   const totalSlides = content.testimonials.length
+  
+  // Moderne Ansichten (curved, circular) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'curved' || designStyle === 'circular'
 
   // Touch/Mouse handlers
   const handleStart = (clientX: number) => {
@@ -131,6 +154,23 @@ export default function Testimonials({ content }: TestimonialsProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
+          {isModernStyle ? (
+            <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                backgroundColor: 'var(--color-secondary)'
+              }}>
+              Kundenstimmen
+            </span>
+          ) : (
+            <span className="inline-block px-4 py-2 text-white text-sm font-medium mb-4 transition-all duration-300 hover:scale-105"
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                backgroundColor: 'var(--color-secondary)'
+              }}>
+              Kundenstimmen
+            </span>
+          )}
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
             Was unsere Kunden sagen
           </h2>
@@ -191,8 +231,9 @@ export default function Testimonials({ content }: TestimonialsProps) {
                               {[...Array(5)].map((_, i) => (
                                 <svg
                                   key={i}
-                                  className="w-3 h-3 text-primary dark:text-accent fill-current"
+                                  className="w-3 h-3 fill-current"
                                   viewBox="0 0 20 20"
+                                  style={{ color: 'var(--color-secondary)' }}
                                 >
                                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                                 </svg>
@@ -242,9 +283,14 @@ export default function Testimonials({ content }: TestimonialsProps) {
                   key={index}
                   onClick={() => goToSlide(index)}
                   className={`w-2 h-2 transition-all duration-200 ${
-                    index === currentSlide ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600'
+                    index === currentSlide 
+                      ? 'bg-gray-300 dark:bg-gray-600' 
+                      : 'bg-gray-300 dark:bg-gray-600'
                   }`}
-                  style={{ borderRadius: 'var(--radius-button)' }}
+                  style={{ 
+                    borderRadius: 'var(--radius-button)',
+                    backgroundColor: index === currentSlide ? 'var(--color-secondary)' : undefined
+                  }}
                   aria-label={`Zu Bewertung ${index + 1} wechseln`}
                 />
               ))}
@@ -295,8 +341,9 @@ export default function Testimonials({ content }: TestimonialsProps) {
                           {[...Array(5)].map((_, i) => (
                             <svg
                               key={i}
-                              className="w-5 h-5 text-primary dark:text-accent fill-current"
+                              className="w-5 h-5 fill-current"
                               viewBox="0 0 20 20"
+                              style={{ color: 'var(--color-secondary)' }}
                             >
                               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                             </svg>

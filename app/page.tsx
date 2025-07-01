@@ -132,6 +132,18 @@ export default function HomePage() {
     const savedDesignStyle = localStorage.getItem('design-style')
     const savedColorScheme = localStorage.getItem('selected-color-scheme')
     
+    // Features aus Quick-Einstellungen laden
+    const featuresConfig = {
+      promoBanner: localStorage.getItem('feature-promoBanner') === 'true',
+      contactBar: localStorage.getItem('feature-contactBar') === 'true',
+      notdienstAlert: localStorage.getItem('feature-notdienstAlert') === 'true',
+      whatsappWidget: localStorage.getItem('feature-whatsappWidget') === 'true',
+      callbackPopup: localStorage.getItem('feature-callbackPopup') === 'true',
+      speedDial: localStorage.getItem('feature-speedDial') !== 'false' // Default true
+    }
+    
+    setFeatures(featuresConfig)
+    
     if (hasVisitedBefore && (savedLayoutType || savedDesignStyle || savedColorScheme)) {
       // Returning user - enable Quick-Edit mode
       setConfig(prev => ({
