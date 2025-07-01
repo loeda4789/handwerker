@@ -112,8 +112,8 @@ export default function Stats({ content }: StatsProps) {
   // Verwende Daten aus content.json
   const stats = content.stats.customStats;
   
-  // Moderne Ansichten (curved, circular) verwenden Services-ähnlichen Stil
-  const isModernStyle = designStyle === 'curved' || designStyle === 'circular';
+  // Moderne Ansichten (rounded, modern) verwenden Services-ähnlichen Stil
+  const isModernStyle = designStyle === 'rounded' || designStyle === 'modern';
 
   return (
     <section className="py-16">

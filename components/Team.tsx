@@ -37,8 +37,8 @@ export default function Team({ content }: TeamProps) {
     return () => window.removeEventListener('storage', handleDesignStyleChange)
   }, [])
   
-  // Moderne Ansichten (curved, circular) verwenden modernen Badge-Stil
-  const isModernStyle = designStyle === 'curved' || designStyle === 'circular'
+  // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
 
   const teamMembers = content.team
 

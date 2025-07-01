@@ -54,8 +54,8 @@ export default function Testimonials({ content }: TestimonialsProps) {
 
   const totalSlides = content.testimonials.length
   
-  // Moderne Ansichten (curved, circular) verwenden modernen Badge-Stil
-  const isModernStyle = designStyle === 'curved' || designStyle === 'circular'
+  // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
 
   // Touch/Mouse handlers
   const handleStart = (clientX: number) => {

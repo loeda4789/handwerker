@@ -198,7 +198,7 @@ export default function Header({ content }: HeaderProps) {
         },
         mobileMenuStyle: 'bg-white/90 backdrop-blur-xl dark:bg-gray-800/90 border-t border-white/20'
       }
-    } else if (designStyle === 'circular' || designStyle === 'curved') {
+    } else if (designStyle === 'modern' || designStyle === 'rounded') {
       // Sehr Modern & Modern: Floating Navigation mit Rundung
       return {
         container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4',
@@ -208,7 +208,7 @@ export default function Header({ content }: HeaderProps) {
             : 'bg-white/60 dark:bg-gray-900/60'
         }`,
         nav: 'px-6 py-3',
-        borderRadius: designStyle === 'circular' ? '2rem' : '1.5rem',
+        borderRadius: designStyle === 'modern' ? '2rem' : '1.5rem',
         textColor: 'text-gray-900 dark:text-white',
         logoStyle: 'text-gray-900 dark:text-white',
         ctaStyle: 'bg-primary hover:bg-accent text-text-light',

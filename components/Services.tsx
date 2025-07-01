@@ -86,8 +86,8 @@ export default function Services({ content }: ServicesProps) {
     return () => window.removeEventListener('storage', handleDesignStyleChange)
   }, [])
   
-  // Moderne Ansichten (curved, circular) verwenden modernen Badge-Stil
-  const isModernStyle = designStyle === 'curved' || designStyle === 'circular'
+  // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
 
   // Lightbox functions
   const openLightbox = (service: typeof content.services[0]) => {
