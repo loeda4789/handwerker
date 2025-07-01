@@ -51,7 +51,7 @@ const formatHeroTitle = (tagline: string) => {
 const formatHeroText = (tagline: string, cityName: string) => {
   // Für Fliesenleger
   if (tagline.includes('Handwerks-Partner')) {
-    return "Meisterqualität für Ihre Räume"
+    return "Wir machen Ihr Zuhause noch schöner"
   }
   
   // Für Elektriker
@@ -215,7 +215,7 @@ function HeroSlider({ content }: HeroProps) {
       desktop: content.hero.backgroundImages.desktopAlt || content.hero.backgroundImages.desktop,
       mobile: content.hero.backgroundImages.mobileAlt || content.hero.backgroundImages.mobile,
       title: "Meisterqualität",
-      subtitle: "Professionelle Handwerksarbeit seit Jahren",
+      subtitle: "Wir machen Ihr Zuhause noch schöner",
       cta: "Mehr erfahren"
     }
   ]
