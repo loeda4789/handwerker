@@ -175,19 +175,19 @@ html {
 :root {
   /* VEREINFACHTES FARBSYSTEM - Nur 8 essenzielle Farben */
   
-  /* HAUPTFARBEN - Warm & Elegant als Standard */
-  --color-primary: #291D1E;        /* Dunkelbraun (Hauptfarbe) */
-  --color-secondary: #F5A454;      /* Orange (Kontrastfarbe) */
-  --color-accent: #F6D7AC;         /* Creme (Highlight/Hover-Farbe) */
+  /* HAUPTFARBEN - Elegant & Frisch als Standard (neue Navy-Gold Farben) */
+  --color-primary: #18273A;        /* Dunkles Navy (Hauptfarbe) */
+  --color-secondary: #213044;      /* Mittleres Navy (Kontrastfarbe) */
+  --color-accent: #987E4D;         /* Goldbraun/Bronze (Highlight/Hover-Farbe) */
   
   /* HINTERGRUND */
   --color-background: #ffffff;     /* Haupt-Hintergrund (Weiß) */
-  --color-surface: #faf8f5;       /* Sekundärer Hintergrund (helles Beige) */
+  --color-surface: #F7F8FA;       /* Sehr helles Grau-Blau */
   
   /* TEXT */
-  --color-text: #291D1E;          /* Dunkelbraun (für helle Hintergründe) */
+  --color-text: #18273A;          /* Dunkles Navy (für helle Hintergründe) */
   --color-text-light: #ffffff;    /* Weißer Text (für dunkle Hintergründe) */
-  --color-text-secondary: #8B6F47; /* Warmes Braun (für sekundäre Infos) */
+  --color-text-secondary: #4A5568; /* Gedämpftes Grau (für sekundäre Infos) */
   
   /* LEGACY SUPPORT - Für Border etc. */
   --color-border: #e0e0e0;        /* Rahmen-Farbe */

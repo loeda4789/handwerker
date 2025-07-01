@@ -71,13 +71,18 @@ function Counter({ end, duration, label, suffix = '', decimal = false }: Counter
 
   return (
     <div ref={counterRef} className="text-center group">
-      <div className="bg-background dark:bg-dark-secondary p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out hover:transform hover:scale-105 hover:-translate-y-2 cursor-default"
-        style={{ borderRadius: 'var(--radius-card)' }}>
+      <div className="p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out hover:transform hover:scale-105 hover:-translate-y-2 cursor-default"
+        style={{ 
+          borderRadius: 'var(--radius-card)',
+          backgroundColor: 'var(--color-surface)',
+          borderLeft: '4px solid var(--color-accent)'
+        }}>
         <div className="text-4xl lg:text-5xl font-bold mb-2 group-hover:scale-110 transition-transform duration-500 ease-out"
-          style={{ color: 'var(--color-secondary)' }}>
+          style={{ color: 'var(--color-accent)' }}>
           {decimal ? count.toFixed(1) : count}{suffix}
         </div>
-        <div className="text-text-secondary dark:text-light/80 font-medium text-lg transition-colors duration-300 group-hover:text-primary dark:group-hover:text-accent">
+        <div className="font-medium text-lg transition-colors duration-300"
+          style={{ color: 'var(--color-text)' }}>
           {label}
         </div>
       </div>
