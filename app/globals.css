@@ -596,7 +596,7 @@ html {
 }
 
 /* Mobile: Sofort sichtbar für bessere Performance */
-@screen max-lg {
+@media (max-width: 1023px) {
   .animate-on-scroll {
     opacity: 1;
     transform: translateY(0);
