@@ -420,7 +420,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     key: 'elegant', 
                     name: 'Elegant & Frisch', 
                     desc: 'Professionell & vertrauensvoll', 
-                    colors: ['#1D2D50', '#B0D7FF', '#FAF7F2', '#f8fafe']
+                    colors: ['#18273A', '#213044', '#987E4D', '#F7F8FA']
                   }
                 ].map((color) => (
                   <button
