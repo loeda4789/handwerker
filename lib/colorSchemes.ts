@@ -112,21 +112,21 @@ export const borderRadiusSchemes = {
   },
   rounded: {
     name: 'Freundlich',
-    description: 'Runde Buttons, freundliche Rundungen',
+    description: 'Sanfte Rundungen, Mittelmaß zwischen eckig und rund',
     none: '0px',
-    sm: '0.25rem',
-    base: '0.5rem',
-    md: '0.75rem',
-    lg: '1rem',
-    xl: '1.25rem',
-    '2xl': '1.5rem',
-    '3xl': '2rem',
+    sm: '0.125rem',
+    base: '0.25rem',
+    md: '0.375rem',
+    lg: '0.5rem',
+    xl: '0.75rem',
+    '2xl': '1rem',
+    '3xl': '1.25rem',
     full: '9999px',
-    button: '1.5rem',   // Runde Buttons (eher Richtung rund)
-    card: '1rem',       // Moderate Card-Rundung
-    image: '0.75rem',   // Leichte Bild-Rundung
-    modal: '1.25rem',   // Moderate Modal-Rundung
-    input: '0.75rem'    // Runde Inputs
+    button: '0.5rem',   // Sanft gerundete Buttons (Mittelmaß)
+    card: '0.75rem',    // Leichte Card-Rundung
+    image: '0.375rem',  // Minimale Bild-Rundung
+    modal: '1rem',      // Moderate Modal-Rundung
+    input: '0.375rem'   // Leicht gerundete Inputs
   },
   modern: {
     name: 'Modern',
