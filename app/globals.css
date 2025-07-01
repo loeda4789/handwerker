@@ -177,8 +177,8 @@ html {
   
   /* HAUPTFARBEN - Elegant & Frisch als Standard (neue Navy-Gold Farben) */
   --color-primary: #18273A;        /* Dunkles Navy (Hauptfarbe) */
-  --color-secondary: #213044;      /* Mittleres Navy (Kontrastfarbe) */
-  --color-accent: #987E4D;         /* Goldbraun/Bronze (Highlight/Hover-Farbe) */
+  --color-secondary: #987E4D;      /* Goldbraun/Bronze (Hauptkontrast!) */
+  --color-accent: #213044;         /* Mittleres Navy (subtiler Akzent) */
   
   /* HINTERGRUND */
   --color-background: #ffffff;     /* Haupt-Hintergrund (Weiß) */

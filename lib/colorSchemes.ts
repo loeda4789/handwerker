@@ -42,8 +42,8 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     name: 'Elegant & Frisch',
     description: 'Professionell & vertrauensvoll',
     primary: '#18273A',      // Dunkles Navy (aus Bild)
-    secondary: '#213044',    // Mittleres Navy (aus Bild)
-    accent: '#987E4D',       // Goldbraun/Bronze (aus Bild)
+    secondary: '#987E4D',    // Goldbraun/Bronze (jetzt als Hauptkontrast!)
+    accent: '#213044',       // Mittleres Navy (jetzt als subtiler Akzent)
     background: '#ffffff',
     surface: '#F7F8FA',      // Sehr helles Grau-Blau
     text: '#18273A',         // Dunkles Navy für Text
