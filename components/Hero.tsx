@@ -455,42 +455,24 @@ function HeroSplit({ content }: HeroProps) {
             
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3">
-                <div 
-                  className="w-10 h-10 flex items-center justify-center border border-gray-200 dark:border-gray-700"
-                  style={{ 
-                    borderRadius: 'var(--radius-button)',
-                    backgroundColor: 'var(--color-primary)',
-                    color: 'white'
-                  }}
-                >
-                  <MdVerified className="w-5 h-5" />
-                </div>
+                <MdVerified 
+                  className="w-6 h-6"
+                  style={{ color: 'var(--color-primary)' }}
+                />
                 <span className="text-gray-600 dark:text-gray-400">Meisterqualität seit Jahren</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div 
-                  className="w-10 h-10 flex items-center justify-center border border-gray-200 dark:border-gray-700"
-                  style={{ 
-                    borderRadius: 'var(--radius-button)',
-                    backgroundColor: 'var(--color-primary)',
-                    color: 'white'
-                  }}
-                >
-                  <MdAccessTime className="w-5 h-5" />
-                </div>
+                <MdAccessTime 
+                  className="w-6 h-6"
+                  style={{ color: 'var(--color-primary)' }}
+                />
                 <span className="text-gray-600 dark:text-gray-400">24/7 Notdienst verfügbar</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div 
-                  className="w-10 h-10 flex items-center justify-center border border-gray-200 dark:border-gray-700"
-                  style={{ 
-                    borderRadius: 'var(--radius-button)',
-                    backgroundColor: 'var(--color-primary)',
-                    color: 'white'
-                  }}
-                >
-                  <MdSupportAgent className="w-5 h-5" />
-                </div>
+                <MdSupportAgent 
+                  className="w-6 h-6"
+                  style={{ color: 'var(--color-primary)' }}
+                />
                 <span className="text-gray-600 dark:text-gray-400">Kostenlose Beratung</span>
               </div>
             </div>

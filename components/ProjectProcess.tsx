@@ -122,8 +122,11 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
               Unser Prozess
             </span>
           ) : (
-            <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4"
-              style={{ borderRadius: 'var(--radius-button)' }}>
+            <span className="inline-block px-4 py-2 text-white text-sm font-medium mb-4"
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                backgroundColor: 'var(--color-secondary)'
+              }}>
               Unser Prozess
             </span>
           )}
@@ -148,10 +151,14 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
           >
             {/* Scroll-basierter Fortschrittsstrich */}
             <div 
-              className={`absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent transition-all duration-500 ease-out ${
+              className={`absolute top-0 left-0 w-full transition-all duration-500 ease-out ${
                 timelineProgress === 0 ? 'opacity-0' : 'opacity-100'
               }`}
-              style={{ borderRadius: 'var(--radius-button)', height: `${timelineProgress}%` }}
+              style={{ 
+                borderRadius: 'var(--radius-button)', 
+                height: `${timelineProgress}%`,
+                backgroundColor: 'var(--color-secondary)'
+              }}
             ></div>
           </div>
 
@@ -170,15 +177,16 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                 >
                   {/* Schritt-Nummer Kreis - links */}
                   <div 
-                    className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg z-10 border-4 border-white dark:border-dark transition-all duration-700 ${
+                    className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 flex items-center justify-center shadow-lg z-10 border-4 border-white dark:border-dark transition-all duration-700 ${
                       isStrichReached 
                         ? 'scale-110 shadow-xl' 
                         : 'scale-100'
                     }`}
                     style={{ 
                       borderRadius: 'var(--radius-button)',
+                      backgroundColor: 'var(--color-secondary)',
                       boxShadow: isStrichReached ? 
-                        `0 0 0 4px rgba(var(--color-primary-rgb), 0.2), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` : 
+                        `0 0 0 4px rgba(var(--color-secondary-rgb), 0.2), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` : 
                         undefined
                     }}
                   >

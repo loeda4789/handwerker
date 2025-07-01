@@ -129,8 +129,11 @@ export default function Stats({ content }: StatsProps) {
               Unsere Erfolge
             </span>
           ) : (
-            <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4 transition-all duration-300 hover:scale-105"
-              style={{ borderRadius: 'var(--radius-button)' }}>
+            <span className="inline-block px-4 py-2 text-white text-sm font-medium mb-4 transition-all duration-300 hover:scale-105"
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                backgroundColor: 'var(--color-secondary)'
+              }}>
               Unsere Erfolge
             </span>
           )}
