@@ -232,16 +232,16 @@ export default function Header({ content }: HeaderProps) {
         mobileMenuStyle: 'bg-white/90 backdrop-blur-md dark:bg-gray-800/90 border-t border-white/20'
       }
     } else if (designStyle === 'modern') {
-      // Modern: Sehr transparent, große runde Ecken
+      // Modern: Extrem transparent, floating pill-design
       return {
-        container: 'sticky top-0 z-50 w-full',
-        header: `transition-all duration-300 backdrop-blur-xl shadow-xl border border-white/20 ${
+        container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4',
+        header: `transition-all duration-300 backdrop-blur-xl shadow-2xl border border-white/10 ${
           isScrolled 
-            ? 'bg-white/70 dark:bg-gray-900/70' 
-            : 'bg-white/50 dark:bg-gray-900/50'
+            ? 'bg-white/20 dark:bg-gray-900/20' 
+            : 'bg-white/15 dark:bg-gray-900/15'
         }`,
-        nav: 'px-6 py-4 mx-auto max-w-screen-xl',
-        borderRadius: '1.5rem', // Sehr rund
+        nav: 'px-8 py-4',
+        borderRadius: '2.5rem', // Extrem rund - floating pill
         textColor: 'text-gray-900 dark:text-white',
         logoStyle: 'text-gray-900 dark:text-white',
         ctaStyle: 'text-white font-medium transition-all duration-200',
@@ -254,7 +254,7 @@ export default function Header({ content }: HeaderProps) {
           borderColor: 'var(--color-primary)',
           color: 'white'
         },
-        mobileMenuStyle: 'bg-white/80 backdrop-blur-xl dark:bg-gray-800/80 border-t border-white/20'
+        mobileMenuStyle: 'bg-white/25 backdrop-blur-xl dark:bg-gray-800/25 border-t border-white/10'
       }
     } else {
       // Fallback: Standard

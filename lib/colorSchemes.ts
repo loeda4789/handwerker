@@ -140,11 +140,11 @@ export const borderRadiusSchemes = {
     '2xl': '3rem',
     '3xl': '4rem',
     full: '9999px',
-    button: '2rem',     // Sehr runde Buttons
-    card: '2rem',       // Sehr runde Cards
-    image: '1.5rem',    // Runde Bilder
-    modal: '2.5rem',    // Sehr runde Modals
-    input: '1.5rem'     // Sehr runde Inputs
+    button: '9999px',   // Pill-Shape Buttons (extrem rund)
+    card: '2.5rem',     // Sehr runde Cards
+    image: '2rem',      // Sehr runde Bilder
+    modal: '3rem',      // Extrem runde Modals
+    input: '2rem'       // Sehr runde Inputs
   }
 }
 
