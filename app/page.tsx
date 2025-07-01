@@ -111,7 +111,7 @@ export default function HomePage() {
     speedDial: true
   })
   const [isGenerating, setIsGenerating] = useState(false)
-  const [showConfigurator, setShowConfigurator] = useState(true)
+  const [showConfigurator, setShowConfigurator] = useState(false) // Temporarily disabled - can be re-enabled later
   const [showColorConfigurator, setShowColorConfigurator] = useState(false)
   const [baseContent, setBaseContent] = useState<ContentData | null>(null)
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')

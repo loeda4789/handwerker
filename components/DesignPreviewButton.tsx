@@ -35,11 +35,11 @@ export default function DesignPreviewButton() {
 
   return (
     <>
-      <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40">
+      <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-40">
         <div className="relative">
           {/* Tooltip */}
           {showTooltip && (
-            <div className="absolute right-full top-1/2 transform -translate-y-1/2 mr-3 px-3 py-2 bg-gray-900 text-white text-sm whitespace-nowrap shadow-lg"
+            <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-3 px-3 py-2 bg-gray-900 text-white text-sm whitespace-nowrap shadow-lg"
               style={{ borderRadius: 'var(--radius-card)' }}>
               Quick-Einstellungen
             </div>
