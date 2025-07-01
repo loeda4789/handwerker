@@ -27,16 +27,16 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     textSecondary: '#6B635D' // Deutlich dunkleres Grau für bessere Lesbarkeit
   },
   modern: {
-    name: 'Modern & Energetisch',
-    description: 'Kraftvoll & dynamisch',
-    primary: '#1C1C1C',      // Anthrazit
-    secondary: '#FA3D3B',    // Signalrot
-    accent: '#C6C6C6',       // Hellgrau
-    background: '#ffffff',
-    surface: '#f8f8f8',      // Sehr helles Grau
-    text: '#1C1C1C',         // Anthrazit für Text
-    textLight: '#ffffff',
-    textSecondary: '#666666'
+    name: 'Tech & Innovation',
+    description: 'Modern & technologisch',
+    primary: '#0F1A50',      // Navy Blue (aus Bild)
+    secondary: '#FD080F',    // Leuchtend Rot (aus Bild)
+    accent: '#8D8AD9',       // Lila/Violett (aus Bild)
+    background: '#ffffff',   // Weiß
+    surface: '#F5F6FF',      // Sehr helles Blau-Grau
+    text: '#0F1A50',         // Navy Blue für Text
+    textLight: '#ffffff',    // Weiß für dunkle Hintergründe
+    textSecondary: '#6B7280' // Gedämpftes Grau für sekundären Text
   },
   elegant: {
     name: 'Elegant & Frisch',

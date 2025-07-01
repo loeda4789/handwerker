@@ -411,8 +411,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   },
                   { 
                     key: 'modern', 
-                    name: 'Modern', 
-                    colors: ['#1C1C1C', '#FA3D3B', '#C6C6C6', '#f8f8f8']
+                    name: 'Tech', 
+                    colors: ['#0F1A50', '#FD080F', '#8D8AD9', '#F5F6FF']
                   },
                   { 
                     key: 'elegant', 
