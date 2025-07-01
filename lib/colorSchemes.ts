@@ -41,14 +41,14 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
   elegant: {
     name: 'Elegant & Frisch',
     description: 'Professionell & vertrauensvoll',
-    primary: '#1D2D50',      // Tiefblau (Midnight Blue)
-    secondary: '#B0D7FF',    // Hellblau (Sky Mist)
-    accent: '#FAF7F2',       // Cremeweiß (Seashell)
+    primary: '#1E3A8A',      // Dunklerer Blauton (Royal Blue)
+    secondary: '#3498DB',    // Mittlerer Blauton (Dodger Blue)
+    accent: '#F9BEAE',       // Cremiger Beige-Ton
     background: '#ffffff',
-    surface: '#f8fafe',      // Sehr helles Blau
-    text: '#1D2D50',         // Tiefblau für Text
+    surface: '#F0F8FF',      // Sehr helles Blau (Alice Blue)
+    text: '#1E3A8A',         // Dunklerer Blauton für Text
     textLight: '#ffffff',
-    textSecondary: '#5A6B8C'
+    textSecondary: '#4A90C2' // Mittlerer Blauton für sekundären Text
   },
 
 }
