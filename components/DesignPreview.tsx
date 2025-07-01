@@ -406,8 +406,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 {[
                   { 
                     key: 'warm', 
-                    name: 'Warm', 
-                    colors: ['#291D1E', '#F5A454', '#F6D7AC', '#faf8f5']
+                    name: 'Business', 
+                    colors: ['#000000', '#D05733', '#9A8F88', '#E5E2E0']
                   },
                   { 
                     key: 'modern', 

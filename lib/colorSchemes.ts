@@ -15,16 +15,16 @@ interface SimpleColorScheme {
 
 export const colorSchemes: Record<string, SimpleColorScheme> = {
   warm: {
-    name: 'Warm & Elegant',
-    description: 'Traditionell & vertrauenswürdig',
-    primary: '#291D1E',      // Dunkelbraun
-    secondary: '#F5A454',    // Orange
-    accent: '#F6D7AC',       // Creme
-    background: '#ffffff',
-    surface: '#faf8f5',      // Sehr helles Beige
-    text: '#291D1E',         // Dunkelbraun für Text
-    textLight: '#ffffff',
-    textSecondary: '#8B6F47'
+    name: 'Business & Professional',
+    description: 'Modern & professionell',
+    primary: '#000000',      // Schwarz (aus Bild)
+    secondary: '#D05733',    // Orange/Rot (aus Bild)
+    accent: '#9A8F88',       // Dunkleres Grau (aus Bild)
+    background: '#ffffff',   // Weiß
+    surface: '#E5E2E0',      // Helles Grau (aus Bild)
+    text: '#000000',         // Schwarz für Text
+    textLight: '#ffffff',    // Weiß für dunkle Hintergründe
+    textSecondary: '#B8AEA6' // Mittleres Grau (aus Bild)
   },
   modern: {
     name: 'Modern & Energetisch',
