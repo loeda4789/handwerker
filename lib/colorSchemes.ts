@@ -24,7 +24,7 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     surface: '#E5E2E0',      // Helles Grau (aus Bild)
     text: '#000000',         // Schwarz für Text
     textLight: '#ffffff',    // Weiß für dunkle Hintergründe
-    textSecondary: '#B8AEA6' // Mittleres Grau (aus Bild)
+    textSecondary: '#6B635D' // Deutlich dunkleres Grau für bessere Lesbarkeit
   },
   modern: {
     name: 'Modern & Energetisch',
