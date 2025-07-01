@@ -75,37 +75,25 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const changeSiteMode = (mode: 'onepage' | 'multipage') => {
     localStorage.setItem('site-mode', mode)
     setCurrentSiteMode(mode)
-    // Modal schließen und Änderungen direkt anwenden
-    setTimeout(() => {
-      onClose()
-      window.location.reload()
-    }, 300)
+    // Kein automatisches Reload mehr
   }
 
   const changeDesignStyle = (style: 'angular' | 'rounded' | 'modern') => {
     localStorage.setItem('design-style', style)
     localStorage.setItem('demo-design-style', style)
     setCurrentDesignStyle(style)
-    // Modal schließen und Änderungen direkt anwenden
-    setTimeout(() => {
-      onClose()
-      window.location.reload()
-    }, 300)
+    // Kein automatisches Reload mehr
   }
 
   const changeColorScheme = (scheme: 'warm' | 'modern' | 'elegant') => {
     localStorage.setItem('selected-color-scheme', scheme)
     localStorage.setItem('demo-color-scheme', scheme)
     setCurrentColorScheme(scheme)
-    // Modal schließen und Änderungen direkt anwenden
-    setTimeout(() => {
-      onClose()
-      window.location.reload()
-    }, 300)
+    // Kein automatisches Reload mehr
   }
 
   const toggleFeature = (featureKey: keyof typeof features) => {
-    const newValue = !features[featureKey]
+    const newValue = !features[featureKey as keyof typeof features]
     localStorage.setItem(`feature-${featureKey}`, newValue.toString())
     setFeatures(prev => ({ ...prev, [featureKey]: newValue }))
     
@@ -114,9 +102,13 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       detail: { enabled: newValue } 
     }))
     
-    // Modal schließen und Änderungen direkt anwenden
+    // Kein automatisches Reload mehr
+  }
+
+  const applyChangesAndReload = () => {
+    // Modal schließen und dann Seite aktualisieren
+    onClose()
     setTimeout(() => {
-      onClose()
       window.location.reload()
     }, 300)
   }
@@ -243,17 +235,13 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                         <div className="font-semibold text-gray-900 dark:text-white text-sm">{feature.name}</div>
                         <div className="text-xs text-gray-600 dark:text-gray-400">{feature.desc}</div>
                       </div>
-                      <div className={`w-5 h-5 border-2 transition-all duration-200 ${
+                      <div className={`px-3 py-1 text-xs font-medium transition-all duration-200 ${
                         features[feature.key as keyof typeof features]
-                          ? 'bg-orange-500 border-orange-500'
-                          : 'border-gray-300 dark:border-gray-600'
+                          ? 'bg-orange-500 text-white'
+                          : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
                       }`}
-                        style={{ borderRadius: 'var(--radius-sm)' }}>
-                        {features[feature.key as keyof typeof features] && (
-                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/>
-                          </svg>
-                        )}
+                        style={{ borderRadius: 'var(--radius-button)' }}>
+                        {features[feature.key as keyof typeof features] ? 'AN' : 'AUS'}
                       </div>
                     </div>
                   </button>
@@ -438,18 +426,29 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
         </div>
 
-        {/* Footer with Main Configurator Button */}
+        {/* Footer with Update Button */}
         <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
           <button
-            onClick={openMainConfigurator}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-3"
-            style={{ borderRadius: 'var(--radius-button)' }}
+            onClick={applyChangesAndReload}
+            className="w-full flex items-center justify-center gap-3 px-4 py-3 text-white font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-3"
+            style={{ 
+              borderRadius: 'var(--radius-button)',
+              backgroundColor: 'var(--color-secondary)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+            }}
           >
-            <MdSettings className="w-5 h-5" />
-            <span>Erweiterte Einstellungen</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+            <span>Webseite aktualisieren</span>
           </button>
           <p className="text-xs text-gray-600 dark:text-gray-400 text-center">
-            💡 Alle Änderungen werden sofort angewendet
+            💡 Änderungen werden erst beim Klick übernommen
           </p>
         </div>
       </div>
