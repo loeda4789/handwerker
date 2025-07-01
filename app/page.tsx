@@ -220,6 +220,23 @@ export default function HomePage() {
     console.log('Current siteMode:', siteMode)
   }, [siteMode])
 
+  // Schemas beim initialen Laden anwenden
+  useEffect(() => {
+    // Gespeicherte Einstellungen beim Laden anwenden
+    const savedDesignStyle = localStorage.getItem('design-style')
+    const savedColorScheme = localStorage.getItem('selected-color-scheme')
+    
+    if (savedDesignStyle) {
+      applyBorderRadiusScheme(savedDesignStyle)
+      console.log('🔄 Border-Radius-Schema beim Laden angewendet:', savedDesignStyle)
+    }
+    
+    if (savedColorScheme) {
+      applyColorScheme(savedColorScheme)
+      console.log('🎨 Farbschema beim Laden angewendet:', savedColorScheme)
+    }
+  }, []) // Nur einmal beim Mount ausführen
+
   const handleConfigChange = (key: keyof ConfigState, value: string) => {
     setConfig(prev => {
       const newConfig = { ...prev, [key]: value }

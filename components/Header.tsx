@@ -163,7 +163,6 @@ export default function Header({ content }: HeaderProps) {
       return [
         { href: '#ueber-uns', label: content.about.title, id: 'ueber-uns', isClickable: true },
         { href: '#leistungen', label: 'Leistungen', id: 'leistungen', isClickable: true },
-        { href: '#team', label: 'Team', id: 'team', isClickable: true },
         { href: '#projektablauf', label: 'Projektablauf', id: 'projektablauf', isClickable: true }
       ]
     }
@@ -232,18 +231,18 @@ export default function Header({ content }: HeaderProps) {
         mobileMenuStyle: 'bg-white/90 backdrop-blur-md dark:bg-gray-800/90 border-t border-white/20'
       }
     } else if (designStyle === 'modern') {
-      // Modern: Extrem transparent, floating pill-design
+      // Modern: Sticky header mit weißer Schrift und runden Ecken
       return {
-        container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4',
-        header: `transition-all duration-300 backdrop-blur-xl shadow-2xl border border-white/10 ${
+        container: 'sticky top-0 z-50 w-full',
+        header: `transition-all duration-300 backdrop-blur-xl shadow-xl border border-white/20 ${
           isScrolled 
-            ? 'bg-white/20 dark:bg-gray-900/20' 
-            : 'bg-white/15 dark:bg-gray-900/15'
+            ? 'bg-black/30 dark:bg-gray-900/40' 
+            : 'bg-black/20 dark:bg-gray-900/30'
         }`,
-        nav: 'px-8 py-4',
-        borderRadius: '2.5rem', // Extrem rund - floating pill
-        textColor: 'text-gray-900 dark:text-white',
-        logoStyle: 'text-gray-900 dark:text-white',
+        nav: 'px-6 py-4 mx-auto max-w-screen-xl',
+        borderRadius: '1.5rem', // Runde Ecken aber nicht floating
+        textColor: 'text-white',
+        logoStyle: 'text-white',
         ctaStyle: 'text-white font-medium transition-all duration-200',
         ctaStyleDynamic: {
           backgroundColor: 'var(--color-secondary)',
@@ -254,7 +253,7 @@ export default function Header({ content }: HeaderProps) {
           borderColor: 'var(--color-primary)',
           color: 'white'
         },
-        mobileMenuStyle: 'bg-white/25 backdrop-blur-xl dark:bg-gray-800/25 border-t border-white/10'
+        mobileMenuStyle: 'bg-black/30 backdrop-blur-xl dark:bg-gray-800/40 border-t border-white/20'
       }
     } else {
       // Fallback: Standard
