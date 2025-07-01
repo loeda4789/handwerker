@@ -231,16 +231,16 @@ export default function Header({ content }: HeaderProps) {
         mobileMenuStyle: 'bg-white/90 backdrop-blur-md dark:bg-gray-800/90 border-t border-white/20'
       }
     } else if (designStyle === 'modern') {
-      // Modern: Sticky header mit weißer Schrift und runden Ecken
+      // Modern: Floating header mit Abstand und begrenzter Breite
       return {
-        container: 'sticky top-0 z-50 w-full',
-        header: `transition-all duration-300 backdrop-blur-xl shadow-xl border border-white/20 ${
+        container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-5xl px-4',
+        header: `transition-all duration-300 backdrop-blur-xl shadow-2xl border border-white/10 ${
           isScrolled 
-            ? 'bg-black/30 dark:bg-gray-900/40' 
+            ? 'bg-black/25 dark:bg-gray-900/35' 
             : 'bg-black/20 dark:bg-gray-900/30'
         }`,
-        nav: 'px-6 py-4 mx-auto max-w-screen-xl',
-        borderRadius: '1.5rem', // Runde Ecken aber nicht floating
+        nav: 'px-8 py-4',
+        borderRadius: '2rem', // Floating pill design
         textColor: 'text-white',
         logoStyle: 'text-white',
         ctaStyle: 'text-white font-medium transition-all duration-200',

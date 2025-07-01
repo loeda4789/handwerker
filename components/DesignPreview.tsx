@@ -402,30 +402,26 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             <div className="space-y-4">
               <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-4">Farbschema wählen</h4>
               
-              <div className="grid grid-cols-1 gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 {[
                   { 
                     key: 'warm', 
-                    name: 'Warm & Elegant', 
-                    desc: 'Traditionell & vertrauenswürdig', 
+                    name: 'Warm', 
                     colors: ['#291D1E', '#F5A454', '#F6D7AC', '#faf8f5']
                   },
                   { 
                     key: 'modern', 
-                    name: 'Modern & Energetisch', 
-                    desc: 'Kraftvoll & dynamisch', 
+                    name: 'Modern', 
                     colors: ['#1C1C1C', '#FA3D3B', '#C6C6C6', '#f8f8f8']
                   },
                   { 
                     key: 'elegant', 
-                    name: 'Elegant & Frisch', 
-                    desc: 'Professionell & vertrauensvoll', 
+                    name: 'Elegant', 
                     colors: ['#18273A', '#987E4D', '#213044', '#F7F8FA']
                   },
                   { 
                     key: 'nature', 
-                    name: 'Natur & Gesundheit', 
-                    desc: 'Frisch & nachhaltig', 
+                    name: 'Natur', 
                     colors: ['#000000', '#BCD7B6', '#A8C99A', '#F5F5F5']
                   }
                 ].map((color) => (
@@ -439,8 +435,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     }`}
                     style={{ borderRadius: 'var(--radius-card)' }}
                   >
-                    {/* Color Palette Display wie im Hauptkonfigurator */}
-                    <div className="w-12 h-12 mx-auto mb-3 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 grid grid-cols-2 gap-0.5 p-1 bg-white dark:bg-gray-800"
+                    {/* 2x2 Color Grid - größer und ohne Texte */}
+                    <div className="w-16 h-16 mx-auto overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 grid grid-cols-2 gap-1 p-1 bg-white dark:bg-gray-800"
                       style={{ borderRadius: 'var(--radius-card)' }}>
                       {color.colors.map((colorHex, index) => (
                         <div 
@@ -450,8 +446,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                         ></div>
                       ))}
                     </div>
-                    <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{color.name}</h4>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">{color.desc}</p>
+                    <h4 className="text-xs font-semibold text-gray-900 dark:text-white mt-2">{color.name}</h4>
                   </button>
                 ))}
               </div>
