@@ -50,6 +50,18 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     textLight: '#ffffff',
     textSecondary: '#4A5568' // Gedämpftes Grau für sekundären Text
   },
+  nature: {
+    name: 'Natur & Gesundheit',
+    description: 'Frisch & nachhaltig',
+    primary: '#000000',      // Schwarz (aus Bild)
+    secondary: '#BCD7B6',    // Mintgrün (aus Bild)
+    accent: '#A8C99A',       // Etwas dunkleres Grün für Akzente
+    background: '#ffffff',   // Weiß
+    surface: '#F5F5F5',      // Sehr helles Grau (aus Bild)
+    text: '#000000',         // Schwarz für Text
+    textLight: '#ffffff',    // Weiß für dunkle Hintergründe
+    textSecondary: '#666666' // Grau für sekundären Text
+  },
 
 }
 

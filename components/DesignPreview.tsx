@@ -28,7 +28,7 @@ interface DesignPreviewProps {
 export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const [activeTab, setActiveTab] = useState('design')
   const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
-  const [currentColorScheme, setCurrentColorScheme] = useState<'warm' | 'modern' | 'elegant'>('warm')
+  const [currentColorScheme, setCurrentColorScheme] = useState<'warm' | 'modern' | 'elegant' | 'nature'>('warm')
   const [currentDesignStyle, setCurrentDesignStyle] = useState<'angular' | 'rounded' | 'modern'>('angular')
   
   // Marketing Features State
@@ -50,7 +50,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     }
     
     // Color-Scheme laden
-    const colorScheme = localStorage.getItem('selected-color-scheme') as 'warm' | 'modern' | 'elegant'
+    const colorScheme = localStorage.getItem('selected-color-scheme') as 'warm' | 'modern' | 'elegant' | 'nature'
     if (colorScheme) {
       setCurrentColorScheme(colorScheme)
     }
@@ -86,7 +86,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     // Kein automatisches Reload mehr
   }
 
-  const changeColorScheme = (scheme: 'warm' | 'modern' | 'elegant') => {
+  const changeColorScheme = (scheme: 'warm' | 'modern' | 'elegant' | 'nature') => {
     localStorage.setItem('selected-color-scheme', scheme)
     localStorage.setItem('demo-color-scheme', scheme)
     setCurrentColorScheme(scheme)
@@ -421,6 +421,12 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     name: 'Elegant & Frisch', 
                     desc: 'Professionell & vertrauensvoll', 
                     colors: ['#18273A', '#987E4D', '#213044', '#F7F8FA']
+                  },
+                  { 
+                    key: 'nature', 
+                    name: 'Natur & Gesundheit', 
+                    desc: 'Frisch & nachhaltig', 
+                    colors: ['#000000', '#BCD7B6', '#A8C99A', '#F5F5F5']
                   }
                 ].map((color) => (
                   <button
