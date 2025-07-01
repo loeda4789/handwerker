@@ -173,7 +173,32 @@ export default function Header({ content }: HeaderProps) {
 
   // Header-Stile basierend auf Design-Stil
   const getHeaderStyles = () => {
-    if (designStyle === 'circular' || designStyle === 'curved') {
+    if (designStyle === 'modern') {
+      // Modern: Durchsichtiger sticky Header mit Rundungen
+      return {
+        container: 'sticky top-0 z-50 w-full',
+        header: `transition-all duration-300 backdrop-blur-xl shadow-lg border border-white/20 ${
+          isScrolled 
+            ? 'bg-white/80 dark:bg-gray-900/80' 
+            : 'bg-white/60 dark:bg-gray-900/60'
+        }`,
+        nav: 'px-6 py-4 mx-auto max-w-screen-xl',
+        borderRadius: '1.5rem',
+        textColor: 'text-gray-900 dark:text-white',
+        logoStyle: 'text-gray-900 dark:text-white',
+        ctaStyle: 'text-white font-medium transition-all duration-200',
+        ctaStyleDynamic: {
+          backgroundColor: 'var(--color-secondary)',
+          borderColor: 'var(--color-secondary)'
+        },
+        ctaHoverStyle: {
+          backgroundColor: 'var(--color-primary)',
+          borderColor: 'var(--color-primary)',
+          color: 'white'
+        },
+        mobileMenuStyle: 'bg-white/90 backdrop-blur-xl dark:bg-gray-800/90 border-t border-white/20'
+      }
+    } else if (designStyle === 'circular' || designStyle === 'curved') {
       // Sehr Modern & Modern: Floating Navigation mit Rundung
       return {
         container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4',
