@@ -175,9 +175,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         <div className="flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
           {[
             { key: 'design', label: 'Design', Icon: MdBrush },
-            { key: 'layout', label: 'Umfang', Icon: MdDescription },
             { key: 'color', label: 'Farben', Icon: MdPalette },
-            { key: 'features', label: 'Features', Icon: MdStar }
+            { key: 'features', label: 'Features', Icon: MdStar },
+            { key: 'layout', label: 'Umfang', Icon: MdDescription }
           ].map((tab) => (
             <button
               key={tab.key}
@@ -350,7 +350,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     desc: 'Alle Inhalte auf einer langen Seite', 
                     Icon: MdDescription,
                     price: '79€/mtl',
-                    color: 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
+                    color: 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
                   },
                   { 
                     key: 'multipage', 
@@ -358,7 +358,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     desc: 'Separate Unterseiten für mehr Struktur', 
                     Icon: MdViewModule,
                     price: '99€/mtl',
-                    color: 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400'
+                    color: 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
                   }
                 ].map((layout) => (
                   <button
