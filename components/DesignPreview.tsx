@@ -18,6 +18,7 @@ import {
   MdCall,
   MdNotifications
 } from 'react-icons/md'
+import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 
 interface DesignPreviewProps {
   isOpen: boolean
@@ -106,6 +107,33 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   }
 
   const applyChangesAndReload = () => {
+    // Alle Änderungen anwenden bevor Reload
+    try {
+      // Color scheme anwenden
+      applyColorScheme(currentColorScheme)
+      
+      // Border radius scheme anwenden
+      applyBorderRadiusScheme(currentDesignStyle)
+      
+      // Mark user as having configured the site
+      localStorage.setItem('handwerker-config-saved', 'true')
+      
+      // Hero type basierend auf design style setzen
+      const heroTypeMap = {
+        'angular': 'split',
+        'rounded': 'single', 
+        'modern': 'slider'
+      }
+      localStorage.setItem('demo-hero-type', heroTypeMap[currentDesignStyle as keyof typeof heroTypeMap])
+      
+      // Event dispatchen für andere Komponenten
+      window.dispatchEvent(new Event('site-mode-changed'))
+      window.dispatchEvent(new Event('storage'))
+      
+    } catch (error) {
+      console.error('Fehler beim Anwenden der Änderungen:', error)
+    }
+    
     // Modal schließen und dann Seite aktualisieren
     onClose()
     setTimeout(() => {
