@@ -173,58 +173,17 @@ export default function Header({ content }: HeaderProps) {
 
   // Header-Stile basierend auf Design-Stil
   const getHeaderStyles = () => {
-    if (designStyle === 'modern') {
-      // Modern: Durchsichtiger sticky Header mit Rundungen
-      return {
-        container: 'sticky top-0 z-50 w-full',
-        header: `transition-all duration-300 backdrop-blur-xl shadow-lg border border-white/20 ${
-          isScrolled 
-            ? 'bg-white/80 dark:bg-gray-900/80' 
-            : 'bg-white/60 dark:bg-gray-900/60'
-        }`,
-        nav: 'px-6 py-4 mx-auto max-w-screen-xl',
-        borderRadius: '1.5rem',
-        textColor: 'text-gray-900 dark:text-white',
-        logoStyle: 'text-gray-900 dark:text-white',
-        ctaStyle: 'text-white font-medium transition-all duration-200',
-        ctaStyleDynamic: {
-          backgroundColor: 'var(--color-secondary)',
-          borderColor: 'var(--color-secondary)'
-        },
-        ctaHoverStyle: {
-          backgroundColor: 'var(--color-primary)',
-          borderColor: 'var(--color-primary)',
-          color: 'white'
-        },
-        mobileMenuStyle: 'bg-white/90 backdrop-blur-xl dark:bg-gray-800/90 border-t border-white/20'
-      }
-    } else if (designStyle === 'modern' || designStyle === 'rounded') {
-      // Sehr Modern & Modern: Floating Navigation mit Rundung
-      return {
-        container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4',
-        header: `transition-all duration-300 backdrop-blur-xl shadow-2xl border border-white/20 ${
-          isScrolled 
-            ? 'bg-white/70 dark:bg-gray-900/70' 
-            : 'bg-white/60 dark:bg-gray-900/60'
-        }`,
-        nav: 'px-6 py-3',
-        borderRadius: designStyle === 'modern' ? '2rem' : '1.5rem',
-        textColor: 'text-gray-900 dark:text-white',
-        logoStyle: 'text-gray-900 dark:text-white',
-        ctaStyle: 'bg-primary hover:bg-accent text-text-light',
-        mobileMenuStyle: 'bg-white dark:bg-gray-800'
-      }
-    } else if (designStyle === 'angular') {
-      // Klassisch: Kräftige Primärfarbe aus Konfigurator (NICHT verwässert)
+    if (designStyle === 'angular') {
+      // Klassisch: Eckige Kanten, dunkler Hintergrund
       return {
         container: 'sticky top-0 z-50 w-full',
         header: `transition-all duration-300 shadow-lg border-b`,
         headerStyle: {
-          backgroundColor: 'var(--color-primary)', // Kräftige Primärfarbe ohne Gradient
+          backgroundColor: 'var(--color-primary)', // Dunkler Hintergrund
           borderBottomColor: 'var(--color-primary)'
         },
         nav: 'px-4 py-2.5 mx-auto max-w-screen-xl',
-        borderRadius: 'var(--radius-modal)',
+        borderRadius: '0px', // Eckig
         textColor: 'text-white',
         logoStyle: 'text-white',
         ctaStyle: 'text-white font-medium transition-all duration-200',
@@ -239,7 +198,7 @@ export default function Header({ content }: HeaderProps) {
         },
         mobileMenuStyle: 'border-t',
         mobileMenuStyleDynamic: {
-          backgroundColor: 'var(--color-primary)', // Auch mobile menu kräftig
+          backgroundColor: 'var(--color-primary)', 
           borderTopColor: 'var(--color-primary)'
         },
         mobileCtaStyle: {
@@ -247,8 +206,58 @@ export default function Header({ content }: HeaderProps) {
           color: 'white'
         }
       }
+    } else if (designStyle === 'rounded') {
+      // Freundlich: Weiß aber leicht durchsichtig, runde Buttons
+      return {
+        container: 'sticky top-0 z-50 w-full',
+        header: `transition-all duration-300 backdrop-blur-md shadow-lg border-b border-white/20 ${
+          isScrolled 
+            ? 'bg-white/90 dark:bg-gray-900/90' 
+            : 'bg-white/80 dark:bg-gray-900/80'
+        }`,
+        nav: 'px-4 py-3 mx-auto max-w-screen-xl',
+        borderRadius: '0.75rem', // Leicht rund
+        textColor: 'text-gray-900 dark:text-white',
+        logoStyle: 'text-gray-900 dark:text-white',
+        ctaStyle: 'text-white font-medium transition-all duration-200',
+        ctaStyleDynamic: {
+          backgroundColor: 'var(--color-secondary)',
+          borderColor: 'var(--color-secondary)'
+        },
+        ctaHoverStyle: {
+          backgroundColor: 'var(--color-primary)',
+          borderColor: 'var(--color-primary)',
+          color: 'white'
+        },
+        mobileMenuStyle: 'bg-white/90 backdrop-blur-md dark:bg-gray-800/90 border-t border-white/20'
+      }
+    } else if (designStyle === 'modern') {
+      // Modern: Sehr transparent, große runde Ecken
+      return {
+        container: 'sticky top-0 z-50 w-full',
+        header: `transition-all duration-300 backdrop-blur-xl shadow-xl border border-white/20 ${
+          isScrolled 
+            ? 'bg-white/70 dark:bg-gray-900/70' 
+            : 'bg-white/50 dark:bg-gray-900/50'
+        }`,
+        nav: 'px-6 py-4 mx-auto max-w-screen-xl',
+        borderRadius: '1.5rem', // Sehr rund
+        textColor: 'text-gray-900 dark:text-white',
+        logoStyle: 'text-gray-900 dark:text-white',
+        ctaStyle: 'text-white font-medium transition-all duration-200',
+        ctaStyleDynamic: {
+          backgroundColor: 'var(--color-secondary)',
+          borderColor: 'var(--color-secondary)'
+        },
+        ctaHoverStyle: {
+          backgroundColor: 'var(--color-primary)',
+          borderColor: 'var(--color-primary)',
+          color: 'white'
+        },
+        mobileMenuStyle: 'bg-white/80 backdrop-blur-xl dark:bg-gray-800/80 border-t border-white/20'
+      }
     } else {
-      // Halb Modern: Standard weiß mit Rundung
+      // Fallback: Standard
       return {
         container: 'sticky top-0 z-50 w-full',
         header: `transition-all duration-300 ${

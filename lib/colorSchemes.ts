@@ -93,8 +93,8 @@ export const applyColorScheme = (scheme: string) => {
 // Border-Radius Design-System
 export const borderRadiusSchemes = {
   angular: {
-    name: 'Eckig',
-    description: 'Scharfe, moderne Kanten',
+    name: 'Klassisch',
+    description: 'Eckige Kanten, traditionell',
     none: '0px',
     sm: '0px',
     base: '0px',
@@ -104,29 +104,29 @@ export const borderRadiusSchemes = {
     '2xl': '0px',
     '3xl': '0px',
     full: '0px',
-    button: '0px',
-    card: '0px',
-    image: '0px',
-    modal: '0px',
-    input: '0px'
+    button: '0px',      // Eckige Buttons
+    card: '0px',        // Eckige Cards
+    image: '0px',       // Eckige Bilder
+    modal: '0px',       // Eckige Modals
+    input: '0px'        // Eckige Inputs
   },
   rounded: {
-    name: 'Abgerundet',
-    description: 'Sanfte, moderne Rundungen',
+    name: 'Freundlich',
+    description: 'Runde Buttons, freundliche Rundungen',
     none: '0px',
-    sm: '0.125rem',
-    base: '0.25rem',
-    md: '0.375rem',
-    lg: '0.5rem',
-    xl: '0.75rem',
-    '2xl': '1rem',
-    '3xl': '1.5rem',
+    sm: '0.25rem',
+    base: '0.5rem',
+    md: '0.75rem',
+    lg: '1rem',
+    xl: '1.25rem',
+    '2xl': '1.5rem',
+    '3xl': '2rem',
     full: '9999px',
-    button: '0.5rem',
-    card: '0.75rem',
-    image: '0.5rem',
-    modal: '1rem',
-    input: '0.375rem'
+    button: '1.5rem',   // Runde Buttons (eher Richtung rund)
+    card: '1rem',       // Moderate Card-Rundung
+    image: '0.75rem',   // Leichte Bild-Rundung
+    modal: '1.25rem',   // Moderate Modal-Rundung
+    input: '0.75rem'    // Runde Inputs
   },
   modern: {
     name: 'Modern',
@@ -140,11 +140,11 @@ export const borderRadiusSchemes = {
     '2xl': '3rem',
     '3xl': '4rem',
     full: '9999px',
-    button: '2rem',
-    card: '2rem',
-    image: '1.5rem',
-    modal: '2.5rem',
-    input: '1rem'
+    button: '2rem',     // Sehr runde Buttons
+    card: '2rem',       // Sehr runde Cards
+    image: '1.5rem',    // Runde Bilder
+    modal: '2.5rem',    // Sehr runde Modals
+    input: '1.5rem'     // Sehr runde Inputs
   }
 }
 
