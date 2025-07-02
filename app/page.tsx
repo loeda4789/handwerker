@@ -28,6 +28,7 @@ import ContactBar from '@/components/ContactBar'
 import NotdienstAlert from '@/components/NotdienstAlert'
 import WhatsAppWidget from '@/components/WhatsAppWidget'
 import CallbackPopup from '@/components/CallbackPopup'
+import CallbackRequest from '@/components/CallbackRequest'
 import DesignPreviewButton from '@/components/DesignPreviewButton'
 
 interface ConfigState {
@@ -392,19 +393,36 @@ export default function HomePage() {
             <Services content={content} />
             </SectionWrapper>
             
+            {/* Neue Rückruf-Sektion */}
             <SectionWrapper index={3} designStyle={designStyle}>
-            <BeforeAfter content={content} />
+              <section className="py-16 lg:py-20">
+                <div className="container mx-auto px-4">
+                  <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                      Kostenlose Beratung
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                      Sie haben Fragen zu unserem Service? Wir rufen Sie gerne zurück und beraten Sie unverbindlich.
+                    </p>
+                  </div>
+                  <CallbackRequest className="mt-8" />
+                </div>
+              </section>
             </SectionWrapper>
             
             <SectionWrapper index={4} designStyle={designStyle}>
-            <Testimonials content={content} />
+            <BeforeAfter content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={5} designStyle={designStyle}>
-            <ProjectProcess content={content} />
+            <Testimonials content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={6} designStyle={designStyle}>
+            <ProjectProcess content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={7} designStyle={designStyle}>
             <Contact content={content} />
             </SectionWrapper>
           </>
@@ -422,6 +440,23 @@ export default function HomePage() {
             </SectionWrapper>
             
             <ServicesPreview />
+            
+            {/* Rückruf-Sektion auch für Multipage */}
+            <SectionWrapper index={2} designStyle={designStyle}>
+              <section className="py-16 lg:py-20">
+                <div className="container mx-auto px-4">
+                  <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                      Kostenlose Beratung
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                      Sie haben Fragen zu unserem Service? Wir rufen Sie gerne zurück und beraten Sie unverbindlich.
+                    </p>
+                  </div>
+                  <CallbackRequest className="mt-8" />
+                </div>
+              </section>
+            </SectionWrapper>
             
             {/* Multi-Page Demo Section */}
             <SectionWrapper index={3} designStyle={designStyle}>
