@@ -16,7 +16,8 @@ import {
   MdPhoneInTalk,
   MdWhatsapp,
   MdCall,
-  MdNotifications
+  MdNotifications,
+  MdFlashOn
 } from 'react-icons/md'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 
@@ -26,7 +27,7 @@ interface DesignPreviewProps {
 }
 
 export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
-  const [activeTab, setActiveTab] = useState('design')
+  const [activeTab, setActiveTab] = useState('pakete')
   const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [currentColorScheme, setCurrentColorScheme] = useState<'warm' | 'modern' | 'elegant' | 'nature'>('warm')
   const [currentDesignStyle, setCurrentDesignStyle] = useState<'angular' | 'rounded' | 'modern'>('angular')
@@ -106,6 +107,69 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     // Kein automatisches Reload mehr
   }
 
+  // Neues Paket-System
+  const applyPackage = (packageKey: '1' | '2' | '3') => {
+    const packages = {
+      '1': {
+        name: 'Klassisch',
+        colorScheme: 'warm' as const,
+        designStyle: 'angular' as const,
+        features: {
+          promoBanner: false,
+          contactBar: false,
+          notdienstAlert: false,
+          whatsappWidget: false,
+          callbackPopup: false,
+          speedDial: true
+        }
+      },
+      '2': {
+        name: 'Modern',
+        colorScheme: 'modern' as const,
+        designStyle: 'modern' as const,
+        features: {
+          promoBanner: false,
+          contactBar: false,
+          notdienstAlert: false,
+          whatsappWidget: true,
+          callbackPopup: false,
+          speedDial: false
+        }
+      },
+      '3': {
+        name: 'Freundlich',
+        colorScheme: 'elegant' as const,
+        designStyle: 'rounded' as const,
+        features: {
+          promoBanner: false,
+          contactBar: false,
+          notdienstAlert: true,
+          whatsappWidget: false,
+          callbackPopup: false,
+          speedDial: true
+        }
+      }
+    }
+
+    const selectedPackage = packages[packageKey]
+    
+    // Alle Einstellungen setzen
+    setCurrentColorScheme(selectedPackage.colorScheme)
+    setCurrentDesignStyle(selectedPackage.designStyle)
+    setFeatures(selectedPackage.features)
+    
+    // In localStorage speichern
+    localStorage.setItem('selected-color-scheme', selectedPackage.colorScheme)
+    localStorage.setItem('design-style', selectedPackage.designStyle)
+    localStorage.setItem('demo-color-scheme', selectedPackage.colorScheme)
+    localStorage.setItem('demo-design-style', selectedPackage.designStyle)
+    
+    // Features speichern
+    Object.entries(selectedPackage.features).forEach(([key, value]) => {
+      localStorage.setItem(`feature-${key}`, value.toString())
+    })
+  }
+
   const applyChangesAndReload = () => {
     // Alle Änderungen anwenden bevor Reload
     try {
@@ -141,15 +205,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     }, 300)
   }
 
-  const openMainConfigurator = () => {
-    onClose()
-    // Trigger the main configurator to open
-    const configuratorButton = document.querySelector('[aria-label="Website Konfigurator öffnen"]') as HTMLButtonElement
-    if (configuratorButton) {
-      configuratorButton.click()
-    }
-  }
-
   if (!isOpen) return null
 
   return (
@@ -172,6 +227,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Tab Navigation */}
         <div className="flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
           {[
+            { key: 'pakete', label: 'Pakete', Icon: MdFlashOn },
             { key: 'design', label: 'Design', Icon: MdBrush },
             { key: 'color', label: 'Farben', Icon: MdPalette },
             { key: 'features', label: 'Features', Icon: MdStar },
@@ -180,13 +236,13 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`flex-1 flex flex-col items-center gap-1 px-2 py-3 text-xs font-medium transition-all duration-200 ${
+              className={`flex-1 flex flex-col items-center gap-1 px-1 py-3 text-xs font-medium transition-all duration-200 ${
                 activeTab === tab.key
                   ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 border-b-2 border-orange-500'
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
               }`}
             >
-              <tab.Icon className="w-5 h-5" />
+              <tab.Icon className="w-4 h-4" />
               <span>{tab.label}</span>
             </button>
           ))}
@@ -195,6 +251,85 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6">
           
+          {/* Pakete Tab */}
+          {activeTab === 'pakete' && (
+            <div className="space-y-4">
+              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-4">Vorkonfigurierte Pakete</h4>
+              <p className="text-xs text-gray-600 dark:text-gray-400 mb-6">Wählen Sie einfach 1, 2 oder 3 für eine komplette Konfiguration</p>
+              
+              <div className="space-y-3">
+                {[
+                  {
+                    key: '1',
+                    name: 'Klassisch',
+                    desc: 'Business-Farben • Eckiges Design • Speed Dial',
+                    colors: ['#000000', '#D05733', '#9A8F88', '#E5E2E0'],
+                    features: ['📞 Speed Dial Buttons'],
+                    icon: '🏢'
+                  },
+                  {
+                    key: '2',
+                    name: 'Modern',
+                    desc: 'Tech-Farben • Modernes Design • WhatsApp',
+                    colors: ['#0F1A50', '#FD080F', '#8D8AD9', '#F5F6FF'],
+                    features: ['💬 WhatsApp Chat'],
+                    icon: '🚀'
+                  },
+                  {
+                    key: '3',
+                    name: 'Freundlich',
+                    desc: 'Elegante-Farben • Runde Ecken • Notdienst',
+                    colors: ['#18273A', '#987E4D', '#213044', '#F7F8FA'],
+                    features: ['🚨 Notdienst Alert'],
+                    icon: '😊'
+                  }
+                ].map((pkg) => (
+                  <button
+                    key={pkg.key}
+                    onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
+                    className="group w-full p-4 border-2 border-gray-200 dark:border-gray-600 hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300 text-left transform hover:scale-105 rounded-lg"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-lg flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="text-2xl mb-1">{pkg.icon}</div>
+                          <div className="text-2xl font-bold">{pkg.key}</div>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-semibold text-gray-900 dark:text-white text-lg mb-1">{pkg.name}</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">{pkg.desc}</div>
+                        
+                        {/* Color Preview */}
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-xs text-gray-500">Farben:</span>
+                          <div className="flex gap-1">
+                            {pkg.colors.slice(0, 4).map((color, index) => (
+                              <div 
+                                key={index}
+                                className="w-4 h-4 rounded-sm border border-gray-200"
+                                style={{ backgroundColor: color }}
+                              ></div>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        {/* Features */}
+                        <div className="flex gap-2">
+                          {pkg.features.map((feature, index) => (
+                            <span key={index} className="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-600 dark:text-gray-300">
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Features Tab */}
           {activeTab === 'features' && (
             <div className="space-y-4">
@@ -444,20 +579,13 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           
         </div>
 
-        {/* Footer Buttons */}
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 space-y-3">
+        {/* Footer Button */}
+        <div className="p-6 border-t border-gray-200 dark:border-gray-700">
           <button
             onClick={applyChangesAndReload}
             className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 shadow-lg hover:shadow-xl"
           >
-            Änderungen übernehmen & neu laden
-          </button>
-          
-          <button
-            onClick={openMainConfigurator}
-            className="w-full bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm"
-          >
-            Erweiterte Konfiguration öffnen
+            Webseite anzeigen
           </button>
         </div>
       </div>
