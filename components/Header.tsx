@@ -409,7 +409,7 @@ export default function Header({ content }: HeaderProps) {
                         onMouseLeave={() => setDropdownOpen(null)}
                       >
                     <button 
-                      className={`${headerStyles.textColor} hover:opacity-80 font-medium transition-colors duration-200 flex items-center`}
+                      className={`${headerStyles.textColor} hover:opacity-80 font-medium transition-colors duration-200 flex items-center uppercase`}
                         >
                           {item.label}
                           <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -426,7 +426,7 @@ export default function Header({ content }: HeaderProps) {
                               <Link
                                 key={index}
                                 href={dropdownItem.href}
-                            className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
+                            className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg uppercase"
                               >
                             {dropdownItem.label}
                               </Link>
@@ -438,7 +438,7 @@ export default function Header({ content }: HeaderProps) {
                       <Link
                     href={item.href || '#'}
                     onClick={item.isClickable && item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.id) : undefined}
-                    className={`${headerStyles.textColor} hover:opacity-80 font-medium transition-colors duration-200 ${
+                    className={`${headerStyles.textColor} hover:opacity-80 font-medium transition-colors duration-200 uppercase ${
                       activeSection === item.id && siteMode === 'onepage' ? 'opacity-80' : ''
                         }`}
                       >
@@ -451,7 +451,7 @@ export default function Header({ content }: HeaderProps) {
             <Link
               href="#kontakt"
               onClick={(e) => handleSmoothScroll(e, 'kontakt')}
-              className={`px-6 py-2 ${headerStyles.ctaStyle}`}
+              className={`px-6 py-2 uppercase ${headerStyles.ctaStyle}`}
               style={{ 
                 borderRadius: 'var(--radius-button)',
                 ...headerStyles.ctaStyleDynamic
@@ -507,7 +507,7 @@ export default function Header({ content }: HeaderProps) {
                       >
                         IL
                       </div>
-                      <span className="text-lg font-semibold text-gray-900 dark:text-white logo-font">
+                      <span className="text-lg font-semibold text-gray-900 dark:text-white logo-font uppercase">
                         Ihr Logo
                       </span>
                     </div>
@@ -533,7 +533,7 @@ export default function Header({ content }: HeaderProps) {
                           <div>
                             <button
                               onClick={() => toggleMobileDropdown(item.id)}
-                              className="w-full flex items-center justify-between py-4 text-gray-900 dark:text-white font-medium text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 rounded-lg px-3"
+                              className="w-full flex items-center justify-between py-4 text-gray-900 dark:text-white font-medium text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 rounded-lg px-3 uppercase"
                             >
                               {item.label}
                               <svg 
@@ -554,7 +554,7 @@ export default function Header({ content }: HeaderProps) {
                                   <Link
                                     key={subIndex}
                                     href={dropdownItem.href}
-                                    className="block py-3 px-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 rounded-lg"
+                                    className="block py-3 px-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 rounded-lg uppercase"
                                     onClick={closeMobileMenu}
                                   >
                                     {dropdownItem.label}
@@ -570,7 +570,7 @@ export default function Header({ content }: HeaderProps) {
                               handleSmoothScroll(e, item.id)
                               closeMobileMenu()
                             } : closeMobileMenu}
-                            className="block py-4 px-3 text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 rounded-lg"
+                            className="block py-4 px-3 text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 rounded-lg uppercase"
                           >
                             {item.label}
                           </Link>
@@ -587,7 +587,7 @@ export default function Header({ content }: HeaderProps) {
                         handleSmoothScroll(e, 'kontakt')
                         closeMobileMenu()
                       }}
-                      className="w-full flex items-center justify-center px-6 py-4 text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      className="w-full flex items-center justify-center px-6 py-4 text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg uppercase"
                       style={{ 
                         borderRadius: 'var(--radius-button)',
                         backgroundColor: 'var(--color-secondary)'
@@ -620,7 +620,7 @@ export default function Header({ content }: HeaderProps) {
                         <div>
                           <button
                             onClick={() => toggleMobileDropdown(item.id)}
-                            className="w-full flex items-center justify-between py-3 text-white font-medium text-left"
+                            className="w-full flex items-center justify-between py-3 text-white font-medium text-left uppercase"
                     >
                       {item.label}
                             <svg 
@@ -641,7 +641,7 @@ export default function Header({ content }: HeaderProps) {
                           <Link
                             key={index}
                             href={dropdownItem.href}
-                                  className="block py-2 text-white/80 hover:text-white transition-colors duration-200"
+                                  className="block py-2 text-white/80 hover:text-white transition-colors duration-200 uppercase"
                             onClick={closeMobileMenu}
                           >
                                   {dropdownItem.label}
@@ -657,7 +657,7 @@ export default function Header({ content }: HeaderProps) {
                             handleSmoothScroll(e, item.id)
                             closeMobileMenu()
                           } : closeMobileMenu}
-                          className="block py-3 text-white hover:text-white/80 font-medium transition-colors duration-200"
+                          className="block py-3 text-white hover:text-white/80 font-medium transition-colors duration-200 uppercase"
                         >
                           {item.label}
                         </Link>
@@ -671,7 +671,7 @@ export default function Header({ content }: HeaderProps) {
                       handleSmoothScroll(e, 'kontakt')
                       closeMobileMenu()
                     }}
-                    className="block mt-4 px-6 py-3 text-center font-medium transition-all duration-200"
+                    className="block mt-4 px-6 py-3 text-center font-medium transition-all duration-200 uppercase"
                     style={{ 
                       borderRadius: 'var(--radius-button)',
                       ...headerStyles.mobileCtaStyle
