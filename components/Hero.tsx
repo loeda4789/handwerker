@@ -72,6 +72,26 @@ const formatHeroText = (tagline: string, cityName: string) => {
 function HeroSingle({ content }: HeroProps) {
   const cityName = extractCityFromAddress(content.contact.address)
   
+  // Design-Style aus localStorage abrufen für Design-spezifische Styles
+  const [designStyle, setDesignStyle] = useState<string>('angular')
+  
+  useEffect(() => {
+    const savedDesignStyle = localStorage.getItem('design-style')
+    if (savedDesignStyle) {
+      setDesignStyle(savedDesignStyle)
+    }
+    
+    const handleDesignStyleChange = () => {
+      const newDesignStyle = localStorage.getItem('design-style')
+      if (newDesignStyle) {
+        setDesignStyle(newDesignStyle)
+      }
+    }
+    
+    window.addEventListener('storage', handleDesignStyleChange)
+    return () => window.removeEventListener('storage', handleDesignStyleChange)
+  }, [])
+  
   return (
     <>
       <Head>
@@ -134,7 +154,9 @@ function HeroSingle({ content }: HeroProps) {
               
               <p 
                 className="text-lg md:text-xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
-                style={{ color: 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' }}
+                style={{ 
+                  color: designStyle === 'modern' ? '#ffffff' : 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' 
+                }}
               >
                 {formatHeroText(content.company.tagline, cityName)}
               </p>
@@ -281,6 +303,7 @@ function HeroSlider({ content }: HeroProps) {
               
               <p 
                 className="text-lg md:text-xl mb-8"
+                style={{ color: '#ffffff' }}
                 key={`subtitle-${currentSlide}`}
               >
                 {slides[currentSlide].subtitle}
@@ -389,7 +412,7 @@ function HeroVideo({ content }: HeroProps) {
                   {formatHeroTitle(content.company.tagline)}
                 </h1>
                 
-                <p className="text-xl md:text-2xl mb-8 drop-shadow-lg">
+                <p className="text-xl md:text-2xl mb-8 drop-shadow-lg" style={{ color: '#ffffff' }}>
                   {formatHeroText(content.company.tagline, cityName)}
                 </p>
                 
