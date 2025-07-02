@@ -137,7 +137,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-auto">
+      <div className="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <div>
@@ -169,7 +169,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
                 <button
                   key={key}
                   onClick={() => applyPreset(key)}
-                  className="p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:border-primary transition-colors text-left"
+                  className="p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900 transition-colors text-left"
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <div 
@@ -232,7 +232,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
                         type="text"
                         value={colorValue.toUpperCase()}
                         onChange={(e) => handleColorChange(colorKey as keyof SimpleColors, e.target.value)}
-                        className="w-full px-3 py-1 text-sm border border-gray-200 dark:border-gray-600 rounded bg-white dark:bg-gray-700"
+                        className="w-full px-3 py-1 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"
                         placeholder="#000000"
                       />
                     </div>
@@ -249,8 +249,8 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
                 onClick={() => setShowPreview(!showPreview)}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   showPreview 
-                    ? 'bg-primary text-white' 
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                    ? 'bg-orange-500 hover:bg-orange-600 text-white' 
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-orange-100 dark:hover:bg-orange-800'
                 }`}
               >
                 {showPreview ? '👁️ Vorschau AN' : '👁️ Vorschau AUS'}

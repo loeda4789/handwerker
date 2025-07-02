@@ -40,8 +40,7 @@ export default function ConfiguratorButton({ onClick }: ConfiguratorButtonProps)
       <div className="relative">
         {/* Tooltip */}
         {showTooltip && (
-          <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-3 px-3 py-2 bg-gray-900 text-white text-sm whitespace-nowrap shadow-lg"
-            style={{ borderRadius: 'var(--radius-card)' }}>
+          <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-3 px-3 py-2 bg-gray-900 text-white text-sm whitespace-nowrap rounded-lg shadow-lg">
             Website konfigurieren
           </div>
         )}
@@ -49,8 +48,7 @@ export default function ConfiguratorButton({ onClick }: ConfiguratorButtonProps)
         {/* Button */}
         <button
           onClick={handleInteraction}
-          className="bg-blue-600 hover:bg-blue-700 text-white p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 group"
-          style={{ borderRadius: 'var(--radius-button)' }}
+          className="bg-orange-500 hover:bg-orange-600 text-white p-3 md:p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
           onMouseEnter={() => !isMobile && setShowTooltip(true)}
           onMouseLeave={() => !isMobile && setShowTooltip(false)}
           aria-label="Website Konfigurator öffnen"

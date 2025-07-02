@@ -154,8 +154,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center">
-      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[500px] h-[600px] flex flex-col"
-        style={{ borderRadius: 'var(--radius-modal)' }}>
+      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[500px] h-[600px] flex flex-col rounded-lg">
         
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
@@ -164,8 +163,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           </h3>
           <button
             onClick={onClose}
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
-            style={{ borderRadius: 'var(--radius-button)' }}
+            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
           >
             <MdClose className="w-5 h-5" />
           </button>
@@ -243,32 +241,29 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   <button
                     key={feature.key}
                     onClick={() => toggleFeature(feature.key as keyof typeof features)}
-                    className={`group w-full p-3 border-2 transition-all duration-300 text-left transform hover:scale-105 ${
+                    className={`group w-full p-3 border-2 transition-all duration-300 text-left transform hover:scale-105 rounded-lg ${
                       features[feature.key as keyof typeof features]
                         ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-lg scale-105'
                         : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-md'
                     }`}
-                    style={{ borderRadius: 'var(--radius-card)' }}
                   >
                     <div className="flex items-center space-x-3">
-                      <div className={`w-10 h-10 flex items-center justify-center shadow-sm ${
+                      <div className={`w-10 h-10 flex items-center justify-center shadow-sm rounded-lg ${
                         features[feature.key as keyof typeof features]
                           ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
                           : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
-                      }`}
-                        style={{ borderRadius: 'var(--radius-button)' }}>
+                      }`}>
                         <feature.Icon className="w-5 h-5" />
                       </div>
                       <div className="flex-1">
                         <div className="font-semibold text-gray-900 dark:text-white text-sm">{feature.name}</div>
                         <div className="text-xs text-gray-600 dark:text-gray-400">{feature.desc}</div>
                       </div>
-                      <div className={`px-3 py-1 text-xs font-medium transition-all duration-200 ${
+                      <div className={`px-3 py-1 text-xs font-medium transition-all duration-200 rounded-lg ${
                         features[feature.key as keyof typeof features]
                           ? 'bg-orange-500 text-white'
                           : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
-                      }`}
-                        style={{ borderRadius: 'var(--radius-button)' }}>
+                      }`}>
                         {features[feature.key as keyof typeof features] ? 'AN' : 'AUS'}
                       </div>
                     </div>
@@ -310,20 +305,18 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   <button
                     key={style.key}
                     onClick={() => changeDesignStyle(style.key as any)}
-                    className={`group p-4 border-2 transition-all duration-300 text-left transform hover:scale-105 ${
+                    className={`group p-4 border-2 transition-all duration-300 text-left transform hover:scale-105 rounded-lg ${
                       currentDesignStyle === style.key
                         ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
                         : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                     }`}
-                    style={{ borderRadius: 'var(--radius-card)' }}
                   >
                     <div className="flex items-center space-x-4">
-                      <div className={`w-12 h-12 flex items-center justify-center shadow-md ${
+                      <div className={`w-12 h-12 flex items-center justify-center shadow-md rounded-lg ${
                         currentDesignStyle === style.key 
                           ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
                           : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
-                      }`}
-                        style={{ borderRadius: 'var(--radius-card)' }}>
+                      }`}>
                         <style.Icon className="w-6 h-6" />
                       </div>
                       <div className="flex-1">
@@ -364,16 +357,14 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   <button
                     key={layout.key}
                     onClick={() => changeSiteMode(layout.key as any)}
-                    className={`group p-4 border-2 transition-all duration-300 text-left transform hover:scale-105 ${
+                    className={`group p-4 border-2 transition-all duration-300 text-left transform hover:scale-105 rounded-lg ${
                       currentSiteMode === layout.key
                         ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
                         : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                     }`}
-                    style={{ borderRadius: 'var(--radius-card)' }}
                   >
                     <div className="flex items-center space-x-4">
-                      <div className={`w-12 h-12 flex items-center justify-center shadow-md ${layout.color}`}
-                        style={{ borderRadius: 'var(--radius-card)' }}>
+                      <div className={`w-12 h-12 flex items-center justify-center shadow-md rounded-lg ${layout.color}`}>
                         <layout.Icon className="w-6 h-6" />
                       </div>
                       <div className="flex-1">
@@ -428,21 +419,19 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   <button
                     key={color.key}
                     onClick={() => changeColorScheme(color.key as any)}
-                    className={`group p-3 border-2 transition-all duration-500 text-center transform hover:scale-105 ${
+                    className={`group p-3 border-2 transition-all duration-500 text-center transform hover:scale-105 rounded-lg ${
                       currentColorScheme === color.key
                         ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
                         : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                     }`}
-                    style={{ borderRadius: 'var(--radius-card)' }}
                   >
                     {/* 2x2 Color Grid - größer und ohne Texte */}
-                    <div className="w-16 h-16 mx-auto overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 grid grid-cols-2 gap-1 p-1 bg-white dark:bg-gray-800"
-                      style={{ borderRadius: 'var(--radius-card)' }}>
+                    <div className="w-16 h-16 mx-auto overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 grid grid-cols-2 gap-1 p-1 bg-white dark:bg-gray-800 rounded-lg">
                       {color.colors.map((colorHex, index) => (
                         <div 
                           key={index}
-                          className="transition-transform duration-300 group-hover:scale-110"
-                          style={{ backgroundColor: colorHex, borderRadius: 'var(--radius-sm)' }}
+                          className="transition-transform duration-300 group-hover:scale-110 rounded-sm"
+                          style={{ backgroundColor: colorHex }}
                         ></div>
                       ))}
                     </div>
@@ -452,33 +441,24 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               </div>
             </div>
           )}
-
+          
         </div>
 
-        {/* Footer with Update Button */}
-        <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+        {/* Footer Buttons */}
+        <div className="p-6 border-t border-gray-200 dark:border-gray-700 space-y-3">
           <button
             onClick={applyChangesAndReload}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 text-white font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-3"
-            style={{ 
-              borderRadius: 'var(--radius-button)',
-              backgroundColor: 'var(--color-secondary)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--color-primary)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
-            }}
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 shadow-lg hover:shadow-xl"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-            </svg>
-            <span>Webseite aktualisieren</span>
+            Änderungen übernehmen & neu laden
           </button>
-          <p className="text-xs text-gray-600 dark:text-gray-400 text-center">
-            💡 Änderungen werden erst beim Klick übernommen
-          </p>
+          
+          <button
+            onClick={openMainConfigurator}
+            className="w-full bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm"
+          >
+            Erweiterte Konfiguration öffnen
+          </button>
         </div>
       </div>
     </div>
