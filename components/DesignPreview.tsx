@@ -325,16 +325,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           {/* Paket Mode */}
           {configMode === 'paket' && (
             <div className="space-y-4">
-              <div className="text-center bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
-                <h4 className="text-lg font-bold text-orange-800 dark:text-orange-200 mb-2">⚡ Komplett-Pakete</h4>
-                <p className="text-sm text-orange-700 dark:text-orange-300 mb-1">
-                  <strong>Ein Klick = Fertige Website!</strong>
-                </p>
-                <p className="text-xs text-orange-600 dark:text-orange-400">
-                  Farben • Design • Features werden automatisch eingestellt
-                </p>
-              </div>
-              
               <div className="space-y-3">
                 {[
                   {
