@@ -71,34 +71,51 @@ export default function Header({ content }: HeaderProps) {
       return
     }
 
-    let lastScroll = 0
-    let ticking = false
+    let lastScrollY = window.scrollY
+    let isScrollingDown = false
 
     const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY
-          
-          // Header immer sichtbar wenn ganz oben
-          if (currentScrollY <= 50) {
-            setHeaderVisible(true)
-          } else if (currentScrollY > lastScroll && currentScrollY > 100) {
-            // Nach unten scrollen - Header verstecken
-            setHeaderVisible(false)
-          } else if (currentScrollY < lastScroll) {
-            // Nach oben scrollen - Header zeigen  
-            setHeaderVisible(true)
-          }
-          
-          lastScroll = currentScrollY
-          ticking = false
-        })
-        ticking = true
+      const currentScrollY = window.scrollY
+      
+      console.log('Current:', currentScrollY, 'Last:', lastScrollY, 'Direction:', currentScrollY > lastScrollY ? 'DOWN' : 'UP')
+      
+      // Bei ganz oben: immer zeigen
+      if (currentScrollY <= 10) {
+        console.log('-> TOP: showing header')
+        setHeaderVisible(true)
+      } 
+      // Runterscrollen und weit genug unten
+      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        console.log('-> SCROLLING DOWN: hiding header')
+        setHeaderVisible(false)
+        isScrollingDown = true
+      } 
+      // Hochscrollen (egal von wo)
+      else if (currentScrollY < lastScrollY) {
+        console.log('-> SCROLLING UP: showing header')
+        setHeaderVisible(true)
+        isScrollingDown = false
+      }
+      
+      lastScrollY = currentScrollY
+    }
+
+    // Throttle mit setTimeout statt requestAnimationFrame
+    let timeoutId: NodeJS.Timeout | null = null
+    const throttledScroll = () => {
+      if (timeoutId === null) {
+        timeoutId = setTimeout(() => {
+          handleScroll()
+          timeoutId = null
+        }, 10)
       }
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', throttledScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', throttledScroll)
+      if (timeoutId) clearTimeout(timeoutId)
+    }
   }, [designStyle])
 
   // Active section detection (nur für One-Page Modus)
