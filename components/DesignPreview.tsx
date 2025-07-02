@@ -259,28 +259,66 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           </button>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-          {[
-            { key: 'pakete', label: 'Pakete', Icon: MdFlashOn },
-            { key: 'design', label: 'Design', Icon: MdBrush },
-            { key: 'color', label: 'Farben', Icon: MdPalette },
-            { key: 'features', label: 'Features', Icon: MdStar },
-            { key: 'layout', label: 'Umfang', Icon: MdDescription }
-          ].map((tab) => (
+        {/* Tab Navigation with clear separation */}
+        <div className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+          <div className="flex">
+            {/* Pakete Tab - hervorgehoben */}
             <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className={`flex-1 flex flex-col items-center gap-1 px-1 py-3 text-xs font-medium transition-all duration-200 ${
-                activeTab === tab.key
+              onClick={() => setActiveTab('pakete')}
+              className={`flex-1 flex flex-col items-center gap-1 px-3 py-3 text-xs font-medium transition-all duration-200 border-r border-gray-300 dark:border-gray-600 ${
+                activeTab === 'pakete'
                   ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 border-b-2 border-orange-500'
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
               }`}
             >
-              <tab.Icon className="w-4 h-4" />
-              <span>{tab.label}</span>
+              <MdFlashOn className="w-4 h-4" />
+              <span>Pakete</span>
+              <span className="text-[10px] text-orange-500 font-semibold">1-Klick</span>
             </button>
-          ))}
+            
+            {/* ODER Trenner */}
+            <div className="flex items-center px-3 bg-gray-100 dark:bg-gray-700">
+              <span className="text-xs text-gray-500 dark:text-gray-400 font-semibold">ODER</span>
+            </div>
+            
+            {/* Manuelle Einstellungen */}
+            <div className="flex flex-1">
+              {[
+                { key: 'design', label: 'Design', Icon: MdBrush },
+                { key: 'color', label: 'Farben', Icon: MdPalette },
+                { key: 'features', label: 'Features', Icon: MdStar },
+                { key: 'layout', label: 'Umfang', Icon: MdDescription }
+              ].map((tab, index) => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`flex-1 flex flex-col items-center gap-1 px-1 py-3 text-xs font-medium transition-all duration-200 ${
+                    index === 0 ? 'border-l border-gray-300 dark:border-gray-600' : ''
+                  } ${
+                    activeTab === tab.key
+                      ? 'text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-700 border-b-2 border-blue-500'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                  }`}
+                >
+                  <tab.Icon className="w-4 h-4" />
+                  <span>{tab.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Explanation bar */}
+          <div className="px-4 py-2 bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+            {activeTab === 'pakete' ? (
+              <p className="text-xs text-orange-600 dark:text-orange-400 text-center">
+                ⚡ Schnell-Konfiguration: Wählen Sie ein Paket für sofortige Kompletteinstellung
+              </p>
+            ) : (
+              <p className="text-xs text-blue-600 dark:text-blue-400 text-center">
+                🔧 Individuelle Anpassung: Stellen Sie Design, Farben und Features einzeln ein
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Content */}
@@ -289,8 +327,15 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           {/* Pakete Tab */}
           {activeTab === 'pakete' && (
             <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-4">Vorkonfigurierte Pakete</h4>
-              <p className="text-xs text-gray-600 dark:text-gray-400 mb-6">Wählen Sie einfach 1, 2 oder 3 für eine komplette Konfiguration</p>
+              <div className="text-center bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
+                <h4 className="text-lg font-bold text-orange-800 dark:text-orange-200 mb-2">⚡ Komplett-Pakete</h4>
+                <p className="text-sm text-orange-700 dark:text-orange-300 mb-1">
+                  <strong>Ein Klick = Fertige Website!</strong>
+                </p>
+                <p className="text-xs text-orange-600 dark:text-orange-400">
+                  Farben • Design • Features werden automatisch eingestellt
+                </p>
+              </div>
               
               <div className="space-y-3">
                 {[
@@ -322,8 +367,13 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   <button
                     key={pkg.key}
                     onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
-                    className="group w-full p-4 border-2 border-gray-200 dark:border-gray-600 hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300 text-left transform hover:scale-105 rounded-lg"
+                    className="group w-full p-4 border-2 border-orange-200 dark:border-orange-700 hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300 text-left transform hover:scale-105 rounded-lg relative"
                   >
+                    {/* "KOMPLETT" Badge */}
+                    <div className="absolute top-2 right-2 bg-orange-500 text-white text-[10px] px-2 py-1 rounded-full font-bold">
+                      KOMPLETT
+                    </div>
+                    
                     <div className="flex items-center space-x-4">
                       <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-lg flex items-center justify-center">
                         <div className="text-center">
@@ -352,7 +402,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                         {/* Features */}
                         <div className="flex gap-2">
                           {pkg.features.map((feature, index) => (
-                            <span key={index} className="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-600 dark:text-gray-300">
+                            <span key={index} className="text-xs bg-orange-100 dark:bg-orange-700 px-2 py-1 rounded text-orange-700 dark:text-orange-300 font-medium">
                               {feature}
                             </span>
                           ))}
@@ -361,6 +411,12 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     </div>
                   </button>
                 ))}
+              </div>
+              
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                <p className="text-xs text-blue-700 dark:text-blue-300">
+                  💡 <strong>Tipp:</strong> Nach Paket-Auswahl können Sie trotzdem noch einzelne Einstellungen in den anderen Tabs anpassen
+                </p>
               </div>
             </div>
           )}
