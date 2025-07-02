@@ -148,8 +148,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         features: {
           promoBanner: false,
           contactBar: false,
-          notdienstAlert: true,
-          whatsappWidget: false,
+          notdienstAlert: false,
+          whatsappWidget: true,
           callbackPopup: false,
           speedDial: false
         }
@@ -350,9 +350,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   {
                     key: '3',
                     name: 'Modern',
-                    desc: 'Nature-Farben • Modernes Design • Notdienst',
+                    desc: 'Nature-Farben • Modernes Design • WhatsApp',
                     colors: ['#000000', '#BCD7B6', '#A8C99A', '#F5F5F5'],
-                    features: ['🚨 Notdienst Alert'],
+                    features: ['💬 WhatsApp Chat'],
                     icon: '🚀'
                   }
                 ].map((pkg) => (
