@@ -393,36 +393,19 @@ export default function HomePage() {
             <Services content={content} />
             </SectionWrapper>
             
-            {/* Neue Rückruf-Sektion */}
             <SectionWrapper index={3} designStyle={designStyle}>
-              <section className="py-16 lg:py-20">
-                <div className="container mx-auto px-4">
-                  <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                      Kostenlose Beratung
-                    </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                      Sie haben Fragen zu unserem Service? Wir rufen Sie gerne zurück und beraten Sie unverbindlich.
-                    </p>
-                  </div>
-                  <CallbackRequest className="mt-8" />
-                </div>
-              </section>
-            </SectionWrapper>
-            
-            <SectionWrapper index={4} designStyle={designStyle}>
             <BeforeAfter content={content} />
             </SectionWrapper>
             
-            <SectionWrapper index={5} designStyle={designStyle}>
+            <SectionWrapper index={4} designStyle={designStyle}>
             <Testimonials content={content} />
             </SectionWrapper>
             
-            <SectionWrapper index={6} designStyle={designStyle}>
+            <SectionWrapper index={5} designStyle={designStyle}>
             <ProjectProcess content={content} />
             </SectionWrapper>
             
-            <SectionWrapper index={7} designStyle={designStyle}>
+            <SectionWrapper index={6} designStyle={designStyle}>
             <Contact content={content} />
             </SectionWrapper>
           </>
@@ -441,25 +424,8 @@ export default function HomePage() {
             
             <ServicesPreview />
             
-            {/* Rückruf-Sektion auch für Multipage */}
-            <SectionWrapper index={2} designStyle={designStyle}>
-              <section className="py-16 lg:py-20">
-                <div className="container mx-auto px-4">
-                  <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                      Kostenlose Beratung
-                    </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                      Sie haben Fragen zu unserem Service? Wir rufen Sie gerne zurück und beraten Sie unverbindlich.
-                    </p>
-                  </div>
-                  <CallbackRequest className="mt-8" />
-                </div>
-              </section>
-            </SectionWrapper>
-            
             {/* Multi-Page Demo Section */}
-            <SectionWrapper index={3} designStyle={designStyle}>
+            <SectionWrapper index={2} designStyle={designStyle}>
               <section className="py-16">
               <div className="container mx-auto px-4 text-center">
                 <div className="max-w-3xl mx-auto">
@@ -490,6 +456,7 @@ export default function HomePage() {
         {/* Marketing Features - Floating */}
         <WhatsAppWidget isEnabled={features.whatsappWidget} />
         <CallbackPopup isEnabled={features.callbackPopup} />
+        <CallbackRequest isEnabled={true} />
         <PromoBanner isEnabled={features.promoBanner} />
         
         {/* Mobile Speed Dial - nur wenn aktiviert */}
@@ -877,6 +844,7 @@ export default function HomePage() {
                                   </svg>
                                 )
                               },
+
                               { 
                                 key: 'speedDial', 
                                 name: 'Speed Dial Buttons', 
