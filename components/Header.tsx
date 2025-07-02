@@ -77,22 +77,17 @@ export default function Header({ content }: HeaderProps) {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       
-      console.log('Current:', currentScrollY, 'Last:', lastScrollY, 'Direction:', currentScrollY > lastScrollY ? 'DOWN' : 'UP')
-      
       // Bei ganz oben: immer zeigen
       if (currentScrollY <= 10) {
-        console.log('-> TOP: showing header')
         setHeaderVisible(true)
       } 
       // Runterscrollen und weit genug unten
       else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        console.log('-> SCROLLING DOWN: hiding header')
         setHeaderVisible(false)
         isScrollingDown = true
       } 
       // Hochscrollen (egal von wo)
       else if (currentScrollY < lastScrollY) {
-        console.log('-> SCROLLING UP: showing header')
         setHeaderVisible(true)
         isScrollingDown = false
       }
@@ -231,8 +226,9 @@ export default function Header({ content }: HeaderProps) {
     const getTransformStyle = () => {
       if (designStyle === 'modern') {
         // Modern braucht sowohl X- als auch Y-Transform
+        // Für modern brauchen wir mehr als -100% wegen top-4 positioning
         const translateX = '-50%' // Zentrierung
-        const translateY = headerVisible ? '0' : '-100%' // Hide-Verhalten
+        const translateY = headerVisible ? '0' : '-120%' // Hide-Verhalten (mehr wegen top-4)
         return {
           transform: `translateX(${translateX}) translateY(${translateY})`,
           transition: 'transform 0.3s ease-in-out'
