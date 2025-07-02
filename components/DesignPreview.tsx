@@ -413,7 +413,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               
               <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
                 <p className="text-xs text-blue-700 dark:text-blue-300">
-                  💡 <strong>Tipp:</strong> Nach Paket-Auswahl können Sie auf "Individuell" wechseln für weitere Anpassungen
+                  💡 <strong>Tipp:</strong> Nach Paket-Auswahl können Sie auf &quot;Individuell&quot; wechseln für weitere Anpassungen
                 </p>
               </div>
             </div>

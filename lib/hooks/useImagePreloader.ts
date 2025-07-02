@@ -61,7 +61,7 @@ export function useImagePreloader(imageSources: string[], options: PreloadOption
     if (imageSources.length > 0) {
       preloadImages()
     }
-  }, [preloadImages])
+  }, [preloadImages, imageSources.length])
 
   const isImageLoaded = useCallback((src: string) => loadedImages.has(src), [loadedImages])
   const isImageFailed = useCallback((src: string) => failedImages.has(src), [failedImages])
