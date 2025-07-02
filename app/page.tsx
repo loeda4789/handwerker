@@ -276,6 +276,11 @@ export default function HomePage() {
       // Color scheme für Quick-Edit speichern
       localStorage.setItem('selected-color-scheme', config.colorScheme)
       
+      // Features speichern
+      Object.entries(features).forEach(([key, value]) => {
+        localStorage.setItem(`feature-${key}`, value.toString())
+      })
+      
       // Mark user as having configured the site
       localStorage.setItem('handwerker-config-saved', 'true')
       
