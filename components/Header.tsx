@@ -72,27 +72,34 @@ export default function Header({ content }: HeaderProps) {
     }
 
     let lastScroll = 0
+    let ticking = false
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      
-      // Header immer sichtbar wenn ganz oben
-      if (currentScrollY < 10) {
-        setHeaderVisible(true)
-        lastScroll = currentScrollY
-        return
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY
+          
+          console.log('Scroll:', currentScrollY, 'Last:', lastScroll, 'Direction:', currentScrollY > lastScroll ? 'down' : 'up')
+          
+          // Header immer sichtbar wenn ganz oben
+          if (currentScrollY <= 50) {
+            console.log('Top of page - showing header')
+            setHeaderVisible(true)
+          } else if (currentScrollY > lastScroll && currentScrollY > 100) {
+            // Nach unten scrollen - Header verstecken
+            console.log('Scrolling down - hiding header')
+            setHeaderVisible(false)
+          } else if (currentScrollY < lastScroll) {
+            // Nach oben scrollen - Header zeigen  
+            console.log('Scrolling up - showing header')
+            setHeaderVisible(true)
+          }
+          
+          lastScroll = currentScrollY
+          ticking = false
+        })
+        ticking = true
       }
-      
-      // Richtung bestimmen
-      if (currentScrollY > lastScroll && currentScrollY > 80) {
-        // Nach unten scrollen - Header verstecken
-        setHeaderVisible(false)
-      } else if (currentScrollY < lastScroll) {
-        // Nach oben scrollen - Header zeigen  
-        setHeaderVisible(true)
-      }
-      
-      lastScroll = currentScrollY
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -208,13 +215,22 @@ export default function Header({ content }: HeaderProps) {
 
   // Header-Stile basierend auf Design-Stil
   const getHeaderStyles = () => {
-    const baseContainer = 'sticky top-0 z-50 w-full transition-transform duration-300 ease-in-out'
-    const containerWithHide = headerVisible ? 'translate-y-0' : '-translate-y-full'
+    // Transform direkt als inline style für zuverlässigere Kontrolle
+    const getTransformStyle = () => {
+      if (designStyle === 'modern' || designStyle === 'rounded') {
+        return {
+          transform: headerVisible ? 'translateY(0)' : 'translateY(-100%)',
+          transition: 'transform 0.3s ease-in-out'
+        }
+      }
+      return {}
+    }
     
     if (designStyle === 'angular') {
       // Klassisch: Eckige Kanten, dunkler Hintergrund, kein Hide-Verhalten
       return {
         container: 'sticky top-0 z-50 w-full',
+        transformStyle: {},
         header: `transition-all duration-300 shadow-lg border-b`,
         headerStyle: {
           backgroundColor: 'var(--color-primary)', // Dunkler Hintergrund
@@ -247,7 +263,8 @@ export default function Header({ content }: HeaderProps) {
     } else if (designStyle === 'rounded') {
       // Freundlich: Weiß aber leicht durchsichtig, runde Buttons
       return {
-        container: `${baseContainer} ${containerWithHide}`,
+        container: 'sticky top-0 z-50 w-full',
+        transformStyle: getTransformStyle(),
         header: `transition-all duration-300 backdrop-blur-md shadow-lg border-b border-white/20 ${
           isScrolled 
             ? 'bg-white/90 dark:bg-gray-900/90' 
@@ -272,7 +289,8 @@ export default function Header({ content }: HeaderProps) {
     } else if (designStyle === 'modern') {
       // Modern: Floating header mit Abstand und begrenzter Breite
       return {
-        container: `fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-5xl px-4 transition-transform duration-300 ease-in-out ${containerWithHide}`,
+        container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-5xl px-4',
+        transformStyle: getTransformStyle(),
         header: `transition-all duration-300 backdrop-blur-xl shadow-2xl border border-white/10 ${
           isScrolled 
             ? 'bg-black/25 dark:bg-gray-900/35' 
@@ -298,6 +316,7 @@ export default function Header({ content }: HeaderProps) {
       // Fallback: Standard
       return {
         container: 'sticky top-0 z-50 w-full',
+        transformStyle: {},
         header: `transition-all duration-300 ${
           isScrolled 
             ? 'bg-white border-b border-border shadow-lg dark:bg-gray-900 dark:border-gray-700' 
@@ -341,7 +360,10 @@ export default function Header({ content }: HeaderProps) {
   }
 
   return (
-    <div className={headerStyles.container}>
+    <div 
+      className={headerStyles.container}
+      style={headerStyles.transformStyle}
+    >
       <header 
         className={headerStyles.header}
         style={{ 
