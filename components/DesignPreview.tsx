@@ -264,15 +264,15 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             {/* Paket Button */}
             <button
               onClick={() => setConfigMode('paket')}
-              className={`flex-1 flex flex-col items-center gap-2 px-6 py-4 text-sm font-medium transition-all duration-200 ${
+              className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-sm font-medium transition-all duration-200 ${
                 configMode === 'paket'
-                  ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 border-b-3 border-orange-500 shadow-sm'
+                  ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 border-b-2 border-orange-500'
                   : 'text-gray-600 dark:text-gray-400 hover:text-orange-500 hover:bg-gray-50 dark:hover:bg-gray-800'
               }`}
             >
-              <MdFlashOn className="w-6 h-6" />
+              <MdFlashOn className="w-5 h-5" />
               <span className="font-semibold">Paket</span>
-              <span className="text-xs text-orange-500">Komplett-Lösung</span>
+              <span className="text-xs">Komplett-Lösung</span>
             </button>
             
             {/* Individuell Button */}
@@ -281,21 +281,21 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 setConfigMode('individuell')
                 if (activeTab === 'pakete') setActiveTab('design')
               }}
-              className={`flex-1 flex flex-col items-center gap-2 px-6 py-4 text-sm font-medium transition-all duration-200 ${
+              className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-sm font-medium transition-all duration-200 ${
                 configMode === 'individuell'
-                  ? 'text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-700 border-b-3 border-blue-500 shadow-sm'
+                  ? 'text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-700 border-b-2 border-blue-500'
                   : 'text-gray-600 dark:text-gray-400 hover:text-blue-500 hover:bg-gray-50 dark:hover:bg-gray-800'
               }`}
             >
-              <MdBrush className="w-6 h-6" />
+              <MdBrush className="w-5 h-5" />
               <span className="font-semibold">Individuell</span>
-              <span className="text-xs text-blue-500">Anpassbar</span>
+              <span className="text-xs">Anpassbar</span>
             </button>
           </div>
           
           {/* Sub-Tabs nur für Individuell */}
           {configMode === 'individuell' && (
-            <div className="flex bg-blue-50 dark:bg-blue-900/20 border-t border-blue-200 dark:border-blue-800">
+            <div className="flex bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
               {[
                 { key: 'design', label: 'Design', Icon: MdBrush },
                 { key: 'color', label: 'Farben', Icon: MdPalette },
@@ -305,10 +305,10 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`flex-1 flex flex-col items-center gap-1 px-2 py-3 text-xs font-medium transition-all duration-200 ${
+                  className={`flex-1 flex flex-col items-center gap-1 px-2 py-2 text-xs font-medium transition-all duration-200 ${
                     activeTab === tab.key
-                      ? 'text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-800/50'
-                      : 'text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:bg-blue-100 dark:hover:bg-blue-800/30'
+                      ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 border-b-2 border-orange-500'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                   }`}
                 >
                   <tab.Icon className="w-4 h-4" />
