@@ -64,9 +64,9 @@ export default function Header({ content }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Hide-on-Scroll Verhalten nur für modern und freundlich
+  // Hide-on-Scroll Verhalten nur für freundlich
   useEffect(() => {
-    if (designStyle !== 'modern' && designStyle !== 'rounded') {
+    if (designStyle !== 'rounded') {
       setHeaderVisible(true)
       return
     }
@@ -225,12 +225,9 @@ export default function Header({ content }: HeaderProps) {
     // Transform direkt als inline style für zuverlässigere Kontrolle
     const getTransformStyle = () => {
       if (designStyle === 'modern') {
-        // Modern braucht sowohl X- als auch Y-Transform
-        // Für modern brauchen wir mehr als -100% wegen top-4 positioning
-        const translateX = '-50%' // Zentrierung
-        const translateY = headerVisible ? '0' : '-120%' // Hide-Verhalten (mehr wegen top-4)
+        // Modern: Nur Zentrierung, kein Hide-Verhalten
         return {
-          transform: `translateX(${translateX}) translateY(${translateY})`,
+          transform: 'translateX(-50%)',
           transition: 'transform 0.3s ease-in-out'
         }
       } else if (designStyle === 'rounded') {
