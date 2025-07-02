@@ -17,6 +17,8 @@ export default function Header({ content }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null)
   const [designStyle, setDesignStyle] = useState<string>('angular')
+  const [headerVisible, setHeaderVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
   
   // Site-Mode und Design-Style aus localStorage laden
   useEffect(() => {
@@ -62,6 +64,39 @@ export default function Header({ content }: HeaderProps) {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Hide-on-Scroll Verhalten nur für modern und freundlich
+  useEffect(() => {
+    if (designStyle !== 'modern' && designStyle !== 'rounded') {
+      setHeaderVisible(true)
+      return
+    }
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      // Header immer sichtbar wenn ganz oben
+      if (currentScrollY < 10) {
+        setHeaderVisible(true)
+        setLastScrollY(currentScrollY)
+        return
+      }
+      
+      // Richtung bestimmen
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        // Nach unten scrollen - Header verstecken
+        setHeaderVisible(false)
+      } else if (currentScrollY < lastScrollY) {
+        // Nach oben scrollen - Header zeigen  
+        setHeaderVisible(true)
+      }
+      
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [designStyle, lastScrollY])
 
   // Active section detection (nur für One-Page Modus)
   useEffect(() => {
@@ -172,8 +207,11 @@ export default function Header({ content }: HeaderProps) {
 
   // Header-Stile basierend auf Design-Stil
   const getHeaderStyles = () => {
+    const baseContainer = 'sticky top-0 z-50 w-full transition-transform duration-300 ease-in-out'
+    const containerWithHide = headerVisible ? 'translate-y-0' : '-translate-y-full'
+    
     if (designStyle === 'angular') {
-      // Klassisch: Eckige Kanten, dunkler Hintergrund
+      // Klassisch: Eckige Kanten, dunkler Hintergrund, kein Hide-Verhalten
       return {
         container: 'sticky top-0 z-50 w-full',
         header: `transition-all duration-300 shadow-lg border-b`,
@@ -208,7 +246,7 @@ export default function Header({ content }: HeaderProps) {
     } else if (designStyle === 'rounded') {
       // Freundlich: Weiß aber leicht durchsichtig, runde Buttons
       return {
-        container: 'sticky top-0 z-50 w-full',
+        container: `${baseContainer} ${containerWithHide}`,
         header: `transition-all duration-300 backdrop-blur-md shadow-lg border-b border-white/20 ${
           isScrolled 
             ? 'bg-white/90 dark:bg-gray-900/90' 
@@ -233,7 +271,7 @@ export default function Header({ content }: HeaderProps) {
     } else if (designStyle === 'modern') {
       // Modern: Floating header mit Abstand und begrenzter Breite
       return {
-        container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-5xl px-4',
+        container: `fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-5xl px-4 transition-transform duration-300 ease-in-out ${containerWithHide}`,
         header: `transition-all duration-300 backdrop-blur-xl shadow-2xl border border-white/10 ${
           isScrolled 
             ? 'bg-black/25 dark:bg-gray-900/35' 
