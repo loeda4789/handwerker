@@ -116,37 +116,37 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         designStyle: 'angular' as const,
         features: {
           promoBanner: false,
-          contactBar: false,
+          contactBar: true,
           notdienstAlert: false,
           whatsappWidget: false,
-          callbackPopup: false,
-          speedDial: true
-        }
-      },
-      '2': {
-        name: 'Modern',
-        colorScheme: 'modern' as const,
-        designStyle: 'modern' as const,
-        features: {
-          promoBanner: false,
-          contactBar: false,
-          notdienstAlert: false,
-          whatsappWidget: true,
           callbackPopup: false,
           speedDial: false
         }
       },
-      '3': {
+      '2': {
         name: 'Freundlich',
         colorScheme: 'elegant' as const,
         designStyle: 'rounded' as const,
         features: {
           promoBanner: false,
           contactBar: false,
-          notdienstAlert: true,
+          notdienstAlert: false,
           whatsappWidget: false,
           callbackPopup: false,
           speedDial: true
+        }
+      },
+      '3': {
+        name: 'Modern',
+        colorScheme: 'modern' as const,
+        designStyle: 'modern' as const,
+        features: {
+          promoBanner: false,
+          contactBar: false,
+          notdienstAlert: true,
+          whatsappWidget: false,
+          callbackPopup: false,
+          speedDial: false
         }
       }
     }
@@ -167,6 +167,13 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     // Features speichern
     Object.entries(selectedPackage.features).forEach(([key, value]) => {
       localStorage.setItem(`feature-${key}`, value.toString())
+    })
+    
+    // Events dispatchen für sofortige Aktualisierung
+    Object.entries(selectedPackage.features).forEach(([key, value]) => {
+      window.dispatchEvent(new CustomEvent(`feature-${key}-changed`, { 
+        detail: { enabled: value } 
+      }))
     })
   }
 
@@ -262,26 +269,26 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   {
                     key: '1',
                     name: 'Klassisch',
-                    desc: 'Business-Farben • Eckiges Design • Speed Dial',
+                    desc: 'Business-Farben • Eckiges Design • Kontaktleiste',
                     colors: ['#000000', '#D05733', '#9A8F88', '#E5E2E0'],
-                    features: ['📞 Speed Dial Buttons'],
+                    features: ['📞 Fixe Kontaktleiste'],
                     icon: '🏢'
                   },
                   {
                     key: '2',
-                    name: 'Modern',
-                    desc: 'Tech-Farben • Modernes Design • WhatsApp',
-                    colors: ['#0F1A50', '#FD080F', '#8D8AD9', '#F5F6FF'],
-                    features: ['💬 WhatsApp Chat'],
-                    icon: '🚀'
+                    name: 'Freundlich',
+                    desc: 'Elegante-Farben • Runde Ecken • Speed Dial',
+                    colors: ['#18273A', '#987E4D', '#213044', '#F7F8FA'],
+                    features: ['📞 Speed Dial Buttons'],
+                    icon: '😊'
                   },
                   {
                     key: '3',
-                    name: 'Freundlich',
-                    desc: 'Elegante-Farben • Runde Ecken • Notdienst',
-                    colors: ['#18273A', '#987E4D', '#213044', '#F7F8FA'],
+                    name: 'Modern',
+                    desc: 'Tech-Farben • Modernes Design • Notdienst',
+                    colors: ['#0F1A50', '#FD080F', '#8D8AD9', '#F5F6FF'],
                     features: ['🚨 Notdienst Alert'],
-                    icon: '😊'
+                    icon: '🚀'
                   }
                 ].map((pkg) => (
                   <button
