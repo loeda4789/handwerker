@@ -243,7 +243,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center">
-      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[500px] h-[600px] flex flex-col rounded-lg">
+      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[600px] h-[700px] flex flex-col rounded-lg">
         
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
@@ -355,18 +355,17 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   <button
                     key={pkg.key}
                     onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
-                    className="group w-full p-4 border-2 border-orange-200 dark:border-orange-700 hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300 text-left transform hover:scale-105 rounded-lg relative"
+                    className="group w-full p-4 border-2 border-gray-200 dark:border-gray-700 hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300 text-left transform hover:scale-105 rounded-lg relative"
                   >
                     {/* "KOMPLETT" Badge */}
-                    <div className="absolute top-2 right-2 bg-orange-500 text-white text-[10px] px-2 py-1 rounded-full font-bold">
+                    <div className="absolute top-2 right-2 bg-gray-600 text-white text-[10px] px-2 py-1 rounded-full font-bold">
                       KOMPLETT
                     </div>
                     
                     <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-lg flex items-center justify-center">
+                      <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-lg flex items-center justify-center">
                         <div className="text-center">
-                          <div className="text-2xl mb-1">{pkg.icon}</div>
-                          <div className="text-2xl font-bold">{pkg.key}</div>
+                          <div className="text-3xl font-bold">{pkg.key}</div>
                         </div>
                       </div>
                       <div className="flex-1">
@@ -390,7 +389,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                         {/* Features */}
                         <div className="flex gap-2">
                           {pkg.features.map((feature, index) => (
-                            <span key={index} className="text-xs bg-orange-100 dark:bg-orange-700 px-2 py-1 rounded text-orange-700 dark:text-orange-300 font-medium">
+                            <span key={index} className="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-700 dark:text-gray-300 font-medium">
                               {feature}
                             </span>
                           ))}
