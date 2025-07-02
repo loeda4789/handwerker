@@ -79,19 +79,14 @@ export default function Header({ content }: HeaderProps) {
         requestAnimationFrame(() => {
           const currentScrollY = window.scrollY
           
-          console.log('Scroll:', currentScrollY, 'Last:', lastScroll, 'Direction:', currentScrollY > lastScroll ? 'down' : 'up')
-          
           // Header immer sichtbar wenn ganz oben
           if (currentScrollY <= 50) {
-            console.log('Top of page - showing header')
             setHeaderVisible(true)
           } else if (currentScrollY > lastScroll && currentScrollY > 100) {
             // Nach unten scrollen - Header verstecken
-            console.log('Scrolling down - hiding header')
             setHeaderVisible(false)
           } else if (currentScrollY < lastScroll) {
             // Nach oben scrollen - Header zeigen  
-            console.log('Scrolling up - showing header')
             setHeaderVisible(true)
           }
           
@@ -217,7 +212,15 @@ export default function Header({ content }: HeaderProps) {
   const getHeaderStyles = () => {
     // Transform direkt als inline style für zuverlässigere Kontrolle
     const getTransformStyle = () => {
-      if (designStyle === 'modern' || designStyle === 'rounded') {
+      if (designStyle === 'modern') {
+        // Modern braucht sowohl X- als auch Y-Transform
+        const translateX = '-50%' // Zentrierung
+        const translateY = headerVisible ? '0' : '-100%' // Hide-Verhalten
+        return {
+          transform: `translateX(${translateX}) translateY(${translateY})`,
+          transition: 'transform 0.3s ease-in-out'
+        }
+      } else if (designStyle === 'rounded') {
         return {
           transform: headerVisible ? 'translateY(0)' : 'translateY(-100%)',
           transition: 'transform 0.3s ease-in-out'
@@ -289,7 +292,7 @@ export default function Header({ content }: HeaderProps) {
     } else if (designStyle === 'modern') {
       // Modern: Floating header mit Abstand und begrenzter Breite
       return {
-        container: 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-5xl px-4',
+        container: 'fixed top-4 left-1/2 z-50 w-full max-w-5xl px-4',
         transformStyle: getTransformStyle(),
         header: `transition-all duration-300 backdrop-blur-xl shadow-2xl border border-white/10 ${
           isScrolled 
