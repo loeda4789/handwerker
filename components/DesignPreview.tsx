@@ -32,6 +32,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [activeTab, setActiveTab] = useState('design')
   const [configMode, setConfigMode] = useState<'paket' | 'individuell'>('paket')
+  const [activePackage, setActivePackage] = useState<'1' | '2' | '3' | null>(null)
   const [features, setFeatures] = useState({
     promoBanner: false,
     contactBar: false,
@@ -109,6 +110,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   // Neues Paket-System
   const applyPackage = (packageKey: '1' | '2' | '3') => {
     console.log('🚀 Paket wird angewendet:', packageKey)
+    
+    // Setze das aktive Paket
+    setActivePackage(packageKey)
     
     const packages = {
       '1': {
@@ -355,22 +359,22 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   <button
                     key={pkg.key}
                     onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
-                    className="group w-full p-4 border-2 border-gray-200 dark:border-gray-700 hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300 text-left transform hover:scale-105 rounded-lg relative"
+                    className={`group w-full p-4 border-2 transition-all duration-300 text-left transform hover:scale-105 rounded-lg ${
+                      activePackage === pkg.key
+                        ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
+                        : 'border-gray-200 dark:border-gray-700 hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20'
+                    }`}
                   >
-                    {/* "KOMPLETT" Badge */}
-                    <div className="absolute top-2 right-2 bg-gray-600 text-white text-[10px] px-2 py-1 rounded-full font-bold">
-                      KOMPLETT
-                    </div>
-                    
                     <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-lg flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="text-3xl font-bold">{pkg.key}</div>
-                        </div>
+                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                        activePackage === pkg.key
+                          ? 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400'
+                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                      }`}>
+                        <div className="text-2xl font-bold">{pkg.key}</div>
                       </div>
                       <div className="flex-1">
-                        <div className="font-semibold text-gray-900 dark:text-white text-lg mb-1">{pkg.name}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">{pkg.desc}</div>
+                        <div className="font-semibold text-gray-900 dark:text-white text-lg mb-2">{pkg.name}</div>
                         
                         {/* Color Preview */}
                         <div className="flex items-center gap-2 mb-2">
