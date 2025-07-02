@@ -10,11 +10,6 @@ interface FooterProps {
 export default function Footer({ content }: FooterProps) {
   const currentYear = new Date().getFullYear()
 
-  // Features speichern
-  Object.entries(features).forEach(([key, value]) => {
-    localStorage.setItem(`feature-${key}`, value.toString())
-  })
-
   return (
     <footer style={{ backgroundColor: 'var(--color-primary)' }} className="text-white">
       {/* Main Footer Content */}
