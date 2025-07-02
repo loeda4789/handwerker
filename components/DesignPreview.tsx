@@ -143,7 +143,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       },
       '3': {
         name: 'Modern',
-        colorScheme: 'modern' as const,
+        colorScheme: 'nature' as const,
         designStyle: 'modern' as const,
         features: {
           promoBanner: false,
@@ -350,8 +350,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   {
                     key: '3',
                     name: 'Modern',
-                    desc: 'Tech-Farben • Modernes Design • Notdienst',
-                    colors: ['#0F1A50', '#FD080F', '#8D8AD9', '#F5F6FF'],
+                    desc: 'Nature-Farben • Modernes Design • Notdienst',
+                    colors: ['#000000', '#BCD7B6', '#A8C99A', '#F5F5F5'],
                     features: ['🚨 Notdienst Alert'],
                     icon: '🚀'
                   }
