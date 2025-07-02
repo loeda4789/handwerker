@@ -109,6 +109,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   // Neues Paket-System
   const applyPackage = (packageKey: '1' | '2' | '3') => {
+    console.log('🚀 Paket wird angewendet:', packageKey)
+    
     const packages = {
       '1': {
         name: 'Klassisch',
@@ -152,6 +154,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     }
 
     const selectedPackage = packages[packageKey]
+    console.log('📦 Ausgewähltes Paket:', selectedPackage)
     
     // Alle Einstellungen setzen
     setCurrentColorScheme(selectedPackage.colorScheme)
@@ -175,6 +178,31 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         detail: { enabled: value } 
       }))
     })
+    
+    // SOFORTIGE Anwendung der Schemas
+    try {
+      console.log('🎨 Wende Farbschema an:', selectedPackage.colorScheme)
+      applyColorScheme(selectedPackage.colorScheme)
+      
+      console.log('🔲 Wende Design-Style an:', selectedPackage.designStyle)  
+      applyBorderRadiusScheme(selectedPackage.designStyle)
+      
+      // Hero type setzen
+      const heroTypeMap = {
+        'angular': 'split',
+        'rounded': 'single', 
+        'modern': 'slider'
+      }
+      localStorage.setItem('demo-hero-type', heroTypeMap[selectedPackage.designStyle as keyof typeof heroTypeMap])
+      
+      // Storage event für andere Komponenten
+      window.dispatchEvent(new Event('storage'))
+      
+      console.log('✅ Paket erfolgreich angewendet!')
+      
+    } catch (error) {
+      console.error('❌ Fehler beim Anwenden des Pakets:', error)
+    }
   }
 
   const applyChangesAndReload = () => {
