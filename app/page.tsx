@@ -366,7 +366,11 @@ export default function HomePage() {
       
       {/* Marketing Features - Above Header */}
       <NotdienstAlert isEnabled={features.notdienstAlert} />
-      <ContactBar isEnabled={features.contactBar} />
+      <ContactBar 
+        isEnabled={features.contactBar} 
+        phone={content.contact.phone}
+        email={content.contact.email}
+      />
       
       {/* Background Website */}
       <div className={`transition-all duration-500 ${showConfigurator ? 'opacity-60 blur-[2px]' : 'opacity-100 blur-0'}`}>
