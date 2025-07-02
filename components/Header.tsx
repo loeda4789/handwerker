@@ -429,7 +429,7 @@ export default function Header({ content }: HeaderProps) {
                               <Link
                                 key={index}
                                 href={dropdownItem.href}
-                            className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md"
+                            className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-white hover:font-bold hover:bg-gradient-to-r transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md"
                             style={{
                               '--tw-gradient-from': 'var(--color-primary)',
                               '--tw-gradient-to': 'var(--color-secondary)',
@@ -545,13 +545,16 @@ export default function Header({ content }: HeaderProps) {
                           <div>
                             <button
                               onClick={() => toggleMobileDropdown(item.id)}
-                              className="w-full flex items-center justify-between py-4 text-gray-900 dark:text-white font-medium text-left hover:bg-gradient-to-r hover:text-white transition-all duration-300 rounded-lg px-3 uppercase hover:scale-[1.02] hover:shadow-md"
+                              className="w-full flex items-center justify-between py-4 text-gray-900 dark:text-white font-medium text-left hover:bg-gradient-to-r hover:text-white hover:font-bold transition-all duration-300 rounded-lg px-3 uppercase hover:scale-[1.02] hover:shadow-md group"
                               style={{
                                 '--tw-gradient-from': 'var(--color-primary)',
                                 '--tw-gradient-to': 'var(--color-secondary)',
                               } as React.CSSProperties}
                             >
-                              {item.label}
+                              <span className="relative">
+                                {item.label}
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                              </span>
                               <svg 
                                 className={`w-5 h-5 transition-transform duration-200 ${
                                   mobileDropdownOpen === item.id ? 'rotate-180' : ''
@@ -570,14 +573,13 @@ export default function Header({ content }: HeaderProps) {
                                   <Link
                                     key={subIndex}
                                     href={dropdownItem.href}
-                                    className="block py-3 px-3 text-gray-600 dark:text-gray-400 hover:text-white hover:bg-gradient-to-r transition-all duration-300 rounded-lg uppercase hover:scale-[1.02] hover:shadow-md"
+                                    className="block py-2 text-white/80 hover:text-white hover:font-bold hover:bg-white/10 transition-all duration-300 uppercase hover:scale-[1.02] border border-transparent hover:border-white/20 group"
                                     onClick={closeMobileMenu}
-                                    style={{
-                                      '--tw-gradient-from': 'var(--color-primary)',
-                                      '--tw-gradient-to': 'var(--color-secondary)',
-                                    } as React.CSSProperties}
                                   >
-                                    {dropdownItem.label}
+                                    <span className="relative">
+                                      {dropdownItem.label}
+                                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                                    </span>
                                   </Link>
                                 ))}
                               </div>
@@ -590,13 +592,12 @@ export default function Header({ content }: HeaderProps) {
                               handleSmoothScroll(e, item.id)
                               closeMobileMenu()
                             } : closeMobileMenu}
-                            className="block py-4 px-3 text-gray-900 dark:text-white font-medium hover:bg-gradient-to-r hover:text-white transition-all duration-300 rounded-lg uppercase hover:scale-[1.02] hover:shadow-md"
-                            style={{
-                              '--tw-gradient-from': 'var(--color-primary)',
-                              '--tw-gradient-to': 'var(--color-secondary)',
-                            } as React.CSSProperties}
+                            className="block py-3 text-white hover:bg-white/20 hover:backdrop-blur-sm hover:font-bold hover:text-white font-medium transition-all duration-300 uppercase hover:scale-[1.02] rounded-lg px-3 border border-transparent hover:border-white/30 group"
                           >
-                            {item.label}
+                            <span className="relative">
+                              {item.label}
+                              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                            </span>
                           </Link>
                         )}
                       </div>
@@ -644,11 +645,14 @@ export default function Header({ content }: HeaderProps) {
                         <div>
                           <button
                             onClick={() => toggleMobileDropdown(item.id)}
-                            className="w-full flex items-center justify-between py-3 text-white font-medium text-left hover:bg-white/20 hover:backdrop-blur-sm transition-all duration-300 rounded-lg px-3 uppercase hover:scale-[1.02] border border-transparent hover:border-white/30"
+                            className="w-full flex items-center justify-between py-3 text-white font-medium text-left hover:bg-white/20 hover:backdrop-blur-sm hover:font-bold hover:text-white transition-all duration-300 rounded-lg px-3 uppercase hover:scale-[1.02] border border-transparent hover:border-white/30 group"
                             >
-                              {item.label}
+                              <span className="relative">
+                                {item.label}
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                              </span>
                               <svg 
-                                className={`w-4 h-4 transition-transform duration-200 ${
+                                className={`w-5 h-5 transition-transform duration-200 ${
                                   mobileDropdownOpen === item.id ? 'rotate-180' : ''
                                 }`} 
                                 fill="none" 
@@ -665,10 +669,13 @@ export default function Header({ content }: HeaderProps) {
                                   <Link
                                     key={subIndex}
                                     href={dropdownItem.href}
-                                    className="block py-2 px-3 text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 rounded-lg uppercase hover:scale-[1.02] border border-transparent hover:border-white/20"
+                                    className="block py-2 text-white/80 hover:text-white hover:font-bold hover:bg-white/10 transition-all duration-300 uppercase hover:scale-[1.02] border border-transparent hover:border-white/20 group"
                                     onClick={closeMobileMenu}
                                   >
-                                    {dropdownItem.label}
+                                    <span className="relative">
+                                      {dropdownItem.label}
+                                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                                    </span>
                                   </Link>
                                 ))}
                               </div>
@@ -681,31 +688,34 @@ export default function Header({ content }: HeaderProps) {
                               handleSmoothScroll(e, item.id)
                               closeMobileMenu()
                             } : closeMobileMenu}
-                            className="block py-3 text-white hover:bg-white/20 hover:backdrop-blur-sm font-medium transition-all duration-300 uppercase hover:scale-[1.02] rounded-lg px-3 border border-transparent hover:border-white/30"
+                            className="block py-3 text-white hover:bg-white/20 hover:backdrop-blur-sm hover:font-bold hover:text-white font-medium transition-all duration-300 uppercase hover:scale-[1.02] rounded-lg px-3 border border-transparent hover:border-white/30 group"
                           >
-                            {item.label}
+                            <span className="relative">
+                              {item.label}
+                              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                            </span>
                           </Link>
                         )}
-                      </div>
-                    ))}
-                  
-                  <Link
-                      href="#kontakt"
-                      onClick={(e) => {
-                        handleSmoothScroll(e, 'kontakt')
-                        closeMobileMenu()
-                      }}
-                      className="block mt-4 px-6 py-3 text-center font-medium transition-all duration-300 uppercase hover:scale-105 hover:shadow-lg border border-white/30 hover:border-white/60 hover:bg-white/10"
-                      style={{ 
-                        borderRadius: 'var(--radius-button)',
-                        ...headerStyles.mobileCtaStyle
-                      }}
-                    >
-                      Kontakt
-                  </Link>
-                </div>
-                </div>
-              )}
+                    </div>
+                  ))}
+                
+                <Link
+                    href="#kontakt"
+                    onClick={(e) => {
+                      handleSmoothScroll(e, 'kontakt')
+                      closeMobileMenu()
+                    }}
+                    className="block mt-4 px-6 py-3 text-center font-medium transition-all duration-300 uppercase hover:scale-105 hover:shadow-lg border border-white/30 hover:border-white/60 hover:bg-white/10"
+                    style={{ 
+                      borderRadius: 'var(--radius-button)',
+                      ...headerStyles.mobileCtaStyle
+                    }}
+                  >
+                    Kontakt
+                </Link>
+              </div>
+              </div>
+            )}
           </>
         )}
       </header>
