@@ -39,6 +39,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     notdienstAlert: false,
     whatsappWidget: false,
     callbackPopup: false,
+    callbackRequest: false,
     speedDial: false
   })
   
@@ -69,6 +70,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       notdienstAlert: localStorage.getItem('feature-notdienstAlert') === 'true',
       whatsappWidget: localStorage.getItem('feature-whatsappWidget') === 'true',
       callbackPopup: localStorage.getItem('feature-callbackPopup') === 'true',
+      callbackRequest: localStorage.getItem('feature-callbackRequest') === 'true',
       speedDial: localStorage.getItem('feature-speedDial') !== 'false' // Default true
     }
     setFeatures(savedFeatures)
@@ -125,6 +127,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           notdienstAlert: false,
           whatsappWidget: false,
           callbackPopup: false,
+          callbackRequest: false,
           speedDial: false
         }
       },
@@ -138,6 +141,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           notdienstAlert: false,
           whatsappWidget: false,
           callbackPopup: false,
+          callbackRequest: false,
           speedDial: true
         }
       },
@@ -151,6 +155,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           notdienstAlert: false,
           whatsappWidget: true,
           callbackPopup: false,
+          callbackRequest: false,
           speedDial: false
         }
       }
@@ -435,6 +440,13 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                         desc: 'Floating WhatsApp-Button',
                         Icon: MdWhatsapp,
                         color: 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
+                      },
+                      {
+                        key: 'callbackRequest',
+                        name: 'Rückruf-Widget',
+                        desc: 'Kleines floating Rückruf-Widget',
+                        Icon: MdFlashOn,
+                        color: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
                       },
                       {
                         key: 'notdienstAlert',
