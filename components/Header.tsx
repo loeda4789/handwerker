@@ -18,7 +18,6 @@ export default function Header({ content }: HeaderProps) {
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null)
   const [designStyle, setDesignStyle] = useState<string>('angular')
   const [headerVisible, setHeaderVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
   
   // Site-Mode und Design-Style aus localStorage laden
   useEffect(() => {
@@ -72,31 +71,33 @@ export default function Header({ content }: HeaderProps) {
       return
     }
 
+    let lastScroll = 0
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       
       // Header immer sichtbar wenn ganz oben
       if (currentScrollY < 10) {
         setHeaderVisible(true)
-        setLastScrollY(currentScrollY)
+        lastScroll = currentScrollY
         return
       }
       
       // Richtung bestimmen
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+      if (currentScrollY > lastScroll && currentScrollY > 80) {
         // Nach unten scrollen - Header verstecken
         setHeaderVisible(false)
-      } else if (currentScrollY < lastScrollY) {
+      } else if (currentScrollY < lastScroll) {
         // Nach oben scrollen - Header zeigen  
         setHeaderVisible(true)
       }
       
-      setLastScrollY(currentScrollY)
+      lastScroll = currentScrollY
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [designStyle, lastScrollY])
+  }, [designStyle])
 
   // Active section detection (nur für One-Page Modus)
   useEffect(() => {
