@@ -409,10 +409,13 @@ export default function Header({ content }: HeaderProps) {
                         onMouseLeave={() => setDropdownOpen(null)}
                       >
                     <button 
-                      className={`${headerStyles.textColor} hover:opacity-80 font-medium transition-colors duration-200 flex items-center uppercase`}
+                      className={`${headerStyles.textColor} relative font-medium transition-all duration-300 flex items-center uppercase group hover:scale-105`}
                         >
-                          {item.label}
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <span className="relative">
+                            {item.label}
+                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full" style={{ backgroundColor: 'var(--color-primary)' }}></span>
+                          </span>
+                          <svg className="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
                           </svg>
                     </button>
@@ -426,7 +429,11 @@ export default function Header({ content }: HeaderProps) {
                               <Link
                                 key={index}
                                 href={dropdownItem.href}
-                            className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg uppercase"
+                            className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md"
+                            style={{
+                              '--tw-gradient-from': 'var(--color-primary)',
+                              '--tw-gradient-to': 'var(--color-secondary)',
+                            } as React.CSSProperties}
                               >
                             {dropdownItem.label}
                               </Link>
@@ -438,11 +445,16 @@ export default function Header({ content }: HeaderProps) {
                       <Link
                     href={item.href || '#'}
                     onClick={item.isClickable && item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.id) : undefined}
-                    className={`${headerStyles.textColor} hover:opacity-80 font-medium transition-colors duration-200 uppercase ${
-                      activeSection === item.id && siteMode === 'onepage' ? 'opacity-80' : ''
+                    className={`${headerStyles.textColor} relative font-medium transition-all duration-300 uppercase group hover:scale-105 ${
+                      activeSection === item.id && siteMode === 'onepage' ? 'scale-105' : ''
                         }`}
                       >
-                        {item.label}
+                        <span className="relative">
+                          {item.label}
+                          <span className={`absolute bottom-0 left-0 h-0.5 bg-current transition-all duration-300 ${
+                            activeSection === item.id && siteMode === 'onepage' ? 'w-full' : 'w-0 group-hover:w-full'
+                          }`} style={{ backgroundColor: 'var(--color-primary)' }}></span>
+                        </span>
                       </Link>
                     )}
               </div>
@@ -474,10 +486,10 @@ export default function Header({ content }: HeaderProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden p-2 ${headerStyles.textColor}`}
+            className={`lg:hidden p-2 ${headerStyles.textColor} hover:scale-110 transition-all duration-300 rounded-lg hover:bg-black/10 dark:hover:bg-white/10`}
             aria-label="Menü öffnen"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
                     d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
             </svg>
@@ -533,7 +545,11 @@ export default function Header({ content }: HeaderProps) {
                           <div>
                             <button
                               onClick={() => toggleMobileDropdown(item.id)}
-                              className="w-full flex items-center justify-between py-4 text-gray-900 dark:text-white font-medium text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 rounded-lg px-3 uppercase"
+                              className="w-full flex items-center justify-between py-4 text-gray-900 dark:text-white font-medium text-left hover:bg-gradient-to-r hover:text-white transition-all duration-300 rounded-lg px-3 uppercase hover:scale-[1.02] hover:shadow-md"
+                              style={{
+                                '--tw-gradient-from': 'var(--color-primary)',
+                                '--tw-gradient-to': 'var(--color-secondary)',
+                              } as React.CSSProperties}
                             >
                               {item.label}
                               <svg 
@@ -554,8 +570,12 @@ export default function Header({ content }: HeaderProps) {
                                   <Link
                                     key={subIndex}
                                     href={dropdownItem.href}
-                                    className="block py-3 px-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 rounded-lg uppercase"
+                                    className="block py-3 px-3 text-gray-600 dark:text-gray-400 hover:text-white hover:bg-gradient-to-r transition-all duration-300 rounded-lg uppercase hover:scale-[1.02] hover:shadow-md"
                                     onClick={closeMobileMenu}
+                                    style={{
+                                      '--tw-gradient-from': 'var(--color-primary)',
+                                      '--tw-gradient-to': 'var(--color-secondary)',
+                                    } as React.CSSProperties}
                                   >
                                     {dropdownItem.label}
                                   </Link>
@@ -570,7 +590,11 @@ export default function Header({ content }: HeaderProps) {
                               handleSmoothScroll(e, item.id)
                               closeMobileMenu()
                             } : closeMobileMenu}
-                            className="block py-4 px-3 text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 rounded-lg uppercase"
+                            className="block py-4 px-3 text-gray-900 dark:text-white font-medium hover:bg-gradient-to-r hover:text-white transition-all duration-300 rounded-lg uppercase hover:scale-[1.02] hover:shadow-md"
+                            style={{
+                              '--tw-gradient-from': 'var(--color-primary)',
+                              '--tw-gradient-to': 'var(--color-secondary)',
+                            } as React.CSSProperties}
                           >
                             {item.label}
                           </Link>
@@ -620,68 +644,68 @@ export default function Header({ content }: HeaderProps) {
                         <div>
                           <button
                             onClick={() => toggleMobileDropdown(item.id)}
-                            className="w-full flex items-center justify-between py-3 text-white font-medium text-left uppercase"
-                    >
-                      {item.label}
-                            <svg 
-                              className={`w-4 h-4 transition-transform duration-200 ${
-                                mobileDropdownOpen === item.id ? 'rotate-180' : ''
-                              }`} 
-                              fill="none" 
-                              stroke="currentColor" 
-                              viewBox="0 0 24 24"
+                            className="w-full flex items-center justify-between py-3 text-white font-medium text-left hover:bg-white/20 hover:backdrop-blur-sm transition-all duration-300 rounded-lg px-3 uppercase hover:scale-[1.02] border border-transparent hover:border-white/30"
                             >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                          </button>
-                          
-                          {mobileDropdownOpen === item.id && (
-                            <div className="ml-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
-                              {item.dropdownItems?.map((dropdownItem, index) => (
+                              {item.label}
+                              <svg 
+                                className={`w-4 h-4 transition-transform duration-200 ${
+                                  mobileDropdownOpen === item.id ? 'rotate-180' : ''
+                                }`} 
+                                fill="none" 
+                                stroke="currentColor" 
+                                viewBox="0 0 24 24"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                              </svg>
+                            </button>
+                            
+                            {mobileDropdownOpen === item.id && (
+                              <div className="ml-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
+                                {item.dropdownItems?.map((dropdownItem, subIndex) => (
+                                  <Link
+                                    key={subIndex}
+                                    href={dropdownItem.href}
+                                    className="block py-2 px-3 text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 rounded-lg uppercase hover:scale-[1.02] border border-transparent hover:border-white/20"
+                                    onClick={closeMobileMenu}
+                                  >
+                                    {dropdownItem.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ) : (
                           <Link
-                            key={index}
-                            href={dropdownItem.href}
-                                  className="block py-2 text-white/80 hover:text-white transition-colors duration-200 uppercase"
-                            onClick={closeMobileMenu}
+                            href={item.href || '#'}
+                            onClick={item.isClickable && item.href?.startsWith('#') ? (e) => {
+                              handleSmoothScroll(e, item.id)
+                              closeMobileMenu()
+                            } : closeMobileMenu}
+                            className="block py-3 text-white hover:bg-white/20 hover:backdrop-blur-sm font-medium transition-all duration-300 uppercase hover:scale-[1.02] rounded-lg px-3 border border-transparent hover:border-white/30"
                           >
-                                  {dropdownItem.label}
+                            {item.label}
                           </Link>
-                        ))}
+                        )}
                       </div>
-                          )}
-                        </div>
-                      ) : (
-                        <Link
-                          href={item.href || '#'}
-                          onClick={item.isClickable && item.href?.startsWith('#') ? (e) => {
-                            handleSmoothScroll(e, item.id)
-                            closeMobileMenu()
-                          } : closeMobileMenu}
-                          className="block py-3 text-white hover:text-white/80 font-medium transition-colors duration-200 uppercase"
-                        >
-                          {item.label}
-                        </Link>
-                    )}
-                  </div>
-                ))}
-              
-                <Link
-                    href="#kontakt"
-                    onClick={(e) => {
-                      handleSmoothScroll(e, 'kontakt')
-                      closeMobileMenu()
-                    }}
-                    className="block mt-4 px-6 py-3 text-center font-medium transition-all duration-200 uppercase"
-                    style={{ 
-                      borderRadius: 'var(--radius-button)',
-                      ...headerStyles.mobileCtaStyle
-                    }}
-                  >
-                    Kontakt
-                </Link>
-              </div>
-              </div>
-            )}
+                    ))}
+                  
+                  <Link
+                      href="#kontakt"
+                      onClick={(e) => {
+                        handleSmoothScroll(e, 'kontakt')
+                        closeMobileMenu()
+                      }}
+                      className="block mt-4 px-6 py-3 text-center font-medium transition-all duration-300 uppercase hover:scale-105 hover:shadow-lg border border-white/30 hover:border-white/60 hover:bg-white/10"
+                      style={{ 
+                        borderRadius: 'var(--radius-button)',
+                        ...headerStyles.mobileCtaStyle
+                      }}
+                    >
+                      Kontakt
+                  </Link>
+                </div>
+                </div>
+              )}
           </>
         )}
       </header>
