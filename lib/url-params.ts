@@ -161,6 +161,13 @@ export function mergeUrlDataWithContent(contentData: ContentData, urlParams: Url
     mergedData.contact.phone = decodedParams.telefon;
   }
   
+  // Ort im About-Text dynamisch ersetzen
+  if (decodedParams.ort && mergedData.about && mergedData.about.text) {
+    // Suche nach Mustern wie "in [Stadt] und Umgebung" und ersetze [Stadt] durch den URL-Parameter
+    const ortPattern = /in\s+[A-Za-zäöüß\s-]+\s+und\s+Umgebung/g;
+    mergedData.about.text = mergedData.about.text.replace(ortPattern, `in ${decodedParams.ort} und Umgebung`);
+  }
+  
   // Adresse zusammensetzen
   const addressParts = [];
   if (decodedParams.strasse) addressParts.push(decodedParams.strasse);
