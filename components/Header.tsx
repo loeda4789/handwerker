@@ -483,105 +483,56 @@ export default function Header({ content }: HeaderProps) {
             </svg>
           </button>
         </nav>
+      </header>
+      </div>
 
-        {/* Mobile Menu - Vollflächig weiß für alle Design-Stile */}
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 z-[9999] lg:hidden">
-            {/* Backdrop */}
-            <div 
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
-              onClick={closeMobileMenu}
-            ></div>
-            
-            {/* Overlay Panel - Vollflächig weiß für ALLE Design-Stile */}
-            <div className="absolute inset-0 bg-white shadow-2xl animate-in slide-in-from-right duration-300 overflow-y-auto">
-              {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <div className="flex items-center space-x-3">
-                  <div 
-                    className="w-8 h-8 bg-gray-900 text-white flex items-center justify-center logo-font text-sm font-bold"
-                    style={{ borderRadius: 'var(--radius-button)' }}
-                  >
-                    {getCompanyInitials(content.company.name)}
-                  </div>
-                  <span className="text-lg font-semibold text-gray-900 logo-font uppercase">
-                    {content.company.name}
-                  </span>
-                </div>
-                <button
-                  onClick={closeMobileMenu}
-                  className="p-2 text-gray-500 hover:text-gray-700 transition-colors rounded-lg hover:bg-gray-100"
+      {/* Mobile Menu - Vollflächig weiß für alle Design-Stile - AUSSERHALB des Headers */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-[9999] lg:hidden">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
+            onClick={closeMobileMenu}
+          ></div>
+          
+          {/* Overlay Panel - Vollflächig weiß für ALLE Design-Stile */}
+          <div className="absolute inset-0 bg-white shadow-2xl animate-in slide-in-from-right duration-300 overflow-y-auto">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <div className="flex items-center space-x-3">
+                <div 
+                  className="w-8 h-8 bg-gray-900 text-white flex items-center justify-center logo-font text-sm font-bold"
+                  style={{ borderRadius: 'var(--radius-button)' }}
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
-                  </svg>
-                </button>
+                  {getCompanyInitials(content.company.name)}
+                </div>
+                <span className="text-lg font-semibold text-gray-900 logo-font uppercase">
+                  {content.company.name}
+                </span>
               </div>
-              
-              {/* Navigation Items */}
-              <div className="flex-1 px-6 py-6 space-y-2">
-                {getNavItems().map((item, index) => (
-                  <div 
-                    key={item.id}
-                    className="animate-in slide-in-from-right duration-300"
-                    style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
-                  >
-                    {item.hasDropdown ? (
-                      <div>
-                        <button
-                          onClick={() => toggleMobileDropdown(item.id)}
-                          className="w-full flex items-center justify-between py-4 text-gray-900 font-medium text-left hover:bg-gradient-to-r hover:text-white hover:font-bold transition-all duration-300 rounded-lg px-3 uppercase hover:scale-[1.02] hover:shadow-md group"
-                          style={{
-                            '--tw-gradient-from': 'var(--color-primary)',
-                            '--tw-gradient-to': 'var(--color-secondary)',
-                          } as React.CSSProperties}
-                        >
-                          <span className="relative">
-                            {item.label}
-                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                          </span>
-                          <svg 
-                            className={`w-5 h-5 transition-transform duration-200 ${
-                              mobileDropdownOpen === item.id ? 'rotate-180' : ''
-                            }`} 
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                          </svg>
-                        </button>
-                        
-                        {mobileDropdownOpen === item.id && (
-                          <div className="ml-4 mt-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                            {item.dropdownItems?.map((dropdownItem, subIndex) => (
-                              <Link
-                                key={subIndex}
-                                href={dropdownItem.href}
-                                className="block py-3 px-3 text-gray-700 hover:bg-gradient-to-r hover:text-white hover:font-bold transition-all duration-300 uppercase hover:scale-[1.02] rounded-lg border border-transparent hover:border-gray-200 group"
-                                style={{
-                                  '--tw-gradient-from': 'var(--color-primary)',
-                                  '--tw-gradient-to': 'var(--color-secondary)',
-                                } as React.CSSProperties}
-                                onClick={closeMobileMenu}
-                              >
-                                <span className="relative">
-                                  {dropdownItem.label}
-                                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                                </span>
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <Link
-                        href={item.href || '#'}
-                        onClick={item.isClickable && item.href?.startsWith('#') ? (e) => {
-                          handleSmoothScroll(e, item.id)
-                          closeMobileMenu()
-                        } : closeMobileMenu}
-                        className="block py-4 px-3 text-gray-900 hover:bg-gradient-to-r hover:text-white font-medium transition-all duration-300 uppercase hover:scale-[1.02] rounded-lg border border-transparent hover:border-gray-200 group"
+              <button
+                onClick={closeMobileMenu}
+                className="p-2 text-gray-500 hover:text-gray-700 transition-colors rounded-lg hover:bg-gray-100"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+            
+            {/* Navigation Items */}
+            <div className="flex-1 px-6 py-6 space-y-2">
+              {getNavItems().map((item, index) => (
+                <div 
+                  key={item.id}
+                  className="animate-in slide-in-from-right duration-300"
+                  style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
+                >
+                  {item.hasDropdown ? (
+                    <div>
+                      <button
+                        onClick={() => toggleMobileDropdown(item.id)}
+                        className="w-full flex items-center justify-between py-4 text-gray-900 font-medium text-left hover:bg-gradient-to-r hover:text-white hover:font-bold transition-all duration-300 rounded-lg px-3 uppercase hover:scale-[1.02] hover:shadow-md group"
                         style={{
                           '--tw-gradient-from': 'var(--color-primary)',
                           '--tw-gradient-to': 'var(--color-secondary)',
@@ -591,42 +542,92 @@ export default function Header({ content }: HeaderProps) {
                           {item.label}
                           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
                         </span>
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </div>
-              
-              {/* CTA Button - Unten */}
-              <div className="p-6 border-t border-gray-200">
-                <Link
-                  href="#kontakt"
-                  onClick={(e) => {
-                    handleSmoothScroll(e, 'kontakt')
-                    closeMobileMenu()
-                  }}
-                  className="w-full flex items-center justify-center px-6 py-4 text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg uppercase"
-                  style={{ 
-                    borderRadius: 'var(--radius-button)',
-                    backgroundColor: 'var(--color-secondary)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-primary)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
-                  }}
-                >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                  </svg>
-                  Jetzt Termin vereinbaren
-                </Link>
-              </div>
+                        <svg 
+                          className={`w-5 h-5 transition-transform duration-200 ${
+                            mobileDropdownOpen === item.id ? 'rotate-180' : ''
+                          }`} 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </button>
+                      
+                      {mobileDropdownOpen === item.id && (
+                        <div className="ml-4 mt-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
+                          {item.dropdownItems?.map((dropdownItem, subIndex) => (
+                            <Link
+                              key={subIndex}
+                              href={dropdownItem.href}
+                              className="block py-3 px-3 text-gray-700 hover:bg-gradient-to-r hover:text-white hover:font-bold transition-all duration-300 uppercase hover:scale-[1.02] rounded-lg border border-transparent hover:border-gray-200 group"
+                              style={{
+                                '--tw-gradient-from': 'var(--color-primary)',
+                                '--tw-gradient-to': 'var(--color-secondary)',
+                              } as React.CSSProperties}
+                              onClick={closeMobileMenu}
+                            >
+                              <span className="relative">
+                                {dropdownItem.label}
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href || '#'}
+                      onClick={item.isClickable && item.href?.startsWith('#') ? (e) => {
+                        handleSmoothScroll(e, item.id)
+                        closeMobileMenu()
+                      } : closeMobileMenu}
+                      className="block py-4 px-3 text-gray-900 hover:bg-gradient-to-r hover:text-white font-medium transition-all duration-300 uppercase hover:scale-[1.02] rounded-lg border border-transparent hover:border-gray-200 group"
+                      style={{
+                        '--tw-gradient-from': 'var(--color-primary)',
+                        '--tw-gradient-to': 'var(--color-secondary)',
+                      } as React.CSSProperties}
+                    >
+                      <span className="relative">
+                        {item.label}
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                      </span>
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+            
+            {/* CTA Button - Unten */}
+            <div className="p-6 border-t border-gray-200">
+              <Link
+                href="#kontakt"
+                onClick={(e) => {
+                  handleSmoothScroll(e, 'kontakt')
+                  closeMobileMenu()
+                }}
+                className="w-full flex items-center justify-center px-6 py-4 text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg uppercase"
+                style={{ 
+                  borderRadius: 'var(--radius-button)',
+                  backgroundColor: 'var(--color-secondary)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                }}
+              >
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                Jetzt Termin vereinbaren
+              </Link>
             </div>
           </div>
-        )}
-      </header>
-      </div>
+        </div>
+      )}
+    </div>
   )
 } 
