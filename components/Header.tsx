@@ -262,15 +262,6 @@ export default function Header({ content }: HeaderProps) {
           backgroundColor: 'white',
           borderColor: 'white',
           color: 'var(--color-primary)'
-        },
-        mobileMenuStyle: 'border-t',
-        mobileMenuStyleDynamic: {
-          backgroundColor: 'var(--color-primary)', 
-          borderTopColor: 'var(--color-primary)'
-        },
-        mobileCtaStyle: {
-          backgroundColor: 'var(--color-secondary)',
-          color: 'white'
         }
       }
     } else if (designStyle === 'rounded') {
@@ -296,8 +287,7 @@ export default function Header({ content }: HeaderProps) {
           backgroundColor: 'var(--color-primary)',
           borderColor: 'var(--color-primary)',
           color: 'white'
-        },
-        mobileMenuStyle: 'bg-white/90 backdrop-blur-md dark:bg-gray-800/90 border-t border-white/20'
+        }
       }
     } else if (designStyle === 'modern') {
       // Modern: Floating header mit Abstand und begrenzter Breite, immer fixed
@@ -322,8 +312,7 @@ export default function Header({ content }: HeaderProps) {
           backgroundColor: 'var(--color-primary)',
           borderColor: 'var(--color-primary)',
           color: 'white'
-        },
-        mobileMenuStyle: 'bg-black/30 backdrop-blur-xl dark:bg-gray-800/40 border-t border-white/20'
+        }
       }
     } else {
       // Fallback: Standard sticky positioning
@@ -348,8 +337,7 @@ export default function Header({ content }: HeaderProps) {
           backgroundColor: 'white',
           borderColor: 'white', 
           color: 'var(--color-primary)'
-        },
-        mobileMenuStyle: 'bg-white dark:bg-gray-800'
+        }
       }
     }
   }
