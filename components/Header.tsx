@@ -361,18 +361,19 @@ export default function Header({ content }: HeaderProps) {
   }
 
   return (
-    <div 
-      className={headerStyles.container}
-      style={headerStyles.transformStyle}
-    >
-      <header 
-        className={headerStyles.header}
-        style={{ 
-          borderRadius: headerStyles.borderRadius,
-          ...headerStyles.headerStyle
-        }}
+    <>
+      <div 
+        className={headerStyles.container}
+        style={headerStyles.transformStyle}
       >
-        <nav className={`${headerStyles.nav} flex items-center justify-between`}>
+        <header 
+          className={headerStyles.header}
+          style={{ 
+            borderRadius: headerStyles.borderRadius,
+            ...headerStyles.headerStyle
+          }}
+        >
+          <nav className={`${headerStyles.nav} flex items-center justify-between`}>
             {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
             <div 
@@ -484,8 +485,9 @@ export default function Header({ content }: HeaderProps) {
           </button>
         </nav>
       </header>
+      </div>
 
-      {/* Mobile Menu - Vollflächig weiß für alle Design-Stile - AUSSERHALB des Headers */}
+      {/* Mobile Menu - Vollflächig weiß für alle Design-Stile - KOMPLETT AUSSERHALB aller Container */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-[9999] lg:hidden">
           {/* Backdrop */}
@@ -627,6 +629,6 @@ export default function Header({ content }: HeaderProps) {
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 } 
