@@ -484,7 +484,6 @@ export default function Header({ content }: HeaderProps) {
           </button>
         </nav>
       </header>
-      </div>
 
       {/* Mobile Menu - Vollflächig weiß für alle Design-Stile - AUSSERHALB des Headers */}
       {mobileMenuOpen && (
