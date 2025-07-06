@@ -498,7 +498,7 @@ export default function Header({ content }: HeaderProps) {
 
         {/* Mobile Menu - Einheitliches weißes Overlay vollflächig für alle Design-Stile */}
         {mobileMenuOpen && (
-          <div className="fixed inset-0 z-50 lg:hidden">
+          <div className="fixed inset-0 z-[9999] lg:hidden">
             {/* Backdrop */}
             <div 
               className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
