@@ -496,7 +496,7 @@ export default function Header({ content }: HeaderProps) {
           </button>
         </nav>
 
-        {/* Mobile Menu - Einheitliches weißes Overlay für alle Design-Stile */}
+        {/* Mobile Menu - Einheitliches weißes Overlay vollflächig für alle Design-Stile */}
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-50 lg:hidden">
             {/* Backdrop */}
@@ -505,8 +505,8 @@ export default function Header({ content }: HeaderProps) {
               onClick={closeMobileMenu}
             ></div>
             
-            {/* Overlay Panel - Immer weiß */}
-            <div className="absolute inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl animate-in slide-in-from-right duration-300">
+            {/* Overlay Panel - Vollflächig weiß */}
+            <div className="absolute inset-0 bg-white shadow-2xl animate-in slide-in-from-right duration-300">
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
                 <div className="flex items-center space-x-3">
@@ -531,7 +531,7 @@ export default function Header({ content }: HeaderProps) {
               </div>
               
               {/* Navigation Items */}
-              <div className="flex-1 px-6 py-6 space-y-2">
+              <div className="flex-1 px-6 py-6 space-y-2 overflow-y-auto">
                 {getNavItems().map((item, index) => (
                   <div 
                     key={item.id}
