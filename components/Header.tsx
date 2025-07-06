@@ -484,7 +484,7 @@ export default function Header({ content }: HeaderProps) {
           </button>
         </nav>
 
-        {/* Mobile Menu - ALLE Design-Stile (angular, modern, rounded): Vollflächig weißes Overlay */}
+        {/* Mobile Menu - Vollflächig weiß für alle Design-Stile */}
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-[9999] lg:hidden">
             {/* Backdrop */}
@@ -494,7 +494,7 @@ export default function Header({ content }: HeaderProps) {
             ></div>
             
             {/* Overlay Panel - Vollflächig weiß für ALLE Design-Stile */}
-            <div className="absolute inset-0 bg-white shadow-2xl animate-in slide-in-from-right duration-300">
+            <div className="absolute inset-0 bg-white shadow-2xl animate-in slide-in-from-right duration-300 overflow-y-auto">
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
                 <div className="flex items-center space-x-3">
@@ -502,10 +502,10 @@ export default function Header({ content }: HeaderProps) {
                     className="w-8 h-8 bg-gray-900 text-white flex items-center justify-center logo-font text-sm font-bold"
                     style={{ borderRadius: 'var(--radius-button)' }}
                   >
-                    IL
+                    {getCompanyInitials(content.company.name)}
                   </div>
                   <span className="text-lg font-semibold text-gray-900 logo-font uppercase">
-                    Ihr Logo
+                    {content.company.name}
                   </span>
                 </div>
                 <button
@@ -519,7 +519,7 @@ export default function Header({ content }: HeaderProps) {
               </div>
               
               {/* Navigation Items */}
-              <div className="flex-1 px-6 py-6 space-y-2 overflow-y-auto">
+              <div className="flex-1 px-6 py-6 space-y-2">
                 {getNavItems().map((item, index) => (
                   <div 
                     key={item.id}
