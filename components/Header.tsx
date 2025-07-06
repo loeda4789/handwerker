@@ -64,7 +64,7 @@ export default function Header({ content }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Hide-on-Scroll Verhalten nur für freundlich
+  // Hide-on-Scroll Verhalten nur für freundlich (rounded)
   useEffect(() => {
     if (designStyle !== 'rounded') {
       setHeaderVisible(true)
@@ -225,7 +225,7 @@ export default function Header({ content }: HeaderProps) {
     // Transform direkt als inline style für zuverlässigere Kontrolle
     const getTransformStyle = () => {
       if (designStyle === 'modern') {
-        // Modern: Nur Zentrierung, kein Hide-Verhalten
+        // Modern: Nur Zentrierung, immer sichtbar
         return {
           transform: 'translateX(-50%)',
           transition: 'transform 0.3s ease-in-out'
@@ -240,7 +240,7 @@ export default function Header({ content }: HeaderProps) {
     }
     
     if (designStyle === 'angular') {
-      // Klassisch: Eckige Kanten, dunkler Hintergrund, kein Hide-Verhalten
+      // Klassisch: Eckige Kanten, dunkler Hintergrund, sticky positioning
       return {
         container: 'sticky top-0 z-50 w-full',
         transformStyle: {},
@@ -274,7 +274,7 @@ export default function Header({ content }: HeaderProps) {
         }
       }
     } else if (designStyle === 'rounded') {
-      // Freundlich: Weiß aber leicht durchsichtig, runde Buttons
+      // Freundlich: Weiß aber leicht durchsichtig, runde Buttons, sticky positioning
       return {
         container: 'sticky top-0 z-50 w-full',
         transformStyle: getTransformStyle(),
@@ -300,14 +300,14 @@ export default function Header({ content }: HeaderProps) {
         mobileMenuStyle: 'bg-white/90 backdrop-blur-md dark:bg-gray-800/90 border-t border-white/20'
       }
     } else if (designStyle === 'modern') {
-      // Modern: Floating header mit Abstand und begrenzter Breite
+      // Modern: Floating header mit Abstand und begrenzter Breite, immer fixed
       return {
         container: 'fixed top-4 left-1/2 z-50 w-full max-w-5xl px-4',
         transformStyle: getTransformStyle(),
         header: `transition-all duration-300 backdrop-blur-xl shadow-2xl border border-white/10 ${
           isScrolled 
-            ? 'bg-black/25 dark:bg-gray-900/35' 
-            : 'bg-black/20 dark:bg-gray-900/30'
+            ? 'bg-black/30 dark:bg-gray-900/40' 
+            : 'bg-black/25 dark:bg-gray-900/35'
         }`,
         nav: 'px-8 py-4',
         borderRadius: '2rem', // Floating pill design
@@ -326,7 +326,7 @@ export default function Header({ content }: HeaderProps) {
         mobileMenuStyle: 'bg-black/30 backdrop-blur-xl dark:bg-gray-800/40 border-t border-white/20'
       }
     } else {
-      // Fallback: Standard
+      // Fallback: Standard sticky positioning
       return {
         container: 'sticky top-0 z-50 w-full',
         transformStyle: {},
