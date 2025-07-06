@@ -496,7 +496,7 @@ export default function Header({ content }: HeaderProps) {
           </button>
         </nav>
 
-        {/* Mobile Menu - Einheitliches weißes Overlay vollflächig für alle Design-Stile */}
+        {/* Mobile Menu - ALLE Design-Stile (angular, modern, rounded): Vollflächig weißes Overlay */}
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-[9999] lg:hidden">
             {/* Backdrop */}
@@ -505,7 +505,7 @@ export default function Header({ content }: HeaderProps) {
               onClick={closeMobileMenu}
             ></div>
             
-            {/* Overlay Panel - Vollflächig weiß */}
+            {/* Overlay Panel - Vollflächig weiß für ALLE Design-Stile */}
             <div className="absolute inset-0 bg-white shadow-2xl animate-in slide-in-from-right duration-300">
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
