@@ -487,8 +487,105 @@ export default function Header({ content }: HeaderProps) {
       </header>
       </div>
 
-      {/* Mobile Menu - Vollflächig weiß für alle Design-Stile - KOMPLETT AUSSERHALB aller Container */}
-      {mobileMenuOpen && (
+      {/* Mobile Menu - Schöne zentrierte Navigation nur für Onepage-Modus */}
+      {mobileMenuOpen && siteMode === 'onepage' && (
+        <div className="fixed inset-0 z-[9999] lg:hidden">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-in fade-in duration-500"
+            onClick={closeMobileMenu}
+          ></div>
+          
+          {/* Overlay Panel - Zentrierte schöne Navigation */}
+          <div className="absolute inset-0 bg-white shadow-2xl animate-in slide-in-from-bottom duration-500 overflow-y-auto">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 animate-in fade-in-up duration-500" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
+              <div className="flex items-center space-x-3">
+                <div 
+                  className="w-10 h-10 bg-gray-900 text-white flex items-center justify-center logo-font text-lg font-bold"
+                  style={{ borderRadius: 'var(--radius-button)' }}
+                >
+                  {getCompanyInitials(content.company.name)}
+                </div>
+                <span className="text-xl font-semibold text-gray-900 logo-font uppercase">
+                  {content.company.name}
+                </span>
+              </div>
+              <button
+                onClick={closeMobileMenu}
+                className="p-3 text-gray-500 hover:text-gray-700 transition-colors rounded-lg hover:bg-gray-100"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+            
+            {/* Navigation Items - Zentriert und größer */}
+            <div className="flex-1 flex flex-col justify-center px-8 py-12 space-y-6 text-center">
+              {getNavItems().map((item, index) => (
+                <div 
+                  key={item.id}
+                  className="animate-in slide-in-from-left duration-600"
+                  style={{ animationDelay: `${200 + index * 150}ms`, animationFillMode: 'both' }}
+                >
+                  <Link
+                    href={item.href || '#'}
+                    onClick={item.isClickable && item.href?.startsWith('#') ? (e) => {
+                      handleSmoothScroll(e, item.id)
+                      closeMobileMenu()
+                    } : closeMobileMenu}
+                    className="block py-6 text-gray-900 hover:text-white font-semibold text-2xl transition-all duration-500 uppercase hover:scale-110 rounded-xl hover:bg-gradient-to-r group relative overflow-hidden"
+                    style={{
+                      '--tw-gradient-from': 'var(--color-primary)',
+                      '--tw-gradient-to': 'var(--color-secondary)',
+                    } as React.CSSProperties}
+                  >
+                    <span className="relative z-10">
+                      {item.label}
+                    </span>
+                    <span className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" style={{
+                      background: 'linear-gradient(45deg, var(--color-primary), var(--color-secondary))'
+                    }}></span>
+                  </Link>
+                </div>
+              ))}
+            </div>
+            
+            {/* CTA Button - Unten fixiert */}
+            <div className="p-8 border-t border-gray-200 animate-in slide-in-from-bottom duration-600" style={{ animationDelay: `${200 + getNavItems().length * 150}ms`, animationFillMode: 'both' }}>
+              <Link
+                href="#kontakt"
+                onClick={(e) => {
+                  handleSmoothScroll(e, 'kontakt')
+                  closeMobileMenu()
+                }}
+                className="w-full flex items-center justify-center px-8 py-6 text-white font-bold text-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl uppercase rounded-2xl"
+                style={{ 
+                  backgroundColor: 'var(--color-secondary)',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                  e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                  e.currentTarget.style.transform = 'scale(1)';
+                }}
+              >
+                <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                Jetzt Termin vereinbaren
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Menu - Multipage Navigation (unverändert) */}
+      {mobileMenuOpen && siteMode === 'multipage' && (
         <div className="fixed inset-0 z-[9999] lg:hidden">
           {/* Backdrop */}
           <div 
