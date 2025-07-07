@@ -364,7 +364,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6">
           
-          {/* Paket Mode - Orange Hervorhebung für aktive Auswahl, aber Borders bleiben gleich */}
+          {/* Paket Mode - Orange Hervorhebung für aktive Auswahl, aber Borders bleiben komplett gleich */}
           {configMode === 'paket' && (
             <div className="space-y-4">
               <div className="text-center mb-6">
@@ -377,7 +377,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 <div key={pkg.key}>
                   <button
                     onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
-                    className={`w-full p-4 text-left border-2 border-gray-200 dark:border-gray-700 rounded-2xl transition-all duration-200 hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-600 ${
+                    className={`w-full p-4 text-left border-2 border-gray-200 dark:border-gray-700 rounded-2xl transition-all duration-200 hover:shadow-lg ${
                       activePackage === pkg.key
                         ? 'bg-orange-50 dark:bg-orange-900/20'
                         : ''
@@ -435,7 +435,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             </div>
           )}
 
-          {/* Individuell Mode - Funktional und vereinfacht mit runden Formen */}
+          {/* Individuell Mode - Funktional und vereinfacht mit halb runden Formen */}
           {configMode === 'individuell' && (
             <>
               {/* Design Tab */}
@@ -450,14 +450,14 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <button
                       key={style.key}
                       onClick={() => changeDesignStyle(style.key as 'angular' | 'rounded' | 'modern')}
-                      className={`w-full p-4 text-left border-2 rounded-2xl transition-all ${
+                      className={`w-full p-4 text-left border-2 rounded-lg transition-all ${
                         currentDesignStyle === style.key
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                           currentDesignStyle === style.key
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
@@ -487,7 +487,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <button
                       key={scheme.key}
                       onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
-                      className={`w-full p-4 text-left border-2 rounded-2xl transition-all ${
+                      className={`w-full p-4 text-left border-2 rounded-lg transition-all ${
                         currentColorScheme === scheme.key
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
@@ -496,7 +496,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       <div className="flex items-center gap-3">
                         <div className="flex gap-2">
                           {scheme.colors.map((color, index) => (
-                            <div key={index} className="w-6 h-6 rounded-2xl border border-gray-300" style={{ backgroundColor: color }} />
+                            <div key={index} className="w-6 h-6 rounded-lg border border-gray-300" style={{ backgroundColor: color }} />
                           ))}
                         </div>
                         <div>
@@ -522,7 +522,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <button
                       key={feature.key}
                       onClick={() => toggleFeature(feature.key as keyof typeof features)}
-                      className={`w-full p-4 text-left border-2 rounded-2xl transition-all ${
+                      className={`w-full p-4 text-left border-2 rounded-lg transition-all ${
                         features[feature.key as keyof typeof features]
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
@@ -530,7 +530,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                             features[feature.key as keyof typeof features]
                               ? 'bg-orange-500 text-white'
                               : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
@@ -542,7 +542,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                             <div className="text-sm text-gray-500 dark:text-gray-400">{feature.desc}</div>
                           </div>
                         </div>
-                        <div className={`px-3 py-1 text-xs font-medium rounded-2xl ${
+                        <div className={`px-3 py-1 text-xs font-medium rounded-lg ${
                           features[feature.key as keyof typeof features]
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
@@ -566,14 +566,14 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <button
                       key={mode.key}
                       onClick={() => changeSiteMode(mode.key as 'onepage' | 'multipage')}
-                      className={`w-full p-4 text-left border-2 rounded-2xl transition-all ${
+                      className={`w-full p-4 text-left border-2 rounded-lg transition-all ${
                         currentSiteMode === mode.key
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                           currentSiteMode === mode.key
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
