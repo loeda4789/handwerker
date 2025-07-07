@@ -429,32 +429,146 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   )}
                 </div>
               ))}
-              
-              <div className="bg-blue-50 dark:bg-blue-900/20 p-2 rounded text-center mt-6">
-                <p className="text-xs text-blue-600 dark:text-blue-400">
-                  💡 Nach der Auswahl können Sie weitere Anpassungen vornehmen
-                </p>
-              </div>
             </div>
           )}
 
-          {/* Individuell Mode - Vereinfacht */}
+          {/* Individuell Mode - Funktional und vereinfacht */}
           {configMode === 'individuell' && (
-            <div className="text-center py-8 space-y-3">
-              <MdSettings className="w-12 h-12 mx-auto text-gray-400" />
-              <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300">
-                Individuelle Anpassungen
-              </h4>
-              <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs mx-auto">
-                Erweiterte Optionen für Design, Farben und Features sind in Entwicklung.
-              </p>
-              <button
-                onClick={() => setConfigMode('paket')}
-                className="mt-4 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm rounded-lg transition-colors"
-              >
-                Zurück zu Paketen
-              </button>
-            </div>
+            <>
+              {/* Design Tab */}
+              {activeTab === 'design' && (
+                <div className="space-y-3">
+                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-3">Design-Stil</h4>
+                  {[
+                    { key: 'angular', name: 'Klassisch', desc: 'Eckig & traditionell', icon: '🏢' },
+                    { key: 'rounded', name: 'Freundlich', desc: 'Rund & modern', icon: '😊' },
+                    { key: 'modern', name: 'Modern', desc: 'Minimalistisch', icon: '🚀' }
+                  ].map((style) => (
+                    <button
+                      key={style.key}
+                      onClick={() => changeDesignStyle(style.key as 'angular' | 'rounded' | 'modern')}
+                      className={`w-full p-3 text-left border rounded-lg transition-all ${
+                        currentDesignStyle === style.key
+                          ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">{style.icon}</span>
+                        <div>
+                          <div className="font-medium text-gray-900 dark:text-white text-sm">{style.name}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{style.desc}</div>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Farben Tab */}
+              {activeTab === 'color' && (
+                <div className="space-y-3">
+                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-3">Farbschema</h4>
+                  {[
+                    { key: 'warm', name: 'Warm', colors: ['#291D1E', '#F5A454'], desc: 'Einladend & vertrauensvoll' },
+                    { key: 'modern', name: 'Modern', colors: ['#1C1C1C', '#FA3D3B'], desc: 'Kraftvoll & energetisch' },
+                    { key: 'elegant', name: 'Elegant', colors: ['#1D2D50', '#B0D7FF'], desc: 'Professionell & frisch' },
+                    { key: 'nature', name: 'Nature', colors: ['#000000', '#BCD7B6'], desc: 'Natürlich & nachhaltig' }
+                  ].map((scheme) => (
+                    <button
+                      key={scheme.key}
+                      onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
+                      className={`w-full p-3 text-left border rounded-lg transition-all ${
+                        currentColorScheme === scheme.key
+                          ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex gap-1">
+                          {scheme.colors.map((color, index) => (
+                            <div key={index} className="w-4 h-4 rounded border border-gray-300" style={{ backgroundColor: color }} />
+                          ))}
+                        </div>
+                        <div>
+                          <div className="font-medium text-gray-900 dark:text-white text-sm">{scheme.name}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{scheme.desc}</div>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Features Tab */}
+              {activeTab === 'features' && (
+                <div className="space-y-3">
+                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-3">Marketing-Features</h4>
+                  {[
+                    { key: 'speedDial', name: 'Speed Dial', desc: 'Mobile Kontakt-Buttons', icon: '📞' },
+                    { key: 'whatsappWidget', name: 'WhatsApp', desc: 'Chat-Widget', icon: '💬' },
+                    { key: 'contactBar', name: 'Kontakt-Leiste', desc: 'Fixe Telefon-Leiste', icon: '📱' },
+                    { key: 'notdienstAlert', name: 'Notdienst-Alert', desc: 'Auffällige Hinweis-Leiste', icon: '🚨' }
+                  ].map((feature) => (
+                    <button
+                      key={feature.key}
+                      onClick={() => toggleFeature(feature.key as keyof typeof features)}
+                      className={`w-full p-3 text-left border rounded-lg transition-all ${
+                        features[feature.key as keyof typeof features]
+                          ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className="text-lg">{feature.icon}</span>
+                          <div>
+                            <div className="font-medium text-gray-900 dark:text-white text-sm">{feature.name}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">{feature.desc}</div>
+                          </div>
+                        </div>
+                        <div className={`px-2 py-1 text-xs font-medium rounded ${
+                          features[feature.key as keyof typeof features]
+                            ? 'bg-orange-500 text-white'
+                            : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
+                        }`}>
+                          {features[feature.key as keyof typeof features] ? 'AN' : 'AUS'}
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Layout Tab */}
+              {activeTab === 'layout' && (
+                <div className="space-y-3">
+                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-3">Website-Umfang</h4>
+                  {[
+                    { key: 'onepage', name: 'One-Page', desc: 'Alles auf einer Seite', icon: '📄' },
+                    { key: 'multipage', name: 'Multi-Page', desc: 'Mehrere Unterseiten', icon: '📚' }
+                  ].map((mode) => (
+                    <button
+                      key={mode.key}
+                      onClick={() => changeSiteMode(mode.key as 'onepage' | 'multipage')}
+                      className={`w-full p-3 text-left border rounded-lg transition-all ${
+                        currentSiteMode === mode.key
+                          ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">{mode.icon}</span>
+                        <div>
+                          <div className="font-medium text-gray-900 dark:text-white text-sm">{mode.name}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{mode.desc}</div>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </div>
 
