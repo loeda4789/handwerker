@@ -364,7 +364,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6">
           
-          {/* Paket Mode - Mit Nummerierung und modernen Icons */}
+          {/* Paket Mode - Minimalistisch und fokussiert */}
           {configMode === 'paket' && (
             <div className="space-y-4">
               <div className="text-center mb-6">
@@ -385,7 +385,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   >
                     <div className="flex items-center gap-4">
                       {/* Nummerierung */}
-                      <div className={`w-10 h-10 rounded-2xl flex items-center justify-center font-bold text-sm ${
+                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold ${
                         activePackage === pkg.key
                           ? 'bg-orange-500 text-white'
                           : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
@@ -394,51 +394,28 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       </div>
                       
                       <div className="flex-1">
-                        <div className="font-semibold text-gray-900 dark:text-white text-base">
+                        <div className="font-semibold text-gray-900 dark:text-white text-lg">
                           {pkg.name}
                         </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
-                          {pkg.primary}
-                        </div>
-                        {/* Feature Badge */}
-                        <div className="mt-2">
-                          <span className="inline-flex items-center text-xs bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-xl text-gray-700 dark:text-gray-300 font-medium">
-                            <MdCall className="w-3 h-3 mr-1" />
-                            {pkg.feature}
-                          </span>
+                        <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                          {pkg.feature}
                         </div>
                       </div>
                       
-                      <div className="flex items-center gap-3">
-                        {/* Kompakte Farb-Vorschau */}
-                        <div className="flex gap-1">
-                          {pkg.colors.slice(0, 2).map((color, index) => (
-                            <div 
-                              key={index}
-                              className="w-4 h-4 rounded-xl border border-gray-300"
-                              style={{ backgroundColor: color }}
-                            />
-                          ))}
-                        </div>
-                        
-                        {/* Info Icon */}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            setShowPackageDetails(prev => ({
-                              ...prev,
-                              [pkg.key]: !prev[pkg.key]
-                            }))
-                          }}
-                          className="p-2 text-gray-400 hover:text-orange-500 transition-colors rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700"
-                        >
-                          <MdInfo className="w-4 h-4" />
-                        </button>
+                      {/* Nur Farb-Vorschau */}
+                      <div className="flex gap-2">
+                        {pkg.colors.slice(0, 2).map((color, index) => (
+                          <div 
+                            key={index}
+                            className="w-5 h-5 rounded-xl border border-gray-300"
+                            style={{ backgroundColor: color }}
+                          />
+                        ))}
                       </div>
                     </div>
                   </button>
 
-                  {/* Aufklappbare Details - kompakter */}
+                  {/* Optionale Details nur bei Klick auf Info */}
                   {showPackageDetails[pkg.key] && (
                     <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 text-sm">
                       <div className="text-gray-600 dark:text-gray-400">
@@ -448,6 +425,13 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   )}
                 </div>
               ))}
+
+              {/* Info-Hinweis kompakt */}
+              <div className="mt-8 text-center">
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Schnelle Auswahl für sofortigen Start
+                </p>
+              </div>
             </div>
           )}
 
