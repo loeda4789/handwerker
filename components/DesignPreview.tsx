@@ -252,12 +252,12 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   if (!isOpen) return null
 
-  // Vereinfachte Paket-Daten
+  // Vereinfachte Paket-Daten mit Nummerierung und modernen Icons
   const packages = [
     {
       key: '1',
+      number: '01',
       name: 'Klassisch',
-      icon: '🏢',
       primary: 'Business & Seriös',
       feature: 'Kontaktleiste',
       colors: ['#000000', '#D05733'],
@@ -265,8 +265,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     },
     {
       key: '2', 
+      number: '02',
       name: 'Freundlich',
-      icon: '😊',
       primary: 'Warm & Einladend',
       feature: 'Speed Dial',
       colors: ['#18273A', '#987E4D'],
@@ -274,8 +274,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     },
     {
       key: '3',
+      number: '03',
       name: 'Modern',
-      icon: '🚀',
       primary: 'Zeitgemäß & Fresh',
       feature: 'WhatsApp Chat',
       colors: ['#000000', '#BCD7B6'],
@@ -284,8 +284,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   ]
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center">
-      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[500px] max-h-[80vh] flex flex-col rounded-lg">
+    <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[520px] h-[600px] flex flex-col rounded-2xl">
         
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
@@ -294,7 +294,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           </h3>
           <button
             onClick={onClose}
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl"
           >
             <MdClose className="w-5 h-5" />
           </button>
@@ -306,7 +306,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             {/* Paket Button */}
             <button
               onClick={() => setConfigMode('paket')}
-              className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-sm font-medium transition-all duration-200 ${
+              className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-sm font-medium transition-all duration-200 rounded-t-2xl ${
                 configMode === 'paket'
                   ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 border-b-2 border-orange-500'
                   : 'text-gray-600 dark:text-gray-400 hover:text-orange-500 hover:bg-gray-50 dark:hover:bg-gray-800'
@@ -323,7 +323,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 setConfigMode('individuell')
                 if (activeTab === 'pakete') setActiveTab('design')
               }}
-              className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-sm font-medium transition-all duration-200 ${
+              className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-sm font-medium transition-all duration-200 rounded-t-2xl ${
                 configMode === 'individuell'
                   ? 'text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-700 border-b-2 border-blue-500'
                   : 'text-gray-600 dark:text-gray-400 hover:text-blue-500 hover:bg-gray-50 dark:hover:bg-gray-800'
@@ -347,9 +347,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`flex-1 flex flex-col items-center gap-1 px-2 py-2 text-xs font-medium transition-all duration-200 ${
+                  className={`flex-1 flex flex-col items-center gap-1 px-2 py-2 text-xs font-medium transition-all duration-200 rounded-lg mx-1 ${
                     activeTab === tab.key
-                      ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 border-b-2 border-orange-500'
+                      ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 shadow-sm'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                   }`}
                 >
@@ -364,10 +364,10 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6">
           
-          {/* Paket Mode - Ultra Vereinfacht */}
+          {/* Paket Mode - Mit Nummerierung und modernen Icons */}
           {configMode === 'paket' && (
-            <div className="space-y-3">
-              <div className="text-center mb-4">
+            <div className="space-y-4">
+              <div className="text-center mb-6">
                 <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">
                   Wählen Sie Ihr Design-Paket
                 </h4>
@@ -377,54 +377,73 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 <div key={pkg.key}>
                   <button
                     onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
-                    className={`w-full p-3 text-left border rounded-lg transition-all duration-200 hover:shadow-sm ${
+                    className={`w-full p-4 text-left border-2 rounded-2xl transition-all duration-200 hover:shadow-lg ${
                       activePackage === pkg.key
-                        ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
+                        ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20 shadow-md'
                         : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="text-xl">{pkg.icon}</span>
+                    <div className="flex items-center gap-4">
+                      {/* Nummerierung */}
+                      <div className={`w-10 h-10 rounded-2xl flex items-center justify-center font-bold text-sm ${
+                        activePackage === pkg.key
+                          ? 'bg-orange-500 text-white'
+                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                      }`}>
+                        {pkg.number}
+                      </div>
+                      
                       <div className="flex-1">
-                        <div className="font-medium text-gray-900 dark:text-white">
+                        <div className="font-semibold text-gray-900 dark:text-white text-base">
                           {pkg.name}
                         </div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                          {pkg.feature}
+                        <div className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                          {pkg.primary}
+                        </div>
+                        {/* Feature Badge */}
+                        <div className="mt-2">
+                          <span className="inline-flex items-center text-xs bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-xl text-gray-700 dark:text-gray-300 font-medium">
+                            <MdCall className="w-3 h-3 mr-1" />
+                            {pkg.feature}
+                          </span>
                         </div>
                       </div>
                       
-                      {/* Kompakte Farb-Vorschau */}
-                      <div className="flex gap-1">
-                        {pkg.colors.slice(0, 2).map((color, index) => (
-                          <div 
-                            key={index}
-                            className="w-3 h-3 rounded-full border border-gray-300"
-                            style={{ backgroundColor: color }}
-                          />
-                        ))}
+                      <div className="flex items-center gap-3">
+                        {/* Kompakte Farb-Vorschau */}
+                        <div className="flex gap-1">
+                          {pkg.colors.slice(0, 2).map((color, index) => (
+                            <div 
+                              key={index}
+                              className="w-4 h-4 rounded-xl border border-gray-300"
+                              style={{ backgroundColor: color }}
+                            />
+                          ))}
+                        </div>
+                        
+                        {/* Info Icon */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            setShowPackageDetails(prev => ({
+                              ...prev,
+                              [pkg.key]: !prev[pkg.key]
+                            }))
+                          }}
+                          className="p-2 text-gray-400 hover:text-orange-500 transition-colors rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700"
+                        >
+                          <MdInfo className="w-4 h-4" />
+                        </button>
                       </div>
-                      
-                      {/* Info Icon - nur anzeigen */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          setShowPackageDetails(prev => ({
-                            ...prev,
-                            [pkg.key]: !prev[pkg.key]
-                          }))
-                        }}
-                        className="p-1 text-gray-400 hover:text-orange-500 transition-colors"
-                      >
-                        <MdInfo className="w-4 h-4" />
-                      </button>
                     </div>
                   </button>
 
                   {/* Aufklappbare Details - kompakter */}
                   {showPackageDetails[pkg.key] && (
-                    <div className="mt-1 p-2 bg-gray-50 dark:bg-gray-800 rounded text-xs text-gray-600 dark:text-gray-400">
-                      {pkg.preview}
+                    <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 text-sm">
+                      <div className="text-gray-600 dark:text-gray-400">
+                        {pkg.preview}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -432,32 +451,38 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             </div>
           )}
 
-          {/* Individuell Mode - Funktional und vereinfacht */}
+          {/* Individuell Mode - Funktional und vereinfacht mit runden Formen */}
           {configMode === 'individuell' && (
             <>
               {/* Design Tab */}
               {activeTab === 'design' && (
-                <div className="space-y-3">
-                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-3">Design-Stil</h4>
+                <div className="space-y-4">
+                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-4">Design-Stil</h4>
                   {[
-                    { key: 'angular', name: 'Klassisch', desc: 'Eckig & traditionell', icon: '🏢' },
-                    { key: 'rounded', name: 'Freundlich', desc: 'Rund & modern', icon: '😊' },
-                    { key: 'modern', name: 'Modern', desc: 'Minimalistisch', icon: '🚀' }
+                    { key: 'angular', name: 'Klassisch', desc: 'Eckig & traditionell', Icon: MdViewQuilt },
+                    { key: 'rounded', name: 'Freundlich', desc: 'Rund & modern', Icon: MdImage },
+                    { key: 'modern', name: 'Modern', desc: 'Minimalistisch', Icon: MdViewCarousel }
                   ].map((style) => (
                     <button
                       key={style.key}
                       onClick={() => changeDesignStyle(style.key as 'angular' | 'rounded' | 'modern')}
-                      className={`w-full p-3 text-left border rounded-lg transition-all ${
+                      className={`w-full p-4 text-left border-2 rounded-2xl transition-all ${
                         currentDesignStyle === style.key
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-lg">{style.icon}</span>
+                        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
+                          currentDesignStyle === style.key
+                            ? 'bg-orange-500 text-white'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                        }`}>
+                          <style.Icon className="w-5 h-5" />
+                        </div>
                         <div>
-                          <div className="font-medium text-gray-900 dark:text-white text-sm">{style.name}</div>
-                          <div className="text-xs text-gray-500 dark:text-gray-400">{style.desc}</div>
+                          <div className="font-medium text-gray-900 dark:text-white">{style.name}</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">{style.desc}</div>
                         </div>
                       </div>
                     </button>
@@ -467,8 +492,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
               {/* Farben Tab */}
               {activeTab === 'color' && (
-                <div className="space-y-3">
-                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-3">Farbschema</h4>
+                <div className="space-y-4">
+                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-4">Farbschema</h4>
                   {[
                     { key: 'warm', name: 'Warm', colors: ['#291D1E', '#F5A454'], desc: 'Einladend & vertrauensvoll' },
                     { key: 'modern', name: 'Modern', colors: ['#1C1C1C', '#FA3D3B'], desc: 'Kraftvoll & energetisch' },
@@ -478,21 +503,21 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <button
                       key={scheme.key}
                       onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
-                      className={`w-full p-3 text-left border rounded-lg transition-all ${
+                      className={`w-full p-4 text-left border-2 rounded-2xl transition-all ${
                         currentColorScheme === scheme.key
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className="flex gap-1">
+                        <div className="flex gap-2">
                           {scheme.colors.map((color, index) => (
-                            <div key={index} className="w-4 h-4 rounded border border-gray-300" style={{ backgroundColor: color }} />
+                            <div key={index} className="w-6 h-6 rounded-xl border border-gray-300" style={{ backgroundColor: color }} />
                           ))}
                         </div>
                         <div>
-                          <div className="font-medium text-gray-900 dark:text-white text-sm">{scheme.name}</div>
-                          <div className="text-xs text-gray-500 dark:text-gray-400">{scheme.desc}</div>
+                          <div className="font-medium text-gray-900 dark:text-white">{scheme.name}</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">{scheme.desc}</div>
                         </div>
                       </div>
                     </button>
@@ -502,18 +527,18 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
               {/* Features Tab */}
               {activeTab === 'features' && (
-                <div className="space-y-3">
-                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-3">Marketing-Features</h4>
+                <div className="space-y-4">
+                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-4">Marketing-Features</h4>
                   {[
-                    { key: 'speedDial', name: 'Speed Dial', desc: 'Mobile Kontakt-Buttons', icon: '📞' },
-                    { key: 'whatsappWidget', name: 'WhatsApp', desc: 'Chat-Widget', icon: '💬' },
-                    { key: 'contactBar', name: 'Kontakt-Leiste', desc: 'Fixe Telefon-Leiste', icon: '📱' },
-                    { key: 'notdienstAlert', name: 'Notdienst-Alert', desc: 'Auffällige Hinweis-Leiste', icon: '🚨' }
+                    { key: 'speedDial', name: 'Speed Dial', desc: 'Mobile Kontakt-Buttons', Icon: MdCall },
+                    { key: 'whatsappWidget', name: 'WhatsApp', desc: 'Chat-Widget', Icon: MdWhatsapp },
+                    { key: 'contactBar', name: 'Kontakt-Leiste', desc: 'Fixe Telefon-Leiste', Icon: MdPhoneInTalk },
+                    { key: 'notdienstAlert', name: 'Notdienst-Alert', desc: 'Auffällige Hinweis-Leiste', Icon: MdNotifications }
                   ].map((feature) => (
                     <button
                       key={feature.key}
                       onClick={() => toggleFeature(feature.key as keyof typeof features)}
-                      className={`w-full p-3 text-left border rounded-lg transition-all ${
+                      className={`w-full p-4 text-left border-2 rounded-2xl transition-all ${
                         features[feature.key as keyof typeof features]
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
@@ -521,13 +546,19 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <span className="text-lg">{feature.icon}</span>
+                          <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
+                            features[feature.key as keyof typeof features]
+                              ? 'bg-orange-500 text-white'
+                              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                          }`}>
+                            <feature.Icon className="w-5 h-5" />
+                          </div>
                           <div>
-                            <div className="font-medium text-gray-900 dark:text-white text-sm">{feature.name}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">{feature.desc}</div>
+                            <div className="font-medium text-gray-900 dark:text-white">{feature.name}</div>
+                            <div className="text-sm text-gray-500 dark:text-gray-400">{feature.desc}</div>
                           </div>
                         </div>
-                        <div className={`px-2 py-1 text-xs font-medium rounded ${
+                        <div className={`px-3 py-1 text-xs font-medium rounded-xl ${
                           features[feature.key as keyof typeof features]
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
@@ -542,26 +573,32 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
               {/* Layout Tab */}
               {activeTab === 'layout' && (
-                <div className="space-y-3">
-                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-3">Website-Umfang</h4>
+                <div className="space-y-4">
+                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-4">Website-Umfang</h4>
                   {[
-                    { key: 'onepage', name: 'One-Page', desc: 'Alles auf einer Seite', icon: '📄' },
-                    { key: 'multipage', name: 'Multi-Page', desc: 'Mehrere Unterseiten', icon: '📚' }
+                    { key: 'onepage', name: 'One-Page', desc: 'Alles auf einer Seite', Icon: MdDescription },
+                    { key: 'multipage', name: 'Multi-Page', desc: 'Mehrere Unterseiten', Icon: MdViewModule }
                   ].map((mode) => (
                     <button
                       key={mode.key}
                       onClick={() => changeSiteMode(mode.key as 'onepage' | 'multipage')}
-                      className={`w-full p-3 text-left border rounded-lg transition-all ${
+                      className={`w-full p-4 text-left border-2 rounded-2xl transition-all ${
                         currentSiteMode === mode.key
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-lg">{mode.icon}</span>
+                        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
+                          currentSiteMode === mode.key
+                            ? 'bg-orange-500 text-white'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                        }`}>
+                          <mode.Icon className="w-5 h-5" />
+                        </div>
                         <div>
-                          <div className="font-medium text-gray-900 dark:text-white text-sm">{mode.name}</div>
-                          <div className="text-xs text-gray-500 dark:text-gray-400">{mode.desc}</div>
+                          <div className="font-medium text-gray-900 dark:text-white">{mode.name}</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">{mode.desc}</div>
                         </div>
                       </div>
                     </button>
@@ -576,7 +613,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         <div className="border-t border-gray-200 dark:border-gray-700 p-4">
           <button
             onClick={applyChangesAndReload}
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 rounded-lg transition-colors"
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 rounded-2xl transition-colors"
           >
             Website anzeigen
           </button>
