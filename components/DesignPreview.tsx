@@ -364,7 +364,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6">
           
-          {/* Paket Mode - Minimalistisch und fokussiert */}
+          {/* Paket Mode - Keine visuellen Änderungen bei Auswahl */}
           {configMode === 'paket' && (
             <div className="space-y-4">
               <div className="text-center mb-6">
@@ -377,19 +377,11 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 <div key={pkg.key}>
                   <button
                     onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
-                    className={`w-full p-4 text-left border-2 rounded-2xl transition-all duration-200 hover:shadow-lg ${
-                      activePackage === pkg.key
-                        ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20 shadow-md'
-                        : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
-                    }`}
+                    className="w-full p-4 text-left border-2 border-gray-200 dark:border-gray-700 rounded-2xl transition-all duration-200 hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-600"
                   >
                     <div className="flex items-center gap-4">
-                      {/* Nummerierung */}
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold ${
-                        activePackage === pkg.key
-                          ? 'bg-orange-500 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
-                      }`}>
+                      {/* Nummerierung - immer gleich */}
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center font-bold bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
                         {pkg.number}
                       </div>
                       
