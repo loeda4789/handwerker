@@ -294,7 +294,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           </h3>
           <button
             onClick={onClose}
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl"
+            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 rounded-2xl"
           >
             <MdClose className="w-5 h-5" />
           </button>
@@ -347,7 +347,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`flex-1 flex flex-col items-center gap-1 px-2 py-2 text-xs font-medium transition-all duration-200 rounded-lg mx-1 ${
+                  className={`flex-1 flex flex-col items-center gap-1 px-2 py-2 text-xs font-medium transition-all duration-200 rounded-2xl mx-1 ${
                     activeTab === tab.key
                       ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 shadow-sm'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
@@ -399,7 +399,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                         {pkg.colors.slice(0, 2).map((color, index) => (
                           <div 
                             key={index}
-                            className="w-5 h-5 rounded-xl border border-gray-300"
+                            className="w-5 h-5 rounded-2xl border border-gray-300"
                             style={{ backgroundColor: color }}
                           />
                         ))}
@@ -409,7 +409,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
                   {/* Optionale Details nur bei Klick auf Info */}
                   {showPackageDetails[pkg.key] && (
-                    <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 text-sm">
+                    <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 text-sm">
                       <div className="text-gray-600 dark:text-gray-400">
                         {pkg.preview}
                       </div>
@@ -488,7 +488,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       <div className="flex items-center gap-3">
                         <div className="flex gap-2">
                           {scheme.colors.map((color, index) => (
-                            <div key={index} className="w-6 h-6 rounded-xl border border-gray-300" style={{ backgroundColor: color }} />
+                            <div key={index} className="w-6 h-6 rounded-2xl border border-gray-300" style={{ backgroundColor: color }} />
                           ))}
                         </div>
                         <div>
@@ -534,7 +534,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                             <div className="text-sm text-gray-500 dark:text-gray-400">{feature.desc}</div>
                           </div>
                         </div>
-                        <div className={`px-3 py-1 text-xs font-medium rounded-xl ${
+                        <div className={`px-3 py-1 text-xs font-medium rounded-2xl ${
                           features[feature.key as keyof typeof features]
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
