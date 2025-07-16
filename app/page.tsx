@@ -946,6 +946,20 @@ export default function HomePage() {
         onClick={() => setShowConfigurator(true)}
       />
 
+      {/* Direkter Color Configurator Button - rechts unten */}
+      <button
+        onClick={() => setShowColorConfigurator(true)}
+        className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
+        title="Farbkonfigurator öffnen"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v6a2 2 0 002 2h4a2 2 0 002-2V5zM21 15a2 2 0 00-2-2h-4a2 2 0 00-2 2v2a2 2 0 002 2h4a2 2 0 002-2v-2z"/>
+        </svg>
+        <span className="absolute -top-2 -left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+          Farben ändern
+        </span>
+      </button>
+
       {/* Color Configurator Overlay */}
       <ColorConfigurator
         isOpen={showColorConfigurator}
