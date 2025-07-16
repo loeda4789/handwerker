@@ -210,7 +210,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
-                  Wählen Sie ein vorgefertigtes Farbschema
+                  Unsere beliebtesten Designs
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
                   Professionell gestaltete Farbkombinationen, die sofort einsatzbereit sind.
