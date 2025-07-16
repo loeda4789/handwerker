@@ -68,7 +68,7 @@ export default function Footer({ content }: FooterProps) {
                  <div className="text-white/80 text-sm">
                    <div className="flex justify-between min-w-[180px]">
                      <span>Mo–Fr:</span>
-                     <span>08:00–17:00 Uhr</span>
+                     <span>07:00–17:00 Uhr</span>
                    </div>
                  </div>
                </div>
