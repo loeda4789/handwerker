@@ -18,6 +18,8 @@ interface SimpleColors {
   'text-secondary': string
 }
 
+type ViewMode = 'packages' | 'custom'
+
 export default function ColorConfigurator({ isOpen, onClose }: ColorConfiguratorProps) {
   const [colors, setColors] = useState<SimpleColors>({
     primary: '#c49a6c',
@@ -30,6 +32,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
     'text-secondary': '#6f6f6f'
   })
 
+  const [viewMode, setViewMode] = useState<ViewMode>('packages')
   const [showPreview, setShowPreview] = useState(false)
 
   // Farben beim Laden aus localStorage wiederherstellen
@@ -74,6 +77,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
   const presetSchemes = {
     warm: {
       name: 'Warm & Elegant',
+      description: 'Warme, einladende Farben für traditionelle Handwerksbetriebe',
       colors: {
         primary: '#291D1E',
         secondary: '#F5A454',
@@ -87,6 +91,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
     },
     modern: {
       name: 'Modern & Energetisch',
+      description: 'Klare, moderne Farben für zeitgemäße Unternehmen',
       colors: {
         primary: '#1C1C1C',
         secondary: '#FA3D3B',
@@ -100,6 +105,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
     },
     elegant: {
       name: 'Elegant & Frisch',
+      description: 'Elegante, professionelle Farben für anspruchsvolle Kunden',
       colors: {
         primary: '#1D2D50',
         secondary: '#B0D7FF',
@@ -109,6 +115,20 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
         text: '#1D2D50',
         'text-light': '#ffffff',
         'text-secondary': '#5A6B8C'
+      }
+    },
+    natural: {
+      name: 'Natürlich & Erdverbunden',
+      description: 'Natürliche Erdtöne für umweltbewusste Betriebe',
+      colors: {
+        primary: '#2D5016',
+        secondary: '#8FBC8F',
+        accent: '#E6F3E6',
+        background: '#ffffff',
+        surface: '#f8faf8',
+        text: '#2D5016',
+        'text-light': '#ffffff',
+        'text-secondary': '#6B8B3D'
       }
     }
   }
@@ -142,10 +162,10 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              🎨 Vereinfachter Farbkonfigurator
+              🎨 Farbkonfigurator
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mt-1">
-              Nur 8 essenzielle Farben - Einfach & Übersichtlich
+              Gestalten Sie das Erscheinungsbild Ihrer Website
             </p>
           </div>
           <button
@@ -159,91 +179,155 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
         </div>
 
         <div className="p-6">
-          {/* Preset-Schemata */}
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
-              🚀 Schnell-Auswahl
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {Object.entries(presetSchemes).map(([key, preset]) => (
-                <button
-                  key={key}
-                  onClick={() => applyPreset(key)}
-                  className="p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900 transition-colors text-left"
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <div 
-                      className="w-4 h-4 rounded-full border" 
-                      style={{ backgroundColor: preset.colors.primary }}
-                    ></div>
-                    <span className="font-medium text-sm">{preset.name}</span>
-                  </div>
-                  <div className="flex gap-1">
-                    {[preset.colors.primary, preset.colors.secondary, preset.colors.accent].map((color, i) => (
-                      <div 
-                        key={i}
-                        className="w-3 h-3 rounded-sm border border-gray-200" 
-                        style={{ backgroundColor: color }}
-                      ></div>
-                    ))}
-                  </div>
-                </button>
-              ))}
+          {/* Toggle-Button */}
+          <div className="flex mb-6">
+            <div className="bg-gray-100 dark:bg-gray-700 p-1 rounded-lg flex">
+              <button
+                onClick={() => setViewMode('packages')}
+                className={`px-4 py-2 rounded-md font-medium transition-all duration-200 ${
+                  viewMode === 'packages'
+                    ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                }`}
+              >
+                📦 Fertige Pakete
+              </button>
+              <button
+                onClick={() => setViewMode('custom')}
+                className={`px-4 py-2 rounded-md font-medium transition-all duration-200 ${
+                  viewMode === 'custom'
+                    ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                }`}
+              >
+                🎯 Eigene Anpassung
+              </button>
             </div>
           </div>
 
-          {/* Individuelle Farbanpassung */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
-              🎯 Individuelle Anpassung
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              {Object.entries(colors).map(([colorKey, colorValue]) => {
-                const label = colorLabels[colorKey as keyof typeof colorLabels]
-                return (
-                  <div key={colorKey} className="flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-600 rounded-lg">
-                    <div className="flex-shrink-0">
-                      <div 
-                        className="w-12 h-12 border border-gray-200 dark:border-gray-600 cursor-pointer rounded-lg"
-                        style={{ backgroundColor: colorValue }}
-                        onClick={() => {
-                          const input = document.createElement('input')
-                          input.type = 'color'
-                          input.value = colorValue
-                          input.onchange = (e) => handleColorChange(
-                            colorKey as keyof SimpleColors, 
-                            (e.target as HTMLInputElement).value
-                          )
-                          input.click()
-                        }}
-                      ></div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-lg">{label.icon}</span>
-                        <span className="font-medium text-gray-900 dark:text-white">
-                          {label.name}
-                        </span>
+          {/* Packages View */}
+          {viewMode === 'packages' && (
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
+                  Wählen Sie ein vorgefertigtes Farbschema
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  Professionell gestaltete Farbkombinationen, die sofort einsatzbereit sind.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {Object.entries(presetSchemes).map(([key, preset]) => (
+                  <div
+                    key={key}
+                    className="border border-gray-200 dark:border-gray-600 rounded-lg p-5 hover:border-orange-500 hover:shadow-md transition-all cursor-pointer"
+                    onClick={() => applyPreset(key)}
+                  >
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                          {preset.name}
+                        </h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {preset.description}
+                        </p>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                        {label.description}
-                      </p>
-                      <input
-                        type="text"
-                        value={colorValue.toUpperCase()}
-                        onChange={(e) => handleColorChange(colorKey as keyof SimpleColors, e.target.value)}
-                        className="w-full px-3 py-1 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"
-                        placeholder="#000000"
-                      />
                     </div>
+                    
+                    {/* Farbvorschau */}
+                    <div className="flex gap-2 mb-3">
+                      <div 
+                        className="w-8 h-8 rounded-md border border-gray-200" 
+                        style={{ backgroundColor: preset.colors.primary }}
+                        title="Hauptfarbe"
+                      ></div>
+                      <div 
+                        className="w-8 h-8 rounded-md border border-gray-200" 
+                        style={{ backgroundColor: preset.colors.secondary }}
+                        title="Kontrastfarbe"
+                      ></div>
+                      <div 
+                        className="w-8 h-8 rounded-md border border-gray-200" 
+                        style={{ backgroundColor: preset.colors.accent }}
+                        title="Akzentfarbe"
+                      ></div>
+                      <div 
+                        className="w-8 h-8 rounded-md border border-gray-200" 
+                        style={{ backgroundColor: preset.colors.surface }}
+                        title="Oberflächenfarbe"
+                      ></div>
+                    </div>
+                    
+                    <button className="w-full bg-gray-50 dark:bg-gray-700 hover:bg-orange-50 dark:hover:bg-orange-900 text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 py-2 rounded-md text-sm font-medium transition-colors">
+                      Dieses Schema verwenden
+                    </button>
                   </div>
-                )
-              })}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Vorschau Toggle */}
-          <div className="flex items-center justify-between">
+          {/* Custom View */}
+          {viewMode === 'custom' && (
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
+                  Individuelle Farbanpassung
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  Passen Sie jede Farbe einzeln an Ihre Bedürfnisse an.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {Object.entries(colors).map(([colorKey, colorValue]) => {
+                  const label = colorLabels[colorKey as keyof typeof colorLabels]
+                  return (
+                    <div key={colorKey} className="flex items-center gap-4 p-4 border border-gray-200 dark:border-gray-600 rounded-lg">
+                      <div className="flex-shrink-0">
+                        <div 
+                          className="w-14 h-14 border border-gray-200 dark:border-gray-600 cursor-pointer rounded-lg transition-transform hover:scale-105"
+                          style={{ backgroundColor: colorValue }}
+                          onClick={() => {
+                            const input = document.createElement('input')
+                            input.type = 'color'
+                            input.value = colorValue
+                            input.onchange = (e) => handleColorChange(
+                              colorKey as keyof SimpleColors, 
+                              (e.target as HTMLInputElement).value
+                            )
+                            input.click()
+                          }}
+                        ></div>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-lg">{label.icon}</span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {label.name}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                          {label.description}
+                        </p>
+                        <input
+                          type="text"
+                          value={colorValue.toUpperCase()}
+                          onChange={(e) => handleColorChange(colorKey as keyof SimpleColors, e.target.value)}
+                          className="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                          placeholder="#000000"
+                        />
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Footer mit Vorschau Toggle */}
+          <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setShowPreview(!showPreview)}
@@ -256,7 +340,7 @@ export default function ColorConfigurator({ isOpen, onClose }: ColorConfigurator
                 {showPreview ? '👁️ Vorschau AN' : '👁️ Vorschau AUS'}
               </button>
               <span className="text-sm text-gray-600 dark:text-gray-400">
-                Änderungen werden sofort angewendet
+                Änderungen werden automatisch gespeichert
               </span>
             </div>
           </div>
