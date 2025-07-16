@@ -69,7 +69,7 @@ export default function RootLayout({
         
         {/* Critical CSS ist bereits in globals.css definiert */}
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         {/* <ThemeProvider> */}
           {children}
         {/* </ThemeProvider> */}
