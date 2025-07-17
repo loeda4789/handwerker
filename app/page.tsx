@@ -492,7 +492,7 @@ export default function HomePage() {
       {/* Configurator Overlay */}
       {showConfigurator && (
         <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm flex items-center justify-center">
-          <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full h-full flex flex-col"
+          <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 flex flex-col"
             style={{ 
               borderRadius: 'var(--radius-modal)',
               width: isDesktop ? '90vw' : '100%',
