@@ -148,7 +148,7 @@ export default function HomePage() {
     const savedDesignStyle = localStorage.getItem('design-style')
     const savedColorScheme = localStorage.getItem('selected-color-scheme')
     
-    // Features aus Quick-Einstellungen laden
+    // Features aus Website-Designer laden
     const featuresConfig = {
       promoBanner: localStorage.getItem('feature-promoBanner') === 'true',
       contactBar: localStorage.getItem('feature-contactBar') === 'true',

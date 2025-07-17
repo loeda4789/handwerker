@@ -289,7 +289,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-            Quick-Einstellungen
+            Website-Designer
           </h3>
           <button
             onClick={onClose}
@@ -368,12 +368,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           {/* Paket Mode - Einfacher und übersichtlicher */}
           {configMode === 'paket' && (
             <div className="space-y-4">
-              <div className="text-center mb-6">
-                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  Unsere beliebtesten Designs
-                </h4>
-              </div>
-              
               {/* Alle Pakete direkt anzeigen */}
               {packages.map((pkg) => (
                 <div key={pkg.key}>
