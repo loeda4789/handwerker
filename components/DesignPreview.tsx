@@ -35,7 +35,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const [configMode, setConfigMode] = useState<'paket' | 'individuell'>('paket')
   const [activePackage, setActivePackage] = useState<'1' | '2' | '3' | null>(null)
   const [showPackageDetails, setShowPackageDetails] = useState<{[key: string]: boolean}>({})
-  const [showMoreOptions, setShowMoreOptions] = useState(false)
   const [features, setFeatures] = useState({
     promoBanner: false,
     contactBar: false,
@@ -253,8 +252,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   if (!isOpen) return null
 
-  // Hauptpakete - nur die wichtigsten 2
-  const mainPackages = [
+  // Alle Pakete direkt anzeigen
+  const packages = [
     {
       key: '1',
       number: '01',
@@ -272,11 +271,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       feature: 'WhatsApp & Direktkontakt',
       colors: ['#000000', '#BCD7B6'],
       preview: 'Zeitgemäß • Einfach • Direkter Kontakt'
-    }
-  ]
-
-  // Erweiterte Pakete für "Weitere Optionen"
-  const extendedPackages = [
+    },
     {
       key: '3',
       number: '03',
@@ -290,7 +285,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[520px] h-[600px] flex flex-col rounded-2xl">
+      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[520px] h-[600px] flex flex-col" style={{ borderRadius: '24px' }}>
         
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
@@ -299,27 +294,29 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           </h3>
           <button
             onClick={onClose}
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 rounded-2xl"
+            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+            style={{ borderRadius: '16px' }}
           >
             <MdClose className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Simple Toggle Navigation */}
-        <div className="border-b border-gray-200 dark:border-gray-700">
-          <div className="flex">
-            {/* Paket Button */}
+        {/* Deutliche Paket/Individuell Navigation */}
+        <div className="border-b border-gray-200 dark:border-gray-700 p-2">
+          <div className="flex bg-gray-100 dark:bg-gray-800 p-1" style={{ borderRadius: '16px' }}>
+            {/* Paket Button - deutlich hervorgehoben */}
             <button
               onClick={() => setConfigMode('paket')}
-              className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-sm font-medium transition-all duration-200 rounded-t-2xl ${
+              className={`flex-1 flex flex-col items-center gap-1 px-4 py-4 text-sm font-bold transition-all duration-300 shadow-md ${
                 configMode === 'paket'
-                  ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 border-b-2 border-orange-500'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-orange-500 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-white bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg scale-105'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-orange-500 hover:bg-white dark:hover:bg-gray-700'
               }`}
+              style={{ borderRadius: '12px' }}
             >
-              <MdFlashOn className="w-5 h-5" />
-              <span className="font-semibold">Paket</span>
-              <span className="text-xs">Komplett-Lösung</span>
+              <MdFlashOn className="w-6 h-6" />
+              <span className="font-bold">PAKET</span>
+              <span className="text-xs opacity-90">Fertige Lösung</span>
             </button>
             
             {/* Individuell Button */}
@@ -328,21 +325,22 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 setConfigMode('individuell')
                 if (activeTab === 'pakete') setActiveTab('design')
               }}
-              className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-sm font-medium transition-all duration-200 rounded-t-2xl ${
+              className={`flex-1 flex flex-col items-center gap-1 px-4 py-4 text-sm font-bold transition-all duration-300 shadow-md ${
                 configMode === 'individuell'
-                  ? 'text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-700 border-b-2 border-blue-500'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-blue-500 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-white bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg scale-105'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-blue-500 hover:bg-white dark:hover:bg-gray-700'
               }`}
+              style={{ borderRadius: '12px' }}
             >
-              <MdBrush className="w-5 h-5" />
-              <span className="font-semibold">Individuell</span>
-              <span className="text-xs">Anpassbar</span>
+              <MdBrush className="w-6 h-6" />
+              <span className="font-bold">INDIVIDUELL</span>
+              <span className="text-xs opacity-90">Selbst anpassen</span>
             </button>
           </div>
           
-          {/* Sub-Tabs nur für Individuell */}
+          {/* Sub-Tabs nur für Individuell - mit rounded style */}
           {configMode === 'individuell' && (
-            <div className="flex bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-2">
               {[
                 { key: 'design', label: 'Design', Icon: MdBrush },
                 { key: 'color', label: 'Farben', Icon: MdPalette },
@@ -352,11 +350,12 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`flex-1 flex flex-col items-center gap-1 px-2 py-2 text-xs font-medium transition-all duration-200 rounded-2xl mx-1 ${
+                  className={`flex-1 flex flex-col items-center gap-1 px-2 py-2 text-xs font-medium transition-all duration-200 mx-1 ${
                     activeTab === tab.key
-                      ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 shadow-sm'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                      ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 shadow-md'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-white/50 dark:hover:bg-gray-700/50'
                   }`}
+                  style={{ borderRadius: '12px' }}
                 >
                   <tab.Icon className="w-4 h-4" />
                   <span>{tab.label}</span>
@@ -378,155 +377,74 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 </h4>
               </div>
               
-              {/* Hauptpakete */}
-              {mainPackages.map((pkg) => (
+              {/* Alle Pakete direkt anzeigen */}
+              {packages.map((pkg) => (
                 <div key={pkg.key}>
                   <button
                     onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
-                    className={`w-full p-4 text-left border-2 border-gray-200 dark:border-gray-700 rounded-2xl transition-all duration-200 hover:shadow-lg ${
+                    className={`w-full p-4 text-left border-3 transition-all duration-300 hover:shadow-xl ${
                       activePackage === pkg.key
-                        ? 'bg-orange-50 dark:bg-orange-900/20'
-                        : ''
+                        ? 'border-orange-500 bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-900/20 shadow-lg scale-105'
+                        : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                     }`}
+                    style={{ borderRadius: '16px' }}
                   >
                     <div className="flex items-center gap-4">
-                      {/* Nummerierung - orange wenn aktiv */}
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold ${
-                        activePackage === pkg.key
-                          ? 'bg-orange-500 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
-                      }`}>
+                      {/* Deutlichere Nummerierung */}
+                      <div 
+                        className={`w-14 h-14 flex items-center justify-center font-bold text-lg shadow-md ${
+                          activePackage === pkg.key
+                            ? 'bg-orange-500 text-white ring-4 ring-orange-200'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                        }`}
+                        style={{ borderRadius: '16px' }}
+                      >
                         {pkg.number}
                       </div>
                       
                       <div className="flex-1">
-                        <div className="font-semibold text-gray-900 dark:text-white text-lg">
+                        <div className={`font-bold text-xl ${
+                          activePackage === pkg.key
+                            ? 'text-orange-700 dark:text-orange-300'
+                            : 'text-gray-900 dark:text-white'
+                        }`}>
                           {pkg.name}
                         </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        <div className={`text-sm mt-1 ${
+                          activePackage === pkg.key
+                            ? 'text-orange-600 dark:text-orange-400'
+                            : 'text-gray-500 dark:text-gray-400'
+                        }`}>
                           {pkg.feature}
                         </div>
+                        {activePackage === pkg.key && (
+                          <div className="text-xs text-orange-600 dark:text-orange-400 mt-1 font-medium">
+                            ✓ AUSGEWÄHLT
+                          </div>
+                        )}
                       </div>
                       
-                      {/* Nur Farb-Vorschau */}
-                      <div className="flex gap-2">
-                        {pkg.colors.slice(0, 2).map((color: string, index: number) => (
-                          <div 
-                            key={index}
-                            className="w-5 h-5 rounded-2xl border border-gray-300"
-                            style={{ backgroundColor: color }}
-                          />
-                        ))}
-                      </div>
+                                              {/* Größere Farb-Vorschau */}
+                        <div className="flex gap-2">
+                          {pkg.colors.slice(0, 2).map((color: string, index: number) => (
+                            <div 
+                              key={index}
+                              className={`w-6 h-6 border-2 ${
+                                activePackage === pkg.key
+                                  ? 'border-orange-300 shadow-md'
+                                  : 'border-gray-300'
+                              }`}
+                              style={{ 
+                                backgroundColor: color,
+                                borderRadius: '12px'
+                              }}
+                            />
+                          ))}
+                        </div>
                     </div>
                   </button>
                 </div>
               ))}
-
-              {/* Weitere Optionen */}
-              {!showMoreOptions && (
-                <button
-                  onClick={() => setShowMoreOptions(true)}
-                  className="w-full p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl text-center text-gray-600 dark:text-gray-400 hover:border-orange-400 hover:text-orange-600 transition-all duration-200"
-                >
-                  <div className="flex items-center justify-center gap-2">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                    </svg>
-                    <span className="font-medium">Weitere Optionen & Farben</span>
-                  </div>
-                </button>
-              )}
-
-              {/* Erweiterte Pakete und Farboptionen */}
-              {showMoreOptions && (
-                <div className="space-y-4 border-t border-gray-200 dark:border-gray-700 pt-4">
-                  {/* Erweiterte Pakete */}
-                  {extendedPackages.map((pkg) => (
-                    <div key={pkg.key}>
-                      <button
-                        onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
-                        className={`w-full p-4 text-left border-2 border-gray-200 dark:border-gray-700 rounded-2xl transition-all duration-200 hover:shadow-lg ${
-                          activePackage === pkg.key
-                            ? 'bg-orange-50 dark:bg-orange-900/20'
-                            : ''
-                        }`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold ${
-                            activePackage === pkg.key
-                              ? 'bg-orange-500 text-white'
-                              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
-                          }`}>
-                            {pkg.number}
-                          </div>
-                          
-                          <div className="flex-1">
-                            <div className="font-semibold text-gray-900 dark:text-white text-lg">
-                              {pkg.name}
-                            </div>
-                            <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                              {pkg.feature}
-                            </div>
-                          </div>
-                          
-                          <div className="flex gap-2">
-                            {pkg.colors.slice(0, 2).map((color: string, index: number) => (
-                              <div 
-                                key={index}
-                                className="w-5 h-5 rounded-2xl border border-gray-300"
-                                style={{ backgroundColor: color }}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  ))}
-
-                  {/* Direkte Farbauswahl */}
-                  <div className="mt-6">
-                    <h5 className="text-sm font-medium text-gray-800 dark:text-white mb-3">
-                      Farbschema direkt wählen
-                    </h5>
-                    <div className="grid grid-cols-2 gap-3">
-                      {[
-                        { key: 'warm', name: 'Warm', colors: ['#D05733', '#8B4513'] },
-                        { key: 'modern', name: 'Modern', colors: ['#18273A', '#4A90E2'] },
-                        { key: 'elegant', name: 'Elegant', colors: ['#987E4D', '#2C3E50'] },
-                        { key: 'nature', name: 'Natur', colors: ['#BCD7B6', '#2E7D32'] }
-                      ].map((scheme) => (
-                        <button
-                          key={scheme.key}
-                          onClick={() => changeColorScheme(scheme.key as any)}
-                          className="flex items-center gap-2 p-3 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-orange-400 transition-colors"
-                        >
-                          <div className="flex gap-1">
-                            {scheme.colors.map((color: string, index: number) => (
-                              <div 
-                                key={index}
-                                className="w-4 h-4 rounded-full border border-gray-300"
-                                style={{ backgroundColor: color }}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            {scheme.name}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Weniger anzeigen */}
-                  <button
-                    onClick={() => setShowMoreOptions(false)}
-                    className="w-full p-2 text-center text-gray-500 hover:text-gray-700 transition-colors"
-                  >
-                    <span className="text-sm">Weniger anzeigen</span>
-                  </button>
-                </div>
-              )}
 
               {/* Info-Hinweis */}
               <div className="mt-6 text-center">
