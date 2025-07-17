@@ -303,7 +303,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Deutliche Paket/Individuell Navigation */}
         <div className="border-b border-gray-200 dark:border-gray-700 p-2">
           <div className="flex bg-gray-100 dark:bg-gray-800 p-1" style={{ borderRadius: '16px' }}>
-            {/* Paket Button - deutlich hervorgehoben */}
+            {/* Bestseller Button - deutlich hervorgehoben */}
             <button
               onClick={() => setConfigMode('paket')}
               className={`flex-1 flex flex-col items-center gap-2 px-4 py-4 text-sm font-bold transition-all duration-300 shadow-md ${
@@ -313,8 +313,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               }`}
               style={{ borderRadius: '12px' }}
             >
-              <span className="font-bold text-lg">PAKET</span>
-              <span className="text-xs opacity-90">Fertige Lösung</span>
+              <span className="font-bold text-lg">BESTSELLER</span>
+              <span className="text-xs opacity-90">Beliebt & Bewährt</span>
             </button>
             
             {/* Individuell Button */}
@@ -370,7 +370,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             <div className="space-y-4">
               <div className="text-center mb-6">
                 <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  Fertige Lösungen zum Sofortstart
+                  Unsere beliebtesten Designs
                 </h4>
               </div>
               
@@ -441,7 +441,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               {/* Info-Hinweis */}
               <div className="mt-6 text-center">
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Einfach wählen und loslegen
+                  Bewährt bei Hunderten von Handwerksbetrieben
                 </p>
               </div>
             </div>
