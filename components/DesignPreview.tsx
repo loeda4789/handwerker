@@ -35,6 +35,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const [configMode, setConfigMode] = useState<'paket' | 'individuell'>('paket')
   const [activePackage, setActivePackage] = useState<'1' | '2' | '3' | null>(null)
   const [showPackageDetails, setShowPackageDetails] = useState<{[key: string]: boolean}>({})
+  const [showMoreOptions, setShowMoreOptions] = useState(false)
   const [features, setFeatures] = useState({
     promoBanner: false,
     contactBar: false,
@@ -134,20 +135,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         }
       },
       '2': {
-        name: 'Freundlich',
-        colorScheme: 'elegant' as const,
-        designStyle: 'rounded' as const,
-        features: {
-          promoBanner: false,
-          contactBar: false,
-          notdienstAlert: false,
-          whatsappWidget: false,
-          callbackPopup: false,
-          callbackRequest: false,
-          speedDial: true
-        }
-      },
-      '3': {
         name: 'Modern',
         colorScheme: 'nature' as const,
         designStyle: 'modern' as const,
@@ -159,6 +146,20 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           callbackPopup: false,
           callbackRequest: false,
           speedDial: false
+        }
+      },
+      '3': {
+        name: 'Freundlich',
+        colorScheme: 'elegant' as const,
+        designStyle: 'rounded' as const,
+        features: {
+          promoBanner: false,
+          contactBar: false,
+          notdienstAlert: false,
+          whatsappWidget: false,
+          callbackPopup: false,
+          callbackRequest: false,
+          speedDial: true
         }
       }
     }
@@ -252,34 +253,38 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   if (!isOpen) return null
 
-  // Vereinfachte Paket-Daten mit Nummerierung und modernen Icons
-  const packages = [
+  // Hauptpakete - nur die wichtigsten 2
+  const mainPackages = [
     {
       key: '1',
       number: '01',
       name: 'Klassisch',
-      primary: 'Business & Seriös',
-      feature: 'Kontaktleiste',
+      primary: 'Seriös & Vertrauensvoll',
+      feature: 'Normale Kontaktmöglichkeiten',
       colors: ['#000000', '#D05733'],
-      preview: 'Traditionell • Vertrauensvoll • Etabliert'
+      preview: 'Traditionell • Bewährt • Solide'
     },
     {
       key: '2', 
       number: '02',
-      name: 'Freundlich',
-      primary: 'Warm & Einladend',
-      feature: 'Speed Dial',
-      colors: ['#18273A', '#987E4D'],
-      preview: 'Nahbar • Persönlich • Sympathisch'
-    },
+      name: 'Modern',
+      primary: 'Schnell & Bequem',
+      feature: 'WhatsApp & Direktkontakt',
+      colors: ['#000000', '#BCD7B6'],
+      preview: 'Zeitgemäß • Einfach • Direkter Kontakt'
+    }
+  ]
+
+  // Erweiterte Pakete für "Weitere Optionen"
+  const extendedPackages = [
     {
       key: '3',
       number: '03',
-      name: 'Modern',
-      primary: 'Zeitgemäß & Fresh',
-      feature: 'WhatsApp Chat',
-      colors: ['#000000', '#BCD7B6'],
-      preview: 'Innovativ • Dynamisch • Zukunftsorientiert'
+      name: 'Freundlich',
+      primary: 'Warm & Persönlich',
+      feature: 'Schnelle Anruf-Buttons',
+      colors: ['#18273A', '#987E4D'],
+      preview: 'Nahbar • Sympathisch • Hilfsbereit'
     }
   ]
 
@@ -364,16 +369,17 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6">
           
-          {/* Paket Mode - Orange Hervorhebung für aktive Auswahl, aber Borders bleiben komplett gleich */}
+          {/* Paket Mode - Einfacher und übersichtlicher */}
           {configMode === 'paket' && (
             <div className="space-y-4">
               <div className="text-center mb-6">
                 <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  Wählen Sie Ihr Design-Paket
+                  Fertige Lösungen zum Sofortstart
                 </h4>
               </div>
               
-              {packages.map((pkg) => (
+              {/* Hauptpakete */}
+              {mainPackages.map((pkg) => (
                 <div key={pkg.key}>
                   <button
                     onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
@@ -404,7 +410,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       
                       {/* Nur Farb-Vorschau */}
                       <div className="flex gap-2">
-                        {pkg.colors.slice(0, 2).map((color, index) => (
+                        {pkg.colors.slice(0, 2).map((color: string, index: number) => (
                           <div 
                             key={index}
                             className="w-5 h-5 rounded-2xl border border-gray-300"
@@ -414,22 +420,118 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       </div>
                     </div>
                   </button>
-
-                  {/* Optionale Details nur bei Klick auf Info */}
-                  {showPackageDetails[pkg.key] && (
-                    <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 text-sm">
-                      <div className="text-gray-600 dark:text-gray-400">
-                        {pkg.preview}
-                      </div>
-                    </div>
-                  )}
                 </div>
               ))}
 
-              {/* Info-Hinweis kompakt */}
-              <div className="mt-8 text-center">
+              {/* Weitere Optionen */}
+              {!showMoreOptions && (
+                <button
+                  onClick={() => setShowMoreOptions(true)}
+                  className="w-full p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl text-center text-gray-600 dark:text-gray-400 hover:border-orange-400 hover:text-orange-600 transition-all duration-200"
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                    </svg>
+                    <span className="font-medium">Weitere Optionen & Farben</span>
+                  </div>
+                </button>
+              )}
+
+              {/* Erweiterte Pakete und Farboptionen */}
+              {showMoreOptions && (
+                <div className="space-y-4 border-t border-gray-200 dark:border-gray-700 pt-4">
+                  {/* Erweiterte Pakete */}
+                  {extendedPackages.map((pkg) => (
+                    <div key={pkg.key}>
+                      <button
+                        onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
+                        className={`w-full p-4 text-left border-2 border-gray-200 dark:border-gray-700 rounded-2xl transition-all duration-200 hover:shadow-lg ${
+                          activePackage === pkg.key
+                            ? 'bg-orange-50 dark:bg-orange-900/20'
+                            : ''
+                        }`}
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold ${
+                            activePackage === pkg.key
+                              ? 'bg-orange-500 text-white'
+                              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                          }`}>
+                            {pkg.number}
+                          </div>
+                          
+                          <div className="flex-1">
+                            <div className="font-semibold text-gray-900 dark:text-white text-lg">
+                              {pkg.name}
+                            </div>
+                            <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                              {pkg.feature}
+                            </div>
+                          </div>
+                          
+                          <div className="flex gap-2">
+                            {pkg.colors.slice(0, 2).map((color: string, index: number) => (
+                              <div 
+                                key={index}
+                                className="w-5 h-5 rounded-2xl border border-gray-300"
+                                style={{ backgroundColor: color }}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  ))}
+
+                  {/* Direkte Farbauswahl */}
+                  <div className="mt-6">
+                    <h5 className="text-sm font-medium text-gray-800 dark:text-white mb-3">
+                      Farbschema direkt wählen
+                    </h5>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { key: 'warm', name: 'Warm', colors: ['#D05733', '#8B4513'] },
+                        { key: 'modern', name: 'Modern', colors: ['#18273A', '#4A90E2'] },
+                        { key: 'elegant', name: 'Elegant', colors: ['#987E4D', '#2C3E50'] },
+                        { key: 'nature', name: 'Natur', colors: ['#BCD7B6', '#2E7D32'] }
+                      ].map((scheme) => (
+                        <button
+                          key={scheme.key}
+                          onClick={() => changeColorScheme(scheme.key as any)}
+                          className="flex items-center gap-2 p-3 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-orange-400 transition-colors"
+                        >
+                          <div className="flex gap-1">
+                            {scheme.colors.map((color: string, index: number) => (
+                              <div 
+                                key={index}
+                                className="w-4 h-4 rounded-full border border-gray-300"
+                                style={{ backgroundColor: color }}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {scheme.name}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Weniger anzeigen */}
+                  <button
+                    onClick={() => setShowMoreOptions(false)}
+                    className="w-full p-2 text-center text-gray-500 hover:text-gray-700 transition-colors"
+                  >
+                    <span className="text-sm">Weniger anzeigen</span>
+                  </button>
+                </div>
+              )}
+
+              {/* Info-Hinweis */}
+              <div className="mt-6 text-center">
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Schnelle Auswahl für sofortigen Start
+                  Einfach wählen und loslegen
                 </p>
               </div>
             </div>
