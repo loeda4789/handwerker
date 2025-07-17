@@ -448,7 +448,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               {/* Design Tab */}
               {activeTab === 'design' && (
                 <div className="space-y-4">
-                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-4">Design-Stil</h4>
                   {[
                     { key: 'angular', name: 'Klassisch', desc: 'Eckig & traditionell', Icon: MdViewQuilt },
                     { key: 'rounded', name: 'Freundlich', desc: 'Rund & modern', Icon: MdImage },
@@ -484,7 +483,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               {/* Farben Tab */}
               {activeTab === 'color' && (
                 <div className="space-y-4">
-                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-4">Farbschema</h4>
                   {[
                     { key: 'warm', name: 'Warm', colors: ['#291D1E', '#F5A454'], desc: 'Einladend & vertrauensvoll' },
                     { key: 'modern', name: 'Modern', colors: ['#1C1C1C', '#FA3D3B'], desc: 'Kraftvoll & energetisch' },
@@ -519,7 +517,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               {/* Features Tab */}
               {activeTab === 'features' && (
                 <div className="space-y-4">
-                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-4">Marketing-Features</h4>
                   {[
                     { key: 'speedDial', name: 'Speed Dial', desc: 'Mobile Kontakt-Buttons', Icon: MdCall },
                     { key: 'whatsappWidget', name: 'WhatsApp', desc: 'Chat-Widget', Icon: MdWhatsapp },
@@ -565,7 +562,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               {/* Layout Tab */}
               {activeTab === 'layout' && (
                 <div className="space-y-4">
-                  <h4 className="text-sm font-medium text-gray-800 dark:text-white mb-4">Website-Umfang</h4>
                   {[
                     { key: 'onepage', name: 'One-Page', desc: 'Alles auf einer Seite', Icon: MdDescription },
                     { key: 'multipage', name: 'Multi-Page', desc: 'Mehrere Unterseiten', Icon: MdViewModule }
