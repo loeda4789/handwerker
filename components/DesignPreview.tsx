@@ -17,7 +17,6 @@ import {
   MdWhatsapp,
   MdCall,
   MdNotifications,
-  MdFlashOn,
   MdInfo
 } from 'react-icons/md'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
@@ -307,15 +306,14 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             {/* Paket Button - deutlich hervorgehoben */}
             <button
               onClick={() => setConfigMode('paket')}
-              className={`flex-1 flex flex-col items-center gap-1 px-4 py-4 text-sm font-bold transition-all duration-300 shadow-md ${
+              className={`flex-1 flex flex-col items-center gap-2 px-4 py-4 text-sm font-bold transition-all duration-300 shadow-md ${
                 configMode === 'paket'
                   ? 'text-white bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg scale-105'
                   : 'text-gray-600 dark:text-gray-400 hover:text-orange-500 hover:bg-white dark:hover:bg-gray-700'
               }`}
               style={{ borderRadius: '12px' }}
             >
-              <MdFlashOn className="w-6 h-6" />
-              <span className="font-bold">PAKET</span>
+              <span className="font-bold text-lg">PAKET</span>
               <span className="text-xs opacity-90">Fertige Lösung</span>
             </button>
             
@@ -325,15 +323,14 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 setConfigMode('individuell')
                 if (activeTab === 'pakete') setActiveTab('design')
               }}
-              className={`flex-1 flex flex-col items-center gap-1 px-4 py-4 text-sm font-bold transition-all duration-300 shadow-md ${
+              className={`flex-1 flex flex-col items-center gap-2 px-4 py-4 text-sm font-bold transition-all duration-300 shadow-md ${
                 configMode === 'individuell'
-                  ? 'text-white bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg scale-105'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-blue-500 hover:bg-white dark:hover:bg-gray-700'
+                  ? 'text-white bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg scale-105'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-orange-500 hover:bg-white dark:hover:bg-gray-700'
               }`}
               style={{ borderRadius: '12px' }}
             >
-              <MdBrush className="w-6 h-6" />
-              <span className="font-bold">INDIVIDUELL</span>
+              <span className="font-bold text-lg">INDIVIDUELL</span>
               <span className="text-xs opacity-90">Selbst anpassen</span>
             </button>
           </div>
@@ -417,11 +414,6 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                         }`}>
                           {pkg.feature}
                         </div>
-                        {activePackage === pkg.key && (
-                          <div className="text-xs text-orange-600 dark:text-orange-400 mt-1 font-medium">
-                            ✓ AUSGEWÄHLT
-                          </div>
-                        )}
                       </div>
                       
                                               {/* Größere Farb-Vorschau */}
