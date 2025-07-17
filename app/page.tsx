@@ -120,10 +120,23 @@ export default function HomePage() {
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [forceUpdate, setForceUpdate] = useState(0)
   const [designStyle, setDesignStyle] = useState<string>('angular')
+  const [isDesktop, setIsDesktop] = useState(false)
   const router = useRouter()
 
   // Initialize scroll animations
   useScrollAnimation()
+
+  // Check screen size for modal sizing
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 768)
+    }
+    
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
 
   // Verwende den URL-Parameter-Hook für automatische URL-Parameter-Integration
   const content = useContentWithUrlParams(baseContent || {} as ContentData)
@@ -479,8 +492,13 @@ export default function HomePage() {
       {/* Configurator Overlay */}
       {showConfigurator && (
         <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm flex items-center justify-center">
-          <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full h-full md:w-[90vw] lg:w-[85vw] xl:w-[80vw] md:h-[98vh] flex flex-col md:m-2"
-            style={{ borderRadius: 'var(--radius-modal)' }}>
+          <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full h-full flex flex-col"
+            style={{ 
+              borderRadius: 'var(--radius-modal)',
+              width: isDesktop ? '90vw' : '100%',
+              height: isDesktop ? '98vh' : '100%',
+              margin: isDesktop ? '8px' : '0'
+            }}>
             
             {/* Mobile Header with Close Button */}
             <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
