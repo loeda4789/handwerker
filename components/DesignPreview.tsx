@@ -474,9 +474,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 </div>
               )}
 
-              {/* Farben Tab - 2x2 Grid ohne Text */}
+              {/* Farben Tab - Kompakte 2x2 Grid */}
               {activeTab === 'color' && (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 max-w-xs mx-auto">
                   {[
                     { key: 'warm', colors: ['#291D1E', '#F5A454'] },
                     { key: 'modern', colors: ['#1C1C1C', '#FA3D3B'] },
@@ -486,21 +486,21 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <button
                       key={scheme.key}
                       onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
-                      className={`aspect-square p-4 border-3 transition-all duration-300 hover:shadow-lg ${
+                      className={`w-16 h-16 p-2 border-2 transition-all duration-300 hover:shadow-md ${
                         currentColorScheme === scheme.key
-                          ? 'border-orange-400 bg-orange-50 dark:bg-orange-900/20 shadow-md scale-102'
+                          ? 'border-orange-400 bg-orange-50 dark:bg-orange-900/20 shadow-sm scale-105'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
-                      style={{ borderRadius: '16px' }}
+                      style={{ borderRadius: '12px' }}
                     >
-                      <div className="flex flex-col gap-2 h-full">
+                      <div className="flex flex-col gap-1 h-full">
                         {scheme.colors.map((color, index) => (
                           <div 
                             key={index} 
-                            className="flex-1 border-2 border-gray-300 shadow-sm" 
+                            className="flex-1 border border-gray-200" 
                             style={{ 
                               backgroundColor: color,
-                              borderRadius: '12px'
+                              borderRadius: '6px'
                             }} 
                           />
                         ))}
