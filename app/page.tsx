@@ -22,7 +22,7 @@ import ConfiguratorButton from '@/components/ConfiguratorButton'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import UrlParamsDebug from '@/components/UrlParamsDebug'
 import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
-import ColorConfigurator from '@/components/ColorConfigurator'
+
 import PromoBanner from '@/components/PromoBanner'
 import ContactBar from '@/components/ContactBar'
 import NotdienstAlert from '@/components/NotdienstAlert'
@@ -115,7 +115,7 @@ export default function HomePage() {
   })
   const [isGenerating, setIsGenerating] = useState(false)
   const [showConfigurator, setShowConfigurator] = useState(false) // Temporarily disabled - can be re-enabled later
-  const [showColorConfigurator, setShowColorConfigurator] = useState(false)
+
   const [baseContent, setBaseContent] = useState<ContentData | null>(null)
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [forceUpdate, setForceUpdate] = useState(0)
@@ -699,19 +699,7 @@ export default function HomePage() {
                             <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mr-2">
                             Farbschema wählen
                           </h2>
-                            <button
-                              onClick={() => {
-                                setShowConfigurator(false)
-                                setShowColorConfigurator(true)
-                              }}
-                              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
-                              title="Erweiterte Farbpaletten"
-                            >
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                              </svg>
-                            </button>
+
                           </div>
                         </div>
                         <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.colorExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -946,25 +934,7 @@ export default function HomePage() {
         onClick={() => setShowConfigurator(true)}
       />
 
-      {/* Direkter Color Configurator Button - rechts unten */}
-      <button
-        onClick={() => setShowColorConfigurator(true)}
-        className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
-        title="Farbkonfigurator öffnen"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v6a2 2 0 002 2h4a2 2 0 002-2V5zM21 15a2 2 0 00-2-2h-4a2 2 0 00-2 2v2a2 2 0 002 2h4a2 2 0 002-2v-2z"/>
-        </svg>
-        <span className="absolute -top-2 -left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-          Farben ändern
-        </span>
-      </button>
 
-      {/* Color Configurator Overlay */}
-      <ColorConfigurator
-        isOpen={showColorConfigurator}
-        onClose={() => setShowColorConfigurator(false)}
-      />
 
       {/* Design Preview Button (Tab-Navigation) */}
       <DesignPreviewButton />
