@@ -479,7 +479,7 @@ export default function HomePage() {
       {/* Configurator Overlay */}
       {showConfigurator && (
         <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm flex items-center justify-center">
-          <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full h-full md:max-w-6xl md:w-full md:h-[95vh] flex flex-col md:m-4"
+          <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full h-full md:max-w-[90vw] lg:max-w-[85vw] xl:max-w-[80vw] md:w-full md:h-[98vh] flex flex-col md:m-2"
             style={{ borderRadius: 'var(--radius-modal)' }}>
             
             {/* Mobile Header with Close Button */}
