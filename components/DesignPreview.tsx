@@ -438,12 +438,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 </div>
               ))}
 
-              {/* Info-Hinweis */}
-              <div className="mt-6 text-center">
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Bewährt bei Hunderten von Handwerksbetrieben
-                </p>
-              </div>
+
             </div>
           )}
 
