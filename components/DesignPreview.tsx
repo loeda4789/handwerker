@@ -300,20 +300,20 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
           </button>
         </div>
 
-        {/* Deutliche Paket/Individuell Navigation */}
-        <div className="border-b border-gray-200 dark:border-gray-700 p-2">
-          <div className="flex bg-gray-100 dark:bg-gray-800 p-1" style={{ borderRadius: '16px' }}>
-            {/* Bestseller Button - deutlich hervorgehoben */}
+        {/* Kompakte Paket/Individuell Navigation */}
+        <div className="border-b border-gray-200 dark:border-gray-700 px-3 py-2">
+          <div className="flex bg-gray-100 dark:bg-gray-800 p-1" style={{ borderRadius: '12px' }}>
+            {/* Bestseller Button - sanfteres Orange */}
             <button
               onClick={() => setConfigMode('paket')}
-              className={`flex-1 flex flex-col items-center gap-2 px-4 py-4 text-sm font-bold transition-all duration-300 shadow-md ${
+              className={`flex-1 flex flex-col items-center gap-1 px-3 py-3 text-sm font-bold transition-all duration-300 shadow-sm ${
                 configMode === 'paket'
-                  ? 'text-white bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg scale-105'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-orange-500 hover:bg-white dark:hover:bg-gray-700'
+                  ? 'text-white bg-gradient-to-br from-orange-400 to-orange-500 shadow-md scale-102'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-orange-400 hover:bg-white dark:hover:bg-gray-700'
               }`}
-              style={{ borderRadius: '12px' }}
+              style={{ borderRadius: '10px' }}
             >
-              <span className="font-bold text-lg">BESTSELLER</span>
+              <span className="font-bold text-base">BESTSELLER</span>
               <span className="text-xs opacity-90">Beliebt & Bewährt</span>
             </button>
             
@@ -323,21 +323,21 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 setConfigMode('individuell')
                 if (activeTab === 'pakete') setActiveTab('design')
               }}
-              className={`flex-1 flex flex-col items-center gap-2 px-4 py-4 text-sm font-bold transition-all duration-300 shadow-md ${
+              className={`flex-1 flex flex-col items-center gap-1 px-3 py-3 text-sm font-bold transition-all duration-300 shadow-sm ${
                 configMode === 'individuell'
-                  ? 'text-white bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg scale-105'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-orange-500 hover:bg-white dark:hover:bg-gray-700'
+                  ? 'text-white bg-gradient-to-br from-orange-400 to-orange-500 shadow-md scale-102'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-orange-400 hover:bg-white dark:hover:bg-gray-700'
               }`}
-              style={{ borderRadius: '12px' }}
+              style={{ borderRadius: '10px' }}
             >
-              <span className="font-bold text-lg">INDIVIDUELL</span>
+              <span className="font-bold text-base">INDIVIDUELL</span>
               <span className="text-xs opacity-90">Selbst anpassen</span>
             </button>
           </div>
           
-          {/* Sub-Tabs nur für Individuell - mit rounded style */}
+          {/* Sub-Tabs nur für Individuell - kompakter */}
           {configMode === 'individuell' && (
-            <div className="flex bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-2">
+            <div className="flex bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-2 py-1">
               {[
                 { key: 'design', label: 'Design', Icon: MdBrush },
                 { key: 'color', label: 'Farben', Icon: MdPalette },
@@ -349,10 +349,10 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   onClick={() => setActiveTab(tab.key)}
                   className={`flex-1 flex flex-col items-center gap-1 px-2 py-2 text-xs font-medium transition-all duration-200 mx-1 ${
                     activeTab === tab.key
-                      ? 'text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 shadow-md'
+                      ? 'text-orange-500 dark:text-orange-400 bg-white dark:bg-gray-700 shadow-sm'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-white/50 dark:hover:bg-gray-700/50'
                   }`}
-                  style={{ borderRadius: '12px' }}
+                  style={{ borderRadius: '10px' }}
                 >
                   <tab.Icon className="w-4 h-4" />
                   <span>{tab.label}</span>
@@ -379,9 +379,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 <div key={pkg.key}>
                   <button
                     onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
-                    className={`w-full p-4 text-left border-3 transition-all duration-300 hover:shadow-xl ${
+                    className={`w-full p-4 text-left border-3 transition-all duration-300 hover:shadow-lg ${
                       activePackage === pkg.key
-                        ? 'border-orange-500 bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-900/20 shadow-lg scale-105'
+                        ? 'border-orange-400 bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-900/10 shadow-md scale-102'
                         : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                     }`}
                     style={{ borderRadius: '16px' }}
@@ -389,9 +389,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <div className="flex items-center gap-4">
                       {/* Deutlichere Nummerierung */}
                       <div 
-                        className={`w-14 h-14 flex items-center justify-center font-bold text-lg shadow-md ${
+                        className={`w-14 h-14 flex items-center justify-center font-bold text-lg shadow-sm ${
                           activePackage === pkg.key
-                            ? 'bg-orange-500 text-white ring-4 ring-orange-200'
+                            ? 'bg-orange-400 text-white ring-2 ring-orange-200'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                         }`}
                         style={{ borderRadius: '16px' }}
@@ -402,14 +402,14 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       <div className="flex-1">
                         <div className={`font-bold text-xl ${
                           activePackage === pkg.key
-                            ? 'text-orange-700 dark:text-orange-300'
+                            ? 'text-orange-600 dark:text-orange-300'
                             : 'text-gray-900 dark:text-white'
                         }`}>
                           {pkg.name}
                         </div>
                         <div className={`text-sm mt-1 ${
                           activePackage === pkg.key
-                            ? 'text-orange-600 dark:text-orange-400'
+                            ? 'text-orange-500 dark:text-orange-400'
                             : 'text-gray-500 dark:text-gray-400'
                         }`}>
                           {pkg.feature}
@@ -423,7 +423,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                               key={index}
                               className={`w-6 h-6 border-2 ${
                                 activePackage === pkg.key
-                                  ? 'border-orange-300 shadow-md'
+                                  ? 'border-orange-300 shadow-sm'
                                   : 'border-gray-300'
                               }`}
                               style={{ 
