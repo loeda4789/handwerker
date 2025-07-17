@@ -474,34 +474,36 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 </div>
               )}
 
-              {/* Farben Tab */}
+              {/* Farben Tab - 2x2 Grid ohne Text */}
               {activeTab === 'color' && (
-                <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
                   {[
-                    { key: 'warm', name: 'Warm', colors: ['#291D1E', '#F5A454'], desc: 'Einladend & vertrauensvoll' },
-                    { key: 'modern', name: 'Modern', colors: ['#1C1C1C', '#FA3D3B'], desc: 'Kraftvoll & energetisch' },
-                    { key: 'elegant', name: 'Elegant', colors: ['#1D2D50', '#B0D7FF'], desc: 'Professionell & frisch' },
-                    { key: 'nature', name: 'Nature', colors: ['#000000', '#BCD7B6'], desc: 'Natürlich & nachhaltig' }
+                    { key: 'warm', colors: ['#291D1E', '#F5A454'] },
+                    { key: 'modern', colors: ['#1C1C1C', '#FA3D3B'] },
+                    { key: 'elegant', colors: ['#1D2D50', '#B0D7FF'] },
+                    { key: 'nature', colors: ['#000000', '#BCD7B6'] }
                   ].map((scheme) => (
                     <button
                       key={scheme.key}
                       onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
-                      className={`w-full p-4 text-left border-2 rounded-lg transition-all ${
+                      className={`aspect-square p-4 border-3 transition-all duration-300 hover:shadow-lg ${
                         currentColorScheme === scheme.key
-                          ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
+                          ? 'border-orange-400 bg-orange-50 dark:bg-orange-900/20 shadow-md scale-102'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
+                      style={{ borderRadius: '16px' }}
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="flex gap-2">
-                          {scheme.colors.map((color, index) => (
-                            <div key={index} className="w-6 h-6 rounded-lg border border-gray-300" style={{ backgroundColor: color }} />
-                          ))}
-                        </div>
-                        <div>
-                          <div className="font-medium text-gray-900 dark:text-white">{scheme.name}</div>
-                          <div className="text-sm text-gray-500 dark:text-gray-400">{scheme.desc}</div>
-                        </div>
+                      <div className="flex flex-col gap-2 h-full">
+                        {scheme.colors.map((color, index) => (
+                          <div 
+                            key={index} 
+                            className="flex-1 border-2 border-gray-300 shadow-sm" 
+                            style={{ 
+                              backgroundColor: color,
+                              borderRadius: '12px'
+                            }} 
+                          />
+                        ))}
                       </div>
                     </button>
                   ))}
