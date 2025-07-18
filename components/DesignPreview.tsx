@@ -474,9 +474,9 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 </div>
               )}
 
-              {/* Farben Tab - Kompakte 2x2 Grid */}
+              {/* Farben Tab - Optimierte Darstellung */}
               {activeTab === 'color' && (
-                <div className="grid grid-cols-2 gap-2 max-w-xs mx-auto">
+                <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto">
                   {[
                     { key: 'warm', colors: ['#291D1E', '#F5A454'] },
                     { key: 'modern', colors: ['#1C1C1C', '#FA3D3B'] },
@@ -486,21 +486,21 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <button
                       key={scheme.key}
                       onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
-                      className={`w-16 h-16 p-2 border-2 transition-all duration-300 hover:shadow-md ${
+                      className={`w-20 h-20 p-3 border-2 transition-all duration-300 hover:shadow-lg ${
                         currentColorScheme === scheme.key
-                          ? 'border-orange-400 bg-orange-50 dark:bg-orange-900/20 shadow-sm scale-105'
-                          : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
+                          ? 'border-orange-400 bg-white dark:bg-gray-800 shadow-md scale-105 ring-2 ring-orange-200'
+                          : 'border-gray-300 dark:border-gray-600 hover:border-orange-300 bg-white dark:bg-gray-800'
                       }`}
-                      style={{ borderRadius: '12px' }}
+                      style={{ borderRadius: '16px' }}
                     >
-                      <div className="flex flex-col gap-1 h-full">
+                      <div className="flex flex-col gap-1.5 h-full">
                         {scheme.colors.map((color, index) => (
                           <div 
                             key={index} 
-                            className="flex-1 border border-gray-200" 
+                            className="flex-1 shadow-sm" 
                             style={{ 
                               backgroundColor: color,
-                              borderRadius: '6px'
+                              borderRadius: '8px'
                             }} 
                           />
                         ))}
