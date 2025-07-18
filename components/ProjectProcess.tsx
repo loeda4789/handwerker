@@ -113,6 +113,15 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
+          {designStyle === 'rounded' && (
+            <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4"
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                backgroundColor: 'var(--color-secondary)'
+              }}>
+              Unser Prozess
+            </span>
+          )}
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
             {isModernStyle ? (
               <span className="heading-underline-large">

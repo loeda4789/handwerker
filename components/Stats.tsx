@@ -125,6 +125,15 @@ export default function Stats({ content }: StatsProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
+          {designStyle === 'rounded' && (
+            <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                backgroundColor: 'var(--color-secondary)'
+              }}>
+              Unsere Erfolge
+            </span>
+          )}
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 transition-colors duration-300">
             {isModernStyle ? (
               <span className="heading-underline-large">Zahlen, die für sich sprechen</span>

@@ -154,6 +154,15 @@ export default function Testimonials({ content }: TestimonialsProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
+          {designStyle === 'rounded' && (
+            <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{ 
+                borderRadius: 'var(--radius-button)',
+                backgroundColor: 'var(--color-secondary)'
+              }}>
+              Kundenstimmen
+            </span>
+          )}
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
             {isModernStyle ? (
               <span className="heading-underline-large">Was unsere Kunden sagen</span>
