@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useScrollAnimation } from '@/hooks/useScrollAnimation'
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 
 interface ContactProps {
   content: any
@@ -231,34 +231,14 @@ export default function Contact({ content }: ContactProps) {
                 onChange={handleInputChange}
                 rows={5}
                 required
-                className={`w-full px-4 py-3 border focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white resize-none transition-all duration-300 ${
-                  errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-500'
-                }`}
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-500 focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white resize-none transition-all duration-300"
                 style={{ borderRadius: 'var(--radius-input)' }}
                 placeholder="Beschreiben Sie Ihr Projekt oder stellen Sie Ihre Frage..."
               ></textarea>
-              {errors.message && <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.message}</p>}
+
             </div>
 
-            {/* Privacy Checkbox */}
-            <div className="flex items-start space-x-3">
-              <input
-                type="checkbox"
-                id="privacy"
-                name="privacy"
-                checked={formData.privacy}
-                onChange={handleInputChange}
-                className="mt-1 h-4 w-4 text-primary focus:ring-primary border-gray-300 dark:border-gray-500 rounded transition-colors duration-300 flex-shrink-0"
-              />
-              <label htmlFor="privacy" className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed cursor-pointer">
-                Ich habe die{' '}
-                <a href="/datenschutz" className="text-primary dark:text-accent hover:underline font-medium">
-                  Datenschutzerklärung
-                </a>{' '}
-                gelesen und stimme der Verarbeitung meiner Daten zu. *
-              </label>
-            </div>
-            {errors.privacy && <p className="ml-7 mt-2 text-sm text-red-600 dark:text-red-400">{errors.privacy}</p>}
+
             
             {/* Submit Button */}
             <div className="pt-6">
