@@ -91,17 +91,15 @@ export default function Team({ content }: TeamProps) {
               Unser Team
             </span>
           )}
-          {designStyle !== 'rounded' && (
-            <h2 className="text-4xl md:text-5xl font-bold text-text dark:text-light mb-6">
-              {designStyle === 'modern' ? (
-                <span className="heading-underline-large">
-                  Unser Team
-                </span>
-              ) : (
-                'Die Experten hinter jedem Projekt'
-              )}
-            </h2>
-          )}
+          <h2 className="text-4xl md:text-5xl font-bold text-text dark:text-light mb-6">
+            {designStyle === 'modern' ? (
+              <span className="heading-underline-large">
+                Unser Team
+              </span>
+            ) : (
+              designStyle === 'rounded' ? 'Unser Team' : 'Die Experten hinter jedem Projekt'
+            )}
+          </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto mb-8">
             {isModernStyle 
               ? 'Lernen Sie unser erfahrenes Team kennen, das mit Leidenschaft und Fachwissen Ihre Projekte zum Erfolg führt.'

@@ -263,22 +263,22 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       preview: 'Traditionell • Bewährt • Solide'
     },
     {
-      key: '2', 
-      number: '02',
-      name: 'Modern',
-      primary: 'Schnell & Bequem',
-      feature: 'WhatsApp & Direktkontakt',
-      colors: ['#1C1C1C', '#FA3D3B', '#4A90E2'],
-      preview: 'Zeitgemäß • Einfach • Direkter Kontakt'
-    },
-    {
       key: '3',
-      number: '03',
+      number: '02',
       name: 'Freundlich',
       primary: 'Warm & Persönlich',
       feature: 'Schnelle Anruf-Buttons',
       colors: ['#1D2D50', '#B0D7FF', '#987E4D'],
       preview: 'Nahbar • Sympathisch • Hilfsbereit'
+    },
+    {
+      key: '2', 
+      number: '03',
+      name: 'Modern',
+      primary: 'Schnell & Bequem',
+      feature: 'WhatsApp & Direktkontakt',
+      colors: ['#1C1C1C', '#22C55E', '#16A34A'],
+      preview: 'Zeitgemäß • Einfach • Direkter Kontakt'
     }
   ]
 
@@ -479,7 +479,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 <div className="space-y-6">
                   {[
                     { key: 'warm', name: 'Warm', colors: ['#291D1E', '#F5A454', '#D05733'] },
-                    { key: 'modern', name: 'Modern', colors: ['#1C1C1C', '#FA3D3B', '#4A90E2'] },
+                    { key: 'modern', name: 'Modern', colors: ['#1C1C1C', '#22C55E', '#16A34A'] },
                     { key: 'elegant', name: 'Elegant', colors: ['#1D2D50', '#B0D7FF', '#987E4D'] },
                     { key: 'nature', name: 'Nature', colors: ['#000000', '#BCD7B6', '#8FBC8F'] }
                   ].map((scheme) => (
