@@ -487,21 +487,21 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       <button
                         key={scheme.key}
                         onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
-                        className={`aspect-[6/5] p-2 sm:p-3 border-2 transition-all duration-300 hover:shadow-lg hover:scale-102 ${
+                        className={`aspect-square w-16 sm:w-18 p-2 border-2 transition-all duration-300 hover:shadow-lg hover:scale-105 ${
                           currentColorScheme === scheme.key
                             ? 'border-orange-400 bg-white dark:bg-gray-800 shadow-md scale-105 ring-2 ring-orange-200'
                             : 'border-gray-300 dark:border-gray-600 hover:border-orange-300 bg-white dark:bg-gray-800'
                         }`}
-                        style={{ borderRadius: '16px' }}
+                        style={{ borderRadius: '20px' }}
                       >
-                        <div className="flex gap-1 sm:gap-1.5 h-full">
+                        <div className="flex gap-1 h-full">
                           {scheme.colors.map((color, index) => (
                             <div 
                               key={index} 
                               className="flex-1 shadow-sm transition-all duration-300" 
                               style={{ 
                                 backgroundColor: color,
-                                borderRadius: '6px'
+                                borderRadius: '12px'
                               }} 
                             />
                           ))}
