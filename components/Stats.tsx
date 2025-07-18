@@ -134,13 +134,15 @@ export default function Stats({ content }: StatsProps) {
               Unsere Erfolge
             </span>
           )}
-          <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 transition-colors duration-300">
-            {isModernStyle ? (
-              <span className="heading-underline-large">Zahlen, die für sich sprechen</span>
-            ) : (
-              'Zahlen, die für sich sprechen'
-            )}
-          </h2>
+          {designStyle !== 'rounded' && (
+            <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 transition-colors duration-300">
+              {designStyle === 'modern' ? (
+                <span className="heading-underline-large">Zahlen, die für sich sprechen</span>
+              ) : (
+                'Zahlen, die für sich sprechen'
+              )}
+            </h2>
+          )}
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto transition-colors duration-300">
             Diese Zahlen spiegeln unser Engagement für Qualität und Kundenzufriedenheit wider.
           </p>

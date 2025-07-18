@@ -122,15 +122,17 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
               Unser Prozess
             </span>
           )}
-          <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
-            {isModernStyle ? (
-              <span className="heading-underline-large">
-                {isModernStyle ? 'Unser Arbeitsprozess' : content.projectProcess.title}
-              </span>
-            ) : (
-              isModernStyle ? 'Unser Arbeitsprozess' : content.projectProcess.title
-            )}
-          </h2>
+          {designStyle !== 'rounded' && (
+            <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
+              {designStyle === 'modern' ? (
+                <span className="heading-underline-large">
+                  Unser Arbeitsprozess
+                </span>
+              ) : (
+                content.projectProcess.title
+              )}
+            </h2>
+          )}
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
             {isModernStyle
               ? 'Von der ersten Beratung bis zur finalen Abnahme - unser strukturierter Projektablauf garantiert Qualität und Transparenz.'

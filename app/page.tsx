@@ -406,39 +406,27 @@ export default function HomePage() {
             <About content={content} />
             </SectionWrapper>
             
-            {/* Stats nur bei modernen Styles */}
-            {designStyle !== 'angular' && (
-              <SectionWrapper index={1} designStyle={designStyle}>
-                <Stats content={content} />
-              </SectionWrapper>
-            )}
+            <SectionWrapper index={1} designStyle={designStyle}>
+            <Stats content={content} />
+            </SectionWrapper>
             
-            <SectionWrapper index={designStyle === 'angular' ? 1 : 2} designStyle={designStyle}>
+            <SectionWrapper index={2} designStyle={designStyle}>
               <Services content={content} />
             </SectionWrapper>
             
-            {/* BeforeAfter nur bei modernen Styles */}
-            {designStyle !== 'angular' && (
-              <SectionWrapper index={3} designStyle={designStyle}>
-                <BeforeAfter content={content} />
-              </SectionWrapper>
-            )}
+            <SectionWrapper index={3} designStyle={designStyle}>
+            <BeforeAfter content={content} />
+            </SectionWrapper>
             
-            {/* Testimonials nur bei modernen Styles */}
-            {designStyle !== 'angular' && (
-              <SectionWrapper index={4} designStyle={designStyle}>
-                <Testimonials content={content} />
-              </SectionWrapper>
-            )}
+            <SectionWrapper index={4} designStyle={designStyle}>
+            <Testimonials content={content} />
+            </SectionWrapper>
             
-            {/* ProjectProcess nur bei modernen Styles */}
-            {designStyle !== 'angular' && (
-              <SectionWrapper index={5} designStyle={designStyle}>
-                <ProjectProcess content={content} />
-              </SectionWrapper>
-            )}
+            <SectionWrapper index={5} designStyle={designStyle}>
+            <ProjectProcess content={content} />
+            </SectionWrapper>
             
-            <SectionWrapper index={designStyle === 'angular' ? 2 : 6} designStyle={designStyle}>
+            <SectionWrapper index={6} designStyle={designStyle}>
             <Contact content={content} />
             </SectionWrapper>
           </>
@@ -451,12 +439,9 @@ export default function HomePage() {
             <About content={content} />
             </SectionWrapper>
             
-            {/* Stats nur bei modernen Styles */}
-            {designStyle !== 'angular' && (
-              <SectionWrapper index={1} designStyle={designStyle}>
-                <Stats content={content} />
-              </SectionWrapper>
-            )}
+            <SectionWrapper index={1} designStyle={designStyle}>
+            <Stats content={content} />
+            </SectionWrapper>
             
             <ServicesPreview />
             

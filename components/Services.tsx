@@ -133,20 +133,24 @@ export default function Services({ content }: ServicesProps) {
               Unser Service
             </span>
           )}
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 text-center logo-font animate-on-scroll">
-            {isModernStyle ? (
-              <span className="heading-underline-large">Dienstleistungen</span>
-            ) : (
-              'Dienstleistungen'
-            )}
-          </h2>
-          <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center animate-on-scroll">
-            {isModernStyle ? (
-              <span className="heading-underline">Was wir anbieten</span>
-            ) : (
-              'Was wir anbieten'
-            )}
-          </h3>
+          {designStyle !== 'rounded' && (
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 text-center logo-font animate-on-scroll">
+              {designStyle === 'modern' ? (
+                <span className="heading-underline-large">Dienstleistungen</span>
+              ) : (
+                'Dienstleistungen'
+              )}
+            </h2>
+          )}
+          {designStyle !== 'rounded' && (
+            <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center animate-on-scroll">
+              {designStyle === 'modern' ? (
+                <span className="heading-underline">Was wir anbieten</span>
+              ) : (
+                'Was wir anbieten'
+              )}
+            </h3>
+          )}
           <p className="text-xl text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto animate-on-scroll">
             {isModernStyle 
               ? 'Bei uns erhalten Sie alles aus einer Hand. Von der Beratung über den Verkauf bis hin zur professionellen Verlegung Ihrer Fliesen kümmern wir uns um jedes Detail. Profitieren Sie von unserer Expertise und unserem umfassenden Service.'
