@@ -474,41 +474,45 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 </div>
               )}
 
-              {/* Farben Tab - Dynamisches responsives Grid */}
+              {/* Farben Tab - Horizontale Farb-Pills */}
               {activeTab === 'color' && (
-                <div className="px-2">
-                  <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4 max-w-xs sm:max-w-sm lg:max-w-md mx-auto">
-                    {[
-                      { key: 'warm', colors: ['#291D1E', '#F5A454', '#D05733'] },
-                      { key: 'modern', colors: ['#1C1C1C', '#FA3D3B', '#4A90E2'] },
-                      { key: 'elegant', colors: ['#1D2D50', '#B0D7FF', '#987E4D'] },
-                      { key: 'nature', colors: ['#000000', '#BCD7B6', '#8FBC8F'] }
-                    ].map((scheme) => (
-                      <button
-                        key={scheme.key}
-                        onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
-                        className={`aspect-square w-16 sm:w-18 p-2 border-2 transition-all duration-300 hover:shadow-lg hover:scale-105 ${
+                <div className="space-y-6">
+                  {[
+                    { key: 'warm', name: 'Warm', colors: ['#291D1E', '#F5A454', '#D05733'] },
+                    { key: 'modern', name: 'Modern', colors: ['#1C1C1C', '#FA3D3B', '#4A90E2'] },
+                    { key: 'elegant', name: 'Elegant', colors: ['#1D2D50', '#B0D7FF', '#987E4D'] },
+                    { key: 'nature', name: 'Nature', colors: ['#000000', '#BCD7B6', '#8FBC8F'] }
+                  ].map((scheme) => (
+                    <button
+                      key={scheme.key}
+                      onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
+                      className={`w-full p-4 border-2 transition-all duration-300 hover:shadow-lg ${
+                        currentColorScheme === scheme.key
+                          ? 'border-orange-400 bg-orange-50 dark:bg-orange-900/20 shadow-md ring-2 ring-orange-200'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-orange-300 bg-white dark:bg-gray-800'
+                      }`}
+                      style={{ borderRadius: '16px' }}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className={`font-medium ${
                           currentColorScheme === scheme.key
-                            ? 'border-orange-400 bg-white dark:bg-gray-800 shadow-md scale-105 ring-2 ring-orange-200'
-                            : 'border-gray-300 dark:border-gray-600 hover:border-orange-300 bg-white dark:bg-gray-800'
-                        }`}
-                        style={{ borderRadius: '20px' }}
-                      >
-                        <div className="flex gap-1 h-full">
+                            ? 'text-orange-700 dark:text-orange-300'
+                            : 'text-gray-700 dark:text-gray-300'
+                        }`}>
+                          {scheme.name}
+                        </span>
+                        <div className="flex items-center gap-2">
                           {scheme.colors.map((color, index) => (
                             <div 
                               key={index} 
-                              className="flex-1 shadow-sm transition-all duration-300" 
-                              style={{ 
-                                backgroundColor: color,
-                                borderRadius: '12px'
-                              }} 
+                              className="w-6 h-6 rounded-full shadow-sm border-2 border-white dark:border-gray-800" 
+                              style={{ backgroundColor: color }}
                             />
                           ))}
                         </div>
-                      </button>
-                    ))}
-                  </div>
+                      </div>
+                    </button>
+                  ))}
                 </div>
               )}
 
