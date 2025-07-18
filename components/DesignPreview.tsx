@@ -474,26 +474,26 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 </div>
               )}
 
-              {/* Farben Tab - Optimierte Darstellung */}
+              {/* Farben Tab - 3 Farben pro Schema */}
               {activeTab === 'color' && (
-                <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto">
+                <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
                   {[
-                    { key: 'warm', colors: ['#291D1E', '#F5A454'] },
-                    { key: 'modern', colors: ['#1C1C1C', '#FA3D3B'] },
-                    { key: 'elegant', colors: ['#1D2D50', '#B0D7FF'] },
-                    { key: 'nature', colors: ['#000000', '#BCD7B6'] }
+                    { key: 'warm', colors: ['#291D1E', '#F5A454', '#D05733'] },
+                    { key: 'modern', colors: ['#1C1C1C', '#FA3D3B', '#4A90E2'] },
+                    { key: 'elegant', colors: ['#1D2D50', '#B0D7FF', '#987E4D'] },
+                    { key: 'nature', colors: ['#000000', '#BCD7B6', '#8FBC8F'] }
                   ].map((scheme) => (
                     <button
                       key={scheme.key}
                       onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
-                      className={`w-20 h-20 p-3 border-2 transition-all duration-300 hover:shadow-lg ${
+                      className={`w-24 h-20 p-3 border-2 transition-all duration-300 hover:shadow-lg ${
                         currentColorScheme === scheme.key
                           ? 'border-orange-400 bg-white dark:bg-gray-800 shadow-md scale-105 ring-2 ring-orange-200'
                           : 'border-gray-300 dark:border-gray-600 hover:border-orange-300 bg-white dark:bg-gray-800'
                       }`}
                       style={{ borderRadius: '16px' }}
                     >
-                      <div className="flex flex-col gap-1.5 h-full">
+                      <div className="flex gap-1.5 h-full">
                         {scheme.colors.map((color, index) => (
                           <div 
                             key={index} 
