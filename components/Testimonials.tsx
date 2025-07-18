@@ -172,7 +172,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
             </span>
           )}
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
-            Was unsere Kunden sagen
+            <span className="heading-underline-large">Was unsere Kunden sagen</span>
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
             Erfahren Sie, was zufriedene Kunden über unsere Arbeit berichten.

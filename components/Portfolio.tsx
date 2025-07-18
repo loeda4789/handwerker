@@ -51,7 +51,7 @@ export default function Portfolio({ content }: PortfolioProps) {
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
-            {content.portfolio.title}
+            <span className="heading-underline-large">{content.portfolio.title}</span>
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
             {content.portfolio.subtitle}

@@ -89,7 +89,7 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
-            Vorher / Nachher – unsere Transformationen im Vergleich
+            <span className="heading-underline-large">Vorher / Nachher – unsere Transformationen im Vergleich</span>
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-3xl mx-auto">
             Erleben Sie die beeindruckenden Veränderungen durch unsere Arbeit. Bewegen Sie den Schieberegler, um den Unterschied zu sehen.

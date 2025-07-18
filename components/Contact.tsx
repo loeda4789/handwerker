@@ -161,7 +161,7 @@ export default function Contact({ content }: ContactProps) {
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-              Schreiben Sie uns
+              <span className="heading-underline-large">Schreiben Sie uns</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
               Senden Sie uns eine Nachricht und wir melden uns schnellstmöglich bei Ihnen zurück.

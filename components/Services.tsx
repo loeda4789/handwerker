@@ -134,10 +134,10 @@ export default function Services({ content }: ServicesProps) {
             </span>
           )}
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 text-center logo-font animate-on-scroll">
-            Dienstleistungen
+            <span className="heading-underline-large">Dienstleistungen</span>
           </h2>
           <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center animate-on-scroll">
-            Was wir anbieten
+            <span className="heading-underline">Was wir anbieten</span>
           </h3>
           <p className="text-xl text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto animate-on-scroll">
             {isModernStyle 

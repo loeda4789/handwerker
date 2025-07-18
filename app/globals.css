@@ -101,6 +101,79 @@
   transform: translateY(0);
 }
 
+/* Heading underline animation - wird beim Scrollen aktiviert */
+.heading-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.heading-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.3s;
+}
+
+.animate-on-scroll.animate-in .heading-underline::after {
+  width: 100%;
+}
+
+/* Variante für größere Überschriften */
+.heading-underline-large::after {
+  height: 4px;
+  bottom: -6px;
+  border-radius: 3px;
+}
+
+/* Animierte Unterstreichung mit "Wellen"-Effekt */
+@keyframes underline-wave {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  30% {
+    width: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.heading-underline-wave::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+  background-size: 200% 100%;
+  border-radius: 2px;
+  animation: none;
+}
+
+.animate-on-scroll.animate-in .heading-underline-wave::after {
+  animation: underline-wave 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards,
+             gradient-shift 3s ease-in-out 1.9s infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 /* Staggered animations for grid items */
 .animate-on-scroll:nth-child(1) { transition-delay: 0ms; }
 .animate-on-scroll:nth-child(2) { transition-delay: 100ms; }

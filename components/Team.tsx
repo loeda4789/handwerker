@@ -97,7 +97,9 @@ export default function Team({ content }: TeamProps) {
             </span>
           )}
           <h2 className="text-4xl md:text-5xl font-bold text-text dark:text-light mb-6">
-            {isModernStyle ? 'Unser Team' : 'Die Experten hinter jedem Projekt'}
+            <span className="heading-underline-large">
+              {isModernStyle ? 'Unser Team' : 'Die Experten hinter jedem Projekt'}
+            </span>
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto mb-8">
             {isModernStyle 
