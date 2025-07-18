@@ -119,7 +119,7 @@ export default function Contact({ content }: ContactProps) {
         <div className="max-w-2xl mx-auto">
           
           {/* Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-on-scroll">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-white text-sm font-medium shadow-lg"
               style={{ 
