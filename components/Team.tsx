@@ -82,20 +82,6 @@ export default function Team({ content }: TeamProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
-          {isModernStyle ? (
-            <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4"
-              style={{ 
-                borderRadius: 'var(--radius-button)',
-                backgroundColor: 'var(--color-secondary)'
-              }}>
-              Unser Team
-            </span>
-          ) : (
-            <span className="inline-block px-4 py-2 bg-primary/10 text-primary dark:bg-accent/20 dark:text-accent text-sm font-medium mb-4"
-              style={{ borderRadius: 'var(--radius-button)' }}>
-              Unser Team
-            </span>
-          )}
           <h2 className="text-4xl md:text-5xl font-bold text-text dark:text-light mb-6">
             {isModernStyle ? (
               <span className="heading-underline-large">
