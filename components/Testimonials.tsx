@@ -150,7 +150,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
   }, [currentSlide, isDragging])
 
   return (
-    <section id="testimonials" className="py-16">
+    <section id="testimonials" className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
@@ -172,7 +172,11 @@ export default function Testimonials({ content }: TestimonialsProps) {
             </span>
           )}
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
-            <span className="heading-underline-large">Was unsere Kunden sagen</span>
+            {isModernStyle ? (
+              <span className="heading-underline-large">Was unsere Kunden sagen</span>
+            ) : (
+              'Was unsere Kunden sagen'
+            )}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
             Erfahren Sie, was zufriedene Kunden über unsere Arbeit berichten.

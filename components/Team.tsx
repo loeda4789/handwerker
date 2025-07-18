@@ -78,7 +78,7 @@ export default function Team({ content }: TeamProps) {
   }
 
   return (
-    <section id="team" className="py-20">
+    <section id="team" className={`py-20 ${isModernStyle ? 'modern-style' : ''}`}>
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
@@ -97,9 +97,13 @@ export default function Team({ content }: TeamProps) {
             </span>
           )}
           <h2 className="text-4xl md:text-5xl font-bold text-text dark:text-light mb-6">
-            <span className="heading-underline-large">
-              {isModernStyle ? 'Unser Team' : 'Die Experten hinter jedem Projekt'}
-            </span>
+            {isModernStyle ? (
+              <span className="heading-underline-large">
+                {isModernStyle ? 'Unser Team' : 'Die Experten hinter jedem Projekt'}
+              </span>
+            ) : (
+              isModernStyle ? 'Unser Team' : 'Die Experten hinter jedem Projekt'
+            )}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto mb-8">
             {isModernStyle 

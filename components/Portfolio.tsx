@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ContentData } from '@/types/content'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
@@ -14,17 +14,42 @@ export default function Portfolio({ content }: PortfolioProps) {
   useScrollAnimation()
 
   const [activeFilter, setActiveFilter] = useState('Alle')
-  const [lightboxOpen, setLightboxOpen] = useState(false)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   
-  // Kategorien für Filter extrahieren
-  const categories = ['Alle', ...Array.from(new Set(content.portfolio.projects.map(project => project.category)))]
+  // Design-Style aus localStorage abrufen
+  const [designStyle, setDesignStyle] = useState<string>('angular')
   
-  // Gefilterte Projekte
+  useEffect(() => {
+    const savedDesignStyle = localStorage.getItem('design-style')
+    if (savedDesignStyle) {
+      setDesignStyle(savedDesignStyle)
+    }
+    
+    const handleDesignStyleChange = () => {
+      const newDesignStyle = localStorage.getItem('design-style')
+      if (newDesignStyle) {
+        setDesignStyle(newDesignStyle)
+      }
+    }
+    
+    window.addEventListener('storage', handleDesignStyleChange)
+    return () => window.removeEventListener('storage', handleDesignStyleChange)
+  }, [])
+  
+  // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
+
+  // Alle verfügbaren Kategorien sammeln
+  const allCategories = ['Alle', ...new Set(content.portfolio.projects.map(project => project.category))]
+  const categories = allCategories.slice(0, 5) // Maximal 5 Kategorien für bessere UX
+
+  // Projekte basierend auf aktivem Filter filtern
   const filteredProjects = activeFilter === 'Alle' 
     ? content.portfolio.projects 
     : content.portfolio.projects.filter(project => project.category === activeFilter)
 
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  
   // Lightbox functions
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index)
@@ -46,12 +71,16 @@ export default function Portfolio({ content }: PortfolioProps) {
   }
 
   return (
-    <section id="referenzen" className="py-16">
+    <section id="referenzen" className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
-            <span className="heading-underline-large">{content.portfolio.title}</span>
+            {isModernStyle ? (
+              <span className="heading-underline-large">{content.portfolio.title}</span>
+            ) : (
+              content.portfolio.title
+            )}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
             {content.portfolio.subtitle}

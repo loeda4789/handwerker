@@ -121,7 +121,7 @@ export default function Stats({ content }: StatsProps) {
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern';
 
   return (
-    <section className="py-16">
+    <section className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
@@ -143,7 +143,11 @@ export default function Stats({ content }: StatsProps) {
             </span>
           )}
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 transition-colors duration-300">
-            <span className="heading-underline-large">Zahlen, die für sich sprechen</span>
+            {isModernStyle ? (
+              <span className="heading-underline-large">Zahlen, die für sich sprechen</span>
+            ) : (
+              'Zahlen, die für sich sprechen'
+            )}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto transition-colors duration-300">
             Diese Zahlen spiegeln unser Engagement für Qualität und Kundenzufriedenheit wider.

@@ -109,7 +109,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
   }, [])
 
   return (
-    <section id="projektablauf" ref={sectionRef} className="py-20">
+    <section id="projektablauf" ref={sectionRef} className={`py-20 ${isModernStyle ? 'modern-style' : ''}`}>
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
@@ -131,9 +131,13 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
             </span>
           )}
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
-            <span className="heading-underline-large">
-              {isModernStyle ? 'Unser Arbeitsprozess' : content.projectProcess.title}
-            </span>
+            {isModernStyle ? (
+              <span className="heading-underline-large">
+                {isModernStyle ? 'Unser Arbeitsprozess' : content.projectProcess.title}
+              </span>
+            ) : (
+              isModernStyle ? 'Unser Arbeitsprozess' : content.projectProcess.title
+            )}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
             {isModernStyle

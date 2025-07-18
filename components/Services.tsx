@@ -120,7 +120,7 @@ export default function Services({ content }: ServicesProps) {
   }
 
   return (
-    <section id="leistungen" className="py-16">
+    <section id="leistungen" className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
@@ -134,10 +134,18 @@ export default function Services({ content }: ServicesProps) {
             </span>
           )}
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 text-center logo-font animate-on-scroll">
-            <span className="heading-underline-large">Dienstleistungen</span>
+            {isModernStyle ? (
+              <span className="heading-underline-large">Dienstleistungen</span>
+            ) : (
+              'Dienstleistungen'
+            )}
           </h2>
           <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center animate-on-scroll">
-            <span className="heading-underline">Was wir anbieten</span>
+            {isModernStyle ? (
+              <span className="heading-underline">Was wir anbieten</span>
+            ) : (
+              'Was wir anbieten'
+            )}
           </h3>
           <p className="text-xl text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto animate-on-scroll">
             {isModernStyle 

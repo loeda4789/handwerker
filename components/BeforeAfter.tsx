@@ -16,6 +16,29 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
   const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   
+  // Design-Style aus localStorage abrufen
+  const [designStyle, setDesignStyle] = useState<string>('angular')
+  
+  useEffect(() => {
+    const savedDesignStyle = localStorage.getItem('design-style')
+    if (savedDesignStyle) {
+      setDesignStyle(savedDesignStyle)
+    }
+    
+    const handleDesignStyleChange = () => {
+      const newDesignStyle = localStorage.getItem('design-style')
+      if (newDesignStyle) {
+        setDesignStyle(newDesignStyle)
+      }
+    }
+    
+    window.addEventListener('storage', handleDesignStyleChange)
+    return () => window.removeEventListener('storage', handleDesignStyleChange)
+  }, [])
+  
+  // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
+  
   const beforeAfterData = content.beforeAfter || []
   const currentItem = beforeAfterData[0]
 
@@ -23,7 +46,7 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
     setIsDragging(true)
     updateSliderPosition(e.clientX)
   }
-
+  
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging) return
     updateSliderPosition(e.clientX)
@@ -49,7 +72,7 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
 
   const updateSliderPosition = (clientX: number) => {
     if (!containerRef.current) return
-    
+
     const rect = containerRef.current.getBoundingClientRect()
     const x = clientX - rect.left
     const percentage = Math.min(Math.max((x / rect.width) * 100, 0), 100)
@@ -84,12 +107,16 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
   }
 
   return (
-    <section id="vorher-nachher" className="py-16">
+    <section id="vorher-nachher" className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
-            <span className="heading-underline-large">Vorher / Nachher – unsere Transformationen im Vergleich</span>
+            {isModernStyle ? (
+              <span className="heading-underline-large">Vorher / Nachher – unsere Transformationen im Vergleich</span>
+            ) : (
+              'Vorher / Nachher – unsere Transformationen im Vergleich'
+            )}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-3xl mx-auto">
             Erleben Sie die beeindruckenden Veränderungen durch unsere Arbeit. Bewegen Sie den Schieberegler, um den Unterschied zu sehen.
@@ -98,10 +125,10 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
 
         {/* Before/After Slider */}
         <div className="max-w-4xl mx-auto animate-on-scroll">
-          <div 
+          <div
             ref={containerRef}
-            className="relative w-full h-96 md:h-[500px] overflow-hidden shadow-2xl cursor-col-resize select-none"
-            style={{ borderRadius: 'var(--radius-image)' }}
+            className="relative bg-gray-100 dark:bg-gray-800 overflow-hidden cursor-col-resize select-none"
+            style={{ borderRadius: 'var(--radius-card)', aspectRatio: '16/10' }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
@@ -109,69 +136,57 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {/* After Image (Background) */}
+            {/* Before Image (rechts) */}
             <div className="absolute inset-0">
-              <div 
-                className="w-full h-full"
-                style={{
-                  backgroundImage: `url(${currentItem.afterImage})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}
+              <img
+                src={currentItem.beforeImage}
+                alt="Vorher"
+                className="w-full h-full object-cover"
               />
+              <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 text-sm font-semibold" 
+                style={{ borderRadius: 'var(--radius-button)' }}>
+                VORHER
+              </div>
             </div>
 
-            {/* Before Image (Overlay) */}
+            {/* After Image (links) - wird von Slider überdeckt */}
             <div 
               className="absolute inset-0 overflow-hidden"
-              style={{ width: `${sliderPosition}%` }}
+              style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
             >
-              <div 
-                className="w-full h-full"
-                style={{
-                  backgroundImage: `url(${currentItem.beforeImage})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  width: `${100 * (100 / sliderPosition)}%`
-                }}
+              <img
+                src={currentItem.afterImage}
+                alt="Nachher"
+                className="w-full h-full object-cover"
               />
+              <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 text-sm font-semibold"
+                style={{ borderRadius: 'var(--radius-button)' }}>
+                NACHHER
+              </div>
             </div>
 
-            {/* Slider Handle */}
+            {/* Slider Line */}
             <div 
               className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10 cursor-col-resize"
               style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
             >
-              {/* Handle Circle */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-primary border-4 border-white flex items-center justify-center shadow-lg"
+              {/* Slider Handle */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white border-2 border-gray-300 shadow-lg cursor-col-resize flex items-center justify-center"
                 style={{ borderRadius: 'var(--radius-button)' }}>
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
-                </svg>
+                <div className="flex space-x-0.5">
+                  <div className="w-0.5 h-4 bg-gray-400"></div>
+                  <div className="w-0.5 h-4 bg-gray-400"></div>
+                </div>
               </div>
-            </div>
-
-            {/* Labels */}
-                            <div className="absolute bottom-4 left-4 text-white px-3 py-1 rounded text-sm font-medium"
-                  style={{ backgroundColor: 'var(--color-secondary)' }}>
-              Vorher
-            </div>
-                            <div className="absolute bottom-4 right-4 text-white px-3 py-1 rounded text-sm font-medium"
-                  style={{ backgroundColor: 'var(--color-secondary)' }}>
-              Nachher
             </div>
           </div>
 
-          {/* Project Info */}
-          <div className="mt-8 text-center">
-            <h3 className="text-2xl font-bold text-text dark:text-light mb-2">
+          {/* Info Text */}
+          <div className="text-center mt-6">
+            <p className="text-lg font-semibold text-text dark:text-light mb-2">
               {currentItem.title}
-            </h3>
-            <span className="inline-block px-3 py-1 bg-primary/10 text-primary dark:text-accent text-sm font-medium mb-4"
-              style={{ borderRadius: 'var(--radius-button)' }}>
-              {currentItem.category}
-            </span>
-            <p className="text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
+            </p>
+            <p className="text-text-secondary dark:text-light/70">
               {currentItem.description}
             </p>
           </div>
