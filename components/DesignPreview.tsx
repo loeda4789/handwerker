@@ -251,7 +251,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   if (!isOpen) return null
 
-  // Alle Pakete direkt anzeigen
+  // Alle Pakete direkt anzeigen - mit 3 Farben
   const packages = [
     {
       key: '1',
@@ -259,7 +259,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       name: 'Klassisch',
       primary: 'Seriös & Vertrauensvoll',
       feature: 'Normale Kontaktmöglichkeiten',
-      colors: ['#000000', '#D05733'],
+      colors: ['#291D1E', '#F5A454', '#D05733'],
       preview: 'Traditionell • Bewährt • Solide'
     },
     {
@@ -268,7 +268,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       name: 'Modern',
       primary: 'Schnell & Bequem',
       feature: 'WhatsApp & Direktkontakt',
-      colors: ['#000000', '#BCD7B6'],
+      colors: ['#1C1C1C', '#FA3D3B', '#4A90E2'],
       preview: 'Zeitgemäß • Einfach • Direkter Kontakt'
     },
     {
@@ -277,7 +277,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       name: 'Freundlich',
       primary: 'Warm & Persönlich',
       feature: 'Schnelle Anruf-Buttons',
-      colors: ['#18273A', '#987E4D'],
+      colors: ['#1D2D50', '#B0D7FF', '#987E4D'],
       preview: 'Nahbar • Sympathisch • Hilfsbereit'
     }
   ]
@@ -287,8 +287,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[520px] h-[600px] flex flex-col" style={{ borderRadius: '24px' }}>
         
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
             Website-Designer
           </h3>
           <button
@@ -363,45 +363,45 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           
-          {/* Paket Mode - Einfacher und übersichtlicher */}
+          {/* Paket Mode - Dynamisch und übersichtlich */}
           {configMode === 'paket' && (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {/* Alle Pakete direkt anzeigen */}
               {packages.map((pkg) => (
                 <div key={pkg.key}>
                   <button
                     onClick={() => applyPackage(pkg.key as '1' | '2' | '3')}
-                    className={`w-full p-4 text-left border-3 transition-all duration-300 hover:shadow-lg ${
+                    className={`w-full p-3 sm:p-4 text-left border-2 sm:border-3 transition-all duration-300 hover:shadow-lg hover:scale-[1.01] ${
                       activePackage === pkg.key
                         ? 'border-orange-400 bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-900/10 shadow-md scale-102'
                         : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                     }`}
                     style={{ borderRadius: '16px' }}
                   >
-                    <div className="flex items-center gap-4">
-                      {/* Deutlichere Nummerierung */}
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      {/* Responsive Nummerierung */}
                       <div 
-                        className={`w-14 h-14 flex items-center justify-center font-bold text-lg shadow-sm ${
+                        className={`w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center font-bold text-base sm:text-lg shadow-sm ${
                           activePackage === pkg.key
-                            ? 'bg-orange-400 text-white ring-2 ring-orange-200'
+                            ? 'bg-orange-400 text-white ring-1 sm:ring-2 ring-orange-200'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                         }`}
-                        style={{ borderRadius: '16px' }}
+                        style={{ borderRadius: '14px' }}
                       >
                         {pkg.number}
                       </div>
                       
-                      <div className="flex-1">
-                        <div className={`font-bold text-xl ${
+                      <div className="flex-1 min-w-0">
+                        <div className={`font-bold text-lg sm:text-xl truncate ${
                           activePackage === pkg.key
                             ? 'text-orange-600 dark:text-orange-300'
                             : 'text-gray-900 dark:text-white'
                         }`}>
                           {pkg.name}
                         </div>
-                        <div className={`text-sm mt-1 ${
+                        <div className={`text-xs sm:text-sm mt-1 line-clamp-2 ${
                           activePackage === pkg.key
                             ? 'text-orange-500 dark:text-orange-400'
                             : 'text-gray-500 dark:text-gray-400'
@@ -410,23 +410,23 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                         </div>
                       </div>
                       
-                                              {/* Größere Farb-Vorschau */}
-                        <div className="flex gap-2">
-                          {pkg.colors.slice(0, 2).map((color: string, index: number) => (
-                            <div 
-                              key={index}
-                              className={`w-6 h-6 border-2 ${
-                                activePackage === pkg.key
-                                  ? 'border-orange-300 shadow-sm'
-                                  : 'border-gray-300'
-                              }`}
-                              style={{ 
-                                backgroundColor: color,
-                                borderRadius: '12px'
-                              }}
-                            />
-                          ))}
-                        </div>
+                                                                    {/* Überschneidende Farbkreise */}
+                      <div className="flex items-center -space-x-1">
+                        {pkg.colors.map((color: string, index: number) => (
+                          <div 
+                            key={index}
+                            className={`w-5 h-5 rounded-full border-2 shadow-sm ${
+                              activePackage === pkg.key
+                                ? 'border-white dark:border-gray-800'
+                                : 'border-gray-200 dark:border-gray-600'
+                            }`}
+                            style={{ 
+                              backgroundColor: color,
+                              zIndex: pkg.colors.length - index
+                            }}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </button>
                 </div>
@@ -474,39 +474,41 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 </div>
               )}
 
-              {/* Farben Tab - 3 Farben pro Schema */}
+              {/* Farben Tab - Dynamisches responsives Grid */}
               {activeTab === 'color' && (
-                <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-                  {[
-                    { key: 'warm', colors: ['#291D1E', '#F5A454', '#D05733'] },
-                    { key: 'modern', colors: ['#1C1C1C', '#FA3D3B', '#4A90E2'] },
-                    { key: 'elegant', colors: ['#1D2D50', '#B0D7FF', '#987E4D'] },
-                    { key: 'nature', colors: ['#000000', '#BCD7B6', '#8FBC8F'] }
-                  ].map((scheme) => (
-                    <button
-                      key={scheme.key}
-                      onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
-                      className={`w-24 h-20 p-3 border-2 transition-all duration-300 hover:shadow-lg ${
-                        currentColorScheme === scheme.key
-                          ? 'border-orange-400 bg-white dark:bg-gray-800 shadow-md scale-105 ring-2 ring-orange-200'
-                          : 'border-gray-300 dark:border-gray-600 hover:border-orange-300 bg-white dark:bg-gray-800'
-                      }`}
-                      style={{ borderRadius: '16px' }}
-                    >
-                      <div className="flex gap-1.5 h-full">
-                        {scheme.colors.map((color, index) => (
-                          <div 
-                            key={index} 
-                            className="flex-1 shadow-sm" 
-                            style={{ 
-                              backgroundColor: color,
-                              borderRadius: '8px'
-                            }} 
-                          />
-                        ))}
-                      </div>
-                    </button>
-                  ))}
+                <div className="px-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4 max-w-xs sm:max-w-sm lg:max-w-md mx-auto">
+                    {[
+                      { key: 'warm', colors: ['#291D1E', '#F5A454', '#D05733'] },
+                      { key: 'modern', colors: ['#1C1C1C', '#FA3D3B', '#4A90E2'] },
+                      { key: 'elegant', colors: ['#1D2D50', '#B0D7FF', '#987E4D'] },
+                      { key: 'nature', colors: ['#000000', '#BCD7B6', '#8FBC8F'] }
+                    ].map((scheme) => (
+                      <button
+                        key={scheme.key}
+                        onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
+                        className={`aspect-[6/5] p-2 sm:p-3 border-2 transition-all duration-300 hover:shadow-lg hover:scale-102 ${
+                          currentColorScheme === scheme.key
+                            ? 'border-orange-400 bg-white dark:bg-gray-800 shadow-md scale-105 ring-2 ring-orange-200'
+                            : 'border-gray-300 dark:border-gray-600 hover:border-orange-300 bg-white dark:bg-gray-800'
+                        }`}
+                        style={{ borderRadius: '16px' }}
+                      >
+                        <div className="flex gap-1 sm:gap-1.5 h-full">
+                          {scheme.colors.map((color, index) => (
+                            <div 
+                              key={index} 
+                              className="flex-1 shadow-sm transition-all duration-300" 
+                              style={{ 
+                                backgroundColor: color,
+                                borderRadius: '6px'
+                              }} 
+                            />
+                          ))}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
 
