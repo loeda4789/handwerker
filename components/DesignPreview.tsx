@@ -450,18 +450,20 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <button
                       key={style.key}
                       onClick={() => changeDesignStyle(style.key as 'angular' | 'rounded' | 'modern')}
-                      className={`w-full p-4 text-left border-2 rounded-lg transition-all ${
+                      className={`w-full p-4 text-left border-2 transition-all ${
                         currentDesignStyle === style.key
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
+                      style={{ borderRadius: '16px' }}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                        <div className={`w-10 h-10 flex items-center justify-center ${
                           currentDesignStyle === style.key
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
-                        }`}>
+                        }`}
+                        style={{ borderRadius: '14px' }}>
                           <style.Icon className="w-5 h-5" />
                         </div>
                         <div>
@@ -528,19 +530,21 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <button
                       key={feature.key}
                       onClick={() => toggleFeature(feature.key as keyof typeof features)}
-                      className={`w-full p-4 text-left border-2 rounded-lg transition-all ${
+                      className={`w-full p-4 text-left border-2 transition-all ${
                         features[feature.key as keyof typeof features]
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
+                      style={{ borderRadius: '16px' }}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                          <div className={`w-10 h-10 flex items-center justify-center ${
                             features[feature.key as keyof typeof features]
                               ? 'bg-orange-500 text-white'
                               : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
-                          }`}>
+                          }`}
+                          style={{ borderRadius: '14px' }}>
                             <feature.Icon className="w-5 h-5" />
                           </div>
                           <div>
@@ -548,11 +552,12 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                             <div className="text-sm text-gray-500 dark:text-gray-400">{feature.desc}</div>
                           </div>
                         </div>
-                        <div className={`px-3 py-1 text-xs font-medium rounded-lg ${
+                        <div className={`px-3 py-1 text-xs font-medium ${
                           features[feature.key as keyof typeof features]
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
-                        }`}>
+                        }`}
+                        style={{ borderRadius: '12px' }}>
                           {features[feature.key as keyof typeof features] ? 'AN' : 'AUS'}
                         </div>
                       </div>
@@ -571,18 +576,20 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                     <button
                       key={mode.key}
                       onClick={() => changeSiteMode(mode.key as 'onepage' | 'multipage')}
-                      className={`w-full p-4 text-left border-2 rounded-lg transition-all ${
+                      className={`w-full p-4 text-left border-2 transition-all ${
                         currentSiteMode === mode.key
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
+                      style={{ borderRadius: '16px' }}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                        <div className={`w-10 h-10 flex items-center justify-center ${
                           currentSiteMode === mode.key
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
-                        }`}>
+                        }`}
+                        style={{ borderRadius: '14px' }}>
                           <mode.Icon className="w-5 h-5" />
                         </div>
                         <div>
@@ -602,7 +609,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         <div className="border-t border-gray-200 dark:border-gray-700 p-4">
           <button
             onClick={applyChangesAndReload}
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 rounded-2xl transition-colors"
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 transition-colors"
+            style={{ borderRadius: '16px' }}
           >
             Website anzeigen
           </button>
