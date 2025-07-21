@@ -277,7 +277,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       name: 'Modern',
       primary: 'Schnell & Bequem',
       feature: 'WhatsApp & Direktkontakt',
-      colors: ['#0F1A50', '#FD080F', '#8D8AD9'], // modern schema: primary, secondary, accent
+      colors: ['#1C1C1C', '#22C55E', '#16A34A'], // schwarz, hellgrün, dunkelgrün für Konfigurator
       preview: 'Zeitgemäß • Einfach • Direkter Kontakt'
     }
   ]
