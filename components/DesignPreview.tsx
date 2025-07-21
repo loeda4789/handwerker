@@ -251,7 +251,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   if (!isOpen) return null
 
-  // Alle Pakete direkt anzeigen - mit korrekten Farben aus den Farbschemas
+  // Alle Pakete direkt anzeigen - mit identischen Farben aus den Farbschemas
   const packages = [
     {
       key: '1',
@@ -277,7 +277,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       name: 'Modern',
       primary: 'Schnell & Bequem',
       feature: 'WhatsApp & Direktkontakt',
-      colors: ['#0F1A50', '#8D8AD9', '#1e3a8a'], // modern schema: primary, accent, dunkleres Blau
+      colors: ['#0F1A50', '#FD080F', '#8D8AD9'], // modern schema: primary, secondary, accent
       preview: 'Zeitgemäß • Einfach • Direkter Kontakt'
     }
   ]
@@ -481,7 +481,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 <div className="space-y-6">
                   {[
                     { key: 'warm', name: 'Warm', colors: ['#000000', '#D05733', '#9A8F88'] },
-                    { key: 'modern', name: 'Modern', colors: ['#0F1A50', '#8D8AD9', '#1e3a8a'] },
+                    { key: 'modern', name: 'Modern', colors: ['#0F1A50', '#FD080F', '#8D8AD9'] },
                     { key: 'elegant', name: 'Elegant', colors: ['#18273A', '#987E4D', '#213044'] },
                     { key: 'nature', name: 'Nature', colors: ['#000000', '#BCD7B6', '#A8C99A'] }
                   ].map((scheme) => (
