@@ -148,7 +148,7 @@ export default function HomePage() {
     const savedDesignStyle = localStorage.getItem('design-style')
     const savedColorScheme = localStorage.getItem('selected-color-scheme')
     
-    // Features aus Website-Designer laden
+            // Features aus Webseite-Designer laden
     const featuresConfig = {
       promoBanner: localStorage.getItem('feature-promoBanner') === 'true',
       contactBar: localStorage.getItem('feature-contactBar') === 'true',
@@ -375,7 +375,7 @@ export default function HomePage() {
       <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
         <div className="text-center">
           <ModernSpinner variant="dots" size="xl" color="primary" className="mb-4" />
-          <p className="text-text-secondary dark:text-light/80">Website wird geladen...</p>
+          <p className="text-text-secondary dark:text-light/80">Webseite wird geladen...</p>
         </div>
       </div>
     )
@@ -394,7 +394,7 @@ export default function HomePage() {
         email={content.contact.email}
       />
       
-      {/* Background Website */}
+              {/* Background Webseite */}
       <div className={`transition-all duration-500 ${showConfigurator ? 'opacity-60 blur-[2px]' : 'opacity-100 blur-0'}`}>
         <Header content={content} />
         <Hero content={content} />
@@ -503,7 +503,7 @@ export default function HomePage() {
             {/* Mobile Header with Close Button */}
             <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
               <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-                Website-Konfigurator
+                Webseite-Konfigurator
               </h1>
               <button
                 onClick={() => setShowConfigurator(false)}
@@ -540,14 +540,14 @@ export default function HomePage() {
                     Webseiten Erstellung
                   </h1>
                   <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                    Ich habe bereits eine Webseite für Sie vorbereitet. Sie haben nun die Möglichkeit zwischen Umfang, Design und Farbe zu entscheiden. Dies dient als Inspiration für Ihre finale Website.
+                    Ich habe bereits eine Webseite für Sie vorbereitet. Sie haben nun die Möglichkeit zwischen Umfang, Design und Farbe zu entscheiden. Dies dient als Inspiration für Ihre finale Webseite.
                   </p>
                 </div>
                 
                 {/* Mobile Header Description */}
                 <div className="md:hidden text-center mb-6">
                   <p className="text-sm text-gray-600 dark:text-gray-300">
-                    Wählen Sie Umfang, Design und Farbe für Ihre Website-Inspiration
+                    Wählen Sie Umfang, Design und Farbe für Ihre Webseite-Inspiration
                   </p>
                 </div>
 
@@ -563,7 +563,7 @@ export default function HomePage() {
                         1
                       </div>
                       <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
-                        Website-Umfang festlegen
+                        Webseite-Umfang festlegen
                       </h2>
                     </div>
                     
@@ -587,7 +587,7 @@ export default function HomePage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                             </svg>
                           </div>
-                        <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1 md:mb-2">Kompakte Website</h3>
+                        <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1 md:mb-2">Kompakte Webseite</h3>
                         <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300">
                           Alle Inhalte auf einer Seite - perfekt für kleinere Betriebe
                         </p>
@@ -612,7 +612,7 @@ export default function HomePage() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
                             </svg>
                           </div>
-                        <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1 md:mb-2">Erweiterte Website</h3>
+                        <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1 md:mb-2">Erweiterte Webseite</h3>
                         <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300">
                           Separate Unterseiten für umfangreichere Inhalte und bessere Navigation
                         </p>
@@ -929,7 +929,7 @@ export default function HomePage() {
                     {isGenerating ? (
                       <div className="flex items-center justify-center">
                         <ModernSpinner variant="dots" size="sm" color="white" className="mr-3" />
-                        <span className="hidden md:inline">Website wird angepasst...</span>
+                        <span className="hidden md:inline">Webseite wird angepasst...</span>
                         <span className="md:hidden">Wird angepasst...</span>
                       </div>
                     ) : (

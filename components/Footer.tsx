@@ -128,7 +128,7 @@ export default function Footer({ content }: FooterProps) {
                   Datenschutz
                 </Link>
                                  <div className="text-white/40">
-                   Website by <span style={{ color: 'var(--color-secondary)' }}>ml | websolutions</span>
+                   Webseite by <span style={{ color: 'var(--color-secondary)' }}>ml | websolutions</span>
                  </div>
               </div>
             </div>

@@ -32,28 +32,28 @@ export default function Datenschutz() {
             <h3 className="text-xl font-medium mt-6 mb-3">Allgemeine Hinweise</h3>
             <p className="mb-4">
               Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten 
-              passiert, wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie 
+              passiert, wenn Sie unsere Webseite besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie 
               persönlich identifiziert werden können.
             </p>
 
-            <h3 className="text-xl font-medium mt-6 mb-3">Datenerfassung auf unserer Website</h3>
+            <h3 className="text-xl font-medium mt-6 mb-3">Datenerfassung auf unserer Webseite</h3>
             <p className="mb-4">
-              <strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong><br />
-              Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten 
-              können Sie dem Impressum dieser Website entnehmen.
+                              <strong>Wer ist verantwortlich für die Datenerfassung auf dieser Webseite?</strong><br />
+                Die Datenverarbeitung auf dieser Webseite erfolgt durch den Webseitenbetreiber. Dessen Kontaktdaten
+                können Sie dem Impressum dieser Webseite entnehmen.
             </p>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">2. Hosting</h2>
             <p className="mb-4">
-              Wir hosten die Inhalte unserer Website bei folgendem Anbieter:
+              Wir hosten die Inhalte unserer Webseite bei folgendem Anbieter:
             </p>
             
             <h3 className="text-xl font-medium mt-6 mb-3">Externes Hosting</h3>
             <p className="mb-4">
-              Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, 
+              Diese Webseite wird extern gehostet. Die personenbezogenen Daten, die auf dieser Webseite erfasst werden, 
               werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, 
-              Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, 
-              die über eine Website generiert werden, handeln.
+                      Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Webseitenzugriffe und sonstige Daten,
+        die über eine Webseite generiert werden, handeln.
             </p>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">3. Allgemeine Hinweise und Pflichtinformationen</h2>
@@ -67,7 +67,7 @@ export default function Datenschutz() {
 
             <h3 className="text-xl font-medium mt-6 mb-3">Hinweis zur verantwortlichen Stelle</h3>
             <p className="mb-4">
-              Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
+              Die verantwortliche Stelle für die Datenverarbeitung auf dieser Webseite ist:
             </p>
             <p className="mb-4">
               {content.company.name}<br />
@@ -78,7 +78,7 @@ export default function Datenschutz() {
               E-Mail: {content.contact.email}
             </p>
 
-            <h2 className="text-2xl font-semibold mt-8 mb-4">4. Datenerfassung auf unserer Website</h2>
+            <h2 className="text-2xl font-semibold mt-8 mb-4">4. Datenerfassung auf unserer Webseite</h2>
             
             <h3 className="text-xl font-medium mt-6 mb-3">Cookies</h3>
             <p className="mb-4">

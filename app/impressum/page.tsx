@@ -87,7 +87,7 @@ export default function Impressum() {
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">Haftung für Links</h2>
             <p className="mb-4">
-              Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. 
+              Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. 
               Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der 
               verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
             </p>
@@ -100,9 +100,9 @@ export default function Impressum() {
             </p>
 
             <div className="border-t pt-6 mt-8">
-              <h3 className="text-lg font-medium mb-4">Website-Entwicklung</h3>
+              <h3 className="text-lg font-medium mb-4">Webseite-Entwicklung</h3>
               <p className="text-sm text-gray-600">
-                Website erstellt von:{" "}
+                Webseite erstellt von:{" "}
                 <span className="font-medium">ml | websolutions</span>
               </p>
             </div>

@@ -289,7 +289,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
           <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
-            Website-Designer
+            Webseite-Designer
           </h3>
           <button
             onClick={onClose}
@@ -612,7 +612,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 transition-colors"
             style={{ borderRadius: '16px' }}
           >
-            Website anzeigen
+            Webseite anzeigen
           </button>
         </div>
       </div>
