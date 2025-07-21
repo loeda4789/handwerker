@@ -495,14 +495,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       }`}
                       style={{ borderRadius: '16px' }}
                     >
-                      <div className="flex items-center justify-between">
-                        <span className={`font-medium ${
-                          currentColorScheme === scheme.key
-                            ? 'text-orange-700 dark:text-orange-300'
-                            : 'text-gray-700 dark:text-gray-300'
-                        }`}>
-                          {scheme.name}
-                        </span>
+                      <div className="flex items-center justify-center">
                         <div className="flex items-center gap-2">
                           {scheme.colors.map((color, index) => (
                             <div 
