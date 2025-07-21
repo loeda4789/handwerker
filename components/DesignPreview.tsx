@@ -251,7 +251,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   if (!isOpen) return null
 
-  // Alle Pakete direkt anzeigen - mit 3 Farben
+  // Alle Pakete direkt anzeigen - mit korrekten Farben aus den Farbschemas
   const packages = [
     {
       key: '1',
@@ -259,7 +259,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       name: 'Klassisch',
       primary: 'Seriös & Vertrauensvoll',
       feature: 'Normale Kontaktmöglichkeiten',
-      colors: ['#291D1E', '#F5A454', '#D05733'],
+      colors: ['#000000', '#D05733', '#9A8F88'], // warm schema: primary, secondary, accent
       preview: 'Traditionell • Bewährt • Solide'
     },
     {
@@ -268,7 +268,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       name: 'Freundlich',
       primary: 'Warm & Persönlich',
       feature: 'Schnelle Anruf-Buttons',
-      colors: ['#1D2D50', '#B0D7FF', '#987E4D'],
+      colors: ['#18273A', '#987E4D', '#213044'], // elegant schema: primary, secondary, accent
       preview: 'Nahbar • Sympathisch • Hilfsbereit'
     },
     {
@@ -277,7 +277,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       name: 'Modern',
       primary: 'Schnell & Bequem',
       feature: 'WhatsApp & Direktkontakt',
-      colors: ['#1C1C1C', '#22C55E', '#16A34A'],
+      colors: ['#0F1A50', '#FD080F', '#8D8AD9'], // modern schema: primary, secondary, accent
       preview: 'Zeitgemäß • Einfach • Direkter Kontakt'
     }
   ]
@@ -480,10 +480,10 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               {activeTab === 'color' && (
                 <div className="space-y-6">
                   {[
-                    { key: 'warm', name: 'Warm', colors: ['#291D1E', '#F5A454', '#D05733'] },
-                    { key: 'modern', name: 'Modern', colors: ['#1C1C1C', '#22C55E', '#16A34A'] },
-                    { key: 'elegant', name: 'Elegant', colors: ['#1D2D50', '#B0D7FF', '#987E4D'] },
-                    { key: 'nature', name: 'Nature', colors: ['#000000', '#BCD7B6', '#8FBC8F'] }
+                    { key: 'warm', name: 'Warm', colors: ['#000000', '#D05733', '#9A8F88'] },
+                    { key: 'modern', name: 'Modern', colors: ['#0F1A50', '#FD080F', '#8D8AD9'] },
+                    { key: 'elegant', name: 'Elegant', colors: ['#18273A', '#987E4D', '#213044'] },
+                    { key: 'nature', name: 'Nature', colors: ['#000000', '#BCD7B6', '#A8C99A'] }
                   ].map((scheme) => (
                     <button
                       key={scheme.key}
