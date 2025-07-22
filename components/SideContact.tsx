@@ -10,7 +10,7 @@ interface SideContactProps {
 
 export default function SideContact({ phoneNumber, email, onEmailClick }: SideContactProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false); // Initial ausgeblendet
 
   // SideContact sofort einblenden (für Test)
   useEffect(() => {
@@ -30,8 +30,12 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
   };
 
   const handleToggle = () => {
+    console.log('SideContact Toggle:', { current: isExpanded, new: !isExpanded });
     setIsExpanded(!isExpanded);
   };
+
+  // Debug-Log
+  console.log('SideContact Render:', { isVisible, isExpanded, phoneNumber, email });
 
   // Nicht rendern, wenn noch nicht sichtbar oder auf Mobile
   if (!isVisible) {
@@ -51,7 +55,8 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
           position: 'absolute',
           right: '0',
           top: '50%',
-          transform: 'translateY(-50%)'
+          transform: 'translateY(-50%)',
+          display: isExpanded ? 'block' : 'none' // Explizit ausblenden
         }}
       >
         {/* Header */}
