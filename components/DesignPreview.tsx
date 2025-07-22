@@ -515,7 +515,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               {activeTab === 'features' && (
                 <div className="space-y-4">
                   {[
-                    { key: 'speedDial', name: 'Speed Dial', desc: 'Mobile Kontakt-Buttons', Icon: MdCall },
+                    { key: 'speedDial', name: 'Moderne Kontaktaufnahme', desc: 'Mobile & Desktop Kontakt-Buttons', Icon: MdCall },
                     { key: 'whatsappWidget', name: 'WhatsApp', desc: 'Chat-Widget', Icon: MdWhatsapp },
                     { key: 'contactBar', name: 'Kontakt-Leiste', desc: 'Fixe Telefon-Leiste', Icon: MdPhoneInTalk },
                     { key: 'notdienstAlert', name: 'Notdienst-Alert', desc: 'Auffällige Hinweis-Leiste', Icon: MdNotifications }

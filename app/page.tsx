@@ -15,7 +15,7 @@ import Testimonials from '@/components/Testimonials'
 import ProjectProcess from '@/components/ProjectProcess'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
-import SpeedDial from '@/components/SpeedDial'
+import MobileContact from '@/components/MobileContact'
 import SideContact from '@/components/SideContact'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
@@ -481,9 +481,9 @@ export default function HomePage() {
         <CallbackRequest isEnabled={features.callbackRequest} />
         <PromoBanner isEnabled={features.promoBanner} />
         
-        {/* Mobile Speed Dial - nur wenn aktiviert */}
+        {/* Mobile Kontaktaufnahme - nur wenn aktiviert */}
         {features.speedDial && (
-        <SpeedDial 
+        <MobileContact 
           phoneNumber={content.contact.phone}
           onEmailClick={scrollToContact}
         />

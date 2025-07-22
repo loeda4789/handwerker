@@ -2,16 +2,16 @@
 
 import { useState, useEffect } from 'react';
 
-interface SpeedDialProps {
+interface MobileContactProps {
   phoneNumber: string;
   onEmailClick: () => void;
 }
 
-export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps) {
+export default function MobileContact({ phoneNumber, onEmailClick }: MobileContactProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  // SpeedDial nach 7 Sekunden einblenden
+  // MobileContact nach 7 Sekunden einblenden
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -20,7 +20,7 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
     return () => clearTimeout(timer);
   }, []);
 
-  const toggleSpeedDial = () => {
+  const toggleMobileContact = () => {
     setIsOpen(!isOpen);
   };
 
@@ -40,8 +40,8 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 lg:hidden opacity-0 animate-[fadeInUp_0.5s_ease-out_0s_forwards]">
-      {/* Speed Dial Actions */}
+    <div className="fixed bottom-6 right-6 z-50 lg:hidden animate-[fadeInUp_0.5s_ease-out_0s_forwards]">
+      {/* Mobile Contact Actions */}
       <div className={`flex flex-col space-y-3 mb-3 transition-all duration-300 ease-out ${
         isOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
       }`}>
@@ -90,20 +90,20 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
         </button>
       </div>
 
-      {/* Main Speed Dial Button */}
+      {/* Main Mobile Contact Button */}
       <button
-        onClick={toggleSpeedDial}
-                            className="w-14 h-14 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 active:scale-95 group"
-          style={{ 
-            backgroundColor: 'var(--color-secondary)',
-            borderRadius: 'var(--radius-button)' 
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--color-primary)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
-          }}
+        onClick={toggleMobileContact}
+        className="w-14 h-14 text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 active:scale-95 group"
+        style={{ 
+          backgroundColor: 'var(--color-secondary)',
+          borderRadius: 'var(--radius-button)' 
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+        }}
         aria-label={isOpen ? 'Menü schließen' : 'Kontakt-Menü öffnen'}
       >
         <div className={`transition-all duration-300 ease-out ${isOpen ? 'rotate-45 scale-110' : 'rotate-0 scale-100'}`}>
