@@ -499,6 +499,16 @@ export default function HomePage() {
         />
         )}
         
+        {/* Debug: Feature-Status */}
+        {(() => {
+          console.log('Features Debug:', { 
+            speedDial: features.speedDial, 
+            hasContent: !!content?.contact?.phone,
+            siteMode 
+          });
+          return null;
+        })()}
+        
         {/* Unauffälliger Notruf - immer verfügbar */}
         <EmergencyContact 
           phoneNumber={content.contact.phone}

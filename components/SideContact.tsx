@@ -12,11 +12,11 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  // SideContact nach 5 Sekunden einblenden (Desktop)
+  // SideContact sofort einblenden (für Test)
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 5000); // 5 Sekunden
+    }, 500); // 0.5 Sekunden für Test
 
     return () => clearTimeout(timer);
   }, []);
@@ -29,6 +29,9 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
     onEmailClick();
   };
 
+  // Debug-Log
+  console.log('SideContact:', { isVisible, isHovered, phoneNumber, email });
+
   // Nicht rendern, wenn noch nicht sichtbar oder auf Mobile
   if (!isVisible) {
     return null;
@@ -36,6 +39,11 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
 
   return (
     <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
+      {/* Debug: Trigger-Button immer sichtbar machen */}
+      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full bg-blue-500 text-white p-2 text-xs">
+        SideContact Test
+      </div>
+      
       {/* Seitliche Kontaktleiste */}
       <div 
         className={`bg-white dark:bg-gray-800 shadow-lg border-l border-gray-200 dark:border-gray-700 transition-all duration-500 ease-out ${
