@@ -16,6 +16,7 @@ import ProjectProcess from '@/components/ProjectProcess'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import MobileContact from '@/components/MobileContact'
+import EmergencyContact from '@/components/EmergencyContact'
 import SideContact from '@/components/SideContact'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
@@ -497,6 +498,11 @@ export default function HomePage() {
           onEmailClick={scrollToContact}
         />
         )}
+        
+        {/* Unauffälliger Notruf - immer verfügbar */}
+        <EmergencyContact 
+          phoneNumber={content.contact.phone}
+        />
       </div>
 
       {/* Configurator Overlay */}
