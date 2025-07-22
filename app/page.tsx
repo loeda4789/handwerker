@@ -501,13 +501,16 @@ export default function HomePage() {
         
         {/* Debug: Feature-Status */}
         {(() => {
-          console.log('Features Debug:', { 
+          console.log('SideContact Debug:', { 
             speedDial: features.speedDial, 
             hasContent: !!content?.contact?.phone,
-            siteMode 
+            siteMode,
+            isDesktop
           });
           return null;
         })()}
+        
+
         
         {/* Unauffälliger Notruf - immer verfügbar */}
         <EmergencyContact 

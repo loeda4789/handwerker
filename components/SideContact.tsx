@@ -40,8 +40,7 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
     }, 200);
   };
 
-  // Debug-Log
-  console.log('SideContact:', { isVisible, isExpanded, phoneNumber, email });
+
 
   // Nicht rendern, wenn noch nicht sichtbar oder auf Mobile
   if (!isVisible) {
@@ -50,6 +49,10 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
 
   return (
     <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
+      {/* Debug: Test-Button für Desktop */}
+      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full bg-red-500 text-white p-2 text-xs z-50">
+        SideContact Test
+      </div>
       {/* Seitliche Kontaktleiste */}
       <div 
         className={`bg-white dark:bg-gray-800 shadow-lg border-l border-gray-200 dark:border-gray-700 transition-all duration-300 ease-out ${
