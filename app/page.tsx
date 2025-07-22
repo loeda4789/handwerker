@@ -490,26 +490,6 @@ export default function HomePage() {
         />
         )}
         
-        {/* Desktop Side Contact - nur wenn aktiviert */}
-        {features.speedDial && (
-        <SideContact 
-          phoneNumber={content.contact.phone}
-          email={content.contact.email}
-          onEmailClick={scrollToContact}
-        />
-        )}
-        
-        {/* Debug: Feature-Status */}
-        {(() => {
-          console.log('SideContact Debug:', { 
-            speedDial: features.speedDial, 
-            hasContent: !!content?.contact?.phone,
-            siteMode,
-            isDesktop
-          });
-          return null;
-        })()}
-        
 
         
         {/* Unauffälliger Notruf - immer verfügbar */}
@@ -517,6 +497,26 @@ export default function HomePage() {
           phoneNumber={content.contact.phone}
         />
       </div>
+
+      {/* Desktop Side Contact - Global außerhalb des Containers */}
+      {features.speedDial && (
+        <SideContact 
+          phoneNumber={content.contact.phone}
+          email={content.contact.email}
+          onEmailClick={scrollToContact}
+        />
+      )}
+      
+      {/* Debug: Feature-Status */}
+      {(() => {
+        console.log('SideContact Debug:', { 
+          speedDial: features.speedDial, 
+          hasContent: !!content?.contact?.phone,
+          siteMode,
+          isDesktop
+        });
+        return null;
+      })()}
 
       {/* Configurator Overlay */}
       {showConfigurator && (
