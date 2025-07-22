@@ -48,7 +48,7 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
   }
 
   return (
-    <div className="fixed right-0 top-0 h-full z-40 hidden lg:flex lg:items-center">
+    <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
       {/* Seitliche Kontaktleiste */}
       <div 
         className={`bg-white dark:bg-gray-800 shadow-lg border-l border-gray-200 dark:border-gray-700 transition-all duration-300 ease-out ${
@@ -56,7 +56,11 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
         }`}
         style={{ 
           borderRadius: 'var(--radius-card) 0 0 var(--radius-card)',
-          minWidth: '280px'
+          minWidth: '280px',
+          position: 'absolute',
+          right: '0',
+          top: '50%',
+          transform: 'translateY(-50%)'
         }}
         onMouseEnter={handleExpand}
         onMouseLeave={handleCollapse}
@@ -130,7 +134,7 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
 
       {/* Trigger-Button (immer sichtbar) */}
       <div 
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
         style={{ 
           borderRadius: 'var(--radius-button) 0 0 var(--radius-button)',
           writingMode: 'vertical-rl',
