@@ -10,7 +10,7 @@ interface SideContactProps {
 
 export default function SideContact({ phoneNumber, email, onEmailClick }: SideContactProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // SideContact sofort einblenden (für Test)
   useEffect(() => {
@@ -29,8 +29,19 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
     onEmailClick();
   };
 
+  const handleExpand = () => {
+    setIsExpanded(true);
+  };
+
+  const handleCollapse = () => {
+    // Verzögerung für bessere UX
+    setTimeout(() => {
+      setIsExpanded(false);
+    }, 200);
+  };
+
   // Debug-Log
-  console.log('SideContact:', { isVisible, isHovered, phoneNumber, email });
+  console.log('SideContact:', { isVisible, isExpanded, phoneNumber, email });
 
   // Nicht rendern, wenn noch nicht sichtbar oder auf Mobile
   if (!isVisible) {
@@ -39,22 +50,17 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
 
   return (
     <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
-      {/* Debug: Trigger-Button immer sichtbar machen */}
-      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full bg-blue-500 text-white p-2 text-xs">
-        SideContact Test
-      </div>
-      
       {/* Seitliche Kontaktleiste */}
       <div 
-        className={`bg-white dark:bg-gray-800 shadow-lg border-l border-gray-200 dark:border-gray-700 transition-all duration-500 ease-out ${
-          isHovered ? 'translate-x-0' : 'translate-x-full'
+        className={`bg-white dark:bg-gray-800 shadow-lg border-l border-gray-200 dark:border-gray-700 transition-all duration-300 ease-out ${
+          isExpanded ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ 
           borderRadius: 'var(--radius-card) 0 0 var(--radius-card)',
           minWidth: '280px'
         }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={handleExpand}
+        onMouseLeave={handleCollapse}
       >
         {/* Header */}
         <div className="p-4 border-b border-gray-200 dark:border-gray-700">
@@ -125,13 +131,14 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
 
       {/* Trigger-Button (immer sichtbar) */}
       <div 
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 p-3 cursor-pointer"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
         style={{ 
           borderRadius: 'var(--radius-button) 0 0 var(--radius-button)',
           writingMode: 'vertical-rl',
           textOrientation: 'mixed'
         }}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={handleExpand}
+        onMouseLeave={handleCollapse}
       >
         <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300 font-medium">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
