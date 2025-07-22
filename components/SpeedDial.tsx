@@ -40,7 +40,7 @@ export default function SpeedDial({ phoneNumber, onEmailClick }: SpeedDialProps)
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 md:hidden opacity-0 animate-[fadeInUp_0.5s_ease-out_0s_forwards]">
+    <div className="fixed bottom-6 right-6 z-50 lg:hidden opacity-0 animate-[fadeInUp_0.5s_ease-out_0s_forwards]">
       {/* Speed Dial Actions */}
       <div className={`flex flex-col space-y-3 mb-3 transition-all duration-300 ease-out ${
         isOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95 pointer-events-none'

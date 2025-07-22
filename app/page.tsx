@@ -16,6 +16,7 @@ import ProjectProcess from '@/components/ProjectProcess'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import SpeedDial from '@/components/SpeedDial'
+import SideContact from '@/components/SideContact'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
 import ConfiguratorButton from '@/components/ConfiguratorButton'
@@ -484,6 +485,15 @@ export default function HomePage() {
         {features.speedDial && (
         <SpeedDial 
           phoneNumber={content.contact.phone}
+          onEmailClick={scrollToContact}
+        />
+        )}
+        
+        {/* Desktop Side Contact - nur wenn aktiviert */}
+        {features.speedDial && (
+        <SideContact 
+          phoneNumber={content.contact.phone}
+          email={content.contact.email}
           onEmailClick={scrollToContact}
         />
         )}

@@ -765,6 +765,29 @@ html {
   }
 }
 
+/* Side Contact Animationen */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
 /* Ken Burns Effekt für Hero-Bilder */
 @keyframes ken-burns {
   0% {
