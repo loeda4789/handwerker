@@ -507,16 +507,7 @@ export default function HomePage() {
         />
       )}
       
-      {/* Debug: Feature-Status */}
-      {(() => {
-        console.log('SideContact Debug:', { 
-          speedDial: features.speedDial, 
-          hasContent: !!content?.contact?.phone,
-          siteMode,
-          isDesktop
-        });
-        return null;
-      })()}
+
 
       {/* Configurator Overlay */}
       {showConfigurator && (
