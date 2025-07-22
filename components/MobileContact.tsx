@@ -11,11 +11,11 @@ export default function MobileContact({ phoneNumber, onEmailClick }: MobileConta
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  // MobileContact nach 2 Sekunden einblenden (für Test)
+  // MobileContact sofort einblenden (für Test)
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 2000); // 2 Sekunden für Test
+    }, 500); // 0.5 Sekunden für Test
 
     return () => clearTimeout(timer);
   }, []);
@@ -34,13 +34,19 @@ export default function MobileContact({ phoneNumber, onEmailClick }: MobileConta
     setIsOpen(false);
   };
 
+  // Debug-Log
+  console.log('MobileContact:', { isVisible, isOpen, phoneNumber });
+
   // Nicht rendern, wenn noch nicht sichtbar
   if (!isVisible) {
     return null;
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 lg:hidden">
+    <div className="fixed bottom-6 right-6 z-50 lg:hidden bg-red-500 p-2">
+      {/* Debug: Sichtbar machen */}
+      <div className="text-white text-xs mb-2">MobileContact Test</div>
+      
       {/* Mobile Contact Actions */}
       <div className={`flex flex-col space-y-3 mb-3 transition-all duration-300 ease-out ${
         isOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
