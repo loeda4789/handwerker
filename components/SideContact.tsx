@@ -29,18 +29,9 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
     onEmailClick();
   };
 
-  const handleExpand = () => {
-    setIsExpanded(true);
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded);
   };
-
-  const handleCollapse = () => {
-    // Verzögerung für bessere UX
-    setTimeout(() => {
-      setIsExpanded(false);
-    }, 200);
-  };
-
-
 
   // Nicht rendern, wenn noch nicht sichtbar oder auf Mobile
   if (!isVisible) {
@@ -62,8 +53,6 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
           top: '50%',
           transform: 'translateY(-50%)'
         }}
-        onMouseEnter={handleExpand}
-        onMouseLeave={handleCollapse}
       >
         {/* Header */}
         <div className="p-4 border-b border-gray-200 dark:border-gray-700">
@@ -140,8 +129,7 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
           writingMode: 'vertical-rl',
           textOrientation: 'mixed'
         }}
-        onMouseEnter={handleExpand}
-        onMouseLeave={handleCollapse}
+        onClick={handleToggle}
       >
         <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300 font-medium">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

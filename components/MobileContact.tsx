@@ -43,9 +43,7 @@ export default function MobileContact({ phoneNumber, onEmailClick }: MobileConta
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 lg:hidden bg-red-500 p-2">
-      {/* Debug: Sichtbar machen */}
-      <div className="text-white text-xs mb-2">MobileContact Test</div>
+    <div className="fixed bottom-6 right-6 z-50 lg:hidden">
       
       {/* Mobile Contact Actions */}
       <div className={`flex flex-col space-y-3 mb-3 transition-all duration-300 ease-out ${
