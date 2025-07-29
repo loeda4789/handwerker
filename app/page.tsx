@@ -26,6 +26,7 @@ import UrlParamsDebug from '@/components/UrlParamsDebug'
 import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 
 import PromoBanner from '@/components/PromoBanner'
+import BewerberPopup from '@/components/BewerberPopup'
 import ContactBar from '@/components/ContactBar'
 import NotdienstAlert from '@/components/NotdienstAlert'
 import WhatsAppWidget from '@/components/WhatsAppWidget'
@@ -54,6 +55,7 @@ interface FeaturesState {
   callbackPopup: boolean
   callbackRequest: boolean
   speedDial: boolean
+  bewerberPopup: boolean
 }
 
 // Helper component für abwechselnde Sektionshintergründe in klassischer Variante
@@ -113,7 +115,8 @@ export default function HomePage() {
     whatsappWidget: false,
     callbackPopup: false,
     callbackRequest: false,
-    speedDial: true
+    speedDial: true,
+    bewerberPopup: true
   })
   const [isGenerating, setIsGenerating] = useState(false)
   const [showConfigurator, setShowConfigurator] = useState(false) // Temporarily disabled - can be re-enabled later
@@ -158,7 +161,8 @@ export default function HomePage() {
       whatsappWidget: localStorage.getItem('feature-whatsappWidget') === 'true',
       callbackPopup: localStorage.getItem('feature-callbackPopup') === 'true',
       callbackRequest: localStorage.getItem('feature-callbackRequest') === 'true',
-      speedDial: localStorage.getItem('feature-speedDial') !== 'false' // Default true
+      speedDial: localStorage.getItem('feature-speedDial') !== 'false', // Default true
+      bewerberPopup: localStorage.getItem('feature-bewerberPopup') === 'true'
     }
     
     setFeatures(featuresConfig)
@@ -403,6 +407,17 @@ export default function HomePage() {
         ctaText="Jetzt buchen"
         showCloseButton={true}
         autoHide={false}
+      />
+      
+      {/* Bewerber Popup - Bottom Right Corner */}
+      <BewerberPopup 
+        isEnabled={features.bewerberPopup}
+        title="Wir suchen dich!"
+        subtitle="Engagierte Mitarbeiter in unserem Team"
+        ctaText="Erfahre mehr"
+        showCloseButton={true}
+        autoHide={false}
+        showDelay={3000}
       />
       
               {/* Background Webseite */}
@@ -906,11 +921,21 @@ export default function HomePage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                                   </svg>
                                 )
+                              },
+                              { 
+                                key: 'bewerberPopup', 
+                                name: 'Bewerber-Popup', 
+                                desc: 'Popup für Bewerbungen mit direktem Kontakt-Button',
+                                icon: (
+                                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 016-6h10a4 4 0 004-4V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a4 4 0 004-4v0a4 4 0 01-.354-7.646z"/>
+                                  </svg>
+                                )
                               }
                             ].map((feature) => (
                               <button
                                 key={feature.key}
-                                onClick={() => setFeatures(prev => ({ ...prev, [feature.key]: !prev[feature.key as keyof FeaturesState] }))}
+                                onClick={() => setFeatures(prev => ({ ...prev, [feature.key as keyof FeaturesState]: !prev[feature.key as keyof FeaturesState] }))}
                                 className={`group p-3 md:p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 min-h-[120px] md:min-h-auto ${
                                   features[feature.key as keyof FeaturesState]
                                     ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
