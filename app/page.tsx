@@ -850,7 +850,7 @@ export default function HomePage() {
                       
                       {config.featuresExpanded && (
                         <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
-                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4 max-h-96 overflow-y-auto">
                             {[
                               { 
                                 key: 'promoBanner', 
