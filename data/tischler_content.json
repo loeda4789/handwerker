@@ -1,0 +1,337 @@
+{
+  "company": {
+    "name": "Mustermann Tischlerei GmbH",
+    "tagline": "Ihr zuverlässiger Tischler-Partner",
+    "logo": "/images/logo.png"
+  },
+  "hero": {
+    "backgroundImages": {
+      "desktop": "/images/branchen/tischler/hero/desktop/hero_background_desktop.jpg",
+      "mobile": "/images/branchen/tischler/hero/mobile/hero_background_mobile.jpg",
+      "desktopAlt": "/images/branchen/tischler/hero/desktop/hero_background_desktop_alt.jpg",
+      "mobileAlt": "/images/branchen/tischler/hero/mobile/hero_background_mobile_alt.jpg"
+    }
+  },
+  "about": {
+    "title": "Über uns",
+    "text": "Wir sind Ihr zuverlässiger Partner für professionelle Tischlerarbeiten. Mit Meisterqualität, modernster Technik und jahrzehntelanger Erfahrung verwandeln wir Ihre Ideen in einzigartige Holzobjekte und schaffen maßgeschneiderte Lösungen für Ihr Zuhause.",
+    "image": "/images/branchen/tischler/about/about_firma.jpg"
+  },
+  "welcome": {
+    "headline": "Willkommen bei\nMustermann Tischlerei GmbH",
+    "subline": "Meisterqualität für Ihre Holzprojekte",
+    "features": [
+      {
+        "icon": "✅",
+        "title": "Tischlermeister-Betrieb",
+        "text": "Zertifizierte Qualität und jahrzehntelange Erfahrung im Tischlerhandwerk"
+      },
+      {
+        "icon": "🏗️",
+        "title": "Komplettservice Tischlerei",
+        "text": "Von der Küche bis zum Möbelbau - alles aus einer Hand"
+      },
+      {
+        "icon": "🛟",
+        "title": "Maßgeschneiderte Lösungen",
+        "text": "Individuelle Planung und Fertigung nach Ihren Wünschen und Anforderungen"
+      }
+    ]
+  },
+  "projectProcess": {
+    "title": "So läuft Ihr Tischlerprojekt bei uns ab",
+    "subtitle": "Von der ersten Beratung bis zur finalen Montage - unser bewährter Prozess garantiert einzigartige und langlebige Holzobjekte.",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Beratung & Planung",
+        "description": "Wir besprechen Ihre Wünsche und Anforderungen. Gemeinsam entwickeln wir ein Konzept, das perfekt zu Ihrem Raum und Stil passt."
+      },
+      {
+        "number": 2,
+        "title": "Design & Angebot",
+        "description": "Basierend auf der Planung erstellen wir ein detailliertes Design und ein transparentes Angebot mit hochwertigen Materialien."
+      },
+      {
+        "number": 3,
+        "title": "Fertigung & Montage",
+        "description": "Unsere Tischlermeister fertigen Ihr Projekt in unserer Werkstatt und montieren es fachgerecht bei Ihnen vor Ort."
+      }
+    ]
+  },
+  "services": [
+    {
+      "title": "Küchenbau",
+      "icon": "🍳",
+      "description": "Maßgeschneiderte Küchen nach Ihren Wünschen - von der Planung bis zur Montage mit hochwertigen Materialien.",
+      "image": "/images/branchen/tischler/services/kuechenbau/service_kuechenbau_modern.png",
+      "projects": [
+        {
+          "title": "Moderne Einbauküche",
+          "image": "/images/portfolio/kueche-modern.jpg",
+          "description": "Maßgeschneiderte Küche mit hochwertigen Fronten und praktischer Arbeitsfläche"
+        },
+        {
+          "title": "Landhaus-Küche",
+          "image": "/images/portfolio/kueche-landhaus.jpg",
+          "description": "Traditionelle Landhausküche mit massiven Holzelementen und rustikalem Charme"
+        }
+      ]
+    },
+    {
+      "title": "Schlafzimmer & Möbel",
+      "icon": "🛏️",
+      "description": "Individuelle Schlafzimmereinrichtungen und maßgeschneiderte Möbel für Ihr Zuhause.",
+      "image": "/images/branchen/tischler/services/schlafzimmer/service_schlafzimmer_system.png",
+      "projects": [
+        {
+          "title": "Schlafzimmer-System",
+          "image": "/images/portfolio/schlafzimmer-system.jpg",
+          "description": "Komplettes Schlafzimmer mit Kleiderschrank, Bett und Nachttischen in einheitlichem Design"
+        },
+        {
+          "title": "Kleiderschrank nach Maß",
+          "image": "/images/portfolio/kleiderschrank-mass.jpg",
+          "description": "Großzügiger Kleiderschrank mit Schiebetüren und optimaler Raumausnutzung"
+        }
+      ]
+    },
+    {
+      "title": "Badezimmer & Sanitär",
+      "icon": "🚿",
+      "description": "Elegante Badezimmereinrichtungen und Sanitärmöbel für Ihr Wohlfühlbad.",
+      "image": "/images/branchen/tischler/services/badezimmer/service_badezimmer_waschtisch.png",
+      "projects": [
+        {
+          "title": "Badezimmer-Komplettanlage",
+          "image": "/images/portfolio/badezimmer-komplett.jpg",
+          "description": "Vollständige Badezimmereinrichtung mit Waschtisch, Schrank und Spiegelschrank"
+        },
+        {
+          "title": "Waschtisch nach Maß",
+          "image": "/images/portfolio/waschtisch-mass.jpg",
+          "description": "Maßgeschneiderter Waschtisch mit integriertem Schrank und LED-Beleuchtung"
+        }
+      ]
+    },
+    {
+      "title": "Türen & Fenster",
+      "icon": "🚪",
+      "description": "Hochwertige Innentüren, Haustüren und Fensterbänke aus massivem Holz.",
+      "image": "/images/branchen/tischler/services/tueren/service_tueren_innentuer.png",
+      "projects": [
+        {
+          "title": "Innentüren-Set",
+          "image": "/images/portfolio/innentueren-set.jpg",
+          "description": "Komplettes Innentüren-Set für das gesamte Haus in einheitlichem Design"
+        },
+        {
+          "title": "Haustür nach Maß",
+          "image": "/images/portfolio/haustuer-mass.jpg",
+          "description": "Individuelle Haustür mit Sicherheitsglas und hochwertiger Beschlagtechnik"
+        }
+      ]
+    },
+    {
+      "title": "Treppenbau",
+      "icon": "🪜",
+      "description": "Maßgeschneiderte Holztreppen für Innen und Außen - von klassisch bis modern.",
+      "image": "/images/branchen/tischler/services/treppenbau/service_treppenbau_holz.png",
+      "projects": [
+        {
+          "title": "Holztreppe Wohnhaus",
+          "image": "/images/portfolio/holztreppe-wohnhaus.jpg",
+          "description": "Elegante Holztreppe mit massiven Stufen und modernem Geländer"
+        },
+        {
+          "title": "Außentreppe Garten",
+          "image": "/images/portfolio/aussentreppe-garten.jpg",
+          "description": "Wetterfeste Außentreppe aus witterungsbeständigem Holz für den Garten"
+        }
+      ]
+    },
+    {
+      "title": "Reparaturen & Restaurierung",
+      "icon": "🔧",
+      "description": "Professionelle Reparaturen und Restaurierung von antiken Möbeln und Holzarbeiten.",
+      "image": "/images/branchen/tischler/services/reparaturen/service_reparatur_moebel.png",
+      "projects": [
+        {
+          "title": "Antikmöbel-Restaurierung",
+          "image": "/images/portfolio/antik-restaurierung.jpg",
+          "description": "Behutsame Restaurierung eines antiken Schranks mit Erhalt der historischen Substanz"
+        },
+        {
+          "title": "Küchen-Reparatur",
+          "image": "/images/portfolio/kueche-reparatur.jpg",
+          "description": "Reparatur beschädigter Küchenfronten und Austausch von Beschlägen"
+        }
+      ]
+    }
+  ],
+  "team": [
+    {
+      "name": "Michael Holzmann",
+      "position": "Geschäftsführer & Tischlermeister",
+      "photo": "/images/team/person1.png",
+      "specialization": "Küchenbau & Projektleitung"
+    },
+    {
+      "name": "Andreas Schreiner",
+      "position": "Tischlermeister",
+      "photo": "/images/team/person2.png",
+      "specialization": "Möbelbau & Schlafzimmer"
+    },
+    {
+      "name": "Stefan Küchenbauer",
+      "position": "Tischlergeselle",
+      "photo": "/images/team/person3.png",
+      "specialization": "Küchenbau & Montage"
+    },
+    {
+      "name": "Marina Möbel",
+      "position": "Büroleiterin",
+      "photo": "/images/team/person4.png",
+      "specialization": "Projektkoordination & Terminplanung"
+    },
+    {
+      "name": "Peter Treppenbauer",
+      "position": "Tischlergeselle",
+      "photo": "/images/team/person5.png",
+      "specialization": "Treppenbau & Außenarbeiten"
+    },
+    {
+      "name": "Laura Badezimmer",
+      "position": "Tischlerin",
+      "photo": "/images/team/person6.png",
+      "specialization": "Badezimmer & Sanitärmöbel"
+    },
+    {
+      "name": "Thomas Restaurator",
+      "position": "Tischlergeselle",
+      "photo": "/images/team/person7.png",
+      "specialization": "Restaurierung & Reparaturen"
+    },
+    {
+      "name": "Jana Azubi",
+      "position": "Auszubildende",
+      "photo": "/images/team/person8.png",
+      "specialization": "Grundlagen Tischlerhandwerk"
+    }
+  ],
+  "portfolio": {
+    "title": "Unsere Tischler-Referenzen",
+    "subtitle": "Überzeugen Sie sich von der Qualität unserer Tischlerarbeiten",
+    "projects": [
+      {
+        "title": "Moderne Einbauküche",
+        "category": "Küchenbau",
+        "image": "/images/portfolio/kueche-modern.jpg",
+        "description": "Maßgeschneiderte Küche mit hochwertigen Fronten und praktischer Arbeitsfläche"
+      },
+      {
+        "title": "Schlafzimmer-System",
+        "category": "Schlafzimmer & Möbel",
+        "image": "/images/portfolio/schlafzimmer-system.jpg",
+        "description": "Komplettes Schlafzimmer mit Kleiderschrank, Bett und Nachttischen in einheitlichem Design"
+      },
+      {
+        "title": "Badezimmer-Komplettanlage",
+        "category": "Badezimmer & Sanitär",
+        "image": "/images/portfolio/badezimmer-komplett.jpg",
+        "description": "Vollständige Badezimmereinrichtung mit Waschtisch, Schrank und Spiegelschrank"
+      },
+      {
+        "title": "Innentüren-Set",
+        "category": "Türen & Fenster",
+        "image": "/images/portfolio/innentueren-set.jpg",
+        "description": "Komplettes Innentüren-Set für das gesamte Haus in einheitlichem Design"
+      },
+      {
+        "title": "Holztreppe Wohnhaus",
+        "category": "Treppenbau",
+        "image": "/images/portfolio/holztreppe-wohnhaus.jpg",
+        "description": "Elegante Holztreppe mit massiven Stufen und modernem Geländer"
+      },
+      {
+        "title": "Antikmöbel-Restaurierung",
+        "category": "Reparaturen & Restaurierung",
+        "image": "/images/portfolio/antik-restaurierung.jpg",
+        "description": "Behutsame Restaurierung eines antiken Schranks mit Erhalt der historischen Substanz"
+      }
+    ]
+  },
+  "beforeAfter": [
+    {
+      "title": "Küchen-Modernisierung",
+      "category": "Küchenbau",
+      "beforeImage": "/images/branchen/tischler/before-after/kueche_vorher.png",
+      "afterImage": "/images/branchen/tischler/before-after/kueche_nachher.png",
+      "description": "Komplette Modernisierung einer veralteten Küche mit neuen Fronten, Arbeitsplatte und optimierter Raumaufteilung für mehr Funktionalität und modernes Design."
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Familie Schmidt",
+      "text": "Mustermann Tischlerei hat unsere Traumküche verwirklicht! Von der ersten Beratung bis zur Montage war alles perfekt. Die Qualität der Arbeit und die Aufmerksamkeit für Details sind beeindruckend. Wir sind begeistert von unserem neuen Küchenraum!"
+    },
+    {
+      "name": "Innenarchitektin Dipl.-Des. Weber",
+      "text": "Als Innenarchitektin arbeite ich regelmäßig mit verschiedenen Tischlereien zusammen. Mustermann Tischlerei überzeugt durch außergewöhnliche Handwerkskunst und die Fähigkeit, auch komplexe Designwünsche perfekt umzusetzen. Die Qualität und Termintreue sind vorbildlich."
+    },
+    {
+      "name": "Kunde Müller",
+      "text": "Die Restaurierung unseres antiken Schranks durch Mustermann Tischlerei war ein voller Erfolg! Das Team hat die historische Substanz behutsam erhalten und gleichzeitig die Funktionalität wiederhergestellt. Ein echter Meisterbetrieb!"
+    }
+  ],
+  "socials": {
+    "facebook": "https://facebook.com/mustermann-tischlerei",
+    "instagram": "https://instagram.com/mustermann_tischlerei",
+    "youtube": null,
+    "tiktok": null,
+    "linkedin": null
+  },
+  "reviews": {
+    "google": "https://www.google.com/maps/place/?q=place_id:EXAMPLE_TISCHLEREI"
+  },
+  "stats": {
+    "projectsCompleted": 850,
+    "happyClients": 720,
+    "yearsExperience": 25,
+    "teamSize": 8,
+    "projectsPerYear": 150,
+    "starRating": 4.9,
+    "customStats": [
+      {
+        "number": 25,
+        "label": "Jahre Erfahrung",
+        "suffix": "",
+        "duration": 2000
+      },
+      {
+        "number": 150,
+        "label": "Projekte pro Jahr",
+        "suffix": "",
+        "duration": 2500
+      },
+      {
+        "number": 4.9,
+        "label": "Sterne Bewertung",
+        "suffix": "",
+        "duration": 1800,
+        "decimal": true
+      }
+    ]
+  },
+  "contact": {
+    "address": "Tischlerstraße 8, 48429 Rheine",
+    "phone": "+49 123 456 789",
+    "email": "info@mustermann-tischlerei.de",
+    "openingHours": "Mo-Fr: 7:00-17:00 Uhr, Sa: 8:00-12:00 Uhr"
+  },
+  "meta": {
+    "language": "de",
+    "generator": "ml | websolutions",
+    "lastUpdated": "2025-06-05"
+  }
+} 

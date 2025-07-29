@@ -16,6 +16,7 @@ export default function Header({ content }: HeaderProps) {
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null)
+  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null)
   const [designStyle, setDesignStyle] = useState<string>('angular')
   const [headerVisible, setHeaderVisible] = useState(true)
   
@@ -152,6 +153,15 @@ export default function Header({ content }: HeaderProps) {
     }
   }, [mobileMenuOpen])
 
+  // Cleanup dropdown timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeout) {
+        clearTimeout(dropdownTimeout)
+      }
+    }
+  }, [dropdownTimeout])
+
   // Smooth scrolling (nur für One-Page Modus)
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     if (siteMode !== 'onepage') return
@@ -170,6 +180,22 @@ export default function Header({ content }: HeaderProps) {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false)
     setMobileDropdownOpen(null) // Reset mobile dropdowns when closing menu
+  }
+
+  // Dropdown handling functions
+  const handleDropdownEnter = (itemId: string) => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout)
+      setDropdownTimeout(null)
+    }
+    setDropdownOpen(itemId)
+  }
+
+  const handleDropdownLeave = (itemId: string) => {
+    const timeout = setTimeout(() => {
+      setDropdownOpen(null)
+    }, 150) // 150ms Verzögerung
+    setDropdownTimeout(timeout)
   }
 
   const toggleMobileDropdown = (itemId: string) => {
@@ -344,6 +370,70 @@ export default function Header({ content }: HeaderProps) {
 
   const headerStyles = getHeaderStyles()
 
+  // Dropdown styling basierend auf Design-Stil
+  const getDropdownStyles = () => {
+    if (designStyle === 'angular') {
+      return {
+        container: 'absolute top-full left-0 mt-2 w-48 shadow-xl border z-50',
+        containerStyle: {
+          backgroundColor: 'var(--color-primary)',
+          borderColor: 'var(--color-primary)',
+          borderRadius: '0px'
+        },
+        item: 'block px-4 py-3 text-white hover:bg-white hover:text-gray-900 font-medium transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md',
+        itemHoverStyle: {
+          backgroundColor: 'white',
+          color: 'var(--color-primary)'
+        }
+      }
+    } else if (designStyle === 'rounded') {
+      return {
+        container: 'absolute top-full left-0 mt-2 w-48 shadow-xl border z-50',
+        containerStyle: {
+          backgroundColor: 'white',
+          borderColor: 'var(--color-primary)',
+          borderRadius: 'var(--radius-card)'
+        },
+        item: 'block px-4 py-3 text-gray-700 hover:text-white hover:font-bold hover:bg-gradient-to-r transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md',
+        itemHoverStyle: {
+          background: 'linear-gradient(45deg, var(--color-primary), var(--color-secondary))',
+          color: 'white'
+        }
+      }
+    } else if (designStyle === 'modern') {
+      return {
+        container: 'absolute top-full left-0 mt-2 w-48 shadow-2xl border z-50',
+        containerStyle: {
+          backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          borderColor: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: 'var(--radius-card)',
+          backdropFilter: 'blur(20px)'
+        },
+        item: 'block px-4 py-3 text-white hover:text-white hover:font-bold hover:bg-gradient-to-r transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md',
+        itemHoverStyle: {
+          background: 'linear-gradient(45deg, var(--color-primary), var(--color-secondary))',
+          color: 'white'
+        }
+      }
+    } else {
+      return {
+        container: 'absolute top-full left-0 mt-2 w-48 shadow-xl border border-gray-200 dark:border-gray-700 z-50',
+        containerStyle: {
+          backgroundColor: 'white',
+          borderColor: 'var(--color-primary)',
+          borderRadius: 'var(--radius-card)'
+        },
+        item: 'block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-white hover:font-bold hover:bg-gradient-to-r transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md',
+        itemHoverStyle: {
+          background: 'linear-gradient(45deg, var(--color-primary), var(--color-secondary))',
+          color: 'white'
+        }
+      }
+    }
+  }
+
+  const dropdownStyles = getDropdownStyles()
+
   // Helper function to generate initials from company name
   const getCompanyInitials = (companyName: string): string => {
     return companyName
@@ -394,8 +484,8 @@ export default function Header({ content }: HeaderProps) {
                 {item.hasDropdown ? (
                       <div
                         className="relative"
-                        onMouseEnter={() => setDropdownOpen(item.id)}
-                        onMouseLeave={() => setDropdownOpen(null)}
+                        onMouseEnter={() => handleDropdownEnter(item.id)}
+                        onMouseLeave={() => handleDropdownLeave(item.id)}
                       >
                     <button 
                       className={`${headerStyles.textColor} relative font-medium transition-all duration-300 flex items-center uppercase group hover:scale-105`}
@@ -411,18 +501,30 @@ export default function Header({ content }: HeaderProps) {
                         
                     {dropdownOpen === item.id && (
                       <div 
-                        className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 z-50"
-                        style={{ borderRadius: 'var(--radius-card)' }}
+                        className={`${dropdownStyles.container}`}
+                        style={dropdownStyles.containerStyle}
+                        onMouseEnter={() => handleDropdownEnter(item.id)}
+                        onMouseLeave={() => handleDropdownLeave(item.id)}
                       >
                         {item.dropdownItems?.map((dropdownItem, index) => (
                               <Link
                                 key={index}
                                 href={dropdownItem.href}
-                            className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-white hover:font-bold hover:bg-gradient-to-r transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md"
+                            className={`${dropdownStyles.item}`}
                             style={{
                               '--tw-gradient-from': 'var(--color-primary)',
                               '--tw-gradient-to': 'var(--color-secondary)',
                             } as React.CSSProperties}
+                            onMouseEnter={(e) => {
+                              if (dropdownStyles.itemHoverStyle) {
+                                Object.assign(e.currentTarget.style, dropdownStyles.itemHoverStyle);
+                              }
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.removeProperty('background');
+                              e.currentTarget.style.removeProperty('color');
+                              e.currentTarget.style.removeProperty('background-color');
+                            }}
                               >
                             {dropdownItem.label}
                               </Link>
