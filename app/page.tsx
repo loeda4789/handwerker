@@ -107,7 +107,7 @@ export default function HomePage() {
     activeTab: 'layout'
   })
   const [features, setFeatures] = useState<FeaturesState>({
-    promoBanner: false,
+    promoBanner: true,
     contactBar: false,
     notdienstAlert: false,
     whatsappWidget: false,
@@ -394,6 +394,15 @@ export default function HomePage() {
         isEnabled={features.contactBar} 
         phone={content.contact.phone}
         email={content.contact.email}
+      />
+      
+      {/* Promo Banner - Bottom Slide-in */}
+      <PromoBanner 
+        isEnabled={features.promoBanner}
+        message="🔥 20% RABATT AUF ALLES im gesamten Juni! Jetzt Termin vereinbaren!"
+        ctaText="Jetzt buchen"
+        showCloseButton={true}
+        autoHide={false}
       />
       
               {/* Background Webseite */}
