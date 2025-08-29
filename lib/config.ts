@@ -2,6 +2,7 @@ import { ContentData, ThemeConfig } from '@/types/content';
 import contentData from '@/data/content.json';
 import dachdeckerContent from '@/data/dachdecker_content.json';
 import elektrikerContent from '@/data/elektriker_content.json';
+import tischlerContent from '@/data/tischler_content.json';
 import themeData from '@/data/theme.json';
 import { getEffectiveUrlParams, mergeUrlDataWithContent, hasUrlParams } from '@/lib/url-params';
 
@@ -9,19 +10,23 @@ import { getEffectiveUrlParams, mergeUrlDataWithContent, hasUrlParams } from '@/
 const contentMap: Record<string, ContentData> = {
   'dachdecker': dachdeckerContent as ContentData,
   'elektriker': elektrikerContent as ContentData,
+  'tischler': tischlerContent as ContentData,
   // Weitere Branchen können hier hinzugefügt werden:
   // 'maler': malerContent as ContentData,
+  // 'sanitaer': sanitaerContent as ContentData,
+  // 'heizung': heizungContent as ContentData,
+  // 'fliesenleger': fliesenlegerContent as ContentData,
 };
 
 // Funktion zum Laden von Content-Dateien basierend auf Branche
 function loadContentByBranche(branche: string): ContentData | null {
   const content = contentMap[branche.toLowerCase()];
   if (content) {
-    console.log(`Content für Branche "${branche}" geladen`);
+    console.log(`🎯 Content für Branche "${branche}" geladen`);
     return content;
   }
   
-  console.warn(`Content-Datei für Branche "${branche}" nicht gefunden. Fallback zu Standard-Content.`);
+  console.warn(`⚠️ Content-Datei für Branche "${branche}" nicht gefunden. Fallback zu Standard-Content.`);
   return null;
 }
 
@@ -98,4 +103,14 @@ export function useContent() {
 
 export function useTheme() {
   return getThemeConfig();
+} 
+
+// Funktion zum Abrufen aller verfügbaren Branchen
+export function getAvailableBranches(): string[] {
+  return Object.keys(contentMap);
+}
+
+// Funktion zum Abrufen der Standard-Branche
+export function getDefaultBranche(): string {
+  return 'dachdecker'; // Standard-Branche
 } 

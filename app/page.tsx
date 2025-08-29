@@ -1,106 +1,4 @@
 'use client'
-
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { getContentDataByBranche } from '@/lib/config'
-import { ContentData } from '@/types/content'
-import ModernSpinner from '@/components/ModernSpinner'
-import Header from '@/components/Header'
-import Hero from '@/components/Hero'
-import About from '@/components/About'
-import Stats from '@/components/Stats'
-import Services from '@/components/Services'
-import BeforeAfter from '@/components/BeforeAfter'
-import Testimonials from '@/components/Testimonials'
-import ProjectProcess from '@/components/ProjectProcess'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
-import MobileContact from '@/components/MobileContact'
-import EmergencyContact from '@/components/EmergencyContact'
-import SideContact from '@/components/SideContact'
-import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
-import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
-import ConfiguratorButton from '@/components/ConfiguratorButton'
-import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
-import UrlParamsDebug from '@/components/UrlParamsDebug'
-import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
-
-import PromoBanner from '@/components/PromoBanner'
-import BewerberPopup from '@/components/BewerberPopup'
-import ContactBar from '@/components/ContactBar'
-import NotdienstAlert from '@/components/NotdienstAlert'
-import WhatsAppWidget from '@/components/WhatsAppWidget'
-import CallbackPopup from '@/components/CallbackPopup'
-import CallbackRequest from '@/components/CallbackRequest'
-import DesignPreviewButton from '@/components/DesignPreviewButton'
-
-interface ConfigState {
-  layoutType: 'onepage' | 'multipage' | ''
-  designStyle: 'angular' | 'rounded' | 'modern' | ''
-  colorScheme: 'warm' | 'modern' | 'elegant' | ''
-  designExpanded: boolean
-  colorExpanded: boolean
-  featuresExpanded: boolean
-  // Adaptive Modi-System
-  isFirstVisit: boolean
-  quickEditMode: boolean
-  activeTab: 'layout' | 'design' | 'color' | 'features'
-}
-
-interface FeaturesState {
-  promoBanner: boolean
-  contactBar: boolean
-  notdienstAlert: boolean
-  whatsappWidget: boolean
-  callbackPopup: boolean
-  callbackRequest: boolean
-  speedDial: boolean
-  bewerberPopup: boolean
-}
-
-// Helper component für abwechselnde Sektionshintergründe in klassischer Variante
-interface SectionWrapperProps {
-  children: React.ReactNode
-  index: number
-  designStyle: string
-  className?: string
-}
-
-const SectionWrapper = ({ children, index, designStyle, className = '' }: SectionWrapperProps) => {
-  if (designStyle !== 'angular') {
-    // Für moderne Varianten: Standard-Styling der Komponenten beibehalten
-    return <>{children}</>
-  }
-
-  // Für klassische Variante: Abwechselnde Hintergründe zwischen background und surface
-  // Index 1, 3, 5, 7... sollen surface haben (ungerade Indizes)
-  // Index 0, 2, 4, 6... sollen background bleiben (gerade Indizes)
-  const shouldUseSurface = index % 2 === 1 // Ungerade Indizes (1, 3, 5, 7...)
-  
-  if (shouldUseSurface) {
-    // Ungerade Sektionen: Surface-Hintergrund (helles Grau)
-    return (
-      <div 
-        className={`bg-surface dark:bg-dark-secondary ${className}`}
-      >
-        {children}
-      </div>
-    )
-  } else {
-    // Gerade Sektionen: Background (weiß)
-    return (
-      <div className={`bg-background dark:bg-dark ${className}`}>
-        {children}
-      </div>
-    )
-  }
-}
-
-export default function HomePage() {
-  const [config, setConfig] = useState<ConfigState>({
-    layoutType: '',
-    designStyle: '',
-    colorScheme: '',
     designExpanded: false,
     colorExpanded: false,
     featuresExpanded: false,
@@ -124,7 +22,7 @@ export default function HomePage() {
   const [baseContent, setBaseContent] = useState<ContentData | null>(null)
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [forceUpdate, setForceUpdate] = useState(0)
-  const [designStyle, setDesignStyle] = useState<string>('angular')
+  const [designStyle, setDesignStyle] = useState<string>('rounded')
   const [isDesktop, setIsDesktop] = useState(false)
   const router = useRouter()
 
@@ -203,6 +101,9 @@ export default function HomePage() {
     loadContent()
 
     // Design-Style aus localStorage laden
+    // const savedDesignStyle = localStorage.getItem('design-style')
+    // if (savedDesignStyle) {
+    //   setDesignStyle(savedDesignStyle)
     const savedDesignStyle = localStorage.getItem('design-style')
     if (savedDesignStyle) {
       setDesignStyle(savedDesignStyle)
@@ -1012,4 +913,5 @@ export default function HomePage() {
       <DesignPreviewButton />
     </div>
   )
+} 
 } 
