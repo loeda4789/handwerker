@@ -909,8 +909,7 @@
 
 
 
-      {/* Design Preview Button (Tab-Navigation) */}
-      <DesignPreviewButton />
+      {/* Design Preview Button (Tab-Navigation) - AUSGEBLENDET */}
     </div>
   )
 } 
