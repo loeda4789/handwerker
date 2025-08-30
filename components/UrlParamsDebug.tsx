@@ -36,16 +36,8 @@ export default function UrlParamsDebug() {
     window.location.reload();
   };
 
-  if (!showDebug) {
-    return (
-      <button
-        onClick={() => setShowDebug(true)}
-        className="fixed bottom-4 left-4 bg-gray-800 text-white px-3 py-1 text-xs rounded z-50 opacity-50 hover:opacity-100"
-      >
-        Debug URL-Params
-      </button>
-    );
-  }
+  // URL-Parameter Debug ist ausgeblendet
+  return null;
 
   return (
     <div className="fixed bottom-4 left-4 bg-white border shadow-lg p-4 text-xs max-w-md z-50 rounded">
