@@ -109,14 +109,14 @@ export default function HomePage() {
     activeTab: 'layout'
   })
   const [features, setFeatures] = useState<FeaturesState>({
-    promoBanner: true,
+    promoBanner: false,
     contactBar: false,
     notdienstAlert: false,
     whatsappWidget: false,
     callbackPopup: false,
     callbackRequest: false,
-    speedDial: true,
-    bewerberPopup: true
+    speedDial: false,
+    bewerberPopup: false
   })
   const [isGenerating, setIsGenerating] = useState(false)
   const [showConfigurator, setShowConfigurator] = useState(false) // Temporarily disabled - can be re-enabled later
