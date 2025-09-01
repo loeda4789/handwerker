@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { ContentData } from '@/types/content'
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
 
 interface FAQProps {
   content: ContentData
@@ -22,12 +21,24 @@ export default function FAQ({ content }: FAQProps) {
     return null
   }
 
+  const ChevronDownIcon = () => (
+    <svg className="h-5 w-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  )
+
+  const ChevronUpIcon = () => (
+    <svg className="h-5 w-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+    </svg>
+  )
+
   return (
     <section className="py-16 bg-background dark:bg-dark">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
-            Häufig gestellte Fragen
+            HÃ¤ufig gestellte Fragen
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
             Hier finden Sie Antworten auf die wichtigsten Fragen zu unseren Dienstleistungen
@@ -47,11 +58,7 @@ export default function FAQ({ content }: FAQProps) {
                 <span className="text-lg font-semibold text-text dark:text-light pr-4">
                   {faq.question}
                 </span>
-                {openFAQ === index ? (
-                  <ChevronUpIcon className="h-5 w-5 text-primary flex-shrink-0" />
-                ) : (
-                  <ChevronDownIcon className="h-5 w-5 text-primary flex-shrink-0" />
-                )}
+                {openFAQ === index ? <ChevronUpIcon /> : <ChevronDownIcon />}
               </button>
               
               {openFAQ === index && (
