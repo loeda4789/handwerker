@@ -420,7 +420,7 @@ export default function HomePage() {
         showDelay={3000}
       />
       
-      {/* Background Webseite */}
+              {/* Background Webseite */}
       <div className={`transition-all duration-500 ${showConfigurator ? 'opacity-60 blur-[2px]' : 'opacity-100 blur-0'}`}>
         <Header content={content} />
         <Hero content={content} />
@@ -507,7 +507,7 @@ export default function HomePage() {
         <PromoBanner isEnabled={features.promoBanner} />
         
         {/* Mobile Kontaktaufnahme - nur wenn aktiviert */}
-        {features.speedDial && (
+        {true && (
         <MobileContact 
           phoneNumber={content.contact.phone}
           onEmailClick={scrollToContact}
@@ -523,7 +523,7 @@ export default function HomePage() {
       </div>
 
       {/* Desktop Side Contact - Global außerhalb des Containers */}
-      {features.speedDial && (
+      {true && (
         <SideContact 
           phoneNumber={content.contact.phone}
           email={content.contact.email}
