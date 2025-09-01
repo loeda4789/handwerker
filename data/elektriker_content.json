@@ -6,7 +6,7 @@
   },
   "hero": {
     "title": "Kompetenz, die elektrisiert.",
-    "subtitle": "Professionelle Elektrotechnik mit Meisterqualität",
+    "subtitle": "Professionelle Elektrotechnik mit Meisterqualitï¿½t",
     "backgroundImages": {
       "desktop": "/images/branchen/elektriker/hero/desktop/hero.jpg",
       "mobile": "/images/branchen/elektriker/hero/mobile/hero.jpg",
@@ -189,22 +189,7 @@
     "projects": [
       {
         "title": "Elektroinstallationen",
-            },
-    {
-      "question": "Bieten Sie auch 24/7 Notdienst an?",
-      "answer": "Ja, unser Elektro-Notdienst ist rund um die Uhr für Sie da. Bei Stromausfällen oder anderen Elektro-Notfällen erreichen Sie uns unter unserer Notfall-Hotline."
-    },
-    {
-      "question": "Was kostet eine Photovoltaikanlage?",
-      "answer": "Die Kosten für eine Photovoltaikanlage hängen von der Größe und Ausstattung ab. Eine 10 kWp Anlage kostet etwa 15.000-20.000€. Wir erstellen Ihnen gerne ein individuelles Angebot."
-    },
-    {
-      "question": "Installieren Sie auch Smart Home Systeme?",
-      "answer": "Ja, wir sind spezialisiert auf KNX-Systeme und andere Smart Home Lösungen. Von der Beleuchtung bis zur kompletten Gebäudeautomation - wir machen Ihr Zuhause intelligent."
-    },
-    {
-      "question": "Welche Garantie geben Sie auf Ihre Arbeiten?",
-      "answer": "Wir geben 2 Jahre Garantie auf alle unsere Elektroarbeiten. Bei Photovoltaikanlagen bieten wir bis zu 25 Jahre Leistungsgarantie auf die Module.",
+        "category": "Photovoltaik & Solar",
         "image": "/images/branchen/elektriker/portfolio/elektroinstallationen.jpg",
         "description": "Komplette Elektroinstallation mit moderner Hausverteilung und zukunftssicherer Verkabelung"
       },
@@ -216,22 +201,7 @@
       },
       {
         "title": "Photovoltaikanlage",
-            },
-    {
-      "question": "Bieten Sie auch 24/7 Notdienst an?",
-      "answer": "Ja, unser Elektro-Notdienst ist rund um die Uhr für Sie da. Bei Stromausfällen oder anderen Elektro-Notfällen erreichen Sie uns unter unserer Notfall-Hotline."
-    },
-    {
-      "question": "Was kostet eine Photovoltaikanlage?",
-      "answer": "Die Kosten für eine Photovoltaikanlage hängen von der Größe und Ausstattung ab. Eine 10 kWp Anlage kostet etwa 15.000-20.000€. Wir erstellen Ihnen gerne ein individuelles Angebot."
-    },
-    {
-      "question": "Installieren Sie auch Smart Home Systeme?",
-      "answer": "Ja, wir sind spezialisiert auf KNX-Systeme und andere Smart Home Lösungen. Von der Beleuchtung bis zur kompletten Gebäudeautomation - wir machen Ihr Zuhause intelligent."
-    },
-    {
-      "question": "Welche Garantie geben Sie auf Ihre Arbeiten?",
-      "answer": "Wir geben 2 Jahre Garantie auf alle unsere Elektroarbeiten. Bei Photovoltaikanlagen bieten wir bis zu 25 Jahre Leistungsgarantie auf die Module.",
+        "category": "Photovoltaik & Solar",
         "image": "/images/branchen/elektriker/portfolio/PV.jpg",
         "description": "Behutsame Elektro-Modernisierung mit Erhalt der Bausubstanz und modernen Standards"
       },
@@ -243,22 +213,7 @@
       },
       {
         "title": "PV-Anlage mit Speicher",
-            },
-    {
-      "question": "Bieten Sie auch 24/7 Notdienst an?",
-      "answer": "Ja, unser Elektro-Notdienst ist rund um die Uhr für Sie da. Bei Stromausfällen oder anderen Elektro-Notfällen erreichen Sie uns unter unserer Notfall-Hotline."
-    },
-    {
-      "question": "Was kostet eine Photovoltaikanlage?",
-      "answer": "Die Kosten für eine Photovoltaikanlage hängen von der Größe und Ausstattung ab. Eine 10 kWp Anlage kostet etwa 15.000-20.000€. Wir erstellen Ihnen gerne ein individuelles Angebot."
-    },
-    {
-      "question": "Installieren Sie auch Smart Home Systeme?",
-      "answer": "Ja, wir sind spezialisiert auf KNX-Systeme und andere Smart Home Lösungen. Von der Beleuchtung bis zur kompletten Gebäudeautomation - wir machen Ihr Zuhause intelligent."
-    },
-    {
-      "question": "Welche Garantie geben Sie auf Ihre Arbeiten?",
-      "answer": "Wir geben 2 Jahre Garantie auf alle unsere Elektroarbeiten. Bei Photovoltaikanlagen bieten wir bis zu 25 Jahre Leistungsgarantie auf die Module.",
+        "category": "Photovoltaik & Solar",
         "image": "/images/branchen/elektriker/portfolio/PV.jpg",
         "description": "10 kWp Photovoltaikanlage mit 15 kWh Batteriespeicher fÃ¼r maximale Eigenverbrauchsoptimierung"
       },
@@ -273,23 +228,23 @@
   "faq": [
     {
       "question": "Wie lange dauert eine komplette Elektroinstallation?",
-          },
+      "answer": "Eine komplette Elektroinstallation fÃ¼r ein Einfamilienhaus dauert je nach GrÃ¶ÃŸe und KomplexitÃ¤t zwischen 3-7 Werktage. Wir erstellen Ihnen gerne einen detaillierten Zeitplan."
+    },
     {
       "question": "Bieten Sie auch 24/7 Notdienst an?",
-      "answer": "Ja, unser Elektro-Notdienst ist rund um die Uhr für Sie da. Bei Stromausfällen oder anderen Elektro-Notfällen erreichen Sie uns unter unserer Notfall-Hotline."
+      "answer": "Ja, unser Elektro-Notdienst ist rund um die Uhr fÃ¼r Sie da. Bei StromausfÃ¤llen oder anderen Elektro-NotfÃ¤llen erreichen Sie uns unter unserer Notfall-Hotline."
     },
     {
       "question": "Was kostet eine Photovoltaikanlage?",
-      "answer": "Die Kosten für eine Photovoltaikanlage hängen von der Größe und Ausstattung ab. Eine 10 kWp Anlage kostet etwa 15.000-20.000€. Wir erstellen Ihnen gerne ein individuelles Angebot."
+      "answer": "Die Kosten fÃ¼r eine Photovoltaikanlage hÃ¤ngen von der GrÃ¶ÃŸe und Ausstattung ab. Eine 10 kWp Anlage kostet etwa 15.000-20.000â‚¬. Wir erstellen Ihnen gerne ein individuelles Angebot."
     },
     {
       "question": "Installieren Sie auch Smart Home Systeme?",
-      "answer": "Ja, wir sind spezialisiert auf KNX-Systeme und andere Smart Home Lösungen. Von der Beleuchtung bis zur kompletten Gebäudeautomation - wir machen Ihr Zuhause intelligent."
+      "answer": "Ja, wir sind spezialisiert auf KNX-Systeme und andere Smart Home LÃ¶sungen. Von der Beleuchtung bis zur kompletten GebÃ¤udeautomation - wir machen Ihr Zuhause intelligent."
     },
     {
       "question": "Welche Garantie geben Sie auf Ihre Arbeiten?",
-      "answer": "Wir geben 2 Jahre Garantie auf alle unsere Elektroarbeiten. Bei Photovoltaikanlagen bieten wir bis zu 25 Jahre Leistungsgarantie auf die Module.",
-      "description": "Transformation eines veralteten Schaltschranks mit neuer Verteilung, FI-Schutzschaltern und Ã¼bersichtlicher Beschriftung."
+      "answer": "Wir geben 2 Jahre Garantie auf alle unsere Elektroarbeiten. Bei Photovoltaikanlagen bieten wir bis zu 25 Jahre Leistungsgarantie auf die Module."
     }
   ],
   "testimonials": [
