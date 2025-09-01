@@ -6,10 +6,10 @@
   },
   "hero": {
     "backgroundImages": {
-      "desktop": "/images/branchen/elektriker/hero/desktop/hero_background_desktop.jpg",
-      "mobile": "/images/branchen/elektriker/hero/mobile/hero_background_mobile.jpg",
-      "desktopAlt": "/images/branchen/elektriker/hero/desktop/hero_background_desktop_alt.jpg",
-      "mobileAlt": "/images/branchen/elektriker/hero/mobile/hero_background_mobile_alt.jpg"
+      "desktop": "/images/branchen/elektriker/hero/desktop/hero.jpg",
+      "mobile": "/images/branchen/elektriker/hero/mobile/hero.jpg",
+      "desktopAlt": "/images/branchen/elektriker/hero/desktop/hero.jpg",
+      "mobileAlt": "/images/branchen/elektriker/hero/mobile/hero.jpg"
     }
   },
   "about": {
@@ -64,16 +64,16 @@
       "title": "Elektroinstallation",
       "icon": "⚡",
       "description": "Komplette Elektroinstallationen für Neubau und Sanierung - von der Planung bis zur Abnahme nach aktuellen Normen.",
-      "image": "/images/services/elektroinstallation.png",
+      "image": "/images/branchen/elektriker/services/installation/elektroinstallationen.jpg",
       "projects": [
         {
-          "title": "Neubau Einfamilienhaus",
-          "image": "/images/portfolio/neubau-elektro.jpg",
+          "title": "Elektroinstallationen",
+          "image": "/images/branchen/elektriker/portfolio/elektroinstallationen.jpg",
           "description": "Komplette Elektroinstallation mit moderner Hausverteilung und zukunftssicherer Verkabelung"
         },
         {
-          "title": "Altbau-Sanierung",
-          "image": "/images/portfolio/altbau-elektro.jpg",
+          "title": "Photovoltaikanlage",
+          "image": "/images/branchen/elektriker/portfolio/PV.jpg",
           "description": "Behutsame Elektro-Modernisierung mit Erhalt der Bausubstanz und modernen Standards"
         }
       ]
@@ -82,11 +82,11 @@
       "title": "Smart Home",
       "icon": "🏠",
       "description": "Intelligente Haussteuerung für Komfort und Effizienz - von der Beleuchtung bis zur kompletten Gebäudeautomation.",
-      "image": "/images/services/smart-home.png",
+      "image": "/images/branchen/elektriker/services/smarthome/smarthome.jpg",
       "projects": [
         {
-          "title": "KNX Smart Home System",
-          "image": "/images/portfolio/knx-system.jpg",
+          "title": "Smart Home System",
+          "image": "/images/branchen/elektriker/portfolio/smarthome.jpg",
           "description": "Vollständige KNX-Installation mit Beleuchtung, Beschattung und Heizungssteuerung"
         }
       ]
@@ -95,11 +95,11 @@
       "title": "Photovoltaik & Solar",
       "icon": "☀️",
       "description": "Planung und Installation von Photovoltaikanlagen und Batteriespeichern für nachhaltige Energieversorgung.",
-      "image": "/images/services/photovoltaik.png",
+      "image": "/images/branchen/elektriker/services/photovoltaik/PV.jpg",
       "projects": [
         {
           "title": "PV-Anlage mit Speicher",
-          "image": "/images/portfolio/pv-anlage.jpg",
+          "image": "/images/branchen/elektriker/portfolio/PV.jpg",
           "description": "10 kWp Photovoltaikanlage mit 15 kWh Batteriespeicher für maximale Eigenverbrauchsoptimierung"
         }
       ]
@@ -108,11 +108,11 @@
       "title": "Beleuchtung & LED",
       "icon": "💡",
       "description": "Moderne LED-Beleuchtungskonzepte für Innen und Außen - energieeffizient und stimmungsvoll.",
-      "image": "/images/services/led-beleuchtung.png",
+      "image": "/images/branchen/elektriker/services/beleuchtung/led.jpg",
       "projects": [
         {
           "title": "LED-Beleuchtungskonzept",
-          "image": "/images/portfolio/led-konzept.jpg",
+          "image": "/images/branchen/elektriker/portfolio/beleuchtung.jpg",
           "description": "Durchgängiges LED-Beleuchtungskonzept mit Dimmfunktion und Farbsteuerung"
         }
       ]
@@ -121,11 +121,11 @@
       "title": "Elektro-Notdienst",
       "icon": "🚨",
       "description": "Schnelle Hilfe bei Stromausfall, defekten Sicherungen und allen Elektro-Notfällen - 24/7 verfügbar.",
-      "image": "/images/services/elektro-notdienst.png",
+      "image": "/images/branchen/elektriker/services/notdienst/notdienst.jpg",
       "projects": [
         {
           "title": "Störungsbehebung Gewerbe",
-          "image": "/images/portfolio/stoerung.jpg",
+          "image": "/images/branchen/elektriker/portfolio/notdienst.jpg",
           "description": "Schnelle Reparatur eines Hauptverteilers nach Überspannung mit minimaler Ausfallzeit"
         }
       ]
@@ -186,39 +186,39 @@
     "subtitle": "Überzeugen Sie sich von der Qualität unserer Elektroarbeiten",
     "projects": [
       {
-        "title": "Neubau Einfamilienhaus",
-        "category": "Elektroinstallation",
-        "image": "/images/portfolio/neubau-elektro.jpg",
+        "title": "Elektroinstallationen",
+        "category": "Photovoltaik & Solar",
+        "image": "/images/branchen/elektriker/portfolio/elektroinstallationen.jpg",
         "description": "Komplette Elektroinstallation mit moderner Hausverteilung und zukunftssicherer Verkabelung"
       },
       {
-        "title": "KNX Smart Home System",
+        "title": "Smart Home System",
         "category": "Smart Home",
-        "image": "/images/portfolio/knx-system.jpg",
+        "image": "/images/branchen/elektriker/portfolio/smarthome.jpg",
         "description": "Vollständige KNX-Installation mit Beleuchtung, Beschattung und Heizungssteuerung"
       },
       {
-        "title": "Altbau-Sanierung",
-        "category": "Elektroinstallation",
-        "image": "/images/portfolio/altbau-elektro.jpg",
+        "title": "Photovoltaikanlage",
+        "category": "Photovoltaik & Solar",
+        "image": "/images/branchen/elektriker/portfolio/PV.jpg",
         "description": "Behutsame Elektro-Modernisierung mit Erhalt der Bausubstanz und modernen Standards"
       },
       {
         "title": "LED-Beleuchtungskonzept",
         "category": "Beleuchtung & LED",
-        "image": "/images/portfolio/led-konzept.jpg",
+        "image": "/images/branchen/elektriker/portfolio/beleuchtung.jpg",
         "description": "Durchgängiges LED-Beleuchtungskonzept mit Dimmfunktion und Farbsteuerung"
       },
       {
         "title": "PV-Anlage mit Speicher",
         "category": "Photovoltaik & Solar",
-        "image": "/images/portfolio/pv-anlage.jpg",
+        "image": "/images/branchen/elektriker/portfolio/PV.jpg",
         "description": "10 kWp Photovoltaikanlage mit 15 kWh Batteriespeicher für maximale Eigenverbrauchsoptimierung"
       },
       {
         "title": "Störungsbehebung Gewerbe",
         "category": "Elektro-Notdienst",
-        "image": "/images/portfolio/stoerung.jpg",
+        "image": "/images/branchen/elektriker/portfolio/notdienst.jpg",
         "description": "Schnelle Reparatur eines Hauptverteilers nach Überspannung mit minimaler Ausfallzeit"
       }
     ]
@@ -226,7 +226,7 @@
   "beforeAfter": [
     {
       "title": "Schaltschrank-Modernisierung",
-      "category": "Elektroinstallation",
+      "category": "Photovoltaik & Solar",
       "beforeImage": "/images/before-after/schaltschrank_vorher.png",
       "afterImage": "/images/before-after/schaltschrank_nachher.png",
       "description": "Transformation eines veralteten Schaltschranks mit neuer Verteilung, FI-Schutzschaltern und übersichtlicher Beschriftung."
