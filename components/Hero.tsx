@@ -229,8 +229,8 @@ function HeroSlider({ content }: HeroProps) {
     {
       desktop: content.hero.backgroundImages.desktop,
       mobile: content.hero.backgroundImages.mobile,
-      title: formatHeroTitle(content.company.tagline),
-      subtitle: formatHeroText(content.company.tagline, cityName),
+      title: content.hero.title || formatHeroTitle(content.company.tagline),
+      subtitle: content.hero.subtitle || formatHeroText(content.company.tagline, cityName),
       cta: "Jetzt Termin vereinbaren"
     },
     {

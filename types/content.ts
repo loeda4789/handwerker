@@ -12,6 +12,8 @@ export interface HeroBackgroundImages {
 }
 
 export interface Hero {
+  title?: string;
+  subtitle?: string;
   type?: 'single' | 'slider' | '3d' | 'split';
   backgroundImages: HeroBackgroundImages;
 }
