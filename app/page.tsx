@@ -10,6 +10,7 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Stats from '@/components/Stats'
 import Services from '@/components/Services'
+import BeforeAfter from '@/components/BeforeAfter'
 import FAQ from '@/components/FAQ'
 import Testimonials from '@/components/Testimonials'
 import ProjectProcess from '@/components/ProjectProcess'
@@ -441,7 +442,11 @@ export default function HomePage() {
             </SectionWrapper>
             
             <SectionWrapper index={3} designStyle={designStyle}>
-            <FAQ content={content} />
+              {content.faq && content.faq.length > 0 ? (
+                <FAQ content={content} />
+              ) : (
+                <BeforeAfter content={content} />
+              )}
             </SectionWrapper>
             
             <SectionWrapper index={4} designStyle={designStyle}>
