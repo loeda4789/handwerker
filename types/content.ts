@@ -148,6 +148,7 @@ export interface ContentData {
   team: TeamMember[];
   portfolio: Portfolio;
   beforeAfter: BeforeAfterItem[];
+  faq: FAQ[];
   testimonials: Testimonial[];
   socials: Socials;
   reviews: Reviews;
@@ -168,6 +169,11 @@ export interface ColorScheme {
   dark: string;
   darkSecondary: string;
   light: string;
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
 }
 
 export interface ThemeConfig {
