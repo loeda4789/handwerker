@@ -1,0 +1,70 @@
+'use client'
+
+import { useState } from 'react'
+import { ContentData } from '@/types/content'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
+
+interface FAQProps {
+  content: ContentData
+}
+
+export default function FAQ({ content }: FAQProps) {
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index)
+  }
+
+  // Verwende FAQ-Daten aus dem Content, falls vorhanden
+  const faqData = content.faq && content.faq.length > 0 ? content.faq : []
+
+  if (faqData.length === 0) {
+    return null
+  }
+
+  return (
+    <section className="py-16 bg-background dark:bg-dark">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
+            Häufig gestellte Fragen
+          </h2>
+          <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
+            Hier finden Sie Antworten auf die wichtigsten Fragen zu unseren Dienstleistungen
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {faqData.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-surface dark:bg-dark-secondary rounded-lg border border-border dark:border-dark-border"
+            >
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-surface/50 dark:hover:bg-dark-secondary/50 transition-colors duration-200"
+              >
+                <span className="text-lg font-semibold text-text dark:text-light pr-4">
+                  {faq.question}
+                </span>
+                {openFAQ === index ? (
+                  <ChevronUpIcon className="h-5 w-5 text-primary flex-shrink-0" />
+                ) : (
+                  <ChevronDownIcon className="h-5 w-5 text-primary flex-shrink-0" />
+                )}
+              </button>
+              
+              {openFAQ === index && (
+                <div className="px-6 pb-4">
+                  <div className="text-text-secondary dark:text-light/80 leading-relaxed">
+                    {faq.answer}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
