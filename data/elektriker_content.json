@@ -5,6 +5,8 @@
     "logo": "/images/logo.png"
   },
   "hero": {
+    "title": "Kompetenz, die elektrisiert.",
+    "subtitle": "Professionelle Elektrotechnik mit Meisterqualität",
     "backgroundImages": {
       "desktop": "/images/branchen/elektriker/hero/desktop/hero.jpg",
       "mobile": "/images/branchen/elektriker/hero/mobile/hero.jpg",
