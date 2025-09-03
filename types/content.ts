@@ -60,6 +60,9 @@ export interface Service {
   description: string;
   image?: string;
   projects?: ServiceProject[];
+  slug?: string;
+  detailText?: string;
+  gallery?: string[];
 }
 
 export interface TeamMember {

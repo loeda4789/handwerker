@@ -226,7 +226,7 @@ export default function Header({ content }: HeaderProps) {
           hasDropdown: true,
           isClickable: false,
           dropdownItems: content.services.map((service: any, index: number) => ({
-            href: `/services/leistung-${index + 1}`,
+            href: `/services/${service.slug}`,
             label: service.title,
             icon: service.icon
           }))

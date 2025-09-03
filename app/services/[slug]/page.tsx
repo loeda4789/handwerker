@@ -42,9 +42,9 @@ export default function ServicePage({ params }: ServicePageProps) {
         setContent(loadedContent)
         
         // Service basierend auf Slug finden
-        const serviceIndex = parseInt(slug.replace('leistung-', '')) - 1
-        if (serviceIndex >= 0 && serviceIndex < loadedContent.services.length) {
-          setService(loadedContent.services[serviceIndex])
+        const foundService = loadedContent.services.find(s => s.slug === slug)
+        if (foundService) {
+          setService(foundService)
         } else {
           // Service nicht gefunden
           notFound()
@@ -117,65 +117,58 @@ export default function ServicePage({ params }: ServicePageProps) {
       {/* Service Details */}
       <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Service Image/Placeholder */}
-              <div className="order-2 lg:order-1">
-                <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
-                  <span className="text-9xl opacity-50">{service.icon}</span>
-                </div>
+          <div className="max-w-6xl mx-auto">
+            
+            {/* Hero Image */}
+            {service.image && (
+              <div className="relative h-96 md:h-[500px] mb-12 rounded-lg overflow-hidden">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover"
+                  quality={90}
+                />
               </div>
-              
-              {/* Service Content */}
-              <div className="order-1 lg:order-2">
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                  Professionelle {service.title}
-                </h2>
-                
-                <div className="prose dark:prose-invert max-w-none">
-                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                    {service.description}
-                  </p>
-                  
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                    Unsere Leistungen im Überblick:
-                  </h3>
-                  
-                  <ul className="space-y-3 text-gray-600 dark:text-gray-300">
-                    <li className="flex items-start">
-                      <svg className="w-6 h-6 text-primary mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                      </svg>
-                      Professionelle Beratung und Planung
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-6 h-6 text-primary mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                      </svg>
-                      Hochwertige Materialien und Werkzeuge
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-6 h-6 text-primary mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                      </svg>
-                      Termingerechte und saubere Ausführung
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-6 h-6 text-primary mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                      </svg>
-                      Garantie und Nachbetreuung
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-6 h-6 text-primary mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                      </svg>
-                      Transparente Kostenabrechnung
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            )}
+
+            {/* Service Title */}
+            <div className="text-center mb-8">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                {service.title}
+              </h1>
             </div>
+
+            {/* Detail Text */}
+            {service.detailText && (
+              <div className="max-w-4xl mx-auto mb-16">
+                <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300 text-center">
+                  {service.detailText}
+                </p>
+              </div>
+            )}
+
+            {/* Gallery */}
+            {service.gallery && service.gallery.length > 0 && (
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+                  Unsere Arbeiten
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {service.gallery.map((image: string, index: number) => (
+                    <div key={index} className="relative h-64 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+                      <Image
+                        src={image}
+                        alt={`${service.title} Bild ${index + 1}`}
+                        fill
+                        className="object-cover"
+                        quality={80}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

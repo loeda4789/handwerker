@@ -67,6 +67,16 @@
       "icon": "⚡",
       "description": "Komplette Elektroinstallationen für Neubau und Sanierung - von der Planung bis zur Abnahme nach aktuellen Normen.",
       "image": "/images/branchen/elektriker/services/installation/elektroinstallationen.jpg",
+      "slug": "elektroinstallation",
+      "detailText": "Als erfahrener Elektromeister-Betrieb führen wir komplette Elektroinstallationen für Neubau und Sanierung durch. Von der ersten Planung über die fachgerechte Verlegung bis zur offiziellen Abnahme begleiten wir Ihr Projekt. Dabei arbeiten wir stets nach den aktuellen VDE-Normen und verwenden ausschließlich hochwertige Komponenten namhafter Hersteller. Unser Team aus qualifizierten Elektrikern sorgt für eine sichere, zukunftsfähige und normgerechte Elektroinstallation. Vertrauen Sie auf unsere jahrzehntelange Erfahrung und Meisterqualität.",
+      "gallery": [
+        "/images/branchen/elektriker/services/installation/elektroinstallationen.jpg",
+        "/images/branchen/elektriker/services/installation/einfamilienhaus.jpg",
+        "/images/branchen/elektriker/services/installation/einfamilienhaus2.jpg",
+        "/images/branchen/elektriker/services/installation/einfamilienhaus3.jpg",
+        "/images/branchen/elektriker/services/installation/einfamilienhaus4.jpg",
+        "/images/branchen/elektriker/services/installation/einfamilienhaus5.jpg"
+      ],
       "projects": [
         {
           "title": "Elektroinstallationen",
@@ -85,6 +95,11 @@
       "icon": "🏠",
       "description": "Intelligente Haussteuerung für Komfort und Effizienz - von der Beleuchtung bis zur kompletten Gebäudeautomation.",
       "image": "/images/branchen/elektriker/services/smarthome/smarthome.jpg",
+      "slug": "smart-home",
+      "detailText": "Machen Sie Ihr Zuhause intelligent! Wir sind spezialisiert auf KNX-Systeme und moderne Smart Home Lösungen. Von der intelligenten Beleuchtungssteuerung über automatische Beschattung bis hin zur kompletten Gebäudeautomation - wir realisieren Ihr smartes Zuhause. Unsere Systeme sind zukunftssicher, energieeffizient und lassen sich jederzeit erweitern. Erleben Sie den Komfort von Sprachsteuerung, App-Bedienung und automatischen Szenarien. Wir beraten Sie gerne zu den Möglichkeiten und erstellen ein individuelles Konzept für Ihr Smart Home.",
+      "gallery": [
+        "/images/branchen/elektriker/services/smarthome/smarthome.jpg"
+      ],
       "projects": [
         {
           "title": "Smart Home System",
@@ -98,6 +113,14 @@
       "icon": "☀️",
       "description": "Planung und Installation von Photovoltaikanlagen und Batteriespeichern für nachhaltige Energieversorgung.",
       "image": "/images/branchen/elektriker/services/photovoltaik/PV.jpg",
+      "slug": "photovoltaik",
+      "detailText": "Investieren Sie in die Zukunft mit einer modernen Photovoltaikanlage! Wir planen und installieren maßgeschneiderte PV-Anlagen für Ihr Eigenheim oder Gewerbe. Von der Dachanalyse über die optimale Modulausrichtung bis zur Netzeinspeisung übernehmen wir alle Schritte. Zusätzlich bieten wir Batteriespeicher und Wallboxen für E-Fahrzeuge an. Profitieren Sie von staatlichen Förderungen, reduzierten Stromkosten und einem wertvollen Beitrag zum Klimaschutz. Unsere Anlagen sind wartungsarm und haben eine Lebensdauer von über 25 Jahren.",
+      "gallery": [
+        "/images/branchen/elektriker/services/photovoltaik/PV.jpg",
+        "/images/branchen/elektriker/services/photovoltaik/PV2.jpg",
+        "/images/branchen/elektriker/services/photovoltaik/wallbox.jpg",
+        "/images/branchen/elektriker/services/photovoltaik/wallbox2.jpg"
+      ],
       "projects": [
         {
           "title": "PV-Anlage mit Speicher",
@@ -111,6 +134,11 @@
       "icon": "💡",
       "description": "Moderne LED-Beleuchtungskonzepte für Innen und Außen - energieeffizient und stimmungsvoll.",
       "image": "/images/branchen/elektriker/services/beleuchtung/led.jpg",
+      "slug": "beleuchtung",
+      "detailText": "Licht schafft Atmosphäre! Wir entwickeln moderne LED-Beleuchtungskonzepte für Ihr Zuhause oder Unternehmen. Von der Grundbeleuchtung über Akzentlicht bis hin zu stimmungsvollen Lichtszenen - wir setzen Ihre Räume perfekt in Szene. Unsere LED-Lösungen sind energieeffizient, langlebig und bieten unendliche Gestaltungsmöglichkeiten. Mit intelligenten Dimmern und Farbsteuerung schaffen wir das perfekte Ambiente für jeden Anlass. Profitieren Sie von bis zu 90% Energieeinsparung gegenüber herkömmlichen Leuchtmitteln.",
+      "gallery": [
+        "/images/branchen/elektriker/services/beleuchtung/led.jpg"
+      ],
       "projects": [
         {
           "title": "LED-Beleuchtungskonzept",
@@ -124,6 +152,11 @@
       "icon": "🚨",
       "description": "Schnelle Hilfe bei Stromausfall, defekten Sicherungen und allen Elektro-Notfällen - 24/7 verfügbar.",
       "image": "/images/branchen/elektriker/services/notdienst/notdienst.jpg",
+      "slug": "notdienst",
+      "detailText": "Stromausfall? Defekte Sicherung? Kein Problem! Unser 24/7 Elektro-Notdienst ist rund um die Uhr für Sie da. Innerhalb kürzester Zeit sind unsere erfahrenen Elektriker vor Ort und beheben das Problem schnell und zuverlässig. Ob private Haushalte oder Gewerbebetriebe - wir minimieren Ihre Ausfallzeiten und sorgen für sichere Elektroinstallationen. Unser Notdienst-Team ist vollständig ausgerüstet und kann die meisten Probleme sofort lösen. Vertrauen Sie auf unsere Expertise in kritischen Situationen.",
+      "gallery": [
+        "/images/branchen/elektriker/services/notdienst/notdienst.jpg"
+      ],
       "projects": [
         {
           "title": "Störungsbehebung Gewerbe",
