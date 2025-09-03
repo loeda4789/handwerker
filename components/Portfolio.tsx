@@ -180,38 +180,6 @@ export default function Portfolio({ content }: PortfolioProps) {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center mt-16">
-          <div className="bg-primary/10 dark:bg-primary/20 p-8"
-            style={{ borderRadius: 'var(--radius-card)' }}>
-            <h3 className="text-2xl font-bold text-text dark:text-light mb-4">
-              Ihr Projekt ist nicht dabei?
-            </h3>
-            <p className="text-text-secondary dark:text-light/80 mb-6 max-w-2xl mx-auto">
-              Kontaktieren Sie uns für ein unverbindliches Beratungsgespräch. Wir realisieren auch Ihr Traumprojekt!
-            </p>
-            <a
-              href="#kontakt"
-              className="inline-flex items-center px-6 py-3 text-white transition-colors duration-300 font-medium"
-              style={{ 
-                backgroundColor: 'var(--color-secondary)',
-                borderRadius: 'var(--radius-button)' 
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--color-primary)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
-              }}
-            >
-              Jetzt Beratung anfragen
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-
         {/* Lightbox */}
         {lightboxOpen && (
           <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
