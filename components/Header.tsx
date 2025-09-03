@@ -266,28 +266,29 @@ export default function Header({ content }: HeaderProps) {
     }
     
     if (designStyle === 'angular') {
-      // Klassisch: Eckige Kanten, dunkler Hintergrund, sticky positioning
+      // Angular: Eckiges Design mit transparentem Hintergrund
       return {
-        container: 'sticky top-0 z-50 w-full',
+        container: 'fixed top-0 z-50 w-full',
         transformStyle: {},
-        header: `transition-all duration-300 shadow-lg border-b`,
-        headerStyle: {
-          backgroundColor: 'var(--color-primary)', // Dunkler Hintergrund
-          borderBottomColor: 'var(--color-primary)'
-        },
+        header: `transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-white/95 backdrop-blur-md border-b border-border shadow-lg dark:bg-gray-900/95 dark:border-gray-700' 
+            : 'bg-transparent'
+        }`,
+        headerStyle: isScrolled ? {} : {},
         nav: 'px-4 py-2.5 mx-auto max-w-screen-xl',
         borderRadius: '0px', // Eckig
-        textColor: 'text-white',
-        logoStyle: 'text-white',
+        textColor: isScrolled ? 'text-gray-900 dark:text-white' : 'text-white',
+        logoStyle: isScrolled ? 'text-gray-900 dark:text-white' : 'text-white',
         ctaStyle: 'text-white font-medium transition-all duration-200',
         ctaStyleDynamic: {
           backgroundColor: 'var(--color-secondary)',
           borderColor: 'var(--color-secondary)'
         },
         ctaHoverStyle: {
-          backgroundColor: 'white',
-          borderColor: 'white',
-          color: 'var(--color-primary)'
+          backgroundColor: 'var(--color-primary)',
+          borderColor: 'var(--color-primary)',
+          color: 'white'
         }
       }
     } else if (designStyle === 'rounded') {
