@@ -76,11 +76,7 @@ export default function Portfolio({ content }: PortfolioProps) {
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
           {/* Quality Badge */}
-          <div className="inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4"
-            style={{ 
-              backgroundColor: 'var(--color-secondary)',
-              borderRadius: 'var(--radius-button)'
-            }}>
+          <div className="inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4 bg-orange-500 rounded-lg">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
