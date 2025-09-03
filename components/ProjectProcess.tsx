@@ -110,12 +110,12 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
 
   return (
     <section id="projektablauf" ref={sectionRef} className={`py-20 ${isModernStyle ? 'modern-style' : ''} relative overflow-hidden`}>
-      {/* Hero Background Image with 10% opacity */}
+      {/* Hero Background Image with 20% opacity */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${content.hero.backgroundImages.desktop})`,
-          opacity: 0.1,
+          opacity: 0.2,
           zIndex: 0
         }}
       />
