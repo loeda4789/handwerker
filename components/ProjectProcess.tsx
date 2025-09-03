@@ -109,8 +109,19 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
   }, [])
 
   return (
-    <section id="projektablauf" ref={sectionRef} className={`py-20 ${isModernStyle ? 'modern-style' : ''}`}>
-      <div className="max-w-screen-xl mx-auto px-4">
+    <section id="projektablauf" ref={sectionRef} className={`py-20 ${isModernStyle ? 'modern-style' : ''} relative overflow-hidden`}>
+      {/* Hero Background Image with 10% opacity */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${content.hero.backgroundImages.desktop})`,
+          opacity: 0.1,
+          zIndex: 0
+        }}
+      />
+      
+      {/* Content Container */}
+      <div className="max-w-screen-xl mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
           {designStyle === 'rounded' && (
