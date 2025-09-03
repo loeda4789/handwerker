@@ -198,14 +198,14 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                     className={`ml-24 lg:ml-32 bg-white dark:bg-dark-secondary p-6 lg:p-8 shadow-lg border border-border dark:border-text-secondary hover:shadow-xl transition-all duration-700 hover:transform hover:scale-105 ${
                       isActive
                         ? 'opacity-100 transform translate-y-0'
-                        : 'opacity-60 transform translate-y-4'
+                        : 'opacity-90 transform translate-y-0'
                     }`}
                     style={{ borderRadius: 'var(--radius-card)' }}
                   >
                     <h3 className="text-xl lg:text-2xl font-bold text-text dark:text-light mb-3 lg:mb-4">
                       {step.title}
                     </h3>
-                    <p className="text-text-secondary dark:text-light/80 leading-relaxed text-base lg:text-lg">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base lg:text-lg">
                       {step.description}
                     </p>
                     
