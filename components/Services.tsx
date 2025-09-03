@@ -224,6 +224,110 @@ export default function Services({ content }: ServicesProps) {
             </div>
           ))}
         </div>
+
+        {/* Lightbox */}
+        {lightboxOpen && currentService && (
+          <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
+            {/* Close Button */}
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+
+            {/* Previous Button */}
+            {(1 + (currentService.projects?.length || 0)) > 1 && (
+              <button
+                onClick={prevImage}
+                className="absolute left-4 text-white hover:text-gray-300 z-10"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+            )}
+
+            {/* Next Button */}
+            {(1 + (currentService.projects?.length || 0)) > 1 && (
+              <button
+                onClick={nextImage}
+                className="absolute right-4 text-white hover:text-gray-300 z-10"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            )}
+
+            {/* Service Title Header */}
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-center z-10">
+              <h3 className="text-2xl font-bold">{currentService.title}</h3>
+              <p className="text-white/80">Referenzen & Projekte</p>
+            </div>
+
+            {/* Image */}
+            <div className="max-w-4xl max-h-full w-full h-full flex items-center justify-center mt-16 mb-16">
+              {/* Service Main Image (Index 0) or Project Images (Index 1+) */}
+              {currentImageIndex === 0 && currentService.image ? (
+                <div className="relative w-full max-w-3xl h-[70vh]">
+                  <Image
+                    src={currentService.image}
+                    alt={currentService.title}
+                    fill
+                    className="object-contain"
+                    style={{ borderRadius: 'var(--radius-image)' }}
+                    sizes="(max-width: 768px) 100vw, 80vw"
+                    quality={90}
+                  />
+                </div>
+              ) : currentImageIndex > 0 && currentService.projects && currentService.projects[currentImageIndex - 1] ? (
+                <div className="relative w-full max-w-3xl h-[70vh]">
+                  {currentService.projects[currentImageIndex - 1].image ? (
+                    <Image
+                      src={currentService.projects[currentImageIndex - 1].image}
+                      alt={currentService.projects[currentImageIndex - 1].title}
+                      fill
+                      className="object-contain"
+                      style={{ borderRadius: 'var(--radius-image)' }}
+                      sizes="(max-width: 768px) 100vw, 80vw"
+                      quality={90}
+                    />
+                  ) : (
+                    <div className="relative w-full max-w-3xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center h-96"
+                      style={{ borderRadius: 'var(--radius-image)' }}>
+                      <div className="text-center text-white">
+                        <svg className="w-24 h-24 mx-auto mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <h4 className="text-2xl font-bold mb-2">{currentService.projects[currentImageIndex - 1]?.title}</h4>
+                        <p className="text-white/80 max-w-md mx-auto">{currentService.projects[currentImageIndex - 1]?.description}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="relative w-full max-w-3xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center h-96"
+                  style={{ borderRadius: 'var(--radius-image)' }}>
+                  <div className="text-center text-white">
+                    <svg className="w-24 h-24 mx-auto mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    <h4 className="text-2xl font-bold mb-2">{currentService.title}</h4>
+                    <p className="text-white/80 max-w-md mx-auto">Kein Bild verfügbar</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Image Counter */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
+              {currentImageIndex + 1} / {1 + (currentService.projects?.length || 0)}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )
