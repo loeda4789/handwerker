@@ -133,7 +133,7 @@ export default function Services({ content }: ServicesProps) {
               Unser Service
             </span>
           )}
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center logo-font animate-on-scroll">
+          <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 text-center logo-font animate-on-scroll">
             {designStyle === 'modern' ? (
               <span className="heading-underline">Was wir anbieten</span>
             ) : (

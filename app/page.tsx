@@ -126,7 +126,7 @@ export default function HomePage() {
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [forceUpdate, setForceUpdate] = useState(0)
   const [designStyle, setDesignStyle] = useState<string>('rounded')
-  const [colorScheme, setColorScheme] = useState<string>('modern')
+  const [colorScheme, setColorScheme] = useState<string>('warm')
   const [isDesktop, setIsDesktop] = useState(false)
   const router = useRouter()
 
@@ -210,14 +210,14 @@ export default function HomePage() {
       setDesignStyle(savedDesignStyle)
     }
 
-    // ColorScheme anwenden - Standard 'modern'
+    // ColorScheme anwenden - Standard 'warm'
     const savedColorScheme = localStorage.getItem('selected-color-scheme')
     if (savedColorScheme) {
       setColorScheme(savedColorScheme)
       applyColorScheme(savedColorScheme)
     } else {
-      // Standard colorScheme 'modern' anwenden
-      applyColorScheme('modern')
+      // Standard colorScheme 'warm' anwenden
+      applyColorScheme('warm')
     }
 
     // Check URL parameters to determine if we should show the configurator
