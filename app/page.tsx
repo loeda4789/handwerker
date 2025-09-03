@@ -111,7 +111,7 @@ export default function HomePage() {
   })
   const [features, setFeatures] = useState<FeaturesState>({
     promoBanner: false,
-    contactBar: false,
+    contactBar: true,
     notdienstAlert: false,
     whatsappWidget: false,
     callbackPopup: false,
@@ -126,6 +126,7 @@ export default function HomePage() {
   const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [forceUpdate, setForceUpdate] = useState(0)
   const [designStyle, setDesignStyle] = useState<string>('rounded')
+  const [colorScheme, setColorScheme] = useState<string>('modern')
   const [isDesktop, setIsDesktop] = useState(false)
   const router = useRouter()
 
@@ -207,6 +208,16 @@ export default function HomePage() {
     const savedDesignStyle = localStorage.getItem('design-style')
     if (savedDesignStyle) {
       setDesignStyle(savedDesignStyle)
+    }
+
+    // ColorScheme anwenden - Standard 'modern'
+    const savedColorScheme = localStorage.getItem('selected-color-scheme')
+    if (savedColorScheme) {
+      setColorScheme(savedColorScheme)
+      applyColorScheme(savedColorScheme)
+    } else {
+      // Standard colorScheme 'modern' anwenden
+      applyColorScheme('modern')
     }
 
     // Check URL parameters to determine if we should show the configurator
