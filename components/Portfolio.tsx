@@ -75,6 +75,18 @@ export default function Portfolio({ content }: PortfolioProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
+          {/* Quality Badge */}
+          <div className="inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4"
+            style={{ 
+              backgroundColor: 'var(--color-secondary)',
+              borderRadius: 'var(--radius-button)'
+            }}>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Ausgezeichnete Qualität
+          </div>
+          
           <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
             {isModernStyle ? (
               <span className="heading-underline-large">{content.portfolio.title}</span>
