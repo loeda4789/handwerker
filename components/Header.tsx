@@ -291,19 +291,19 @@ export default function Header({ content }: HeaderProps) {
         }
       }
     } else if (designStyle === 'rounded') {
-      // Freundlich: Weiß aber leicht durchsichtig, runde Buttons, sticky positioning
+      // Rounded: Sanfte Ecken mit transparentem Hintergrund
       return {
-        container: 'sticky top-0 z-50 w-full',
+        container: 'fixed top-0 z-50 w-full',
         transformStyle: getTransformStyle(),
-        header: `transition-all duration-300 backdrop-blur-md shadow-lg border-b border-white/20 ${
+        header: `transition-all duration-300 ${
           isScrolled 
-            ? 'bg-white/90 dark:bg-gray-900/90' 
-            : 'bg-white/80 dark:bg-gray-900/80'
+            ? 'bg-white/95 backdrop-blur-md border-b border-border shadow-lg dark:bg-gray-900/95 dark:border-gray-700' 
+            : 'bg-transparent'
         }`,
-        nav: 'px-4 py-3 mx-auto max-w-screen-xl',
-        borderRadius: '0.75rem', // Leicht rund
-        textColor: 'text-gray-900 dark:text-white',
-        logoStyle: 'text-gray-900 dark:text-white',
+        nav: 'px-4 py-4 mx-auto max-w-screen-xl',
+        borderRadius: 'var(--radius-card)',
+        textColor: isScrolled ? 'text-gray-900 dark:text-white' : 'text-white',
+        logoStyle: isScrolled ? 'text-gray-900 dark:text-white' : 'text-white',
         ctaStyle: 'text-white font-medium transition-all duration-200',
         ctaStyleDynamic: {
           backgroundColor: 'var(--color-secondary)',
@@ -341,28 +341,28 @@ export default function Header({ content }: HeaderProps) {
         }
       }
     } else {
-      // Fallback: Standard sticky positioning
+      // Fallback: Standard mit transparentem Hintergrund
       return {
-        container: 'sticky top-0 z-50 w-full',
+        container: 'fixed top-0 z-50 w-full',
         transformStyle: {},
         header: `transition-all duration-300 ${
           isScrolled 
-            ? 'bg-white border-b border-border shadow-lg dark:bg-gray-900 dark:border-gray-700' 
-            : 'bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700'
+            ? 'bg-white/95 backdrop-blur-md border-b border-border shadow-lg dark:bg-gray-900/95 dark:border-gray-700' 
+            : 'bg-transparent'
         }`,
         nav: 'px-4 py-2.5 mx-auto max-w-screen-xl',
         borderRadius: 'var(--radius-modal)',
-        textColor: 'text-gray-900 dark:text-white',
-        logoStyle: 'text-gray-900 dark:text-white',
+        textColor: isScrolled ? 'text-gray-900 dark:text-white' : 'text-white',
+        logoStyle: isScrolled ? 'text-gray-900 dark:text-white' : 'text-white',
         ctaStyle: 'text-white font-medium transition-all duration-200',
         ctaStyleDynamic: {
           backgroundColor: 'var(--color-secondary)',
           borderColor: 'var(--color-secondary)'
         },
         ctaHoverStyle: {
-          backgroundColor: 'white',
-          borderColor: 'white', 
-          color: 'var(--color-primary)'
+          backgroundColor: 'var(--color-primary)',
+          borderColor: 'var(--color-primary)', 
+          color: 'white'
         }
       }
     }
