@@ -35,7 +35,7 @@ const formatHeroTitle = (tagline: string) => {
   
   // Für Elektriker
   if (tagline.includes('Elektro-Partner')) {
-    return "Ihr verlässlicher Elektriker"
+    return "Kompetenz, die elektrisiert."
   }
   
   // Für Dachdecker
