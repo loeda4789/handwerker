@@ -96,7 +96,7 @@ export default function ServicePage({ params }: ServicePageProps) {
     }
   }, [content, slug])
 
-  if (loading) {
+  if (loading || !content || !content.services) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
         <div className="text-center">
@@ -107,8 +107,18 @@ export default function ServicePage({ params }: ServicePageProps) {
     )
   }
 
-  if (!content || !service) {
-    notFound()
+  if (!service) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-text dark:text-light mb-4">Service nicht gefunden</h1>
+          <p className="text-text-secondary dark:text-light/80 mb-6">Der angeforderte Service konnte nicht gefunden werden.</p>
+          <Link href="/" className="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
+            Zurück zur Startseite
+          </Link>
+        </div>
+      </div>
+    )
   }
 
   const currentServiceIndex = content.services.findIndex((s: any) => s.title === service.title)
