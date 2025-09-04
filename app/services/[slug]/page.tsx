@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { getContentDataByBranche } from '@/lib/config'
 import { ContentData } from '@/types/content'
+import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
@@ -17,10 +18,13 @@ interface ServicePageProps {
 }
 
 export default function ServicePage({ params }: ServicePageProps) {
-  const [content, setContent] = useState<ContentData | null>(null)
+  const [baseContent, setBaseContent] = useState<ContentData | null>(null)
   const [service, setService] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [slug, setSlug] = useState<string>('')
+
+  // Verwende den URL-Parameter-Hook für automatische URL-Parameter-Integration
+  const content = useContentWithUrlParams(baseContent || {} as ContentData)
 
   useEffect(() => {
     // Params asynchron laden (Next.js 15)
@@ -43,7 +47,7 @@ export default function ServicePage({ params }: ServicePageProps) {
         console.log('Looking for slug:', slug)
         console.log('Available services:', loadedContent.services.map(s => ({ title: s.title, slug: s.slug })))
         
-        setContent(loadedContent)
+        setBaseContent(loadedContent)
         
         // Service basierend auf Slug finden
         const foundService = loadedContent.services.find(s => s.slug === slug)

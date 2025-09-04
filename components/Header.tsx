@@ -227,11 +227,15 @@ export default function Header({ content }: HeaderProps) {
           isClickable: false,
           dropdownItems: content.services
             .filter((service: any) => service.slug)
-            .map((service: any, index: number) => ({
-              href: `/services/${service.slug}`,
-              label: service.title,
-              icon: service.icon
-            }))
+            .map((service: any, index: number) => {
+              // Aktuelle URL-Parameter beibehalten
+              const currentParams = typeof window !== 'undefined' ? window.location.search : ''
+              return {
+                href: `/services/${service.slug}${currentParams}`,
+                label: service.title,
+                icon: service.icon
+              }
+            })
         },
         { href: '/referenzen', label: 'Referenzen', id: 'referenzen', isClickable: true },
         { href: '/faq', label: 'FAQ', id: 'faq', isClickable: true },
