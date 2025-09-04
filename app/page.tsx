@@ -456,7 +456,7 @@ export default function HomePage() {
               {content.faq && content.faq.length > 0 ? (
                 <FAQ content={content} />
               ) : (
-                <BeforeAfter content={content} />
+            <BeforeAfter content={content} />
               )}
             </SectionWrapper>
             
