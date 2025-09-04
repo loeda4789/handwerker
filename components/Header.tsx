@@ -240,7 +240,20 @@ export default function Header({ content }: HeaderProps) {
     } else {
       return [
         { href: '#ueber-uns', label: content.about.title, id: 'ueber-uns', isClickable: true },
-        { href: '#leistungen', label: 'Leistungen', id: 'leistungen', isClickable: true },
+        { 
+          href: '#leistungen', 
+          label: 'Leistungen', 
+          id: 'leistungen', 
+          isClickable: true,
+          hasDropdown: true,
+          dropdownItems: content.services
+            .filter((service: any) => service.slug)
+            .map((service: any, index: number) => ({
+              href: `/services/${service.slug}`,
+              label: service.title,
+              icon: service.icon
+            }))
+        },
         { href: '#projektablauf', label: 'Projektablauf', id: 'projektablauf', isClickable: true }
       ]
     }

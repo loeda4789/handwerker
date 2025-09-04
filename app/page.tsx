@@ -123,7 +123,7 @@ export default function HomePage() {
   const [showConfigurator, setShowConfigurator] = useState(false) // Temporarily disabled - can be re-enabled later
 
   const [baseContent, setBaseContent] = useState<ContentData | null>(null)
-  const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('multipage')
+  const [siteMode, setSiteMode] = useState<'onepage' | 'multipage'>('onepage')
   const [forceUpdate, setForceUpdate] = useState(0)
   const [designStyle, setDesignStyle] = useState<string>('rounded')
   const [colorScheme, setColorScheme] = useState<string>('warm')
