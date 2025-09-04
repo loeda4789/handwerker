@@ -39,15 +39,26 @@ export default function ServicePage({ params }: ServicePageProps) {
     const loadContent = () => {
       try {
         const loadedContent = getContentDataByBranche()
+        console.log('Loaded content:', loadedContent)
+        console.log('Looking for slug:', slug)
+        console.log('Available services:', loadedContent.services.map(s => ({ title: s.title, slug: s.slug })))
+        
         setContent(loadedContent)
         
         // Service basierend auf Slug finden
         const foundService = loadedContent.services.find(s => s.slug === slug)
+        console.log('Found service:', foundService)
+        
         if (foundService) {
           setService(foundService)
         } else {
-          // Service nicht gefunden
-          notFound()
+          console.error('Service not found for slug:', slug)
+          // Fallback: Verwende ersten Service wenn slug nicht gefunden
+          if (loadedContent.services.length > 0) {
+            setService(loadedContent.services[0])
+          } else {
+            notFound()
+          }
         }
       } catch (error) {
         console.error('Fehler beim Laden des Contents:', error)
