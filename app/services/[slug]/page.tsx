@@ -135,17 +135,56 @@ export default function ServicePage({ params }: ServicePageProps) {
         </div>
       </section>
 
-      {/* Hero Section für Service */}
-      <section className="relative py-20 bg-gradient-to-br from-primary to-accent">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="text-8xl mb-6">{service.icon}</div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              {service.title}
+      {/* Hero Section mit Service-Bild als Hintergrund */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Service-Bild als Hintergrund */}
+        {service.image && (
+          <div className="absolute inset-0">
+            <Image
+              src={service.image}
+              alt={service.title}
+              fill
+              className="object-cover"
+              quality={90}
+              priority
+            />
+            {/* Overlay für bessere Textlesbarkeit */}
+            <div className="absolute inset-0 bg-black/40"></div>
+          </div>
+        )}
+        
+        {/* Hero-Content */}
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            {/* Service Badge */}
+            {designStyle === 'rounded' && (
+              <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4 bg-orange-500 rounded-lg">
+                <span className="mr-2">{service.icon}</span>
+                Unsere Expertise
+              </span>
+            )}
+            
+            {/* Service Title */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-heading">
+              {designStyle === 'modern' ? (
+                <span className="heading-underline-large">{service.title}</span>
+              ) : (
+                service.title
+              )}
             </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+            
+            {/* Service Description */}
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
               {service.description}
             </p>
+            
+            {/* CTA Button */}
+            <Link
+              href="#kontakt"
+              className="inline-block px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1 rounded-lg"
+            >
+              Jetzt anfragen
+            </Link>
           </div>
         </div>
       </section>
@@ -155,39 +194,11 @@ export default function ServicePage({ params }: ServicePageProps) {
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             
-            {/* Service Badge */}
-            <div className="text-center mb-8">
-              {designStyle === 'rounded' && (
-                <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4 bg-orange-500 rounded-lg">
-                  <span className="mr-2">{service.icon}</span>
-                  Unsere Expertise
-                </span>
-              )}
-            </div>
-
-            {/* Hero Image */}
-            {service.image && (
-              <div className="relative h-96 md:h-[500px] mb-12 overflow-hidden animate-on-scroll"
-                style={{ borderRadius: 'var(--radius-card)' }}>
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover"
-                  quality={90}
-                />
-              </div>
-            )}
-
             {/* Service Title */}
             <div className="text-center mb-8 animate-on-scroll">
-              <h1 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 font-heading">
-                {designStyle === 'modern' ? (
-                  <span className="heading-underline-large">{service.title}</span>
-                ) : (
-                  service.title
-                )}
-              </h1>
+              <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 font-heading">
+                Über {service.title}
+              </h2>
             </div>
 
             {/* Detail Text */}
