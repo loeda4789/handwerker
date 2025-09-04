@@ -225,11 +225,13 @@ export default function Header({ content }: HeaderProps) {
           id: 'leistungen',
           hasDropdown: true,
           isClickable: false,
-          dropdownItems: content.services.map((service: any, index: number) => ({
-            href: `/services/${service.slug}`,
-            label: service.title,
-            icon: service.icon
-          }))
+          dropdownItems: content.services
+            .filter((service: any) => service.slug)
+            .map((service: any, index: number) => ({
+              href: `/services/${service.slug}`,
+              label: service.title,
+              icon: service.icon
+            }))
         },
         { href: '/referenzen', label: 'Referenzen', id: 'referenzen', isClickable: true },
         { href: '/faq', label: 'FAQ', id: 'faq', isClickable: true },
