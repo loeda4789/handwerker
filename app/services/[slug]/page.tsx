@@ -56,7 +56,17 @@ export default function ServicePage({ params }: ServicePageProps) {
   useEffect(() => {
     const loadContent = () => {
       try {
+        // Branche aus URL-Parametern lesen oder Standard auf 'elektriker' setzen
+        const urlParams = new URLSearchParams(window.location.search)
+        const branche = urlParams.get('branche') || 'elektriker'
+        
+        // Branche in localStorage setzen für getContentDataByBranche
+        localStorage.setItem('selected-branche', branche)
+        
         const loadedContent = getContentDataByBranche()
+        console.log('Loading content for branche:', branche)
+        console.log('Loaded content:', loadedContent)
+        
         setBaseContent(loadedContent)
         setLoading(false)
       } catch (error) {
