@@ -1,0 +1,301 @@
+{
+  "company": {
+    "name": "Mustermann Elektrotechnik GmbH",
+    "tagline": "Ihr zuverlässiger Elektro-Partner",
+    "logo": "/images/logo.png"
+  },
+  "hero": {
+    "title": "Kompetenz, die elektrisiert.",
+    "subtitle": "Professionelle Elektrotechnik mit Meisterqualit�t",
+    "backgroundImages": {
+      "desktop": "/images/branchen/elektriker/hero/desktop/hero.jpg",
+      "mobile": "/images/branchen/elektriker/hero/mobile/hero.jpg",
+      "desktopAlt": "/images/branchen/elektriker/hero/desktop/hero.jpg",
+      "mobileAlt": "/images/branchen/elektriker/hero/mobile/hero.jpg"
+    }
+  },
+  "about": {
+    "title": "Über uns",
+    "text": "Wir sind Ihr verlässlicher Partner für professionelle Elektroarbeiten. Mit Meisterqualität, modernster Technik und jahrzehntelanger Erfahrung realisieren wir Ihre Elektroprojekte von der Planung bis zur Abnahme und schaffen sichere, zukunftsfähige Elektroanlagen.",
+    "image": "/images/branchen/elektriker/about/about.jpg"
+  },
+  "welcome": {
+    "headline": "Willkommen bei\nMustermann Elektrotechnik GmbH",
+    "subline": "Meisterqualität für Ihre Elektroprojekte",
+    "features": [
+      {
+        "icon": "✅",
+        "title": "Elektromeister-Betrieb",
+        "text": "Zertifizierte Qualität und jahrzehntelange Erfahrung in der Elektrotechnik"
+      },
+      {
+        "icon": "🏗️",
+        "title": "Komplettservice Elektro",
+        "text": "Von der Hausinstallation bis zum Smart Home - alles aus einer Hand"
+      },
+      {
+        "icon": "🛟",
+        "title": "24/7 Elektro-Notdienst",
+        "text": "Schnelle Hilfe bei Stromausfall und Elektroproblemen rund um die Uhr"
+      }
+    ]
+  },
+  "projectProcess": {
+    "title": "So läuft Ihr Elektroprojekt bei uns ab",
+    "subtitle": "Von der ersten Elektroplanung bis zur finalen Abnahme - unser bewährter Prozess garantiert sichere und normgerechte Elektroanlagen.",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Elektroplanung & Beratung",
+        "description": "Wir analysieren Ihre Anforderungen und erstellen eine detaillierte Elektroplanung. Gemeinsam besprechen wir alle technischen Details und Sonderwünsche."
+      },
+      {
+        "number": 2,
+        "title": "Angebot & Materialplanung",
+        "description": "Basierend auf der Planung erstellen wir ein transparentes Angebot mit hochwertigen Komponenten. Sie erhalten eine detaillierte Aufstellung aller Arbeiten."
+      },
+      {
+        "number": 3,
+        "title": "Fachgerechte Installation",
+        "description": "Unsere Elektromeister führen alle Arbeiten normgerecht und sicher aus. Nach Abschluss erfolgt die offizielle Abnahme und Dokumentation."
+      }
+    ]
+  },
+  "services": [
+    {
+      "title": "Elektroinstallation",
+      "icon": "⚡",
+      "description": "Komplette Elektroinstallationen für Neubau und Sanierung - von der Planung bis zur Abnahme nach aktuellen Normen.",
+      "image": "/images/branchen/elektriker/services/installation/elektroinstallationen.jpg",
+      "projects": [
+        {
+          "title": "Elektroinstallationen",
+          "image": "/images/branchen/elektriker/portfolio/elektroinstallationen.jpg",
+          "description": "Komplette Elektroinstallation mit moderner Hausverteilung und zukunftssicherer Verkabelung"
+        },
+        {
+          "title": "Photovoltaikanlage",
+          "image": "/images/branchen/elektriker/portfolio/PV.jpg",
+          "description": "Behutsame Elektro-Modernisierung mit Erhalt der Bausubstanz und modernen Standards"
+        }
+      ]
+    },
+    {
+      "title": "Smart Home",
+      "icon": "🏠",
+      "description": "Intelligente Haussteuerung für Komfort und Effizienz - von der Beleuchtung bis zur kompletten Gebäudeautomation.",
+      "image": "/images/branchen/elektriker/services/smarthome/smarthome.jpg",
+      "projects": [
+        {
+          "title": "Smart Home System",
+          "image": "/images/branchen/elektriker/portfolio/smarthome.jpg",
+          "description": "Vollständige KNX-Installation mit Beleuchtung, Beschattung und Heizungssteuerung"
+        }
+      ]
+    },
+    {
+      "title": "Photovoltaik & Solar",
+      "icon": "☀️",
+      "description": "Planung und Installation von Photovoltaikanlagen und Batteriespeichern für nachhaltige Energieversorgung.",
+      "image": "/images/branchen/elektriker/services/photovoltaik/PV.jpg",
+      "projects": [
+        {
+          "title": "PV-Anlage mit Speicher",
+          "image": "/images/branchen/elektriker/portfolio/PV.jpg",
+          "description": "10 kWp Photovoltaikanlage mit 15 kWh Batteriespeicher für maximale Eigenverbrauchsoptimierung"
+        }
+      ]
+    },
+    {
+      "title": "Beleuchtung & LED",
+      "icon": "💡",
+      "description": "Moderne LED-Beleuchtungskonzepte für Innen und Außen - energieeffizient und stimmungsvoll.",
+      "image": "/images/branchen/elektriker/services/beleuchtung/led.jpg",
+      "projects": [
+        {
+          "title": "LED-Beleuchtungskonzept",
+          "image": "/images/branchen/elektriker/portfolio/beleuchtung.jpg",
+          "description": "Durchgängiges LED-Beleuchtungskonzept mit Dimmfunktion und Farbsteuerung"
+        }
+      ]
+    },
+    {
+      "title": "Elektro-Notdienst",
+      "icon": "🚨",
+      "description": "Schnelle Hilfe bei Stromausfall, defekten Sicherungen und allen Elektro-Notfällen - 24/7 verfügbar.",
+      "image": "/images/branchen/elektriker/services/notdienst/notdienst.jpg",
+      "projects": [
+        {
+          "title": "Störungsbehebung Gewerbe",
+          "image": "/images/branchen/elektriker/portfolio/notdienst.jpg",
+          "description": "Schnelle Reparatur eines Hauptverteilers nach Überspannung mit minimaler Ausfallzeit"
+        }
+      ]
+    }
+  ],
+  "team": [
+    {
+      "name": "Thomas Mustermann",
+      "position": "Geschäftsführer",
+      "photo": "/images/team/person1.png",
+      "specialization": "Elektroplanung & Projektleitung"
+    },
+    {
+      "name": "Andreas Voltmann",
+      "position": "Elektromeister",
+      "photo": "/images/team/person2.png",
+      "specialization": "Hausinstallation & Industrieanlagen"
+    },
+    {
+      "name": "Stefan Smartberg",
+      "position": "Elektrotechniker",
+      "photo": "/images/team/person3.png",
+      "specialization": "Smart Home & KNX-Systeme"
+    },
+    {
+      "name": "Marina Kabel",
+      "position": "Büroleiterin",
+      "photo": "/images/team/person4.png",
+      "specialization": "Projektkoordination & Terminplanung"
+    },
+    {
+      "name": "Michael Photon",
+      "position": "Elektrotechniker",
+      "photo": "/images/team/person5.png",
+      "specialization": "Photovoltaik & Energietechnik"
+    },
+    {
+      "name": "Laura Leuchtmann",
+      "position": "Elektrikerin",
+      "photo": "/images/team/person6.png",
+      "specialization": "LED-Technik & Beleuchtung"
+    },
+    {
+      "name": "Peter Schaltschrank",
+      "position": "Elektriker",
+      "photo": "/images/team/person7.png",
+      "specialization": "Schaltanlagenbau & Reparaturen"
+    },
+    {
+      "name": "Jana Azubi",
+      "position": "Auszubildende",
+      "photo": "/images/team/person8.png",
+      "specialization": "Elektroinstallation & Grundlagen"
+    }
+  ],
+  "portfolio": {
+    "title": "Unsere Elektro-Referenzen",
+    "subtitle": "Überzeugen Sie sich von der Qualität unserer Elektroarbeiten",
+    "projects": [
+      {
+        "title": "Elektroinstallationen",
+        "category": "Photovoltaik & Solar",
+        "image": "/images/branchen/elektriker/portfolio/elektroinstallationen.jpg",
+        "description": "Komplette Elektroinstallation mit moderner Hausverteilung und zukunftssicherer Verkabelung"
+      },
+      {
+        "title": "Smart Home System",
+        "category": "Smart Home",
+        "image": "/images/branchen/elektriker/portfolio/smarthome.jpg",
+        "description": "Vollständige KNX-Installation mit Beleuchtung, Beschattung und Heizungssteuerung"
+      },
+      {
+        "title": "Photovoltaikanlage",
+        "category": "Photovoltaik & Solar",
+        "image": "/images/branchen/elektriker/portfolio/PV.jpg",
+        "description": "Behutsame Elektro-Modernisierung mit Erhalt der Bausubstanz und modernen Standards"
+      },
+      {
+        "title": "LED-Beleuchtungskonzept",
+        "category": "Beleuchtung & LED",
+        "image": "/images/branchen/elektriker/portfolio/beleuchtung.jpg",
+        "description": "Durchgängiges LED-Beleuchtungskonzept mit Dimmfunktion und Farbsteuerung"
+      },
+      {
+        "title": "PV-Anlage mit Speicher",
+        "category": "Photovoltaik & Solar",
+        "image": "/images/branchen/elektriker/portfolio/PV.jpg",
+        "description": "10 kWp Photovoltaikanlage mit 15 kWh Batteriespeicher für maximale Eigenverbrauchsoptimierung"
+      },
+      {
+        "title": "Störungsbehebung Gewerbe",
+        "category": "Elektro-Notdienst",
+        "image": "/images/branchen/elektriker/portfolio/notdienst.jpg",
+        "description": "Schnelle Reparatur eines Hauptverteilers nach Überspannung mit minimaler Ausfallzeit"
+      }
+    ]
+  },
+  "beforeAfter": [
+    {
+      "title": "Schaltschrank-Modernisierung",
+      "category": "Photovoltaik & Solar",
+      "beforeImage": "/images/before-after/schaltschrank_vorher.png",
+      "afterImage": "/images/before-after/schaltschrank_nachher.png",
+      "description": "Transformation eines veralteten Schaltschranks mit neuer Verteilung, FI-Schutzschaltern und übersichtlicher Beschriftung."
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Familie Neumann",
+      "text": "Mustermann Elektrotechnik hat unser ganzes Haus neu verkabelt und ein Smart Home System installiert. Von der Planung bis zur Umsetzung war alles perfekt! Das KNX-System funktioniert einwandfrei und spart uns viel Energie."
+    },
+    {
+      "name": "Architekt Dipl.-Ing. Weber",
+      "text": "Als Architekt arbeite ich regelmäßig mit verschiedenen Elektrikern zusammen. Mustermann Elektrotechnik überzeugt durch außergewöhnliche Fachkompetenz bei komplexen Installationen. Die Einhaltung von Terminen und Normen ist beispielhaft."
+    },
+    {
+      "name": "Gewerbekunde Auto Meyer",
+      "text": "Für unsere Autowerkstatt war der 24/7 Notdienst von Mustermann Elektrotechnik ein Lebensretter. Nach einem Stromausfall waren sie innerhalb einer Stunde da und haben alles wieder zum Laufen gebracht. Absolut zuverlässig!"
+    }
+  ],
+  "socials": {
+    "facebook": "https://facebook.com/mustermann-elektrotechnik",
+    "instagram": "https://instagram.com/mustermann_elektrotechnik",
+    "youtube": null,
+    "tiktok": null,
+    "linkedin": null
+  },
+  "reviews": {
+    "google": "https://www.google.com/maps/place/?q=place_id:EXAMPLE_ELEKTROTECHNIK"
+  },
+  "stats": {
+    "projectsCompleted": 1200,
+    "happyClients": 980,
+    "yearsExperience": 28,
+    "teamSize": 8,
+    "projectsPerYear": 200,
+    "starRating": 4.8,
+    "customStats": [
+      {
+        "number": 28,
+        "label": "Jahre Erfahrung",
+        "suffix": "",
+        "duration": 2000
+      },
+      {
+        "number": 200,
+        "label": "Projekte pro Jahr",
+        "suffix": "",
+        "duration": 2500
+      },
+      {
+        "number": 4.8,
+        "label": "Sterne Bewertung",
+        "suffix": "",
+        "duration": 1800,
+        "decimal": true
+      }
+    ]
+  },
+  "contact": {
+    "address": "Elektrostraße 15, 48429 Rheine",
+    "phone": "+49 123 456 789",
+    "email": "info@mustermann-elektrotechnik.de",
+    "openingHours": "Mo-Fr: 7:00-17:00 Uhr, Sa: 8:00-12:00 Uhr"
+  },
+  "meta": {
+    "language": "de",
+    "generator": "ml | websolutions",
+    "lastUpdated": "2025-06-05"
+  }
+} 

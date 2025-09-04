@@ -12,7 +12,7 @@ interface PromoBannerProps {
   autoHideDelay?: number
 }
 
-export default function PromoBanner({
+export default function PromoBanner({ 
   isEnabled = true,
   message = "🔥 20% RABATT AUF ALLES im gesamten Juni! Jetzt Termin vereinbaren!",
   ctaText = "Jetzt buchen",
@@ -85,16 +85,16 @@ export default function PromoBanner({
               <div className="animate-pulse">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.9 1 3 1.9 3 3V21C3 22.1 3.9 23 5 23H19C20.1 23 21 22.1 21 21V9ZM19 21H5V3H13V9H19V21Z"/>
-                </svg>
-              </div>
+              </svg>
+                </div>
               
               {/* Text mit Animation */}
               <div className="flex-1">
                 <p className="text-sm sm:text-base font-semibold tracking-wide animate-pulse">
                   {message}
                 </p>
+                </div>
               </div>
-            </div>
 
             {/* CTA Button */}
             <div className="flex items-center space-x-3 ml-4">
