@@ -394,58 +394,44 @@ export default function Header({ content }: HeaderProps) {
   const getDropdownStyles = () => {
     if (designStyle === 'angular') {
       return {
-        container: 'absolute top-full left-0 mt-2 w-48 shadow-xl border z-50',
+        container: 'absolute top-full left-0 mt-2 w-48 shadow-xl border z-50 backdrop-blur-md',
         containerStyle: {
-          backgroundColor: 'var(--color-primary)',
-          borderColor: 'var(--color-primary)',
-          borderRadius: '0px'
+          backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.9)',
+          borderColor: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '8px'
         },
-        item: 'block px-4 py-3 text-white hover:bg-white hover:text-gray-900 font-medium transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md',
+        item: 'block px-4 py-3 text-gray-700 hover:text-white hover:bg-orange-500 font-medium transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md',
         itemHoverStyle: {
-          backgroundColor: 'white',
-          color: 'var(--color-primary)'
+          backgroundColor: '#f97316',
+          color: 'white'
         }
       }
     } else if (designStyle === 'rounded') {
       return {
-        container: 'absolute top-full left-0 mt-2 w-48 shadow-xl border z-50',
+        container: 'absolute top-full left-0 mt-2 w-48 shadow-xl border z-50 backdrop-blur-md',
         containerStyle: {
-          backgroundColor: 'white',
-          borderColor: 'var(--color-primary)',
+          backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.9)',
+          borderColor: 'rgba(255, 255, 255, 0.2)',
           borderRadius: 'var(--radius-card)'
         },
-        item: 'block px-4 py-3 text-gray-700 hover:text-white hover:font-bold hover:bg-gradient-to-r transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md',
+        item: 'block px-4 py-3 text-gray-700 hover:text-white hover:bg-orange-500 font-medium transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md',
         itemHoverStyle: {
-          background: 'linear-gradient(45deg, var(--color-primary), var(--color-secondary))',
-          color: 'white'
-        }
-      }
-    } else if (designStyle === 'modern') {
-      return {
-        container: 'absolute top-full left-0 mt-2 w-48 shadow-2xl border z-50',
-        containerStyle: {
-          backgroundColor: 'rgba(0, 0, 0, 0.9)',
-          borderColor: 'rgba(255, 255, 255, 0.1)',
-          borderRadius: 'var(--radius-card)',
-          backdropFilter: 'blur(20px)'
-        },
-        item: 'block px-4 py-3 text-white hover:text-white hover:font-bold hover:bg-gradient-to-r transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md',
-        itemHoverStyle: {
-          background: 'linear-gradient(45deg, var(--color-primary), var(--color-secondary))',
+          backgroundColor: '#f97316',
           color: 'white'
         }
       }
     } else {
+      // Modern style
       return {
-        container: 'absolute top-full left-0 mt-2 w-48 shadow-xl border border-gray-200 dark:border-gray-700 z-50',
+        container: 'absolute top-full left-0 mt-2 w-48 shadow-xl z-50 backdrop-blur-md',
         containerStyle: {
-          backgroundColor: 'white',
-          borderColor: 'var(--color-primary)',
-          borderRadius: 'var(--radius-card)'
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          borderRadius: '1rem',
+          border: '1px solid rgba(255, 255, 255, 0.1)'
         },
-        item: 'block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-white hover:font-bold hover:bg-gradient-to-r transition-all duration-300 first:rounded-t-lg last:rounded-b-lg uppercase hover:scale-[1.02] hover:shadow-md',
+        item: 'block px-4 py-3 text-white hover:text-white hover:bg-orange-500 font-medium transition-all duration-300 first:rounded-t-xl last:rounded-b-xl uppercase hover:scale-[1.02]',
         itemHoverStyle: {
-          background: 'linear-gradient(45deg, var(--color-primary), var(--color-secondary))',
+          backgroundColor: '#f97316',
           color: 'white'
         }
       }
