@@ -571,7 +571,7 @@ export default function Header({ content }: HeaderProps) {
                 }
               }}
             >
-              Kontakt
+              Jetzt anfragen
             </Link>
           </div>
 
