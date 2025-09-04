@@ -52,6 +52,22 @@ export default function ServicePage({ params }: ServicePageProps) {
   // Aktiviere Scroll-Animationen
   useScrollAnimation()
 
+  // Initialen Content laden
+  useEffect(() => {
+    const loadContent = () => {
+      try {
+        const loadedContent = getContentDataByBranche()
+        setBaseContent(loadedContent)
+        setLoading(false)
+      } catch (error) {
+        console.error('Fehler beim Laden des Contents:', error)
+        setLoading(false)
+      }
+    }
+
+    loadContent()
+  }, [])
+
   useEffect(() => {
     // Params asynchron laden (Next.js 15)
     const loadParams = async () => {
@@ -62,44 +78,23 @@ export default function ServicePage({ params }: ServicePageProps) {
     loadParams()
   }, [params])
 
+  // Service finden basierend auf content (mit URL-Parametern)
   useEffect(() => {
-    if (!slug) return
+    if (!content || !content.services || !slug) return
 
-    // Content basierend auf URL-Parameter laden
-    const loadContent = () => {
-      try {
-        const loadedContent = getContentDataByBranche()
-        console.log('Loaded content:', loadedContent)
-        console.log('Looking for slug:', slug)
-        console.log('Available services:', loadedContent.services.map(s => ({ title: s.title, slug: s.slug })))
-        
-        setBaseContent(loadedContent)
-        
-        // Service basierend auf Slug finden
-        const foundService = loadedContent.services.find(s => s.slug === slug)
-        console.log('Found service:', foundService)
-        
-        if (foundService) {
-          setService(foundService)
-        } else {
-          console.error('Service not found for slug:', slug)
-          // Fallback: Verwende ersten Service wenn slug nicht gefunden
-          if (loadedContent.services.length > 0) {
-            setService(loadedContent.services[0])
-          } else {
-            notFound()
-          }
-        }
-      } catch (error) {
-        console.error('Fehler beim Laden des Contents:', error)
-        notFound()
-      } finally {
-        setLoading(false)
+    const foundService = content.services.find(s => s.slug === slug)
+    console.log('Found service from content with URL params:', foundService)
+    
+    if (foundService) {
+      setService(foundService)
+    } else {
+      console.error('Service not found for slug:', slug)
+      // Fallback: Verwende ersten Service wenn slug nicht gefunden
+      if (content.services.length > 0) {
+        setService(content.services[0])
       }
     }
-
-    loadContent()
-  }, [slug])
+  }, [content, slug])
 
   if (loading) {
     return (
