@@ -161,13 +161,6 @@ export default function ServicePage({ params }: ServicePageProps) {
         {/* Hero-Content */}
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            {/* Service Badge */}
-            {designStyle === 'rounded' && (
-              <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4 bg-orange-500 rounded-lg">
-                <span className="mr-2">{service.icon}</span>
-                Unsere Expertise
-              </span>
-            )}
             
             {/* Service Title */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-heading">
@@ -183,13 +176,7 @@ export default function ServicePage({ params }: ServicePageProps) {
               {service.description}
             </p>
             
-            {/* CTA Button */}
-            <Link
-              href="#kontakt"
-              className="inline-block px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1 rounded-lg"
-            >
-              Jetzt anfragen
-            </Link>
+            
           </div>
         </div>
       </section>
@@ -269,13 +256,10 @@ export default function ServicePage({ params }: ServicePageProps) {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/kontakt"
-              className="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-100 text-primary rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              href="#kontakt"
+              className="inline-block px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1 rounded-lg"
             >
-              Jetzt Anfrage stellen
-              <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
+              Jetzt anfragen
             </Link>
             <Link
               href={`tel:${content.contact.phone}`}
