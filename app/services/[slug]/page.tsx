@@ -351,12 +351,6 @@ export default function ServicePage({ params }: ServicePageProps) {
                   
                   {/* Service Info */}
                   <div className="p-6">
-                    {/* Icon */}
-                    <div className="text-primary dark:text-accent mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 p-3 bg-primary/10 dark:bg-accent/10 w-fit"
-                      style={{ borderRadius: 'var(--radius-button)' }}>
-                      <span className="text-2xl">{otherService.icon}</span>
-                    </div>
-                    
                     {/* Content */}
                     <h3 className="text-xl font-semibold text-text dark:text-light mb-3">
                       {otherService.title}
