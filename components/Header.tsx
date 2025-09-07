@@ -202,6 +202,14 @@ export default function Header({ content }: HeaderProps) {
     setMobileDropdownOpen(mobileDropdownOpen === itemId ? null : itemId)
   }
 
+  // Hilfsfunktion zum Hinzufügen von URL-Parametern zu Links
+  const addUrlParamsToHref = (href: string | null): string | null => {
+    if (!href || href.startsWith('#')) return href
+    
+    const currentParams = typeof window !== 'undefined' ? window.location.search : ''
+    return `${href}${currentParams}`
+  }
+
   // Navigation Items basierend auf Site-Mode
   const getNavItems = () => {
     if (siteMode === 'multipage') {
@@ -213,10 +221,10 @@ export default function Header({ content }: HeaderProps) {
           hasDropdown: true,
           isClickable: false,
           dropdownItems: [
-            { href: '/ueber-uns/team', label: 'Unser Team' },
-            { href: '/ueber-uns/betrieb', label: 'Unser Betrieb' },
-            { href: '/ueber-uns/partner', label: 'Partner & Zulieferer' },
-            { href: '/ueber-uns/zertifikate', label: 'Zertifikate & Auszeichnungen' }
+            { href: addUrlParamsToHref('/ueber-uns/team'), label: 'Unser Team' },
+            { href: addUrlParamsToHref('/ueber-uns/betrieb'), label: 'Unser Betrieb' },
+            { href: addUrlParamsToHref('/ueber-uns/partner'), label: 'Partner & Zulieferer' },
+            { href: addUrlParamsToHref('/ueber-uns/zertifikate'), label: 'Zertifikate & Auszeichnungen' }
           ]
         },
         { 
@@ -228,17 +236,16 @@ export default function Header({ content }: HeaderProps) {
           dropdownItems: content.services
             .filter((service: any) => service.slug)
             .map((service: any, index: number) => {
-              const currentParams = typeof window !== 'undefined' ? window.location.search : '';
               return {
-                href: `/services/${service.slug}${currentParams}`,
+                href: addUrlParamsToHref(`/services/${service.slug}`),
                 label: service.title,
                 icon: service.icon
               }
             })
         },
-        { href: '/referenzen', label: 'Referenzen', id: 'referenzen', isClickable: true },
-        { href: '/faq', label: 'FAQ', id: 'faq', isClickable: true },
-        { href: '/kontakt', label: 'Kontakt', id: 'kontakt', isClickable: true }
+        { href: addUrlParamsToHref('/referenzen'), label: 'Referenzen', id: 'referenzen', isClickable: true },
+        { href: addUrlParamsToHref('/faq'), label: 'FAQ', id: 'faq', isClickable: true },
+        { href: addUrlParamsToHref('/kontakt'), label: 'Kontakt', id: 'kontakt', isClickable: true }
       ]
     } else {
       return [
@@ -252,9 +259,8 @@ export default function Header({ content }: HeaderProps) {
           dropdownItems: content.services
             .filter((service: any) => service.slug)
             .map((service: any, index: number) => {
-              const currentParams = typeof window !== 'undefined' ? window.location.search : '';
               return {
-                href: `/services/${service.slug}${currentParams}`,
+                href: addUrlParamsToHref(`/services/${service.slug}`),
                 label: service.title,
                 icon: service.icon
               }
