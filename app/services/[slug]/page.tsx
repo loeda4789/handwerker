@@ -138,22 +138,7 @@ export default function ServicePage({ params }: ServicePageProps) {
     <main className="min-h-screen">
       <Header content={content} />
       
-      {/* Breadcrumb */}
-      <section className="py-4 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
-          <nav className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300">
-            <Link href="/" className="hover:text-primary transition-colors">
-              Startseite
-            </Link>
-            <span>/</span>
-            <Link href="/services" className="hover:text-primary transition-colors">
-              Leistungen
-            </Link>
-            <span>/</span>
-            <span className="text-primary font-medium">{service.title}</span>
-          </nav>
-        </div>
-      </section>
+     
 
       {/* Hero Section mit Service-Bild als Hintergrund */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
