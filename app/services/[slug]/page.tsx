@@ -278,10 +278,14 @@ export default function ServicePage({ params }: ServicePageProps) {
       <section className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Weitere Leistungen
+            <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 font-heading">
+              {designStyle === 'modern' ? (
+                <span className="heading-underline">Weitere Leistungen</span>
+              ) : (
+                'Weitere Leistungen'
+              )}
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
               Entdecken Sie unser vollständiges Leistungsspektrum
             </p>
           </div>
@@ -292,23 +296,86 @@ export default function ServicePage({ params }: ServicePageProps) {
               const otherServiceSlug = `leistung-${otherServiceIndex + 1}`
               
               return (
-                <div key={index} className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                  <div className="text-4xl mb-4">{otherService.icon}</div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    {otherService.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6">
-                    {otherService.description}
-                  </p>
-                  <Link
-                    href={`/services/${otherServiceSlug}`}
-                    className="inline-flex items-center text-primary hover:text-accent font-medium transition-colors"
-                  >
-                    Mehr erfahren
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                  </Link>
+                <div 
+                  key={index} 
+                  className="bg-surface dark:bg-dark overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 hover:scale-105 cursor-pointer animate-on-scroll"
+                  style={{ borderRadius: 'var(--radius-card)' }}
+                >
+                  {/* Service Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    {otherService.image ? (
+                      <Image
+                        src={otherService.image}
+                        alt={otherService.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        style={{ borderRadius: 'var(--radius-image)' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        quality={80}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                        <div className="text-center">
+                          <svg className="w-16 h-16 text-primary/60 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                          </svg>
+                          <p className="text-primary/60 font-medium">{otherService.title}</p>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Projects Counter Badge */}
+                    {otherService.projects && otherService.projects.length > 0 && (
+                      <div className="absolute top-4 right-4">
+                        <span className="text-white px-3 py-1 text-sm font-medium"
+                          style={{ 
+                            backgroundColor: 'var(--color-secondary)',
+                            borderRadius: 'var(--radius-button)' 
+                          }}>
+                          {otherService.projects.length} Projekt{otherService.projects.length !== 1 ? 'e' : ''}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center p-4">
+                        <svg className="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                        <p className="text-lg font-medium">Mehr erfahren</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Service Info */}
+                  <div className="p-6">
+                    {/* Icon */}
+                    <div className="text-primary dark:text-accent mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 p-3 bg-primary/10 dark:bg-accent/10 w-fit"
+                      style={{ borderRadius: 'var(--radius-button)' }}>
+                      <span className="text-2xl">{otherService.icon}</span>
+                    </div>
+                    
+                    {/* Content */}
+                    <h3 className="text-xl font-semibold text-text dark:text-light mb-3">
+                      {otherService.title}
+                    </h3>
+                    <p className="text-text-secondary dark:text-light/70 mb-4">
+                      {otherService.description}
+                    </p>
+                    
+                    {/* Link */}
+                    <Link
+                      href={`/services/${otherServiceSlug}`}
+                      className="inline-flex items-center text-primary hover:text-accent font-medium transition-colors group-hover:translate-x-1"
+                    >
+                      Mehr erfahren
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               )
             })}
@@ -317,14 +384,14 @@ export default function ServicePage({ params }: ServicePageProps) {
           <div className="text-center mt-12">
             <Link
               href="/services"
-                              className="inline-flex items-center px-6 py-3 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                style={{ backgroundColor: 'var(--color-secondary)' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
-                }}
+              className="inline-flex items-center px-6 py-3 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{ backgroundColor: 'var(--color-secondary)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+              }}
             >
               Alle Leistungen ansehen
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
