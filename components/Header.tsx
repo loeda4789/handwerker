@@ -521,28 +521,43 @@ export default function Header({ content }: HeaderProps) {
                         onMouseLeave={() => handleDropdownLeave(item.id)}
                       >
                         {item.dropdownItems?.map((dropdownItem, index) => (
-                              <Link
-                                key={index}
-                                href={dropdownItem.href}
-                            className={`${dropdownStyles.item}`}
-                            style={{
-                              '--tw-gradient-from': 'var(--color-primary)',
-                              '--tw-gradient-to': 'var(--color-secondary)',
-                            } as React.CSSProperties}
-                            onMouseEnter={(e) => {
-                              if (dropdownStyles.itemHoverStyle) {
-                                Object.assign(e.currentTarget.style, dropdownStyles.itemHoverStyle);
-                              }
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.removeProperty('background');
-                              e.currentTarget.style.removeProperty('color');
-                              e.currentTarget.style.removeProperty('background-color');
-                            }}
-                              >
-                            {dropdownItem.label}
-                              </Link>
-                            ))}
+                          dropdownItem.href ? (
+                            <Link
+                              key={index}
+                              href={dropdownItem.href}
+                              className={`${dropdownStyles.item}`}
+                              style={{
+                                '--tw-gradient-from': 'var(--color-primary)',
+                                '--tw-gradient-to': 'var(--color-secondary)',
+                              } as React.CSSProperties}
+                              onMouseEnter={(e) => {
+                                if (dropdownStyles.itemHoverStyle) {
+                                  Object.assign(e.currentTarget.style, dropdownStyles.itemHoverStyle);
+                                }
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.removeProperty('background');
+                                e.currentTarget.style.removeProperty('color');
+                                e.currentTarget.style.removeProperty('background-color');
+                              }}
+                            >
+                              {dropdownItem.icon && (
+                                <span className="mr-2 text-lg">{dropdownItem.icon}</span>
+                              )}
+                              {dropdownItem.label}
+                            </Link>
+                          ) : (
+                            <span
+                              key={index}
+                              className={`${dropdownStyles.item} cursor-default`}
+                            >
+                              {dropdownItem.icon && (
+                                <span className="mr-2 text-lg">{dropdownItem.icon}</span>
+                              )}
+                              {dropdownItem.label}
+                            </span>
+                          )
+                        ))}
                           </div>
                     )}
                       </div>
