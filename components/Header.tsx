@@ -252,11 +252,11 @@ export default function Header({ content }: HeaderProps) {
           hasDropdown: true,
           dropdownItems: content.services
             .filter((service: any) => service.slug)
-            .map((service: any, index: number) => ({
+            .map((service: any, index: number) => { const currentParams = typeof window !== " undefined\ ? window.location.search : \\; return {
               href: `/services/${service.slug}`,
               label: service.title,
               icon: service.icon
-            }))
+            }})
         },
         { href: '#projektablauf', label: 'Projektablauf', id: 'projektablauf', isClickable: true }
       ]
@@ -837,3 +837,4 @@ export default function Header({ content }: HeaderProps) {
     </>
   )
 } 
+
