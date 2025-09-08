@@ -204,9 +204,16 @@ export default function Header({ content }: HeaderProps) {
 
   // Hilfsfunktion zum Hinzufügen von URL-Parametern zu Links
   const addUrlParamsToHref = (href: string | null): string | null => {
-    if (!href || href.startsWith('#')) return href
+    if (!href) return href
     
     const currentParams = typeof window !== 'undefined' ? window.location.search : ''
+    
+    // Für Hash-Links: Zur Startseite mit Parametern und Hash
+    if (href.startsWith('#')) {
+      return `/${currentParams}${href}`
+    }
+    
+    // Für normale Links: Parameter anhängen
     return `${href}${currentParams}`
   }
 
