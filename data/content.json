@@ -1,284 +1,331 @@
 {
   "company": {
-    "name": "Mustermann Handwerk GmbH",
-    "tagline": "Ihr zuverlässiger Handwerks-Partner",
+    "name": "Mustermann Elektrotechnik GmbH",
+    "tagline": "Ihr zuverlässiger Elektro-Partner",
     "logo": "/images/logo.png"
   },
   "hero": {
-    "type": "single",
+    "title": "Kompetenz, die elektrisiert.",
+    "subtitle": "Professionelle Elektrotechnik mit Meisterqualit�t",
     "backgroundImages": {
-      "desktop": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop_alt.png",
-      "mobile": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile.png",
-      "desktopAlt": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop.png",
-      "mobileAlt": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile_alt.png"
+      "desktop": "/images/branchen/elektriker/hero/desktop/hero.jpg",
+      "mobile": "/images/branchen/elektriker/hero/mobile/hero.jpg",
+      "desktopAlt": "/images/branchen/elektriker/hero/desktop/hero.jpg",
+      "mobileAlt": "/images/branchen/elektriker/hero/mobile/hero.jpg"
     }
   },
   "about": {
     "title": "Über uns",
-    "text": "Wir sind Ihr verlässlicher Partner für professionelle Fliesenarbeiten in Rheine und Umgebung. Mit Meisterqualität, Präzision und jahrzehntelanger Erfahrung verwandeln wir Ihre Räume in wahre Schmuckstücke und schaffen Oberflächen, die Generationen überdauern.",
-    "image": "/images/branchen/fliesenleger/about/about_firma.png"
+    "text": "Wir sind Ihr verlässlicher Partner für professionelle Elektroarbeiten. Mit Meisterqualität, modernster Technik und jahrzehntelanger Erfahrung realisieren wir Ihre Elektroprojekte von der Planung bis zur Abnahme und schaffen sichere, zukunftsfähige Elektroanlagen.",
+    "image": "/images/branchen/elektriker/about/about.jpg"
   },
   "welcome": {
-    "headline": "Willkommen bei\nMustermann Handwerk GmbH",
-    "subline": "Meisterqualität für Ihre Fliesenprojekte",
+    "headline": "Willkommen bei\nMustermann Elektrotechnik GmbH",
+    "subline": "Meisterqualität für Ihre Elektroprojekte",
     "features": [
       {
         "icon": "✅",
-        "title": "Fliesenleger-Meisterbetrieb",
-        "text": "Zertifizierte Qualität und jahrelange Erfahrung in der Fliesenverlegung"
+        "title": "Elektromeister-Betrieb",
+        "text": "Zertifizierte Qualität und jahrzehntelange Erfahrung in der Elektrotechnik"
       },
       {
         "icon": "🏗️",
-        "title": "Komplettservice Fliesen",
-        "text": "Von der Fliesenberatung bis zur professionellen Verlegung"
+        "title": "Komplettservice Elektro",
+        "text": "Von der Hausinstallation bis zum Smart Home - alles aus einer Hand"
       },
       {
         "icon": "🛟",
-        "title": "24/7 Fliesen-Notdienst",
-        "text": "Schnelle Hilfe bei Fliesenschäden rund um die Uhr"
+        "title": "24/7 Elektro-Notdienst",
+        "text": "Schnelle Hilfe bei Stromausfall und Elektroproblemen rund um die Uhr"
       }
     ]
   },
   "projectProcess": {
-    "title": "So läuft ein Projekt bei uns ab",
-    "subtitle": "Von der ersten Idee bis zur finalen Abnahme - unser strukturierter Prozess garantiert optimale Ergebnisse.",
+    "title": "So läuft Ihr Elektroprojekt bei uns ab",
+    "subtitle": "Von der ersten Elektroplanung bis zur finalen Abnahme - unser bewährter Prozess garantiert sichere und normgerechte Elektroanlagen.",
     "steps": [
       {
         "number": 1,
-        "title": "Beratung & Terminvereinbarung",
-        "description": "Rufen Sie uns einfach an oder senden Sie uns eine Nachricht – wir vereinbaren mit Ihnen einen Termin und besprechen Ihr Vorhaben direkt vor Ort."
+        "title": "Elektroplanung & Beratung",
+        "description": "Wir analysieren Ihre Anforderungen und erstellen eine detaillierte Elektroplanung. Gemeinsam besprechen wir alle technischen Details und Sonderwünsche."
       },
       {
         "number": 2,
-        "title": "Individuelle Planung & Angebot",
-        "description": "Gemeinsam finden wir die optimale Lösung für Ihr Projekt. Mit unserer fachkundigen Beratung erstellen wir Ihnen ein maßgeschneidertes Angebot."
+        "title": "Angebot & Materialplanung",
+        "description": "Basierend auf der Planung erstellen wir ein transparentes Angebot mit hochwertigen Komponenten. Sie erhalten eine detaillierte Aufstellung aller Arbeiten."
       },
       {
         "number": 3,
-        "title": "Professionelle Umsetzung",
-        "description": "Von der ersten bis zur letzten Handbewegung – wir kümmern uns um eine saubere, termingerechte und reibungslose Umsetzung. Haben Sie Fragen? Wir sind jederzeit für Sie da!"
+        "title": "Fachgerechte Installation",
+        "description": "Unsere Elektromeister führen alle Arbeiten normgerecht und sicher aus. Nach Abschluss erfolgt die offizielle Abnahme und Dokumentation."
       }
     ]
   },
   "services": [
     {
-      "title": "Fliesenarbeiten Innen",
-      "icon": "🔲",
-      "description": "Präzise Verlegung von Wand- und Bodenfliesen in Küche, Bad und Wohnräumen – fachgerecht und langlebig.",
-      "image": "/images/branchen/fliesenleger/services/badezimmer/service_fliesenarbeiten_innen.png",
+      "title": "Elektroinstallation",
+      "icon": "⚡",
+      "description": "Komplette Elektroinstallationen für Neubau und Sanierung - von der Planung bis zur Abnahme nach aktuellen Normen.",
+      "image": "/images/branchen/elektriker/services/installation/elektroinstallationen.jpg",
+      "slug": "elektroinstallation",
+      "detailText": "Als erfahrener Elektromeister-Betrieb führen wir komplette Elektroinstallationen für Neubau und Sanierung durch. Von der ersten Planung über die fachgerechte Verlegung bis zur offiziellen Abnahme begleiten wir Ihr Projekt. Dabei arbeiten wir stets nach den aktuellen VDE-Normen und verwenden ausschließlich hochwertige Komponenten namhafter Hersteller. Unser Team aus qualifizierten Elektrikern sorgt für eine sichere, zukunftsfähige und normgerechte Elektroinstallation. Vertrauen Sie auf unsere jahrzehntelange Erfahrung und Meisterqualität.",
+      "gallery": [
+        "/images/branchen/elektriker/services/installation/elektroinstallationen.jpg",
+        "/images/branchen/elektriker/services/installation/einfamilienhaus.jpg",
+        "/images/branchen/elektriker/services/installation/einfamilienhaus2.jpg",
+        "/images/branchen/elektriker/services/installation/einfamilienhaus3.jpg",
+        "/images/branchen/elektriker/services/installation/einfamilienhaus4.jpg",
+        "/images/branchen/elektriker/services/installation/einfamilienhaus5.jpg"
+      ],
       "projects": [
         {
-          "title": "Moderne Küchenfliesen",
-          "image": "/images/portfolio/kitchen.jpg",
-          "description": "Präzise verlegte Wand- und Bodenfliesen für eine moderne Küche mit langlebiger Qualität"
+          "title": "Elektroinstallationen",
+          "image": "/images/branchen/elektriker/portfolio/elektroinstallationen.jpg",
+          "description": "Komplette Elektroinstallation mit moderner Hausverteilung und zukunftssicherer Verkabelung"
         },
         {
-          "title": "Wohnbereich Natursteinfliesen",
-          "image": "/images/portfolio/living-room.jpg",
-          "description": "Hochwertige Natursteinfliesen im Wohnbereich - elegant und pflegeleicht"
+          "title": "Photovoltaikanlage",
+          "image": "/images/branchen/elektriker/portfolio/PV.jpg",
+          "description": "Behutsame Elektro-Modernisierung mit Erhalt der Bausubstanz und modernen Standards"
         }
       ]
     },
     {
-      "title": "Badezimmer & Dusche", 
-      "icon": "🚿",
-      "description": "Komplettlösungen für moderne Bäder – von der Abdichtung bis zur Verlegung großformatiger Fliesen.",
-      "image": "/images/branchen/fliesenleger/services/badezimmer/service_badezimmer_dusche.png",
+      "title": "Smart Home",
+      "icon": "🏠",
+      "description": "Intelligente Haussteuerung für Komfort und Effizienz - von der Beleuchtung bis zur kompletten Gebäudeautomation.",
+      "image": "/images/branchen/elektriker/services/smarthome/smarthome.jpg",
+      "slug": "smart-home",
+      "detailText": "Machen Sie Ihr Zuhause intelligent! Wir sind spezialisiert auf KNX-Systeme und moderne Smart Home Lösungen. Von der intelligenten Beleuchtungssteuerung über automatische Beschattung bis hin zur kompletten Gebäudeautomation - wir realisieren Ihr smartes Zuhause. Unsere Systeme sind zukunftssicher, energieeffizient und lassen sich jederzeit erweitern. Erleben Sie den Komfort von Sprachsteuerung, App-Bedienung und automatischen Szenarien. Wir beraten Sie gerne zu den Möglichkeiten und erstellen ein individuelles Konzept für Ihr Smart Home.",
+      "gallery": [
+        "/images/branchen/elektriker/services/smarthome/smarthome.jpg"
+      ],
       "projects": [
         {
-          "title": "Luxusbadezimmer mit Großformat",
-          "image": "/images/portfolio/bathroom.jpg",
-          "description": "Komplettlösung mit großformatigen Fliesen, professioneller Abdichtung und modernem Design"
+          "title": "Smart Home System",
+          "image": "/images/branchen/elektriker/portfolio/smarthome.jpg",
+          "description": "Vollständige KNX-Installation mit Beleuchtung, Beschattung und Heizungssteuerung"
         }
       ]
     },
     {
-      "title": "Außenbereiche",
-      "icon": "🌞", 
-      "description": "Rutschfeste und wetterfeste Fliesen für Terrassen, Balkone und Außentreppen – funktional und stilvoll.",
-      "image": "/images/branchen/fliesenleger/services/aussenbereiche/service_aussenbereiche_terrasse.png",
+      "title": "Photovoltaik & Solar",
+      "icon": "☀️",
+      "description": "Planung und Installation von Photovoltaikanlagen und Batteriespeichern für nachhaltige Energieversorgung.",
+      "image": "/images/branchen/elektriker/services/photovoltaik/PV.jpg",
+      "slug": "photovoltaik",
+      "detailText": "Investieren Sie in die Zukunft mit einer modernen Photovoltaikanlage! Wir planen und installieren maßgeschneiderte PV-Anlagen für Ihr Eigenheim oder Gewerbe. Von der Dachanalyse über die optimale Modulausrichtung bis zur Netzeinspeisung übernehmen wir alle Schritte. Zusätzlich bieten wir Batteriespeicher und Wallboxen für E-Fahrzeuge an. Profitieren Sie von staatlichen Förderungen, reduzierten Stromkosten und einem wertvollen Beitrag zum Klimaschutz. Unsere Anlagen sind wartungsarm und haben eine Lebensdauer von über 25 Jahren.",
+      "gallery": [
+        "/images/branchen/elektriker/services/photovoltaik/PV.jpg",
+        "/images/branchen/elektriker/services/photovoltaik/PV2.jpg",
+        "/images/branchen/elektriker/services/photovoltaik/wallbox.jpg",
+        "/images/branchen/elektriker/services/photovoltaik/wallbox2.jpg"
+      ],
       "projects": [
         {
-          "title": "Dachterrasse mit Feinsteinzeug",
-          "image": "/images/portfolio/attic.jpg",
-          "description": "Rutschfeste Feinsteinzeugfliesen für eine stilvolle und wetterfeste Dachterrasse"
+          "title": "PV-Anlage mit Speicher",
+          "image": "/images/branchen/elektriker/portfolio/PV.jpg",
+          "description": "10 kWp Photovoltaikanlage mit 15 kWh Batteriespeicher für maximale Eigenverbrauchsoptimierung"
         }
       ]
     },
     {
-      "title": "Fugen & Reparatur",
-      "icon": "🔧",
-      "description": "Erneuerung von Fugen, Austausch beschädigter Fliesen oder Ausbesserung bei Feuchtigkeit – schnell & professionell.",
-      "image": "/images/branchen/fliesenleger/services/reparaturen/service_fugen_reparatur.png",
+      "title": "Beleuchtung & LED",
+      "icon": "💡",
+      "description": "Moderne LED-Beleuchtungskonzepte für Innen und Außen - energieeffizient und stimmungsvoll.",
+      "image": "/images/branchen/elektriker/services/beleuchtung/led.jpg",
+      "slug": "beleuchtung",
+      "detailText": "Licht schafft Atmosphäre! Wir entwickeln moderne LED-Beleuchtungskonzepte für Ihr Zuhause oder Unternehmen. Von der Grundbeleuchtung über Akzentlicht bis hin zu stimmungsvollen Lichtszenen - wir setzen Ihre Räume perfekt in Szene. Unsere LED-Lösungen sind energieeffizient, langlebig und bieten unendliche Gestaltungsmöglichkeiten. Mit intelligenten Dimmern und Farbsteuerung schaffen wir das perfekte Ambiente für jeden Anlass. Profitieren Sie von bis zu 90% Energieeinsparung gegenüber herkömmlichen Leuchtmitteln.",
+      "gallery": [
+        "/images/branchen/elektriker/services/beleuchtung/led.jpg"
+      ],
       "projects": [
         {
-          "title": "Terrasse Fliesenerneuerung",
-          "image": "/images/portfolio/terrace.jpg",
-          "description": "Fachgerechte Sanierung mit Fugenerneuerung und Austausch beschädigter Terrassenfliesen"
+          "title": "LED-Beleuchtungskonzept",
+          "image": "/images/branchen/elektriker/portfolio/beleuchtung.jpg",
+          "description": "Durchgängiges LED-Beleuchtungskonzept mit Dimmfunktion und Farbsteuerung"
         }
       ]
     },
     {
-      "title": "Mosaik & Design",
-      "icon": "✨", 
-      "description": "Kreative Akzente mit Mosaiken, Bordüren oder individuellen Verlegemustern – für besondere Highlights.",
-      "image": "/images/branchen/fliesenleger/services/mosaik/service_mosaik_design.png",
+      "title": "Elektro-Notdienst",
+      "icon": "🚨",
+      "description": "Schnelle Hilfe bei Stromausfall, defekten Sicherungen und allen Elektro-Notfällen - 24/7 verfügbar.",
+      "image": "/images/branchen/elektriker/services/notdienst/notdienst.jpg",
+      "slug": "notdienst",
+      "detailText": "Stromausfall? Defekte Sicherung? Kein Problem! Unser 24/7 Elektro-Notdienst ist rund um die Uhr für Sie da. Innerhalb kürzester Zeit sind unsere erfahrenen Elektriker vor Ort und beheben das Problem schnell und zuverlässig. Ob private Haushalte oder Gewerbebetriebe - wir minimieren Ihre Ausfallzeiten und sorgen für sichere Elektroinstallationen. Unser Notdienst-Team ist vollständig ausgerüstet und kann die meisten Probleme sofort lösen. Vertrauen Sie auf unsere Expertise in kritischen Situationen.",
+      "gallery": [
+        "/images/branchen/elektriker/services/notdienst/notdienst.jpg"
+      ],
       "projects": [
         {
-          "title": "Mosaikakzente im Büro",
-          "image": "/images/portfolio/office.jpg",
-          "description": "Kreative Mosaik-Highlights und individuelle Verlegemuster für moderne Büroräume"
+          "title": "Störungsbehebung Gewerbe",
+          "image": "/images/branchen/elektriker/portfolio/notdienst.jpg",
+          "description": "Schnelle Reparatur eines Hauptverteilers nach Überspannung mit minimaler Ausfallzeit"
         }
       ]
     }
   ],
   "team": [
     {
-      "name": "Max Mustermann",
+      "name": "Thomas Mustermann",
       "position": "Geschäftsführer",
-      "photo": "/images/branchen/fliesenleger/team/person1.png",
-      "specialization": "Projektleitung & Fliesenberatung"
+      "photo": "/images/team/person1.png",
+      "specialization": "Elektroplanung & Projektleitung"
     },
     {
-      "name": "Anna Schmidt",
-      "position": "Büro",
+      "name": "Andreas Voltmann",
+      "position": "Elektromeister",
       "photo": "/images/team/person2.png",
-      "specialization": "Badezimmer & Sanitärfliesen"
+      "specialization": "Hausinstallation & Industrieanlagen"
     },
     {
-      "name": "Tim Weber",
-      "position": "Fliesenleger",
+      "name": "Stefan Smartberg",
+      "position": "Elektrotechniker",
       "photo": "/images/team/person3.png",
-      "specialization": "Großformatfliesen & Naturstein"
+      "specialization": "Smart Home & KNX-Systeme"
     },
     {
-      "name": "Lisa Müller",
-      "position": "Fachkraft",
+      "name": "Marina Kabel",
+      "position": "Büroleiterin",
       "photo": "/images/team/person4.png",
-      "specialization": "Mosaik & kreative Fliesenverlegung"
+      "specialization": "Projektkoordination & Terminplanung"
     },
     {
-      "name": "Markus Fischer",
-      "position": "Fliesenleger",
+      "name": "Michael Photon",
+      "position": "Elektrotechniker",
       "photo": "/images/team/person5.png",
-      "specialization": "Fliesen & Naturstein"
+      "specialization": "Photovoltaik & Energietechnik"
     },
     {
-      "name": "Sandra Koch",
-      "position": "Innenraum",
+      "name": "Laura Leuchtmann",
+      "position": "Elektrikerin",
       "photo": "/images/team/person6.png",
-      "specialization": "Fliesenauswahl & Terminplanung"
+      "specialization": "LED-Technik & Beleuchtung"
     },
     {
-      "name": "Michael Braun",
-      "position": "Fliesenleger",
+      "name": "Peter Schaltschrank",
+      "position": "Elektriker",
       "photo": "/images/team/person7.png",
-      "specialization": "Terrassen & Außenfliesen"
+      "specialization": "Schaltanlagenbau & Reparaturen"
     },
     {
-      "name": "Julia Hoffmann",
-      "position": "Azubi",
+      "name": "Jana Azubi",
+      "position": "Auszubildende",
       "photo": "/images/team/person8.png",
-      "specialization": "Fliesenverlegung & Fugenarbeiten"
+      "specialization": "Elektroinstallation & Grundlagen"
     }
   ],
   "portfolio": {
-    "title": "Unsere Referenzen",
-    "subtitle": "Überzeugen Sie sich von der Qualität unserer Fliesenarbeiten",
+    "title": "Unsere Elektro-Referenzen",
+    "subtitle": "Überzeugen Sie sich von der Qualität unserer Elektroarbeiten",
     "projects": [
       {
-        "title": "Moderne Küchenfliesen",
-        "category": "Fliesenarbeiten Innen",
-        "image": "/images/portfolio/kitchen.jpg",
-        "description": "Präzise verlegte Wand- und Bodenfliesen für eine moderne Küche mit langlebiger Qualität"
+        "title": "Elektroinstallationen",
+        "category": "Photovoltaik & Solar",
+        "image": "/images/branchen/elektriker/portfolio/elektroinstallationen.jpg",
+        "description": "Komplette Elektroinstallation mit moderner Hausverteilung und zukunftssicherer Verkabelung"
       },
       {
-        "title": "Luxusbadezimmer mit Großformat",
-        "category": "Badezimmer & Dusche",
-        "image": "/images/portfolio/bathroom.jpg",
-        "description": "Komplettlösung mit großformatigen Fliesen, professioneller Abdichtung und modernem Design"
+        "title": "Smart Home System",
+        "category": "Smart Home",
+        "image": "/images/branchen/elektriker/portfolio/smarthome.jpg",
+        "description": "Vollständige KNX-Installation mit Beleuchtung, Beschattung und Heizungssteuerung"
       },
       {
-        "title": "Wohnbereich Natursteinfliesen",
-        "category": "Fliesenarbeiten Innen",
-        "image": "/images/portfolio/living-room.jpg",
-        "description": "Hochwertige Natursteinfliesen im Wohnbereich - elegant und pflegeleicht"
+        "title": "Photovoltaikanlage",
+        "category": "Photovoltaik & Solar",
+        "image": "/images/branchen/elektriker/portfolio/PV.jpg",
+        "description": "Behutsame Elektro-Modernisierung mit Erhalt der Bausubstanz und modernen Standards"
       },
       {
-        "title": "Mosaikakzente im Büro",
-        "category": "Mosaik & Design",
-        "image": "/images/portfolio/office.jpg",
-        "description": "Kreative Mosaik-Highlights und individuelle Verlegemuster für moderne Büroräume"
+        "title": "LED-Beleuchtungskonzept",
+        "category": "Beleuchtung & LED",
+        "image": "/images/branchen/elektriker/portfolio/beleuchtung.jpg",
+        "description": "Durchgängiges LED-Beleuchtungskonzept mit Dimmfunktion und Farbsteuerung"
       },
       {
-        "title": "Dachterrasse mit Feinsteinzeug",
-        "category": "Außenbereiche",
-        "image": "/images/portfolio/attic.jpg",
-        "description": "Rutschfeste Feinsteinzeugfliesen für eine stilvolle und wetterfeste Dachterrasse"
+        "title": "PV-Anlage mit Speicher",
+        "category": "Photovoltaik & Solar",
+        "image": "/images/branchen/elektriker/portfolio/PV.jpg",
+        "description": "10 kWp Photovoltaikanlage mit 15 kWh Batteriespeicher für maximale Eigenverbrauchsoptimierung"
       },
       {
-        "title": "Terrasse Fliesenerneuerung",
-        "category": "Fugen & Reparatur",
-        "image": "/images/portfolio/terrace.jpg",
-        "description": "Fachgerechte Sanierung mit Fugenerneuerung und Austausch beschädigter Terrassenfliesen"
+        "title": "Störungsbehebung Gewerbe",
+        "category": "Elektro-Notdienst",
+        "image": "/images/branchen/elektriker/portfolio/notdienst.jpg",
+        "description": "Schnelle Reparatur eines Hauptverteilers nach Überspannung mit minimaler Ausfallzeit"
       }
     ]
   },
-  "beforeAfter": [
+  "faq": [
     {
-      "title": "Badezimmer Fliesenerneuerung",
-      "category": "Badezimmer & Dusche",
-      "beforeImage": "/images/branchen/fliesenleger/before-after/badezimmer_vorher.png",
-      "afterImage": "/images/branchen/fliesenleger/before-after/badezimmer_nachher.png",
-      "description": "Transformation eines veralteten Badezimmers mit neuen großformatigen Fliesen und professioneller Abdichtung."
+      "question": "Wie lange dauert eine komplette Elektroinstallation?",
+      "answer": "Eine komplette Elektroinstallation für ein Einfamilienhaus dauert je nach Größe und Komplexität zwischen 3-7 Werktage. Wir erstellen Ihnen gerne einen detaillierten Zeitplan."
+    },
+    {
+      "question": "Bieten Sie auch 24/7 Notdienst an?",
+      "answer": "Ja, unser Elektro-Notdienst ist rund um die Uhr für Sie da. Bei Stromausfällen oder anderen Elektro-Notfällen erreichen Sie uns unter unserer Notfall-Hotline."
+    },
+    {
+      "question": "Was kostet eine Photovoltaikanlage?",
+      "answer": "Die Kosten für eine Photovoltaikanlage hängen von der Größe und Ausstattung ab. Eine 10 kWp Anlage kostet etwa 15.000-20.000€. Wir erstellen Ihnen gerne ein individuelles Angebot."
+    },
+    {
+      "question": "Installieren Sie auch Smart Home Systeme?",
+      "answer": "Ja, wir sind spezialisiert auf KNX-Systeme und andere Smart Home Lösungen. Von der Beleuchtung bis zur kompletten Gebäudeautomation - wir machen Ihr Zuhause intelligent."
+    },
+    {
+      "question": "Welche Garantie geben Sie auf Ihre Arbeiten?",
+      "answer": "Wir geben 2 Jahre Garantie auf alle unsere Elektroarbeiten. Bei Photovoltaikanlagen bieten wir bis zu 25 Jahre Leistungsgarantie auf die Module."
     }
   ],
   "testimonials": [
     {
-      "name": "Familie Müller",
-      "text": "Wir sind absolut begeistert von der Arbeit von Mustermann Handwerk! Unser Badezimmer wurde mit großformatigen Feinsteinzeugfliesen neu gestaltet. Die millimetergenaue Verlegung und professionelle Abdichtung haben uns besonders beeindruckt. Ein wahres Meisterwerk - absolute Empfehlung!"
+      "name": "Familie Neumann",
+      "text": "Mustermann Elektrotechnik hat unser ganzes Haus neu verkabelt und ein Smart Home System installiert. Von der Planung bis zur Umsetzung war alles perfekt! Das KNX-System funktioniert einwandfrei und spart uns viel Energie."
     },
     {
-      "name": "Klaus Bauer, Architekt",
-      "text": "Als Architekt schätze ich außergewöhnliche Fachkompetenz. Die technisch anspruchsvolle Verlegung unserer Natursteinfliesen mit komplexen Verlegemustern war perfekt umgesetzt. Termintreue, Präzision und faire Preise - gerne wieder!"
+      "name": "Architekt Dipl.-Ing. Weber",
+      "text": "Als Architekt arbeite ich regelmäßig mit verschiedenen Elektrikern zusammen. Mustermann Elektrotechnik überzeugt durch außergewöhnliche Fachkompetenz bei komplexen Installationen. Die Einhaltung von Terminen und Normen ist beispielhaft."
     },
     {
-      "name": "Sarah Klein, Innenarchitektin",
-      "text": "Für mein eigenes Zuhause habe ich bewusst Mustermann Handwerk gewählt. Die kreative Umsetzung meiner Mosaikideen in der Küche war handwerklich perfekt. Die Kombination aus Wandfliesen und Mosaikakzenten ist ein echtes Kunstwerk geworden!"
+      "name": "Gewerbekunde Auto Meyer",
+      "text": "Für unsere Autowerkstatt war der 24/7 Notdienst von Mustermann Elektrotechnik ein Lebensretter. Nach einem Stromausfall waren sie innerhalb einer Stunde da und haben alles wieder zum Laufen gebracht. Absolut zuverlässig!"
     }
   ],
   "socials": {
-    "facebook": "https://facebook.com/mustermann-handwerk",
-    "instagram": "https://instagram.com/mustermann_handwerk",
+    "facebook": "https://facebook.com/mustermann-elektrotechnik",
+    "instagram": "https://instagram.com/mustermann_elektrotechnik",
     "youtube": null,
     "tiktok": null,
     "linkedin": null
   },
   "reviews": {
-    "google": "https://www.google.com/maps/place/?q=place_id:EXAMPLE"
+    "google": "https://www.google.com/maps/place/?q=place_id:EXAMPLE_ELEKTROTECHNIK"
   },
   "stats": {
-    "projectsCompleted": 500,
-    "happyClients": 450,
-    "yearsExperience": 20,
+    "projectsCompleted": 1200,
+    "happyClients": 980,
+    "yearsExperience": 28,
     "teamSize": 8,
-    "projectsPerYear": 150,
-    "starRating": 4.7,
+    "projectsPerYear": 200,
+    "starRating": 4.8,
     "customStats": [
       {
-        "number": 20,
+        "number": 28,
         "label": "Jahre Erfahrung",
         "suffix": "",
         "duration": 2000
       },
       {
-        "number": 150,
+        "number": 200,
         "label": "Projekte pro Jahr",
         "suffix": "",
         "duration": 2500
       },
       {
-        "number": 4.7,
+        "number": 4.8,
         "label": "Sterne Bewertung",
         "suffix": "",
         "duration": 1800,
@@ -287,9 +334,9 @@
     ]
   },
   "contact": {
-    "address": "Aloysiusstr. 144, 48429 Rheine",
+    "address": "Elektrostraße 15, 48429 Rheine",
     "phone": "+49 123 456 789",
-    "email": "info@mustermann-handwerk.de",
+    "email": "info@mustermann-elektrotechnik.de",
     "openingHours": "Mo-Fr: 7:00-17:00 Uhr, Sa: 8:00-12:00 Uhr"
   },
   "meta": {
