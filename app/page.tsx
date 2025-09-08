@@ -255,6 +255,35 @@ export default function HomePage() {
     console.log('Current siteMode:', siteMode)
   }, [siteMode])
 
+  // Hash-Handling für automatisches Scrollen zu Sektionen
+  useEffect(() => {
+    const handleHashScroll = () => {
+      const hash = window.location.hash
+      if (hash) {
+        // Warten bis die Seite vollständig geladen ist
+        setTimeout(() => {
+          const element = document.getElementById(hash.substring(1))
+          if (element) {
+            element.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+            })
+          }
+        }, 500)
+      }
+    }
+
+    // Bei initialem Laden
+    handleHashScroll()
+
+    // Bei Hash-Änderungen (z.B. durch Navigation)
+    window.addEventListener('hashchange', handleHashScroll)
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashScroll)
+    }
+  }, [])
+
   // Schemas beim initialen Laden anwenden
   useEffect(() => {
     // Gespeicherte Einstellungen beim Laden anwenden
