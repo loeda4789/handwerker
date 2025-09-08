@@ -511,17 +511,32 @@ export default function Header({ content }: HeaderProps) {
                         onMouseEnter={() => handleDropdownEnter(item.id)}
                         onMouseLeave={() => handleDropdownLeave(item.id)}
                       >
-                    <button 
-                      className={`${headerStyles.textColor} relative font-medium transition-all duration-300 flex items-center uppercase group hover:scale-105`}
-                        >
-                          <span className="relative">
-                            {item.label}
-                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full" style={{ backgroundColor: 'var(--color-primary)' }}></span>
-                          </span>
-                          <svg className="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                          </svg>
-                    </button>
+                    {item.isClickable && item.href ? (
+                      <Link
+                        href={item.href}
+                        className={`${headerStyles.textColor} relative font-medium transition-all duration-300 flex items-center uppercase group hover:scale-105`}
+                      >
+                        <span className="relative">
+                          {item.label}
+                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full" style={{ backgroundColor: 'var(--color-primary)' }}></span>
+                        </span>
+                        <svg className="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </Link>
+                    ) : (
+                      <button 
+                        className={`${headerStyles.textColor} relative font-medium transition-all duration-300 flex items-center uppercase group hover:scale-105`}
+                      >
+                        <span className="relative">
+                          {item.label}
+                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full" style={{ backgroundColor: 'var(--color-primary)' }}></span>
+                        </span>
+                        <svg className="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </button>
+                    )}
                         
                     {dropdownOpen === item.id && (
                       <div 
