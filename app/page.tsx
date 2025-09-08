@@ -255,13 +255,16 @@ export default function HomePage() {
     console.log('Current siteMode:', siteMode)
   }, [siteMode])
 
-  // Hash-Handling für automatisches Scrollen zu Sektionen (nur im One-Page Modus)
+  // Hash-Handling für automatisches Scrollen zu Sektionen (nur auf der Startseite im One-Page Modus)
   useEffect(() => {
     if (siteMode !== 'onepage') return
+    
+    // Nur auf der Startseite ausführen
+    if (window.location.pathname !== '/') return
 
     const handleHashScroll = () => {
       const hash = window.location.hash
-      console.log('Hash detected:', hash, 'SiteMode:', siteMode)
+      console.log('Hash detected on homepage:', hash, 'SiteMode:', siteMode)
       if (hash) {
         const targetId = hash.substring(1)
         console.log('Looking for element with ID:', targetId)
