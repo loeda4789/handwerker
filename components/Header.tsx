@@ -119,7 +119,7 @@ export default function Header({ content }: HeaderProps) {
     if (siteMode !== 'onepage') return
 
     const handleScroll = () => {
-      const sections = ['ueber-uns', 'leistungen', 'team', 'projektablauf']
+      const sections = ['ueber-uns', 'leistungen', 'projektablauf']
       const scrollPosition = window.scrollY + 100
 
       for (const sectionId of sections) {
@@ -266,7 +266,6 @@ export default function Header({ content }: HeaderProps) {
               }
             })
         },
-        { href: '#team', label: 'Team', id: 'team', isClickable: true },
         { href: '#projektablauf', label: 'Projektablauf', id: 'projektablauf', isClickable: true }
       ]
     }
