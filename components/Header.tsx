@@ -266,6 +266,7 @@ export default function Header({ content }: HeaderProps) {
               }
             })
         },
+        { href: '#team', label: 'Team', id: 'team', isClickable: true },
         { href: '#projektablauf', label: 'Projektablauf', id: 'projektablauf', isClickable: true }
       ]
     }
