@@ -210,7 +210,9 @@ export default function Header({ content }: HeaderProps) {
     
     // Für Hash-Links: Zur Startseite mit Parametern und Hash
     if (href.startsWith('#')) {
-      return `/${currentParams}${href}`
+      const result = `/${currentParams}${href}`
+      console.log('Hash link generated:', result)
+      return result
     }
     
     // Für normale Links: Parameter anhängen
