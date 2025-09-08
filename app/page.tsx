@@ -255,21 +255,31 @@ export default function HomePage() {
     console.log('Current siteMode:', siteMode)
   }, [siteMode])
 
-  // Hash-Handling für automatisches Scrollen zu Sektionen
+  // Hash-Handling für automatisches Scrollen zu Sektionen (nur im One-Page Modus)
   useEffect(() => {
+    if (siteMode !== 'onepage') return
+
     const handleHashScroll = () => {
       const hash = window.location.hash
+      console.log('Hash detected:', hash, 'SiteMode:', siteMode)
       if (hash) {
+        const targetId = hash.substring(1)
+        console.log('Looking for element with ID:', targetId)
+        
         // Warten bis die Seite vollständig geladen ist
         setTimeout(() => {
-          const element = document.getElementById(hash.substring(1))
+          const element = document.getElementById(targetId)
+          console.log('Element found:', element)
           if (element) {
+            console.log('Scrolling to element:', targetId)
             element.scrollIntoView({ 
               behavior: 'smooth',
               block: 'start'
             })
+          } else {
+            console.log('Element not found:', targetId)
           }
-        }, 500)
+        }, 1000) // Längere Wartezeit für One-Page Modus
       }
     }
 
@@ -282,7 +292,7 @@ export default function HomePage() {
     return () => {
       window.removeEventListener('hashchange', handleHashScroll)
     }
-  }, [])
+  }, [siteMode]) // Abhängig von siteMode
 
   // Schemas beim initialen Laden anwenden
   useEffect(() => {
