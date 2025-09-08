@@ -222,11 +222,11 @@ export default function Header({ content }: HeaderProps) {
     if (siteMode === 'multipage') {
       return [
         { 
-          href: null, 
+          href: addUrlParamsToHref('#ueber-uns'), 
           label: 'Über uns', 
           id: 'ueber-uns',
           hasDropdown: true,
-          isClickable: false,
+          isClickable: true,
           dropdownItems: [
             { href: addUrlParamsToHref('/ueber-uns/team'), label: 'Unser Team' },
             { href: addUrlParamsToHref('/ueber-uns/betrieb'), label: 'Unser Betrieb' },
@@ -250,6 +250,7 @@ export default function Header({ content }: HeaderProps) {
               }
             })
         },
+        { href: addUrlParamsToHref('#projektablauf'), label: 'Projektablauf', id: 'projektablauf', isClickable: true },
         { href: addUrlParamsToHref('/referenzen'), label: 'Referenzen', id: 'referenzen', isClickable: true },
         { href: addUrlParamsToHref('/faq'), label: 'FAQ', id: 'faq', isClickable: true },
         { href: addUrlParamsToHref('/kontakt'), label: 'Kontakt', id: 'kontakt', isClickable: true }
