@@ -164,11 +164,14 @@ export default function Header({ content }: HeaderProps) {
 
   // Smooth scrolling (nur für One-Page Modus)
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    console.log('handleSmoothScroll called:', targetId, 'siteMode:', siteMode)
     if (siteMode !== 'onepage') return
     
     e.preventDefault()
     const element = document.getElementById(targetId)
+    console.log('Element found for smooth scroll:', element)
     if (element) {
+      console.log('Scrolling to element:', targetId)
       element.scrollIntoView({ 
         behavior: 'smooth',
         block: 'start'
