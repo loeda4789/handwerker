@@ -210,12 +210,20 @@ export default function Header({ content }: HeaderProps) {
     if (!href) return href
     
     const currentParams = typeof window !== 'undefined' ? window.location.search : ''
+    const isOnHomepage = typeof window !== 'undefined' ? window.location.pathname === '/' : true
     
-    // Für Hash-Links: Zur Startseite mit Parametern und Hash
+    // Für Hash-Links: Intelligente Navigation basierend auf aktueller Seite
     if (href.startsWith('#')) {
-      const result = `/${currentParams}${href}`
-      console.log('Hash link generated:', result)
-      return result
+      if (isOnHomepage) {
+        // Auf der Startseite: Direkter Hash-Link für Smooth Scrolling
+        console.log('On homepage - using direct hash link:', href)
+        return href
+      } else {
+        // Auf Unterseiten: Zur Startseite mit Parametern und Hash
+        const result = `/${currentParams}${href}`
+        console.log('On subpage - navigating to homepage with hash:', result)
+        return result
+      }
     }
     
     // Für normale Links: Parameter anhängen
