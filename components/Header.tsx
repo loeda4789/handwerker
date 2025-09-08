@@ -541,7 +541,7 @@ export default function Header({ content }: HeaderProps) {
                                 e.currentTarget.style.removeProperty('background-color');
                               }}
                             >
-                              {dropdownItem.icon && (
+                              {'icon' in dropdownItem && dropdownItem.icon && (
                                 <span className="mr-2 text-lg">{dropdownItem.icon}</span>
                               )}
                               {dropdownItem.label}
@@ -551,7 +551,7 @@ export default function Header({ content }: HeaderProps) {
                               key={index}
                               className={`${dropdownStyles.item} cursor-default`}
                             >
-                              {dropdownItem.icon && (
+                              {'icon' in dropdownItem && dropdownItem.icon && (
                                 <span className="mr-2 text-lg">{dropdownItem.icon}</span>
                               )}
                               {dropdownItem.label}
