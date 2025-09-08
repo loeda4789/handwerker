@@ -515,6 +515,7 @@ export default function Header({ content }: HeaderProps) {
                       <Link
                         href={item.href}
                         className={`${headerStyles.textColor} relative font-medium transition-all duration-300 flex items-center uppercase group hover:scale-105`}
+                        onClick={() => console.log('Link clicked:', item.label, item.href)}
                       >
                         <span className="relative">
                           {item.label}
