@@ -786,6 +786,7 @@ export default function Header({ content }: HeaderProps) {
                       {mobileDropdownOpen === item.id && (
                         <div className="ml-4 mt-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
                           {item.dropdownItems?.map((dropdownItem, subIndex) => (
+                            dropdownItem.href ? (
                             <Link
                               key={subIndex}
                               href={dropdownItem.href}
@@ -801,6 +802,7 @@ export default function Header({ content }: HeaderProps) {
                                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
                               </span>
                             </Link>
+                            ) : null
                           ))}
                         </div>
                       )}
