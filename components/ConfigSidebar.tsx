@@ -150,12 +150,13 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       <div className={`
         fixed top-0 right-0 h-full w-full max-w-sm bg-white 
         shadow-xl z-50 transform transition-transform duration-300 ease-in-out
+        flex flex-col
         ${isOpen ? 'translate-x-0' : 'translate-x-full'}
         ${isMobile ? 'w-full max-w-sm' : 'w-80'}
       `}
       style={{ borderRadius: '0px' }}>
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-100">
+        <div className="flex items-center justify-between p-6 border-b border-gray-100 flex-shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-gray-900 flex items-center justify-center" style={{ borderRadius: '8px' }}>
               <MdSettings className="w-5 h-5 text-white" />
