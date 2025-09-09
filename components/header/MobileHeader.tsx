@@ -137,8 +137,17 @@ export default function MobileHeader({
           <Link
             href="#kontakt"
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
-            className="block w-full py-4 px-8 bg-orange-500 text-white font-bold text-lg uppercase rounded-lg hover:bg-orange-600 transition-colors duration-300 text-center"
-            style={{ borderRadius: 'var(--radius-button)' }}
+            className="block w-full py-4 px-8 text-white font-bold text-lg uppercase rounded-lg transition-colors duration-300 text-center"
+            style={{ 
+              backgroundColor: 'var(--color-primary)',
+              borderRadius: 'var(--radius-button)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+            }}
           >
             Jetzt anfragen
           </Link>
