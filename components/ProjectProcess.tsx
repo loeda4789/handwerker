@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { ContentData } from '@/types/content'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
+import { useLayoutConfig } from '@/contexts/AppConfigContext'
 
 interface ProjectProcessProps {
   content: ContentData
@@ -18,25 +19,8 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
   const timelineRef = useRef<HTMLDivElement>(null)
   const [visibleSteps, setVisibleSteps] = useState<number[]>([])
   
-  // Design-Style aus localStorage abrufen
-  const [designStyle, setDesignStyle] = useState<string>('angular')
-  
-  useEffect(() => {
-    const savedDesignStyle = localStorage.getItem('design-style')
-    if (savedDesignStyle) {
-      setDesignStyle(savedDesignStyle)
-    }
-    
-    const handleDesignStyleChange = () => {
-      const newDesignStyle = localStorage.getItem('design-style')
-      if (newDesignStyle) {
-        setDesignStyle(newDesignStyle)
-      }
-    }
-    
-    window.addEventListener('storage', handleDesignStyleChange)
-    return () => window.removeEventListener('storage', handleDesignStyleChange)
-  }, [])
+  // Design-Style aus AppConfigContext
+  const { design: designStyle } = useLayoutConfig()
   
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
