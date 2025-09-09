@@ -16,7 +16,6 @@ import Testimonials from '@/components/Testimonials'
 import ProjectProcess from '@/components/ProjectProcess'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
-import EmergencyContact from '@/components/EmergencyContact'
 import SideContact from '@/components/SideContact'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
@@ -534,10 +533,6 @@ export default function HomePage() {
         
 
         
-        {/* Unauffälliger Notruf - immer verfügbar */}
-        <EmergencyContact 
-          phoneNumber={content.contact.phone}
-        />
       </div>
 
       {/* Desktop Side Contact - Global außerhalb des Containers */}
