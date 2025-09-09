@@ -437,17 +437,64 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={pkg.id}
                   onClick={() => {
-                    const newConfig = applyStylePackage(config, pkg.id)
-                    // Apply all changes from the style package
-                    setSiteMode(newConfig.layout.mode)
-                    setColorScheme(newConfig.theme.colorScheme)
-                    setHeadingUnderline(newConfig.headings.underline)
-                    setHeadingStyle(newConfig.headings.style)
-                    setHeadingColor(newConfig.headings.color)
-                    setStylePackage(pkg.id)
-                    setFontFamily(newConfig.style.fontFamily)
-                    setBadgeStyle(newConfig.style.badgeStyle)
-                    setSpacing(newConfig.style.spacing)
+                    console.log('=== STYLE PACKAGE CLICKED ===')
+                    console.log('Package ID:', pkg.id)
+                    
+                    // Direct application without complex merging
+                    if (pkg.id === 'modern') {
+                      setSiteMode('onepage')
+                      setColorScheme('warm')
+                      setHeadingUnderline(true)
+                      setHeadingStyle('gradient')
+                      setHeadingColor('primary')
+                      setStylePackage('modern')
+                      setFontFamily('sans')
+                      setBadgeStyle('rounded')
+                      setSpacing('comfortable')
+                    } else if (pkg.id === 'elegant') {
+                      setSiteMode('onepage')
+                      setColorScheme('elegant')
+                      setHeadingUnderline(true)
+                      setHeadingStyle('solid')
+                      setHeadingColor('secondary')
+                      setStylePackage('elegant')
+                      setFontFamily('serif')
+                      setBadgeStyle('minimal')
+                      setSpacing('spacious')
+                    } else if (pkg.id === 'professional') {
+                      setSiteMode('onepage')
+                      setColorScheme('modern')
+                      setHeadingUnderline(false)
+                      setHeadingStyle('none')
+                      setHeadingColor('primary')
+                      setStylePackage('professional')
+                      setFontFamily('sans')
+                      setBadgeStyle('outlined')
+                      setSpacing('compact')
+                    } else if (pkg.id === 'friendly') {
+                      setSiteMode('onepage')
+                      setColorScheme('nature')
+                      setHeadingUnderline(true)
+                      setHeadingStyle('dotted')
+                      setHeadingColor('accent')
+                      setStylePackage('friendly')
+                      setFontFamily('sans')
+                      setBadgeStyle('pill')
+                      setSpacing('comfortable')
+                    } else if (pkg.id === 'bold') {
+                      setSiteMode('onepage')
+                      setColorScheme('warm')
+                      setHeadingUnderline(true)
+                      setHeadingStyle('gradient')
+                      setHeadingColor('primary')
+                      setStylePackage('bold')
+                      setFontFamily('display')
+                      setBadgeStyle('rounded')
+                      setSpacing('spacious')
+                    }
+                    
+                    console.log('Style package applied:', pkg.id)
+                    console.log('=== END STYLE PACKAGE CLICK ===')
                   }}
                   className={`w-full p-4 border-2 transition-all text-left ${
                     stylePackage === pkg.id
