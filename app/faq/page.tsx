@@ -6,11 +6,19 @@ import { ContentData } from '@/types/content'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ModernSpinner from '@/components/ModernSpinner'
+import { useLayoutConfig } from '@/contexts/AppConfigContext'
+import SectionHeading from '@/components/SectionHeading'
 
 export default function FAQPage() {
   const [content, setContent] = useState<ContentData | null>(null)
   const [loading, setLoading] = useState(true)
   const [openFAQ, setOpenFAQ] = useState<number | null>(null)
+  
+  // Design-Style aus AppConfigContext
+  const { design: designStyle } = useLayoutConfig()
+  
+  // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
 
   useEffect(() => {
     const loadContent = () => {
@@ -141,12 +149,20 @@ export default function FAQPage() {
       <section className="relative py-24 md:py-32 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-6 md:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">
-              Häufig gestellte Fragen
-            </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              Hier finden Sie Antworten auf die am häufigsten gestellten Fragen. Falls Sie weitere Fragen haben, kontaktieren Sie uns gerne direkt.
-            </p>
+            <SectionHeading
+              title="Häufig gestellte Fragen"
+              subtitle="Hier finden Sie Antworten auf die am häufigsten gestellten Fragen. Falls Sie weitere Fragen haben, kontaktieren Sie uns gerne direkt."
+              badge={{
+                text: "Häufig gestellte Fragen",
+                icon: (
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                )
+              }}
+              level={1}
+              className="text-white"
+            />
           </div>
         </div>
       </section>
@@ -201,12 +217,11 @@ export default function FAQPage() {
       <section className="py-20 md:py-24 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6 md:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">
-              Weitere Fragen?
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Falls Sie Ihre Frage hier nicht gefunden haben, zögern Sie nicht uns zu kontaktieren. Wir helfen gerne weiter!
-            </p>
+            <SectionHeading
+              title="Weitere Fragen?"
+              subtitle="Falls Sie Ihre Frage hier nicht gefunden haben, zögern Sie nicht uns zu kontaktieren. Wir helfen gerne weiter!"
+              level={2}
+            />
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-16">
               {/* Telefon */}
