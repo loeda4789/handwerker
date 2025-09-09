@@ -66,14 +66,8 @@ class ConfigManager {
     }
     
     // Features Migration
-    migrated.features.promoBanner = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.PROMO_BANNER) === 'true'
     migrated.features.contactBar = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.CONTACT_BAR) === 'true'
-    migrated.features.notdienstAlert = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.NOTDIENST_ALERT) === 'true'
-    migrated.features.whatsappWidget = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.WHATSAPP_WIDGET) === 'true'
-    migrated.features.callbackPopup = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.CALLBACK_POPUP) === 'true'
-    migrated.features.callbackRequest = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.CALLBACK_REQUEST) === 'true'
-    migrated.features.speedDial = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.SPEED_DIAL) !== 'false' // Default true
-    migrated.features.bewerberPopup = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.BEWERBER_POPUP) === 'true'
+    migrated.features.sideContact = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.SIDE_CONTACT) !== 'false' // Default true
     
     console.log('✅ Features migriert:', migrated.features)
     

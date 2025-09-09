@@ -10,14 +10,8 @@ export interface AppConfig {
     darkMode: boolean
   }
   features: {
-    promoBanner: boolean
     contactBar: boolean
-    notdienstAlert: boolean
-    whatsappWidget: boolean
-    callbackPopup: boolean
-    callbackRequest: boolean
-    speedDial: boolean
-    bewerberPopup: boolean
+    sideContact: boolean
   }
   system: {
     isFirstVisit: boolean
@@ -37,14 +31,8 @@ export const DEFAULT_CONFIG: AppConfig = {
     darkMode: false
   },
   features: {
-    promoBanner: false,
     contactBar: true,
-    notdienstAlert: false,
-    whatsappWidget: false,
-    callbackPopup: false,
-    callbackRequest: false,
-    speedDial: false,
-    bewerberPopup: false
+    sideContact: true
   },
   system: {
     isFirstVisit: true,
@@ -61,13 +49,7 @@ export const LEGACY_STORAGE_KEYS = {
   THEME: 'theme',
   CONFIG_SAVED: 'handwerker-config-saved',
   FEATURES: {
-    PROMO_BANNER: 'feature-promoBanner',
     CONTACT_BAR: 'feature-contactBar',
-    NOTDIENST_ALERT: 'feature-notdienstAlert',
-    WHATSAPP_WIDGET: 'feature-whatsappWidget',
-    CALLBACK_POPUP: 'feature-callbackPopup',
-    CALLBACK_REQUEST: 'feature-callbackRequest',
-    SPEED_DIAL: 'feature-speedDial',
-    BEWERBER_POPUP: 'feature-bewerberPopup'
+    SIDE_CONTACT: 'feature-sideContact'
   }
 } as const

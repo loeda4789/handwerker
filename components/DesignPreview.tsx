@@ -95,13 +95,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         colorScheme: 'warm' as const,
         designStyle: 'angular' as const,
         features: {
-          promoBanner: false,
           contactBar: true,
-          notdienstAlert: false,
-          whatsappWidget: false,
-          callbackPopup: false,
-          callbackRequest: false,
-          speedDial: false
+          sideContact: false
         }
       },
       '2': {
@@ -109,13 +104,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         colorScheme: 'nature' as const,
         designStyle: 'modern' as const,
         features: {
-          promoBanner: false,
           contactBar: false,
-          notdienstAlert: false,
-          whatsappWidget: true,
-          callbackPopup: false,
-          callbackRequest: false,
-          speedDial: false
+          sideContact: true
         }
       },
       '3': {
@@ -123,13 +113,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         colorScheme: 'elegant' as const,
         designStyle: 'rounded' as const,
         features: {
-          promoBanner: false,
-          contactBar: false,
-          notdienstAlert: false,
-          whatsappWidget: false,
-          callbackPopup: false,
-          callbackRequest: false,
-          speedDial: true
+          contactBar: true,
+          sideContact: true
         }
       }
     }
@@ -535,10 +520,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               {activeTab === 'features' && (
                 <div className="space-y-4">
                   {[
-                    { key: 'speedDial', name: 'Moderne Kontaktaufnahme', desc: 'Mobile & Desktop Kontakt-Buttons', Icon: MdCall },
-                    { key: 'whatsappWidget', name: 'WhatsApp', desc: 'Chat-Widget', Icon: MdWhatsapp },
-                    { key: 'contactBar', name: 'Kontakt-Leiste', desc: 'Fixe Telefon-Leiste', Icon: MdPhoneInTalk },
-                    { key: 'notdienstAlert', name: 'Notdienst-Alert', desc: 'Auffällige Hinweis-Leiste', Icon: MdNotifications }
+                    { key: 'contactBar', name: 'Kontakt-Leiste', desc: 'Fixe Telefon-Leiste oben', Icon: MdPhoneInTalk },
+                    { key: 'sideContact', name: 'Side Contact', desc: 'Floating Kontakt-Button', Icon: MdCall }
                   ].map((feature) => (
                     <button
                       key={feature.key}
