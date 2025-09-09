@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { getContentData } from '@/lib/config'
-// import { ThemeProvider } from '@/contexts/ThemeContext'
+import { AppConfigProvider } from '@/contexts/AppConfigContext'
 import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -70,9 +70,9 @@ export default function RootLayout({
         {/* Critical CSS ist bereits in globals.css definiert */}
       </head>
       <body className={inter.className} suppressHydrationWarning>
-        {/* <ThemeProvider> */}
+        <AppConfigProvider>
           {children}
-        {/* </ThemeProvider> */}
+        </AppConfigProvider>
         
         {/* Service Worker für Image Caching */}
         <Script

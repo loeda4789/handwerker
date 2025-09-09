@@ -20,6 +20,7 @@ import {
   MdInfo
 } from 'react-icons/md'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
+import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig } from '@/contexts/AppConfigContext'
 
 interface DesignPreviewProps {
   isOpen: boolean
@@ -27,87 +28,58 @@ interface DesignPreviewProps {
 }
 
 export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
-  const [currentColorScheme, setCurrentColorScheme] = useState<'warm' | 'modern' | 'elegant' | 'nature'>('warm')
-  const [currentDesignStyle, setCurrentDesignStyle] = useState<'angular' | 'rounded' | 'modern'>('angular')
-  const [currentSiteMode, setCurrentSiteMode] = useState<'onepage' | 'multipage'>('onepage')
+  // Neue Konfigurationsarchitektur verwenden
+  const { config, isConfigLoaded } = useAppConfig()
+  const { mode: currentSiteMode, design: currentDesignStyle, setMode: changeSiteMode, setDesign: changeDesignStyle } = useLayoutConfig()
+  const { colorScheme: currentColorScheme, setColorScheme: changeColorScheme } = useThemeConfig()
+  const { features, setFeature: toggleFeature, setFeatures: setFeatures } = useFeaturesConfig()
+  
+  // Lokale UI-States
   const [activeTab, setActiveTab] = useState('design')
   const [configMode, setConfigMode] = useState<'paket' | 'individuell'>('paket')
   const [activePackage, setActivePackage] = useState<'1' | '2' | '3' | null>(null)
   const [showPackageDetails, setShowPackageDetails] = useState<{[key: string]: boolean}>({})
-  const [features, setFeatures] = useState({
-    promoBanner: false,
-    contactBar: false,
-    notdienstAlert: false,
-    whatsappWidget: false,
-    callbackPopup: false,
-    callbackRequest: false,
-    speedDial: false
-  })
   
-  // Aktuelle Einstellungen beim Laden ermitteln
+  // CSS-Schemata anwenden wenn Konfiguration geladen ist
   useEffect(() => {
-    // Site-Mode laden
-    const siteMode = localStorage.getItem('site-mode') as 'onepage' | 'multipage'
-    if (siteMode) {
-      setCurrentSiteMode(siteMode)
+    if (isConfigLoaded) {
+      applyColorScheme(currentColorScheme)
+      applyBorderRadiusScheme(currentDesignStyle)
     }
-    
-    // Color-Scheme laden
-    const colorScheme = localStorage.getItem('selected-color-scheme') as 'warm' | 'modern' | 'elegant' | 'nature'
-    if (colorScheme) {
-      setCurrentColorScheme(colorScheme)
-    }
-    
-    // Design-Style laden
-    const designStyle = localStorage.getItem('design-style') as 'angular' | 'rounded' | 'modern'
-    if (designStyle) {
-      setCurrentDesignStyle(designStyle)
-    }
-    
-    // Features laden
-    const savedFeatures = {
-      promoBanner: localStorage.getItem('feature-promoBanner') === 'true',
-      contactBar: localStorage.getItem('feature-contactBar') === 'true',
-      notdienstAlert: localStorage.getItem('feature-notdienstAlert') === 'true',
-      whatsappWidget: localStorage.getItem('feature-whatsappWidget') === 'true',
-      callbackPopup: localStorage.getItem('feature-callbackPopup') === 'true',
-      callbackRequest: localStorage.getItem('feature-callbackRequest') === 'true',
-      speedDial: localStorage.getItem('feature-speedDial') !== 'false' // Default true
-    }
-    setFeatures(savedFeatures)
-  }, [])
+  }, [isConfigLoaded, currentColorScheme, currentDesignStyle])
 
-  const changeSiteMode = (mode: 'onepage' | 'multipage') => {
-    localStorage.setItem('site-mode', mode)
-    setCurrentSiteMode(mode)
-    // Kein automatisches Reload mehr
+  const handleSiteModeChange = (mode: 'onepage' | 'multipage') => {
+    changeSiteMode(mode)
+    // Demo-Modus auch setzen für Kompatibilität
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('demo-design-style', currentDesignStyle)
+    }
   }
 
-  const changeDesignStyle = (style: 'angular' | 'rounded' | 'modern') => {
-    localStorage.setItem('design-style', style)
-    localStorage.setItem('demo-design-style', style)
-    setCurrentDesignStyle(style)
-    // Kein automatisches Reload mehr
+  const handleDesignStyleChange = (style: 'angular' | 'rounded' | 'modern') => {
+    changeDesignStyle(style)
+    // Demo-Modus auch setzen für Kompatibilität
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('demo-design-style', style)
+    }
   }
 
-  const changeColorScheme = (scheme: 'warm' | 'modern' | 'elegant' | 'nature') => {
-    localStorage.setItem('selected-color-scheme', scheme)
-    localStorage.setItem('demo-color-scheme', scheme)
-    setCurrentColorScheme(scheme)
-    // Kein automatisches Reload mehr
+  const handleColorSchemeChange = (scheme: 'warm' | 'modern' | 'elegant' | 'nature') => {
+    changeColorScheme(scheme)
+    // Demo-Modus auch setzen für Kompatibilität
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('demo-color-scheme', scheme)
+    }
   }
 
-  const toggleFeature = (featureKey: keyof typeof features) => {
+  const handleFeatureToggle = (featureKey: keyof typeof features) => {
     const newValue = !features[featureKey as keyof typeof features]
-    localStorage.setItem(`feature-${featureKey}`, newValue.toString())
-    setFeatures(prev => ({ ...prev, [featureKey]: newValue }))
+    toggleFeature(featureKey, newValue)
     
     // Dispatch event für andere Komponenten
     window.dispatchEvent(new CustomEvent(`feature-${featureKey}-changed`, { 
       detail: { enabled: newValue } 
     }))
-    
-    // Kein automatisches Reload mehr
   }
 
   // Neues Paket-System
@@ -165,21 +137,16 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
     const selectedPackage = packages[packageKey]
     console.log('📦 Ausgewähltes Paket:', selectedPackage)
     
-    // Alle Einstellungen setzen
-    setCurrentColorScheme(selectedPackage.colorScheme)
-    setCurrentDesignStyle(selectedPackage.designStyle)
-    setFeatures(selectedPackage.features)
+    // Alle Einstellungen über neue Architektur setzen
+    changeColorScheme(selectedPackage.colorScheme)
+    changeDesignStyle(selectedPackage.designStyle)
+    setFeatures(selectedPackage.features as Partial<typeof config.features>)
     
-    // In localStorage speichern
-    localStorage.setItem('selected-color-scheme', selectedPackage.colorScheme)
-    localStorage.setItem('design-style', selectedPackage.designStyle)
-    localStorage.setItem('demo-color-scheme', selectedPackage.colorScheme)
-    localStorage.setItem('demo-design-style', selectedPackage.designStyle)
-    
-    // Features speichern
-    Object.entries(selectedPackage.features).forEach(([key, value]) => {
-      localStorage.setItem(`feature-${key}`, value.toString())
-    })
+    // Demo-Modus auch setzen für Kompatibilität
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('demo-color-scheme', selectedPackage.colorScheme)
+      localStorage.setItem('demo-design-style', selectedPackage.designStyle)
+    }
     
     // Events dispatchen für sofortige Aktualisierung
     Object.entries(selectedPackage.features).forEach(([key, value]) => {
@@ -446,7 +413,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
               
               <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
                 <button
-                  onClick={() => changeSiteMode('onepage')}
+                  onClick={() => handleSiteModeChange('onepage')}
                   className={`flex-1 py-2 px-4 text-sm font-medium transition-all duration-200 ${
                     currentSiteMode === 'onepage'
                       ? 'bg-white dark:bg-gray-600 text-orange-600 dark:text-orange-400 shadow-sm'
@@ -463,7 +430,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                 </button>
                 
                 <button
-                  onClick={() => changeSiteMode('multipage')}
+                  onClick={() => handleSiteModeChange('multipage')}
                   className={`flex-1 py-2 px-4 text-sm font-medium transition-all duration-200 ${
                     currentSiteMode === 'multipage'
                       ? 'bg-white dark:bg-gray-600 text-orange-600 dark:text-orange-400 shadow-sm'
@@ -502,7 +469,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   ].map((style) => (
                     <button
                       key={style.key}
-                      onClick={() => changeDesignStyle(style.key as 'angular' | 'rounded' | 'modern')}
+                      onClick={() => handleDesignStyleChange(style.key as 'angular' | 'rounded' | 'modern')}
                       className={`w-full p-4 text-left border-2 transition-all ${
                         currentDesignStyle === style.key
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
@@ -540,7 +507,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   ].map((scheme) => (
                     <button
                       key={scheme.key}
-                      onClick={() => changeColorScheme(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
+                      onClick={() => handleColorSchemeChange(scheme.key as 'warm' | 'modern' | 'elegant' | 'nature')}
                       className={`w-full p-4 border-2 transition-all duration-300 hover:shadow-lg ${
                         currentColorScheme === scheme.key
                           ? 'border-orange-400 bg-orange-50 dark:bg-orange-900/20 shadow-md ring-2 ring-orange-200'
@@ -575,7 +542,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                   ].map((feature) => (
                     <button
                       key={feature.key}
-                      onClick={() => toggleFeature(feature.key as keyof typeof features)}
+                      onClick={() => handleFeatureToggle(feature.key as keyof typeof features)}
                       className={`w-full p-4 text-left border-2 transition-all ${
                         features[feature.key as keyof typeof features]
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
