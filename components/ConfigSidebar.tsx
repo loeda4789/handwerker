@@ -30,7 +30,7 @@ interface ConfigSidebarProps {
 
 export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { config, isConfigLoaded } = useAppConfig()
-  const { mode: siteMode, design: designStyle, setMode: setSiteMode, setDesign: setDesignStyle } = useLayoutConfig()
+  const { mode: siteMode, design: designStyle, setMode: setSiteMode } = useLayoutConfig()
   const { colorScheme, setColorScheme } = useThemeConfig()
   const { features, setFeature: toggleFeature } = useFeaturesConfig()
   const { type: heroType, setType: setHeroType } = useHeroConfig()
@@ -81,7 +81,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       price: '79€',
       period: '/Monat',
       description: 'Perfekt für kleine Unternehmen',
-      features: ['1 Design-Stil', 'Basis-Features', 'Mobile optimiert'],
+      features: ['Basis-Features', 'Mobile optimiert'],
       icon: MdBusiness,
       color: 'bg-gray-50 border-gray-200',
       selected: designStyle === 'angular' && siteMode === 'onepage'
@@ -92,7 +92,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       price: '119€',
       period: '/Monat',
       description: 'Ideal für wachsende Unternehmen',
-      features: ['3 Design-Stile', 'Alle Features', 'SEO optimiert'],
+      features: ['Alle Features', 'SEO optimiert'],
       icon: MdTrendingUp,
       color: 'bg-blue-50 border-blue-200',
       selected: designStyle === 'rounded' && siteMode === 'multipage'
@@ -103,18 +103,13 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       price: '149€',
       period: '/Monat',
       description: 'Für anspruchsvolle Projekte',
-      features: ['Alle Design-Stile', 'Premium Features', 'Vollständig anpassbar'],
+      features: ['Premium Features', 'Vollständig anpassbar'],
       icon: MdDiamond,
       color: 'bg-purple-50 border-purple-200',
       selected: designStyle === 'modern' && siteMode === 'multipage'
     }
   ]
 
-  const designStyles = [
-    { key: 'angular', label: 'Eckig', icon: MdViewQuilt },
-    { key: 'rounded', label: 'Abgerundet', icon: MdImage },
-    { key: 'modern', label: 'Modern', icon: MdViewCarousel }
-  ]
 
   const heroTypes = [
     { key: 'single', label: 'Single', icon: MdImage },
@@ -190,13 +185,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   key={variant.id}
                   onClick={() => {
                     if (variant.id === 'starter') {
-                      setDesignStyle('angular')
                       setSiteMode('onepage')
                     } else if (variant.id === 'professional') {
-                      setDesignStyle('rounded')
                       setSiteMode('multipage')
                     } else if (variant.id === 'premium') {
-                      setDesignStyle('modern')
                       setSiteMode('multipage')
                     }
                   }}
@@ -240,34 +232,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
           </div>
 
-          {/* Design-Stil */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-              Design-Stil
-            </h3>
-            <div className="grid grid-cols-3 gap-3">
-              {designStyles.map((style) => (
-                <button
-                  key={style.key}
-                  onClick={() => setDesignStyle(style.key as any)}
-                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all ${
-                    designStyle === style.key
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                  style={{ borderRadius: '8px' }}
-                >
-                  <div className={`w-8 h-8 flex items-center justify-center ${
-                    designStyle === style.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}
-                  style={{ borderRadius: '6px' }}>
-                    <style.icon className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs font-medium text-gray-900">{style.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* Hero-Typ */}
           <div className="space-y-4">
@@ -407,7 +371,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   onClick={() => {
                     const newConfig = applyStylePackage(config, pkg.id)
                     // Apply all changes from the style package
-                    setDesignStyle(newConfig.layout.design)
                     setColorScheme(newConfig.theme.colorScheme)
                     setHeadingUnderline(newConfig.headings.underline)
                     setHeadingStyle(newConfig.headings.style)
@@ -425,7 +388,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   style={{ borderRadius: '12px' }}
                 >
                   <div className="flex items-start gap-3">
-                    <div className="text-2xl">{pkg.icon}</div>
+                    <div className="w-8 h-8 bg-gray-900 text-white flex items-center justify-center font-bold text-sm" style={{ borderRadius: '6px' }}>
+                      {pkg.icon}
+                    </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="font-semibold text-gray-900 mb-1">{pkg.name}</h4>
                       <p className="text-sm text-gray-600">{pkg.description}</p>

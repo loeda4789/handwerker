@@ -14,7 +14,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     id: 'modern',
     name: 'Modern',
     description: 'Sauber, minimalistisch, zeitgemäß',
-    icon: '🎨',
+    icon: 'M',
     color: 'bg-gray-50 border-gray-200',
     config: {
       layout: { mode: 'onepage', design: 'modern' },
@@ -26,8 +26,8 @@ export const STYLE_PACKAGES: StylePackage[] = [
     id: 'elegant',
     name: 'Elegant',
     description: 'Raffiniert, luxuriös, hochwertig',
-    icon: '✨',
-    color: 'bg-purple-50 border-purple-200',
+    icon: 'E',
+    color: 'bg-gray-50 border-gray-200',
     config: {
       layout: { mode: 'onepage', design: 'rounded' },
       headings: { underline: true, style: 'solid', color: 'secondary' },
@@ -38,8 +38,8 @@ export const STYLE_PACKAGES: StylePackage[] = [
     id: 'professional',
     name: 'Professionell',
     description: 'Seriös, vertrauenswürdig, kompetent',
-    icon: '💼',
-    color: 'bg-blue-50 border-blue-200',
+    icon: 'P',
+    color: 'bg-gray-50 border-gray-200',
     config: {
       layout: { mode: 'onepage', design: 'angular' },
       headings: { underline: false, style: 'none', color: 'primary' },
@@ -50,8 +50,8 @@ export const STYLE_PACKAGES: StylePackage[] = [
     id: 'friendly',
     name: 'Freundlich',
     description: 'Warm, einladend, persönlich',
-    icon: '😊',
-    color: 'bg-green-50 border-green-200',
+    icon: 'F',
+    color: 'bg-gray-50 border-gray-200',
     config: {
       layout: { mode: 'onepage', design: 'rounded' },
       headings: { underline: true, style: 'dotted', color: 'accent' },
@@ -62,8 +62,8 @@ export const STYLE_PACKAGES: StylePackage[] = [
     id: 'bold',
     name: 'Auffallend',
     description: 'Kraftvoll, dynamisch, aufmerksamkeitsstark',
-    icon: '⚡',
-    color: 'bg-orange-50 border-orange-200',
+    icon: 'B',
+    color: 'bg-gray-50 border-gray-200',
     config: {
       layout: { mode: 'onepage', design: 'angular' },
       headings: { underline: true, style: 'gradient', color: 'primary' },
