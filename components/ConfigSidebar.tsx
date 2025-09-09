@@ -18,7 +18,8 @@ import {
   MdTrendingUp,
   MdDiamond
 } from 'react-icons/md'
-import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig } from '@/contexts/AppConfigContext'
+import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig, useStyleConfig } from '@/contexts/AppConfigContext'
+import { STYLE_PACKAGES, applyStylePackage } from '@/lib/config/stylePackages'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 
@@ -34,6 +35,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { features, setFeature: toggleFeature } = useFeaturesConfig()
   const { type: heroType, setType: setHeroType } = useHeroConfig()
   const { underline: headingUnderline, style: headingStyle, color: headingColor, setUnderline: setHeadingUnderline, setStyle: setHeadingStyle, setColor: setHeadingColor } = useHeadingsConfig()
+  const { package: stylePackage, fontFamily, badgeStyle, spacing, setPackage: setStylePackage, setFontFamily, setBadgeStyle, setSpacing } = useStyleConfig()
   
   const [isMobile, setIsMobile] = useState(false)
 
@@ -393,6 +395,50 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           </div>
 
           {/* Überschriften */}
+          {/* Style Packages Section */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+              Stil-Pakete
+            </h3>
+            <div className="grid grid-cols-1 gap-3">
+              {STYLE_PACKAGES.map((pkg) => (
+                <button
+                  key={pkg.id}
+                  onClick={() => {
+                    const newConfig = applyStylePackage(config, pkg.id)
+                    // Apply all changes from the style package
+                    setDesignStyle(newConfig.layout.design)
+                    setColorScheme(newConfig.theme.colorScheme)
+                    setHeadingUnderline(newConfig.headings.underline)
+                    setHeadingStyle(newConfig.headings.style)
+                    setHeadingColor(newConfig.headings.color)
+                    setStylePackage(pkg.id)
+                    setFontFamily(newConfig.style.fontFamily)
+                    setBadgeStyle(newConfig.style.badgeStyle)
+                    setSpacing(newConfig.style.spacing)
+                  }}
+                  className={`w-full p-4 border-2 transition-all text-left ${
+                    stylePackage === pkg.id
+                      ? 'border-gray-900 bg-gray-50'
+                      : `${pkg.color} hover:border-gray-300`
+                  }`}
+                  style={{ borderRadius: '12px' }}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="text-2xl">{pkg.icon}</div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-gray-900 mb-1">{pkg.name}</h4>
+                      <p className="text-sm text-gray-600">{pkg.description}</p>
+                    </div>
+                    {stylePackage === pkg.id && (
+                      <MdCheck className="w-5 h-5 text-gray-900 flex-shrink-0" />
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
               Überschriften

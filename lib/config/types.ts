@@ -34,6 +34,12 @@ export interface AppConfig {
     style: 'gradient' | 'solid' | 'dotted' | 'none'
     color: 'primary' | 'secondary' | 'accent' | 'custom'
   }
+  style: {
+    package: 'modern' | 'elegant' | 'professional' | 'friendly' | 'bold'
+    fontFamily: 'sans' | 'serif' | 'mono' | 'display'
+    badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined'
+    spacing: 'compact' | 'comfortable' | 'spacious'
+  }
   system: {
     isFirstVisit: boolean
     quickEditMode: boolean
@@ -75,6 +81,12 @@ export const DEFAULT_CONFIG: AppConfig = {
     underline: true,
     style: 'gradient',
     color: 'primary'
+  },
+  style: {
+    package: 'modern',
+    fontFamily: 'sans',
+    badgeStyle: 'rounded',
+    spacing: 'comfortable'
   },
   system: {
     isFirstVisit: true,

@@ -125,6 +125,24 @@ export function useHeadingsConfig() {
   }
 }
 
+export function useStyleConfig() {
+  const { config, updateConfig } = useAppConfig()
+  return {
+    package: config.style.package,
+    fontFamily: config.style.fontFamily,
+    badgeStyle: config.style.badgeStyle,
+    spacing: config.style.spacing,
+    setPackage: (packageId: 'modern' | 'elegant' | 'professional' | 'friendly' | 'bold') =>
+      updateConfig({ style: { ...config.style, package: packageId } }),
+    setFontFamily: (fontFamily: 'sans' | 'serif' | 'mono' | 'display') =>
+      updateConfig({ style: { ...config.style, fontFamily } }),
+    setBadgeStyle: (badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined') =>
+      updateConfig({ style: { ...config.style, badgeStyle } }),
+    setSpacing: (spacing: 'compact' | 'comfortable' | 'spacious') =>
+      updateConfig({ style: { ...config.style, spacing } })
+  }
+}
+
 export function useSystemConfig() {
   const { config, updateConfig } = useAppConfig()
   

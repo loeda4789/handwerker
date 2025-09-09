@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useLayoutConfig } from '@/contexts/AppConfigContext'
+import { useLayoutConfig, useHeadingsConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 
 interface SectionHeadingProps {
   title: string
@@ -22,6 +22,8 @@ export default function SectionHeading({
   level = 2 
 }: SectionHeadingProps) {
   const { design: designStyle } = useLayoutConfig()
+  const { underline: headingUnderline } = useHeadingsConfig()
+  const { badgeStyle, fontFamily, spacing } = useStyleConfig()
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
   
   const HeadingTag = `h${level}` as keyof React.JSX.IntrinsicElements
@@ -34,11 +36,41 @@ export default function SectionHeading({
     6: 'text-base md:text-lg font-bold'
   }
 
+  const getBadgeClasses = () => {
+    const baseClasses = "inline-flex items-center gap-2 text-white font-medium mb-4"
+    const badgeClasses = {
+      minimal: "badge-minimal",
+      rounded: "badge-rounded", 
+      pill: "badge-pill",
+      outlined: "badge-outlined"
+    }
+    return `${baseClasses} ${badgeClasses[badgeStyle]}`
+  }
+
+  const getFontClass = () => {
+    const fontClasses = {
+      sans: "font-sans",
+      serif: "font-serif",
+      mono: "font-mono",
+      display: "font-display"
+    }
+    return fontClasses[fontFamily]
+  }
+
+  const getSpacingClass = () => {
+    const spacingClasses = {
+      compact: "spacing-compact",
+      comfortable: "spacing-comfortable", 
+      spacious: "spacing-spacious"
+    }
+    return spacingClasses[spacing]
+  }
+
   return (
-    <div className={`text-center mb-12 animate-on-scroll ${className}`}>
+    <div className={`text-center ${getSpacingClass()} animate-on-scroll ${className}`}>
       {/* Badge */}
       {badge && (
-        <div className="inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4 rounded-lg"
+        <div className={getBadgeClasses()}
           style={{ backgroundColor: 'var(--color-secondary)' }}>
           {badge.icon}
           {badge.text}
@@ -46,8 +78,8 @@ export default function SectionHeading({
       )}
       
       {/* Title */}
-      <HeadingTag className={`${headingClasses[level]} text-text dark:text-light mb-6 transition-colors duration-300`}>
-        {isModernStyle ? (
+      <HeadingTag className={`${headingClasses[level]} ${getFontClass()} text-text dark:text-light mb-6 transition-colors duration-300`}>
+        {isModernStyle && headingUnderline ? (
           <span className="heading-underline-large">{title}</span>
         ) : (
           title
@@ -56,7 +88,7 @@ export default function SectionHeading({
       
       {/* Subtitle */}
       {subtitle && (
-        <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto transition-colors duration-300">
+        <p className={`text-lg ${getFontClass()} text-text-secondary dark:text-light/80 max-w-2xl mx-auto transition-colors duration-300`}>
           {subtitle}
         </p>
       )}
