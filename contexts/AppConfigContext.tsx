@@ -110,6 +110,21 @@ export function useHeroConfig() {
   }
 }
 
+export function useHeadingsConfig() {
+  const { config, updateConfig } = useAppConfig()
+  return {
+    underline: config.headings.underline,
+    style: config.headings.style,
+    color: config.headings.color,
+    setUnderline: (underline: boolean) =>
+      updateConfig({ headings: { ...config.headings, underline } }),
+    setStyle: (style: 'gradient' | 'solid' | 'dotted' | 'none') =>
+      updateConfig({ headings: { ...config.headings, style } }),
+    setColor: (color: 'primary' | 'secondary' | 'accent' | 'custom') =>
+      updateConfig({ headings: { ...config.headings, color } })
+  }
+}
+
 export function useSystemConfig() {
   const { config, updateConfig } = useAppConfig()
   

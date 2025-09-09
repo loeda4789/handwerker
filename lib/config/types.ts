@@ -29,6 +29,11 @@ export interface AppConfig {
   hero: {
     type: 'single' | 'slider' | 'video' | 'split'
   }
+  headings: {
+    underline: boolean
+    style: 'gradient' | 'solid' | 'dotted' | 'none'
+    color: 'primary' | 'secondary' | 'accent' | 'custom'
+  }
   system: {
     isFirstVisit: boolean
     quickEditMode: boolean
@@ -65,6 +70,11 @@ export const DEFAULT_CONFIG: AppConfig = {
   },
   hero: {
     type: 'single'
+  },
+  headings: {
+    underline: true,
+    style: 'gradient',
+    color: 'primary'
   },
   system: {
     isFirstVisit: true,

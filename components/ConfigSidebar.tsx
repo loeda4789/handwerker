@@ -15,8 +15,9 @@ import {
   MdCall,
   MdCheck
 } from 'react-icons/md'
-import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig } from '@/contexts/AppConfigContext'
+import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig } from '@/contexts/AppConfigContext'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
+import { applyHeadingStyles } from '@/lib/headingStyles'
 
 interface ConfigSidebarProps {
   isOpen: boolean
@@ -29,6 +30,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { colorScheme, setColorScheme } = useThemeConfig()
   const { features, setFeature: toggleFeature } = useFeaturesConfig()
   const { type: heroType, setType: setHeroType } = useHeroConfig()
+  const { underline: headingUnderline, style: headingStyle, color: headingColor, setUnderline: setHeadingUnderline, setStyle: setHeadingStyle, setColor: setHeadingColor } = useHeadingsConfig()
   
   const [activeTab, setActiveTab] = useState('design')
   const [isMobile, setIsMobile] = useState(false)
@@ -48,14 +50,16 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     if (isConfigLoaded) {
       applyColorScheme(colorScheme)
       applyBorderRadiusScheme(designStyle)
+      applyHeadingStyles(config)
     }
-  }, [isConfigLoaded, colorScheme, designStyle])
+  }, [isConfigLoaded, colorScheme, designStyle, config])
 
   if (!isOpen) return null
 
   const tabs = [
     { key: 'design', label: 'Design', icon: MdBrush },
     { key: 'colors', label: 'Farben', icon: MdPalette },
+    { key: 'headings', label: 'Überschriften', icon: MdDescription },
     { key: 'features', label: 'Features', icon: MdStar },
     { key: 'layout', label: 'Layout', icon: MdDescription }
   ]
@@ -238,6 +242,90 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     )}
                   </button>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* Headings Tab */}
+          {activeTab === 'headings' && (
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  Überschriften-Styling
+                </h3>
+                
+                {/* Underline Toggle */}
+                <div className="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                      headingUnderline ? 'bg-orange-500 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                    }`}>
+                      <MdDescription className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-gray-900 dark:text-white">
+                        Unterstreichung
+                      </div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">
+                        Überschriften unterstreichen
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setHeadingUnderline(!headingUnderline)}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                      headingUnderline ? 'bg-orange-500' : 'bg-gray-200 dark:bg-gray-700'
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                        headingUnderline ? 'translate-x-6' : 'translate-x-1'
+                      }`}
+                    />
+                  </button>
+                </div>
+
+                {/* Style Selection */}
+                {headingUnderline && (
+                  <div className="space-y-4">
+                    <h4 className="font-medium text-gray-900 dark:text-white">
+                      Unterstreichungs-Stil
+                    </h4>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { key: 'gradient', label: 'Gradient', desc: 'Farbverlauf' },
+                        { key: 'solid', label: 'Solid', desc: 'Einfarbig' },
+                        { key: 'dotted', label: 'Gepunktet', desc: 'Punkte' },
+                        { key: 'none', label: 'Keine', desc: 'Ausblenden' }
+                      ].map((style) => (
+                        <button
+                          key={style.key}
+                          onClick={() => setHeadingStyle(style.key as any)}
+                          className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all ${
+                            headingStyle === style.key
+                              ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
+                              : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
+                          }`}
+                        >
+                          <div className={`w-8 h-1 rounded-full ${
+                            style.key === 'gradient' ? 'bg-gradient-to-r from-orange-500 to-orange-300' :
+                            style.key === 'solid' ? 'bg-orange-500' :
+                            style.key === 'dotted' ? 'bg-orange-500' :
+                            'bg-gray-300'
+                          }`} style={{
+                            borderStyle: style.key === 'dotted' ? 'dotted' : 'solid'
+                          }} />
+                          <span className="text-sm font-medium text-gray-900 dark:text-white">
+                            {style.label}
+                          </span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                            {style.desc}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
