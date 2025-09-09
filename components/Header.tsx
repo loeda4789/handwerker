@@ -5,6 +5,7 @@ import { ContentData } from '@/types/content'
 import { useAppConfig, useLayoutConfig } from '@/contexts/AppConfigContext'
 import { getHeaderStyles, getDropdownStyles } from '@/lib/config/headerStyles'
 import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationConfig'
+import { useHeroConfig } from '@/contexts/AppConfigContext'
 import HeaderLogo from './header/HeaderLogo'
 import HeaderNavigation from './header/HeaderNavigation'
 import HeaderCta from './header/HeaderCta'
@@ -18,6 +19,7 @@ export default function Header({ content }: HeaderProps) {
   // Neue Konfigurationsarchitektur verwenden
   const { config } = useAppConfig()
   const { mode: siteMode, design: designStyle } = useLayoutConfig()
+  const { type: heroType } = useHeroConfig()
   
   // Lokale UI-States
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -132,7 +134,7 @@ export default function Header({ content }: HeaderProps) {
   }
 
   // Navigation Items basierend auf Site-Mode
-  const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref)
+  const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType)
 
   // Header-Stile basierend auf Design-Stil
   const headerStyles = getHeaderStyles(designStyle, isScrolled, headerVisible)
