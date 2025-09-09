@@ -7,7 +7,6 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Team from '@/components/Team'
 import ModernSpinner from '@/components/ModernSpinner'
-import ConfiguratorButton from '@/components/ConfiguratorButton'
 
 export default function TeamPage() {
   const [content, setContent] = useState<ContentData | null>(null)
@@ -268,7 +267,6 @@ export default function TeamPage() {
       </section>
       
       <Footer content={content} />
-      <ConfiguratorButton onClick={() => window.location.href = '/'} />
     </main>
   )
 } 

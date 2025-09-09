@@ -16,23 +16,15 @@ import Testimonials from '@/components/Testimonials'
 import ProjectProcess from '@/components/ProjectProcess'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
-import MobileContact from '@/components/MobileContact'
 import EmergencyContact from '@/components/EmergencyContact'
 import SideContact from '@/components/SideContact'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
-import ConfiguratorButton from '@/components/ConfiguratorButton'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import UrlParamsDebug from '@/components/UrlParamsDebug'
 import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 
-import PromoBanner from '@/components/PromoBanner'
-import BewerberPopup from '@/components/BewerberPopup'
 import ContactBar from '@/components/ContactBar'
-import NotdienstAlert from '@/components/NotdienstAlert'
-import WhatsAppWidget from '@/components/WhatsAppWidget'
-import CallbackPopup from '@/components/CallbackPopup'
-import CallbackRequest from '@/components/CallbackRequest'
 import DesignPreviewButton from '@/components/DesignPreviewButton'
 
 interface ConfigState {
@@ -447,31 +439,10 @@ export default function HomePage() {
       {process.env.NODE_ENV === 'development' && <UrlParamsDebug />}
       
       {/* Marketing Features - Above Header */}
-      <NotdienstAlert isEnabled={features.notdienstAlert} />
       <ContactBar 
         isEnabled={features.contactBar} 
         phone={content.contact.phone}
         email={content.contact.email}
-      />
-      
-      {/* Promo Banner - Bottom Slide-in */}
-      <PromoBanner 
-        isEnabled={features.promoBanner}
-        message="🔥 20% RABATT AUF ALLES im gesamten Juni! Jetzt Termin vereinbaren!"
-        ctaText="Jetzt buchen"
-        showCloseButton={true}
-        autoHide={false}
-      />
-      
-      {/* Bewerber Popup - Bottom Right Corner */}
-      <BewerberPopup 
-        isEnabled={features.bewerberPopup}
-        title="Wir suchen dich!"
-        subtitle="Engagierte Mitarbeiter in unserem Team"
-        ctaText="Erfahre mehr"
-        showCloseButton={true}
-        autoHide={false}
-        showDelay={3000}
       />
       
               {/* Background Webseite */}
@@ -559,18 +530,7 @@ export default function HomePage() {
         <Footer content={content} />
         
         {/* Marketing Features - Floating */}
-        <WhatsAppWidget isEnabled={features.whatsappWidget} />
-        <CallbackPopup isEnabled={features.callbackPopup} />
-        <CallbackRequest isEnabled={features.callbackRequest} />
-        <PromoBanner isEnabled={features.promoBanner} />
         
-        {/* Mobile Kontaktaufnahme - nur wenn aktiviert */}
-        {true && (
-        <MobileContact 
-          phoneNumber={content.contact.phone}
-          onEmailClick={scrollToContact}
-        />
-        )}
         
 
         
@@ -1059,10 +1019,6 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Configurator Toggle Button - links unten */}
-      <ConfiguratorButton
-        onClick={() => setShowConfigurator(true)}
-      />
 
 
 

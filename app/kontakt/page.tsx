@@ -7,7 +7,6 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Contact from '@/components/Contact'
 import ModernSpinner from '@/components/ModernSpinner'
-import ConfiguratorButton from '@/components/ConfiguratorButton'
 
 export default function KontaktPage() {
   const [content, setContent] = useState<ContentData | null>(null)
@@ -200,8 +199,6 @@ export default function KontaktPage() {
       
       <Footer content={content} />
       
-      {/* Configurator Button */}
-      <ConfiguratorButton onClick={() => window.location.href = '/'} />
     </main>
   )
 } 

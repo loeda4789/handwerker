@@ -10,7 +10,6 @@ import Footer from '@/components/Footer'
 import Link from 'next/link'
 import Image from 'next/image'
 import ModernSpinner from '@/components/ModernSpinner'
-import ConfiguratorButton from '@/components/ConfiguratorButton'
 
 export default function ServicesPage() {
   const [baseContent, setBaseContent] = useState<ContentData | null>(null)
@@ -229,8 +228,6 @@ export default function ServicesPage() {
 
       <Footer content={content} />
       
-      {/* Configurator Button */}
-      <ConfiguratorButton onClick={() => window.location.href = '/'} />
     </main>
   )
 } 
