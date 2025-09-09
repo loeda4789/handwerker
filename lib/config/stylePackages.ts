@@ -82,7 +82,18 @@ export const applyStylePackage = (config: AppConfig, packageId: string): AppConf
 
   return {
     ...config,
-    ...stylePackage.config,
+    layout: {
+      ...config.layout,
+      ...stylePackage.config.layout
+    },
+    theme: {
+      ...config.theme,
+      ...stylePackage.config.theme
+    },
+    headings: {
+      ...config.headings,
+      ...stylePackage.config.headings
+    },
     style: {
       ...config.style,
       ...stylePackage.config.style

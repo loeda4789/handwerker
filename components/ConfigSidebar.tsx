@@ -131,8 +131,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   ]
 
   const layoutModes = [
-    { key: 'onepage', label: 'One-Page', description: 'Alles auf einer Seite' },
-    { key: 'multipage', label: 'Multi-Page', description: 'Mehrere Unterseiten' }
+    { key: 'onepage', label: 'One-Page', description: 'Alles auf einer Seite', icon: MdViewQuilt },
+    { key: 'multipage', label: 'Multi-Page', description: 'Mehrere Unterseiten', icon: MdDescription }
   ]
 
   return (
@@ -176,9 +176,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           
           {/* Besteller-Varianten */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-              Besteller-Varianten
-            </h3>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-6 bg-blue-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                <MdStar className="w-4 h-4 text-blue-600" />
+              </div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                Besteller-Varianten
+              </h3>
+            </div>
             <div className="space-y-3">
               {bestellerVariants.map((variant) => (
                 <button
@@ -232,12 +237,26 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
           </div>
 
+          {/* Divider */}
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-200"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-4 bg-white text-gray-500 font-medium">Weitere Konfiguration</span>
+            </div>
+          </div>
 
           {/* Hero-Typ */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-              Hero-Typ
-            </h3>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-6 bg-green-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                <MdImage className="w-4 h-4 text-green-600" />
+              </div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                Hero-Typ
+              </h3>
+            </div>
             <div className="grid grid-cols-2 gap-3">
               {heroTypes.map((type) => (
                 <button
@@ -264,9 +283,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
           {/* Farbschema */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-              Farbschema
-            </h3>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-6 bg-purple-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                <MdPalette className="w-4 h-4 text-purple-600" />
+              </div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                Farbschema
+              </h3>
+            </div>
             <div className="grid grid-cols-2 gap-3">
               {colorSchemes.map((scheme) => (
                 <button
@@ -294,11 +318,50 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
           </div>
 
+          {/* Layout-Modus */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-6 bg-teal-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                <MdViewQuilt className="w-4 h-4 text-teal-600" />
+              </div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                Layout-Modus
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {layoutModes.map((mode) => (
+                <button
+                  key={mode.key}
+                  onClick={() => setSiteMode(mode.key as any)}
+                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all ${
+                    siteMode === mode.key
+                      ? 'border-gray-900 bg-gray-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                  style={{ borderRadius: '8px' }}
+                >
+                  <div className={`w-8 h-8 flex items-center justify-center ${
+                    siteMode === mode.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
+                  }`}
+                  style={{ borderRadius: '6px' }}>
+                    <mode.icon className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-medium text-gray-900">{mode.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Features */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-              Features
-            </h3>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-6 bg-indigo-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                <MdSettings className="w-4 h-4 text-indigo-600" />
+              </div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                Features
+              </h3>
+            </div>
             <div className="space-y-3">
               {featureList.map((feature) => (
                 <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200" style={{ borderRadius: '8px' }}>
@@ -361,9 +424,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           {/* Überschriften */}
           {/* Style Packages Section */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-              Stil-Pakete
-            </h3>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-6 bg-orange-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                <MdBrush className="w-4 h-4 text-orange-600" />
+              </div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                Stil-Pakete
+              </h3>
+            </div>
             <div className="grid grid-cols-1 gap-3">
               {STYLE_PACKAGES.map((pkg) => (
                 <button
