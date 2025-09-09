@@ -56,6 +56,19 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     }
   }, [isConfigLoaded, colorScheme, designStyle, config])
 
+  // Prevent body scroll when sidebar is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   if (!isOpen) return null
 
   // Besteller-Varianten
@@ -63,7 +76,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     {
       id: 'starter',
       name: 'Starter',
-      price: '€299',
+      price: '79€',
+      period: '/Monat',
       description: 'Perfekt für kleine Unternehmen',
       features: ['1 Design-Stil', 'Basis-Features', 'Mobile optimiert'],
       icon: MdBusiness,
@@ -73,7 +87,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     {
       id: 'professional',
       name: 'Professional',
-      price: '€599',
+      price: '119€',
+      period: '/Monat',
       description: 'Ideal für wachsende Unternehmen',
       features: ['3 Design-Stile', 'Alle Features', 'SEO optimiert'],
       icon: MdTrendingUp,
@@ -83,7 +98,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     {
       id: 'premium',
       name: 'Premium',
-      price: '€999',
+      price: '149€',
+      period: '/Monat',
       description: 'Für anspruchsvolle Projekte',
       features: ['Alle Design-Stile', 'Premium Features', 'Vollständig anpassbar'],
       icon: MdDiamond,
@@ -136,11 +152,12 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         shadow-xl z-50 transform transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : 'translate-x-full'}
         ${isMobile ? 'w-full max-w-sm' : 'w-80'}
-      `}>
+      `}
+      style={{ borderRadius: '0px' }}>
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gray-900 flex items-center justify-center" style={{ borderRadius: '8px' }}>
               <MdSettings className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-lg font-semibold text-gray-900">
@@ -149,7 +166,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-50 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-50 transition-colors"
+            style={{ borderRadius: '8px' }}
           >
             <MdClose className="w-5 h-5 text-gray-400" />
           </button>
@@ -179,27 +197,32 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setSiteMode('multipage')
                     }
                   }}
-                  className={`w-full p-4 rounded-xl border-2 transition-all text-left ${
+                  className={`w-full p-4 border-2 transition-all text-left ${
                     variant.selected
                       ? 'border-gray-900 bg-gray-50'
                       : `${variant.color} hover:border-gray-300`
                   }`}
+                  style={{ borderRadius: '12px' }}
                 >
                   <div className="flex items-start gap-3">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                    <div className={`w-10 h-10 flex items-center justify-center ${
                       variant.selected ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'
-                    }`}>
+                    }`}
+                    style={{ borderRadius: '8px' }}>
                       <variant.icon className="w-5 h-5" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
                         <h4 className="font-semibold text-gray-900">{variant.name}</h4>
-                        <span className="text-lg font-bold text-gray-900">{variant.price}</span>
+                        <div className="text-right">
+                          <span className="text-lg font-bold text-gray-900">{variant.price}</span>
+                          <span className="text-sm text-gray-500 ml-1">{variant.period}</span>
+                        </div>
                       </div>
                       <p className="text-sm text-gray-600 mb-2">{variant.description}</p>
                       <div className="flex flex-wrap gap-1">
                         {variant.features.map((feature, index) => (
-                          <span key={index} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                          <span key={index} className="text-xs bg-gray-100 text-gray-600 px-2 py-1" style={{ borderRadius: '6px' }}>
                             {feature}
                           </span>
                         ))}
@@ -224,15 +247,17 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={style.key}
                   onClick={() => setDesignStyle(style.key as any)}
-                  className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all ${
+                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all ${
                     designStyle === style.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
+                  style={{ borderRadius: '8px' }}
                 >
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                  <div className={`w-8 h-8 flex items-center justify-center ${
                     designStyle === style.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}>
+                  }`}
+                  style={{ borderRadius: '6px' }}>
                     <style.icon className="w-4 h-4" />
                   </div>
                   <span className="text-xs font-medium text-gray-900">{style.label}</span>
@@ -251,15 +276,17 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={type.key}
                   onClick={() => setHeroType(type.key as any)}
-                  className={`flex items-center gap-2 p-3 rounded-lg border-2 transition-all ${
+                  className={`flex items-center gap-2 p-3 border-2 transition-all ${
                     heroType === type.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
+                  style={{ borderRadius: '8px' }}
                 >
-                  <div className={`w-6 h-6 rounded flex items-center justify-center ${
+                  <div className={`w-6 h-6 flex items-center justify-center ${
                     heroType === type.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}>
+                  }`}
+                  style={{ borderRadius: '4px' }}>
                     <type.icon className="w-3 h-3" />
                   </div>
                   <span className="text-sm font-medium text-gray-900">{type.label}</span>
@@ -278,11 +305,12 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={scheme.key}
                   onClick={() => setColorScheme(scheme.key as any)}
-                  className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                  className={`flex items-center gap-3 p-3 border-2 transition-all ${
                     colorScheme === scheme.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
+                  style={{ borderRadius: '8px' }}
                 >
                   <div className="flex gap-1">
                     {scheme.colors.map((color, index) => (
@@ -306,25 +334,27 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </h3>
             <div className="space-y-3">
               {featureList.map((feature) => (
-                <div key={feature.key} className="flex items-center justify-between p-3 rounded-lg border border-gray-200">
+                <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200" style={{ borderRadius: '8px' }}>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <div className="w-8 h-8 bg-gray-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
                       <feature.icon className="w-4 h-4 text-gray-600" />
                     </div>
                     <span className="text-sm font-medium text-gray-900">{feature.label}</span>
                   </div>
                   <button
                     onClick={() => toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])}
-                    className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    className={`relative inline-flex h-5 w-9 items-center transition-colors ${
                       features[feature.key as keyof typeof features]
                         ? 'bg-gray-900'
                         : 'bg-gray-200'
                     }`}
+                    style={{ borderRadius: '12px' }}
                   >
                     <span
-                      className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${
+                      className={`inline-block h-3 w-3 transform bg-white transition-transform ${
                         features[feature.key as keyof typeof features] ? 'translate-x-5' : 'translate-x-1'
                       }`}
+                      style={{ borderRadius: '50%' }}
                     />
                   </button>
                 </div>
@@ -342,11 +372,12 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={mode.key}
                   onClick={() => setSiteMode(mode.key as any)}
-                  className={`w-full flex items-center justify-between p-3 rounded-lg border-2 transition-all ${
+                  className={`w-full flex items-center justify-between p-3 border-2 transition-all ${
                     siteMode === mode.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
+                  style={{ borderRadius: '8px' }}
                 >
                   <div>
                     <div className="font-medium text-gray-900">{mode.label}</div>
@@ -366,18 +397,20 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               Überschriften
             </h3>
             <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 rounded-lg border border-gray-200">
+              <div className="flex items-center justify-between p-3 border border-gray-200" style={{ borderRadius: '8px' }}>
                 <span className="text-sm font-medium text-gray-900">Unterstreichung</span>
                 <button
                   onClick={() => setHeadingUnderline(!headingUnderline)}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center transition-colors ${
                     headingUnderline ? 'bg-gray-900' : 'bg-gray-200'
                   }`}
+                  style={{ borderRadius: '12px' }}
                 >
                   <span
-                    className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${
+                    className={`inline-block h-3 w-3 transform bg-white transition-transform ${
                       headingUnderline ? 'translate-x-5' : 'translate-x-1'
                     }`}
+                    style={{ borderRadius: '50%' }}
                   />
                 </button>
               </div>
@@ -395,11 +428,12 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       <button
                         key={style.key}
                         onClick={() => setHeadingStyle(style.key as any)}
-                        className={`px-3 py-2 text-xs font-medium rounded-lg border transition-all ${
+                        className={`px-3 py-2 text-xs font-medium border transition-all ${
                           headingStyle === style.key
                             ? 'border-gray-900 bg-gray-50 text-gray-900'
                             : 'border-gray-200 text-gray-600 hover:border-gray-300'
                         }`}
+                        style={{ borderRadius: '6px' }}
                       >
                         {style.label}
                       </button>
