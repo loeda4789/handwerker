@@ -59,13 +59,13 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   // Prevent body scroll when sidebar is open
   useEffect(() => {
     if (isOpen) {
+      // Store original overflow value
+      const originalOverflow = document.body.style.overflow
       document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    
-    return () => {
-      document.body.style.overflow = 'unset'
+      
+      return () => {
+        document.body.style.overflow = originalOverflow
+      }
     }
   }, [isOpen])
 
