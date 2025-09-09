@@ -13,7 +13,10 @@ import {
   MdViewCarousel,
   MdPhoneInTalk,
   MdCall,
-  MdCheck
+  MdCheck,
+  MdBusiness,
+  MdTrendingUp,
+  MdDiamond
 } from 'react-icons/md'
 import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig } from '@/contexts/AppConfigContext'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
@@ -32,7 +35,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { type: heroType, setType: setHeroType } = useHeroConfig()
   const { underline: headingUnderline, style: headingStyle, color: headingColor, setUnderline: setHeadingUnderline, setStyle: setHeadingStyle, setColor: setHeadingColor } = useHeadingsConfig()
   
-  const [activeTab, setActiveTab] = useState('design')
   const [isMobile, setIsMobile] = useState(false)
 
   // Check if mobile
@@ -56,12 +58,38 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
   if (!isOpen) return null
 
-  const tabs = [
-    { key: 'design', label: 'Design', icon: MdBrush },
-    { key: 'colors', label: 'Farben', icon: MdPalette },
-    { key: 'headings', label: 'Überschriften', icon: MdDescription },
-    { key: 'features', label: 'Features', icon: MdStar },
-    { key: 'layout', label: 'Layout', icon: MdDescription }
+  // Besteller-Varianten
+  const bestellerVariants = [
+    {
+      id: 'starter',
+      name: 'Starter',
+      price: '€299',
+      description: 'Perfekt für kleine Unternehmen',
+      features: ['1 Design-Stil', 'Basis-Features', 'Mobile optimiert'],
+      icon: MdBusiness,
+      color: 'bg-gray-50 border-gray-200',
+      selected: designStyle === 'angular' && siteMode === 'onepage'
+    },
+    {
+      id: 'professional',
+      name: 'Professional',
+      price: '€599',
+      description: 'Ideal für wachsende Unternehmen',
+      features: ['3 Design-Stile', 'Alle Features', 'SEO optimiert'],
+      icon: MdTrendingUp,
+      color: 'bg-blue-50 border-blue-200',
+      selected: designStyle === 'rounded' && siteMode === 'multipage'
+    },
+    {
+      id: 'premium',
+      name: 'Premium',
+      price: '€999',
+      description: 'Für anspruchsvolle Projekte',
+      features: ['Alle Design-Stile', 'Premium Features', 'Vollständig anpassbar'],
+      icon: MdDiamond,
+      color: 'bg-purple-50 border-purple-200',
+      selected: designStyle === 'modern' && siteMode === 'multipage'
+    }
   ]
 
   const designStyles = [
@@ -70,354 +98,317 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     { key: 'modern', label: 'Modern', icon: MdViewCarousel }
   ]
 
-  const colorSchemes = [
-    { key: 'warm', label: 'Warm', colors: ['#f97316', '#ea580c'] },
-    { key: 'modern', label: 'Modern', colors: ['#3b82f6', '#1d4ed8'] },
-    { key: 'elegant', label: 'Elegant', colors: ['#8b5cf6', '#7c3aed'] },
-    { key: 'nature', label: 'Natur', colors: ['#10b981', '#059669'] }
+  const heroTypes = [
+    { key: 'single', label: 'Single', icon: MdImage },
+    { key: 'slider', label: 'Slider', icon: MdViewCarousel },
+    { key: 'video', label: 'Video', icon: MdCall },
+    { key: 'split', label: 'Split', icon: MdViewQuilt }
   ]
 
-  const heroTypes = [
-    { key: 'single', label: 'Einzelbild', icon: MdImage },
-    { key: 'slider', label: 'Slider', icon: MdViewCarousel },
-    { key: 'video', label: 'Video', icon: MdViewQuilt },
-    { key: 'split', label: 'Geteilt', icon: MdDescription }
+  const colorSchemes = [
+    { key: 'warm', label: 'Warm', colors: ['#f97316', '#fb923c', '#fed7aa'] },
+    { key: 'modern', label: 'Modern', colors: ['#3b82f6', '#60a5fa', '#93c5fd'] },
+    { key: 'elegant', label: 'Elegant', colors: ['#6b7280', '#9ca3af', '#d1d5db'] },
+    { key: 'nature', label: 'Nature', colors: ['#059669', '#10b981', '#6ee7b7'] }
+  ]
+
+  const featureList = [
+    { key: 'contactBar', label: 'Kontakt-Leiste', icon: MdPhoneInTalk },
+    { key: 'sideContact', label: 'Seiten-Kontakt', icon: MdCall }
+  ]
+
+  const layoutModes = [
+    { key: 'onepage', label: 'One-Page', description: 'Alles auf einer Seite' },
+    { key: 'multipage', label: 'Multi-Page', description: 'Mehrere Unterseiten' }
   ]
 
   return (
     <>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+        className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
         onClick={onClose}
       />
       
       {/* Sidebar */}
       <div className={`
-        fixed top-0 right-0 h-full w-full max-w-sm bg-white dark:bg-gray-900 
-        shadow-2xl z-50 transform transition-transform duration-300 ease-in-out
-        lg:translate-x-0 ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+        fixed top-0 right-0 h-full w-full max-w-sm bg-white 
+        shadow-xl z-50 transform transition-transform duration-300 ease-in-out
+        ${isOpen ? 'translate-x-0' : 'translate-x-full'}
         ${isMobile ? 'w-full max-w-sm' : 'w-80'}
       `}>
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
               <MdSettings className="w-5 h-5 text-white" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Design-Konfiguration
+            <h2 className="text-lg font-semibold text-gray-900">
+              Website Designer
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-50 rounded-lg transition-colors"
           >
-            <MdClose className="w-5 h-5 text-gray-500" />
+            <MdClose className="w-5 h-5 text-gray-400" />
           </button>
         </div>
 
-        {/* Tabs */}
-        <div className="flex border-b border-gray-200 dark:border-gray-700">
-          {tabs.map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium transition-colors ${
-                activeTab === tab.key
-                  ? 'text-orange-500 border-b-2 border-orange-500 bg-orange-50 dark:bg-orange-900/20'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
-              }`}
-            >
-              <tab.icon className="w-4 h-4" />
-              <span className="hidden sm:inline">{tab.label}</span>
-            </button>
-          ))}
-        </div>
-
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
-          {/* Design Tab */}
-          {activeTab === 'design' && (
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                  Design-Stil
-                </h3>
-                <div className="grid grid-cols-1 gap-3">
-                  {designStyles.map((style) => (
-                    <button
-                      key={style.key}
-                      onClick={() => setDesignStyle(style.key as any)}
-                      className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all ${
-                        designStyle === style.key
-                          ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
-                          : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
-                      }`}
-                    >
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        designStyle === style.key ? 'bg-orange-500 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-                      }`}>
-                        <style.icon className="w-5 h-5" />
-                      </div>
-                      <div className="flex-1 text-left">
-                        <div className="font-medium text-gray-900 dark:text-white">
-                          {style.label}
-                        </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">
-                          {style.key === 'angular' && 'Scharfe Ecken, minimalistisch'}
-                          {style.key === 'rounded' && 'Sanfte Ecken, freundlich'}
-                          {style.key === 'modern' && 'Floating Design, futuristisch'}
-                        </div>
-                      </div>
-                      {designStyle === style.key && (
-                        <MdCheck className="w-5 h-5 text-orange-500" />
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                  Hero-Typ
-                </h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {heroTypes.map((type) => (
-                    <button
-                      key={type.key}
-                      onClick={() => setHeroType(type.key as any)}
-                      className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
-                        heroType === type.key
-                          ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
-                          : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
-                      }`}
-                    >
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                        heroType === type.key ? 'bg-orange-500 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-                      }`}>
-                        <type.icon className="w-4 h-4" />
-                      </div>
-                      <span className="text-sm font-medium text-gray-900 dark:text-white">
-                        {type.label}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Colors Tab */}
-          {activeTab === 'colors' && (
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Farbschema
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {colorSchemes.map((scheme) => (
-                  <button
-                    key={scheme.key}
-                    onClick={() => setColorScheme(scheme.key as any)}
-                    className={`flex flex-col items-center gap-3 p-4 rounded-xl border-2 transition-all ${
-                      colorScheme === scheme.key
-                        ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
-                        : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
-                    }`}
-                  >
-                    <div className="flex gap-1">
-                      {scheme.colors.map((color, index) => (
-                        <div
-                          key={index}
-                          className="w-6 h-6 rounded-full"
-                          style={{ backgroundColor: color }}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      {scheme.label}
-                    </span>
-                    {colorScheme === scheme.key && (
-                      <MdCheck className="w-4 h-4 text-orange-500" />
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Headings Tab */}
-          {activeTab === 'headings' && (
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                  Überschriften-Styling
-                </h3>
-                
-                {/* Underline Toggle */}
-                <div className="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 mb-4">
-                  <div className="flex items-center gap-3">
+        <div className="flex-1 overflow-y-auto p-6 space-y-8">
+          
+          {/* Besteller-Varianten */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+              Besteller-Varianten
+            </h3>
+            <div className="space-y-3">
+              {bestellerVariants.map((variant) => (
+                <button
+                  key={variant.id}
+                  onClick={() => {
+                    if (variant.id === 'starter') {
+                      setDesignStyle('angular')
+                      setSiteMode('onepage')
+                    } else if (variant.id === 'professional') {
+                      setDesignStyle('rounded')
+                      setSiteMode('multipage')
+                    } else if (variant.id === 'premium') {
+                      setDesignStyle('modern')
+                      setSiteMode('multipage')
+                    }
+                  }}
+                  className={`w-full p-4 rounded-xl border-2 transition-all text-left ${
+                    variant.selected
+                      ? 'border-gray-900 bg-gray-50'
+                      : `${variant.color} hover:border-gray-300`
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
                     <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                      headingUnderline ? 'bg-orange-500 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                      variant.selected ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'
                     }`}>
-                      <MdDescription className="w-5 h-5" />
+                      <variant.icon className="w-5 h-5" />
                     </div>
-                    <div>
-                      <div className="font-medium text-gray-900 dark:text-white">
-                        Unterstreichung
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1">
+                        <h4 className="font-semibold text-gray-900">{variant.name}</h4>
+                        <span className="text-lg font-bold text-gray-900">{variant.price}</span>
                       </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        Überschriften unterstreichen
+                      <p className="text-sm text-gray-600 mb-2">{variant.description}</p>
+                      <div className="flex flex-wrap gap-1">
+                        {variant.features.map((feature, index) => (
+                          <span key={index} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                            {feature}
+                          </span>
+                        ))}
                       </div>
                     </div>
+                    {variant.selected && (
+                      <MdCheck className="w-5 h-5 text-gray-900 flex-shrink-0" />
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Design-Stil */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+              Design-Stil
+            </h3>
+            <div className="grid grid-cols-3 gap-3">
+              {designStyles.map((style) => (
+                <button
+                  key={style.key}
+                  onClick={() => setDesignStyle(style.key as any)}
+                  className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all ${
+                    designStyle === style.key
+                      ? 'border-gray-900 bg-gray-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                    designStyle === style.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    <style.icon className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-medium text-gray-900">{style.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Hero-Typ */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+              Hero-Typ
+            </h3>
+            <div className="grid grid-cols-2 gap-3">
+              {heroTypes.map((type) => (
+                <button
+                  key={type.key}
+                  onClick={() => setHeroType(type.key as any)}
+                  className={`flex items-center gap-2 p-3 rounded-lg border-2 transition-all ${
+                    heroType === type.key
+                      ? 'border-gray-900 bg-gray-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <div className={`w-6 h-6 rounded flex items-center justify-center ${
+                    heroType === type.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    <type.icon className="w-3 h-3" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">{type.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Farbschema */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+              Farbschema
+            </h3>
+            <div className="grid grid-cols-2 gap-3">
+              {colorSchemes.map((scheme) => (
+                <button
+                  key={scheme.key}
+                  onClick={() => setColorScheme(scheme.key as any)}
+                  className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                    colorScheme === scheme.key
+                      ? 'border-gray-900 bg-gray-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <div className="flex gap-1">
+                    {scheme.colors.map((color, index) => (
+                      <div
+                        key={index}
+                        className="w-4 h-4 rounded-full"
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">{scheme.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Features */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+              Features
+            </h3>
+            <div className="space-y-3">
+              {featureList.map((feature) => (
+                <div key={feature.key} className="flex items-center justify-between p-3 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <feature.icon className="w-4 h-4 text-gray-600" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-900">{feature.label}</span>
                   </div>
                   <button
-                    onClick={() => setHeadingUnderline(!headingUnderline)}
-                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                      headingUnderline ? 'bg-orange-500' : 'bg-gray-200 dark:bg-gray-700'
+                    onClick={() => toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])}
+                    className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                      features[feature.key as keyof typeof features]
+                        ? 'bg-gray-900'
+                        : 'bg-gray-200'
                     }`}
                   >
                     <span
-                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                        headingUnderline ? 'translate-x-6' : 'translate-x-1'
+                      className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${
+                        features[feature.key as keyof typeof features] ? 'translate-x-5' : 'translate-x-1'
                       }`}
                     />
                   </button>
                 </div>
-
-                {/* Style Selection */}
-                {headingUnderline && (
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-gray-900 dark:text-white">
-                      Unterstreichungs-Stil
-                    </h4>
-                    <div className="grid grid-cols-2 gap-3">
-                      {[
-                        { key: 'gradient', label: 'Gradient', desc: 'Farbverlauf' },
-                        { key: 'solid', label: 'Solid', desc: 'Einfarbig' },
-                        { key: 'dotted', label: 'Gepunktet', desc: 'Punkte' },
-                        { key: 'none', label: 'Keine', desc: 'Ausblenden' }
-                      ].map((style) => (
-                        <button
-                          key={style.key}
-                          onClick={() => setHeadingStyle(style.key as any)}
-                          className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all ${
-                            headingStyle === style.key
-                              ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
-                              : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
-                          }`}
-                        >
-                          <div className={`w-8 h-1 rounded-full ${
-                            style.key === 'gradient' ? 'bg-gradient-to-r from-orange-500 to-orange-300' :
-                            style.key === 'solid' ? 'bg-orange-500' :
-                            style.key === 'dotted' ? 'bg-orange-500' :
-                            'bg-gray-300'
-                          }`} style={{
-                            borderStyle: style.key === 'dotted' ? 'dotted' : 'solid'
-                          }} />
-                          <span className="text-sm font-medium text-gray-900 dark:text-white">
-                            {style.label}
-                          </span>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
-                            {style.desc}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              ))}
             </div>
-          )}
+          </div>
 
-          {/* Features Tab */}
-          {activeTab === 'features' && (
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Features
-              </h3>
-              <div className="space-y-3">
-                {[
-                  { key: 'contactBar', label: 'Kontakt-Leiste', desc: 'Fixe Telefon-Leiste oben', icon: MdPhoneInTalk },
-                  { key: 'sideContact', label: 'Side Contact', desc: 'Floating Kontakt-Button', icon: MdCall }
-                ].map((feature) => (
-                  <div
-                    key={feature.key}
-                    className="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        features[feature.key as keyof typeof features]
-                          ? 'bg-orange-500 text-white'
-                          : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-                      }`}>
-                        <feature.icon className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <div className="font-medium text-gray-900 dark:text-white">
-                          {feature.label}
-                        </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">
-                          {feature.desc}
-                        </div>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => toggleFeature(feature.key as keyof typeof features, !features[feature.key as keyof typeof features])}
-                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                        features[feature.key as keyof typeof features]
-                          ? 'bg-orange-500'
-                          : 'bg-gray-200 dark:bg-gray-700'
-                      }`}
-                    >
-                      <span
-                        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                          features[feature.key as keyof typeof features] ? 'translate-x-6' : 'translate-x-1'
-                        }`}
-                      />
-                    </button>
+          {/* Layout-Modus */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+              Layout-Modus
+            </h3>
+            <div className="space-y-2">
+              {layoutModes.map((mode) => (
+                <button
+                  key={mode.key}
+                  onClick={() => setSiteMode(mode.key as any)}
+                  className={`w-full flex items-center justify-between p-3 rounded-lg border-2 transition-all ${
+                    siteMode === mode.key
+                      ? 'border-gray-900 bg-gray-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <div>
+                    <div className="font-medium text-gray-900">{mode.label}</div>
+                    <div className="text-sm text-gray-600">{mode.description}</div>
                   </div>
-                ))}
-              </div>
+                  {siteMode === mode.key && (
+                    <MdCheck className="w-5 h-5 text-gray-900" />
+                  )}
+                </button>
+              ))}
             </div>
-          )}
+          </div>
 
-          {/* Layout Tab */}
-          {activeTab === 'layout' && (
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Layout-Modus
-              </h3>
-              <div className="space-y-3">
-                {[
-                  { key: 'onepage', label: 'One-Page', desc: 'Alle Inhalte auf einer Seite' },
-                  { key: 'multipage', label: 'Multi-Page', desc: 'Getrennte Unterseiten' }
-                ].map((mode) => (
-                  <button
-                    key={mode.key}
-                    onClick={() => setSiteMode(mode.key as any)}
-                    className={`w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all ${
-                      siteMode === mode.key
-                        ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
-                        : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
+          {/* Überschriften */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+              Überschriften
+            </h3>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between p-3 rounded-lg border border-gray-200">
+                <span className="text-sm font-medium text-gray-900">Unterstreichung</span>
+                <button
+                  onClick={() => setHeadingUnderline(!headingUnderline)}
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    headingUnderline ? 'bg-gray-900' : 'bg-gray-200'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${
+                      headingUnderline ? 'translate-x-5' : 'translate-x-1'
                     }`}
-                  >
-                    <div className="text-left">
-                      <div className="font-medium text-gray-900 dark:text-white">
-                        {mode.label}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        {mode.desc}
-                      </div>
-                    </div>
-                    {siteMode === mode.key && (
-                      <MdCheck className="w-5 h-5 text-orange-500" />
-                    )}
-                  </button>
-                ))}
+                  />
+                </button>
               </div>
+              
+              {headingUnderline && (
+                <div className="space-y-2">
+                  <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Stil</div>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { key: 'gradient', label: 'Gradient' },
+                      { key: 'solid', label: 'Solid' },
+                      { key: 'dotted', label: 'Gepunktet' },
+                      { key: 'none', label: 'Keine' }
+                    ].map((style) => (
+                      <button
+                        key={style.key}
+                        onClick={() => setHeadingStyle(style.key as any)}
+                        className={`px-3 py-2 text-xs font-medium rounded-lg border transition-all ${
+                          headingStyle === style.key
+                            ? 'border-gray-900 bg-gray-50 text-gray-900'
+                            : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                        }`}
+                      >
+                        {style.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </>
