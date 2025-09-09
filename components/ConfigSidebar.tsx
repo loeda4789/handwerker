@@ -371,6 +371,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   onClick={() => {
                     const newConfig = applyStylePackage(config, pkg.id)
                     // Apply all changes from the style package
+                    setSiteMode(newConfig.layout.mode)
                     setColorScheme(newConfig.theme.colorScheme)
                     setHeadingUnderline(newConfig.headings.underline)
                     setHeadingStyle(newConfig.headings.style)
@@ -404,57 +405,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-              Überschriften
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 border border-gray-200" style={{ borderRadius: '8px' }}>
-                <span className="text-sm font-medium text-gray-900">Unterstreichung</span>
-                <button
-                  onClick={() => setHeadingUnderline(!headingUnderline)}
-                  className={`relative inline-flex h-5 w-9 items-center transition-colors ${
-                    headingUnderline ? 'bg-gray-900' : 'bg-gray-200'
-                  }`}
-                  style={{ borderRadius: '12px' }}
-                >
-                  <span
-                    className={`inline-block h-3 w-3 transform bg-white transition-transform ${
-                      headingUnderline ? 'translate-x-5' : 'translate-x-1'
-                    }`}
-                    style={{ borderRadius: '50%' }}
-                  />
-                </button>
-              </div>
-              
-              {headingUnderline && (
-                <div className="space-y-2">
-                  <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Stil</div>
-                  <div className="grid grid-cols-2 gap-2">
-                    {[
-                      { key: 'gradient', label: 'Gradient' },
-                      { key: 'solid', label: 'Solid' },
-                      { key: 'dotted', label: 'Gepunktet' },
-                      { key: 'none', label: 'Keine' }
-                    ].map((style) => (
-                      <button
-                        key={style.key}
-                        onClick={() => setHeadingStyle(style.key as any)}
-                        className={`px-3 py-2 text-xs font-medium border transition-all ${
-                          headingStyle === style.key
-                            ? 'border-gray-900 bg-gray-50 text-gray-900'
-                            : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                        }`}
-                        style={{ borderRadius: '6px' }}
-                      >
-                        {style.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
         </div>
       </div>
     </>
