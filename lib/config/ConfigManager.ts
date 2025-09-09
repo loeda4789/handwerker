@@ -69,6 +69,12 @@ class ConfigManager {
     migrated.features.contactBar = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.CONTACT_BAR) === 'true'
     migrated.features.sideContact = localStorage.getItem(LEGACY_STORAGE_KEYS.FEATURES.SIDE_CONTACT) !== 'false' // Default true
     
+    // Hero Migration
+    const heroType = localStorage.getItem('demo-hero-type') as 'single' | 'slider' | 'video' | 'split'
+    if (heroType) {
+      migrated.hero.type = heroType
+    }
+    
     console.log('✅ Features migriert:', migrated.features)
     
     // System Migration

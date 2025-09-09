@@ -101,6 +101,15 @@ export function useFeaturesConfig() {
   }
 }
 
+export function useHeroConfig() {
+  const { config, updateConfig } = useAppConfig()
+  return {
+    type: config.hero.type,
+    setType: (type: 'single' | 'slider' | 'video' | 'split') =>
+      updateConfig({ hero: { ...config.hero, type } })
+  }
+}
+
 export function useSystemConfig() {
   const { config, updateConfig } = useAppConfig()
   

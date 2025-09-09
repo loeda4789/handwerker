@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { ContentData } from '@/types/content'
 import { useState, useEffect } from 'react'
 import { MdVerified, MdAccessTime, MdSupportAgent } from 'react-icons/md'
+import { useHeroConfig } from '@/contexts/AppConfigContext'
 
 interface HeroProps {
   content: ContentData
@@ -566,29 +567,8 @@ function HeroSplit({ content }: HeroProps) {
 
 // Main Hero Component
 export default function Hero({ content }: HeroProps) {
-  const [currentHeroType, setCurrentHeroType] = useState<string>('single')
-  
-  useEffect(() => {
-    // Initial load
-    const demoHeroType = typeof window !== 'undefined' ? localStorage.getItem('demo-hero-type') : null
-    const heroType = demoHeroType || content.hero?.type || 'single'
-    setCurrentHeroType(heroType)
-    
-    // Listen for changes
-    const handleHeroTypeChange = () => {
-      const newHeroType = localStorage.getItem('demo-hero-type') || content.hero?.type || 'single'
-      setCurrentHeroType(newHeroType)
-    }
-    
-    // Listen for custom event and storage changes
-    window.addEventListener('hero-type-changed', handleHeroTypeChange)
-    window.addEventListener('storage', handleHeroTypeChange)
-    
-    return () => {
-      window.removeEventListener('hero-type-changed', handleHeroTypeChange)
-      window.removeEventListener('storage', handleHeroTypeChange)
-    }
-  }, [content.hero?.type])
+  // Hero-Type aus AppConfigContext
+  const { type: currentHeroType } = useHeroConfig()
   
   console.log('Hero Type:', currentHeroType)
   

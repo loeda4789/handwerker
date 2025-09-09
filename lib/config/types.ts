@@ -26,6 +26,9 @@ export interface AppConfig {
       showMobileMenu: boolean
     }
   }
+  hero: {
+    type: 'single' | 'slider' | 'video' | 'split'
+  }
   system: {
     isFirstVisit: boolean
     quickEditMode: boolean
@@ -59,6 +62,9 @@ export const DEFAULT_CONFIG: AppConfig = {
       showCta: true,
       showMobileMenu: true
     }
+  },
+  hero: {
+    type: 'single'
   },
   system: {
     isFirstVisit: true,
