@@ -422,14 +422,14 @@ function HeroVideo({ content }: HeroProps) {
                     href="#kontakt"
                     className="group relative overflow-hidden px-8 py-4 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1 rounded-lg"
                     style={{ 
-                      backgroundColor: 'var(--color-primary)',
+                      backgroundColor: 'var(--color-secondary)',
                       borderRadius: 'var(--radius-button)'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                      e.currentTarget.style.backgroundColor = 'var(--color-primary)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                      e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
                     }}
                   >
                     <span className="relative z-10">Jetzt Termin vereinbaren</span>

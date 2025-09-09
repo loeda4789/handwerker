@@ -139,14 +139,14 @@ export default function MobileHeader({
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
             className="block w-full py-4 px-8 text-white font-bold text-lg uppercase rounded-lg transition-colors duration-300 text-center"
             style={{ 
-              backgroundColor: 'var(--color-primary)',
+              backgroundColor: 'var(--color-secondary)',
               borderRadius: 'var(--radius-button)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+              e.currentTarget.style.backgroundColor = 'var(--color-primary)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+              e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
             }}
           >
             Jetzt anfragen
