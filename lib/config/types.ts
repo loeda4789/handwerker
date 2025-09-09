@@ -13,6 +13,19 @@ export interface AppConfig {
     contactBar: boolean
     sideContact: boolean
   }
+  header: {
+    variant: 'desktop' | 'mobile' | 'adaptive'
+    behavior: {
+      hideOnScroll: boolean
+      floating: boolean
+      transparent: boolean
+    }
+    navigation: {
+      showLogo: boolean
+      showCta: boolean
+      showMobileMenu: boolean
+    }
+  }
   system: {
     isFirstVisit: boolean
     quickEditMode: boolean
@@ -33,6 +46,19 @@ export const DEFAULT_CONFIG: AppConfig = {
   features: {
     contactBar: true,
     sideContact: true
+  },
+  header: {
+    variant: 'adaptive',
+    behavior: {
+      hideOnScroll: true,
+      floating: false,
+      transparent: true
+    },
+    navigation: {
+      showLogo: true,
+      showCta: true,
+      showMobileMenu: true
+    }
   },
   system: {
     isFirstVisit: true,

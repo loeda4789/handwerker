@@ -5,10 +5,10 @@ import { ContentData } from '@/types/content'
 import { useAppConfig, useLayoutConfig } from '@/contexts/AppConfigContext'
 import { getHeaderStyles, getDropdownStyles } from '@/lib/config/headerStyles'
 import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationConfig'
-import HeaderLogo from './header/HeaderLogo'
-import HeaderNavigation from './header/HeaderNavigation'
-import HeaderCta from './header/HeaderCta'
-import MobileHeader from './header/MobileHeader'
+import HeaderLogo from './HeaderLogo'
+import HeaderNavigation from './HeaderNavigation'
+import HeaderCta from './HeaderCta'
+import MobileHeader from './MobileHeader'
 
 interface HeaderProps {
   content: ContentData
