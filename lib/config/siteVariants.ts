@@ -31,20 +31,20 @@ export const siteVariants: Record<string, SiteVariant> = {
   professional: {
     id: 'professional',
     name: 'Professional', 
-    description: 'One-Page mit Side-Contact und Jobs',
-    features: ['onepage', 'side-contact', 'jobs', 'advanced-navigation'],
+    description: 'One-Page mit Side-Contact, Projektablauf und FAQ',
+    features: ['onepage', 'side-contact', 'projektablauf', 'faq', 'advanced-navigation'],
     navigation: {
-      items: ['ueber-uns', 'leistungen', 'jobs'],
+      items: ['ueber-uns', 'leistungen', 'projektablauf', 'faq'],
       hasDropdowns: false
     }
   },
   premium: {
     id: 'premium',
     name: 'Premium',
-    description: 'Multi-Page Website mit vollständiger Navigation',
-    features: ['multipage', 'full-navigation', 'dropdowns', 'all-sections'],
+    description: 'Multi-Page Website mit Jobs und vollständiger Navigation',
+    features: ['multipage', 'full-navigation', 'dropdowns', 'jobs', 'all-sections'],
     navigation: {
-      items: ['ueber-uns', 'leistungen', 'projektablauf', 'kontakt', 'faq'],
+      items: ['ueber-uns', 'leistungen', 'jobs', 'kontakt', 'faq'],
       hasDropdowns: true
     }
   }
