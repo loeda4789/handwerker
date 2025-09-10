@@ -40,6 +40,10 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const [activePackage, setActivePackage] = useState<'1' | '2' | '3' | null>(null)
   const [showPackageDetails, setShowPackageDetails] = useState<{[key: string]: boolean}>({})
   const [isAdvancedConfigOpen, setIsAdvancedConfigOpen] = useState(false)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startY, setStartY] = useState(0)
+  const [currentY, setCurrentY] = useState(0)
+  const [isModalClosing, setIsModalClosing] = useState(false)
   
   // CSS-Schemata anwenden wenn Konfiguration geladen ist
   useEffect(() => {
@@ -48,6 +52,93 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       // Border-Radius-Schema NICHT anwenden - Designer-Sidebar behält immer halbrunde Ränder
     }
   }, [isConfigLoaded, currentColorScheme, currentDesignStyle])
+
+  // Instagram-ähnliches Modal-Verhalten
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0]
+    setStartY(touch.clientY)
+    setCurrentY(touch.clientY)
+    setIsDragging(true)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return
+    
+    const touch = e.touches[0]
+    const deltaY = touch.clientY - startY
+    
+    // Nur nach unten scrollen erlauben
+    if (deltaY > 0) {
+      setCurrentY(touch.clientY)
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return
+    
+    const deltaY = currentY - startY
+    const threshold = 100 // Mindestabstand zum Schließen
+    
+    if (deltaY > threshold) {
+      setIsModalClosing(true)
+      setTimeout(() => {
+        onClose()
+      }, 200)
+    } else {
+      // Zurück zur ursprünglichen Position
+      setCurrentY(startY)
+    }
+    
+    setIsDragging(false)
+  }
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setStartY(e.clientY)
+    setCurrentY(e.clientY)
+    setIsDragging(true)
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return
+    
+    const deltaY = e.clientY - startY
+    
+    // Nur nach unten scrollen erlauben
+    if (deltaY > 0) {
+      setCurrentY(e.clientY)
+    }
+  }
+
+  const handleMouseUp = () => {
+    if (!isDragging) return
+    
+    const deltaY = currentY - startY
+    const threshold = 100 // Mindestabstand zum Schließen
+    
+    if (deltaY > threshold) {
+      setIsModalClosing(true)
+      setTimeout(() => {
+        onClose()
+      }, 200)
+    } else {
+      // Zurück zur ursprünglichen Position
+      setCurrentY(startY)
+    }
+    
+    setIsDragging(false)
+  }
+
+  // Event-Listener für Mouse-Events
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove as any)
+      document.addEventListener('mouseup', handleMouseUp)
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove as any)
+        document.removeEventListener('mouseup', handleMouseUp)
+      }
+    }
+  }, [isDragging, currentY, startY])
 
   const handleSiteModeChange = (mode: 'onepage' | 'multipage') => {
     changeSiteMode(mode)
@@ -236,8 +327,27 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   ]
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="design-preview-modal bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[520px] h-[600px] flex flex-col" style={{ borderRadius: '24px' }}>
+    <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-end justify-center p-0">
+      <div 
+        className={`design-preview-modal bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-[520px] h-[600px] flex flex-col transition-transform duration-300 ease-out ${
+          isModalClosing ? 'translate-y-full' : 'translate-y-0'
+        }`}
+        style={{ 
+          borderRadius: '24px 24px 0 0',
+          transform: isDragging ? `translateY(${Math.max(0, currentY - startY)}px)` : undefined
+        }}
+      >
+        
+        {/* Instagram-ähnlicher Drag-Handle */}
+        <div 
+          className="flex justify-center py-3 cursor-grab active:cursor-grabbing"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+        >
+          <div className="w-12 h-1 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+        </div>
         
         {/* Header */}
         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
