@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { ContentData } from '@/types/content'
-import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
+import { useLayoutConfig, useStyleConfig, useHeadingsConfig } from '@/contexts/AppConfigContext'
 
 interface FAQProps {
   content: ContentData
@@ -12,6 +12,7 @@ export default function FAQ({ content }: FAQProps) {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null)
   const { design: designStyle } = useLayoutConfig()
   const { badgeStyle, fontFamily } = useStyleConfig()
+  const { underline: headingUnderline } = useHeadingsConfig()
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index)
@@ -66,21 +67,21 @@ export default function FAQ({ content }: FAQProps) {
     <section className="py-16 bg-background dark:bg-dark">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          {/* Badge */}
-          {isModernStyle && (
+          {/* Badge nur anzeigen wenn badgeStyle nicht 'none' ist */}
+          {badgeStyle !== 'none' && (
             <div className={getBadgeClasses()}>
               FAQ
             </div>
           )}
           
           <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
-            {isModernStyle ? (
+            {headingUnderline ? (
               <span className="heading-underline">Häufig gestellte Fragen</span>
             ) : (
               'Häufig gestellte Fragen'
             )}
           </h2>
-          <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
+          <p className={`text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto ${getFontClass()}`}>
             Hier finden Sie Antworten auf die wichtigsten Fragen zu unseren Dienstleistungen
           </p>
         </div>

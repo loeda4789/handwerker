@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { ContentData } from '@/types/content';
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation';
-import { useLayoutConfig } from '@/contexts/AppConfigContext';
+import { useLayoutConfig, useStyleConfig, useHeadingsConfig } from '@/contexts/AppConfigContext';
 
 interface StatsProps {
   content: ContentData;
@@ -97,6 +97,8 @@ export default function Stats({ content }: StatsProps) {
   
   // Design-Style aus AppConfigContext
   const { design: designStyle } = useLayoutConfig();
+  const { badgeStyle, fontFamily } = useStyleConfig();
+  const { underline: headingUnderline } = useHeadingsConfig();
   
   // Verwende Daten aus content.json
   const stats = content.stats.customStats;
@@ -104,26 +106,51 @@ export default function Stats({ content }: StatsProps) {
   // Moderne Ansichten (rounded, modern) verwenden Services-ähnlichen Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern';
 
+  // Badge-Klassen basierend auf Stil-Paket
+  const getBadgeClasses = () => {
+    const baseClasses = "inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4"
+    const badgeClasses = {
+      minimal: "badge-minimal",
+      rounded: "badge-rounded", 
+      pill: "badge-pill",
+      outlined: "badge-outlined",
+      none: "badge-none"
+    }
+    return `${baseClasses} ${badgeClasses[badgeStyle]}`
+  }
+  
+  const getFontClass = () => {
+    const fontClasses = {
+      sans: "font-sans",
+      serif: "font-serif",
+      mono: "font-mono",
+      display: "font-display"
+    }
+    return fontClasses[fontFamily]
+  }
+
   return (
     <section className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
-          <span className="inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4 rounded-lg"
-            style={{ backgroundColor: 'var(--color-secondary)' }}>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-            </svg>
-            Fakten & Zahlen
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 transition-colors duration-300">
-            {designStyle === 'modern' ? (
+          {/* Badge nur anzeigen wenn badgeStyle nicht 'none' ist */}
+          {badgeStyle !== 'none' && (
+            <span className={getBadgeClasses()}>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+              Fakten & Zahlen
+            </span>
+          )}
+          <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 transition-colors duration-300 ${getFontClass()}`}>
+            {headingUnderline ? (
               <span className="heading-underline-large">Zahlen, die für sich sprechen</span>
             ) : (
               'Zahlen, die für sich sprechen'
             )}
           </h2>
-          <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto transition-colors duration-300">
+          <p className={`text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto transition-colors duration-300 ${getFontClass()}`}>
             Diese Zahlen spiegeln unser Engagement für Qualität und Kundenzufriedenheit wider.
           </p>
         </div>
