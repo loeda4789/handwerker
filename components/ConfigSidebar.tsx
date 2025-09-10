@@ -16,7 +16,12 @@ import {
   MdCheck,
   MdBusiness,
   MdTrendingUp,
-  MdDiamond
+  MdDiamond,
+  MdCleaningServices,
+  MdDiamond as MdLuxury,
+  MdBusinessCenter,
+  MdLocalFireDepartment,
+  MdFlashOn
 } from 'react-icons/md'
 import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 import { STYLE_PACKAGES, applyStylePackage } from '@/lib/config/stylePackages'
@@ -26,6 +31,18 @@ import { applyHeadingStyles } from '@/lib/headingStyles'
 interface ConfigSidebarProps {
   isOpen: boolean
   onClose: () => void
+}
+
+// Icon-Mapping für Stil-Pakete
+const getStylePackageIcon = (packageId: string) => {
+  switch (packageId) {
+    case 'clean': return MdCleaningServices
+    case 'luxury': return MdLuxury
+    case 'corporate': return MdBusinessCenter
+    case 'warm': return MdLocalFireDepartment
+    case 'dynamic': return MdFlashOn
+    default: return MdBrush
+  }
 }
 
 export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
@@ -398,7 +415,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       applyHeadingStyles(updatedConfig)
                     }
                   }}
-                  className={`flex items-center gap-3 p-4 border-2 transition-all cursor-pointer ${
+                  className={`flex items-center gap-2 p-3 border-2 transition-all cursor-pointer ${
                     stylePackage === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                   onMouseDown={(e) => {
@@ -408,12 +425,16 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   }}
                   style={{ borderRadius: '10px' }}
                 >
-                  <div className="w-8 h-8 bg-gray-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
-                    <span className="text-sm font-bold text-gray-700">{pkg.icon}</span>
+                  <div className={`w-6 h-6 flex items-center justify-center ${
+                    stylePackage === pkg.id ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
+                  }`}
+                  style={{ borderRadius: '4px' }}>
+                    {(() => {
+                      const IconComponent = getStylePackageIcon(pkg.id)
+                      return <IconComponent className="w-3 h-3" />
+                    })()}
                   </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-medium text-gray-900">{pkg.name}</div>
-                  </div>
+                  <span className="text-sm font-medium text-gray-900">{pkg.name}</span>
                 </button>
                 )
               })}
