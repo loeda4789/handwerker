@@ -19,7 +19,7 @@ import {
   MdNotifications,
   MdInfo
 } from 'react-icons/md'
-import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
+import { applyColorScheme } from '@/lib/colorSchemes'
 import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig } from '@/contexts/AppConfigContext'
 
 interface DesignPreviewProps {
@@ -44,7 +44,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   useEffect(() => {
     if (isConfigLoaded) {
       applyColorScheme(currentColorScheme)
-      applyBorderRadiusScheme(currentDesignStyle)
+      // Border-Radius-Schema NICHT anwenden - Designer-Sidebar behält immer halbrunde Ränder
     }
   }, [isConfigLoaded, currentColorScheme, currentDesignStyle])
 
@@ -145,8 +145,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       console.log('🎨 Wende Farbschema an:', selectedPackage.colorScheme)
       applyColorScheme(selectedPackage.colorScheme)
       
-      console.log('🔲 Wende Design-Style an:', selectedPackage.designStyle)  
-      applyBorderRadiusScheme(selectedPackage.designStyle)
+      console.log('🔲 Design-Style wird NICHT angewendet - Designer-Sidebar behält halbrunde Ränder')  
+      // applyBorderRadiusScheme(selectedPackage.designStyle) - NICHT anwenden für Designer-Sidebar
       
       // Hero type setzen
       const heroTypeMap = {
@@ -172,8 +172,8 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       // Color scheme anwenden
       applyColorScheme(currentColorScheme)
       
-      // Border radius scheme anwenden
-      applyBorderRadiusScheme(currentDesignStyle)
+      // Border radius scheme NICHT anwenden - Designer-Sidebar behält halbrunde Ränder
+      // applyBorderRadiusScheme(currentDesignStyle) - NICHT anwenden für Designer-Sidebar
       
       // Mark user as having configured the site
       localStorage.setItem('handwerker-config-saved', 'true')
