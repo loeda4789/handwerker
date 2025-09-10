@@ -376,11 +376,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 Stil-Pakete
               </h3>
             </div>
-            <div className="grid grid-cols-1 gap-3">
+            <div className="grid grid-cols-1 gap-4">
               {STYLE_PACKAGES.map((pkg) => (
-                <button
+                <div
                   key={pkg.id}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    
                     // Apply style package without changing layout mode
                     if (pkg.id === 'modern') {
                       setColorScheme('warm')
@@ -429,26 +432,26 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setSpacing('spacious')
                     }
                   }}
-                  className={`w-full p-4 border-2 transition-all text-left ${
+                  className={`w-full p-6 border-2 transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98] ${
                     stylePackage === pkg.id
-                      ? 'border-gray-900 bg-gray-50'
-                      : `${pkg.color} hover:border-gray-300`
+                      ? 'border-gray-900 bg-gray-50 shadow-lg'
+                      : `${pkg.color} hover:border-gray-300 hover:shadow-md`
                   }`}
                   style={{ borderRadius: '12px' }}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-gray-900 text-white flex items-center justify-center font-bold text-sm" style={{ borderRadius: '6px' }}>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-gray-900 text-white flex items-center justify-center font-bold text-lg" style={{ borderRadius: '8px' }}>
                       {pkg.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-gray-900 mb-1">{pkg.name}</h4>
-                      <p className="text-sm text-gray-600">{pkg.description}</p>
+                      <h4 className="font-semibold text-gray-900 mb-2 text-lg">{pkg.name}</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">{pkg.description}</p>
                     </div>
                     {stylePackage === pkg.id && (
-                      <MdCheck className="w-5 h-5 text-gray-900 flex-shrink-0" />
+                      <MdCheck className="w-6 h-6 text-gray-900 flex-shrink-0" />
                     )}
                   </div>
-                </button>
+                </div>
               ))}
             </div>
           </div>
