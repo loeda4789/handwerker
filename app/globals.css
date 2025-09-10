@@ -30,6 +30,23 @@ body {
   }
 }
 
+/* ConfigCard und ConfigSidebar - Immer leicht abgerundet, unabhängig von Konfiguration */
+.config-card-button {
+  border-radius: 1rem !important; /* Leicht abgerundet */
+}
+
+.config-sidebar-variant {
+  border-radius: 1rem !important; /* Leicht abgerundet für Varianten */
+}
+
+.config-sidebar-button {
+  border-radius: 0.75rem !important; /* Leicht abgerundet für Buttons */
+}
+
+.config-sidebar-feature {
+  border-radius: 0.75rem !important; /* Leicht abgerundet für Features */
+}
+
 /* Designer-Sidebar komplett von CSS-Variablen isolieren */
 .design-preview-modal,
 .design-preview-modal * {

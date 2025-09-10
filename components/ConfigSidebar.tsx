@@ -271,7 +271,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       if (!features.contactBar) toggleFeature('contactBar', true)
                     }
                   }}
-                  className={`w-full p-4 border-2 transition-all text-left rounded-2xl h-20 flex items-center ${
+                  className={`w-full p-4 border-2 transition-all text-left h-20 flex items-center config-sidebar-variant ${
                     variant.selected
                       ? 'border-gray-900 bg-gray-50'
                       : `${variant.color} hover:border-gray-300`
@@ -346,7 +346,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={type.key}
                   onClick={() => setHeroType(type.key as any)}
-                  className={`flex items-center gap-2 p-3 border-2 transition-all rounded-2xl ${
+                  className={`flex items-center gap-2 p-3 border-2 transition-all config-sidebar-button ${
                     heroType === type.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
@@ -430,7 +430,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       applyHeadingStyles(updatedConfig)
                     }
                   }}
-                  className={`flex items-center gap-2 p-3 border-2 transition-all cursor-pointer rounded-2xl ${
+                  className={`flex items-center gap-2 p-3 border-2 transition-all cursor-pointer config-sidebar-button ${
                     stylePackage === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                   onMouseDown={(e) => {
@@ -469,7 +469,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={scheme.key}
                   onClick={() => setColorScheme(scheme.key as any)}
-                  className={`flex items-center gap-3 p-3 border-2 transition-all rounded-2xl ${
+                  className={`flex items-center gap-3 p-3 border-2 transition-all config-sidebar-button ${
                     colorScheme === scheme.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
@@ -502,7 +502,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
             <div className="space-y-3">
               {featureList.map((feature) => (
-                <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200 rounded-2xl">
+                <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200 config-sidebar-feature">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-full">
                       <feature.icon className="w-4 h-4 text-gray-600" />
