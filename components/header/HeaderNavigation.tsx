@@ -26,7 +26,7 @@ export default function HeaderNavigation({
   onSmoothScroll
 }: HeaderNavigationProps) {
   return (
-    <div className="hidden lg:flex items-center space-x-8">
+    <div className="hidden lg:flex items-center space-x-12">
       {navItems.map((item) => (
         <div key={item.id} className="relative">
           {item.hasDropdown ? (

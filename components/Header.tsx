@@ -179,18 +179,20 @@ export default function Header({ content }: HeaderProps) {
               companyName={content.company.name}
             />
 
-            {/* Desktop Navigation */}
-            <HeaderNavigation
-              navItems={navItems}
-              textColor={splitHeaderStyles.textColor}
-              dropdownStyles={dropdownStyles}
-              dropdownOpen={dropdownOpen}
-              activeSection={activeSection}
-              siteMode={siteMode}
-              onDropdownEnter={handleDropdownEnter}
-              onDropdownLeave={handleDropdownLeave}
-              onSmoothScroll={handleSmoothScroll}
-            />
+            {/* Desktop Navigation - Zentriert mit mehr Platz */}
+            <div className="flex-1 flex justify-center">
+              <HeaderNavigation
+                navItems={navItems}
+                textColor={splitHeaderStyles.textColor}
+                dropdownStyles={dropdownStyles}
+                dropdownOpen={dropdownOpen}
+                activeSection={activeSection}
+                siteMode={siteMode}
+                onDropdownEnter={handleDropdownEnter}
+                onDropdownLeave={handleDropdownLeave}
+                onSmoothScroll={handleSmoothScroll}
+              />
+            </div>
             
             {/* CTA Button */}
             <HeaderCta
