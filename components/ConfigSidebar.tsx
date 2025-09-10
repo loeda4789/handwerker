@@ -432,9 +432,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     e.preventDefault()
                     e.stopPropagation()
                     
-                    // Apply style package without changing layout mode
+                    // Apply style package without changing color scheme
                     if (pkg.id === 'clean') {
-                      setColorScheme('warm')
                       setHeadingUnderline(true)
                       setHeadingStyle('gradient')
                       setHeadingColor('primary')
@@ -443,7 +442,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setBadgeStyle('rounded')
                       setSpacing('comfortable')
                     } else if (pkg.id === 'luxury') {
-                      setColorScheme('elegant')
                       setHeadingUnderline(true)
                       setHeadingStyle('solid')
                       setHeadingColor('secondary')
@@ -452,7 +450,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setBadgeStyle('minimal')
                       setSpacing('spacious')
                     } else if (pkg.id === 'corporate') {
-                      setColorScheme('modern')
                       setHeadingUnderline(false)
                       setHeadingStyle('none')
                       setHeadingColor('primary')
@@ -461,7 +458,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setBadgeStyle('outlined')
                       setSpacing('compact')
                     } else if (pkg.id === 'warm') {
-                      setColorScheme('nature')
                       setHeadingUnderline(true)
                       setHeadingStyle('dotted')
                       setHeadingColor('accent')
@@ -470,7 +466,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setBadgeStyle('pill')
                       setSpacing('comfortable')
                     } else if (pkg.id === 'dynamic') {
-                      setColorScheme('warm')
                       setHeadingUnderline(true)
                       setHeadingStyle('gradient')
                       setHeadingColor('primary')
