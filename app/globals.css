@@ -17,21 +17,56 @@ body {
   border-radius: 1.5rem !important; /* Moderne halbrunde Border-Radien */
 }
 
-/* Spezifische Anpassungen für verschiedene Elemente */
+/* Designer-Sidebar komplett von CSS-Variablen isolieren */
+.design-preview-modal,
+.design-preview-modal * {
+  --radius-button: 1rem !important;
+  --radius-card: 1.25rem !important;
+  --radius-input: 0.75rem !important;
+  --radius-modal: 1.5rem !important;
+}
+
+/* Spezifische Anpassungen für verschiedene Elemente - Höhere Spezifität */
 .design-preview-modal button,
-.side-contact button {
+.design-preview-modal button[style*="border-radius"],
+.design-preview-modal .btn,
+.design-preview-modal .button,
+.side-contact button,
+.side-contact button[style*="border-radius"],
+.side-contact .btn,
+.side-contact .button {
   border-radius: 1rem !important; /* Etwas weniger rund für Buttons */
 }
 
 .design-preview-modal input,
+.design-preview-modal input[style*="border-radius"],
 .design-preview-modal select,
-.side-contact input {
+.design-preview-modal select[style*="border-radius"],
+.side-contact input,
+.side-contact input[style*="border-radius"] {
   border-radius: 0.75rem !important; /* Moderate Rundung für Inputs */
 }
 
 .design-preview-modal .card,
-.side-contact .card {
+.design-preview-modal .card[style*="border-radius"],
+.side-contact .card,
+.side-contact .card[style*="border-radius"] {
   border-radius: 1.25rem !important; /* Schöne Rundung für Cards */
+}
+
+/* Zusätzliche Spezifität für alle möglichen Button-Klassen */
+.design-preview-modal [class*="button"],
+.design-preview-modal [class*="btn"],
+.design-preview-modal [role="button"] {
+  border-radius: 1rem !important;
+}
+
+/* Spezifische Regeln für Paket-Buttons */
+.design-preview-modal button[onclick*="applyPackage"],
+.design-preview-modal button[onclick*="handleDesignStyleChange"],
+.design-preview-modal button[onclick*="handleColorSchemeChange"],
+.design-preview-modal button[onclick*="handleFeatureToggle"] {
+  border-radius: 1rem !important;
 }
 
 /* Critical CSS für Hero-Bereich - wird sofort geladen */
