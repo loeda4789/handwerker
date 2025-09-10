@@ -106,21 +106,21 @@ export const applyColorScheme = (scheme: string) => {
 export const borderRadiusSchemes = {
   angular: {
     name: 'Klassisch',
-    description: 'Eckige Kanten, traditionell',
+    description: 'Minimal abgerundete Kanten, traditionell',
     none: '0px',
-    sm: '0px',
-    base: '0px',
-    md: '0px',
-    lg: '0px',
-    xl: '0px',
-    '2xl': '0px',
-    '3xl': '0px',
-    full: '0px',
-    button: '0px',      // Eckige Buttons
-    card: '0px',        // Eckige Cards
-    image: '0px',       // Eckige Bilder
-    modal: '0px',       // Eckige Modals
-    input: '0px'        // Eckige Inputs
+    sm: '0.125rem',     // 2px - minimal abgerundet
+    base: '0.25rem',    // 4px - leicht abgerundet
+    md: '0.375rem',     // 6px - sanft abgerundet
+    lg: '0.5rem',       // 8px - moderat abgerundet
+    xl: '0.75rem',      // 12px - gut abgerundet
+    '2xl': '1rem',      // 16px - stark abgerundet
+    '3xl': '1.25rem',   // 20px - sehr abgerundet
+    full: '9999px',
+    button: '0.375rem', // 6px - sanft abgerundete Buttons
+    card: '0.5rem',     // 8px - moderat abgerundete Cards
+    image: '0.25rem',   // 4px - leicht abgerundete Bilder
+    modal: '0.75rem',   // 12px - gut abgerundete Modals
+    input: '0.25rem'    // 4px - leicht abgerundete Inputs
   },
   rounded: {
     name: 'Freundlich',
