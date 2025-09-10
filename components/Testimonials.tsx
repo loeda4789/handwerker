@@ -162,14 +162,14 @@ export default function Testimonials({ content }: TestimonialsProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
-          {designStyle === 'rounded' && (
-            <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              style={{ 
-                borderRadius: 'var(--radius-button)',
-                backgroundColor: 'var(--color-secondary)'
-              }}>
+          {/* Badge nur anzeigen wenn badgeStyle nicht 'none' ist */}
+          {badgeStyle !== 'none' && (
+            <div className={getBadgeClasses()}>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+              </svg>
               Kundenstimmen
-            </span>
+            </div>
           )}
           <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
             {designStyle === 'modern' ? (
