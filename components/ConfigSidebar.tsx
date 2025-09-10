@@ -80,33 +80,33 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       name: 'Starter',
       price: '79€',
       period: '/Monat',
-      description: 'Perfekt für kleine Unternehmen',
-      features: ['Basis-Features', 'Mobile optimiert'],
+      description: 'One-Page Website für kleine Unternehmen',
+      features: ['One-Page Layout', 'Basis-Features', 'Mobile optimiert'],
       icon: MdBusiness,
       color: 'bg-gray-50 border-gray-200',
-      selected: designStyle === 'angular' && siteMode === 'onepage'
+      selected: siteMode === 'onepage' && !features.sideContact
     },
     {
       id: 'professional',
-      name: 'Professional',
+      name: 'Professionell',
       price: '119€',
       period: '/Monat',
-      description: 'Ideal für wachsende Unternehmen',
-      features: ['Alle Features', 'SEO optimiert'],
+      description: 'One-Page mit Leistungssektor',
+      features: ['One-Page Layout', 'Leistungssektor', 'Alle Features'],
       icon: MdTrendingUp,
       color: 'bg-blue-50 border-blue-200',
-      selected: designStyle === 'rounded' && siteMode === 'multipage'
+      selected: siteMode === 'onepage' && features.sideContact
     },
     {
       id: 'premium',
       name: 'Premium',
       price: '149€',
       period: '/Monat',
-      description: 'Für anspruchsvolle Projekte',
-      features: ['Premium Features', 'Vollständig anpassbar'],
+      description: 'Multi-Page Website für anspruchsvolle Projekte',
+      features: ['Multi-Page Layout', 'Alle Unterseiten', 'Vollständig anpassbar'],
       icon: MdDiamond,
       color: 'bg-purple-50 border-purple-200',
-      selected: designStyle === 'modern' && siteMode === 'multipage'
+      selected: siteMode === 'multipage'
     }
   ]
 
@@ -130,10 +130,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     { key: 'sideContact', label: 'Seiten-Kontakt', icon: MdCall }
   ]
 
-  const layoutModes = [
-    { key: 'onepage', label: 'One-Page', description: 'Alles auf einer Seite', icon: MdViewQuilt },
-    { key: 'multipage', label: 'Multi-Page', description: 'Mehrere Unterseiten', icon: MdDescription }
-  ]
 
   return (
     <>
@@ -190,11 +186,20 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   key={variant.id}
                   onClick={() => {
                     if (variant.id === 'starter') {
+                      // Starter: One-Page ohne Leistungssektor
                       setSiteMode('onepage')
+                      if (features.sideContact) toggleFeature('sideContact', false)
+                      if (!features.contactBar) toggleFeature('contactBar', true)
                     } else if (variant.id === 'professional') {
-                      setSiteMode('multipage')
+                      // Professionell: One-Page mit Leistungssektor
+                      setSiteMode('onepage')
+                      if (!features.sideContact) toggleFeature('sideContact', true)
+                      if (!features.contactBar) toggleFeature('contactBar', true)
                     } else if (variant.id === 'premium') {
+                      // Premium: Multi-Page mit allen Features
                       setSiteMode('multipage')
+                      if (!features.sideContact) toggleFeature('sideContact', true)
+                      if (!features.contactBar) toggleFeature('contactBar', true)
                     }
                   }}
                   className={`w-full p-4 border-2 transition-all text-left ${
@@ -318,39 +323,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
           </div>
 
-          {/* Layout-Modus */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-teal-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
-                <MdViewQuilt className="w-4 h-4 text-teal-600" />
-              </div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Layout-Modus
-              </h3>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {layoutModes.map((mode) => (
-                <button
-                  key={mode.key}
-                  onClick={() => setSiteMode(mode.key as any)}
-                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all ${
-                    siteMode === mode.key
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                  style={{ borderRadius: '8px' }}
-                >
-                  <div className={`w-8 h-8 flex items-center justify-center ${
-                    siteMode === mode.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}
-                  style={{ borderRadius: '6px' }}>
-                    <mode.icon className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs font-medium text-gray-900">{mode.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* Features */}
           <div className="space-y-4">
@@ -392,34 +364,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
           </div>
 
-          {/* Layout-Modus */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-              Layout-Modus
-            </h3>
-            <div className="space-y-2">
-              {layoutModes.map((mode) => (
-                <button
-                  key={mode.key}
-                  onClick={() => setSiteMode(mode.key as any)}
-                  className={`w-full flex items-center justify-between p-3 border-2 transition-all ${
-                    siteMode === mode.key
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                  style={{ borderRadius: '8px' }}
-                >
-                  <div>
-                    <div className="font-medium text-gray-900">{mode.label}</div>
-                    <div className="text-sm text-gray-600">{mode.description}</div>
-                  </div>
-                  {siteMode === mode.key && (
-                    <MdCheck className="w-5 h-5 text-gray-900" />
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* Überschriften */}
           {/* Style Packages Section */}
@@ -440,9 +384,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     console.log('=== STYLE PACKAGE CLICKED ===')
                     console.log('Package ID:', pkg.id)
                     
-                    // Direct application without complex merging
+                    // Apply style package without changing layout mode
                     if (pkg.id === 'modern') {
-                      setSiteMode('onepage')
                       setColorScheme('warm')
                       setHeadingUnderline(true)
                       setHeadingStyle('gradient')
@@ -452,7 +395,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setBadgeStyle('rounded')
                       setSpacing('comfortable')
                     } else if (pkg.id === 'elegant') {
-                      setSiteMode('onepage')
                       setColorScheme('elegant')
                       setHeadingUnderline(true)
                       setHeadingStyle('solid')
@@ -462,7 +404,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setBadgeStyle('minimal')
                       setSpacing('spacious')
                     } else if (pkg.id === 'professional') {
-                      setSiteMode('onepage')
                       setColorScheme('modern')
                       setHeadingUnderline(false)
                       setHeadingStyle('none')
@@ -472,7 +413,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setBadgeStyle('outlined')
                       setSpacing('compact')
                     } else if (pkg.id === 'friendly') {
-                      setSiteMode('onepage')
                       setColorScheme('nature')
                       setHeadingUnderline(true)
                       setHeadingStyle('dotted')
@@ -482,7 +422,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setBadgeStyle('pill')
                       setSpacing('comfortable')
                     } else if (pkg.id === 'bold') {
-                      setSiteMode('onepage')
                       setColorScheme('warm')
                       setHeadingUnderline(true)
                       setHeadingStyle('gradient')
