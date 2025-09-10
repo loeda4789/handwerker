@@ -327,14 +327,15 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   ]
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-end justify-center p-0">
+    <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-end justify-center p-0 md:items-center md:p-4">
       <div 
-        className={`design-preview-modal bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-[520px] h-[600px] flex flex-col transition-transform duration-300 ease-out ${
-          isModalClosing ? 'translate-y-full' : 'translate-y-0'
+        className={`design-preview-modal bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-[520px] h-[600px] flex flex-col transition-transform duration-300 ease-out md:rounded-3xl ${
+          isModalClosing ? 'translate-y-full md:translate-y-0 md:scale-95 md:opacity-0' : 'translate-y-0'
         }`}
         style={{ 
           borderRadius: '24px 24px 0 0',
-          transform: isDragging ? `translateY(${Math.max(0, currentY - startY)}px)` : undefined
+          transform: isDragging ? `translateY(${Math.max(0, currentY - startY)}px)` : undefined,
+          maxHeight: '90vh'
         }}
       >
         

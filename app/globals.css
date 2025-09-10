@@ -17,6 +17,19 @@ body {
   border-radius: 1.5rem !important; /* Moderne halbrunde Border-Radien */
 }
 
+/* Responsive Modal-Verhalten */
+@media (max-width: 767px) {
+  .design-preview-modal {
+    border-radius: 1.5rem 1.5rem 0 0 !important; /* Mobile: nur oben rund */
+  }
+}
+
+@media (min-width: 768px) {
+  .design-preview-modal {
+    border-radius: 1.5rem !important; /* Desktop: komplett rund */
+  }
+}
+
 /* Designer-Sidebar komplett von CSS-Variablen isolieren */
 .design-preview-modal,
 .design-preview-modal * {
