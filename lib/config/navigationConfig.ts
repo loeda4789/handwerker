@@ -35,15 +35,15 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     href: siteMode === 'multipage' ? null : '#leistungen',
     label: 'Leistungen',
     id: 'leistungen',
-    hasDropdown: true,
-    isClickable: siteMode === 'onepage',
-    dropdownItems: content.services
+    hasDropdown: siteMode === 'multipage', // Nur bei Multi-Page (Premium) gibt es Dropdown
+    isClickable: true, // Immer klickbar (One-Page: Scroll, Multi-Page: Link)
+    dropdownItems: siteMode === 'multipage' ? content.services
       .filter((service: any) => service.slug)
       .map((service: any) => ({
         href: addUrlParamsToHref(`/services/${service.slug}`),
         label: service.title,
         icon: service.icon
-      }))
+      })) : undefined
   }),
   'projektablauf': (content, addUrlParamsToHref, siteMode) => ({
     href: siteMode === 'multipage' ? addUrlParamsToHref('#projektablauf') : '#projektablauf',
