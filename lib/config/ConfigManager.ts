@@ -22,8 +22,11 @@ class ConfigManager {
   }
 
   updateConfig(updates: Partial<AppConfig>): void {
+    console.log('🔧 ConfigManager.updateConfig - Vorher:', this.config)
+    console.log('🔧 ConfigManager.updateConfig - Updates:', updates)
     // Deep merge instead of shallow merge
     this.config = this.deepMerge(this.config, updates)
+    console.log('🔧 ConfigManager.updateConfig - Nachher:', this.config)
     this.saveToStorage()
     this.notifyListeners()
   }

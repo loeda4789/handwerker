@@ -20,6 +20,9 @@ export default function Portfolio({ content }: PortfolioProps) {
   const { design: designStyle } = useLayoutConfig()
   const { badgeStyle, fontFamily } = useStyleConfig()
   
+  // Debug-Log hinzufügen
+  console.log('🔍 Portfolio - badgeStyle:', badgeStyle, 'fontFamily:', fontFamily, 'designStyle:', designStyle)
+  
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
   

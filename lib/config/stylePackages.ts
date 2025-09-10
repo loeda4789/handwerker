@@ -80,7 +80,11 @@ export const applyStylePackage = (config: AppConfig, packageId: string): AppConf
   const stylePackage = getStylePackage(packageId)
   if (!stylePackage) return config
 
-  return {
+  console.log('🔧 applyStylePackage - packageId:', packageId)
+  console.log('🔧 applyStylePackage - stylePackage:', stylePackage)
+  console.log('🔧 applyStylePackage - config vorher:', config)
+
+  const result = {
     ...config,
     layout: {
       ...config.layout,
@@ -95,4 +99,7 @@ export const applyStylePackage = (config: AppConfig, packageId: string): AppConf
       ...stylePackage.config.style
     }
   }
+
+  console.log('🔧 applyStylePackage - result:', result)
+  return result
 }

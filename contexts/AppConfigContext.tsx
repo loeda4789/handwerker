@@ -34,7 +34,9 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
 
   const updateConfig = (updates: Partial<AppConfig>) => {
     console.log('📝 Konfiguration wird aktualisiert:', updates)
+    console.log('📝 Aktuelle Konfiguration vor Update:', config)
     configManager.updateConfig(updates)
+    console.log('📝 Konfiguration nach Update:', configManager.getConfig())
   }
 
   const resetConfig = () => {
@@ -133,14 +135,22 @@ export function useStyleConfig() {
     fontFamily: config.style.fontFamily,
     badgeStyle: config.style.badgeStyle,
     spacing: config.style.spacing,
-    setPackage: (packageId: 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic') =>
-      updateConfig({ style: { ...config.style, package: packageId } }),
-    setFontFamily: (fontFamily: 'sans' | 'serif' | 'mono' | 'display') =>
-      updateConfig({ style: { ...config.style, fontFamily } }),
-    setBadgeStyle: (badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined') =>
-      updateConfig({ style: { ...config.style, badgeStyle } }),
-    setSpacing: (spacing: 'compact' | 'comfortable' | 'spacious') =>
+    setPackage: (packageId: 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic') => {
+      console.log('🎨 setPackage aufgerufen mit:', packageId)
+      updateConfig({ style: { ...config.style, package: packageId } })
+    },
+    setFontFamily: (fontFamily: 'sans' | 'serif' | 'mono' | 'display') => {
+      console.log('🎨 setFontFamily aufgerufen mit:', fontFamily)
+      updateConfig({ style: { ...config.style, fontFamily } })
+    },
+    setBadgeStyle: (badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined') => {
+      console.log('🎨 setBadgeStyle aufgerufen mit:', badgeStyle)
+      updateConfig({ style: { ...config.style, badgeStyle } })
+    },
+    setSpacing: (spacing: 'compact' | 'comfortable' | 'spacious') => {
+      console.log('🎨 setSpacing aufgerufen mit:', spacing)
       updateConfig({ style: { ...config.style, spacing } })
+    }
   }
 }
 
