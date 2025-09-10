@@ -341,7 +341,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              {STYLE_PACKAGES.map((pkg) => (
+              {STYLE_PACKAGES.map((pkg) => {
+                console.log('🔍 Rendering Stil-Paket:', pkg.id, pkg.name)
+                return (
                 <div
                   key={pkg.id}
                   onClick={(e) => {
@@ -407,7 +409,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     <div className="text-sm font-medium text-gray-900">{pkg.name}</div>
                   </div>
                 </div>
-              ))}
+                )
+              })}
             </div>
           </div>
 
