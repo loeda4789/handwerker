@@ -19,25 +19,31 @@ export const getNavigationItems = (
   siteMode: 'onepage' | 'multipage',
   content: ContentData,
   addUrlParamsToHref: (href: string | null) => string | null,
-  heroType?: 'single' | 'slider' | 'video' | 'split'
+  heroType?: 'single' | 'slider' | 'video' | 'split',
+  packageType?: 'starter' | 'professional' | 'premium'
 ): NavigationItem[] => {
-  // Basis-Navigation basierend auf Hero-Typ
+  // Basis-Navigation basierend auf Hero-Typ und Package-Typ
   const getBaseNavigation = () => {
-    const baseItems = [
-      { 
-        href: siteMode === 'multipage' ? addUrlParamsToHref('#ueber-uns') : '#ueber-uns', 
-        label: siteMode === 'multipage' ? 'Über uns' : content.about.title, 
-        id: 'ueber-uns',
-        hasDropdown: siteMode === 'multipage',
-        isClickable: true,
-        dropdownItems: siteMode === 'multipage' ? [
-          { href: addUrlParamsToHref('/ueber-uns/team'), label: 'Unser Team' },
-          { href: addUrlParamsToHref('/ueber-uns/betrieb'), label: 'Unser Betrieb' },
-          { href: addUrlParamsToHref('/ueber-uns/partner'), label: 'Partner & Zulieferer' },
-          { href: addUrlParamsToHref('/ueber-uns/zertifikate'), label: 'Zertifikate & Auszeichnungen' }
-        ] : undefined
-      },
-      { 
+    const baseItems = []
+    
+    // Über uns - immer vorhanden
+    baseItems.push({
+      href: siteMode === 'multipage' ? addUrlParamsToHref('#ueber-uns') : '#ueber-uns', 
+      label: siteMode === 'multipage' ? 'Über uns' : content.about.title, 
+      id: 'ueber-uns',
+      hasDropdown: siteMode === 'multipage',
+      isClickable: true,
+      dropdownItems: siteMode === 'multipage' ? [
+        { href: addUrlParamsToHref('/ueber-uns/team'), label: 'Unser Team' },
+        { href: addUrlParamsToHref('/ueber-uns/betrieb'), label: 'Unser Betrieb' },
+        { href: addUrlParamsToHref('/ueber-uns/partner'), label: 'Partner & Zulieferer' },
+        { href: addUrlParamsToHref('/ueber-uns/zertifikate'), label: 'Zertifikate & Auszeichnungen' }
+      ] : undefined
+    })
+    
+    // Leistungen - nur bei Professional und Premium, nicht bei Starter
+    if (packageType !== 'starter') {
+      baseItems.push({
         href: siteMode === 'multipage' ? null : '#leistungen', 
         label: 'Leistungen', 
         id: 'leistungen',
@@ -52,8 +58,8 @@ export const getNavigationItems = (
               icon: service.icon
             }
           })
-      }
-    ]
+      })
+    }
 
     // Hero-spezifische Navigation hinzufügen
     if (heroType === 'video') {
