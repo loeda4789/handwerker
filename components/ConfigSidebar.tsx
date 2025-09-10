@@ -334,87 +334,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
           </div>
 
-          {/* Farbschema */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-purple-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
-                <MdPalette className="w-4 h-4 text-purple-600" />
-              </div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Farbschema
-              </h3>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {colorSchemes.map((scheme) => (
-                <button
-                  key={scheme.key}
-                  onClick={() => setColorScheme(scheme.key as any)}
-                  className={`flex items-center gap-3 p-3 border-2 transition-all ${
-                    colorScheme === scheme.key
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                  style={{ borderRadius: '8px' }}
-                >
-                  <div className="flex gap-1">
-                    {scheme.colors.map((color, index) => (
-                      <div
-                        key={index}
-                        className="w-4 h-4 rounded-full"
-                        style={{ backgroundColor: color }}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm font-medium text-gray-900">{scheme.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-
-          {/* Features */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-indigo-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
-                <MdSettings className="w-4 h-4 text-indigo-600" />
-              </div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Features
-              </h3>
-            </div>
-            <div className="space-y-3">
-              {featureList.map((feature) => (
-                <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200" style={{ borderRadius: '8px' }}>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gray-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
-                      <feature.icon className="w-4 h-4 text-gray-600" />
-                    </div>
-                    <span className="text-sm font-medium text-gray-900">{feature.label}</span>
-                  </div>
-                  <button
-                    onClick={() => toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])}
-                    className={`relative inline-flex h-5 w-9 items-center transition-colors ${
-                      features[feature.key as keyof typeof features]
-                        ? 'bg-gray-900'
-                        : 'bg-gray-200'
-                    }`}
-                    style={{ borderRadius: '12px' }}
-                  >
-                    <span
-                      className={`inline-block h-3 w-3 transform bg-white transition-transform ${
-                        features[feature.key as keyof typeof features] ? 'translate-x-5' : 'translate-x-1'
-                      }`}
-                      style={{ borderRadius: '50%' }}
-                    />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-
-
-          {/* Überschriften */}
-          {/* Style Packages Section */}
+          {/* Stil-Pakete */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-6 h-6 bg-orange-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
@@ -475,24 +395,101 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       }
                     }
                   }}
-                  className={`flex items-center gap-2 p-3 border-2 transition-all ${
-                    stylePackage === pkg.id
+                  className={`flex items-center gap-3 p-4 border-2 transition-all cursor-pointer ${
+                    stylePackage === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                  style={{ borderRadius: '10px' }}
+                >
+                  <div className="w-8 h-8 bg-gray-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                    <span className="text-sm font-bold text-gray-700">{pkg.icon}</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-sm font-medium text-gray-900">{pkg.name}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Farbschema */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-6 bg-purple-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                <MdPalette className="w-4 h-4 text-purple-600" />
+              </div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                Farbschema
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {colorSchemes.map((scheme) => (
+                <button
+                  key={scheme.key}
+                  onClick={() => setColorScheme(scheme.key as any)}
+                  className={`flex items-center gap-3 p-3 border-2 transition-all ${
+                    colorScheme === scheme.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                   style={{ borderRadius: '8px' }}
                 >
-                  <div className={`w-6 h-6 flex items-center justify-center ${
-                    stylePackage === pkg.id ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}
-                  style={{ borderRadius: '4px' }}>
-                    <span className="text-xs font-bold">{pkg.icon}</span>
+                  <div className="flex gap-1">
+                    {scheme.colors.map((color, index) => (
+                      <div
+                        key={index}
+                        className="w-4 h-4 rounded-full"
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
                   </div>
-                  <span className="text-sm font-medium text-gray-900">{pkg.name}</span>
+                  <span className="text-sm font-medium text-gray-900">{scheme.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Features */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-6 bg-indigo-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                <MdSettings className="w-4 h-4 text-indigo-600" />
+              </div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                Features
+              </h3>
+            </div>
+            <div className="space-y-3">
+              {featureList.map((feature) => (
+                <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200" style={{ borderRadius: '8px' }}>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gray-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                      <feature.icon className="w-4 h-4 text-gray-600" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-900">{feature.label}</span>
+                  </div>
+                  <button
+                    onClick={() => toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])}
+                    className={`relative inline-flex h-5 w-9 items-center transition-colors ${
+                      features[feature.key as keyof typeof features]
+                        ? 'bg-gray-900'
+                        : 'bg-gray-200'
+                    }`}
+                    style={{ borderRadius: '12px' }}
+                  >
+                    <span
+                      className={`inline-block h-3 w-3 transform bg-white transition-transform ${
+                        features[feature.key as keyof typeof features] ? 'translate-x-5' : 'translate-x-1'
+                      }`}
+                      style={{ borderRadius: '50%' }}
+                    />
+                  </button>
                 </div>
               ))}
             </div>
           </div>
+
+
+          {/* Überschriften */}
 
         </div>
       </div>
