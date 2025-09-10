@@ -39,6 +39,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   
   // Debug-Log für stylePackage
   console.log('🔍 ConfigSidebar - stylePackage:', stylePackage, 'fontFamily:', fontFamily, 'badgeStyle:', badgeStyle)
+  console.log('🔍 ConfigSidebar - config.style.package:', config.style.package)
   
   const [isMobile, setIsMobile] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
@@ -399,7 +400,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     }
                   }}
                   className={`flex items-center gap-3 p-4 border-2 transition-all cursor-pointer ${
-                    stylePackage === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
+                    config.style.package === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                   onMouseDown={(e) => {
                     e.preventDefault()
