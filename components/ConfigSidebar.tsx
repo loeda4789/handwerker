@@ -220,7 +220,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100 flex-shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gray-900 flex items-center justify-center" style={{ borderRadius: '8px' }}>
+            <div className="w-8 h-8 bg-gray-900 flex items-center justify-center rounded-full">
               <MdSettings className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-lg font-semibold text-gray-900">
@@ -229,8 +229,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-50 transition-colors"
-            style={{ borderRadius: '8px' }}
+            className="p-2 hover:bg-gray-50 transition-colors rounded-full"
           >
             <MdClose className="w-5 h-5 text-gray-400" />
           </button>
@@ -242,7 +241,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           {/* Varianten */}
           <div className="space-y-3">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-5 h-5 bg-blue-100 flex items-center justify-center" style={{ borderRadius: '4px' }}>
+              <div className="w-5 h-5 bg-blue-100 flex items-center justify-center rounded-full">
                 <MdStar className="w-3 h-3 text-blue-600" />
               </div>
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
@@ -271,18 +270,16 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       if (!features.contactBar) toggleFeature('contactBar', true)
                     }
                   }}
-                  className={`w-full p-3 border-2 transition-all text-left ${
+                  className={`w-full p-3 border-2 transition-all text-left rounded-2xl ${
                     variant.selected
                       ? 'border-gray-900 bg-gray-50'
                       : `${variant.color} hover:border-gray-300`
                   }`}
-                  style={{ borderRadius: '8px' }}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 flex items-center justify-center ${
+                    <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
                       variant.selected ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'
-                    }`}
-                    style={{ borderRadius: '6px' }}>
+                    }`}>
                       <variant.icon className="w-4 h-4" />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -317,7 +314,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           {/* Hero-Typ */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-green-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+              <div className="w-6 h-6 bg-green-100 flex items-center justify-center rounded-full">
                 <MdImage className="w-4 h-4 text-green-600" />
               </div>
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
@@ -329,17 +326,15 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={type.key}
                   onClick={() => setHeroType(type.key as any)}
-                  className={`flex items-center gap-2 p-3 border-2 transition-all ${
+                  className={`flex items-center gap-2 p-3 border-2 transition-all rounded-2xl ${
                     heroType === type.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
-                  style={{ borderRadius: '8px' }}
                 >
-                  <div className={`w-6 h-6 flex items-center justify-center ${
+                  <div className={`w-6 h-6 flex items-center justify-center rounded-full ${
                     heroType === type.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}
-                  style={{ borderRadius: '4px' }}>
+                  }`}>
                     <type.icon className="w-3 h-3" />
                   </div>
                   <span className="text-sm font-medium text-gray-900">{type.label}</span>
@@ -351,7 +346,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           {/* Stil-Pakete */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-orange-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+              <div className="w-6 h-6 bg-orange-100 flex items-center justify-center rounded-full">
                 <MdBrush className="w-4 h-4 text-orange-600" />
               </div>
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
@@ -415,7 +410,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       applyHeadingStyles(updatedConfig)
                     }
                   }}
-                  className={`flex items-center gap-2 p-3 border-2 transition-all cursor-pointer ${
+                  className={`flex items-center gap-2 p-3 border-2 transition-all cursor-pointer rounded-2xl ${
                     stylePackage === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                   onMouseDown={(e) => {
@@ -423,12 +418,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     e.stopPropagation()
                     console.log('🖱️ Stil-Paket geklickt:', pkg.id, 'stylePackage:', stylePackage)
                   }}
-                  style={{ borderRadius: '8px' }}
                 >
-                  <div className={`w-6 h-6 flex items-center justify-center ${
+                  <div className={`w-6 h-6 flex items-center justify-center rounded-full ${
                     stylePackage === pkg.id ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}
-                  style={{ borderRadius: '4px' }}>
+                  }`}>
                     {(() => {
                       const IconComponent = getStylePackageIcon(pkg.id)
                       return <IconComponent className="w-3 h-3" />
@@ -444,7 +437,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           {/* Farbschema */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-purple-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+              <div className="w-6 h-6 bg-purple-100 flex items-center justify-center rounded-full">
                 <MdPalette className="w-4 h-4 text-purple-600" />
               </div>
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
@@ -456,12 +449,11 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={scheme.key}
                   onClick={() => setColorScheme(scheme.key as any)}
-                  className={`flex items-center gap-3 p-3 border-2 transition-all ${
+                  className={`flex items-center gap-3 p-3 border-2 transition-all rounded-2xl ${
                     colorScheme === scheme.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
-                  style={{ borderRadius: '8px' }}
                 >
                   <div className="flex gap-1">
                     {scheme.colors.map((color, index) => (
@@ -481,7 +473,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           {/* Features */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-indigo-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+              <div className="w-6 h-6 bg-indigo-100 flex items-center justify-center rounded-full">
                 <MdSettings className="w-4 h-4 text-indigo-600" />
               </div>
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
@@ -490,9 +482,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
             <div className="space-y-3">
               {featureList.map((feature) => (
-                <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200" style={{ borderRadius: '8px' }}>
+                <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200 rounded-2xl">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gray-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
+                    <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-full">
                       <feature.icon className="w-4 h-4 text-gray-600" />
                     </div>
                     <span className="text-sm font-medium text-gray-900">{feature.label}</span>
