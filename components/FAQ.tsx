@@ -76,7 +76,7 @@ export default function FAQ({ content }: FAQProps) {
           
           <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
             {headingUnderline ? (
-              <span className="heading-underline">Häufig gestellte Fragen</span>
+              <span className="heading-underline-large">Häufig gestellte Fragen</span>
             ) : (
               'Häufig gestellte Fragen'
             )}

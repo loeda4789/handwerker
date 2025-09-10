@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
-import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
+import { useLayoutConfig, useStyleConfig, useHeadingsConfig } from '@/contexts/AppConfigContext'
 
 interface ContactProps {
   content: any
@@ -45,6 +45,7 @@ export default function Contact({ content }: ContactProps) {
   // Design-Style aus AppConfigContext
   const { design: designStyle } = useLayoutConfig()
   const { badgeStyle, fontFamily } = useStyleConfig()
+  const { underline: headingUnderline } = useHeadingsConfig()
   
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
@@ -136,14 +137,24 @@ export default function Contact({ content }: ContactProps) {
               Kostenlos & unverbindlich
             </div>
             
+            {/* Badge nur anzeigen wenn badgeStyle nicht 'none' ist */}
+            {badgeStyle !== 'none' && (
+              <div className={getBadgeClasses()}>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                Kontakt
+              </div>
+            )}
+            
             <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 ${getFontClass()}`}>
-              {isModernStyle ? (
-                <span className="heading-underline">Schreiben Sie uns</span>
+              {headingUnderline ? (
+                <span className="heading-underline-large">Schreiben Sie uns</span>
               ) : (
                 'Schreiben Sie uns'
               )}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
+            <p className={`text-xl text-gray-600 dark:text-gray-300 ${getFontClass()}`}>
               Senden Sie uns eine Nachricht und wir melden uns schnellstmöglich bei Ihnen zurück.
             </p>
           </div>
