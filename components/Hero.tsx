@@ -474,31 +474,35 @@ function HeroSplit({ content }: HeroProps) {
                 {formatHeroTitle(content.company.tagline)}
               </h1>
             
-              <p className="text-xl md:text-2xl mb-8 text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="text-xl md:text-2xl mb-6 text-gray-600 dark:text-gray-300 leading-relaxed">
                 {formatHeroText(content.company.tagline, cityName)}
               </p>
+              
+              <p className="text-lg md:text-xl mb-8 text-gray-500 dark:text-gray-400 leading-relaxed">
+                Mit über 15 Jahren Erfahrung in der Elektrotechnik bieten wir Ihnen professionelle Lösungen für alle Ihre elektrischen Anforderungen. Von der Planung bis zur Umsetzung - wir sorgen für Sicherheit und Qualität in Ihrem Zuhause oder Unternehmen.
+              </p>
             
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center space-x-3">
+            <div className="space-y-6 mb-10">
+              <div className="flex items-center space-x-4">
                 <MdVerified 
-                  className="w-6 h-6"
+                  className="w-7 h-7"
                   style={{ color: 'var(--color-primary)' }}
                 />
-                <span className="text-gray-600 dark:text-gray-400">Meisterqualität seit Jahren</span>
+                <span className="text-lg text-gray-600 dark:text-gray-400">Meisterqualität seit Jahren</span>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-4">
                 <MdAccessTime 
-                  className="w-6 h-6"
+                  className="w-7 h-7"
                   style={{ color: 'var(--color-primary)' }}
                 />
-                <span className="text-gray-600 dark:text-gray-400">24/7 Notdienst verfügbar</span>
+                <span className="text-lg text-gray-600 dark:text-gray-400">24/7 Notdienst verfügbar</span>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-4">
                 <MdSupportAgent 
-                  className="w-6 h-6"
+                  className="w-7 h-7"
                   style={{ color: 'var(--color-primary)' }}
                 />
-                <span className="text-gray-600 dark:text-gray-400">Kostenlose Beratung</span>
+                <span className="text-lg text-gray-600 dark:text-gray-400">Kostenlose Beratung</span>
               </div>
             </div>
             
@@ -523,7 +527,7 @@ function HeroSplit({ content }: HeroProps) {
 
           {/* Right Side - Rounded Image */}
           <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
-            <div className="relative w-96 h-96">
+            <div className="relative w-[500px] h-[500px]">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl"></div>
               <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl">
                 <Image

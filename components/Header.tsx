@@ -148,6 +148,16 @@ export default function Header({ content }: HeaderProps) {
   // Header-Stile basierend auf Design-Stil
   const headerStyles = getHeaderStyles(designStyle, isScrolled, headerVisible)
   const dropdownStyles = getDropdownStyles(designStyle, isScrolled)
+  
+  // Für Split-Hero: Dunklerer Header
+  const isSplitHero = heroType === 'split'
+  const splitHeaderStyles = isSplitHero ? {
+    ...headerStyles,
+    header: headerStyles.header.replace('bg-white/95', 'bg-gray-900/95').replace('bg-white', 'bg-gray-900'),
+    textColor: 'text-white',
+    logoStyle: 'text-white',
+    ctaStyle: 'bg-white text-gray-900 hover:bg-gray-100'
+  } : headerStyles
 
   return (
     <>
@@ -156,23 +166,23 @@ export default function Header({ content }: HeaderProps) {
         style={headerStyles.transformStyle}
       >
         <header 
-          className={headerStyles.header}
+          className={splitHeaderStyles.header}
           style={{ 
-            borderRadius: headerStyles.borderRadius,
-            ...headerStyles.headerStyle
+            borderRadius: splitHeaderStyles.borderRadius,
+            ...splitHeaderStyles.headerStyle
           }}
         >
-          <nav className={`${headerStyles.nav} flex items-center justify-between`}>
+          <nav className={`${splitHeaderStyles.nav} flex items-center justify-between`}>
             {/* Logo */}
             <HeaderLogo 
-              logoStyle={headerStyles.logoStyle}
+              logoStyle={splitHeaderStyles.logoStyle}
               companyName={content.company.name}
             />
 
             {/* Desktop Navigation */}
             <HeaderNavigation
               navItems={navItems}
-              textColor={headerStyles.textColor}
+              textColor={splitHeaderStyles.textColor}
               dropdownStyles={dropdownStyles}
               dropdownOpen={dropdownOpen}
               activeSection={activeSection}
@@ -184,7 +194,7 @@ export default function Header({ content }: HeaderProps) {
             
             {/* CTA Button */}
             <HeaderCta
-              ctaStyle={headerStyles.ctaStyle}
+              ctaStyle={splitHeaderStyles.ctaStyle}
               ctaStyleDynamic={headerStyles.ctaStyleDynamic}
               ctaHoverStyle={headerStyles.ctaHoverStyle}
               onClick={(e) => handleSmoothScroll(e, 'kontakt')}
