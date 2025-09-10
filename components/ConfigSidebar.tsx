@@ -177,7 +177,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           fixed bg-white shadow-xl z-50 transform transition-all duration-300 ease-in-out flex flex-col
           ${isMobile 
             ? `bottom-0 left-0 right-0 h-[85vh] ${isOpen ? 'translate-y-0' : 'translate-y-full'}`
-            : `top-0 right-0 h-full w-80 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`
+            : `top-0 right-0 h-full w-96 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`
           }
           ${isDragging ? 'transition-none' : ''}
         `}
@@ -424,7 +424,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 Stil-Pakete
               </h3>
             </div>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-3">
               {STYLE_PACKAGES.map((pkg) => (
                 <div
                   key={pkg.id}
@@ -480,23 +480,23 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setSpacing('spacious')
                     }
                   }}
-                  className={`w-full p-6 border-2 transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98] ${
+                  className={`w-full p-4 border-2 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] ${
                     stylePackage === pkg.id
-                      ? 'border-gray-900 bg-gray-50 shadow-lg'
-                      : `${pkg.color} hover:border-gray-300 hover:shadow-md`
+                      ? 'border-gray-900 bg-gray-50 shadow-md'
+                      : `${pkg.color} hover:border-gray-300 hover:shadow-sm`
                   }`}
-                  style={{ borderRadius: '12px' }}
+                  style={{ borderRadius: '10px' }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-gray-900 text-white flex items-center justify-center font-bold text-lg" style={{ borderRadius: '8px' }}>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-gray-900 text-white flex items-center justify-center font-bold text-sm" style={{ borderRadius: '6px' }}>
                       {pkg.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-gray-900 mb-2 text-lg">{pkg.name}</h4>
+                      <h4 className="font-semibold text-gray-900 mb-1 text-base">{pkg.name}</h4>
                       <p className="text-sm text-gray-600 leading-relaxed">{pkg.description}</p>
                     </div>
                     {stylePackage === pkg.id && (
-                      <MdCheck className="w-6 h-6 text-gray-900 flex-shrink-0" />
+                      <MdCheck className="w-5 h-5 text-gray-900 flex-shrink-0" />
                     )}
                   </div>
                 </div>
