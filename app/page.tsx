@@ -465,6 +465,10 @@ export default function HomePage() {
             </SectionWrapper>
             
             <SectionWrapper index={3} designStyle={designStyle}>
+            <ProjectProcess content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={4} designStyle={designStyle}>
               {content.faq && content.faq.length > 0 ? (
                 <FAQ content={content} />
               ) : (
@@ -472,12 +476,8 @@ export default function HomePage() {
               )}
             </SectionWrapper>
             
-            <SectionWrapper index={4} designStyle={designStyle}>
-            <Testimonials content={content} />
-            </SectionWrapper>
-            
             <SectionWrapper index={5} designStyle={designStyle}>
-            <ProjectProcess content={content} />
+            <Testimonials content={content} />
             </SectionWrapper>
             
             <SectionWrapper index={6} designStyle={designStyle}>
