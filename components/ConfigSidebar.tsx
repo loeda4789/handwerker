@@ -432,47 +432,46 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     e.preventDefault()
                     e.stopPropagation()
                     
-                    // Apply style package without changing color scheme
-                    if (pkg.id === 'clean') {
-                      setHeadingUnderline(true)
-                      setHeadingStyle('gradient')
-                      setHeadingColor('primary')
-                      setStylePackage('clean')
-                      setFontFamily('sans')
-                      setBadgeStyle('rounded')
-                      setSpacing('comfortable')
-                    } else if (pkg.id === 'luxury') {
-                      setHeadingUnderline(true)
-                      setHeadingStyle('solid')
-                      setHeadingColor('secondary')
-                      setStylePackage('luxury')
-                      setFontFamily('serif')
-                      setBadgeStyle('minimal')
-                      setSpacing('spacious')
-                    } else if (pkg.id === 'corporate') {
-                      setHeadingUnderline(false)
-                      setHeadingStyle('none')
-                      setHeadingColor('primary')
-                      setStylePackage('corporate')
-                      setFontFamily('sans')
-                      setBadgeStyle('outlined')
-                      setSpacing('compact')
-                    } else if (pkg.id === 'warm') {
-                      setHeadingUnderline(true)
-                      setHeadingStyle('dotted')
-                      setHeadingColor('accent')
-                      setStylePackage('warm')
-                      setFontFamily('sans')
-                      setBadgeStyle('pill')
-                      setSpacing('comfortable')
-                    } else if (pkg.id === 'dynamic') {
-                      setHeadingUnderline(true)
-                      setHeadingStyle('gradient')
-                      setHeadingColor('primary')
-                      setStylePackage('dynamic')
-                      setFontFamily('display')
-                      setBadgeStyle('rounded')
-                      setSpacing('spacious')
+                    // Apply style package using the centralized function
+                    const updatedConfig = applyStylePackage(config, pkg.id)
+                    
+                    // Apply the updated configuration
+                    if (updatedConfig.layout) {
+                      if (updatedConfig.layout.design) {
+                        // Apply border radius scheme
+                        applyBorderRadiusScheme(updatedConfig.layout.design)
+                      }
+                    }
+                    
+                    if (updatedConfig.headings) {
+                      // Apply heading styles using the full config
+                      applyHeadingStyles(updatedConfig)
+                    }
+                    
+                    // Update all style-related settings
+                    setStylePackage(pkg.id as any)
+                    if (updatedConfig.style) {
+                      if (updatedConfig.style.fontFamily) {
+                        setFontFamily(updatedConfig.style.fontFamily)
+                      }
+                      if (updatedConfig.style.badgeStyle) {
+                        setBadgeStyle(updatedConfig.style.badgeStyle)
+                      }
+                      if (updatedConfig.style.spacing) {
+                        setSpacing(updatedConfig.style.spacing)
+                      }
+                    }
+                    
+                    if (updatedConfig.headings) {
+                      if (updatedConfig.headings.underline !== undefined) {
+                        setHeadingUnderline(updatedConfig.headings.underline)
+                      }
+                      if (updatedConfig.headings.style) {
+                        setHeadingStyle(updatedConfig.headings.style)
+                      }
+                      if (updatedConfig.headings.color) {
+                        setHeadingColor(updatedConfig.headings.color)
+                      }
                     }
                   }}
                   className={`flex items-center gap-2 p-3 border-2 transition-all ${
