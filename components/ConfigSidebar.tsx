@@ -423,7 +423,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     e.stopPropagation()
                     console.log('🖱️ Stil-Paket geklickt:', pkg.id, 'stylePackage:', stylePackage)
                   }}
-                  style={{ borderRadius: '10px' }}
+                  style={{ borderRadius: '8px' }}
                 >
                   <div className={`w-6 h-6 flex items-center justify-center ${
                     stylePackage === pkg.id ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
