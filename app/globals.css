@@ -26,6 +26,19 @@ body {
   --radius-modal: 1.5rem !important;
 }
 
+/* ABSOLUTE HÖCHSTE SPEZIFITÄT - Überschreibt ALLES */
+.design-preview-modal button[style*="border-radius"],
+.design-preview-modal button[style*="borderRadius"],
+.design-preview-modal button[style*="1rem"],
+.design-preview-modal button[style*="0.875rem"],
+.design-preview-modal button[style*="0.75rem"],
+.design-preview-modal button[style*="0.625rem"],
+.design-preview-modal button[style*="0.5rem"] {
+  border-radius: 1rem !important;
+  -webkit-border-radius: 1rem !important;
+  -moz-border-radius: 1rem !important;
+}
+
 /* Spezifische Anpassungen für verschiedene Elemente - Höchste Spezifität */
 .design-preview-modal button,
 .design-preview-modal button[style*="border-radius"],
@@ -42,6 +55,20 @@ body {
 
 /* Höchste Spezifität für Inline-Styles - muss nach allen anderen Regeln kommen */
 .design-preview-modal button[style] {
+  border-radius: 1rem !important;
+}
+
+/* Noch höhere Spezifität für alle Button-Kombinationen */
+.design-preview-modal .space-y-4 button,
+.design-preview-modal .space-y-6 button,
+.design-preview-modal .space-y-3 button,
+.design-preview-modal .space-y-2 button {
+  border-radius: 1rem !important;
+}
+
+/* Spezifische Regeln für Design-Tab Buttons */
+.design-preview-modal [class*="space-y-4"] button,
+.design-preview-modal [class*="space-y-6"] button {
   border-radius: 1rem !important;
 }
 
