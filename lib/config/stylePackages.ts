@@ -41,7 +41,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     icon: 'C',
     color: 'bg-gray-50 border-gray-200',
     config: {
-      layout: { design: 'angular' } as any,
+      layout: { design: 'rounded' } as any,
       headings: { underline: false, style: 'none', color: 'primary' },
       style: { package: 'corporate', fontFamily: 'sans', badgeStyle: 'outlined', spacing: 'compact' }
     }
