@@ -13,6 +13,9 @@ export default function FAQ({ content }: FAQProps) {
   const { design: designStyle } = useLayoutConfig()
   const { badgeStyle, fontFamily } = useStyleConfig()
   const { underline: headingUnderline } = useHeadingsConfig()
+  
+  // Debug-Log für FAQ
+  console.log('🔍 FAQ - headingUnderline:', headingUnderline, 'badgeStyle:', badgeStyle, 'fontFamily:', fontFamily)
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index)

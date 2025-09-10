@@ -130,12 +130,12 @@ body {
 }
 
 /* Variante für größere Überschriften */
-.modern-style .heading-underline-large {
+.heading-underline-large {
   position: relative;
   display: inline-block;
 }
 
-.modern-style .heading-underline-large::after {
+.heading-underline-large::after {
   content: '';
   position: absolute;
   bottom: -6px;
