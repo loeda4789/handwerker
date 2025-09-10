@@ -271,17 +271,17 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       if (!features.contactBar) toggleFeature('contactBar', true)
                     }
                   }}
-                  className={`w-full p-3 border-2 transition-all text-left rounded-2xl ${
+                  className={`w-full p-4 border-2 transition-all text-left rounded-2xl h-20 flex items-center ${
                     variant.selected
                       ? 'border-gray-900 bg-gray-50'
                       : `${variant.color} hover:border-gray-300`
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
+                  <div className="flex items-center gap-3 w-full">
+                    <div className={`w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0 ${
                       variant.selected ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'
                     }`}>
-                      <variant.icon className="w-4 h-4" />
+                      <variant.icon className="w-5 h-5" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
@@ -291,10 +291,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                           <span className="text-xs text-gray-500 ml-1">{variant.period}</span>
                         </div>
                       </div>
-                      <p className="text-xs text-gray-600 mt-1">{variant.description}</p>
+                      <p className="text-xs text-gray-600 mt-1 line-clamp-1">{variant.description}</p>
                     </div>
                     {variant.selected && (
-                      <MdCheck className="w-4 h-4 text-gray-900 flex-shrink-0" />
+                      <MdCheck className="w-5 h-5 text-gray-900 flex-shrink-0" />
                     )}
                   </div>
                 </button>
