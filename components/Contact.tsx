@@ -45,7 +45,6 @@ export default function Contact({ content }: ContactProps) {
   // Design-Style aus AppConfigContext
   const { design: designStyle } = useLayoutConfig()
   const { badgeStyle, fontFamily } = useStyleConfig()
-  const { underline: headingUnderline } = useHeadingsConfig()
   
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
@@ -148,7 +147,7 @@ export default function Contact({ content }: ContactProps) {
             )}
             
             <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 ${getFontClass()}`}>
-              {headingUnderline ? (
+              {designStyle === 'modern' ? (
                 <span className="heading-underline-large">Schreiben Sie uns</span>
               ) : (
                 'Schreiben Sie uns'

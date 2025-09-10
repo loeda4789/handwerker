@@ -98,7 +98,6 @@ export default function Stats({ content }: StatsProps) {
   // Design-Style aus AppConfigContext
   const { design: designStyle } = useLayoutConfig();
   const { badgeStyle, fontFamily } = useStyleConfig();
-  const { underline: headingUnderline } = useHeadingsConfig();
   
   // Verwende Daten aus content.json
   const stats = content.stats.customStats;
@@ -144,7 +143,7 @@ export default function Stats({ content }: StatsProps) {
             </span>
           )}
           <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 transition-colors duration-300 ${getFontClass()}`}>
-            {headingUnderline ? (
+            {designStyle === 'modern' ? (
               <span className="heading-underline-large">Zahlen, die für sich sprechen</span>
             ) : (
               'Zahlen, die für sich sprechen'
