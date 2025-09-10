@@ -38,6 +38,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { package: stylePackage, fontFamily, badgeStyle, spacing, setPackage: setStylePackage, setFontFamily, setBadgeStyle, setSpacing } = useStyleConfig()
   
   const [isMobile, setIsMobile] = useState(false)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startY, setStartY] = useState(0)
+  const [currentY, setCurrentY] = useState(0)
+  const [dragOffset, setDragOffset] = useState(0)
 
   // Check if mobile
   useEffect(() => {
@@ -48,6 +52,34 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Handle drag to close on mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!isMobile) return
+    setIsDragging(true)
+    setStartY(e.touches[0].clientY)
+    setCurrentY(e.touches[0].clientY)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isMobile || !isDragging) return
+    const newY = e.touches[0].clientY
+    setCurrentY(newY)
+    const offset = newY - startY
+    setDragOffset(Math.max(0, offset))
+  }
+
+  const handleTouchEnd = () => {
+    if (!isMobile || !isDragging) return
+    setIsDragging(false)
+    
+    // If dragged down more than 100px, close the sidebar
+    if (dragOffset > 100) {
+      onClose()
+    }
+    
+    setDragOffset(0)
+  }
 
   // Apply CSS schemes when config is loaded
   useEffect(() => {
@@ -139,15 +171,31 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         onClick={onClose}
       />
       
-      {/* Sidebar */}
-      <div className={`
-        fixed top-0 right-0 h-full w-full max-w-sm bg-white 
-        shadow-xl z-50 transform transition-transform duration-300 ease-in-out
-        flex flex-col
-        ${isOpen ? 'translate-x-0' : 'translate-x-full'}
-        ${isMobile ? 'w-full max-w-sm' : 'w-80'}
-      `}
-      style={{ borderRadius: '0px' }}>
+      {/* Desktop Sidebar / Mobile Bottom Card */}
+      <div 
+        className={`
+          fixed bg-white shadow-xl z-50 transform transition-all duration-300 ease-in-out flex flex-col
+          ${isMobile 
+            ? `bottom-0 left-0 right-0 h-[85vh] ${isOpen ? 'translate-y-0' : 'translate-y-full'}`
+            : `top-0 right-0 h-full w-80 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`
+          }
+          ${isDragging ? 'transition-none' : ''}
+        `}
+        style={{ 
+          borderRadius: isMobile ? '20px 20px 0 0' : '0px',
+          transform: isMobile && isDragging ? `translateY(${dragOffset}px)` : undefined
+        }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Mobile Drag Handle */}
+        {isMobile && (
+          <div className="flex justify-center py-3 border-b border-gray-100 flex-shrink-0">
+            <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
+          </div>
+        )}
+
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100 flex-shrink-0">
           <div className="flex items-center gap-3">
