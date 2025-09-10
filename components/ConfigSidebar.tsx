@@ -381,9 +381,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={pkg.id}
                   onClick={() => {
-                    console.log('=== STYLE PACKAGE CLICKED ===')
-                    console.log('Package ID:', pkg.id)
-                    
                     // Apply style package without changing layout mode
                     if (pkg.id === 'modern') {
                       setColorScheme('warm')
@@ -431,9 +428,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setBadgeStyle('rounded')
                       setSpacing('spacious')
                     }
-                    
-                    console.log('Style package applied:', pkg.id)
-                    console.log('=== END STYLE PACKAGE CLICK ===')
                   }}
                   className={`w-full p-4 border-2 transition-all text-left ${
                     stylePackage === pkg.id
