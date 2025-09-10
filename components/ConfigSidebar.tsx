@@ -424,7 +424,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 Stil-Pakete
               </h3>
             </div>
-            <div className="grid grid-cols-1 gap-3">
+            <div className="grid grid-cols-2 gap-3">
               {STYLE_PACKAGES.map((pkg) => (
                 <div
                   key={pkg.id}
@@ -480,25 +480,20 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       setSpacing('spacious')
                     }
                   }}
-                  className={`w-full p-4 border-2 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] ${
+                  className={`flex items-center gap-2 p-3 border-2 transition-all ${
                     stylePackage === pkg.id
-                      ? 'border-gray-900 bg-gray-50 shadow-md'
-                      : `${pkg.color} hover:border-gray-300 hover:shadow-sm`
+                      ? 'border-gray-900 bg-gray-50'
+                      : 'border-gray-200 hover:border-gray-300'
                   }`}
-                  style={{ borderRadius: '10px' }}
+                  style={{ borderRadius: '8px' }}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-gray-900 text-white flex items-center justify-center font-bold text-sm" style={{ borderRadius: '6px' }}>
-                      {pkg.icon}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-gray-900 mb-1 text-base">{pkg.name}</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">{pkg.description}</p>
-                    </div>
-                    {stylePackage === pkg.id && (
-                      <MdCheck className="w-5 h-5 text-gray-900 flex-shrink-0" />
-                    )}
+                  <div className={`w-6 h-6 flex items-center justify-center ${
+                    stylePackage === pkg.id ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
+                  }`}
+                  style={{ borderRadius: '4px' }}>
+                    <span className="text-xs font-bold">{pkg.icon}</span>
                   </div>
+                  <span className="text-sm font-medium text-gray-900">{pkg.name}</span>
                 </div>
               ))}
             </div>
