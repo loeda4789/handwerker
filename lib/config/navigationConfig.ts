@@ -80,15 +80,27 @@ export const getNavigationItems = (
       )
     } else {
       // Single Hero (Standard): Standard-Navigation
+      // Projektablauf nur bei Starter und Premium, nicht bei Professional
+      if (packageType !== 'professional') {
+        baseItems.push(
+          { href: siteMode === 'multipage' ? addUrlParamsToHref('#projektablauf') : '#projektablauf', label: 'Projektablauf', id: 'projektablauf', hasDropdown: false, isClickable: true, dropdownItems: [] }
+        )
+      }
+    }
+
+    // Kontakt nur bei Starter und Premium hinzufügen, nicht bei Professional
+    if (packageType !== 'professional') {
       baseItems.push(
-        { href: siteMode === 'multipage' ? addUrlParamsToHref('#projektablauf') : '#projektablauf', label: 'Projektablauf', id: 'projektablauf', hasDropdown: false, isClickable: true, dropdownItems: [] }
+        { href: siteMode === 'multipage' ? addUrlParamsToHref('/kontakt') : '#kontakt', label: 'Kontakt', id: 'kontakt', hasDropdown: false, isClickable: true, dropdownItems: [] }
       )
     }
 
-    // Kontakt immer hinzufügen
-    baseItems.push(
-      { href: siteMode === 'multipage' ? addUrlParamsToHref('/kontakt') : '#kontakt', label: 'Kontakt', id: 'kontakt', hasDropdown: false, isClickable: true, dropdownItems: [] }
-    )
+    // Jobs nur bei Professional hinzufügen
+    if (packageType === 'professional') {
+      baseItems.push(
+        { href: addUrlParamsToHref('/jobs'), label: 'Jobs', id: 'jobs', hasDropdown: false, isClickable: true, dropdownItems: [] }
+      )
+    }
 
     // FAQ nur bei Multi-Page oder bestimmten Hero-Typen
     if (siteMode === 'multipage' || heroType === 'slider') {
