@@ -24,7 +24,6 @@ import UrlParamsDebug from '@/components/UrlParamsDebug'
 import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 
 import ContactBar from '@/components/ContactBar'
-import DesignPreviewButton from '@/components/DesignPreviewButton'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
@@ -1017,8 +1016,6 @@ export default function HomePage() {
 
 
 
-      {/* Design Preview Button (Tab-Navigation) */}
-      <DesignPreviewButton />
     </div>
   )
 } 
