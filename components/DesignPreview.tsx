@@ -203,7 +203,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   if (!isOpen) return null
 
-  // Alle Pakete direkt anzeigen - mit identischen Farben aus den Farbschemas
+  // Alle Pakete direkt anzeigen - mit einheitlichen Farben wie Starter
   const packages = [
     {
       key: '1',
@@ -220,7 +220,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       name: 'Freundlich',
       primary: 'Warm & Persönlich',
       feature: 'Schnelle Anruf-Buttons',
-      colors: ['#18273A', '#987E4D', '#213044'], // elegant schema: primary, secondary, accent
+      colors: ['#000000', '#D05733', '#9A8F88'], // gleiche Farben wie Klassisch
       preview: 'Nahbar • Sympathisch • Hilfsbereit'
     },
     {
@@ -229,7 +229,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
       name: 'Modern',
       primary: 'Schnell & Bequem',
       feature: 'WhatsApp & Direktkontakt',
-      colors: ['#1C1C1C', '#22C55E', '#16A34A'], // schwarz, hellgrün, dunkelgrün für Konfigurator
+      colors: ['#000000', '#D05733', '#9A8F88'], // gleiche Farben wie Klassisch
       preview: 'Zeitgemäß • Einfach • Direkter Kontakt'
     }
   ]
