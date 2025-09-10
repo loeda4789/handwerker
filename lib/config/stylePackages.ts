@@ -17,7 +17,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     icon: 'C',
     color: 'bg-gray-50 border-gray-200',
     config: {
-      layout: { mode: 'onepage', design: 'modern' },
+      layout: { design: 'modern' } as any,
       headings: { underline: true, style: 'gradient', color: 'primary' },
       style: { package: 'clean', fontFamily: 'sans', badgeStyle: 'rounded', spacing: 'comfortable' }
     }
@@ -29,7 +29,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     icon: 'L',
     color: 'bg-gray-50 border-gray-200',
     config: {
-      layout: { mode: 'onepage', design: 'rounded' },
+      layout: { design: 'rounded' } as any,
       headings: { underline: true, style: 'solid', color: 'secondary' },
       style: { package: 'luxury', fontFamily: 'serif', badgeStyle: 'minimal', spacing: 'spacious' }
     }
@@ -41,7 +41,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     icon: 'C',
     color: 'bg-gray-50 border-gray-200',
     config: {
-      layout: { mode: 'onepage', design: 'angular' },
+      layout: { design: 'angular' } as any,
       headings: { underline: false, style: 'none', color: 'primary' },
       style: { package: 'corporate', fontFamily: 'sans', badgeStyle: 'outlined', spacing: 'compact' }
     }
@@ -53,7 +53,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     icon: 'W',
     color: 'bg-gray-50 border-gray-200',
     config: {
-      layout: { mode: 'onepage', design: 'rounded' },
+      layout: { design: 'rounded' } as any,
       headings: { underline: true, style: 'dotted', color: 'accent' },
       style: { package: 'warm', fontFamily: 'sans', badgeStyle: 'pill', spacing: 'comfortable' }
     }
@@ -65,7 +65,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     icon: 'D',
     color: 'bg-gray-50 border-gray-200',
     config: {
-      layout: { mode: 'onepage', design: 'angular' },
+      layout: { design: 'angular' } as any,
       headings: { underline: true, style: 'gradient', color: 'primary' },
       style: { package: 'dynamic', fontFamily: 'display', badgeStyle: 'rounded', spacing: 'spacious' }
     }
@@ -84,11 +84,7 @@ export const applyStylePackage = (config: AppConfig, packageId: string): AppConf
     ...config,
     layout: {
       ...config.layout,
-      ...stylePackage.config.layout
-    },
-    theme: {
-      ...config.theme,
-      ...stylePackage.config.theme
+      ...(stylePackage.config.layout?.design && { design: stylePackage.config.layout.design })
     },
     headings: {
       ...config.headings,

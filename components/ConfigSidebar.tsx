@@ -218,17 +218,17 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6 space-y-8">
           
-          {/* Besteller-Varianten */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-blue-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
-                <MdStar className="w-4 h-4 text-blue-600" />
+          {/* Varianten */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-5 h-5 bg-blue-100 flex items-center justify-center" style={{ borderRadius: '4px' }}>
+                <MdStar className="w-3 h-3 text-blue-600" />
               </div>
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Besteller-Varianten
+                Varianten
               </h3>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-2">
               {bestellerVariants.map((variant) => (
                 <button
                   key={variant.id}
@@ -250,39 +250,32 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       if (!features.contactBar) toggleFeature('contactBar', true)
                     }
                   }}
-                  className={`w-full p-4 border-2 transition-all text-left ${
+                  className={`w-full p-3 border-2 transition-all text-left ${
                     variant.selected
                       ? 'border-gray-900 bg-gray-50'
                       : `${variant.color} hover:border-gray-300`
                   }`}
-                  style={{ borderRadius: '12px' }}
+                  style={{ borderRadius: '8px' }}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className={`w-10 h-10 flex items-center justify-center ${
+                  <div className="flex items-center gap-3">
+                    <div className={`w-8 h-8 flex items-center justify-center ${
                       variant.selected ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'
                     }`}
-                    style={{ borderRadius: '8px' }}>
-                      <variant.icon className="w-5 h-5" />
+                    style={{ borderRadius: '6px' }}>
+                      <variant.icon className="w-4 h-4" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-1">
-                        <h4 className="font-semibold text-gray-900">{variant.name}</h4>
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-sm font-semibold text-gray-900">{variant.name}</h4>
                         <div className="text-right">
-                          <span className="text-lg font-bold text-gray-900">{variant.price}</span>
-                          <span className="text-sm text-gray-500 ml-1">{variant.period}</span>
+                          <span className="text-base font-bold text-gray-900">{variant.price}</span>
+                          <span className="text-xs text-gray-500 ml-1">{variant.period}</span>
                         </div>
                       </div>
-                      <p className="text-sm text-gray-600 mb-2">{variant.description}</p>
-                      <div className="flex flex-wrap gap-1">
-                        {variant.features.map((feature, index) => (
-                          <span key={index} className="text-xs bg-gray-100 text-gray-600 px-2 py-1" style={{ borderRadius: '6px' }}>
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
+                      <p className="text-xs text-gray-600 mt-1">{variant.description}</p>
                     </div>
                     {variant.selected && (
-                      <MdCheck className="w-5 h-5 text-gray-900 flex-shrink-0" />
+                      <MdCheck className="w-4 h-4 text-gray-900 flex-shrink-0" />
                     )}
                   </div>
                 </button>
@@ -363,6 +356,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                         applyBorderRadiusScheme(updatedConfig.layout.design)
                       }
                     }
+                    
                     
                     if (updatedConfig.headings) {
                       // Apply heading styles using the full config
