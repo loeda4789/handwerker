@@ -12,10 +12,9 @@ export default function FAQ({ content }: FAQProps) {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null)
   const { design: designStyle } = useLayoutConfig()
   const { badgeStyle, fontFamily } = useStyleConfig()
-  const { underline: headingUnderline } = useHeadingsConfig()
   
   // Debug-Log für FAQ
-  console.log('🔍 FAQ - headingUnderline:', headingUnderline, 'badgeStyle:', badgeStyle, 'fontFamily:', fontFamily)
+  console.log('🔍 FAQ - designStyle:', designStyle, 'badgeStyle:', badgeStyle, 'fontFamily:', fontFamily)
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index)
@@ -78,7 +77,7 @@ export default function FAQ({ content }: FAQProps) {
           )}
           
           <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
-            {headingUnderline ? (
+            {designStyle === 'modern' ? (
               <span className="heading-underline-large">Häufig gestellte Fragen</span>
             ) : (
               'Häufig gestellte Fragen'
