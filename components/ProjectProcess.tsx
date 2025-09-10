@@ -142,7 +142,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
           )}
           <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 ${getFontClass()}`}>
             {designStyle === 'modern' ? (
-              <span className="heading-underline-large">
+              <span className="heading-underline">
                 Unser Arbeitsprozess
               </span>
             ) : (

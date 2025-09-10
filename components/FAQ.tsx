@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { ContentData } from '@/types/content'
+import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 
 interface FAQProps {
   content: ContentData
@@ -9,9 +10,36 @@ interface FAQProps {
 
 export default function FAQ({ content }: FAQProps) {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null)
+  const { design: designStyle } = useLayoutConfig()
+  const { badgeStyle, fontFamily } = useStyleConfig()
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index)
+  }
+
+  // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
+  const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
+  
+  // Badge-Klassen basierend auf Stil-Paket
+  const getBadgeClasses = () => {
+    const baseClasses = "inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4"
+    const badgeClasses = {
+      minimal: "badge-minimal",
+      rounded: "badge-rounded", 
+      pill: "badge-pill",
+      outlined: "badge-outlined"
+    }
+    return `${baseClasses} ${badgeClasses[badgeStyle]}`
+  }
+  
+  const getFontClass = () => {
+    const fontClasses = {
+      sans: "font-sans",
+      serif: "font-serif",
+      mono: "font-mono",
+      display: "font-display"
+    }
+    return fontClasses[fontFamily]
   }
 
   // Verwende FAQ-Daten aus dem Content, falls vorhanden
@@ -37,8 +65,22 @@ export default function FAQ({ content }: FAQProps) {
     <section className="py-16 bg-background dark:bg-dark">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
-            Häufig gestellte Fragen
+          {/* Badge */}
+          {isModernStyle && (
+            <div className={getBadgeClasses()}>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              FAQ
+            </div>
+          )}
+          
+          <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
+            {isModernStyle ? (
+              <span className="heading-underline">Häufig gestellte Fragen</span>
+            ) : (
+              'Häufig gestellte Fragen'
+            )}
           </h2>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
             Hier finden Sie Antworten auf die wichtigsten Fragen zu unseren Dienstleistungen

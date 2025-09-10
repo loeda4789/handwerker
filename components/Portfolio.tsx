@@ -92,7 +92,7 @@ export default function Portfolio({ content }: PortfolioProps) {
           
           <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
             {isModernStyle ? (
-              <span className="heading-underline-large">{content.portfolio.title}</span>
+              <span className="heading-underline">{content.portfolio.title}</span>
             ) : (
               content.portfolio.title
             )}

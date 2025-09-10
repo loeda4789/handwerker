@@ -172,7 +172,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
           )}
           <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
             {designStyle === 'modern' ? (
-              <span className="heading-underline-large">Was unsere Kunden sagen</span>
+              <span className="heading-underline">Was unsere Kunden sagen</span>
             ) : (
               'Was unsere Kunden sagen'
             )}

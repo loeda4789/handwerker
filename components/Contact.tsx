@@ -137,7 +137,7 @@ export default function Contact({ content }: ContactProps) {
             
             <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 ${getFontClass()}`}>
               {isModernStyle ? (
-                <span className="heading-underline-large">Schreiben Sie uns</span>
+                <span className="heading-underline">Schreiben Sie uns</span>
               ) : (
                 'Schreiben Sie uns'
               )}
