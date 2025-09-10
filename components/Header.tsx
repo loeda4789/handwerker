@@ -142,7 +142,7 @@ export default function Header({ content }: HeaderProps) {
   
   const packageType = getPackageType()
   
-  // Navigation Items basierend auf Site-Mode und Package-Typ
+  // Navigation Items basierend auf Variante und Hero-Typ
   const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, packageType)
 
   // Header-Stile basierend auf Design-Stil

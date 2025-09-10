@@ -1,4 +1,5 @@
 import { ContentData } from '@/types/content'
+import { siteVariants, heroNavigationModifiers, getSiteVariant } from './siteVariants'
 
 export interface NavigationItem {
   href: string | null
@@ -15,104 +16,118 @@ export interface DropdownItem {
   icon?: string
 }
 
+// Navigation-Item-Definitionen
+const navigationItemDefinitions: Record<string, (content: ContentData, addUrlParamsToHref: (href: string | null) => string | null, siteMode: 'onepage' | 'multipage') => NavigationItem> = {
+  'ueber-uns': (content, addUrlParamsToHref, siteMode) => ({
+    href: siteMode === 'multipage' ? addUrlParamsToHref('#ueber-uns') : '#ueber-uns',
+    label: siteMode === 'multipage' ? 'Über uns' : content.about.title,
+    id: 'ueber-uns',
+    hasDropdown: siteMode === 'multipage',
+    isClickable: true,
+    dropdownItems: siteMode === 'multipage' ? [
+      { href: addUrlParamsToHref('/ueber-uns/team'), label: 'Unser Team' },
+      { href: addUrlParamsToHref('/ueber-uns/betrieb'), label: 'Unser Betrieb' },
+      { href: addUrlParamsToHref('/ueber-uns/partner'), label: 'Partner & Zulieferer' },
+      { href: addUrlParamsToHref('/ueber-uns/zertifikate'), label: 'Zertifikate & Auszeichnungen' }
+    ] : undefined
+  }),
+  'leistungen': (content, addUrlParamsToHref, siteMode) => ({
+    href: siteMode === 'multipage' ? null : '#leistungen',
+    label: 'Leistungen',
+    id: 'leistungen',
+    hasDropdown: true,
+    isClickable: siteMode === 'onepage',
+    dropdownItems: content.services
+      .filter((service: any) => service.slug)
+      .map((service: any) => ({
+        href: addUrlParamsToHref(`/services/${service.slug}`),
+        label: service.title,
+        icon: service.icon
+      }))
+  }),
+  'projektablauf': (content, addUrlParamsToHref, siteMode) => ({
+    href: siteMode === 'multipage' ? addUrlParamsToHref('#projektablauf') : '#projektablauf',
+    label: 'Projektablauf',
+    id: 'projektablauf',
+    hasDropdown: false,
+    isClickable: true,
+    dropdownItems: []
+  }),
+  'kontakt': (content, addUrlParamsToHref, siteMode) => ({
+    href: siteMode === 'multipage' ? addUrlParamsToHref('/kontakt') : '#kontakt',
+    label: 'Kontakt',
+    id: 'kontakt',
+    hasDropdown: false,
+    isClickable: true,
+    dropdownItems: []
+  }),
+  'referenzen': (content, addUrlParamsToHref, siteMode) => ({
+    href: siteMode === 'multipage' ? addUrlParamsToHref('/referenzen') : '#referenzen',
+    label: 'Referenzen',
+    id: 'referenzen',
+    hasDropdown: false,
+    isClickable: true,
+    dropdownItems: []
+  }),
+  'jobs': (content, addUrlParamsToHref, siteMode) => ({
+    href: addUrlParamsToHref('/jobs'),
+    label: 'Jobs',
+    id: 'jobs',
+    hasDropdown: false,
+    isClickable: true,
+    dropdownItems: []
+  }),
+  'faq': (content, addUrlParamsToHref, siteMode) => ({
+    href: addUrlParamsToHref('/faq'),
+    label: 'FAQ',
+    id: 'faq',
+    hasDropdown: false,
+    isClickable: true,
+    dropdownItems: []
+  })
+}
+
 export const getNavigationItems = (
   siteMode: 'onepage' | 'multipage',
   content: ContentData,
   addUrlParamsToHref: (href: string | null) => string | null,
-  heroType?: 'single' | 'slider' | 'video' | 'split',
+  heroType: 'single' | 'slider' | 'video' | 'split' = 'single',
   packageType?: 'starter' | 'professional' | 'premium'
 ): NavigationItem[] => {
-  // Basis-Navigation basierend auf Hero-Typ und Package-Typ
-  const getBaseNavigation = () => {
-    const baseItems = []
-    
-    // Über uns - immer vorhanden
-    baseItems.push({
-      href: siteMode === 'multipage' ? addUrlParamsToHref('#ueber-uns') : '#ueber-uns', 
-      label: siteMode === 'multipage' ? 'Über uns' : content.about.title, 
-      id: 'ueber-uns',
-      hasDropdown: siteMode === 'multipage',
-      isClickable: true,
-      dropdownItems: siteMode === 'multipage' ? [
-        { href: addUrlParamsToHref('/ueber-uns/team'), label: 'Unser Team' },
-        { href: addUrlParamsToHref('/ueber-uns/betrieb'), label: 'Unser Betrieb' },
-        { href: addUrlParamsToHref('/ueber-uns/partner'), label: 'Partner & Zulieferer' },
-        { href: addUrlParamsToHref('/ueber-uns/zertifikate'), label: 'Zertifikate & Auszeichnungen' }
-      ] : undefined
-    })
-    
-    // Leistungen - nur bei Professional und Premium, nicht bei Starter
-    if (packageType !== 'starter') {
-      baseItems.push({
-        href: siteMode === 'multipage' ? null : '#leistungen', 
-        label: 'Leistungen', 
-        id: 'leistungen',
-        hasDropdown: true,
-        isClickable: siteMode === 'onepage',
-        dropdownItems: content.services
-          .filter((service: any) => service.slug)
-          .map((service: any, index: number) => {
-            return {
-              href: addUrlParamsToHref(`/services/${service.slug}`),
-              label: service.title,
-              icon: service.icon
-            }
-          })
-      })
+  // 1. Bestimme die echte Variante
+  const variant = packageType || getSiteVariant(siteMode, false) // TODO: Side-Contact aus Context
+  
+  // 2. Hole Basis-Navigation aus Variante
+  const variantConfig = siteVariants[variant]
+  const baseItemIds = [...variantConfig.navigation.items]
+  
+  // 3. Hole Hero-spezifische Modifikationen
+  const heroMods = heroNavigationModifiers[heroType]
+  
+  // 4. Kombiniere: Basis + Hero-Modifikationen
+  let finalItemIds = [...baseItemIds]
+  
+  // Hero-spezifische Items hinzufügen
+  heroMods.add.forEach(itemId => {
+    if (!finalItemIds.includes(itemId)) {
+      finalItemIds.push(itemId)
     }
-
-    // Hero-spezifische Navigation hinzufügen
-    if (heroType === 'video') {
-      // Video Hero: Weniger Navigation, fokussiert auf CTA
-      baseItems.push(
-        { href: siteMode === 'multipage' ? addUrlParamsToHref('/referenzen') : '#referenzen', label: 'Referenzen', id: 'referenzen', hasDropdown: false, isClickable: true, dropdownItems: [] }
-      )
-    } else if (heroType === 'slider') {
-      // Slider Hero: Vollständige Navigation für bessere Orientierung
-      baseItems.push(
-        { href: siteMode === 'multipage' ? addUrlParamsToHref('#projektablauf') : '#projektablauf', label: 'Projektablauf', id: 'projektablauf', hasDropdown: false, isClickable: true, dropdownItems: [] },
-        { href: siteMode === 'multipage' ? addUrlParamsToHref('/referenzen') : '#referenzen', label: 'Referenzen', id: 'referenzen', hasDropdown: false, isClickable: true, dropdownItems: [] }
-      )
-    } else if (heroType === 'split') {
-      // Split Hero: Kompakte Navigation
-      baseItems.push(
-        { href: siteMode === 'multipage' ? addUrlParamsToHref('/referenzen') : '#referenzen', label: 'Referenzen', id: 'referenzen', hasDropdown: false, isClickable: true, dropdownItems: [] }
-      )
-    } else {
-      // Single Hero (Standard): Standard-Navigation
-      // Projektablauf nur bei Starter und Premium, nicht bei Professional
-      if (packageType !== 'professional') {
-        baseItems.push(
-          { href: siteMode === 'multipage' ? addUrlParamsToHref('#projektablauf') : '#projektablauf', label: 'Projektablauf', id: 'projektablauf', hasDropdown: false, isClickable: true, dropdownItems: [] }
-        )
-      }
+  })
+  
+  // Hero-spezifische Items entfernen
+  finalItemIds = finalItemIds.filter(itemId => !heroMods.remove.includes(itemId))
+  
+  // 5. Konvertiere IDs zu NavigationItems
+  const navigationItems: NavigationItem[] = []
+  
+  finalItemIds.forEach(itemId => {
+    const itemDefinition = navigationItemDefinitions[itemId]
+    if (itemDefinition) {
+      navigationItems.push(itemDefinition(content, addUrlParamsToHref, siteMode))
     }
-
-    // Kontakt nur bei Starter und Premium hinzufügen, nicht bei Professional
-    if (packageType !== 'professional') {
-      baseItems.push(
-        { href: siteMode === 'multipage' ? addUrlParamsToHref('/kontakt') : '#kontakt', label: 'Kontakt', id: 'kontakt', hasDropdown: false, isClickable: true, dropdownItems: [] }
-      )
-    }
-
-    // Jobs nur bei Professional hinzufügen
-    if (packageType === 'professional') {
-      baseItems.push(
-        { href: addUrlParamsToHref('/jobs'), label: 'Jobs', id: 'jobs', hasDropdown: false, isClickable: true, dropdownItems: [] }
-      )
-    }
-
-    // FAQ nur bei Multi-Page oder bestimmten Hero-Typen
-    if (siteMode === 'multipage' || heroType === 'slider') {
-      baseItems.push(
-        { href: addUrlParamsToHref('/faq'), label: 'FAQ', id: 'faq', hasDropdown: false, isClickable: true, dropdownItems: [] }
-      )
-    }
-
-    return baseItems
-  }
-
-  return getBaseNavigation()
+  })
+  
+  return navigationItems
 }
 
 export const addUrlParamsToHref = (href: string | null): string | null => {
