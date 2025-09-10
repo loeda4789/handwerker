@@ -39,6 +39,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
   const [configMode, setConfigMode] = useState<'paket' | 'individuell'>('paket')
   const [activePackage, setActivePackage] = useState<'1' | '2' | '3' | null>(null)
   const [showPackageDetails, setShowPackageDetails] = useState<{[key: string]: boolean}>({})
+  const [isAdvancedConfigOpen, setIsAdvancedConfigOpen] = useState(false)
   
   // CSS-Schemata anwenden wenn Konfiguration geladen ist
   useEffect(() => {
@@ -388,56 +389,86 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
             </div>
           )}
 
-          {/* Layout Toggle für Bestseller */}
+          {/* Weitere Konfiguration - Aufklappbarer Bereich */}
           {configMode === 'paket' && (
-            <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
-              <div className="text-center mb-3">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Webseite-Umfang</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Wählen Sie zwischen kompakter und erweiterter Webseite</p>
-              </div>
-              
-              <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
-                <button
-                  onClick={() => handleSiteModeChange('onepage')}
-                  className={`flex-1 py-2 px-4 text-sm font-medium transition-all duration-200 ${
-                    currentSiteMode === 'onepage'
-                      ? 'bg-white dark:bg-gray-600 text-orange-600 dark:text-orange-400 shadow-sm'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
-                  }`}
-                  style={{ borderRadius: '0.5rem' }}
+            <div className="mt-6">
+              {/* Aufklappbarer Header */}
+              <button
+                onClick={() => setIsAdvancedConfigOpen(!isAdvancedConfigOpen)}
+                className="w-full flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                style={{ borderRadius: '0.75rem' }}
+              >
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <span className="font-medium text-gray-900 dark:text-white">Weitere Konfiguration</span>
+                </div>
+                <svg 
+                  className={`w-4 h-4 text-gray-500 dark:text-gray-400 transition-transform duration-200 ${
+                    isAdvancedConfigOpen ? 'rotate-180' : ''
+                  }`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
                 >
-                  <div className="flex items-center justify-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                    </svg>
-                    <span>One Pager</span>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+
+              {/* Aufklappbarer Inhalt */}
+              {isAdvancedConfigOpen && (
+                <div className="mt-3 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg animate-in slide-in-from-top duration-200">
+                  <div className="text-center mb-3">
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Webseite-Umfang</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Wählen Sie zwischen kompakter und erweiterter Webseite</p>
                   </div>
-                </button>
-                
-                <button
-                  onClick={() => handleSiteModeChange('multipage')}
-                  className={`flex-1 py-2 px-4 text-sm font-medium transition-all duration-200 ${
-                    currentSiteMode === 'multipage'
-                      ? 'bg-white dark:bg-gray-600 text-orange-600 dark:text-orange-400 shadow-sm'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
-                  }`}
-                  style={{ borderRadius: '0.5rem' }}
-                >
-                  <div className="flex items-center justify-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
-                    </svg>
-                    <span>Multi Pager</span>
+                  
+                  <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
+                    <button
+                      onClick={() => handleSiteModeChange('onepage')}
+                      className={`flex-1 py-2 px-4 text-sm font-medium transition-all duration-200 ${
+                        currentSiteMode === 'onepage'
+                          ? 'bg-white dark:bg-gray-600 text-orange-600 dark:text-orange-400 shadow-sm'
+                          : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                      }`}
+                      style={{ borderRadius: '0.5rem' }}
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <span>One Pager</span>
+                      </div>
+                    </button>
+                    
+                    <button
+                      onClick={() => handleSiteModeChange('multipage')}
+                      className={`flex-1 py-2 px-4 text-sm font-medium transition-all duration-200 ${
+                        currentSiteMode === 'multipage'
+                          ? 'bg-white dark:bg-gray-600 text-orange-600 dark:text-orange-400 shadow-sm'
+                          : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                      }`}
+                      style={{ borderRadius: '0.5rem' }}
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0a2 2 0 01-2-2V8z"/>
+                        </svg>
+                        <span>Multi Pager</span>
+                      </div>
+                    </button>
                   </div>
-                </button>
-              </div>
-              
-              <div className="mt-3 text-xs text-gray-500 dark:text-gray-400 text-center">
-                {currentSiteMode === 'onepage' 
-                  ? 'Alle Inhalte auf einer Seite - perfekt für kleinere Betriebe'
-                  : 'Separate Unterseiten für umfangreichere Inhalte'
-                }
-              </div>
+                  
+                  <div className="mt-3 text-xs text-gray-500 dark:text-gray-400 text-center">
+                    {currentSiteMode === 'onepage' 
+                      ? 'Alle Inhalte auf einer Seite - perfekt für kleinere Betriebe'
+                      : 'Separate Unterseiten für umfangreichere Inhalte'
+                    }
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
