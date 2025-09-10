@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { ContentData } from '@/types/content'
-import { useAppConfig, useLayoutConfig } from '@/contexts/AppConfigContext'
+import { useAppConfig, useLayoutConfig, useHeroConfig } from '@/contexts/AppConfigContext'
 import { getHeaderStyles, getDropdownStyles } from '@/lib/config/headerStyles'
 import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationConfig'
 import HeaderLogo from './HeaderLogo'
@@ -18,6 +18,7 @@ export default function Header({ content }: HeaderProps) {
   // Neue Konfigurationsarchitektur verwenden
   const { config } = useAppConfig()
   const { mode: siteMode, design: designStyle } = useLayoutConfig()
+  const { type: heroType } = useHeroConfig()
   
   // Lokale UI-States
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

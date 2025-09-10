@@ -138,7 +138,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
         document.removeEventListener('mouseup', handleMouseUp)
       }
     }
-  }, [isDragging, currentY, startY])
+  }, [isDragging, handleMouseMove, handleMouseUp])
 
   const handleSiteModeChange = (mode: 'onepage' | 'multipage') => {
     changeSiteMode(mode)
