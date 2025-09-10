@@ -131,8 +131,17 @@ export default function Header({ content }: HeaderProps) {
     setDropdownTimeout(timeout)
   }
 
-  // Navigation Items basierend auf Site-Mode
-  const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref)
+  // Package-Typ bestimmen basierend auf Site-Mode und Features
+  const getPackageType = (): 'starter' | 'professional' | 'premium' => {
+    if (siteMode === 'multipage') return 'premium'
+    if (config.features.sideContact) return 'professional'
+    return 'starter'
+  }
+  
+  const packageType = getPackageType()
+  
+  // Navigation Items basierend auf Variante und Hero-Typ
+  const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, packageType)
 
   // Header-Stile basierend auf Design-Stil
   const headerStyles = getHeaderStyles(designStyle, isScrolled, headerVisible)
