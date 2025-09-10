@@ -50,22 +50,24 @@ export const siteVariants: Record<string, SiteVariant> = {
   }
 }
 
+// Hero-Typ beeinflusst NICHT die Navigation - nur visueller Stil
+// Navigation wird nur von der Variante (Starter/Professional/Premium) bestimmt
 export const heroNavigationModifiers: Record<string, HeroNavigationModifier> = {
   single: {
     add: [],
     remove: []
   },
   slider: {
-    add: ['referenzen'],
+    add: [],
     remove: []
   },
   video: {
-    add: ['referenzen'],
-    remove: ['projektablauf']
+    add: [],
+    remove: []
   },
   split: {
-    add: ['referenzen'],
-    remove: ['projektablauf']
+    add: [],
+    remove: []
   }
 }
 
