@@ -464,18 +464,19 @@ function HeroSplit({ content }: HeroProps) {
   const cityName = extractCityFromAddress(content.contact.address)
 
   return (
-    <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
-      <div className="flex h-full">
-        {/* Left Side - Content mit weißem Hintergrund */}
-        <div className="w-full lg:w-1/2 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center relative z-10">
-          <div className="px-6 lg:px-12 max-w-lg">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
-              {formatHeroTitle(content.company.tagline)}
-            </h1>
+    <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-6 lg:px-8 h-full">
+        <div className="flex h-full items-center">
+          {/* Left Side - Content */}
+          <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
+                {formatHeroTitle(content.company.tagline)}
+              </h1>
             
-            <p className="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300">
-              {formatHeroText(content.company.tagline, cityName)}
-            </p>
+              <p className="text-xl md:text-2xl mb-8 text-gray-600 dark:text-gray-300 leading-relaxed">
+                {formatHeroText(content.company.tagline, cityName)}
+              </p>
             
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3">
@@ -501,74 +502,55 @@ function HeroSplit({ content }: HeroProps) {
               </div>
             </div>
             
-            <div className="flex flex-col gap-4">
-              <Link
-                href="#kontakt"
-                className="inline-flex items-center justify-center px-6 py-3 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
-                style={{ 
-                  borderRadius: 'var(--radius-button)',
-                  backgroundColor: 'var(--color-secondary)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
-                }}
-              >
-                Jetzt Termin vereinbaren
-                <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </Link>
-              
-              <Link
-                href="#ueber-uns"
-                className="inline-flex items-center justify-center px-6 py-3 border-2 text-gray-900 dark:text-white hover:text-white font-medium transition-all duration-300"
-                style={{ 
-                  borderRadius: 'var(--radius-button)',
-                  borderColor: 'var(--color-primary)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-primary)';
-                  e.currentTarget.style.color = 'white';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = 'var(--color-primary)';
-                }}
-              >
-                Mehr erfahren
-              </Link>
-            </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="#kontakt"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200 shadow-lg hover:shadow-xl"
+                  style={{ borderRadius: 'var(--radius-button)' }}
+                >
+                  Kostenloses Angebot
+                </Link>
+                <Link
+                  href="#ueber-uns"
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors duration-200"
+                  style={{ borderRadius: 'var(--radius-button)' }}
+                >
+                  Mehr erfahren
+                </Link>
+              </div>
           </div>
         </div>
 
-        {/* Right Side - Image */}
-        <div className="hidden lg:block lg:w-1/2 relative">
-          <Image
-            src={content.hero.backgroundImages.desktop}
-            alt="Hero Split Image"
-            fill
-            priority
-            quality={85}
-            className="object-cover"
-            sizes="50vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/20"></div>
-        </div>
+          {/* Right Side - Rounded Image */}
+          <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
+            <div className="relative w-96 h-96">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl"></div>
+              <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl">
+                <Image
+                  src={content.hero.backgroundImages.desktop}
+                  alt="Hero Split Image"
+                  fill
+                  priority
+                  quality={85}
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
 
-        {/* Mobile Background */}
-        <div className="absolute inset-0 lg:hidden">
-          <Image
-            src={content.hero.backgroundImages.mobile}
-            alt="Hero Split Mobile"
-            fill
-            priority
-            quality={85}
-            className="object-cover opacity-20"
-            sizes="100vw"
-          />
+          {/* Mobile Background */}
+          <div className="absolute inset-0 lg:hidden -z-10">
+            <Image
+              src={content.hero.backgroundImages.mobile}
+              alt="Hero Split Mobile"
+              fill
+              priority
+              quality={85}
+              className="object-cover opacity-20"
+              sizes="100vw"
+            />
+          </div>
         </div>
       </div>
     </section>

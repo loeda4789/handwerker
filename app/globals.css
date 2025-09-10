@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Font Family Application */
+body {
+  font-family: var(--font-sans);
+}
+
 /* Critical CSS für Hero-Bereich - wird sofort geladen */
 @layer base {
   #startseite {
