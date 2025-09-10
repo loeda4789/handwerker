@@ -434,6 +434,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     
                     // Apply style package using the centralized function
                     const updatedConfig = applyStylePackage(config, pkg.id)
+                    console.log('🎨 Stil-Paket angewendet:', pkg.id, updatedConfig.style)
                     
                     // Apply the updated configuration
                     if (updatedConfig.layout) {

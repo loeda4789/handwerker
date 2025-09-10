@@ -128,8 +128,7 @@ export default function Contact({ content }: ContactProps) {
           {/* Header */}
           <div className="text-center mb-12 animate-on-scroll">
             {/* Badge */}
-            <div className={getBadgeClasses()}
-              style={{ backgroundColor: 'var(--color-secondary)' }}>
+            <div className={getBadgeClasses()}>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
               </svg>
