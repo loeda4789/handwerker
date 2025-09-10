@@ -356,24 +356,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     const updatedConfig = applyStylePackage(config, pkg.id)
                     console.log('🎨 Stil-Paket angewendet:', pkg.id, updatedConfig.style)
                     
-                    // Update the configuration
-                    updateConfig(updatedConfig)
-                    
-                    // Apply the updated configuration
-                    if (updatedConfig.layout) {
-                      if (updatedConfig.layout.design) {
-                        // Apply border radius scheme
-                        applyBorderRadiusScheme(updatedConfig.layout.design)
-                      }
-                    }
-                    
-                    
-                    if (updatedConfig.headings) {
-                      // Apply heading styles using the full config
-                      applyHeadingStyles(updatedConfig)
-                    }
-                    
-                    // Update all style-related settings
+                    // Update all style-related settings FIRST
                     setStylePackage(pkg.id as any)
                     if (updatedConfig.style) {
                       if (updatedConfig.style.fontFamily) {
@@ -398,9 +381,25 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                         setHeadingColor(updatedConfig.headings.color)
                       }
                     }
+                    
+                    // Update the configuration LAST
+                    updateConfig(updatedConfig)
+                    
+                    // Apply the updated configuration
+                    if (updatedConfig.layout) {
+                      if (updatedConfig.layout.design) {
+                        // Apply border radius scheme
+                        applyBorderRadiusScheme(updatedConfig.layout.design)
+                      }
+                    }
+                    
+                    if (updatedConfig.headings) {
+                      // Apply heading styles using the full config
+                      applyHeadingStyles(updatedConfig)
+                    }
                   }}
                   className={`flex items-center gap-3 p-4 border-2 transition-all cursor-pointer ${
-                    config.style.package === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
+                    stylePackage === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                   onMouseDown={(e) => {
                     e.preventDefault()
