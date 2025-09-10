@@ -34,7 +34,7 @@ export const siteVariants: Record<string, SiteVariant> = {
     description: 'One-Page mit Side-Contact, Projektablauf und FAQ',
     features: ['onepage', 'side-contact', 'projektablauf', 'faq', 'advanced-navigation'],
     navigation: {
-      items: ['ueber-uns', 'leistungen', 'projektablauf', 'referenzen', 'jobs'],
+      items: ['ueber-uns', 'leistungen', 'projektablauf', 'jobs'],
       hasDropdowns: true
     }
   },
@@ -44,7 +44,7 @@ export const siteVariants: Record<string, SiteVariant> = {
     description: 'Multi-Page Website mit Jobs und vollständiger Navigation',
     features: ['multipage', 'full-navigation', 'dropdowns', 'jobs', 'all-sections'],
     navigation: {
-      items: ['ueber-uns', 'leistungen', 'jobs', 'kontakt', 'faq'],
+      items: ['ueber-uns', 'leistungen', 'referenzen', 'jobs', 'faq'],
       hasDropdowns: true
     }
   }
