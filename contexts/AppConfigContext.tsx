@@ -132,7 +132,7 @@ export function useStyleConfig() {
     fontFamily: config.style.fontFamily,
     badgeStyle: config.style.badgeStyle,
     spacing: config.style.spacing,
-    setPackage: (packageId: 'modern' | 'elegant' | 'professional' | 'friendly' | 'bold') =>
+    setPackage: (packageId: 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic') =>
       updateConfig({ style: { ...config.style, package: packageId } }),
     setFontFamily: (fontFamily: 'sans' | 'serif' | 'mono' | 'display') =>
       updateConfig({ style: { ...config.style, fontFamily } }),

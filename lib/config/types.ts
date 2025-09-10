@@ -35,7 +35,7 @@ export interface AppConfig {
     color: 'primary' | 'secondary' | 'accent' | 'custom'
   }
   style: {
-    package: 'modern' | 'elegant' | 'professional' | 'friendly' | 'bold'
+    package: 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic'
     fontFamily: 'sans' | 'serif' | 'mono' | 'display'
     badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined'
     spacing: 'compact' | 'comfortable' | 'spacious'
@@ -83,7 +83,7 @@ export const DEFAULT_CONFIG: AppConfig = {
     color: 'primary'
   },
   style: {
-    package: 'modern',
+    package: 'clean',
     fontFamily: 'sans',
     badgeStyle: 'rounded',
     spacing: 'comfortable'

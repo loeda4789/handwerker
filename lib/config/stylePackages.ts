@@ -1,7 +1,7 @@
 import { AppConfig } from './types'
 
 export interface StylePackage {
-  id: 'modern' | 'elegant' | 'professional' | 'friendly' | 'bold'
+  id: 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic'
   name: string
   description: string
   icon: string
@@ -11,63 +11,63 @@ export interface StylePackage {
 
 export const STYLE_PACKAGES: StylePackage[] = [
   {
-    id: 'modern',
-    name: 'Modern',
-    description: 'Sauber, minimalistisch, zeitgemäß',
-    icon: 'M',
+    id: 'clean',
+    name: 'Sauber',
+    description: 'Minimalistisch, zeitgemäß',
+    icon: 'C',
     color: 'bg-gray-50 border-gray-200',
     config: {
       layout: { mode: 'onepage', design: 'modern' },
       headings: { underline: true, style: 'gradient', color: 'primary' },
-      style: { package: 'modern', fontFamily: 'sans', badgeStyle: 'rounded', spacing: 'comfortable' }
+      style: { package: 'clean', fontFamily: 'sans', badgeStyle: 'rounded', spacing: 'comfortable' }
     }
   },
   {
-    id: 'elegant',
-    name: 'Elegant',
-    description: 'Raffiniert, luxuriös, hochwertig',
-    icon: 'E',
+    id: 'luxury',
+    name: 'Luxus',
+    description: 'Raffiniert, hochwertig',
+    icon: 'L',
     color: 'bg-gray-50 border-gray-200',
     config: {
       layout: { mode: 'onepage', design: 'rounded' },
       headings: { underline: true, style: 'solid', color: 'secondary' },
-      style: { package: 'elegant', fontFamily: 'serif', badgeStyle: 'minimal', spacing: 'spacious' }
+      style: { package: 'luxury', fontFamily: 'serif', badgeStyle: 'minimal', spacing: 'spacious' }
     }
   },
   {
-    id: 'professional',
-    name: 'Professionell',
-    description: 'Seriös, vertrauenswürdig, kompetent',
-    icon: 'P',
+    id: 'corporate',
+    name: 'Corporate',
+    description: 'Seriös, vertrauenswürdig',
+    icon: 'C',
     color: 'bg-gray-50 border-gray-200',
     config: {
       layout: { mode: 'onepage', design: 'angular' },
       headings: { underline: false, style: 'none', color: 'primary' },
-      style: { package: 'professional', fontFamily: 'sans', badgeStyle: 'outlined', spacing: 'compact' }
+      style: { package: 'corporate', fontFamily: 'sans', badgeStyle: 'outlined', spacing: 'compact' }
     }
   },
   {
-    id: 'friendly',
-    name: 'Freundlich',
-    description: 'Warm, einladend, persönlich',
-    icon: 'F',
+    id: 'warm',
+    name: 'Warm',
+    description: 'Einladend, persönlich',
+    icon: 'W',
     color: 'bg-gray-50 border-gray-200',
     config: {
       layout: { mode: 'onepage', design: 'rounded' },
       headings: { underline: true, style: 'dotted', color: 'accent' },
-      style: { package: 'friendly', fontFamily: 'sans', badgeStyle: 'pill', spacing: 'comfortable' }
+      style: { package: 'warm', fontFamily: 'sans', badgeStyle: 'pill', spacing: 'comfortable' }
     }
   },
   {
-    id: 'bold',
-    name: 'Auffallend',
-    description: 'Kraftvoll, dynamisch, aufmerksamkeitsstark',
-    icon: 'B',
+    id: 'dynamic',
+    name: 'Dynamisch',
+    description: 'Kraftvoll, aufmerksamkeitsstark',
+    icon: 'D',
     color: 'bg-gray-50 border-gray-200',
     config: {
       layout: { mode: 'onepage', design: 'angular' },
       headings: { underline: true, style: 'gradient', color: 'primary' },
-      style: { package: 'bold', fontFamily: 'display', badgeStyle: 'rounded', spacing: 'spacious' }
+      style: { package: 'dynamic', fontFamily: 'display', badgeStyle: 'rounded', spacing: 'spacious' }
     }
   }
 ]

@@ -433,48 +433,48 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     e.stopPropagation()
                     
                     // Apply style package without changing layout mode
-                    if (pkg.id === 'modern') {
+                    if (pkg.id === 'clean') {
                       setColorScheme('warm')
                       setHeadingUnderline(true)
                       setHeadingStyle('gradient')
                       setHeadingColor('primary')
-                      setStylePackage('modern')
+                      setStylePackage('clean')
                       setFontFamily('sans')
                       setBadgeStyle('rounded')
                       setSpacing('comfortable')
-                    } else if (pkg.id === 'elegant') {
+                    } else if (pkg.id === 'luxury') {
                       setColorScheme('elegant')
                       setHeadingUnderline(true)
                       setHeadingStyle('solid')
                       setHeadingColor('secondary')
-                      setStylePackage('elegant')
+                      setStylePackage('luxury')
                       setFontFamily('serif')
                       setBadgeStyle('minimal')
                       setSpacing('spacious')
-                    } else if (pkg.id === 'professional') {
+                    } else if (pkg.id === 'corporate') {
                       setColorScheme('modern')
                       setHeadingUnderline(false)
                       setHeadingStyle('none')
                       setHeadingColor('primary')
-                      setStylePackage('professional')
+                      setStylePackage('corporate')
                       setFontFamily('sans')
                       setBadgeStyle('outlined')
                       setSpacing('compact')
-                    } else if (pkg.id === 'friendly') {
+                    } else if (pkg.id === 'warm') {
                       setColorScheme('nature')
                       setHeadingUnderline(true)
                       setHeadingStyle('dotted')
                       setHeadingColor('accent')
-                      setStylePackage('friendly')
+                      setStylePackage('warm')
                       setFontFamily('sans')
                       setBadgeStyle('pill')
                       setSpacing('comfortable')
-                    } else if (pkg.id === 'bold') {
+                    } else if (pkg.id === 'dynamic') {
                       setColorScheme('warm')
                       setHeadingUnderline(true)
                       setHeadingStyle('gradient')
                       setHeadingColor('primary')
-                      setStylePackage('bold')
+                      setStylePackage('dynamic')
                       setFontFamily('display')
                       setBadgeStyle('rounded')
                       setSpacing('spacious')
