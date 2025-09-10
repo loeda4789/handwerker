@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { ContentData } from '@/types/content'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
-import { useLayoutConfig } from '@/contexts/AppConfigContext'
+import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 
 interface TestimonialsProps {
   content: ContentData
@@ -24,6 +24,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
   
   // Design-Style aus AppConfigContext
   const { design: designStyle } = useLayoutConfig()
+  const { badgeStyle, fontFamily } = useStyleConfig()
 
   // Check if mobile
   useEffect(() => {
@@ -40,6 +41,28 @@ export default function Testimonials({ content }: TestimonialsProps) {
   
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
+  
+  // Badge-Klassen basierend auf Stil-Paket
+  const getBadgeClasses = () => {
+    const baseClasses = "inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4"
+    const badgeClasses = {
+      minimal: "badge-minimal",
+      rounded: "badge-rounded", 
+      pill: "badge-pill",
+      outlined: "badge-outlined"
+    }
+    return `${baseClasses} ${badgeClasses[badgeStyle]}`
+  }
+  
+  const getFontClass = () => {
+    const fontClasses = {
+      sans: "font-sans",
+      serif: "font-serif",
+      mono: "font-mono",
+      display: "font-display"
+    }
+    return fontClasses[fontFamily]
+  }
 
   // Touch/Mouse handlers
   const handleStart = (clientX: number) => {
@@ -147,7 +170,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
               Kundenstimmen
             </span>
           )}
-          <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
+          <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
             {designStyle === 'modern' ? (
               <span className="heading-underline-large">Was unsere Kunden sagen</span>
             ) : (

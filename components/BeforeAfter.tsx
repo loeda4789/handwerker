@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { ContentData } from '@/types/content'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
-import { useLayoutConfig } from '@/contexts/AppConfigContext'
+import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 
 interface BeforeAfterProps {
   content: ContentData
@@ -20,9 +20,32 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
   
   // Design-Style aus AppConfigContext
   const { design: designStyle } = useLayoutConfig()
+  const { badgeStyle, fontFamily } = useStyleConfig()
   
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
+  
+  // Badge-Klassen basierend auf Stil-Paket
+  const getBadgeClasses = () => {
+    const baseClasses = "inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4"
+    const badgeClasses = {
+      minimal: "badge-minimal",
+      rounded: "badge-rounded", 
+      pill: "badge-pill",
+      outlined: "badge-outlined"
+    }
+    return `${baseClasses} ${badgeClasses[badgeStyle]}`
+  }
+  
+  const getFontClass = () => {
+    const fontClasses = {
+      sans: "font-sans",
+      serif: "font-serif",
+      mono: "font-mono",
+      display: "font-display"
+    }
+    return fontClasses[fontFamily]
+  }
   
   const beforeAfterData = content.beforeAfter || []
   const currentItem = beforeAfterData[0]
@@ -96,7 +119,7 @@ export default function BeforeAfter({ content }: BeforeAfterProps) {
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
-          <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
+          <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
             {isModernStyle ? (
               <span className="heading-underline-large">Vorher / Nachher – unsere Transformationen im Vergleich</span>
             ) : (

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
-import { useLayoutConfig } from '@/contexts/AppConfigContext'
+import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 
 interface ContactProps {
   content: any
@@ -44,9 +44,32 @@ export default function Contact({ content }: ContactProps) {
 
   // Design-Style aus AppConfigContext
   const { design: designStyle } = useLayoutConfig()
+  const { badgeStyle, fontFamily } = useStyleConfig()
   
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
+  
+  // Badge-Klassen basierend auf Stil-Paket
+  const getBadgeClasses = () => {
+    const baseClasses = "inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4"
+    const badgeClasses = {
+      minimal: "badge-minimal",
+      rounded: "badge-rounded", 
+      pill: "badge-pill",
+      outlined: "badge-outlined"
+    }
+    return `${baseClasses} ${badgeClasses[badgeStyle]}`
+  }
+  
+  const getFontClass = () => {
+    const fontClasses = {
+      sans: "font-sans",
+      serif: "font-serif",
+      mono: "font-mono",
+      display: "font-display"
+    }
+    return fontClasses[fontFamily]
+  }
 
   // Toast anzeigen
   const showToast = (message: string, type: 'success' | 'error' | 'info') => {
@@ -105,7 +128,7 @@ export default function Contact({ content }: ContactProps) {
           {/* Header */}
           <div className="text-center mb-12 animate-on-scroll">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4 rounded-lg"
+            <div className={getBadgeClasses()}
               style={{ backgroundColor: 'var(--color-secondary)' }}>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
@@ -113,7 +136,7 @@ export default function Contact({ content }: ContactProps) {
               Kostenlos & unverbindlich
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 ${getFontClass()}`}>
               {isModernStyle ? (
                 <span className="heading-underline-large">Schreiben Sie uns</span>
               ) : (

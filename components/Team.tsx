@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ContentData } from '@/types/content'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
-import { useLayoutConfig } from '@/contexts/AppConfigContext'
+import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 
 interface TeamProps {
   content: ContentData
@@ -20,9 +20,32 @@ export default function Team({ content }: TeamProps) {
   
   // Design-Style aus AppConfigContext
   const { design: designStyle } = useLayoutConfig()
+  const { badgeStyle, fontFamily } = useStyleConfig()
   
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
+  
+  // Badge-Klassen basierend auf Stil-Paket
+  const getBadgeClasses = () => {
+    const baseClasses = "inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4"
+    const badgeClasses = {
+      minimal: "badge-minimal",
+      rounded: "badge-rounded", 
+      pill: "badge-pill",
+      outlined: "badge-outlined"
+    }
+    return `${baseClasses} ${badgeClasses[badgeStyle]}`
+  }
+  
+  const getFontClass = () => {
+    const fontClasses = {
+      sans: "font-sans",
+      serif: "font-serif",
+      mono: "font-mono",
+      display: "font-display"
+    }
+    return fontClasses[fontFamily]
+  }
 
   const teamMembers = content.team
 
@@ -292,7 +315,7 @@ export default function Team({ content }: TeamProps) {
         {/* Team Expertise Section with Modern Icons */}
         <div className="mt-20 border-t border-gray-200 dark:border-gray-700 pt-16">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4">
+            <h3 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
               Unsere Expertise
             </h3>
             <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
