@@ -304,7 +304,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       ? 'text-orange-500 dark:text-orange-400 bg-white dark:bg-gray-700 shadow-sm'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-white/50 dark:hover:bg-gray-700/50'
                   }`}
-                  style={{ borderRadius: '10px' }}
+                  style={{ borderRadius: '0.625rem' }}
                 >
                   <tab.Icon className="w-4 h-4" />
                   <span>{tab.label}</span>
@@ -330,7 +330,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                         ? 'border-orange-400 bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-900/10 shadow-md scale-102'
                         : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                     }`}
-                    style={{ borderRadius: '16px' }}
+                    style={{ borderRadius: '1rem' }}
                   >
                     <div className="flex items-center gap-3 sm:gap-4">
                       {/* Responsive Nummerierung */}
@@ -340,7 +340,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                             ? 'bg-orange-400 text-white ring-1 sm:ring-2 ring-orange-200'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                         }`}
-                        style={{ borderRadius: '14px' }}
+                        style={{ borderRadius: '0.875rem' }}
                       >
                         {pkg.number}
                       </div>
@@ -404,7 +404,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       ? 'bg-white dark:bg-gray-600 text-orange-600 dark:text-orange-400 shadow-sm'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                   }`}
-                  style={{ borderRadius: '8px' }}
+                  style={{ borderRadius: '0.5rem' }}
                 >
                   <div className="flex items-center justify-center gap-2">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -421,7 +421,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                       ? 'bg-white dark:bg-gray-600 text-orange-600 dark:text-orange-400 shadow-sm'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                   }`}
-                  style={{ borderRadius: '8px' }}
+                  style={{ borderRadius: '0.5rem' }}
                 >
                   <div className="flex items-center justify-center gap-2">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -460,7 +460,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
-                      style={{ borderRadius: '16px' }}
+                      style={{ borderRadius: '1rem' }}
                     >
                       <div className="flex items-center gap-3">
                         <div className={`w-10 h-10 flex items-center justify-center ${
@@ -468,7 +468,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                         }`}
-                        style={{ borderRadius: '14px' }}>
+                        style={{ borderRadius: '0.875rem' }}>
                           <style.Icon className="w-5 h-5" />
                         </div>
                         <div>
@@ -498,7 +498,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                           ? 'border-orange-400 bg-orange-50 dark:bg-orange-900/20 shadow-md ring-2 ring-orange-200'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300 bg-white dark:bg-gray-800'
                       }`}
-                      style={{ borderRadius: '16px' }}
+                      style={{ borderRadius: '1rem' }}
                     >
                       <div className="flex items-center justify-center">
                         <div className="flex items-center gap-2">
@@ -531,7 +531,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
-                      style={{ borderRadius: '16px' }}
+                      style={{ borderRadius: '1rem' }}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -540,7 +540,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                               ? 'bg-orange-500 text-white'
                               : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                           }`}
-                          style={{ borderRadius: '14px' }}>
+                          style={{ borderRadius: '0.875rem' }}>
                             <feature.Icon className="w-5 h-5" />
                           </div>
                           <div>
@@ -553,7 +553,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
                         }`}
-                        style={{ borderRadius: '12px' }}>
+                        style={{ borderRadius: '0.75rem' }}>
                           {features[feature.key as keyof typeof features] ? 'AN' : 'AUS'}
                         </div>
                       </div>
@@ -577,7 +577,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                           ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-orange-300'
                       }`}
-                      style={{ borderRadius: '16px' }}
+                      style={{ borderRadius: '1rem' }}
                     >
                       <div className="flex items-center gap-3">
                         <div className={`w-10 h-10 flex items-center justify-center ${
@@ -585,7 +585,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
                             ? 'bg-orange-500 text-white'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                         }`}
-                        style={{ borderRadius: '14px' }}>
+                        style={{ borderRadius: '0.875rem' }}>
                           <mode.Icon className="w-5 h-5" />
                         </div>
                         <div>

@@ -26,16 +26,32 @@ body {
   --radius-modal: 1.5rem !important;
 }
 
-/* Spezifische Anpassungen für verschiedene Elemente - Höhere Spezifität */
+/* Spezifische Anpassungen für verschiedene Elemente - Höchste Spezifität */
 .design-preview-modal button,
 .design-preview-modal button[style*="border-radius"],
+.design-preview-modal button[style*="borderRadius"],
 .design-preview-modal .btn,
 .design-preview-modal .button,
 .side-contact button,
 .side-contact button[style*="border-radius"],
+.side-contact button[style*="borderRadius"],
 .side-contact .btn,
 .side-contact .button {
   border-radius: 1rem !important; /* Etwas weniger rund für Buttons */
+}
+
+/* Höchste Spezifität für Inline-Styles - muss nach allen anderen Regeln kommen */
+.design-preview-modal button[style] {
+  border-radius: 1rem !important;
+}
+
+/* Spezifische Regeln für alle möglichen Button-Kombinationen */
+.design-preview-modal button[style*="1rem"],
+.design-preview-modal button[style*="0.875rem"],
+.design-preview-modal button[style*="0.75rem"],
+.design-preview-modal button[style*="0.625rem"],
+.design-preview-modal button[style*="0.5rem"] {
+  border-radius: 1rem !important;
 }
 
 .design-preview-modal input,
