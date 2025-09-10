@@ -236,7 +236,7 @@ export default function DesignPreview({ isOpen, onClose }: DesignPreviewProps) {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/20 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[520px] h-[600px] flex flex-col" style={{ borderRadius: '24px' }}>
+      <div className="design-preview-modal bg-white dark:bg-gray-900 shadow-2xl border border-gray-200 dark:border-gray-700 w-[520px] h-[600px] flex flex-col" style={{ borderRadius: '24px' }}>
         
         {/* Header */}
         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">

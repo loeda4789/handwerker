@@ -46,7 +46,7 @@ export default function SideContact({ phoneNumber, email, onEmailClick }: SideCo
     <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
       {/* Seitliche Kontaktleiste */}
       <div 
-        className={`bg-white dark:bg-gray-800 shadow-lg border-l border-gray-200 dark:border-gray-700 transition-all duration-300 ease-out ${
+        className={`side-contact bg-white dark:bg-gray-800 shadow-lg border-l border-gray-200 dark:border-gray-700 transition-all duration-300 ease-out ${
           isExpanded ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ 

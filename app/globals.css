@@ -9,6 +9,31 @@ body {
   font-family: var(--font-current, var(--font-sans));
 }
 
+/* Moderne Border-Radien für Designer-Sidebar und SideContact - Immer halbrund und minimalistisch */
+.design-preview-modal,
+.design-preview-modal *,
+.side-contact,
+.side-contact * {
+  border-radius: 1.5rem !important; /* Moderne halbrunde Border-Radien */
+}
+
+/* Spezifische Anpassungen für verschiedene Elemente */
+.design-preview-modal button,
+.side-contact button {
+  border-radius: 1rem !important; /* Etwas weniger rund für Buttons */
+}
+
+.design-preview-modal input,
+.design-preview-modal select,
+.side-contact input {
+  border-radius: 0.75rem !important; /* Moderate Rundung für Inputs */
+}
+
+.design-preview-modal .card,
+.side-contact .card {
+  border-radius: 1.25rem !important; /* Schöne Rundung für Cards */
+}
+
 /* Critical CSS für Hero-Bereich - wird sofort geladen */
 @layer base {
   #startseite {
