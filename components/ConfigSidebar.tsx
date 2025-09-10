@@ -37,6 +37,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { underline: headingUnderline, style: headingStyle, color: headingColor, setUnderline: setHeadingUnderline, setStyle: setHeadingStyle, setColor: setHeadingColor } = useHeadingsConfig()
   const { package: stylePackage, fontFamily, badgeStyle, spacing, setPackage: setStylePackage, setFontFamily, setBadgeStyle, setSpacing } = useStyleConfig()
   
+  // Debug-Log für stylePackage
+  console.log('🔍 ConfigSidebar - stylePackage:', stylePackage, 'fontFamily:', fontFamily, 'badgeStyle:', badgeStyle)
+  
   const [isMobile, setIsMobile] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const [startY, setStartY] = useState(0)
@@ -392,6 +395,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   className={`flex items-center gap-3 p-4 border-2 transition-all cursor-pointer ${
                     stylePackage === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
+                  onMouseDown={(e) => {
+                    console.log('🖱️ Stil-Paket geklickt:', pkg.id, 'stylePackage:', stylePackage)
+                  }}
                   style={{ borderRadius: '10px' }}
                 >
                   <div className="w-8 h-8 bg-gray-100 flex items-center justify-center" style={{ borderRadius: '6px' }}>
