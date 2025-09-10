@@ -35,7 +35,7 @@ export const siteVariants: Record<string, SiteVariant> = {
     features: ['onepage', 'side-contact', 'projektablauf', 'faq', 'advanced-navigation'],
     navigation: {
       items: ['ueber-uns', 'leistungen', 'projektablauf', 'faq'],
-      hasDropdowns: false
+      hasDropdowns: true
     }
   },
   premium: {

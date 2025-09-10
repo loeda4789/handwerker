@@ -17,8 +17,8 @@ export interface DropdownItem {
 }
 
 // Navigation-Item-Definitionen
-const navigationItemDefinitions: Record<string, (content: ContentData, addUrlParamsToHref: (href: string | null) => string | null, siteMode: 'onepage' | 'multipage') => NavigationItem> = {
-  'ueber-uns': (content, addUrlParamsToHref, siteMode) => ({
+const navigationItemDefinitions: Record<string, (content: ContentData, addUrlParamsToHref: (href: string | null) => string | null, siteMode: 'onepage' | 'multipage', packageType?: 'starter' | 'professional' | 'premium') => NavigationItem> = {
+  'ueber-uns': (content, addUrlParamsToHref, siteMode, packageType) => ({
     href: siteMode === 'multipage' ? addUrlParamsToHref('#ueber-uns') : '#ueber-uns',
     label: siteMode === 'multipage' ? 'Über uns' : content.about.title,
     id: 'ueber-uns',
@@ -31,13 +31,13 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
       { href: addUrlParamsToHref('/ueber-uns/zertifikate'), label: 'Zertifikate & Auszeichnungen' }
     ] : undefined
   }),
-  'leistungen': (content, addUrlParamsToHref, siteMode) => ({
+  'leistungen': (content, addUrlParamsToHref, siteMode, packageType) => ({
     href: siteMode === 'multipage' ? null : '#leistungen',
     label: 'Leistungen',
     id: 'leistungen',
-    hasDropdown: siteMode === 'multipage', // Nur bei Multi-Page (Premium) gibt es Dropdown
+    hasDropdown: siteMode === 'multipage' || packageType === 'professional', // Multi-Page (Premium) ODER Professional haben Dropdown
     isClickable: true, // Immer klickbar (One-Page: Scroll, Multi-Page: Link)
-    dropdownItems: siteMode === 'multipage' ? content.services
+    dropdownItems: (siteMode === 'multipage' || packageType === 'professional') ? content.services
       .filter((service: any) => service.slug)
       .map((service: any) => ({
         href: addUrlParamsToHref(`/services/${service.slug}`),
@@ -45,7 +45,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
         icon: service.icon
       })) : undefined
   }),
-  'projektablauf': (content, addUrlParamsToHref, siteMode) => ({
+  'projektablauf': (content, addUrlParamsToHref, siteMode, packageType) => ({
     href: siteMode === 'multipage' ? addUrlParamsToHref('#projektablauf') : '#projektablauf',
     label: 'Projektablauf',
     id: 'projektablauf',
@@ -53,7 +53,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     isClickable: true,
     dropdownItems: []
   }),
-  'kontakt': (content, addUrlParamsToHref, siteMode) => ({
+  'kontakt': (content, addUrlParamsToHref, siteMode, packageType) => ({
     href: siteMode === 'multipage' ? addUrlParamsToHref('/kontakt') : '#kontakt',
     label: 'Kontakt',
     id: 'kontakt',
@@ -61,7 +61,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     isClickable: true,
     dropdownItems: []
   }),
-  'referenzen': (content, addUrlParamsToHref, siteMode) => ({
+  'referenzen': (content, addUrlParamsToHref, siteMode, packageType) => ({
     href: siteMode === 'multipage' ? addUrlParamsToHref('/referenzen') : '#referenzen',
     label: 'Referenzen',
     id: 'referenzen',
@@ -69,7 +69,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     isClickable: true,
     dropdownItems: []
   }),
-  'jobs': (content, addUrlParamsToHref, siteMode) => ({
+  'jobs': (content, addUrlParamsToHref, siteMode, packageType) => ({
     href: addUrlParamsToHref('/jobs'),
     label: 'Jobs',
     id: 'jobs',
@@ -77,7 +77,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     isClickable: true,
     dropdownItems: []
   }),
-  'faq': (content, addUrlParamsToHref, siteMode) => ({
+  'faq': (content, addUrlParamsToHref, siteMode, packageType) => ({
     href: addUrlParamsToHref('/faq'),
     label: 'FAQ',
     id: 'faq',
@@ -123,7 +123,7 @@ export const getNavigationItems = (
   finalItemIds.forEach(itemId => {
     const itemDefinition = navigationItemDefinitions[itemId]
     if (itemDefinition) {
-      navigationItems.push(itemDefinition(content, addUrlParamsToHref, siteMode))
+      navigationItems.push(itemDefinition(content, addUrlParamsToHref, siteMode, variant))
     }
   })
   
