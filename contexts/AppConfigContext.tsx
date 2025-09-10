@@ -19,14 +19,41 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Initiale Konfiguration laden
-    setConfig(configManager.getConfig())
+    const initialConfig = configManager.getConfig()
+    setConfig(initialConfig)
     setIsConfigLoaded(true)
-    console.log('🎯 AppConfigProvider initialisiert mit:', configManager.getConfig())
+    console.log('🎯 AppConfigProvider initialisiert mit:', initialConfig)
+
+    // Initiale Font-Familie setzen
+    if (initialConfig.style?.fontFamily) {
+      const fontMap = {
+        'sans': 'var(--font-sans)',
+        'serif': 'var(--font-serif)',
+        'mono': 'var(--font-mono)',
+        'display': 'var(--font-display)'
+      }
+      const fontValue = fontMap[initialConfig.style.fontFamily] || 'var(--font-sans)'
+      document.documentElement.style.setProperty('--font-current', fontValue)
+      console.log('🎨 Initiale Font-Familie gesetzt:', initialConfig.style.fontFamily, '→', fontValue)
+    }
 
     // Listener für Änderungen
     const unsubscribe = configManager.subscribe((newConfig) => {
       console.log('🔄 Konfiguration aktualisiert:', newConfig)
       setConfig(newConfig)
+      
+      // Font-Familie in CSS-Variablen übertragen
+      if (newConfig.style?.fontFamily) {
+        const fontMap = {
+          'sans': 'var(--font-sans)',
+          'serif': 'var(--font-serif)',
+          'mono': 'var(--font-mono)',
+          'display': 'var(--font-display)'
+        }
+        const fontValue = fontMap[newConfig.style.fontFamily] || 'var(--font-sans)'
+        document.documentElement.style.setProperty('--font-current', fontValue)
+        console.log('🎨 Font-Familie gesetzt:', newConfig.style.fontFamily, '→', fontValue)
+      }
     })
 
     return unsubscribe
@@ -143,7 +170,7 @@ export function useStyleConfig() {
       console.log('🎨 setFontFamily aufgerufen mit:', fontFamily)
       updateConfig({ style: { ...config.style, fontFamily } })
     },
-    setBadgeStyle: (badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined') => {
+    setBadgeStyle: (badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none') => {
       console.log('🎨 setBadgeStyle aufgerufen mit:', badgeStyle)
       updateConfig({ style: { ...config.style, badgeStyle } })
     },

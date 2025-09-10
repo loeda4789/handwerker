@@ -42,7 +42,8 @@ export default function SectionHeading({
       minimal: "badge-minimal",
       rounded: "badge-rounded", 
       pill: "badge-pill",
-      outlined: "badge-outlined"
+      outlined: "badge-outlined",
+      none: "badge-none"
     }
     return `${baseClasses} ${badgeClasses[badgeStyle]}`
   }

@@ -37,7 +37,7 @@ export interface AppConfig {
   style: {
     package: 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic'
     fontFamily: 'sans' | 'serif' | 'mono' | 'display'
-    badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined'
+    badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none'
     spacing: 'compact' | 'comfortable' | 'spacious'
   }
   system: {
@@ -85,7 +85,7 @@ export const DEFAULT_CONFIG: AppConfig = {
   style: {
     package: 'clean',
     fontFamily: 'sans',
-    badgeStyle: 'rounded',
+    badgeStyle: 'none',
     spacing: 'comfortable'
   },
   system: {

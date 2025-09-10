@@ -19,7 +19,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     config: {
       layout: { design: 'modern' } as any,
       headings: { underline: true, style: 'gradient', color: 'primary' },
-      style: { package: 'clean', fontFamily: 'sans', badgeStyle: 'rounded', spacing: 'comfortable' }
+      style: { package: 'clean', fontFamily: 'sans', badgeStyle: 'none', spacing: 'comfortable' }
     }
   },
   {
@@ -31,7 +31,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     config: {
       layout: { design: 'rounded' } as any,
       headings: { underline: true, style: 'solid', color: 'secondary' },
-      style: { package: 'luxury', fontFamily: 'serif', badgeStyle: 'minimal', spacing: 'spacious' }
+      style: { package: 'luxury', fontFamily: 'serif', badgeStyle: 'none', spacing: 'spacious' }
     }
   },
   {
@@ -55,7 +55,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     config: {
       layout: { design: 'rounded' } as any,
       headings: { underline: true, style: 'dotted', color: 'accent' },
-      style: { package: 'warm', fontFamily: 'sans', badgeStyle: 'pill', spacing: 'comfortable' }
+      style: { package: 'warm', fontFamily: 'sans', badgeStyle: 'none', spacing: 'comfortable' }
     }
   },
   {
@@ -67,7 +67,7 @@ export const STYLE_PACKAGES: StylePackage[] = [
     config: {
       layout: { design: 'angular' } as any,
       headings: { underline: true, style: 'gradient', color: 'primary' },
-      style: { package: 'dynamic', fontFamily: 'display', badgeStyle: 'rounded', spacing: 'spacious' }
+      style: { package: 'dynamic', fontFamily: 'display', badgeStyle: 'none', spacing: 'spacious' }
     }
   }
 ]

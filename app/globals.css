@@ -6,7 +6,7 @@
 
 /* Global Font Family Application */
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-current, var(--font-sans));
 }
 
 /* Critical CSS für Hero-Bereich - wird sofort geladen */
@@ -203,6 +203,10 @@ body {
 .font-display { font-family: var(--font-display); }
 
 /* Badge Style Classes */
+.badge-none {
+  /* Keine Badge-Styles - nur Text */
+}
+
 .badge-minimal {
   border-radius: var(--badge-minimal-radius);
   padding: 0.25rem 0.5rem;
