@@ -24,6 +24,7 @@ import UrlParamsDebug from '@/components/UrlParamsDebug'
 import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 
 import ContactBar from '@/components/ContactBar'
+import ConfigCard from '@/components/ConfigCard'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
@@ -542,6 +543,9 @@ export default function HomePage() {
           onEmailClick={scrollToContact}
         />
       )}
+
+      {/* ConfigCard - Website Designer Button */}
+      <ConfigCard />
       
 
 
