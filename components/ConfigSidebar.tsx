@@ -63,6 +63,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const [startY, setStartY] = useState(0)
   const [currentY, setCurrentY] = useState(0)
   const [dragOffset, setDragOffset] = useState(0)
+  const [isAdvancedConfigOpen, setIsAdvancedConfigOpen] = useState(false)
 
   // Check if mobile
   useEffect(() => {
@@ -126,7 +127,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
   if (!isOpen) return null
 
-  // Besteller-Varianten
+  // Besteller-Varianten - Einheitliche Farben
   const bestellerVariants = [
     {
       id: 'starter',
@@ -147,7 +148,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       description: 'One-Page mit Leistungssektor',
       features: ['One-Page Layout', 'Leistungssektor', 'Alle Features'],
       icon: MdTrendingUp,
-      color: 'bg-blue-50 border-blue-200',
+      color: 'bg-gray-50 border-gray-200', // Einheitliche Farbe wie Starter
       selected: siteMode === 'onepage' && features.sideContact
     },
     {
@@ -158,7 +159,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       description: 'Multi-Page Website für anspruchsvolle Projekte',
       features: ['Multi-Page Layout', 'Alle Unterseiten', 'Vollständig anpassbar'],
       icon: MdDiamond,
-      color: 'bg-purple-50 border-purple-200',
+      color: 'bg-gray-50 border-gray-200', // Einheitliche Farbe wie Starter
       selected: siteMode === 'multipage'
     }
   ]
@@ -301,15 +302,34 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-200"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white text-gray-500 font-medium">Weitere Konfiguration</span>
-            </div>
-          </div>
+          {/* Weitere Konfiguration - Aufklappbarer Bereich */}
+          <div className="space-y-4">
+            <button
+              onClick={() => setIsAdvancedConfigOpen(!isAdvancedConfigOpen)}
+              className="w-full flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <span className="font-medium text-gray-900">Weitere Konfiguration</span>
+              </div>
+              <svg 
+                className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
+                  isAdvancedConfigOpen ? 'rotate-180' : ''
+                }`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+
+            {/* Aufklappbarer Inhalt */}
+            {isAdvancedConfigOpen && (
+              <div className="space-y-6 animate-in slide-in-from-top duration-200">
 
           {/* Hero-Typ */}
           <div className="space-y-4">
@@ -512,6 +532,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
 
           {/* Überschriften */}
+
+              </div>
+            )}
+          </div>
 
         </div>
       </div>
