@@ -8,6 +8,7 @@ export interface UrlParams {
   ort?: string;
   email?: string;
   telefon?: string;
+  branche?: string;
 }
 
 export interface ExtractedUrlData {
@@ -36,6 +37,7 @@ export function extractUrlParams(): UrlParams {
     ort: searchParams.get('ort') || undefined,
     email: searchParams.get('email') || undefined,
     telefon: searchParams.get('telefon') || undefined,
+    branche: searchParams.get('branche') || undefined,
   };
 }
 
