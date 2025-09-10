@@ -69,6 +69,7 @@ export function useLayoutConfig() {
   return {
     mode: config.layout.mode,
     design: config.layout.design,
+    designStyle: config.layout.design, // Alias für Kompatibilität
     setMode: (mode: 'onepage' | 'multipage') => 
       updateConfig({ layout: { ...config.layout, mode } }),
     setDesign: (design: 'angular' | 'rounded' | 'modern') => 
