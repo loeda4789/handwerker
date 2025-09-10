@@ -29,7 +29,7 @@ interface ConfigSidebarProps {
 }
 
 export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
-  const { config, isConfigLoaded } = useAppConfig()
+  const { config, isConfigLoaded, updateConfig } = useAppConfig()
   const { mode: siteMode, design: designStyle, setMode: setSiteMode } = useLayoutConfig()
   const { colorScheme, setColorScheme } = useThemeConfig()
   const { features, setFeature: toggleFeature } = useFeaturesConfig()
@@ -344,8 +344,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               {STYLE_PACKAGES.map((pkg) => {
                 console.log('🔍 Rendering Stil-Paket:', pkg.id, pkg.name)
                 return (
-                <div
+                <button
                   key={pkg.id}
+                  type="button"
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
@@ -353,6 +354,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     // Apply style package using the centralized function
                     const updatedConfig = applyStylePackage(config, pkg.id)
                     console.log('🎨 Stil-Paket angewendet:', pkg.id, updatedConfig.style)
+                    
+                    // Update the configuration
+                    updateConfig(updatedConfig)
                     
                     // Apply the updated configuration
                     if (updatedConfig.layout) {
@@ -398,6 +402,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     stylePackage === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                   onMouseDown={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
                     console.log('🖱️ Stil-Paket geklickt:', pkg.id, 'stylePackage:', stylePackage)
                   }}
                   style={{ borderRadius: '10px' }}
@@ -408,7 +414,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   <div className="flex-1">
                     <div className="text-sm font-medium text-gray-900">{pkg.name}</div>
                   </div>
-                </div>
+                </button>
                 )
               })}
             </div>

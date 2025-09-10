@@ -71,6 +71,17 @@ class ConfigManager {
       console.log('✅ Design-Style migriert:', designStyle)
     }
     
+    // Style-Package Migration - Fallback auf 'clean' wenn ungültig
+    const stylePackage = localStorage.getItem('style-package') as 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic'
+    if (stylePackage && ['clean', 'luxury', 'corporate', 'warm', 'dynamic'].includes(stylePackage)) {
+      migrated.style.package = stylePackage
+      console.log('✅ Style-Package migriert:', stylePackage)
+    } else {
+      // Fallback auf 'clean' wenn ungültiger Wert
+      migrated.style.package = 'clean'
+      console.log('⚠️ Ungültiger Style-Package-Wert, auf clean gesetzt')
+    }
+    
     // Theme Migration
     const colorScheme = localStorage.getItem(LEGACY_STORAGE_KEYS.COLOR_SCHEME) as 'warm' | 'modern' | 'elegant' | 'nature'
     if (colorScheme) {
