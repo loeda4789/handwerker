@@ -146,7 +146,7 @@ export default function HeaderRounded({ content }: HeaderRoundedProps) {
       }`}
     >
       <div className="container mx-auto">
-        <div className="flex justify-between items-center px-8 py-10">
+        <div className="flex justify-between items-center px-8 py-2">
           {/* Logo */}
           <HeaderLogo 
             logoStyle={isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'}

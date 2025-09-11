@@ -133,7 +133,7 @@ export default function HeaderModern({ content }: HeaderModernProps) {
             : 'bg-black/25 dark:bg-gray-900/35'
         }`}
       >
-        <div className="flex justify-between items-center px-12 py-10">
+        <div className="flex justify-between items-center px-12 py-2">
           {/* Logo */}
           <HeaderLogo 
             logoStyle="text-white"
