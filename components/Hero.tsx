@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { ContentData } from '@/types/content'
 import { useState, useEffect } from 'react'
 import { MdVerified, MdAccessTime, MdSupportAgent } from 'react-icons/md'
-import { useHeroConfig } from '@/contexts/AppConfigContext'
+import { useHeroConfig, useLayoutConfig, useFeaturesConfig } from '@/contexts/AppConfigContext'
 
 interface HeroProps {
   content: ContentData
@@ -75,6 +75,17 @@ function HeroSingle({ content }: HeroProps) {
   
   // Design-Style aus localStorage abrufen für Design-spezifische Styles
   const [designStyle, setDesignStyle] = useState<string>('angular')
+  
+  // Site-Variante ermitteln für Text-Formatierung
+  const { mode: siteMode } = useLayoutConfig()
+  const { features } = useFeaturesConfig()
+  const hasSideContact = features.sideContact
+  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter'
+  
+  // Text-Formatierung basierend auf Variante
+  const isStarter = packageType === 'starter'
+  const titleClass = isStarter ? 'uppercase' : 'normal-case'
+  const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
   
   useEffect(() => {
     const savedDesignStyle = localStorage.getItem('design-style')
@@ -147,14 +158,14 @@ function HeroSingle({ content }: HeroProps) {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl lg:max-w-3xl">
               <h1 
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]"
+                className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards] ${titleClass}`}
                 style={{ color: 'var(--color-heroText, #ffffff)' }}
               >
                 {formatHeroTitle(content.company.tagline)}
               </h1>
               
               <p 
-                className="text-lg md:text-xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
+                className={`text-lg md:text-xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards] ${subtitleClass}`}
                 style={{ 
                   color: designStyle === 'modern' ? '#ffffff' : 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' 
                 }}
@@ -226,6 +237,17 @@ function HeroSlider({ content }: HeroProps) {
   const cityName = extractCityFromAddress(content.contact.address)
   const [currentSlide, setCurrentSlide] = useState(0)
   
+  // Site-Variante ermitteln für Text-Formatierung
+  const { mode: siteMode } = useLayoutConfig()
+  const { features } = useFeaturesConfig()
+  const hasSideContact = features.sideContact
+  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter'
+  
+  // Text-Formatierung basierend auf Variante
+  const isStarter = packageType === 'starter'
+  const titleClass = isStarter ? 'uppercase' : 'normal-case'
+  const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
+  
   const slides = [
     {
       desktop: content.hero.backgroundImages.desktop,
@@ -296,14 +318,14 @@ function HeroSlider({ content }: HeroProps) {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h1 
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight text-white"
+                className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight text-white ${titleClass}`}
                 key={`title-${currentSlide}`}
               >
                 {slides[currentSlide].title}
               </h1>
               
               <p 
-                className="text-lg md:text-xl mb-8"
+                className={`text-lg md:text-xl mb-8 ${subtitleClass}`}
                 style={{ color: '#ffffff' }}
                 key={`subtitle-${currentSlide}`}
               >
@@ -357,6 +379,17 @@ function HeroSlider({ content }: HeroProps) {
 function HeroVideo({ content }: HeroProps) {
   const cityName = extractCityFromAddress(content.contact.address)
   const [isLoaded, setIsLoaded] = useState(false)
+  
+  // Site-Variante ermitteln für Text-Formatierung
+  const { mode: siteMode } = useLayoutConfig()
+  const { features } = useFeaturesConfig()
+  const hasSideContact = features.sideContact
+  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter'
+  
+  // Text-Formatierung basierend auf Variante
+  const isStarter = packageType === 'starter'
+  const titleClass = isStarter ? 'uppercase' : 'normal-case'
+  const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
 
   useEffect(() => {
     setIsLoaded(true)
@@ -409,11 +442,11 @@ function HeroVideo({ content }: HeroProps) {
           >
             <div className="max-w-4xl mx-auto">
               <div className="transform-gpu hover:scale-105 transition-transform duration-300">
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-white drop-shadow-2xl">
+                <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-white drop-shadow-2xl ${titleClass}`}>
                   {formatHeroTitle(content.company.tagline)}
                 </h1>
                 
-                <p className="text-xl md:text-2xl mb-8 drop-shadow-lg" style={{ color: '#ffffff' }}>
+                <p className={`text-xl md:text-2xl mb-8 drop-shadow-lg ${subtitleClass}`} style={{ color: '#ffffff' }}>
                   {formatHeroText(content.company.tagline, cityName)}
                 </p>
                 
@@ -462,6 +495,17 @@ function HeroVideo({ content }: HeroProps) {
 // Hero Split Variant - Klassische zweigeteilte Variante mit verkürztem Text
 function HeroSplit({ content }: HeroProps) {
   const cityName = extractCityFromAddress(content.contact.address)
+  
+  // Site-Variante ermitteln für Text-Formatierung
+  const { mode: siteMode } = useLayoutConfig()
+  const { features } = useFeaturesConfig()
+  const hasSideContact = features.sideContact
+  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter'
+  
+  // Text-Formatierung basierend auf Variante
+  const isStarter = packageType === 'starter'
+  const titleClass = isStarter ? 'uppercase' : 'normal-case'
+  const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
 
   return (
     <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
@@ -470,11 +514,11 @@ function HeroSplit({ content }: HeroProps) {
           {/* Left Side - Content */}
           <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start">
             <div className="max-w-2xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white ${titleClass}`}>
                 {formatHeroTitle(content.company.tagline)}
               </h1>
             
-              <p className="text-xl md:text-2xl mb-6 text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className={`text-xl md:text-2xl mb-6 text-gray-600 dark:text-gray-300 leading-relaxed ${subtitleClass}`}>
                 {formatHeroText(content.company.tagline, cityName)}
               </p>
               
