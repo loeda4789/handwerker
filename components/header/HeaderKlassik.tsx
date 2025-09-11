@@ -59,22 +59,26 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
     return pathname === href || pathname.startsWith(href + '/');
   };
 
-  // Scroll-Handler
+  // Scroll-Handler mit Auto-Hide für Klassik
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrolled = currentScrollY > 50;
       setIsScrolled(scrolled);
       
-      // Header visibility logic - immer sichtbar für Klassik Header
-      setHeaderVisible(true);
+      // Auto-Hide Logic: Verstecke beim Scrollen nach unten, zeige beim Scrollen nach oben
+      if (currentScrollY < lastScrollY || currentScrollY < 100) {
+        setHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setHeaderVisible(false);
+      }
       
-      setLastScrollY(currentScrollY); // Update last scroll position
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [designStyle, lastScrollY]);
+  }, [lastScrollY]);
 
   // Verhindere Scrollen wenn Menü offen ist
   useEffect(() => {

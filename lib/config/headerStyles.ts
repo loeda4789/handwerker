@@ -129,7 +129,7 @@ export const getHeaderStyles = (
       nav: 'px-8 py-4 mx-auto max-w-screen-xl',
       borderRadius: 'var(--radius-card)',
       textColor: 'text-text dark:text-light',
-      logoStyle: 'text-text dark:text-light',
+      logoStyle: 'text-black dark:text-white',
       ctaStyle: 'text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden flex items-center gap-2 transform hover:scale-105 button-shine',
       ctaStyleDynamic: {
         backgroundColor: 'var(--color-primary)',
