@@ -161,7 +161,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
       }`}
     >
       <div className="container mx-auto">
-        <div className="flex justify-between items-center">
+        <div className={`${headerStyles.nav} flex justify-between items-center`}>
           {/* Logo */}
           <HeaderLogo 
             logoStyle={headerStyles.logoStyle}
