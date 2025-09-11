@@ -2,16 +2,24 @@
 
 import { useState } from 'react'
 import { MdSettings } from 'react-icons/md'
-import { useAppConfig, useLayoutConfig } from '@/contexts/AppConfigContext'
+import { useAppConfig, useLayoutConfig, useHeroConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 import ConfigSidebar from './ConfigSidebar'
 
 export default function ConfigCard() {
   const { config } = useAppConfig()
   const { mode: siteMode, design: designStyle } = useLayoutConfig()
+  const { type: heroType } = useHeroConfig()
+  const { package: stylePackage } = useStyleConfig()
   const [isOpen, setIsOpen] = useState(false)
 
+  // Bestimme ob HeaderKlassik verwendet wird
+  const isKlassikHeader = heroType === 'split' || stylePackage === 'luxury'
+
   const summary = {
-    design: designStyle === 'angular' ? 'Eckig' : designStyle === 'rounded' ? 'Abgerundet' : 'Modern',
+    design: isKlassikHeader ? 'Klassik' :
+            designStyle === 'angular' ? 'Eckig' : 
+            designStyle === 'rounded' ? 'Abgerundet' : 
+            designStyle === 'modern' ? 'Modern' : 'Modern',
     color: config.theme.colorScheme === 'warm' ? 'Warm' : 
            config.theme.colorScheme === 'modern' ? 'Modern' : 
            config.theme.colorScheme === 'elegant' ? 'Elegant' : 'Nature',

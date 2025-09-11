@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,7 +9,7 @@ body {
   font-family: var(--font-current, var(--font-sans));
 }
 
-/* Moderne Border-Radien für Designer-Sidebar und SideContact - Immer halbrund und minimalistisch */
+/* Moderne Border-Radien fÃ¼r Designer-Sidebar und SideContact - Immer halbrund und minimalistisch */
 .design-preview-modal,
 .design-preview-modal *,
 .side-contact,
@@ -30,21 +30,21 @@ body {
   }
 }
 
-/* ConfigCard und ConfigSidebar - Immer leicht abgerundet, unabhängig von Konfiguration */
+/* ConfigCard und ConfigSidebar - Immer leicht abgerundet, unabhÃ¤ngig von Konfiguration */
 .config-card-button {
   border-radius: 1rem !important; /* Leicht abgerundet */
 }
 
 .config-sidebar-variant {
-  border-radius: 1rem !important; /* Leicht abgerundet für Varianten */
+  border-radius: 1rem !important; /* Leicht abgerundet fÃ¼r Varianten */
 }
 
 .config-sidebar-button {
-  border-radius: 0.75rem !important; /* Leicht abgerundet für Buttons */
+  border-radius: 0.75rem !important; /* Leicht abgerundet fÃ¼r Buttons */
 }
 
 .config-sidebar-feature {
-  border-radius: 0.75rem !important; /* Leicht abgerundet für Features */
+  border-radius: 0.75rem !important; /* Leicht abgerundet fÃ¼r Features */
 }
 
 /* Designer-Sidebar komplett von CSS-Variablen isolieren */
@@ -56,7 +56,7 @@ body {
   --radius-modal: 1.5rem !important;
 }
 
-/* ABSOLUTE HÖCHSTE SPEZIFITÄT - Überschreibt ALLES */
+/* ABSOLUTE HÃ–CHSTE SPEZIFITÃ„T - Ãœberschreibt ALLES */
 .design-preview-modal button[style*="border-radius"],
 .design-preview-modal button[style*="borderRadius"],
 .design-preview-modal button[style*="1rem"],
@@ -69,7 +69,7 @@ body {
   -moz-border-radius: 1rem !important;
 }
 
-/* Spezifische Anpassungen für verschiedene Elemente - Höchste Spezifität */
+/* Spezifische Anpassungen fÃ¼r verschiedene Elemente - HÃ¶chste SpezifitÃ¤t */
 .design-preview-modal button,
 .design-preview-modal button[style*="border-radius"],
 .design-preview-modal button[style*="borderRadius"],
@@ -80,15 +80,15 @@ body {
 .side-contact button[style*="borderRadius"],
 .side-contact .btn,
 .side-contact .button {
-  border-radius: 1rem !important; /* Etwas weniger rund für Buttons */
+  border-radius: 1rem !important; /* Etwas weniger rund fÃ¼r Buttons */
 }
 
-/* Höchste Spezifität für Inline-Styles - muss nach allen anderen Regeln kommen */
+/* HÃ¶chste SpezifitÃ¤t fÃ¼r Inline-Styles - muss nach allen anderen Regeln kommen */
 .design-preview-modal button[style] {
   border-radius: 1rem !important;
 }
 
-/* Noch höhere Spezifität für alle Button-Kombinationen */
+/* Noch hÃ¶here SpezifitÃ¤t fÃ¼r alle Button-Kombinationen */
 .design-preview-modal .space-y-4 button,
 .design-preview-modal .space-y-6 button,
 .design-preview-modal .space-y-3 button,
@@ -96,13 +96,13 @@ body {
   border-radius: 1rem !important;
 }
 
-/* Spezifische Regeln für Design-Tab Buttons */
+/* Spezifische Regeln fÃ¼r Design-Tab Buttons */
 .design-preview-modal [class*="space-y-4"] button,
 .design-preview-modal [class*="space-y-6"] button {
   border-radius: 1rem !important;
 }
 
-/* Spezifische Regeln für alle möglichen Button-Kombinationen */
+/* Spezifische Regeln fÃ¼r alle mÃ¶glichen Button-Kombinationen */
 .design-preview-modal button[style*="1rem"],
 .design-preview-modal button[style*="0.875rem"],
 .design-preview-modal button[style*="0.75rem"],
@@ -117,24 +117,24 @@ body {
 .design-preview-modal select[style*="border-radius"],
 .side-contact input,
 .side-contact input[style*="border-radius"] {
-  border-radius: 0.75rem !important; /* Moderate Rundung für Inputs */
+  border-radius: 0.75rem !important; /* Moderate Rundung fÃ¼r Inputs */
 }
 
 .design-preview-modal .card,
 .design-preview-modal .card[style*="border-radius"],
 .side-contact .card,
 .side-contact .card[style*="border-radius"] {
-  border-radius: 1.25rem !important; /* Schöne Rundung für Cards */
+  border-radius: 1.25rem !important; /* SchÃ¶ne Rundung fÃ¼r Cards */
 }
 
-/* Zusätzliche Spezifität für alle möglichen Button-Klassen */
+/* ZusÃ¤tzliche SpezifitÃ¤t fÃ¼r alle mÃ¶glichen Button-Klassen */
 .design-preview-modal [class*="button"],
 .design-preview-modal [class*="btn"],
 .design-preview-modal [role="button"] {
   border-radius: 1rem !important;
 }
 
-/* Spezifische Regeln für Paket-Buttons */
+/* Spezifische Regeln fÃ¼r Paket-Buttons */
 .design-preview-modal button[onclick*="applyPackage"],
 .design-preview-modal button[onclick*="handleDesignStyleChange"],
 .design-preview-modal button[onclick*="handleColorSchemeChange"],
@@ -142,7 +142,7 @@ body {
   border-radius: 1rem !important;
 }
 
-/* Critical CSS für Hero-Bereich - wird sofort geladen */
+/* Critical CSS fÃ¼r Hero-Bereich - wird sofort geladen */
 @layer base {
   #startseite {
     display: block;
@@ -262,7 +262,7 @@ body {
   width: 100%;
 }
 
-/* Variante für größere Überschriften */
+/* Variante fÃ¼r grÃ¶ÃŸere Ãœberschriften */
 .heading-underline-large {
   position: relative;
   display: inline-block;
@@ -285,7 +285,7 @@ body {
   width: 100%;
 }
 
-/* Animierte Unterstreichung mit "Wellen"-Effekt für moderne Styles */
+/* Animierte Unterstreichung mit "Wellen"-Effekt fÃ¼r moderne Styles */
 .modern-style .heading-underline-wave {
   position: relative;
   display: inline-block;
@@ -382,7 +382,7 @@ body {
 .spacing-comfortable { margin-bottom: var(--spacing-comfortable); }
 .spacing-spacious { margin-bottom: var(--spacing-spacious); }
 
-/* Keyframes für Unterstreichungsanimationen */
+/* Keyframes fÃ¼r Unterstreichungsanimationen */
 @keyframes underline-wave {
   0% {
     width: 0;
@@ -487,18 +487,18 @@ html {
   --color-accent: #213044;         /* Mittleres Navy (subtiler Akzent) */
   
   /* HINTERGRUND */
-  --color-background: #ffffff;     /* Haupt-Hintergrund (Weiß) */
+  --color-background: #ffffff;     /* Haupt-Hintergrund (WeiÃŸ) */
   --color-surface: #F7F8FA;       /* Sehr helles Grau-Blau */
   
   /* TEXT */
-  --color-text: #18273A;          /* Dunkles Navy (für helle Hintergründe) */
-  --color-text-light: #ffffff;    /* Weißer Text (für dunkle Hintergründe) */
-  --color-text-secondary: #4A5568; /* Gedämpftes Grau (für sekundäre Infos) */
+  --color-text: #18273A;          /* Dunkles Navy (fÃ¼r helle HintergrÃ¼nde) */
+  --color-text-light: #ffffff;    /* WeiÃŸer Text (fÃ¼r dunkle HintergrÃ¼nde) */
+  --color-text-secondary: #4A5568; /* GedÃ¤mpftes Grau (fÃ¼r sekundÃ¤re Infos) */
   
-  /* LEGACY SUPPORT - Für Border etc. */
+  /* LEGACY SUPPORT - FÃ¼r Border etc. */
   --color-border: #e0e0e0;        /* Rahmen-Farbe */
   --color-dark: #0f172a;          /* Dark Mode Hauptfarbe */
-  --color-dark-secondary: #1e293b; /* Dark Mode Sekundärfarbe */
+  --color-dark-secondary: #1e293b; /* Dark Mode SekundÃ¤rfarbe */
   
   /* Hero-Hintergrundbilder */
   --hero-image-desktop: url('/images/hero-background.png');
@@ -836,7 +836,7 @@ html {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Neue Animationen für Marketing Features */
+/* Neue Animationen fÃ¼r Marketing Features */
 @keyframes slideInFromBottom {
   from {
     transform: translateY(100%);
@@ -887,7 +887,7 @@ html {
   letter-spacing: 0.5px;
 }
 
-/* Responsive Utility Classes für bessere Performance */
+/* Responsive Utility Classes fÃ¼r bessere Performance */
 @screen lg {
   .animate-on-scroll {
     opacity: 0;
@@ -901,7 +901,7 @@ html {
   }
 }
 
-/* Mobile: Sofort sichtbar für bessere Performance */
+/* Mobile: Sofort sichtbar fÃ¼r bessere Performance */
 @media (max-width: 1023px) {
   .animate-on-scroll {
     opacity: 1;
@@ -909,7 +909,7 @@ html {
   }
 }
 
-/* Hero-Animationen - Nur für Desktop für Performance */
+/* Hero-Animationen - Nur fÃ¼r Desktop fÃ¼r Performance */
 @screen lg {
   .animate-typewriter {
     overflow: hidden;
@@ -931,7 +931,7 @@ html {
   }
 }
 
-/* Fade-In Animationen für verschiedene Richtungen */
+/* Fade-In Animationen fÃ¼r verschiedene Richtungen */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -999,7 +999,7 @@ html {
   }
 }
 
-/* Ken Burns Effekt für Hero-Bilder */
+/* Ken Burns Effekt fÃ¼r Hero-Bilder */
 @keyframes ken-burns {
   0% {
     transform: scale(1);
@@ -1013,7 +1013,7 @@ html {
   animation: ken-burns 20s ease-out infinite alternate;
 }
 
-/* Floating Animation für dekorative Elemente */
+/* Floating Animation fÃ¼r dekorative Elemente */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -1085,13 +1085,13 @@ html {
   background: var(--color-accent, #38bdf8);
 }
 
-/* Focus States für Barrierefreiheit */
+/* Focus States fÃ¼r Barrierefreiheit */
 .focus-visible:focus-visible {
   outline: 2px solid var(--color-primary, #0ea5e9);
   outline-offset: 2px;
 }
 
-/* CSS Variables für dynamische Farben */
+/* CSS Variables fÃ¼r dynamische Farben */
 :root {
   /* VEREINFACHTES FARBSYSTEM - Nur 8 essenzielle Farben */
   
@@ -1101,18 +1101,18 @@ html {
   --color-accent: #F6D7AC;         /* Creme (Highlight/Hover-Farbe) */
   
   /* HINTERGRUND */
-  --color-background: #ffffff;     /* Haupt-Hintergrund (Weiß) */
-  --color-surface: #faf8f5;       /* Sekundärer Hintergrund (helles Beige) */
+  --color-background: #ffffff;     /* Haupt-Hintergrund (WeiÃŸ) */
+  --color-surface: #faf8f5;       /* SekundÃ¤rer Hintergrund (helles Beige) */
   
   /* TEXT */
-  --color-text: #291D1E;          /* Dunkelbraun (für helle Hintergründe) */
-  --color-text-light: #ffffff;    /* Weißer Text (für dunkle Hintergründe) */
-  --color-text-secondary: #8B6F47; /* Warmes Braun (für sekundäre Infos) */
+  --color-text: #291D1E;          /* Dunkelbraun (fÃ¼r helle HintergrÃ¼nde) */
+  --color-text-light: #ffffff;    /* WeiÃŸer Text (fÃ¼r dunkle HintergrÃ¼nde) */
+  --color-text-secondary: #8B6F47; /* Warmes Braun (fÃ¼r sekundÃ¤re Infos) */
   
-  /* LEGACY SUPPORT - Für Border etc. */
+  /* LEGACY SUPPORT - FÃ¼r Border etc. */
   --color-border: #e0e0e0;        /* Rahmen-Farbe */
   --color-dark: #0f172a;          /* Dark Mode Hauptfarbe */
-  --color-dark-secondary: #1e293b; /* Dark Mode Sekundärfarbe */
+  --color-dark-secondary: #1e293b; /* Dark Mode SekundÃ¤rfarbe */
   
   /* Hero-Hintergrundbilder */
   --hero-image-desktop: url('/images/hero-background.png');
@@ -1136,3 +1136,122 @@ html {
   --radius-modal: var(--radius-2xl);
   --radius-input: var(--radius-md);
 } 
+/* ===== KLASSIK HEADER ANIMATIONEN ===== */
+
+/* Mobile navigation animations */
+.mobile-nav-animation {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sliding indicator animation */
+.sliding-indicator {
+  position: relative;
+  overflow: hidden;
+}
+
+.sliding-indicator::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transition: width 0.3s ease;
+}
+
+.sliding-indicator:hover::after {
+  width: 100%;
+}
+
+/* Dropdown animations */
+.dropdown-enter {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+.dropdown-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.dropdown-exit-active {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button shine effect */
+.button-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.button-shine:hover::before {
+  left: 100%;
+}
+
+/* Mobile menu slide animations */
+.mobile-menu-slide-enter {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.mobile-menu-slide-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-slide-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-menu-slide-exit-active {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hamburger menu animation */
+.hamburger-line {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.hamburger-line-1.open {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-line-2.open {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-line-3.open {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Backdrop blur support */
+.backdrop-blur-support {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

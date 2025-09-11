@@ -22,7 +22,7 @@ export interface DropdownStyles {
 }
 
 export const getHeaderStyles = (
-  designStyle: 'angular' | 'rounded' | 'modern',
+  designStyle: 'angular' | 'rounded' | 'modern' | 'klassik',
   isScrolled: boolean,
   headerVisible: boolean = true
 ): HeaderStyles => {
@@ -116,6 +116,33 @@ export const getHeaderStyles = (
         color: 'white'
       }
     }
+  } else if (designStyle === 'klassik') {
+    return {
+      container: 'fixed top-0 z-50 w-full',
+      transformStyle: getTransformStyle(),
+      header: `transition-all duration-300 shadow-sm border-b border-gray-200 dark:border-gray-700 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-md dark:bg-gray-900/95' 
+          : 'bg-white/90 backdrop-blur-sm dark:bg-gray-900/90'
+      }`,
+      headerStyle: {},
+      nav: 'px-8 py-4 mx-auto max-w-screen-xl',
+      borderRadius: 'var(--radius-card)',
+      textColor: 'text-text dark:text-light',
+      logoStyle: 'text-text dark:text-light',
+      ctaStyle: 'text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden flex items-center gap-2 transform hover:scale-105 button-shine',
+      ctaStyleDynamic: {
+        backgroundColor: 'var(--color-primary)',
+        borderColor: 'var(--color-primary)',
+        borderRadius: 'var(--radius-xl)',
+        padding: '0.75rem 1.5rem'
+      },
+      ctaHoverStyle: {
+        backgroundColor: 'var(--color-secondary)',
+        borderColor: 'var(--color-secondary)',
+        color: 'white'
+      }
+    }
   } else {
     // Fallback
     return {
@@ -146,7 +173,7 @@ export const getHeaderStyles = (
 }
 
 export const getDropdownStyles = (
-  designStyle: 'angular' | 'rounded' | 'modern',
+  designStyle: 'angular' | 'rounded' | 'modern' | 'klassik',
   isScrolled: boolean
 ): DropdownStyles => {
   if (designStyle === 'angular') {
@@ -175,6 +202,21 @@ export const getDropdownStyles = (
       itemHoverStyle: {
         backgroundColor: '#f97316',
         color: 'white'
+      }
+    }
+  } else if (designStyle === 'klassik') {
+    return {
+      container: 'absolute top-full left-0 mt-3 w-auto min-w-[240px] rounded-xl shadow-2xl z-50 backdrop-blur-md',
+      containerStyle: {
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        borderColor: 'rgba(255, 255, 255, 0.2)',
+        borderRadius: '0.75rem'
+      },
+      item: 'group flex items-center px-4 py-3 text-sm font-medium uppercase transition-all duration-200 mx-2 relative border-l-4 border-l-transparent text-text-secondary dark:text-light/70 hover:text-primary dark:hover:text-accent hover:border-l-primary hover:bg-primary/5',
+      itemHoverStyle: {
+        backgroundColor: 'var(--color-primary)',
+        color: 'white',
+        borderLeftColor: 'var(--color-primary)'
       }
     }
   } else {

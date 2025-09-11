@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { ContentData } from '@/types/content'
-import { useAppConfig, useLayoutConfig } from '@/contexts/AppConfigContext'
+import { useAppConfig, useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 import { getHeaderStyles, getDropdownStyles } from '@/lib/config/headerStyles'
 import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationConfig'
 import { useHeroConfig } from '@/contexts/AppConfigContext'
@@ -10,6 +10,7 @@ import HeaderLogo from './header/HeaderLogo'
 import HeaderNavigation from './header/HeaderNavigation'
 import HeaderCta from './header/HeaderCta'
 import MobileHeader from './header/MobileHeader'
+import HeaderKlassik from './header/HeaderKlassik'
 
 interface HeaderProps {
   content: ContentData
@@ -168,6 +169,16 @@ export default function Header({ content }: HeaderProps) {
     logoStyle: 'text-white',
     ctaStyle: 'bg-white text-gray-900 hover:bg-gray-100'
   } : headerStyles
+
+  // HeaderKlassik für bestimmte Hero-Typen oder Stil-Pakete
+  const { package: stylePackage } = useStyleConfig()
+  
+  // Verwende HeaderKlassik für:
+  // 1. Hero-Typ "split" (wie norndquartier.de)
+  // 2. Stil-Paket "luxury" (elegant und hochwertig)
+  if (heroType === 'split' || stylePackage === 'luxury') {
+    return <HeaderKlassik content={content} />
+  }
 
   return (
     <>
