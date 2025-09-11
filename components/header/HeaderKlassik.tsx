@@ -228,7 +228,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                     onMouseEnter={() => handleDesktopMouseEnter(item.id)}
                     onMouseLeave={() => handleDesktopMouseLeave(item.id)}
                   >
-                    <span className={`nav-link cursor-pointer flex items-center ${navTextClass} font-medium text-text dark:text-light hover:text-primary dark:hover:text-accent transition-all duration-300 py-2 px-5 rounded-lg hover:bg-white/10 dark:hover:bg-white/5 relative overflow-hidden sliding-indicator`}>
+                    <span className={`nav-link cursor-pointer flex items-center ${navTextClass} text-sm font-medium text-text dark:text-light hover:text-primary dark:hover:text-accent transition-all duration-300 py-2 px-5 rounded-lg hover:bg-white/10 dark:hover:bg-white/5 relative overflow-hidden sliding-indicator`}>
                       <span className="relative z-10">{item.label}</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -277,7 +277,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                 ) : (
                   <Link 
                     href={item.href || '#'}
-                    className={`group text-text dark:text-light hover:text-primary dark:hover:text-accent font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-2 px-5 rounded-lg hover:bg-white/10 dark:hover:bg-white/5 relative overflow-hidden sliding-indicator`}
+                    className={`group text-text dark:text-light hover:text-primary dark:hover:text-accent text-sm font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-2 px-5 rounded-lg hover:bg-white/10 dark:hover:bg-white/5 relative overflow-hidden sliding-indicator`}
                     onClick={item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.href!.substring(1)) : undefined}
                   >
                     <span className="relative z-10">{item.label}</span>

@@ -185,7 +185,7 @@ export default function HeaderRounded({ content }: HeaderRoundedProps) {
                       onMouseEnter={() => handleDesktopMouseEnter(item.id)}
                       onMouseLeave={() => handleDesktopMouseLeave(item.id)}
                     >
-                      <span className={`cursor-pointer flex items-center text-white hover:text-gray-200 transition-all duration-300 py-2 px-5 rounded-lg hover:bg-white/10 relative overflow-hidden ${navTextClass}`}>
+                      <span className={`cursor-pointer flex items-center text-white hover:text-gray-200 text-sm font-medium transition-all duration-300 py-2 px-5 rounded-lg hover:bg-white/10 relative overflow-hidden ${navTextClass}`}>
                         <span className="relative z-10">{item.label}</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -231,7 +231,7 @@ export default function HeaderRounded({ content }: HeaderRoundedProps) {
                 ) : (
                   <Link 
                     href={item.href || '#'}
-                    className={`text-white hover:text-gray-200 font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-2 px-5 rounded-lg hover:bg-white/10 relative overflow-hidden`}
+                    className={`text-white hover:text-gray-200 text-sm font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-2 px-5 rounded-lg hover:bg-white/10 relative overflow-hidden`}
                     onClick={item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.href!.substring(1)) : undefined}
                   >
                     <span className="relative z-10">{item.label}</span>
