@@ -76,9 +76,12 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
       setLastScrollY(currentScrollY);
     };
 
+    // Initial scroll position setzen
+    setLastScrollY(window.scrollY);
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // Verhindere Scrollen wenn Menü offen ist
   useEffect(() => {
@@ -172,7 +175,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
         <div className={`${headerStyles.nav} flex justify-between items-center`}>
           {/* Logo */}
           <HeaderLogo 
-            logoStyle={headerStyles.logoStyle}
+            logoStyle="text-black dark:text-white"
             companyName={content.company.name}
           />
 
