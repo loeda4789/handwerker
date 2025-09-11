@@ -234,7 +234,11 @@ export default function HeaderModern({ content }: HeaderModernProps) {
                 borderRadius: 'var(--radius-xl)',
                 padding: '0.75rem 1.5rem'
               }}
-              content={content}
+              ctaHoverStyle={{
+                backgroundColor: 'var(--color-secondary)',
+                borderColor: 'var(--color-secondary)',
+                color: 'white'
+              }}
             />
           </div>
         </div>
@@ -337,7 +341,17 @@ export default function HeaderModern({ content }: HeaderModernProps) {
               <div className="pt-6 border-t border-white/20">
                 <HeaderCta 
                   ctaStyle="block w-full py-4 px-6 text-center bg-primary text-white text-lg font-bold rounded-2xl hover:bg-primary/90 transition-colors uppercase flex items-center justify-center gap-2"
-                  content={content}
+                  ctaStyleDynamic={{
+                    backgroundColor: 'var(--color-primary)',
+                    borderColor: 'var(--color-primary)',
+                    borderRadius: 'var(--radius-xl)',
+                    padding: '1rem 1.5rem'
+                  }}
+                  ctaHoverStyle={{
+                    backgroundColor: 'var(--color-secondary)',
+                    borderColor: 'var(--color-secondary)',
+                    color: 'white'
+                  }}
                 />
               </div>
             </div>
