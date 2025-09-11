@@ -83,6 +83,16 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
         setHeaderVisible(false);
       }
       
+      // Debug: Logge die Entscheidung
+      console.log('Header Decision:', {
+        currentScrollY,
+        lastScrollY,
+        isAtTop: currentScrollY === 0,
+        isScrollingUp: currentScrollY < lastScrollY,
+        shouldHide: currentScrollY > lastScrollY && currentScrollY > 50,
+        headerVisible: currentScrollY === 0 || currentScrollY < lastScrollY || !(currentScrollY > lastScrollY && currentScrollY > 50)
+      });
+      
       lastScrollY = currentScrollY;
     };
 
