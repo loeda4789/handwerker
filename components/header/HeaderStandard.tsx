@@ -32,6 +32,10 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
   const hasSideContact = features.sideContact;
   const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter';
   const { type: heroType } = useHeroConfig();
+  
+  // Text-Formatierung basierend auf Variante
+  const isStarter = packageType === 'starter';
+  const navTextClass = isStarter ? 'uppercase' : 'normal-case';
 
   // Navigation Items
   const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, packageType);
@@ -195,7 +199,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
                           onMouseEnter={() => handleDesktopMouseEnter(item.id)}
                           onMouseLeave={() => handleDesktopMouseLeave(item.id)}
                         >
-                          <span className={`${headerStyles.textColor} cursor-pointer flex items-center transition-all duration-300 py-2 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 relative overflow-hidden`}>
+                          <span className={`${headerStyles.textColor} cursor-pointer flex items-center ${navTextClass} transition-all duration-300 py-2 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 relative overflow-hidden`}>
                             <span className="relative z-10">{item.label}</span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +229,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
                                 <Link
                                   key={dropdownItem.href}
                                   href={dropdownItem.href || '#'}
-                                  className={`${dropdownStyles.item} ${
+                                  className={`${dropdownStyles.item} ${navTextClass} ${
                                     isActive(dropdownItem.href || '')
                                       ? 'border-l-primary text-primary bg-primary/5' 
                                       : ''
@@ -243,7 +247,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
                     ) : (
                       <Link 
                         href={item.href || '#'}
-                        className={`${headerStyles.textColor} font-medium flex items-center gap-2 transition-all duration-300 py-2 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 relative overflow-hidden`}
+                        className={`${headerStyles.textColor} font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-2 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 relative overflow-hidden`}
                         onClick={item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.href!.substring(1)) : undefined}
                       >
                         <span className="relative z-10">{item.label}</span>
@@ -305,7 +309,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
                         onClick={() => toggleDropdown(item.id)}
                         className="w-full flex items-center justify-between py-3 text-left text-gray-900 dark:text-white"
                       >
-                        <span className="text-lg font-medium">{item.label}</span>
+                        <span className={`text-lg font-medium ${navTextClass}`}>{item.label}</span>
                         <svg
                           className={`w-5 h-5 transform transition-transform duration-300 ${
                             openDropdown === item.id ? 'rotate-180' : ''
@@ -327,7 +331,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
                             <Link
                               key={dropdownItem.href}
                               href={dropdownItem.href || '#'}
-                              className="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-accent transition-colors"
+                              className={`block py-2 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-accent transition-colors ${navTextClass}`}
                               onClick={(e) => {
                                 if (dropdownItem.href?.startsWith('#')) {
                                   handleSmoothScroll(e, dropdownItem.href.substring(1));
@@ -344,7 +348,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
                   ) : (
                     <Link
                       href={item.href || '#'}
-                      className="block py-3 text-lg font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent transition-colors"
+                      className={`block py-3 text-lg font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent transition-colors ${navTextClass}`}
                       onClick={(e) => {
                         if (item.href?.startsWith('#')) {
                           handleSmoothScroll(e, item.href.substring(1));

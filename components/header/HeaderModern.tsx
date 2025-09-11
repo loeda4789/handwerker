@@ -29,6 +29,10 @@ export default function HeaderModern({ content }: HeaderModernProps) {
   const hasSideContact = features.sideContact;
   const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter';
   const { type: heroType } = useHeroConfig();
+  
+  // Text-Formatierung basierend auf Variante
+  const isStarter = packageType === 'starter';
+  const navTextClass = isStarter ? 'uppercase' : 'normal-case';
 
   // Navigation Items
   const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, packageType);
@@ -168,7 +172,7 @@ export default function HeaderModern({ content }: HeaderModernProps) {
                       onMouseEnter={() => handleDesktopMouseEnter(item.id)}
                       onMouseLeave={() => handleDesktopMouseLeave(item.id)}
                     >
-                      <span className="cursor-pointer flex items-center text-white hover:text-gray-200 transition-all duration-300 py-2 px-4 rounded-2xl hover:bg-white/10 relative overflow-hidden">
+                      <span className={`cursor-pointer flex items-center text-white hover:text-gray-200 transition-all duration-300 py-2 px-4 rounded-2xl hover:bg-white/10 relative overflow-hidden ${navTextClass}`}>
                         <span className="relative z-10">{item.label}</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +201,7 @@ export default function HeaderModern({ content }: HeaderModernProps) {
                             <Link
                               key={dropdownItem.href}
                               href={dropdownItem.href || '#'}
-                              className={`group flex items-center px-4 py-3 text-sm font-medium transition-all duration-200 mx-2 relative border-l-4 ${
+                              className={`group flex items-center px-4 py-3 text-sm font-medium ${navTextClass} transition-all duration-200 mx-2 relative border-l-4 ${
                                 isActive(dropdownItem.href || '')
                                   ? 'border-l-white text-white bg-white/10' 
                                   : 'border-l-transparent text-gray-300 hover:text-white hover:border-l-white hover:bg-white/5'
@@ -214,7 +218,7 @@ export default function HeaderModern({ content }: HeaderModernProps) {
                 ) : (
                   <Link 
                     href={item.href || '#'}
-                    className="text-white hover:text-gray-200 font-medium flex items-center gap-2 transition-all duration-300 py-2 px-4 rounded-2xl hover:bg-white/10 relative overflow-hidden"
+                    className={`text-white hover:text-gray-200 font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-2 px-4 rounded-2xl hover:bg-white/10 relative overflow-hidden`}
                     onClick={item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.href!.substring(1)) : undefined}
                   >
                     <span className="relative z-10">{item.label}</span>
@@ -284,7 +288,7 @@ export default function HeaderModern({ content }: HeaderModernProps) {
                         onClick={() => toggleDropdown(item.id)}
                         className="w-full flex items-center justify-between py-3 text-left text-white"
                       >
-                        <span className="text-lg font-medium">{item.label}</span>
+                        <span className={`text-lg font-medium ${navTextClass}`}>{item.label}</span>
                         <svg
                           className={`w-5 h-5 transform transition-transform duration-300 ${
                             openDropdown === item.id ? 'rotate-180' : ''
@@ -306,7 +310,7 @@ export default function HeaderModern({ content }: HeaderModernProps) {
                             <Link
                               key={dropdownItem.href}
                               href={dropdownItem.href || '#'}
-                              className="block py-2 text-gray-300 hover:text-white transition-colors"
+                              className={`block py-2 text-gray-300 hover:text-white transition-colors ${navTextClass}`}
                               onClick={(e) => {
                                 if (dropdownItem.href?.startsWith('#')) {
                                   handleSmoothScroll(e, dropdownItem.href.substring(1));
@@ -323,7 +327,7 @@ export default function HeaderModern({ content }: HeaderModernProps) {
                   ) : (
                     <Link
                       href={item.href || '#'}
-                      className="block py-3 text-lg font-medium text-white hover:text-gray-200 transition-colors"
+                      className={`block py-3 text-lg font-medium text-white hover:text-gray-200 transition-colors ${navTextClass}`}
                       onClick={(e) => {
                         if (item.href?.startsWith('#')) {
                           handleSmoothScroll(e, item.href.substring(1));

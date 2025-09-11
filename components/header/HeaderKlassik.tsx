@@ -43,6 +43,10 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
   const { type: heroType } = useHeroConfig();
   const { style: headingStyle } = useHeadingsConfig();
   const { package: stylePackage } = useStyleConfig();
+  
+  // Text-Formatierung basierend auf Variante
+  const isStarter = packageType === 'starter';
+  const navTextClass = isStarter ? 'uppercase' : 'normal-case';
 
   // Navigation Items basierend auf Variante
   const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, packageType);
@@ -199,7 +203,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                     onMouseEnter={() => handleDesktopMouseEnter(item.id)}
                     onMouseLeave={() => handleDesktopMouseLeave(item.id)}
                   >
-                    <span className="nav-link cursor-pointer flex items-center uppercase font-medium text-text dark:text-light hover:text-primary dark:hover:text-accent transition-all duration-300 py-2 px-3 rounded-lg hover:bg-white/10 dark:hover:bg-white/5 relative overflow-hidden sliding-indicator">
+                    <span className={`nav-link cursor-pointer flex items-center ${navTextClass} font-medium text-text dark:text-light hover:text-primary dark:hover:text-accent transition-all duration-300 py-2 px-3 rounded-lg hover:bg-white/10 dark:hover:bg-white/5 relative overflow-hidden sliding-indicator`}>
                       <span className="relative z-10">{item.label}</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -233,7 +237,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                           <Link
                             key={dropdownItem.href}
                             href={dropdownItem.href || '#'}
-                            className={`group flex items-center px-4 py-3 text-sm font-medium uppercase transition-all duration-200 mx-2 relative border-l-4 ${
+                            className={`group flex items-center px-4 py-3 text-sm font-medium ${navTextClass} transition-all duration-200 mx-2 relative border-l-4 ${
                               isActive(dropdownItem.href || '')
                                 ? 'border-l-primary text-primary bg-primary/5' 
                                 : 'border-l-transparent text-text-secondary dark:text-light/70 hover:text-primary dark:hover:text-accent hover:border-l-primary hover:bg-primary/5'
@@ -248,7 +252,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                 ) : (
                   <Link 
                     href={item.href || '#'}
-                    className="group text-text dark:text-light hover:text-primary dark:hover:text-accent font-medium flex items-center gap-2 uppercase transition-all duration-300 py-2 px-3 rounded-lg hover:bg-white/10 dark:hover:bg-white/5 relative overflow-hidden sliding-indicator"
+                    className={`group text-text dark:text-light hover:text-primary dark:hover:text-accent font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-2 px-3 rounded-lg hover:bg-white/10 dark:hover:bg-white/5 relative overflow-hidden sliding-indicator`}
                     onClick={item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.href!.substring(1)) : undefined}
                   >
                     <span className="relative z-10">{item.label}</span>
@@ -310,7 +314,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                             onClick={() => toggleDropdown(item.id)}
                             className="w-full flex items-center justify-between py-2 text-left text-text dark:text-light"
                           >
-                            <span className="text-2xl font-bold uppercase">{item.label}</span>
+                            <span className={`text-2xl font-bold ${navTextClass}`}>{item.label}</span>
                             <svg
                               className={`w-6 h-6 transform transition-transform duration-300 ${
                                 openDropdown === item.id ? 'rotate-180' : ''
@@ -332,7 +336,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                                 <Link
                                   key={dropdownItem.href}
                                   href={dropdownItem.href || '#'}
-                                  className="block text-text-secondary dark:text-light/70 hover:text-primary text-lg font-medium uppercase"
+                                  className={`block text-text-secondary dark:text-light/70 hover:text-primary text-lg font-medium ${navTextClass}`}
                                   onClick={closeMenu}
                                 >
                                   {dropdownItem.label}
@@ -344,7 +348,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                       ) : (
                         <Link
                           href={item.href || '#'}
-                          className="block py-2 text-2xl font-bold text-text dark:text-light uppercase"
+                          className={`block py-2 text-2xl font-bold text-text dark:text-light ${navTextClass}`}
                           onClick={(e) => {
                             if (item.href?.startsWith('#')) {
                               e.preventDefault();
