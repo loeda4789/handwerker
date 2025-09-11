@@ -61,27 +61,31 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
 
   // Scroll-Handler mit Auto-Hide für Klassik
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+    
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrolled = currentScrollY > 50;
       setIsScrolled(scrolled);
       
+      // Debug logging
+      console.log('Scroll:', { currentScrollY, lastScrollY, headerVisible });
+      
       // Auto-Hide Logic: 
       // - Immer anzeigen wenn ganz oben (currentScrollY = 0)
       // - Anzeigen beim Hochscrollen (currentScrollY < lastScrollY)
       // - Verstecken beim Runter scrollen (currentScrollY > lastScrollY && currentScrollY > 50)
-      if (currentScrollY === 0 || currentScrollY < lastScrollY) {
+      if (currentScrollY === 0) {
+        setHeaderVisible(true);
+      } else if (currentScrollY < lastScrollY) {
         setHeaderVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setHeaderVisible(false);
       }
       
-      setLastScrollY(currentScrollY);
+      lastScrollY = currentScrollY;
     };
 
-    // Initial scroll position setzen
-    setLastScrollY(window.scrollY);
-    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
