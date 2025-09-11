@@ -82,6 +82,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
       } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setHeaderVisible(false);
       }
+      // Wenn currentScrollY > lastScrollY aber currentScrollY <= 50, dann Header sichtbar lassen
       
       // Debug: Logge die Entscheidung
       console.log('Header Decision:', {
