@@ -67,9 +67,10 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
       setIsScrolled(scrolled);
       
       // Auto-Hide Logic: Verstecke beim Scrollen nach unten, zeige beim Scrollen nach oben
-      if (currentScrollY < lastScrollY || currentScrollY < 100) {
+      // Immer anzeigen beim Hochscrollen, auch wenn nur ein paar Pixel
+      if (currentScrollY < lastScrollY) {
         setHeaderVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setHeaderVisible(false);
       }
       
