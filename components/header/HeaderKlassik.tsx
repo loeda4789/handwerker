@@ -287,7 +287,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
               }`}
             >
               {/* Menu Header */}
-              <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-800">
+              <div className="flex justify-between items-center p-8 border-b border-gray-100 dark:border-gray-800">
                 <span className="text-sm font-medium text-text dark:text-light uppercase">Menü</span>
                 <button
                   onClick={closeMenu}
@@ -301,7 +301,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
 
               {/* Menu Content */}
               <div className="flex-1 overflow-y-auto">
-                <div className="p-6 space-y-3">
+                <div className="p-8 space-y-3">
                   {navItems.map((item) => (
                     <div key={item.id}>
                       {item.hasDropdown ? (
@@ -360,7 +360,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                   ))}
 
                   {/* CTA Button */}
-                  <div className="border-t border-gray-100 dark:border-gray-800 pt-16 pb-12">
+                  <div className="border-t border-gray-100 dark:border-gray-800 pt-20 pb-16">
                     <button
                       className="block w-full py-4 px-6 text-center bg-primary text-white text-xl font-bold rounded-xl hover:bg-primary/90 transition-colors uppercase flex items-center justify-center gap-2 button-shine"
                       onClick={(e) => {

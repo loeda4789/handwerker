@@ -126,7 +126,7 @@ export const getHeaderStyles = (
           : 'bg-white/90 backdrop-blur-sm dark:bg-gray-900/90'
       }`,
       headerStyle: {},
-      nav: 'px-8 py-6 mx-auto max-w-screen-xl',
+      nav: 'px-8 py-10 mx-auto max-w-screen-xl',
       borderRadius: 'var(--radius-card)',
       textColor: 'text-text dark:text-light',
       logoStyle: 'text-text dark:text-light',
