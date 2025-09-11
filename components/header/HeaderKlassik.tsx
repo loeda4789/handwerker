@@ -160,7 +160,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
 
   return (
     <header 
-      className={`${headerStyles.header} fixed w-full top-0 z-[60] transition-all duration-300 ${
+      className={`${headerStyles.header} fixed w-full top-0 z-[60] transition-all duration-300 border-b border-gray-200 dark:border-gray-700 shadow-lg ${
         headerVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
