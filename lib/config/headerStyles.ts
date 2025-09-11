@@ -51,7 +51,7 @@ export const getHeaderStyles = (
           : 'bg-transparent'
       }`,
       headerStyle: isScrolled ? {} : {},
-      nav: 'px-8 py-4 mx-auto max-w-screen-xl',
+      nav: 'px-8 py-2 mx-auto max-w-screen-xl',
       borderRadius: '0px',
       textColor: isScrolled ? 'text-gray-900 dark:text-white' : 'text-white',
       logoStyle: isScrolled ? 'text-gray-900 dark:text-white' : 'text-white',
@@ -76,7 +76,7 @@ export const getHeaderStyles = (
           : 'bg-transparent'
       }`,
       headerStyle: isScrolled ? {} : {},
-      nav: 'px-8 py-4 mx-auto max-w-screen-xl',
+      nav: 'px-8 py-2 mx-auto max-w-screen-xl',
       borderRadius: 'var(--radius-card)',
       textColor: isScrolled ? 'text-gray-900 dark:text-white' : 'text-white',
       logoStyle: isScrolled ? 'text-gray-900 dark:text-white' : 'text-white',
@@ -101,7 +101,7 @@ export const getHeaderStyles = (
           : 'bg-black/25 dark:bg-gray-900/35'
       }`,
       headerStyle: {},
-      nav: 'px-12 py-4',
+      nav: 'px-12 py-2',
       borderRadius: '2rem',
       textColor: 'text-white',
       logoStyle: 'text-white',
@@ -126,7 +126,7 @@ export const getHeaderStyles = (
           : 'bg-white/90 backdrop-blur-sm dark:bg-gray-900/90'
       }`,
       headerStyle: {},
-      nav: 'px-8 py-4 mx-auto max-w-screen-xl',
+      nav: 'px-8 py-2 mx-auto max-w-screen-xl',
       borderRadius: 'var(--radius-card)',
       textColor: 'text-text dark:text-light',
       logoStyle: 'text-black dark:text-white',
