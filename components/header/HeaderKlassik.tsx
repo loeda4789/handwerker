@@ -34,9 +34,12 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
   const dropdownRef = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   // Context hooks
-  const { mode: siteMode, hasSideContact } = useLayoutConfig();
-  const { design: designStyle } = useThemeConfig();
-  const { package: packageType } = useFeaturesConfig();
+  const { mode: siteMode, design: designStyle } = useLayoutConfig();
+  const { features } = useFeaturesConfig();
+  const hasSideContact = features.sideContact;
+  
+  // Bestimme packageType basierend auf siteMode und hasSideContact
+  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter';
   const { type: heroType } = useHeroConfig();
   const { style: headingStyle } = useHeadingsConfig();
   const { package: stylePackage } = useStyleConfig();
@@ -59,16 +62,8 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
       const scrolled = currentScrollY > 50;
       setIsScrolled(scrolled);
       
-      // Header visibility logic basierend auf Design-Style
-      if (designStyle === 'klassik') {
-        if (currentScrollY < lastScrollY || currentScrollY < 100) { // Scrolling up or near top
-          setHeaderVisible(true);
-        } else if (currentScrollY > lastScrollY && currentScrollY > 100) { // Scrolling down and past initial threshold
-          setHeaderVisible(false);
-        }
-      } else {
-        setHeaderVisible(true); // Always visible for other styles
-      }
+      // Header visibility logic - immer sichtbar für Klassik Header
+      setHeaderVisible(true);
       
       setLastScrollY(currentScrollY); // Update last scroll position
     };

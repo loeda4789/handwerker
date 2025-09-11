@@ -159,7 +159,7 @@ export default function Header() {
                 <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-brand-accent to-brand-accent-dark transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left w-full"></div>
               </span>
               <div 
-                ref={(el) => dropdownRef.current['urlaubsquartiere'] = el}
+                ref={(el) => { dropdownRef.current['urlaubsquartiere'] = el }}
                 className={`absolute left-0 mt-3 w-auto min-w-[240px] rounded-xl shadow-2xl bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-white/20 dark:border-gray-700/50 transform transition-all duration-300 ease-out origin-top-left z-50 ${
                   desktopDropdown === 'urlaubsquartiere' 
                     ? 'opacity-100 scale-100 translate-y-0' 
@@ -241,7 +241,7 @@ export default function Header() {
                 <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-brand-accent to-brand-accent-dark transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left w-full"></div>
               </span>
               <div 
-                ref={(el) => dropdownRef.current['service'] = el}
+                ref={(el) => { dropdownRef.current['service'] = el }}
                 className={`absolute left-0 mt-3 w-auto min-w-[200px] rounded-xl shadow-2xl bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-white/20 dark:border-gray-700/50 transform transition-all duration-300 ease-out origin-top-left z-50 ${
                   desktopDropdown === 'service' 
                     ? 'opacity-100 scale-100 translate-y-0' 
@@ -303,7 +303,7 @@ export default function Header() {
                 <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-brand-accent to-brand-accent-dark transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left w-full"></div>
               </span>
               <div 
-                ref={(el) => dropdownRef.current['entdecken'] = el}
+                ref={(el) => { dropdownRef.current['entdecken'] = el }}
                 className={`absolute left-0 mt-3 w-auto min-w-[220px] rounded-xl shadow-2xl bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-white/20 dark:border-gray-700/50 transform transition-all duration-300 ease-out origin-top-left z-50 ${
                   desktopDropdown === 'entdecken' 
                     ? 'opacity-100 scale-100 translate-y-0' 
