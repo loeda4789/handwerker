@@ -478,9 +478,6 @@ function HeroSplit({ content }: HeroProps) {
                 {formatHeroText(content.company.tagline, cityName)}
               </p>
               
-              <p className="text-lg md:text-xl mb-8 text-gray-500 dark:text-gray-400 leading-relaxed">
-                Professionelle Lösungen für alle Ihre elektrischen Anforderungen. Von der Planung bis zur Umsetzung.
-              </p>
             
             <div className="space-y-6 mb-10">
               <div className="flex items-center space-x-4">
