@@ -220,7 +220,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8 relative">
+          <nav className="hidden md:flex items-center space-x-12 relative">
             {navItems.map((item) => (
               <div key={item.id} className="relative group">
                 {item.hasDropdown ? (

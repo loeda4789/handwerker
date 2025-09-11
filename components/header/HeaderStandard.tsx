@@ -189,7 +189,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
 
             {/* Desktop Navigation - Zentriert mit mehr Platz */}
             <div className="flex-1 flex justify-center">
-              <nav className="hidden md:flex items-center space-x-8 relative">
+              <nav className="hidden md:flex items-center space-x-12 relative">
                 {navItems.map((item) => (
                   <div key={item.id} className="relative group">
                     {item.hasDropdown ? (
