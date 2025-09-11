@@ -219,7 +219,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                       </svg>
                     </span>
                     <div 
-                      ref={(el) => dropdownRef.current[item.id] = el}
+                      ref={(el) => { dropdownRef.current[item.id] = el }}
                       className={`absolute left-0 mt-3 w-auto min-w-[240px] rounded-xl shadow-2xl bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-white/20 dark:border-gray-700/50 transform transition-all duration-300 ease-out origin-top-left z-50 ${
                         desktopDropdown === item.id 
                           ? 'opacity-100 scale-100 translate-y-0' 
