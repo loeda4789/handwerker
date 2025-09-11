@@ -199,7 +199,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
                           onMouseEnter={() => handleDesktopMouseEnter(item.id)}
                           onMouseLeave={() => handleDesktopMouseLeave(item.id)}
                         >
-                          <span className={`${headerStyles.textColor} cursor-pointer flex items-center ${navTextClass} transition-all duration-300 py-2 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 relative overflow-hidden`}>
+                          <span className={`${headerStyles.textColor} cursor-pointer flex items-center ${navTextClass} transition-all duration-300 py-1 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 relative overflow-hidden`}>
                             <span className="relative z-10">{item.label}</span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -247,7 +247,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
                     ) : (
                       <Link 
                         href={item.href || '#'}
-                        className={`${headerStyles.textColor} font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-2 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 relative overflow-hidden`}
+                        className={`${headerStyles.textColor} font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-1 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 relative overflow-hidden`}
                         onClick={item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.href!.substring(1)) : undefined}
                       >
                         <span className="relative z-10">{item.label}</span>
