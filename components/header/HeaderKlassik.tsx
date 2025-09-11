@@ -170,7 +170,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
 
           {/* Optimierter Mobile Menu Button */}
           <button
-            className="md:hidden w-12 h-12 flex items-center justify-center text-text dark:text-light hover:bg-black/5 dark:hover:bg-white/5 rounded-xl mobile-nav-animation"
+            className="md:hidden w-14 h-14 flex items-center justify-center text-text dark:text-light hover:bg-black/5 dark:hover:bg-white/5 rounded-xl mobile-nav-animation"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
