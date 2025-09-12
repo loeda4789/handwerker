@@ -22,9 +22,9 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     href: siteMode === 'multipage' ? addUrlParamsToHref('#ueber-uns') : '#ueber-uns',
     label: siteMode === 'multipage' ? 'Über uns' : content.about.title,
     id: 'ueber-uns',
-    hasDropdown: packageType === 'professional' || packageType === 'premium', // Professional UND Premium haben Dropdown
+    hasDropdown: packageType === 'premium', // Nur Premium hat Dropdown
     isClickable: true,
-    dropdownItems: (packageType === 'professional' || packageType === 'premium') ? [
+    dropdownItems: packageType === 'premium' ? [
       { href: addUrlParamsToHref('/ueber-uns/team'), label: 'Unser Team' },
       { href: addUrlParamsToHref('/ueber-uns/betrieb'), label: 'Unser Betrieb' },
       { href: addUrlParamsToHref('/ueber-uns/partner'), label: 'Partner & Zulieferer' },
