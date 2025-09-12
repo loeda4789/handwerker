@@ -138,7 +138,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       features: ['One-Page Layout', 'Basis-Features', 'Mobile optimiert'],
       icon: MdBusiness,
       color: 'bg-gray-50 border-gray-200',
-      selected: siteMode === 'onepage' && !features.sideContact
+      selected: siteMode === 'onepage'
     },
     {
       id: 'professional',
@@ -149,7 +149,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       features: ['One-Page Layout', 'Leistungssektor', 'Alle Features'],
       icon: MdTrendingUp,
       color: 'bg-gray-50 border-gray-200', // Einheitliche Farbe wie Starter
-      selected: siteMode === 'onepage' && features.sideContact
+      selected: false // Wird nicht mehr automatisch ausgewählt
     },
     {
       id: 'premium',
@@ -255,20 +255,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   key={variant.id}
                   onClick={() => {
                     if (variant.id === 'starter') {
-                      // Starter: One-Page ohne Leistungssektor
+                      // Starter: One-Page
                       setSiteMode('onepage')
-                      if (features.sideContact) toggleFeature('sideContact', false)
-                      if (!features.contactBar) toggleFeature('contactBar', true)
                     } else if (variant.id === 'professional') {
-                      // Professionell: One-Page mit Leistungssektor
+                      // Professionell: One-Page (Features werden separat gesteuert)
                       setSiteMode('onepage')
-                      if (!features.sideContact) toggleFeature('sideContact', true)
-                      if (!features.contactBar) toggleFeature('contactBar', true)
                     } else if (variant.id === 'premium') {
-                      // Premium: Multi-Page mit allen Features
+                      // Premium: Multi-Page
                       setSiteMode('multipage')
-                      if (!features.sideContact) toggleFeature('sideContact', true)
-                      if (!features.contactBar) toggleFeature('contactBar', true)
                     }
                   }}
                   className={`w-full p-4 border-2 transition-all text-left h-20 flex items-center config-sidebar-variant ${
