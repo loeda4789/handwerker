@@ -402,9 +402,9 @@ export default function HomePage() {
       {/* URL-Parameter Debug (nur in Development) */}
       {process.env.NODE_ENV === 'development' && <UrlParamsDebug />}
       
-      {/* Kontaktbar - Immer angezeigt */}
+      {/* Marketing Features - Above Header */}
       <ContactBar 
-        isEnabled={true} 
+        isEnabled={features.contactBar} 
         phone={content.contact.phone}
         email={content.contact.email}
       />

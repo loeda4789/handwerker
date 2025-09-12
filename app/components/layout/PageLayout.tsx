@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ContentData } from '@/types/content'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -33,6 +33,19 @@ export default function PageLayout({
   showDebug = false,
   className = ""
 }: PageLayoutProps) {
+  const [features, setFeatures] = useState({
+    contactBar: true
+  })
+
+  // Features aus localStorage laden
+  useEffect(() => {
+    const featuresConfig = {
+      contactBar: localStorage.getItem('feature-contactBar') === 'true' || 
+                  localStorage.getItem('feature-contactBar') === null // Default true
+    }
+    setFeatures(featuresConfig)
+  }, [])
+
   if (loading || !content) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
@@ -56,12 +69,14 @@ export default function PageLayout({
       {/* URL-Parameter Debug (nur in Development) */}
       {process.env.NODE_ENV === 'development' && showDebug && <UrlParamsDebug />}
       
-      {/* Kontaktbar - Immer angezeigt */}
-      <ContactBar 
-        isEnabled={true} 
-        phone={content.contact.phone}
-        email={content.contact.email}
-      />
+      {/* Kontaktbar - Über Feature-System gesteuert */}
+      {features.contactBar && (
+        <ContactBar 
+          isEnabled={features.contactBar} 
+          phone={content.contact.phone}
+          email={content.contact.email}
+        />
+      )}
       
       {/* Main Content */}
       <div className="transition-all duration-500">
