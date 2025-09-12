@@ -1,13 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-08-27.basil',
-})
+// Stripe-Instanz nur erstellen wenn API-Key vorhanden ist
+const getStripeInstance = () => {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return null
+  }
+  
+  return new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2025-08-27.basil',
+  })
+}
 
 export async function POST(request: NextRequest) {
   try {
     const { configuration, successUrl, cancelUrl } = await request.json()
+
+    // Stripe-Instanz prüfen
+    const stripe = getStripeInstance()
+    if (!stripe) {
+      return NextResponse.json(
+        { 
+          error: 'Stripe ist nicht konfiguriert. Bitte kontaktieren Sie uns direkt.',
+          fallback: true,
+          contactUrl: '/kontakt'
+        },
+        { status: 503 }
+      )
+    }
 
     // Preis basierend auf Konfiguration berechnen
     const calculatePrice = (config: any) => {
@@ -33,7 +53,7 @@ export async function POST(request: NextRequest) {
             product_data: {
               name: 'Handwerker Website',
               description: `Website mit ${configuration.layout.variant} Variante und ${configuration.style.package} Design`,
-              images: [`${process.env.NEXT_PUBLIC_BASE_URL}/images/website-preview.jpg`],
+              images: [`${process.env.NEXT_PUBLIC_BASE_URL || 'https://handwerker-template.vercel.app'}/images/website-preview.jpg`],
             },
             unit_amount: price,
           },
@@ -58,7 +78,11 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Stripe Checkout Session Fehler:', error)
     return NextResponse.json(
-      { error: 'Fehler beim Erstellen der Checkout-Session' },
+      { 
+        error: 'Fehler beim Erstellen der Checkout-Session',
+        fallback: true,
+        contactUrl: '/kontakt'
+      },
       { status: 500 }
     )
   }

@@ -118,19 +118,28 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         })
       })
       
-      const { sessionId } = await response.json()
+      const data = await response.json()
+      
+      // Prüfen ob Stripe nicht konfiguriert ist
+      if (data.fallback) {
+        alert('Stripe ist noch nicht konfiguriert. Sie werden zur Kontakt-Seite weitergeleitet.')
+        window.location.href = data.contactUrl || '/kontakt'
+        return
+      }
       
       // Stripe Checkout öffnen
       const stripe = (window as any).Stripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
-      const { error } = await stripe.redirectToCheckout({ sessionId })
+      const { error } = await stripe.redirectToCheckout({ sessionId: data.sessionId })
       
       if (error) {
         console.error('Stripe Checkout Fehler:', error)
-        alert('Fehler beim Öffnen des Checkouts. Bitte versuchen Sie es erneut.')
+        alert('Fehler beim Öffnen des Checkouts. Sie werden zur Kontakt-Seite weitergeleitet.')
+        window.location.href = '/kontakt'
       }
     } catch (error) {
       console.error('Fehler beim Stripe Checkout:', error)
-      alert('Fehler beim Erstellen des Checkouts. Bitte versuchen Sie es erneut.')
+      alert('Fehler beim Erstellen des Checkouts. Sie werden zur Kontakt-Seite weitergeleitet.')
+      window.location.href = '/kontakt'
     }
   }
   
