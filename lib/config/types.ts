@@ -4,6 +4,7 @@ export interface AppConfig {
   layout: {
     mode: 'onepage' | 'multipage'
     design: 'angular' | 'rounded' | 'modern'
+    variant: 'starter' | 'professional' | 'premium'
   }
   theme: {
     colorScheme: 'warm' | 'modern' | 'elegant' | 'nature'
@@ -51,7 +52,8 @@ export const DEFAULT_CONFIG: AppConfig = {
   version: '2.0.0',
   layout: {
     mode: 'onepage',
-    design: 'rounded'
+    design: 'rounded',
+    variant: 'starter'
   },
   theme: {
     colorScheme: 'warm',

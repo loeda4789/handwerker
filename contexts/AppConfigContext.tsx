@@ -19,8 +19,8 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
   const [config, setConfig] = useState<AppConfig>(configManager.getConfig())
   const [isConfigLoaded, setIsConfigLoaded] = useState(false)
   
-  // Site-Variante basierend auf aktueller Konfiguration berechnen
-  const siteVariant = getSiteVariant(config.layout.mode)
+  // Site-Variante aus expliziter Konfiguration
+  const siteVariant = getSiteVariant(config.layout.mode, config.layout.variant)
 
   useEffect(() => {
     // Initiale Konfiguration laden
@@ -104,11 +104,14 @@ export function useLayoutConfig() {
   return {
     mode: config.layout.mode,
     design: config.layout.design,
+    variant: config.layout.variant,
     designStyle: config.layout.design, // Alias für Kompatibilität
     setMode: (mode: 'onepage' | 'multipage') => 
       updateConfig({ layout: { ...config.layout, mode } }),
     setDesign: (design: 'angular' | 'rounded' | 'modern') => 
-      updateConfig({ layout: { ...config.layout, design } })
+      updateConfig({ layout: { ...config.layout, design } }),
+    setVariant: (variant: 'starter' | 'professional' | 'premium') => 
+      updateConfig({ layout: { ...config.layout, variant } })
   }
 }
 

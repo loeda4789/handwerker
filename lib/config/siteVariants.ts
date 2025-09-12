@@ -72,10 +72,13 @@ export const heroNavigationModifiers: Record<string, HeroNavigationModifier> = {
 }
 
 export function getSiteVariant(
-  siteMode: 'onepage' | 'multipage'
+  siteMode: 'onepage' | 'multipage',
+  explicitVariant?: 'starter' | 'professional' | 'premium'
 ): 'starter' | 'professional' | 'premium' {
+  // Wenn explizite Variante angegeben, diese verwenden
+  if (explicitVariant) return explicitVariant
+  
   if (siteMode === 'multipage') return 'premium'
-  // Varianten sind jetzt unabhängig von sideContact
   // Starter ist der Standard für One-Page
   return 'starter'
 }

@@ -47,7 +47,7 @@ const getStylePackageIcon = (packageId: string) => {
 
 export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { config, isConfigLoaded, updateConfig } = useAppConfig()
-  const { mode: siteMode, design: designStyle, setMode: setSiteMode } = useLayoutConfig()
+  const { mode: siteMode, design: designStyle, variant, setMode: setSiteMode, setVariant } = useLayoutConfig()
   const { colorScheme, setColorScheme } = useThemeConfig()
   const { features, setFeature: toggleFeature } = useFeaturesConfig()
   const { type: heroType, setType: setHeroType } = useHeroConfig()
@@ -138,7 +138,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       features: ['One-Page Layout', 'Basis-Features', 'Mobile optimiert'],
       icon: MdBusiness,
       color: 'bg-gray-50 border-gray-200',
-      selected: siteMode === 'onepage'
+      selected: variant === 'starter'
     },
     {
       id: 'professional',
@@ -149,7 +149,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       features: ['One-Page Layout', 'Leistungssektor', 'Alle Features'],
       icon: MdTrendingUp,
       color: 'bg-gray-50 border-gray-200', // Einheitliche Farbe wie Starter
-      selected: false // Wird nie automatisch ausgewählt
+      selected: variant === 'professional'
     },
     {
       id: 'premium',
@@ -160,7 +160,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       features: ['Multi-Page Layout', 'Alle Unterseiten', 'Vollständig anpassbar'],
       icon: MdDiamond,
       color: 'bg-gray-50 border-gray-200', // Einheitliche Farbe wie Starter
-      selected: siteMode === 'multipage'
+      selected: variant === 'premium'
     }
   ]
 
@@ -257,12 +257,15 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     if (variant.id === 'starter') {
                       // Starter: One-Page
                       setSiteMode('onepage')
+                      setVariant('starter')
                     } else if (variant.id === 'professional') {
-                      // Professionell: One-Page (Features werden separat gesteuert)
+                      // Professionell: One-Page mit erweiterten Features
                       setSiteMode('onepage')
+                      setVariant('professional')
                     } else if (variant.id === 'premium') {
                       // Premium: Multi-Page
                       setSiteMode('multipage')
+                      setVariant('premium')
                     }
                   }}
                   className={`w-full p-4 border-2 transition-all text-left h-20 flex items-center config-sidebar-variant ${
