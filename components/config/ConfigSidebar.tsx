@@ -180,9 +180,13 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     { key: 'nature', label: 'Nature', colors: ['#059669', '#10b981', '#6ee7b7'] }
   ]
 
-  const featureList = [
+  const desktopFeatures = [
     { key: 'contactBar', label: 'Kontakt-Leiste', icon: MdCall },
     { key: 'sideContact', label: 'Seiten-Kontakt', icon: MdCall }
+  ]
+
+  const mobileFeatures: Array<{ key: string; label: string; icon: any }> = [
+    // Hier können später mobile-spezifische Features hinzugefügt werden
   ]
 
 
@@ -485,18 +489,18 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
           </div>
 
-          {/* Features */}
-          <div className="space-y-4">
+          {/* Desktop Features - Nur auf Desktop */}
+          <div className="hidden lg:block space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-6 h-6 bg-indigo-100 flex items-center justify-center rounded-full">
                 <MdSettings className="w-4 h-4 text-indigo-600" />
               </div>
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Features
+                Desktop Features
               </h3>
             </div>
             <div className="space-y-3">
-              {featureList.map((feature) => (
+              {desktopFeatures.map((feature) => (
                 <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200 config-sidebar-feature">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-full">
@@ -524,6 +528,48 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               ))}
             </div>
           </div>
+
+          {/* Mobile Features - Nur auf Mobile */}
+          {mobileFeatures.length > 0 && (
+            <div className="lg:hidden space-y-4">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-6 h-6 bg-blue-100 flex items-center justify-center rounded-full">
+                  <MdSettings className="w-4 h-4 text-blue-600" />
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                  Mobile Features
+                </h3>
+              </div>
+              <div className="space-y-3">
+                {mobileFeatures.map((feature) => (
+                  <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200 config-sidebar-feature">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-full">
+                        <feature.icon className="w-4 h-4 text-gray-600" />
+                      </div>
+                      <span className="text-sm font-medium text-gray-900">{feature.label}</span>
+                    </div>
+                    <button
+                      onClick={() => toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])}
+                      className={`relative inline-flex h-5 w-9 items-center transition-colors ${
+                        features[feature.key as keyof typeof features]
+                          ? 'bg-gray-900'
+                          : 'bg-gray-200'
+                      }`}
+                      style={{ borderRadius: '12px' }}
+                    >
+                      <span
+                        className={`inline-block h-3 w-3 transform bg-white transition-transform ${
+                          features[feature.key as keyof typeof features] ? 'translate-x-5' : 'translate-x-1'
+                        }`}
+                        style={{ borderRadius: '50%' }}
+                      />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
 
           {/* Überschriften */}
