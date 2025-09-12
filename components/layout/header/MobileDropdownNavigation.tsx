@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { ContentData } from '@/types/content';
 import { NavigationItem } from '@/lib/config/navigationConfig';
@@ -15,7 +15,7 @@ interface MobileDropdownNavigationProps {
   onClose: () => void;
 }
 
-export default function MobileDropdownNavigation({
+function MobileDropdownNavigation({
   isOpen,
   navItems,
   content,
@@ -26,6 +26,14 @@ export default function MobileDropdownNavigation({
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  // Memoized navigation items processing
+  const processedNavItems = useMemo(() => {
+    return navItems.map((item, index) => ({
+      ...item,
+      animationDelay: `${index * 30}ms`
+    }))
+  }, [navItems]);
 
   // Animation handling
   useEffect(() => {
@@ -68,16 +76,16 @@ export default function MobileDropdownNavigation({
     }
   }, [isOpen]);
 
-  const toggleDropdown = (itemId: string) => {
-    setOpenDropdown(openDropdown === itemId ? null : itemId);
-  };
+  const toggleDropdown = useCallback((itemId: string) => {
+    setOpenDropdown(prev => prev === itemId ? null : itemId);
+  }, []);
 
-  const handleItemClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleItemClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
       onSmoothScroll(e, href.substring(1));
     }
     onClose();
-  };
+  }, [onSmoothScroll, onClose]);
 
   if (!isOpen) return null;
 
@@ -120,7 +128,7 @@ export default function MobileDropdownNavigation({
 
         {/* Menu Content */}
         <div className="p-4 space-y-2">
-          {navItems.map((item) => (
+          {processedNavItems.map((item) => (
             <div key={item.id}>
               {item.hasDropdown ? (
                 <>
@@ -196,3 +204,5 @@ export default function MobileDropdownNavigation({
     </div>
   );
 }
+
+export default React.memo(MobileDropdownNavigation);

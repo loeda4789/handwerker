@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import Link from 'next/link'
 import { NavigationItem } from '@/lib/config/navigationConfig'
 import { ContentData } from '@/types/content'
@@ -13,7 +13,7 @@ interface MobileSideNavigationProps {
   onClose: () => void
 }
 
-export default function MobileSideNavigation({ 
+function MobileSideNavigation({ 
   isOpen,
   navItems, 
   content, 
@@ -23,13 +23,42 @@ export default function MobileSideNavigation({
 }: MobileSideNavigationProps) {
   const { siteVariant } = useSiteVariant()
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const focusTrapRef = useRef<HTMLDivElement>(null)
   const firstFocusableRef = useRef<HTMLButtonElement>(null)
   const lastFocusableRef = useRef<HTMLAnchorElement>(null)
 
+  // Memoized navigation items processing
+  const processedNavItems = useMemo(() => {
+    return navItems.map((item, index) => ({
+      ...item,
+      animationDelay: `${index * 50}ms`
+    }))
+  }, [navItems])
+
   const toggleMobileDropdown = useCallback((itemId: string) => {
-    setMobileDropdownOpen(mobileDropdownOpen === itemId ? null : itemId)
-  }, [mobileDropdownOpen])
+    setMobileDropdownOpen(prev => prev === itemId ? null : itemId)
+  }, [])
+
+  // Touch gesture handlers
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }, [])
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }, [])
+
+  const handleTouchEnd = useCallback(() => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    if (isLeftSwipe) {
+      onClose()
+    }
+  }, [touchStart, touchEnd, onClose])
 
   // Escape-Key Handler
   useEffect(() => {
@@ -119,6 +148,9 @@ export default function MobileSideNavigation({
         ref={focusTrapRef}
         className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl animate-in slide-in-from-right duration-300 overflow-y-auto z-[var(--z-mobile-panel)]"
         tabIndex={-1}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gray-50">
@@ -147,7 +179,7 @@ export default function MobileSideNavigation({
         
         {/* Navigation Items - Scrollable */}
         <div className="flex-1 px-6 py-6 space-y-2">
-          {navItems.map((item, index) => (
+          {processedNavItems.map((item, index) => (
             <div 
               key={item.id}
               className="animate-in fade-in-up duration-300"
@@ -242,3 +274,5 @@ export default function MobileSideNavigation({
     </div>
   )
 }
+
+export default React.memo(MobileSideNavigation)

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import Link from 'next/link'
 import { NavigationItem } from '@/lib/config/navigationConfig'
 import { ContentData } from '@/types/content'
@@ -13,7 +13,7 @@ interface MobileHeaderProps {
   onClose: () => void
 }
 
-export default function MobileHeader({ 
+function MobileHeader({ 
   isOpen,
   navItems, 
   content, 
@@ -27,9 +27,17 @@ export default function MobileHeader({
   const firstFocusableRef = useRef<HTMLButtonElement>(null)
   const lastFocusableRef = useRef<HTMLAnchorElement>(null)
 
+  // Memoized navigation items processing
+  const processedNavItems = useMemo(() => {
+    return navItems.map((item, index) => ({
+      ...item,
+      animationDelay: `${index * 100}ms`
+    }))
+  }, [navItems])
+
   const toggleMobileDropdown = useCallback((itemId: string) => {
-    setMobileDropdownOpen(mobileDropdownOpen === itemId ? null : itemId)
-  }, [mobileDropdownOpen])
+    setMobileDropdownOpen(prev => prev === itemId ? null : itemId)
+  }, [])
 
   // Escape-Key Handler
   useEffect(() => {
@@ -88,15 +96,6 @@ export default function MobileHeader({
     }
   }, [isOpen])
 
-  // Helper function to generate initials from company name
-  const getCompanyInitials = (companyName: string): string => {
-    return companyName
-      .split(' ')
-      .map(word => word.charAt(0))
-      .join('')
-      .toUpperCase()
-      .slice(0, 2)
-  }
 
   if (siteMode !== 'onepage' || !isOpen) return null
 
@@ -106,6 +105,7 @@ export default function MobileHeader({
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Navigation"
+      aria-describedby="mobile-nav-description"
     >
       {/* Backdrop */}
       <div 
@@ -121,18 +121,7 @@ export default function MobileHeader({
         tabIndex={-1}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 animate-in fade-in-up duration-500" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
-          <div className="flex items-center space-x-3">
-            <div 
-              className="w-10 h-10 bg-gray-900 text-white flex items-center justify-center logo-font text-lg font-bold"
-              style={{ borderRadius: 'var(--radius-button)' }}
-            >
-              {getCompanyInitials(content.company.name)}
-            </div>
-            <span className="text-xl font-semibold text-gray-900 logo-font uppercase">
-              {content.company.name}
-            </span>
-          </div>
+        <div className="flex items-center justify-end p-6 border-b border-gray-200 animate-in fade-in-up duration-500" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
           <button
             ref={firstFocusableRef}
             onClick={onClose}
@@ -146,12 +135,22 @@ export default function MobileHeader({
         </div>
         
         {/* Navigation Items - Zentriert und größer */}
-        <div className="flex-1 flex flex-col justify-center px-8 py-12 space-y-6 text-center">
-          {navItems.map((item, index) => (
+        <div 
+          id="mobile-nav-description" 
+          className="sr-only"
+        >
+          Hauptnavigation mit allen verfügbaren Menüpunkten
+        </div>
+        <nav 
+          className="flex-1 flex flex-col justify-center px-8 py-12 space-y-6 text-center"
+          role="navigation"
+          aria-label="Hauptnavigation"
+        >
+          {processedNavItems.map((item, index) => (
             <div 
               key={item.id}
               className="animate-in fade-in-up duration-500"
-              style={{ animationDelay: `${200 + index * 100}ms`, animationFillMode: 'both' }}
+              style={{ animationDelay: `${200 + parseInt(item.animationDelay)}ms`, animationFillMode: 'both' }}
             >
               {item.hasDropdown ? (
                 <div className="space-y-2">
@@ -206,7 +205,7 @@ export default function MobileHeader({
               )}
             </div>
           ))}
-        </div>
+        </nav>
         
         {/* CTA Button */}
         <div className="px-8 pb-12 animate-in fade-in-up duration-500" style={{ animationDelay: '800ms', animationFillMode: 'both' }}>
@@ -233,3 +232,5 @@ export default function MobileHeader({
     </div>
   )
 }
+
+export default React.memo(MobileHeader)
