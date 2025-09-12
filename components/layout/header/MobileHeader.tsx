@@ -25,7 +25,7 @@ export default function MobileHeader({
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null)
   const focusTrapRef = useRef<HTMLDivElement>(null)
   const firstFocusableRef = useRef<HTMLButtonElement>(null)
-  const lastFocusableRef = useRef<HTMLButtonElement>(null)
+  const lastFocusableRef = useRef<HTMLAnchorElement>(null)
 
   const toggleMobileDropdown = useCallback((itemId: string) => {
     setMobileDropdownOpen(mobileDropdownOpen === itemId ? null : itemId)
