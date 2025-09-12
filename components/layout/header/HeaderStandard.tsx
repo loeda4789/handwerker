@@ -175,13 +175,13 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
               aria-label="Menü"
             >
               <div className="relative w-8 h-7 flex flex-col justify-center">
-                <span className={`absolute block h-1.5 bg-current rounded-full transition-all duration-300 ${
+                <span className={`absolute block h-1.5 bg-gray-800 dark:bg-gray-200 rounded-full transition-all duration-300 ${
                   isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'
                 }`}></span>
-                <span className={`absolute block h-1.5 bg-current rounded-full transition-all duration-300 ${
+                <span className={`absolute block h-1.5 bg-gray-800 dark:bg-gray-200 rounded-full transition-all duration-300 ${
                   isMenuOpen ? 'opacity-0' : 'opacity-100'
                 }`}></span>
-                <span className={`absolute block h-1.5 bg-current rounded-full transition-all duration-300 ${
+                <span className={`absolute block h-1.5 bg-gray-800 dark:bg-gray-200 rounded-full transition-all duration-300 ${
                   isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-2'
                 }`}></span>
               </div>
