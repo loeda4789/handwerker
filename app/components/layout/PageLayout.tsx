@@ -9,6 +9,7 @@ import ContactBar from '@/components/forms/ContactBar'
 import SideContact from '@/components/forms/SideContact'
 import ConfigCard from '@/components/config/ConfigCard'
 import UrlParamsDebug from '@/components/config/UrlParamsDebug'
+import { useFeaturesConfig } from '@/contexts/AppConfigContext'
 
 interface PageLayoutProps {
   children: React.ReactNode
@@ -33,18 +34,7 @@ export default function PageLayout({
   showDebug = false,
   className = ""
 }: PageLayoutProps) {
-  const [features, setFeatures] = useState({
-    contactBar: true
-  })
-
-  // Features aus localStorage laden
-  useEffect(() => {
-    const featuresConfig = {
-      contactBar: localStorage.getItem('feature-contactBar') === 'true' || 
-                  localStorage.getItem('feature-contactBar') === null // Default true
-    }
-    setFeatures(featuresConfig)
-  }, [])
+  const { features } = useFeaturesConfig()
 
   if (loading || !content) {
     return (

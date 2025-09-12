@@ -22,6 +22,7 @@ import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdV
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import UrlParamsDebug from '@/components/config/UrlParamsDebug'
 import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
+import { useFeaturesConfig } from '@/contexts/AppConfigContext'
 
 import ContactBar from '@/components/forms/ContactBar'
 import ConfigCard from '@/components/config/ConfigCard'
@@ -110,6 +111,7 @@ export default function HomePage() {
     speedDial: false,
     bewerberPopup: false
   })
+  const { features: contextFeatures } = useFeaturesConfig()
   const [isGenerating, setIsGenerating] = useState(false)
   const [showConfigurator, setShowConfigurator] = useState(false) // Temporarily disabled - can be re-enabled later
 
@@ -404,7 +406,7 @@ export default function HomePage() {
       
       {/* Marketing Features - Above Header */}
       <ContactBar 
-        isEnabled={features.contactBar} 
+        isEnabled={contextFeatures.contactBar} 
         phone={content.contact.phone}
         email={content.contact.email}
       />
