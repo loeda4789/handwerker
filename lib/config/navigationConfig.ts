@@ -95,7 +95,7 @@ export const getNavigationItems = (
   packageType?: 'starter' | 'professional' | 'premium'
 ): NavigationItem[] => {
   // 1. Bestimme die echte Variante
-  const variant = packageType || getSiteVariant(siteMode, false)
+  const variant = packageType || getSiteVariant(siteMode)
   
   // 2. Hole Basis-Navigation aus Variante
   const variantConfig = siteVariants[variant]

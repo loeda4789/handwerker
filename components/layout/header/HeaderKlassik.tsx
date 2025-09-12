@@ -97,7 +97,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [headerVisible]);
 
   // Verhindere Scrollen wenn Menü offen ist
   useEffect(() => {
