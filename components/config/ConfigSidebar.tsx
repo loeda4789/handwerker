@@ -127,6 +127,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
   if (!isOpen) return null
 
+  // Debug: Aktuelle Variante
+  console.log('🔍 ConfigSidebar - variant:', variant, 'siteMode:', siteMode)
+  
   // Besteller-Varianten - Einheitliche Farben
   const bestellerVariants = [
     {
