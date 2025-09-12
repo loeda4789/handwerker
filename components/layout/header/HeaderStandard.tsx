@@ -9,6 +9,7 @@ import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationC
 import { getHeaderStyles, getDropdownStyles } from '@/lib/config/headerStyles';
 import HeaderLogo from './HeaderLogo';
 import HeaderCta from './HeaderCta';
+import MobileHeader from './MobileHeader';
 
 interface HeaderStandardProps {
   content: ContentData;
@@ -382,6 +383,16 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
           </div>
         </div>
       )}
+
+      {/* Mobile Navigation - Außerhalb des Headers für korrekte Positionierung */}
+      <MobileHeader
+        isOpen={isMenuOpen}
+        navItems={navItems}
+        content={content}
+        siteMode={siteMode}
+        onSmoothScroll={handleSmoothScroll}
+        onClose={closeMenu}
+      />
     </>
   );
 }

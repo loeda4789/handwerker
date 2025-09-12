@@ -402,15 +402,16 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
         </div>
       </div>
 
-      {/* Mobile Navigation - Verwendet neue MobileHeader-Komponente */}
-      <MobileHeader
-        isOpen={isMenuOpen}
-        navItems={navItems}
-        content={content}
-        siteMode={siteMode}
-        onSmoothScroll={handleSmoothScroll}
-        onClose={closeMenu}
-      />
     </header>
+
+    {/* Mobile Navigation - Außerhalb des Headers für korrekte Positionierung */}
+    <MobileHeader
+      isOpen={isMenuOpen}
+      navItems={navItems}
+      content={content}
+      siteMode={siteMode}
+      onSmoothScroll={handleSmoothScroll}
+      onClose={closeMenu}
+    />
   );
 }
