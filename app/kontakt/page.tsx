@@ -1,51 +1,37 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getContentDataByBranche } from '@/lib/config'
-import { ContentData } from '@/types/content'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
+import { usePageContent } from '../hooks/usePageContent'
+import PageLayout from '../components/layout/PageLayout'
 import Contact from '@/components/forms/Contact'
-import ModernSpinner from '@/components/ui/ModernSpinner'
 
 export default function KontaktPage() {
-  const [content, setContent] = useState<ContentData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const { content, loading, error } = usePageContent()
 
-  useEffect(() => {
-    const loadContent = () => {
-      try {
-        const loadedContent = getContentDataByBranche()
-        setContent(loadedContent)
-      } catch (error) {
-        console.error('Fehler beim Laden des Contents:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
+  // Aktiviere Scroll-Animationen
+  useScrollAnimation()
 
-    loadContent()
-  }, [])
-
-  if (loading) {
+  if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
-        <div className="text-center">
-          <ModernSpinner variant="dots" size="xl" color="primary" className="mb-4" />
-          <p className="text-text-secondary dark:text-light/80">Kontakt wird geladen...</p>
-        </div>
-      </div>
+      <PageLayout 
+        content={null} 
+        loading={false} 
+        loadingText="Fehler beim Laden der Inhalte"
+        showContactBar={false}
+        showSideContact={false}
+        showConfigCard={false}
+      >
+        <div>Fehler beim Laden der Inhalte</div>
+      </PageLayout>
     )
   }
 
-  if (!content) {
-    return <div>Fehler beim Laden der Inhalte</div>
-  }
-
   return (
-    <main className="min-h-screen">
-      <Header content={content} />
-      
+    <PageLayout 
+      content={content} 
+      loading={loading} 
+      loadingText="Kontakt wird geladen..."
+    >
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-4">
@@ -60,7 +46,7 @@ export default function KontaktPage() {
         </div>
       </section>
 
-            {/* Kontaktinformationen */}
+      {/* Kontaktinformationen */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -76,13 +62,13 @@ export default function KontaktPage() {
             {/* Direkte Kontakt-Buttons */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
               <a 
-                href={`tel:${content.contact.phone}`}
+                href={`tel:${content?.contact?.phone || ''}`}
                 className="group p-8 bg-gradient-to-br from-primary to-accent rounded-2xl text-white hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
               >
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-2xl font-bold mb-2">Sofort anrufen</h3>
-                    <p className="text-lg font-medium opacity-90 mb-1">{content.contact.phone}</p>
+                    <p className="text-lg font-medium opacity-90 mb-1">{content?.contact?.phone || ''}</p>
                     <p className="text-sm opacity-75">Mo-Fr: 7:00-18:00 Uhr</p>
                   </div>
                   <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
@@ -92,13 +78,13 @@ export default function KontaktPage() {
               </a>
 
               <a 
-                href={`mailto:${content.contact.email}`}
+                href={`mailto:${content?.contact?.email || ''}`}
                 className="group p-8 bg-gray-100 dark:bg-gray-800 rounded-2xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 hover:scale-[1.02]"
               >
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">E-Mail schreiben</h3>
-                    <p className="text-lg font-medium text-primary dark:text-accent mb-1">{content.contact.email}</p>
+                    <p className="text-lg font-medium text-primary dark:text-accent mb-1">{content?.contact?.email || ''}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Antwort binnen 24h</p>
                   </div>
                   <div className="w-16 h-16 bg-primary/10 dark:bg-accent/20 rounded-full flex items-center justify-center group-hover:bg-primary/20 dark:group-hover:bg-accent/30 transition-colors">
@@ -112,7 +98,7 @@ export default function KontaktPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-xl">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Unser Standort</h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">{content.contact.address}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{content?.contact?.address || ''}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Termine nach Vereinbarung</p>
               </div>
 
@@ -141,7 +127,7 @@ export default function KontaktPage() {
       {/* Kontaktformular */}
       <Contact content={content} />
 
-            {/* Weitere Informationen */}
+      {/* Weitere Informationen */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -155,7 +141,7 @@ export default function KontaktPage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {content.welcome.features.map((feature, index) => (
+              {content?.welcome?.features?.map((feature, index) => (
                 <div key={index} className="p-8 bg-white dark:bg-gray-700 rounded-xl shadow-sm border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                     {feature.title}
@@ -196,9 +182,6 @@ export default function KontaktPage() {
           </div>
         </div>
       </section>
-      
-      <Footer content={content} />
-      
-    </main>
+    </PageLayout>
   )
-} 
+}

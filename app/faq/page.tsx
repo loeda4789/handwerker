@@ -1,53 +1,33 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getContentDataByBranche } from '@/lib/config'
-import { ContentData } from '@/types/content'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import ModernSpinner from '@/components/ui/ModernSpinner'
-import { useLayoutConfig } from '@/contexts/AppConfigContext'
+import { useState } from 'react'
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
+import { usePageContent } from '../hooks/usePageContent'
+import { useDesignStyle } from '../hooks/useDesignStyle'
+import PageLayout from '../components/layout/PageLayout'
 import SectionHeading from '@/components/layout/SectionHeading'
 
 export default function FAQPage() {
-  const [content, setContent] = useState<ContentData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const { content, loading, error } = usePageContent()
+  const { designStyle } = useDesignStyle()
   const [openFAQ, setOpenFAQ] = useState<number | null>(null)
-  
-  // Design-Style aus AppConfigContext
-  const { design: designStyle } = useLayoutConfig()
-  
-  // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
-  const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
 
-  useEffect(() => {
-    const loadContent = () => {
-      try {
-        const loadedContent = getContentDataByBranche()
-        setContent(loadedContent)
-      } catch (error) {
-        console.error('Fehler beim Laden des Contents:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
+  // Aktiviere Scroll-Animationen
+  useScrollAnimation()
 
-    loadContent()
-  }, [])
-
-  if (loading) {
+  if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
-        <div className="text-center">
-          <ModernSpinner variant="dots" size="xl" color="primary" className="mb-4" />
-          <p className="text-text-secondary dark:text-light/80">FAQ wird geladen...</p>
-        </div>
-      </div>
+      <PageLayout 
+        content={null} 
+        loading={false} 
+        loadingText="Fehler beim Laden der Inhalte"
+        showContactBar={false}
+        showSideContact={false}
+        showConfigCard={false}
+      >
+        <div>Fehler beim Laden der Inhalte</div>
+      </PageLayout>
     )
-  }
-
-  if (!content) {
-    return <div>Fehler beim Laden der Inhalte</div>
   }
 
   // FAQ-Daten - dynamisch basierend auf der Branche
@@ -142,9 +122,11 @@ export default function FAQPage() {
   }
 
   return (
-    <main className="min-h-screen">
-      <Header content={content} />
-      
+    <PageLayout 
+      content={content} 
+      loading={loading} 
+      loadingText="FAQ wird geladen..."
+    >
       {/* Hero Section */}
       <section className="relative py-24 md:py-32 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-6 md:px-8">
@@ -283,7 +265,7 @@ export default function FAQPage() {
                 </svg>
               </a>
               <a
-                href={`tel:${content.contact?.phone || '+49123456789'}`}
+                href={`tel:${content?.contact?.phone || '+49123456789'}`}
                 className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium transition-all duration-300"
                 style={{ borderRadius: 'var(--radius-button)' }}
               >
@@ -296,8 +278,6 @@ export default function FAQPage() {
           </div>
         </div>
       </section>
-
-      <Footer content={content} />
-    </main>
+    </PageLayout>
   )
 }

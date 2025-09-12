@@ -1,51 +1,37 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getContentDataByBranche } from '@/lib/config'
-import { ContentData } from '@/types/content'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
+import { usePageContent } from '../../hooks/usePageContent'
+import PageLayout from '../../components/layout/PageLayout'
 import Team from '@/components/content/Team'
-import ModernSpinner from '@/components/ui/ModernSpinner'
 
 export default function TeamPage() {
-  const [content, setContent] = useState<ContentData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const { content, loading, error } = usePageContent()
 
-  useEffect(() => {
-    const loadContent = () => {
-      try {
-        const loadedContent = getContentDataByBranche()
-        setContent(loadedContent)
-      } catch (error) {
-        console.error('Fehler beim Laden des Contents:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
+  // Aktiviere Scroll-Animationen
+  useScrollAnimation()
 
-    loadContent()
-  }, [])
-
-  if (loading) {
+  if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark">
-        <div className="text-center">
-          <ModernSpinner variant="dots" size="xl" color="primary" className="mb-4" />
-          <p className="text-text-secondary dark:text-light/80">Team wird geladen...</p>
-        </div>
-      </div>
+      <PageLayout 
+        content={null} 
+        loading={false} 
+        loadingText="Fehler beim Laden der Inhalte"
+        showContactBar={false}
+        showSideContact={false}
+        showConfigCard={false}
+      >
+        <div>Fehler beim Laden der Inhalte</div>
+      </PageLayout>
     )
   }
 
-  if (!content) {
-    return <div>Fehler beim Laden der Inhalte</div>
-  }
-
   return (
-    <main className="min-h-screen">
-      <Header content={content} />
-      
+    <PageLayout 
+      content={content} 
+      loading={loading} 
+      loadingText="Team wird geladen..."
+    >
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-4">
@@ -243,14 +229,14 @@ export default function TeamPage() {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a 
-                  href={`mailto:${content.contact.email}?subject=Bewerbung&body=Sehr geehrte Damen und Herren,%0D%0A%0D%0Ahiermit bewerbe ich mich um eine Stelle in Ihrem Unternehmen.%0D%0A%0D%0AMit freundlichen Grüßen`}
+                  href={`mailto:${content?.contact?.email || ''}?subject=Bewerbung&body=Sehr geehrte Damen und Herren,%0D%0A%0D%0Ahiermit bewerbe ich mich um eine Stelle in Ihrem Unternehmen.%0D%0A%0D%0AMit freundlichen Grüßen`}
                   className="inline-flex items-center px-6 py-3 bg-primary hover:bg-accent text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 >
                   📧 E-Mail senden
                 </a>
                 
                 <a 
-                  href={`tel:${content.contact.phone}`}
+                  href={`tel:${content?.contact?.phone || ''}`}
                   className="inline-flex items-center px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 >
                   📞 Anrufen
@@ -259,14 +245,12 @@ export default function TeamPage() {
               
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
                 Oder schick deine Unterlagen per Post an:<br/>
-                {content.contact.address}
+                {content?.contact?.address || ''}
               </p>
             </div>
           </div>
         </div>
       </section>
-      
-      <Footer content={content} />
-    </main>
+    </PageLayout>
   )
-} 
+}
