@@ -113,8 +113,10 @@ export function useLayoutConfig() {
       updateConfig({ layout: { ...config.layout, mode } }),
     setDesign: (design: 'angular' | 'rounded' | 'modern') => 
       updateConfig({ layout: { ...config.layout, design } }),
-    setVariant: (variant: 'starter' | 'professional' | 'premium') => 
+    setVariant: (variant: 'starter' | 'professional' | 'premium') => {
+      console.log('🔍 setVariant called with:', variant)
       updateConfig({ layout: { ...config.layout, variant } })
+    }
   }
 }
 
