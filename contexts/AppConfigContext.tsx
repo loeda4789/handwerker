@@ -127,7 +127,9 @@ export function useFeaturesConfig() {
     setFeature: (key: keyof typeof config.features, value: boolean) => 
       updateConfig({ features: { ...config.features, [key]: value } }),
     setFeatures: (features: Partial<typeof config.features>) => 
-      updateConfig({ features: { ...config.features, ...features } })
+      updateConfig({ features: { ...config.features, ...features } }),
+    toggleFeature: (key: keyof typeof config.features) => 
+      updateConfig({ features: { ...config.features, [key]: !config.features[key] } })
   }
 }
 

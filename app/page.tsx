@@ -101,17 +101,7 @@ export default function HomePage() {
     quickEditMode: false,
     activeTab: 'layout'
   })
-  const [features, setFeatures] = useState<FeaturesState>({
-    promoBanner: false,
-    contactBar: true,
-    notdienstAlert: false,
-    whatsappWidget: false,
-    callbackPopup: false,
-    callbackRequest: false,
-    speedDial: false,
-    bewerberPopup: false
-  })
-  const { features: contextFeatures } = useFeaturesConfig()
+  const { features: contextFeatures, toggleFeature } = useFeaturesConfig()
   const [isGenerating, setIsGenerating] = useState(false)
   const [showConfigurator, setShowConfigurator] = useState(false) // Temporarily disabled - can be re-enabled later
 
@@ -148,19 +138,7 @@ export default function HomePage() {
     const savedDesignStyle = localStorage.getItem('design-style')
     const savedColorScheme = localStorage.getItem('selected-color-scheme')
     
-            // Features aus Webseite-Designer laden
-    const featuresConfig = {
-      promoBanner: localStorage.getItem('feature-promoBanner') === 'true',
-      contactBar: localStorage.getItem('feature-contactBar') === 'true',
-      notdienstAlert: localStorage.getItem('feature-notdienstAlert') === 'true',
-      whatsappWidget: localStorage.getItem('feature-whatsappWidget') === 'true',
-      callbackPopup: localStorage.getItem('feature-callbackPopup') === 'true',
-      callbackRequest: localStorage.getItem('feature-callbackRequest') === 'true',
-      speedDial: localStorage.getItem('feature-speedDial') !== 'false', // Default true
-      bewerberPopup: localStorage.getItem('feature-bewerberPopup') === 'true'
-    }
-    
-    setFeatures(featuresConfig)
+            // Features werden jetzt über den globalen Context verwaltet
     
     if (hasVisitedBefore && (savedLayoutType || savedDesignStyle || savedColorScheme)) {
       // Returning user - enable Quick-Edit mode
@@ -343,7 +321,7 @@ export default function HomePage() {
       localStorage.setItem('selected-color-scheme', config.colorScheme)
       
       // Features speichern
-      Object.entries(features).forEach(([key, value]) => {
+      Object.entries(contextFeatures).forEach(([key, value]) => {
         localStorage.setItem(`feature-${key}`, value.toString())
       })
       
@@ -505,7 +483,7 @@ export default function HomePage() {
       </div>
 
       {/* Desktop Side Contact - Global außerhalb des Containers */}
-      {true && (
+      {contextFeatures.sideContact && (
         <SideContact 
           phoneNumber={content.contact.phone}
           email={content.contact.email}
@@ -920,16 +898,16 @@ export default function HomePage() {
                             ].map((feature) => (
                               <button
                                 key={feature.key}
-                                onClick={() => setFeatures(prev => ({ ...prev, [feature.key as keyof FeaturesState]: !prev[feature.key as keyof FeaturesState] }))}
+                                onClick={() => toggleFeature(feature.key as keyof typeof contextFeatures)}
                                 className={`group p-3 md:p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 min-h-[120px] md:min-h-auto ${
-                                  features[feature.key as keyof FeaturesState]
+                                  contextFeatures[feature.key as keyof typeof contextFeatures]
                                     ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
                                     : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-lg'
                                 }`}
                                 style={{ borderRadius: 'var(--radius-card)' }}
                               >
                                 <div className={`w-8 h-8 md:w-12 md:h-12 mx-auto mb-2 md:mb-4 overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex items-center justify-center ${
-                                  features[feature.key as keyof FeaturesState] 
+                                  contextFeatures[feature.key as keyof typeof contextFeatures] 
                                     ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' 
                                     : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                                 }`}
