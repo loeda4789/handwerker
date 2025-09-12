@@ -54,6 +54,86 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { underline: headingUnderline, style: headingStyle, color: headingColor, setUnderline: setHeadingUnderline, setStyle: setHeadingStyle, setColor: setHeadingColor } = useHeadingsConfig()
   const { package: stylePackage, fontFamily, badgeStyle, spacing, setPackage: setStylePackage, setFontFamily, setBadgeStyle, setSpacing } = useStyleConfig()
   
+  // Funktion zum Speichern der Konfiguration
+  const saveConfiguration = async () => {
+    try {
+      // Aktuelle Konfiguration in localStorage speichern
+      const currentConfig = {
+        layout: { mode: siteMode, design: designStyle, variant },
+        theme: { colorScheme },
+        features,
+        hero: { type: heroType },
+        headings: { underline: headingUnderline, style: headingStyle, color: headingColor },
+        style: { package: stylePackage, fontFamily, badgeStyle, spacing }
+      }
+      
+      localStorage.setItem('saved-configuration', JSON.stringify(currentConfig))
+      
+      // Optional: An Backend senden
+      // await fetch('/api/save-configuration', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(currentConfig)
+      // })
+      
+      return currentConfig
+    } catch (error) {
+      console.error('Fehler beim Speichern der Konfiguration:', error)
+      throw error
+    }
+  }
+
+  // Kontakt-Flow
+  const handleContactRequest = async () => {
+    try {
+      const savedConfig = await saveConfiguration()
+      
+      // Konfiguration als URL-Parameter für Kontakt-Seite
+      const configParams = new URLSearchParams({
+        config: JSON.stringify(savedConfig),
+        source: 'website-designer'
+      })
+      
+      // Weiterleitung zur Kontakt-Seite mit Konfiguration
+      window.location.href = `/kontakt?${configParams.toString()}`
+    } catch (error) {
+      console.error('Fehler beim Kontakt-Request:', error)
+      alert('Fehler beim Speichern der Konfiguration. Bitte versuchen Sie es erneut.')
+    }
+  }
+
+  // Stripe Checkout Flow
+  const handleStripeCheckout = async () => {
+    try {
+      const savedConfig = await saveConfiguration()
+      
+      // Stripe Checkout Session erstellen
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          configuration: savedConfig,
+          successUrl: `${window.location.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+          cancelUrl: `${window.location.origin}/cancel`
+        })
+      })
+      
+      const { sessionId } = await response.json()
+      
+      // Stripe Checkout öffnen
+      const stripe = (window as any).Stripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+      const { error } = await stripe.redirectToCheckout({ sessionId })
+      
+      if (error) {
+        console.error('Stripe Checkout Fehler:', error)
+        alert('Fehler beim Öffnen des Checkouts. Bitte versuchen Sie es erneut.')
+      }
+    } catch (error) {
+      console.error('Fehler beim Stripe Checkout:', error)
+      alert('Fehler beim Erstellen des Checkouts. Bitte versuchen Sie es erneut.')
+    }
+  }
+  
   // Debug-Log für stylePackage
   console.log('🔍 ConfigSidebar - stylePackage:', stylePackage, 'fontFamily:', fontFamily, 'badgeStyle:', badgeStyle)
   console.log('🔍 ConfigSidebar - config.style.package:', config.style.package)
@@ -534,8 +614,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             )}
           </div>
 
-          {/* Anwenden Button */}
-          <div className="p-6 border-t border-gray-200 bg-gray-50">
+          {/* Action Buttons */}
+          <div className="p-6 border-t border-gray-200 bg-gray-50 space-y-3">
+            {/* Anwenden Button */}
             <button
               onClick={onClose}
               className="w-full py-3 px-6 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
@@ -544,7 +625,29 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <MdCheck className="w-5 h-5" />
               Anwenden & Vorschau starten
             </button>
-            <p className="text-xs text-gray-500 text-center mt-2">
+            
+            {/* Speichern & Kaufen Buttons */}
+            <div className="grid grid-cols-1 gap-3">
+              <button
+                onClick={handleContactRequest}
+                className="w-full py-3 px-6 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                style={{ borderRadius: 'var(--radius-button)' }}
+              >
+                <MdPhoneInTalk className="w-5 h-5" />
+                Einstellungen speichern & anfragen
+              </button>
+              
+              <button
+                onClick={handleStripeCheckout}
+                className="w-full py-3 px-6 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+                style={{ borderRadius: 'var(--radius-button)' }}
+              >
+                <MdDiamond className="w-5 h-5" />
+                Jetzt per Stripe kaufen
+              </button>
+            </div>
+            
+            <p className="text-xs text-gray-500 text-center">
               Ihre Änderungen werden sofort angewendet
             </p>
           </div>
