@@ -56,14 +56,12 @@ export default function PageLayout({
       {/* URL-Parameter Debug (nur in Development) */}
       {process.env.NODE_ENV === 'development' && showDebug && <UrlParamsDebug />}
       
-      {/* Marketing Features - Above Header */}
-      {showContactBar && (
-        <ContactBar 
-          isEnabled={true} 
-          phone={content.contact.phone}
-          email={content.contact.email}
-        />
-      )}
+      {/* Kontaktbar - Immer angezeigt */}
+      <ContactBar 
+        isEnabled={true} 
+        phone={content.contact.phone}
+        email={content.contact.email}
+      />
       
       {/* Main Content */}
       <div className="transition-all duration-500">

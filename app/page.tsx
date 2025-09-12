@@ -402,14 +402,14 @@ export default function HomePage() {
       {/* URL-Parameter Debug (nur in Development) */}
       {process.env.NODE_ENV === 'development' && <UrlParamsDebug />}
       
-      {/* Marketing Features - Above Header */}
+      {/* Kontaktbar - Immer angezeigt */}
       <ContactBar 
-        isEnabled={features.contactBar} 
+        isEnabled={true} 
         phone={content.contact.phone}
         email={content.contact.email}
       />
       
-              {/* Background Webseite */}
+      {/* Background Webseite */}
       <div className={`transition-all duration-500 ${showConfigurator ? 'opacity-60 blur-[2px]' : 'opacity-100 blur-0'}`}>
         <Header content={content} />
         <Hero content={content} />
