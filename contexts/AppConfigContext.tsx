@@ -21,6 +21,9 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
   
   // Site-Variante aus expliziter Konfiguration
   const siteVariant = getSiteVariant(config.layout.mode, config.layout.variant)
+  
+  // Debug-Log für Varianten-Erkennung
+  console.log('🔍 AppConfig Debug - mode:', config.layout.mode, 'variant:', config.layout.variant, 'siteVariant:', siteVariant)
 
   useEffect(() => {
     // Initiale Konfiguration laden
