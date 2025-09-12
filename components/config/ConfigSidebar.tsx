@@ -254,16 +254,20 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={variant.id}
                   onClick={() => {
+                    console.log('🔍 Variant clicked:', variant.id)
                     if (variant.id === 'starter') {
                       // Starter: One-Page
+                      console.log('🔍 Setting starter variant')
                       setSiteMode('onepage')
                       setVariant('starter')
                     } else if (variant.id === 'professional') {
                       // Professionell: One-Page mit erweiterten Features
+                      console.log('🔍 Setting professional variant')
                       setSiteMode('onepage')
                       setVariant('professional')
                     } else if (variant.id === 'premium') {
                       // Premium: Multi-Page
+                      console.log('🔍 Setting premium variant')
                       setSiteMode('multipage')
                       setVariant('premium')
                     }
