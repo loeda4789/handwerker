@@ -46,7 +46,7 @@ const getStylePackageIcon = (packageId: string) => {
 
 export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { config, isConfigLoaded, updateConfig } = useAppConfig()
-  const { mode: siteMode, design: designStyle, variant, setMode: setSiteMode, setVariant } = useLayoutConfig()
+  const { mode: siteMode, design: designStyle, variant, mobileType, setMode: setSiteMode, setVariant, setMobileType } = useLayoutConfig()
   const { colorScheme, setColorScheme } = useThemeConfig()
   const { features, setFeature: toggleFeature } = useFeaturesConfig()
   const { type: heroType, setType: setHeroType } = useHeroConfig()
@@ -55,8 +55,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   
   
   // Debug-Log für stylePackage
-  console.log('🔍 ConfigSidebar - stylePackage:', stylePackage, 'fontFamily:', fontFamily, 'badgeStyle:', badgeStyle)
-  console.log('🔍 ConfigSidebar - config.style.package:', config.style.package)
   
   const [isMobile, setIsMobile] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
@@ -128,7 +126,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   if (!isOpen) return null
 
   // Debug: Aktuelle Variante
-  console.log('🔍 ConfigSidebar - variant:', variant, 'siteMode:', siteMode)
   
   // Besteller-Varianten - Einheitliche Farben
   const bestellerVariants = [
@@ -173,6 +170,12 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     { key: 'slider', label: 'Slider', icon: MdViewCarousel },
     { key: 'video', label: 'Video', icon: MdCall },
     { key: 'split', label: 'Split', icon: MdViewQuilt }
+  ]
+
+  const mobileTypes = [
+    { key: 'fullscreen', label: 'Vollbild', icon: MdViewQuilt },
+    { key: 'sidebar', label: 'Seitenleiste', icon: MdSettings },
+    { key: 'dropdown', label: 'Dropdown', icon: MdDescription }
   ]
 
   const colorSchemes = [
@@ -363,6 +366,38 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
           </div>
 
+          {/* Mobile Navigation Typ */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-6 bg-blue-100 flex items-center justify-center rounded-full">
+                <MdSettings className="w-4 h-4 text-blue-600" />
+              </div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                Mobile Navigation
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 gap-3">
+              {mobileTypes.map((type) => (
+                <button
+                  key={type.key}
+                  onClick={() => setMobileType(type.key as any)}
+                  className={`flex items-center gap-2 p-3 border-2 transition-all config-sidebar-button ${
+                    mobileType === type.key
+                      ? 'border-gray-900 bg-gray-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <div className={`w-6 h-6 flex items-center justify-center rounded-full ${
+                    mobileType === type.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    <type.icon className="w-3 h-3" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">{type.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Stil-Pakete */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
@@ -375,7 +410,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
             <div className="grid grid-cols-2 gap-3">
               {STYLE_PACKAGES.map((pkg) => {
-                console.log('🔍 Rendering Stil-Paket:', pkg.id, pkg.name)
                 return (
                 <button
                   key={pkg.id}
@@ -386,7 +420,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     
                     // Apply style package using the centralized function
                     const updatedConfig = applyStylePackage(config, pkg.id)
-                    console.log('🎨 Stil-Paket angewendet:', pkg.id, updatedConfig.style)
                     
                     // Update all style-related settings FIRST
                     setStylePackage(pkg.id as any)
@@ -436,7 +469,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   onMouseDown={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
-                    console.log('🖱️ Stil-Paket geklickt:', pkg.id, 'stylePackage:', stylePackage)
                   }}
                 >
                   <div className={`w-6 h-6 flex items-center justify-center rounded-full ${

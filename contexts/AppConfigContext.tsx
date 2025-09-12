@@ -106,12 +106,15 @@ export function useLayoutConfig() {
     design: config.layout.design,
     variant: config.layout.variant,
     designStyle: config.layout.design, // Alias für Kompatibilität
+    mobileType: config.header.navigation.mobileType, // Mobile Navigation Typ
     setMode: (mode: 'onepage' | 'multipage') => 
       updateConfig({ layout: { ...config.layout, mode } }),
     setDesign: (design: 'angular' | 'rounded' | 'modern') => 
       updateConfig({ layout: { ...config.layout, design } }),
     setVariant: (variant: 'starter' | 'professional' | 'premium') => 
-      updateConfig({ layout: { ...config.layout, variant } })
+      updateConfig({ layout: { ...config.layout, variant } }),
+    setMobileType: (mobileType: 'fullscreen' | 'sidebar' | 'dropdown') =>
+      updateConfig({ header: { ...config.header, navigation: { ...config.header.navigation, mobileType } } })
   }
 }
 

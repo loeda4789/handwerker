@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLayoutConfig, useFeaturesConfig, useHeroConfig, useSiteVariant } from '@/contexts/AppConfigContext';
+import MobileNavigationFactory from './MobileNavigationFactory';
 import { ContentData } from '@/types/content';
 import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationConfig';
 import HeaderLogo from './HeaderLogo';
@@ -24,7 +25,7 @@ export default function HeaderModern({ content }: HeaderModernProps) {
   const dropdownRef = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   // Context hooks
-  const { mode: siteMode } = useLayoutConfig();
+  const { mode: siteMode, mobileType } = useLayoutConfig();
   const { features } = useFeaturesConfig();
   const { siteVariant } = useSiteVariant();
   const { type: heroType } = useHeroConfig();
@@ -247,120 +248,16 @@ export default function HeaderModern({ content }: HeaderModernProps) {
         </div>
       </div>
 
-      {/* Mobile Menu - Floating in center */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-            onClick={closeMenu}
-          />
-
-          {/* Floating Menu Panel */}
-          <div 
-            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-black/40 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl z-50"
-            style={{
-              transform: isMenuOpen ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0.9)',
-              opacity: isMenuOpen ? 1 : 0
-            }}
-          >
-            {/* Menu Header */}
-            <div className="flex justify-between items-center p-6 border-b border-white/20">
-              <span className="text-lg font-semibold text-white">Menü</span>
-              <button
-                onClick={closeMenu}
-                className="w-10 h-10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/10 rounded-2xl transition-all duration-300"
-              >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Menu Content */}
-            <div className="p-6 space-y-4">
-              {navItems.map((item) => (
-                <div key={item.id}>
-                  {item.hasDropdown ? (
-                    <>
-                      <button
-                        onClick={() => toggleDropdown(item.id)}
-                        className="w-full flex items-center justify-between py-3 text-left text-white"
-                      >
-                        <span className={`text-lg font-medium ${navTextClass}`}>{item.label}</span>
-                        <svg
-                          className={`w-5 h-5 transform transition-transform duration-300 ${
-                            openDropdown === item.id ? 'rotate-180' : ''
-                          }`}
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                      <div
-                        className={`overflow-hidden transition-all duration-300 ${
-                          openDropdown === item.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                        }`}
-                      >
-                        <div className="pl-4 py-2 space-y-2">
-                          {item.dropdownItems?.map((dropdownItem) => (
-                            <Link
-                              key={dropdownItem.href}
-                              href={dropdownItem.href || '#'}
-                              className={`block py-2 text-gray-300 hover:text-white transition-colors ${navTextClass}`}
-                              onClick={(e) => {
-                                if (dropdownItem.href?.startsWith('#')) {
-                                  handleSmoothScroll(e, dropdownItem.href.substring(1));
-                                }
-                                closeMenu();
-                              }}
-                            >
-                              {dropdownItem.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <Link
-                      href={item.href || '#'}
-                      className={`block py-3 text-lg font-medium text-white hover:text-gray-200 transition-colors ${navTextClass}`}
-                      onClick={(e) => {
-                        if (item.href?.startsWith('#')) {
-                          handleSmoothScroll(e, item.href.substring(1));
-                        }
-                        closeMenu();
-                      }}
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
-
-              {/* Mobile CTA */}
-              <div className="pt-6 border-t border-white/20">
-                <HeaderCta 
-                  ctaStyle="block w-full py-4 px-6 text-center bg-primary text-white text-lg font-bold rounded-2xl hover:bg-primary/90 transition-colors uppercase flex items-center justify-center gap-2"
-                  ctaStyleDynamic={{
-                    backgroundColor: 'var(--color-primary)',
-                    borderColor: 'var(--color-primary)',
-                    borderRadius: 'var(--radius-xl)',
-                    padding: '1rem 1.5rem'
-                  }}
-                  ctaHoverStyle={{
-                    backgroundColor: 'var(--color-secondary)',
-                    borderColor: 'var(--color-secondary)',
-                    color: 'white'
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Mobile Navigation - Außerhalb des Headers für korrekte Positionierung */}
+      <MobileNavigationFactory
+        isOpen={isMenuOpen}
+        navItems={navItems}
+        content={content}
+        siteMode={siteMode}
+        onSmoothScroll={handleSmoothScroll}
+        onClose={closeMenu}
+        mobileType={mobileType}
+      />
     </header>
   );
 }

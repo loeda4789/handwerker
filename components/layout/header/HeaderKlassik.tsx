@@ -16,7 +16,7 @@ import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationC
 import { getHeaderStyles } from '@/lib/config/headerStyles';
 import HeaderLogo from './HeaderLogo';
 import HeaderCta from './HeaderCta';
-import MobileHeader from './MobileHeader';
+import MobileNavigationFactory from './MobileNavigationFactory';
 
 interface HeaderKlassikProps {
   content: ContentData;
@@ -36,7 +36,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
   const dropdownRef = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   // Context hooks
-  const { mode: siteMode, design: designStyle } = useLayoutConfig();
+  const { mode: siteMode, design: designStyle, mobileType } = useLayoutConfig();
   const { features } = useFeaturesConfig();
   const { siteVariant } = useSiteVariant();
   const { type: heroType } = useHeroConfig();
@@ -406,13 +406,14 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
     </header>
 
       {/* Mobile Navigation - Außerhalb des Headers für korrekte Positionierung */}
-      <MobileHeader
+      <MobileNavigationFactory
         isOpen={isMenuOpen}
         navItems={navItems}
         content={content}
         siteMode={siteMode}
         onSmoothScroll={handleSmoothScroll}
         onClose={closeMenu}
+        mobileType={mobileType}
       />
     </>
   );

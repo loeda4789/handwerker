@@ -2,6 +2,7 @@ import { NavigationItem } from '@/lib/config/navigationConfig'
 import { ContentData } from '@/types/content'
 import MobileHeader from './MobileHeader'
 import MobileSideNavigation from './MobileSideNavigation'
+import MobileDropdownNavigation from './MobileDropdownNavigation'
 
 interface MobileNavigationFactoryProps {
   isOpen: boolean
@@ -38,9 +39,8 @@ export default function MobileNavigationFactory({
       )
     
     case 'dropdown':
-      // TODO: Implementiere Dropdown-Navigation
       return (
-        <MobileHeader
+        <MobileDropdownNavigation
           isOpen={isOpen}
           navItems={navItems}
           content={content}
