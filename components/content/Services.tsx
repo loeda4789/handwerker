@@ -8,10 +8,11 @@ import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 
 interface ServicesProps {
   content: ContentData
+  variant?: 'full' | 'preview'  // NEU: Variant-System
+  maxItems?: number             // NEU: Für Preview-Modus
 }
 
-
-export default function Services({ content }: ServicesProps) {
+export default function Services({ content, variant = 'full', maxItems = 3 }: ServicesProps) {
   // Aktiviere Scroll-Animationen
   useScrollAnimation()
 
@@ -25,6 +26,11 @@ export default function Services({ content }: ServicesProps) {
   
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
+  
+  // Services für Preview begrenzen
+  const displayServices = variant === 'preview' 
+    ? content.services.slice(0, maxItems)
+    : content.services
   
   // Badge-Klassen basierend auf Stil-Paket
   const getBadgeClasses = () => {
@@ -110,7 +116,7 @@ export default function Services({ content }: ServicesProps) {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {content.services.map((service, index) => (
+          {displayServices.map((service, index) => (
             <div
               key={index}
               className="bg-surface dark:bg-dark overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 hover:scale-105 cursor-pointer animate-on-scroll"
@@ -192,6 +198,28 @@ export default function Services({ content }: ServicesProps) {
             </div>
           ))}
         </div>
+
+        {/* Preview Mode: "Alle Services anzeigen" Button */}
+        {variant === 'preview' && content.services.length > maxItems && (
+          <div className="text-center mt-12">
+            <button 
+              className="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200"
+              style={{ borderRadius: 'var(--radius-button)' }}
+              onClick={() => {
+                // Scroll to services section or navigate to services page
+                const servicesSection = document.getElementById('leistungen')
+                if (servicesSection) {
+                  servicesSection.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+            >
+              Alle Services anzeigen
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        )}
 
         {/* Lightbox */}
         {lightboxOpen && currentService && (

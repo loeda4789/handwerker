@@ -385,41 +385,6 @@ export default function HomePage() {
     }
   }
 
-  // Services Preview Component for Multi-Page Mode
-  const ServicesPreview = () => (
-    <SectionWrapper index={2} designStyle={designStyle}>
-      <section className="py-16">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Unsere Leistungen
-          </h2>
-            <p className="text-lg max-w-2xl mx-auto opacity-90">
-            Professionelle Handwerksarbeit in allen Bereichen
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {content?.services.slice(0, 3).map((service: any, index: number) => (
-              <div key={index} className="bg-white/10 backdrop-blur-sm p-6 shadow-lg border border-white/20"
-                style={{ borderRadius: 'var(--radius-card)' }}>
-                <div className="w-12 h-12 bg-white/20 flex items-center justify-center mb-4"
-                  style={{ borderRadius: 'var(--radius-card)' }}>
-                <span className="text-2xl">{service.icon}</span>
-              </div>
-                <h3 className="text-xl font-semibold mb-3">
-                {service.title}
-              </h3>
-                <p className="opacity-90 mb-4">
-                {service.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-    </SectionWrapper>
-  )
 
   if (!baseContent) {
     return (
@@ -497,10 +462,12 @@ export default function HomePage() {
             <Stats content={content} />
             </SectionWrapper>
             
-            <ServicesPreview />
+            <SectionWrapper index={2} designStyle={designStyle}>
+              <Services content={content} variant="preview" maxItems={3} />
+            </SectionWrapper>
             
             {/* Multi-Page Demo Section */}
-            <SectionWrapper index={2} designStyle={designStyle}>
+            <SectionWrapper index={3} designStyle={designStyle}>
               <section className="py-16">
               <div className="container mx-auto px-4 text-center">
                 <div className="max-w-3xl mx-auto">
