@@ -180,7 +180,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   ]
 
   const featureList = [
-    { key: 'contactBar', label: 'Kontakt-Leiste', icon: MdPhoneInTalk },
+    { key: 'contactBar', label: 'Kontakt-Leiste', icon: MdCall },
     { key: 'sideContact', label: 'Seiten-Kontakt', icon: MdCall }
   ]
 
