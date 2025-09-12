@@ -643,7 +643,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 style={{ borderRadius: 'var(--radius-button)' }}
               >
                 <MdPhoneInTalk className="w-5 h-5" />
-                Einstellungen speichern & anfragen
+                Webseite unverbindlich anfragen
               </button>
               
               <button
@@ -652,7 +652,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 style={{ borderRadius: 'var(--radius-button)' }}
               >
                 <MdDiamond className="w-5 h-5" />
-                Jetzt per Stripe kaufen
+                Jetzt abonnieren
               </button>
             </div>
             
