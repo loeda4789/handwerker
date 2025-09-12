@@ -16,7 +16,7 @@ https://ihre-domain.de/?branche=maler
 ### Content-Dateien
 Für jede Branche wird eine separate JSON-Datei im `data/` Ordner erstellt:
 
-- `data/content.json` - Standard-Content (Fliesenleger)
+- `data/content.json` - Standard-Content (Elektriker)
 - `data/dachdecker_content.json` - Dachdecker-spezifischer Content
 - `data/elektriker_content.json` - Elektriker-spezifischer Content
 - `data/maler_content.json` - Maler-spezifischer Content

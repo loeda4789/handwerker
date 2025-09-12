@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react'
 import { getContentDataByBranche } from '@/lib/config'
 import { ContentData } from '@/types/content'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import Contact from '@/components/Contact'
-import ModernSpinner from '@/components/ModernSpinner'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import Contact from '@/components/forms/Contact'
+import ModernSpinner from '@/components/ui/ModernSpinner'
 
 export default function KontaktPage() {
   const [content, setContent] = useState<ContentData | null>(null)

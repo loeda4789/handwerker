@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from 'react'
 import Image from 'next/image'
-import ModernSpinner from './ModernSpinner'
+import ModernSpinner from '../ui/ModernSpinner'
 
 interface ImageWithFallbackProps {
   src: string

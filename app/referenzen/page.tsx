@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react'
 import { getContentDataByBranche } from '@/lib/config'
 import { ContentData } from '@/types/content'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 import Image from 'next/image'
-import ModernSpinner from '@/components/ModernSpinner'
+import ModernSpinner from '@/components/ui/ModernSpinner'
 
 export default function ReferenzenPage() {
   const [content, setContent] = useState<ContentData | null>(null)

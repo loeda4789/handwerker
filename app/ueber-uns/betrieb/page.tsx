@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react'
 import { getContentDataByBranche } from '@/lib/config'
 import { ContentData } from '@/types/content'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import About from '@/components/About'
-import Stats from '@/components/Stats'
-import ModernSpinner from '@/components/ModernSpinner'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import About from '@/components/content/About'
+import Stats from '@/components/content/Stats'
+import ModernSpinner from '@/components/ui/ModernSpinner'
 
 export default function BetriebPage() {
   const [content, setContent] = useState<ContentData | null>(null)

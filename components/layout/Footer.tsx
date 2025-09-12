@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { ContentData } from '@/types/content'
-import LocationMap from './LocationMap'
+import LocationMap from '../ui/LocationMap'
 
 interface FooterProps {
   content: ContentData

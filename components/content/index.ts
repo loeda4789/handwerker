@@ -1,0 +1,9 @@
+// Content-Komponenten
+export { default as About } from './About'
+export { default as Services } from './Services'
+export { default as Portfolio } from './Portfolio'
+export { default as Team } from './Team'
+export { default as Testimonials } from './Testimonials'
+export { default as Stats } from './Stats'
+export { default as FAQ } from './FAQ'
+export { default as ProjectProcess } from './ProjectProcess'
