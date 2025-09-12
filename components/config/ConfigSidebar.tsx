@@ -534,6 +534,21 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             )}
           </div>
 
+          {/* Anwenden Button */}
+          <div className="p-6 border-t border-gray-200 bg-gray-50">
+            <button
+              onClick={onClose}
+              className="w-full py-3 px-6 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              style={{ borderRadius: 'var(--radius-button)' }}
+            >
+              <MdCheck className="w-5 h-5" />
+              Anwenden & Vorschau starten
+            </button>
+            <p className="text-xs text-gray-500 text-center mt-2">
+              Ihre Änderungen werden sofort angewendet
+            </p>
+          </div>
+
         </div>
       </div>
     </>

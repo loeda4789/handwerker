@@ -25,6 +25,7 @@ export interface AppConfig {
       showLogo: boolean
       showCta: boolean
       showMobileMenu: boolean
+      mobileType: 'fullscreen' | 'sidebar' | 'dropdown'
     }
   }
   hero: {
@@ -73,7 +74,8 @@ export const DEFAULT_CONFIG: AppConfig = {
     navigation: {
       showLogo: true,
       showCta: true,
-      showMobileMenu: true
+      showMobileMenu: true,
+      mobileType: 'fullscreen'
     }
   },
   hero: {
