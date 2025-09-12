@@ -117,15 +117,6 @@ function MobileSideNavigation({
     }
   }, [isOpen])
 
-  // Helper function to generate initials from company name
-  const getCompanyInitials = (companyName: string): string => {
-    return companyName
-      .split(' ')
-      .map(word => word.charAt(0))
-      .join('')
-      .toUpperCase()
-      .slice(0, 2)
-  }
 
   if (siteMode !== 'onepage' || !isOpen) return null
 
@@ -153,18 +144,7 @@ function MobileSideNavigation({
         onTouchEnd={handleTouchEnd}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gray-50">
-          <div className="flex items-center space-x-3">
-            <div 
-              className="w-10 h-10 bg-gray-900 text-white flex items-center justify-center logo-font text-lg font-bold"
-              style={{ borderRadius: 'var(--radius-button)' }}
-            >
-              {getCompanyInitials(content.company.name)}
-            </div>
-            <span className="text-lg font-semibold text-gray-900 logo-font uppercase">
-              {content.company.name}
-            </span>
-          </div>
+        <div className="flex items-center justify-end p-6 border-b border-gray-200 bg-gray-50">
           <button
             ref={firstFocusableRef}
             onClick={onClose}

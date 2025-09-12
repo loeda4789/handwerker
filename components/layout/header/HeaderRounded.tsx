@@ -155,20 +155,20 @@ export default function HeaderRounded({ content }: HeaderRoundedProps) {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden w-14 h-14 flex items-center justify-center text-white hover:bg-white/10 rounded-xl transition-all duration-300"
+            className="md:hidden w-16 h-16 flex items-center justify-center text-white hover:bg-white/20 rounded-xl transition-all duration-300 border-2 border-white/30 shadow-lg backdrop-blur-sm"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label="Menü"
           >
-            <div className="relative w-7 h-6 flex flex-col justify-center">
-              <span className={`absolute block h-1 bg-current rounded-full transition-all duration-300 ${
+            <div className="relative w-8 h-7 flex flex-col justify-center">
+              <span className={`absolute block h-1.5 bg-current rounded-full transition-all duration-300 ${
                 isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'
               }`}></span>
-              <span className={`absolute block h-1 bg-current rounded-full transition-all duration-300 ${
+              <span className={`absolute block h-1.5 bg-current rounded-full transition-all duration-300 ${
                 isMenuOpen ? 'opacity-0' : 'opacity-100'
               }`}></span>
-              <span className={`absolute block h-1 bg-current rounded-full transition-all duration-300 ${
+              <span className={`absolute block h-1.5 bg-current rounded-full transition-all duration-300 ${
                 isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-2'
               }`}></span>
             </div>
