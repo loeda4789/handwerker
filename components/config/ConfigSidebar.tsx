@@ -138,7 +138,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       features: ['One-Page Layout', 'Basis-Features', 'Mobile optimiert'],
       icon: MdBusiness,
       color: 'bg-gray-50 border-gray-200',
-      selected: siteMode === 'onepage'
+      selected: siteMode === 'onepage' && !features.sideContact
     },
     {
       id: 'professional',
@@ -149,7 +149,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       features: ['One-Page Layout', 'Leistungssektor', 'Alle Features'],
       icon: MdTrendingUp,
       color: 'bg-gray-50 border-gray-200', // Einheitliche Farbe wie Starter
-      selected: false // Wird nicht mehr automatisch ausgewählt
+      selected: siteMode === 'onepage' && features.sideContact
     },
     {
       id: 'premium',
@@ -255,11 +255,13 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   key={variant.id}
                   onClick={() => {
                     if (variant.id === 'starter') {
-                      // Starter: One-Page
+                      // Starter: One-Page ohne SideContact
                       setSiteMode('onepage')
+                      if (features.sideContact) toggleFeature('sideContact', false)
                     } else if (variant.id === 'professional') {
-                      // Professionell: One-Page (Features werden separat gesteuert)
+                      // Professionell: One-Page mit SideContact
                       setSiteMode('onepage')
+                      if (!features.sideContact) toggleFeature('sideContact', true)
                     } else if (variant.id === 'premium') {
                       // Premium: Multi-Page
                       setSiteMode('multipage')
