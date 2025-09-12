@@ -35,9 +35,9 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     href: siteMode === 'multipage' ? null : '#leistungen',
     label: 'Leistungen',
     id: 'leistungen',
-    hasDropdown: siteMode === 'multipage' || packageType === 'professional', // Multi-Page (Premium) ODER Professional haben Dropdown
+    hasDropdown: siteMode === 'multipage', // Nur Multi-Page (Premium) hat Dropdown, Professional nicht
     isClickable: true, // Immer klickbar (One-Page: Scroll, Multi-Page: Link)
-    dropdownItems: (siteMode === 'multipage' || packageType === 'professional') ? content.services
+    dropdownItems: siteMode === 'multipage' ? content.services
       .filter((service: any) => service.slug)
       .map((service: any) => ({
         href: addUrlParamsToHref(`/services/${service.slug}`),
