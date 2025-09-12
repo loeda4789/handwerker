@@ -623,7 +623,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               style={{ borderRadius: 'var(--radius-button)' }}
             >
               <MdCheck className="w-5 h-5" />
-              Anwenden & Vorschau starten
+              Anwenden
             </button>
             
             {/* Speichern & Kaufen Buttons */}
