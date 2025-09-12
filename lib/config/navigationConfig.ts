@@ -31,20 +31,25 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
       { href: addUrlParamsToHref('/ueber-uns/zertifikate'), label: 'Zertifikate & Auszeichnungen' }
     ] : undefined
   }),
-  'leistungen': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: siteMode === 'multipage' ? null : '#leistungen',
-    label: 'Leistungen',
-    id: 'leistungen',
-    hasDropdown: siteMode === 'multipage', // Nur Multi-Page (Premium) hat Dropdown, Professional nicht
-    isClickable: true, // Immer klickbar (One-Page: Scroll, Multi-Page: Link)
-    dropdownItems: siteMode === 'multipage' ? content.services
-      .filter((service: any) => service.slug)
-      .map((service: any) => ({
-        href: addUrlParamsToHref(`/services/${service.slug}`),
-        label: service.title,
-        icon: service.icon
-      })) : undefined
-  }),
+  'leistungen': (content, addUrlParamsToHref, siteMode, packageType) => {
+    // Debug-Log für Navigation
+    console.log('🔍 Navigation Debug - siteMode:', siteMode, 'packageType:', packageType)
+    
+    return {
+      href: siteMode === 'multipage' ? null : '#leistungen',
+      label: 'Leistungen',
+      id: 'leistungen',
+      hasDropdown: siteMode === 'multipage', // Nur Multi-Page (Premium) hat Dropdown, Professional nicht
+      isClickable: true, // Immer klickbar (One-Page: Scroll, Multi-Page: Link)
+      dropdownItems: siteMode === 'multipage' ? content.services
+        .filter((service: any) => service.slug)
+        .map((service: any) => ({
+          href: addUrlParamsToHref(`/services/${service.slug}`),
+          label: service.title,
+          icon: service.icon
+        })) : undefined
+    }
+  },
   'projektablauf': (content, addUrlParamsToHref, siteMode, packageType) => ({
     href: siteMode === 'multipage' ? addUrlParamsToHref('#projektablauf') : '#projektablauf',
     label: 'Projektablauf',
