@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useLayoutConfig, useFeaturesConfig, useHeroConfig } from '@/contexts/AppConfigContext';
+import { useLayoutConfig, useFeaturesConfig, useHeroConfig, useSiteVariant } from '@/contexts/AppConfigContext';
 import { ContentData } from '@/types/content';
 import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationConfig';
 import HeaderLogo from './HeaderLogo';
@@ -26,16 +26,15 @@ export default function HeaderModern({ content }: HeaderModernProps) {
   // Context hooks
   const { mode: siteMode } = useLayoutConfig();
   const { features } = useFeaturesConfig();
-  const hasSideContact = features.sideContact;
-  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter';
+  const { siteVariant } = useSiteVariant();
   const { type: heroType } = useHeroConfig();
   
   // Text-Formatierung basierend auf Variante
-  const isStarter = packageType === 'starter';
+  const isStarter = siteVariant === 'starter';
   const navTextClass = isStarter ? 'uppercase' : 'normal-case';
 
   // Navigation Items
-  const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, packageType);
+  const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, siteVariant);
 
   // Funktion um zu prüfen ob ein Link aktiv ist
   const isActive = (href: string) => {

@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { ContentData } from '@/types/content'
 import { useState, useEffect } from 'react'
 import { MdVerified, MdAccessTime, MdSupportAgent } from 'react-icons/md'
-import { useHeroConfig, useLayoutConfig, useFeaturesConfig } from '@/contexts/AppConfigContext'
+import { useHeroConfig, useLayoutConfig, useFeaturesConfig, useSiteVariant } from '@/contexts/AppConfigContext'
 
 interface HeroProps {
   content: ContentData
@@ -79,11 +79,10 @@ function HeroSingle({ content }: HeroProps) {
   // Site-Variante ermitteln für Text-Formatierung
   const { mode: siteMode } = useLayoutConfig()
   const { features } = useFeaturesConfig()
-  const hasSideContact = features.sideContact
-  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter'
+  const { siteVariant } = useSiteVariant()
   
   // Text-Formatierung basierend auf Variante
-  const isStarter = packageType === 'starter'
+  const isStarter = siteVariant === 'starter'
   const titleClass = isStarter ? 'uppercase' : 'normal-case'
   const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
   
@@ -240,11 +239,10 @@ function HeroSlider({ content }: HeroProps) {
   // Site-Variante ermitteln für Text-Formatierung
   const { mode: siteMode } = useLayoutConfig()
   const { features } = useFeaturesConfig()
-  const hasSideContact = features.sideContact
-  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter'
+  const { siteVariant } = useSiteVariant()
   
   // Text-Formatierung basierend auf Variante
-  const isStarter = packageType === 'starter'
+  const isStarter = siteVariant === 'starter'
   const titleClass = isStarter ? 'uppercase' : 'normal-case'
   const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
   
@@ -383,11 +381,10 @@ function HeroVideo({ content }: HeroProps) {
   // Site-Variante ermitteln für Text-Formatierung
   const { mode: siteMode } = useLayoutConfig()
   const { features } = useFeaturesConfig()
-  const hasSideContact = features.sideContact
-  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter'
+  const { siteVariant } = useSiteVariant()
   
   // Text-Formatierung basierend auf Variante
-  const isStarter = packageType === 'starter'
+  const isStarter = siteVariant === 'starter'
   const titleClass = isStarter ? 'uppercase' : 'normal-case'
   const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
 
@@ -499,11 +496,10 @@ function HeroSplit({ content }: HeroProps) {
   // Site-Variante ermitteln für Text-Formatierung
   const { mode: siteMode } = useLayoutConfig()
   const { features } = useFeaturesConfig()
-  const hasSideContact = features.sideContact
-  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter'
+  const { siteVariant } = useSiteVariant()
   
   // Text-Formatierung basierend auf Variante
-  const isStarter = packageType === 'starter'
+  const isStarter = siteVariant === 'starter'
   const titleClass = isStarter ? 'uppercase' : 'normal-case'
   const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
 

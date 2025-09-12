@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useLayoutConfig, useFeaturesConfig, useHeroConfig } from '@/contexts/AppConfigContext';
+import { useLayoutConfig, useFeaturesConfig, useHeroConfig, useSiteVariant } from '@/contexts/AppConfigContext';
 import { ContentData } from '@/types/content';
 import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationConfig';
 import { getHeaderStyles, getDropdownStyles } from '@/lib/config/headerStyles';
@@ -29,16 +29,15 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
   // Context hooks
   const { mode: siteMode, design: designStyle } = useLayoutConfig();
   const { features } = useFeaturesConfig();
-  const hasSideContact = features.sideContact;
-  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter';
+  const { siteVariant } = useSiteVariant();
   const { type: heroType } = useHeroConfig();
   
   // Text-Formatierung basierend auf Variante
-  const isStarter = packageType === 'starter';
+  const isStarter = siteVariant === 'starter';
   const navTextClass = isStarter ? 'uppercase' : 'normal-case';
 
   // Navigation Items
-  const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, packageType);
+  const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, siteVariant);
 
   // Header-Stile basierend auf Design-Stil
   const headerStyles = getHeaderStyles(designStyle, isScrolled, headerVisible);

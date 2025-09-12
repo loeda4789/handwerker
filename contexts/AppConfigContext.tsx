@@ -20,10 +20,7 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
   const [isConfigLoaded, setIsConfigLoaded] = useState(false)
   
   // Site-Variante basierend auf aktueller Konfiguration berechnen
-  const siteVariant = getSiteVariant(
-    config.layout.mode,
-    config.features.sideContact
-  )
+  const siteVariant = getSiteVariant(config.layout.mode)
 
   useEffect(() => {
     // Initiale Konfiguration laden

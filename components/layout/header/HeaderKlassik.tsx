@@ -37,20 +37,17 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
   // Context hooks
   const { mode: siteMode, design: designStyle } = useLayoutConfig();
   const { features } = useFeaturesConfig();
-  const hasSideContact = features.sideContact;
-  
-  // Bestimme packageType basierend auf siteMode und hasSideContact
-  const packageType = siteMode === 'multipage' ? 'premium' : hasSideContact ? 'professional' : 'starter';
+  const { siteVariant } = useSiteVariant();
   const { type: heroType } = useHeroConfig();
   const { style: headingStyle } = useHeadingsConfig();
   const { package: stylePackage } = useStyleConfig();
   
   // Text-Formatierung basierend auf Variante
-  const isStarter = packageType === 'starter';
+  const isStarter = siteVariant === 'starter';
   const navTextClass = isStarter ? 'uppercase' : 'normal-case';
 
   // Navigation Items basierend auf Variante
-  const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, packageType);
+  const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, siteVariant);
 
   // Header-Stile basierend auf Design-Stil
   const headerStyles = getHeaderStyles(designStyle, isScrolled, headerVisible);
@@ -392,7 +389,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                   {/* CTA Button */}
                   <div className="border-t border-gray-100 dark:border-gray-800 pt-20 pb-16">
                     <button
-                      className={`block w-full py-4 px-6 text-center bg-primary text-white text-xl font-bold rounded-xl hover:bg-primary/90 transition-colors ${packageType === 'starter' ? 'uppercase' : 'normal-case'} flex items-center justify-center gap-2 button-shine`}
+                      className={`block w-full py-4 px-6 text-center bg-primary text-white text-xl font-bold rounded-xl hover:bg-primary/90 transition-colors ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'} flex items-center justify-center gap-2 button-shine`}
                       onClick={(e) => {
                         handleSmoothScroll(e, 'kontakt');
                         closeMenu();
