@@ -3,12 +3,14 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { AppConfig } from '@/lib/config/types'
 import { configManager } from '@/lib/config/ConfigManager'
+import { getSiteVariant } from '@/lib/config/siteVariants'
 
 interface AppConfigContextType {
   config: AppConfig
   updateConfig: (updates: Partial<AppConfig>) => void
   resetConfig: () => void
   isConfigLoaded: boolean
+  siteVariant: 'starter' | 'professional' | 'premium'
 }
 
 const AppConfigContext = createContext<AppConfigContextType | undefined>(undefined)
@@ -16,6 +18,12 @@ const AppConfigContext = createContext<AppConfigContextType | undefined>(undefin
 export function AppConfigProvider({ children }: { children: React.ReactNode }) {
   const [config, setConfig] = useState<AppConfig>(configManager.getConfig())
   const [isConfigLoaded, setIsConfigLoaded] = useState(false)
+  
+  // Site-Variante basierend auf aktueller Konfiguration berechnen
+  const siteVariant = getSiteVariant(
+    config.layout.mode,
+    config.features.sideContact
+  )
 
   useEffect(() => {
     // Initiale Konfiguration laden
@@ -76,7 +84,8 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
       config,
       updateConfig,
       resetConfig,
-      isConfigLoaded
+      isConfigLoaded,
+      siteVariant
     }}>
       {children}
     </AppConfigContext.Provider>
@@ -197,4 +206,9 @@ export function useSystemConfig() {
     setActiveTab: (activeTab: 'layout' | 'design' | 'color' | 'features') => 
       updateConfig({ system: { ...config.system, activeTab } })
   }
+}
+
+export function useSiteVariant() {
+  const { siteVariant } = useAppConfig()
+  return { siteVariant }
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { NavigationItem } from '@/lib/config/navigationConfig'
 import { ContentData } from '@/types/content'
+import { useSiteVariant } from '@/contexts/AppConfigContext'
 
 interface MobileHeaderProps {
   navItems: NavigationItem[]
@@ -18,6 +19,7 @@ export default function MobileHeader({
   onSmoothScroll, 
   onClose 
 }: MobileHeaderProps) {
+  const { siteVariant } = useSiteVariant()
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null)
 
   const toggleMobileDropdown = (itemId: string) => {
@@ -137,7 +139,7 @@ export default function MobileHeader({
           <Link
             href="#kontakt"
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
-            className="block w-full py-4 px-8 text-white font-bold text-lg uppercase rounded-lg transition-colors duration-300 text-center"
+            className={`block w-full py-4 px-8 text-white font-bold text-lg ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'} rounded-lg transition-colors duration-300 text-center`}
             style={{ 
               backgroundColor: 'var(--color-secondary)',
               borderRadius: 'var(--radius-button)'

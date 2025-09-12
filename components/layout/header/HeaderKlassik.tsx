@@ -8,6 +8,7 @@ import { useLayoutConfig } from '@/contexts/AppConfigContext';
 import { useThemeConfig } from '@/contexts/AppConfigContext';
 import { useFeaturesConfig } from '@/contexts/AppConfigContext';
 import { useHeroConfig } from '@/contexts/AppConfigContext';
+import { useSiteVariant } from '@/contexts/AppConfigContext';
 import { useHeadingsConfig } from '@/contexts/AppConfigContext';
 import { useStyleConfig } from '@/contexts/AppConfigContext';
 import { ContentData } from '@/types/content';
@@ -391,7 +392,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
                   {/* CTA Button */}
                   <div className="border-t border-gray-100 dark:border-gray-800 pt-20 pb-16">
                     <button
-                      className="block w-full py-4 px-6 text-center bg-primary text-white text-xl font-bold rounded-xl hover:bg-primary/90 transition-colors uppercase flex items-center justify-center gap-2 button-shine"
+                      className={`block w-full py-4 px-6 text-center bg-primary text-white text-xl font-bold rounded-xl hover:bg-primary/90 transition-colors ${packageType === 'starter' ? 'uppercase' : 'normal-case'} flex items-center justify-center gap-2 button-shine`}
                       onClick={(e) => {
                         handleSmoothScroll(e, 'kontakt');
                         closeMenu();

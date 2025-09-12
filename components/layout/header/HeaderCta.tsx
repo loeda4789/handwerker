@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useSiteVariant } from '@/contexts/AppConfigContext'
 
 interface HeaderCtaProps {
   ctaStyle: string
@@ -13,11 +14,16 @@ export default function HeaderCta({
   ctaHoverStyle, 
   onClick 
 }: HeaderCtaProps) {
+  const { siteVariant } = useSiteVariant()
+  
+  // Nur in der Starter-Variante Großschrift verwenden
+  const textTransform = siteVariant === 'starter' ? 'uppercase' : 'normal-case'
+  
   return (
     <Link
       href="#kontakt"
       onClick={onClick}
-      className={`px-6 py-2 uppercase ${ctaStyle}`}
+      className={`px-6 py-2 ${textTransform} ${ctaStyle}`}
       style={{ 
         borderRadius: 'var(--radius-button)',
         ...ctaStyleDynamic
