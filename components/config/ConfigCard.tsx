@@ -29,7 +29,7 @@ export default function ConfigCard() {
   return (
     <>
       {/* Mobile Card Button */}
-      <div className="lg:hidden fixed bottom-4 left-4 right-4 z-40">
+      <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50">
         <button
           onClick={() => setIsOpen(true)}
           className="w-full bg-white shadow-lg border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 config-card-button"
@@ -56,7 +56,7 @@ export default function ConfigCard() {
       </div>
 
       {/* Desktop Floating Button */}
-      <div className="hidden lg:block fixed bottom-6 right-6 z-40">
+      <div className="hidden lg:block fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(true)}
           className="group bg-white shadow-lg border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 config-card-button"

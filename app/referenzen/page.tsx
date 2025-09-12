@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../hooks/usePageContent'
 import PageLayout from '../components/layout/PageLayout'
+import ConfigCard from '@/components/config/ConfigCard'
 import Image from 'next/image'
 
 export default function ReferenzenPage() {
@@ -122,6 +123,9 @@ export default function ReferenzenPage() {
           </div>
         </div>
       </section>
+      
+      {/* ConfigCard - Website Designer Button */}
+      <ConfigCard />
     </PageLayout>
   )
 }

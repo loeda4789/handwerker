@@ -5,6 +5,7 @@ import { usePageContent } from '../hooks/usePageContent'
 import { useDesignStyle } from '../hooks/useDesignStyle'
 import PageLayout from '../components/layout/PageLayout'
 import Services from '@/components/content/Services'
+import ConfigCard from '@/components/config/ConfigCard'
 import Link from 'next/link'
 
 export default function ServicesPage() {
@@ -82,6 +83,9 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      
+      {/* ConfigCard - Website Designer Button */}
+      <ConfigCard />
     </PageLayout>
   )
 }

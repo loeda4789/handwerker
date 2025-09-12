@@ -4,6 +4,7 @@ import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../hooks/usePageContent'
 import PageLayout from '../components/layout/PageLayout'
 import Contact from '@/components/forms/Contact'
+import ConfigCard from '@/components/config/ConfigCard'
 
 export default function KontaktPage() {
   const { content, loading, error } = usePageContent()
@@ -182,6 +183,9 @@ export default function KontaktPage() {
           </div>
         </div>
       </section>
+      
+      {/* ConfigCard - Website Designer Button */}
+      <ConfigCard />
     </PageLayout>
   )
 }

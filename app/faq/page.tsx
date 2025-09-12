@@ -6,6 +6,7 @@ import { usePageContent } from '../hooks/usePageContent'
 import { useDesignStyle } from '../hooks/useDesignStyle'
 import PageLayout from '../components/layout/PageLayout'
 import SectionHeading from '@/components/layout/SectionHeading'
+import ConfigCard from '@/components/config/ConfigCard'
 
 export default function FAQPage() {
   const { content, loading, error } = usePageContent()
@@ -278,6 +279,9 @@ export default function FAQPage() {
           </div>
         </div>
       </section>
+      
+      {/* ConfigCard - Website Designer Button */}
+      <ConfigCard />
     </PageLayout>
   )
 }
