@@ -21,9 +21,6 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
   
   // Site-Variante aus expliziter Konfiguration
   const siteVariant = getSiteVariant(config.layout.mode, config.layout.variant)
-  
-  // Debug-Log für Varianten-Erkennung
-  console.log('🔍 AppConfig Debug - mode:', config.layout.mode, 'variant:', config.layout.variant, 'siteVariant:', siteVariant)
 
   useEffect(() => {
     // Initiale Konfiguration laden
@@ -113,10 +110,8 @@ export function useLayoutConfig() {
       updateConfig({ layout: { ...config.layout, mode } }),
     setDesign: (design: 'angular' | 'rounded' | 'modern') => 
       updateConfig({ layout: { ...config.layout, design } }),
-    setVariant: (variant: 'starter' | 'professional' | 'premium') => {
-      console.log('🔍 setVariant called with:', variant)
+    setVariant: (variant: 'starter' | 'professional' | 'premium') => 
       updateConfig({ layout: { ...config.layout, variant } })
-    }
   }
 }
 
