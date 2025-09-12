@@ -16,6 +16,7 @@ import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationC
 import { getHeaderStyles } from '@/lib/config/headerStyles';
 import HeaderLogo from './HeaderLogo';
 import HeaderCta from './HeaderCta';
+import MobileHeader from './MobileHeader';
 
 interface HeaderKlassikProps {
   content: ContentData;
@@ -57,47 +58,40 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
     return pathname === href || pathname.startsWith(href + '/');
   };
 
-  // Scroll-Handler mit Auto-Hide für Klassik
+  // Scroll-Handler mit Auto-Hide für Klassik (optimiert)
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let ticking = false;
     
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrolled = currentScrollY > 50;
-      setIsScrolled(scrolled);
-      
-      // Debug logging
-      console.log('Scroll:', { currentScrollY, lastScrollY, headerVisible });
-      
-      // Auto-Hide Logic: 
-      // - Immer anzeigen wenn ganz oben (currentScrollY = 0)
-      // - Anzeigen beim Hochscrollen (currentScrollY < lastScrollY)
-      // - Verstecken beim Runter scrollen (currentScrollY > lastScrollY && currentScrollY > 50)
-      if (currentScrollY === 0) {
-        setHeaderVisible(true);
-      } else if (currentScrollY < lastScrollY) {
-        setHeaderVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setHeaderVisible(false);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const scrolled = currentScrollY > 50;
+          setIsScrolled(scrolled);
+          
+          // Auto-Hide Logic: 
+          // - Immer anzeigen wenn ganz oben (currentScrollY = 0)
+          // - Anzeigen beim Hochscrollen (currentScrollY < lastScrollY)
+          // - Verstecken beim Runter scrollen (currentScrollY > lastScrollY && currentScrollY > 50)
+          if (currentScrollY === 0) {
+            setHeaderVisible(true);
+          } else if (currentScrollY < lastScrollY) {
+            setHeaderVisible(true);
+          } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+            setHeaderVisible(false);
+          }
+          
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
       }
-      // Wenn currentScrollY > lastScrollY aber currentScrollY <= 50, dann Header sichtbar lassen
-      
-      // Debug: Logge die Entscheidung
-      console.log('Header Decision:', {
-        currentScrollY,
-        lastScrollY,
-        isAtTop: currentScrollY === 0,
-        isScrollingUp: currentScrollY < lastScrollY,
-        shouldHide: currentScrollY > lastScrollY && currentScrollY > 50,
-        headerVisible: currentScrollY === 0 || currentScrollY < lastScrollY || !(currentScrollY > lastScrollY && currentScrollY > 50)
-      });
-      
-      lastScrollY = currentScrollY;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [headerVisible]);
+  }, []);
 
   // Verhindere Scrollen wenn Menü offen ist
   useEffect(() => {
@@ -120,19 +114,19 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
     };
   }, []);
 
-  const toggleMenu = () => {
+  const toggleMenu = useCallback(() => {
     setIsMenuOpen(!isMenuOpen);
     setOpenDropdown(null);
-  };
+  }, [isMenuOpen]);
 
-  const toggleDropdown = (name: string) => {
+  const toggleDropdown = useCallback((name: string) => {
     setOpenDropdown(openDropdown === name ? null : name);
-  };
+  }, [openDropdown]);
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
     setOpenDropdown(null);
-  };
+  }, []);
 
   // Desktop Dropdown-Kontrolle mit Verzögerung
   const handleDesktopMouseEnter = (dropdownName: string) => {
@@ -407,6 +401,16 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
           </div>
         </div>
       </div>
+
+      {/* Mobile Navigation - Verwendet neue MobileHeader-Komponente */}
+      <MobileHeader
+        isOpen={isMenuOpen}
+        navItems={navItems}
+        content={content}
+        siteMode={siteMode}
+        onSmoothScroll={handleSmoothScroll}
+        onClose={closeMenu}
+      />
     </header>
   );
 }

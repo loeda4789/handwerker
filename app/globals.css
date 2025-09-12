@@ -1255,3 +1255,10 @@ html {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+
+/* Z-Index Hierarchie für mobile Navigation */
+:root {
+  --z-mobile-overlay: 9999;
+  --z-mobile-panel: 10000;
+  --z-mobile-close: 10001;
+}
