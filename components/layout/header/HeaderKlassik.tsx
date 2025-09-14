@@ -192,14 +192,14 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
 
           {/* Optimierter Mobile Menu Button */}
           <button
-            className="md:hidden w-16 h-16 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl mobile-nav-animation border-2 border-gray-200 dark:border-gray-600 shadow-lg"
+            className="md:hidden w-20 h-20 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl mobile-nav-animation border-2 border-gray-200 dark:border-gray-600 shadow-lg"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label="Menü"
             style={{ willChange: 'transform' }}
           >
-            <div className="relative w-8 h-7 flex flex-col justify-center">
+            <div className="relative w-10 h-8 flex flex-col justify-center">
               <span className={`absolute block h-1.5 bg-gray-800 dark:bg-gray-200 rounded-full mobile-nav-animation hamburger-line hamburger-line-1 ${
                 isMenuOpen ? 'open' : ''
               }`} style={{ willChange: 'transform, opacity' }}></span>
@@ -310,10 +310,10 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
             >
               {/* Menu Header */}
               <div className="flex justify-between items-center p-8 border-b border-gray-100 dark:border-gray-800">
-                <span className="text-sm font-medium text-text dark:text-light uppercase">Menü</span>
+                <span className="text-lg font-medium text-text dark:text-light uppercase">Menü</span>
                 <button
                   onClick={closeMenu}
-                  className="w-12 h-12 flex items-center justify-center text-text-secondary dark:text-light/70 hover:text-text dark:hover:text-light hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300"
+                  className="w-14 h-14 flex items-center justify-center text-text-secondary dark:text-light/70 hover:text-text dark:hover:text-light hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300"
                 >
                   <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
