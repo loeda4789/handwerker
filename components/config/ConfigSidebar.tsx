@@ -28,6 +28,7 @@ import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import InfoTooltip from '@/components/ui/InfoTooltip'
 import InfoTooltipAdvanced from '@/components/ui/InfoTooltipAdvanced'
+import ExpandableInfo from '@/components/ui/ExpandableInfo'
 
 interface ConfigSidebarProps {
   isOpen: boolean
@@ -348,7 +349,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Hero-Typ
               </h3>
-              <InfoTooltip content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nCarousel: Mehrere Bilder im Wechsel" />
+              <InfoTooltipAdvanced 
+                content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nCarousel: Mehrere Bilder im Wechsel" 
+                variant="expandable"
+              />
             </div>
             <div className="grid grid-cols-2 gap-3">
               {heroTypes.map((type) => (
@@ -381,7 +385,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Mobile Navigation
               </h3>
-              <InfoTooltip content="Vollbild: Navigation übernimmt den gesamten Bildschirm\nSeitenleiste: Navigation schiebt sich von rechts ein\nDropdown: Navigation erscheint von oben als Dropdown" />
+              <ExpandableInfo content="Vollbild: Navigation übernimmt den gesamten Bildschirm\nSeitenleiste: Navigation schiebt sich von rechts ein\nDropdown: Navigation erscheint von oben als Dropdown" />
             </div>
             <div className="grid grid-cols-3 gap-3">
               {[

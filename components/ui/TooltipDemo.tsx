@@ -31,21 +31,21 @@ export default function TooltipDemo() {
 
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-            Aufklappbare Info (Expandable)
+            Aufklappbare Info mit Pfeil (Expandable)
             <InfoTooltipAdvanced 
-              content="Dies ist die aufklappbare Variante. Sie öffnet sich direkt unter dem Icon und bleibt geöffnet, bis Sie erneut klicken.\n\nVorteile:\n• Bleibt geöffnet\n• Mehr Platz für längere Texte\n• Bessere Lesbarkeit\n• Keine Z-Index-Probleme" 
+              content="Dies ist die aufklappbare Variante mit animiertem Pfeil. Der Pfeil dreht sich beim Öffnen und zeigt die Richtung an.\n\nVorteile:\n• Animierter Pfeil zeigt Zustand\n• Bleibt geöffnet\n• Mehr Platz für längere Texte\n• Bessere Lesbarkeit\n• Keine Z-Index-Probleme" 
               variant="expandable"
             />
           </h2>
-          <p className="text-gray-600">Klicken Sie auf das Info-Icon um die aufklappbare Info zu sehen.</p>
+          <p className="text-gray-600">Klicken Sie auf das Info-Icon um die aufklappbare Info zu sehen. Der Pfeil dreht sich beim Öffnen!</p>
         </div>
 
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-            Separate ExpandableInfo Komponente
-            <ExpandableInfo content="Dies ist die separate ExpandableInfo-Komponente. Sie funktioniert ähnlich wie die Advanced-Variante, ist aber eine eigenständige Komponente.\n\nFeatures:\n• Einfache Verwendung\n• Konsistente Darstellung\n• Responsive Design" />
+            Separate ExpandableInfo mit Pfeil
+            <ExpandableInfo content="Dies ist die separate ExpandableInfo-Komponente mit Pfeil-Animation. Sie funktioniert ähnlich wie die Advanced-Variante, ist aber eine eigenständige Komponente.\n\nFeatures:\n• Animierter Pfeil\n• Einfache Verwendung\n• Konsistente Darstellung\n• Responsive Design\n• Pfeil nach oben in der Info-Box" />
           </h2>
-          <p className="text-gray-600">Klicken Sie auf das Info-Icon um die Info zu sehen.</p>
+          <p className="text-gray-600">Klicken Sie auf das Info-Icon um die Info zu sehen. Beachten Sie den animierten Pfeil!</p>
         </div>
       </div>
 
