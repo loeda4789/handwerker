@@ -120,7 +120,7 @@ function HeroSingle({ content }: HeroProps) {
         />
       </Head>
 
-      <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
+      <section id="startseite" className="relative h-[95vh] lg:h-screen w-full overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 hidden md:block">
             <Image
@@ -148,23 +148,21 @@ function HeroSingle({ content }: HeroProps) {
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 -z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/30 -z-10"></div>
         </div>
         
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40"></div>
-        
-        <div className="relative z-10 h-full flex items-center justify-center text-center lg:justify-start lg:text-left px-4">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl lg:max-w-3xl">
+        <div className="relative z-10 h-full flex items-center justify-center text-center lg:justify-start lg:text-left px-6 md:px-8 lg:px-12">
+          <div className="container mx-auto px-6 md:px-8 lg:px-12">
+            <div className="max-w-3xl lg:max-w-4xl">
               <h1 
-                className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards] ${titleClass}`}
+                className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards] ${titleClass}`}
                 style={{ color: 'var(--color-heroText, #ffffff)' }}
               >
                 {formatHeroTitle(content.company.tagline)}
               </h1>
               
               <p 
-                className={`text-lg md:text-xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards] ${subtitleClass}`}
+                className={`text-xl md:text-2xl mb-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards] ${subtitleClass}`}
                 style={{ 
                   color: designStyle === 'modern' ? '#ffffff' : 'var(--color-heroTextSecondary, rgba(255,255,255,0.9))' 
                 }}
@@ -175,7 +173,7 @@ function HeroSingle({ content }: HeroProps) {
               <div className="opacity-0 animate-[fadeInUp_1s_ease-out_1s_forwards]">
                 <Link
                   href="#kontakt"
-                  className="inline-flex items-center justify-center px-6 py-3 text-base font-medium focus:ring-4 transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
+                  className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium focus:ring-4 transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 min-h-[56px]"
                   style={{ 
                     color: 'var(--color-background, #ffffff)', 
                     backgroundColor: 'var(--color-primary, #0ea5e9)',
@@ -277,7 +275,7 @@ function HeroSlider({ content }: HeroProps) {
         <link rel="preload" as="image" href={slides[0].mobile} media="(max-width: 767px)" />
       </Head>
 
-      <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden">
+      <section id="startseite" className="relative h-[95vh] lg:h-screen w-full overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -312,11 +310,11 @@ function HeroSlider({ content }: HeroProps) {
         
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40"></div>
         
-        <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
-          <div className="container mx-auto px-4">
+        <div className="relative z-10 h-full flex items-center justify-center text-center px-6 md:px-8 lg:px-12">
+          <div className="container mx-auto px-6 md:px-8 lg:px-12">
             <div className="max-w-3xl mx-auto">
               <h1 
-                className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight text-white ${titleClass}`}
+                className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight text-white ${titleClass}`}
                 key={`title-${currentSlide}`}
               >
                 {slides[currentSlide].title}
@@ -399,7 +397,7 @@ function HeroVideo({ content }: HeroProps) {
         <link rel="preload" as="image" href={content.hero.backgroundImages.mobile} media="(max-width: 767px)" />
       </Head>
 
-      <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden perspective-1000">
+      <section id="startseite" className="relative h-[95vh] lg:h-screen w-full overflow-hidden perspective-1000">
         <div 
           className={`absolute inset-0 transition-all duration-1000 transform-gpu ${
             isLoaded ? 'scale-100 rotate-0' : 'scale-110 rotate-y-12'
@@ -431,15 +429,15 @@ function HeroVideo({ content }: HeroProps) {
         
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70"></div>
         
-        <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
+        <div className="relative z-10 h-full flex items-center justify-center text-center px-6 md:px-8 lg:px-12">
           <div 
-            className={`container mx-auto px-4 transition-all duration-1000 delay-300 transform-gpu ${
+            className={`container mx-auto px-6 md:px-8 lg:px-12 transition-all duration-1000 delay-300 transform-gpu ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}
           >
             <div className="max-w-4xl mx-auto">
               <div className="transform-gpu hover:scale-105 transition-transform duration-300">
-                <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-white drop-shadow-2xl ${titleClass}`}>
+                <h1 className={`text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-white drop-shadow-2xl ${titleClass}`}>
                   {formatHeroTitle(content.company.tagline)}
                 </h1>
                 
@@ -504,13 +502,13 @@ function HeroSplit({ content }: HeroProps) {
   const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
 
   return (
-    <section id="startseite" className="relative h-[90vh] lg:h-screen w-full overflow-hidden bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+    <section id="startseite" className="relative h-[95vh] lg:h-screen w-full overflow-hidden bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-6 lg:px-8 h-full">
         <div className="flex h-full items-center">
           {/* Left Side - Content */}
           <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start">
             <div className="max-w-2xl">
-              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white ${titleClass}`}>
+              <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white ${titleClass}`}>
                 {formatHeroTitle(content.company.tagline)}
               </h1>
             
