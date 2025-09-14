@@ -175,7 +175,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const heroTypes = [
     { key: 'single', label: 'Single', icon: MdImage },
     { key: 'slider', label: 'Slider', icon: MdViewCarousel },
-    { key: 'video', label: 'Video', icon: MdCall },
+    // { key: 'video', label: 'Video', icon: MdCall }, // TEMPORÄR DEAKTIVIERT - siehe CONFIGURATION_DOCS.md
     { key: 'split', label: 'Split', icon: MdViewQuilt }
   ]
 
@@ -253,14 +253,16 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           
           {/* Varianten */}
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-5 h-5 bg-blue-100 flex items-center justify-center rounded-full">
-                <MdStar className="w-3 h-3 text-blue-600" />
+            <div className="mb-2">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-5 h-5 bg-blue-100 flex items-center justify-center rounded-full">
+                  <MdStar className="w-3 h-3 text-blue-600" />
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                  Varianten
+                </h3>
+                <CompactInfo content="Wählen Sie zwischen Starter (One-Page), Professional (One-Page mit erweiterten Features) oder Premium (Multi-Page mit allen Unterseiten)." />
               </div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Varianten
-              </h3>
-              <CompactInfo content="Wählen Sie zwischen Starter (One-Page), Professional (One-Page mit erweiterten Features) oder Premium (Multi-Page mit allen Unterseiten)." />
             </div>
             <div className="space-y-2">
               {bestellerVariants.map((variant) => (
@@ -343,14 +345,16 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
           {/* Hero-Typ */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-6 h-6 bg-green-100 flex items-center justify-center rounded-full">
-                <MdImage className="w-4 h-4 text-green-600" />
+            <div className="mb-2">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-6 h-6 bg-green-100 flex items-center justify-center rounded-full">
+                  <MdImage className="w-4 h-4 text-green-600" />
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                  Hero-Typ
+                </h3>
+                <CompactInfo content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nSlider: Mehrere Bilder im Wechsel" />
               </div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Hero-Typ
-              </h3>
-              <CompactInfo content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nCarousel: Mehrere Bilder im Wechsel" />
             </div>
             <div className="grid grid-cols-2 gap-3">
               {heroTypes.map((type) => (
@@ -376,14 +380,16 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
           {/* Mobile Navigation */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-6 h-6 bg-purple-100 flex items-center justify-center rounded-full">
-                <MdViewQuilt className="w-4 h-4 text-purple-600" />
+            <div className="mb-2">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-6 h-6 bg-purple-100 flex items-center justify-center rounded-full">
+                  <MdViewQuilt className="w-4 h-4 text-purple-600" />
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                  Mobile Navigation
+                </h3>
+                <CompactInfo content="Vollbild: Navigation übernimmt den gesamten Bildschirm\nSeitenleiste: Navigation schiebt sich von rechts ein\nDropdown: Navigation erscheint von oben als Dropdown" />
               </div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Mobile Navigation
-              </h3>
-              <CompactInfo content="Vollbild: Navigation übernimmt den gesamten Bildschirm\nSeitenleiste: Navigation schiebt sich von rechts ein\nDropdown: Navigation erscheint von oben als Dropdown" />
             </div>
             <div className="grid grid-cols-3 gap-3">
               {[
@@ -413,14 +419,16 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
           {/* Stil-Pakete */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-6 h-6 bg-orange-100 flex items-center justify-center rounded-full">
-                <MdBrush className="w-4 h-4 text-orange-600" />
+            <div className="mb-2">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-6 h-6 bg-orange-100 flex items-center justify-center rounded-full">
+                  <MdBrush className="w-4 h-4 text-orange-600" />
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                  Stil-Pakete
+                </h3>
+                <CompactInfo content="Wählen Sie ein vordefiniertes Design-Paket mit passenden Farben, Schriftarten und Stilelementen für Ihre Branche." />
               </div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Stil-Pakete
-              </h3>
-              <CompactInfo content="Wählen Sie ein vordefiniertes Design-Paket mit passenden Farben, Schriftarten und Stilelementen für Ihre Branche." />
             </div>
             <div className="grid grid-cols-2 gap-3">
               {STYLE_PACKAGES.map((pkg) => {
@@ -538,14 +546,16 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
           {/* Desktop Features - Nur auf Desktop */}
           <div className="hidden lg:block space-y-4">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-6 h-6 bg-indigo-100 flex items-center justify-center rounded-full">
-                <MdSettings className="w-4 h-4 text-indigo-600" />
+            <div className="mb-2">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-6 h-6 bg-indigo-100 flex items-center justify-center rounded-full">
+                  <MdSettings className="w-4 h-4 text-indigo-600" />
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                  Desktop Features
+                </h3>
+                <CompactInfo content="Features die nur auf Desktop-Geräten angezeigt werden:\n• Kontakt-Leiste: Feste Leiste am oberen Bildschirmrand\n• Seiten-Kontakt: Schwebender Kontakt-Button an der Seite" />
               </div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Desktop Features
-              </h3>
-              <CompactInfo content="Features die nur auf Desktop-Geräten angezeigt werden:\n• Kontakt-Leiste: Feste Leiste am oberen Bildschirmrand\n• Seiten-Kontakt: Schwebender Kontakt-Button an der Seite" />
             </div>
             <div className="space-y-3">
               {desktopFeatures.map((feature) => (
@@ -580,14 +590,16 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           {/* Mobile Features - Nur auf Mobile */}
           {mobileFeatures.length > 0 && (
             <div className="lg:hidden space-y-4">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 bg-blue-100 flex items-center justify-center rounded-full">
-                  <MdSettings className="w-4 h-4 text-blue-600" />
+              <div className="mb-2">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 bg-blue-100 flex items-center justify-center rounded-full">
+                    <MdSettings className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                    Mobile Features
+                  </h3>
+                  <CompactInfo content="Features die nur auf mobilen Geräten angezeigt werden. Hier können zukünftig mobile-spezifische Funktionen hinzugefügt werden." />
                 </div>
-                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Mobile Features
-                </h3>
-                <CompactInfo content="Features die nur auf mobilen Geräten angezeigt werden. Hier können zukünftig mobile-spezifische Funktionen hinzugefügt werden." />
               </div>
               <div className="space-y-3">
                 {mobileFeatures.map((feature) => (
