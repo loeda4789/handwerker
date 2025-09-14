@@ -249,14 +249,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-8">
+        <div className="flex-1 overflow-y-auto p-8 space-y-12">
           
           {/* Varianten */}
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div className="mb-2">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-5 h-5 bg-blue-100 flex items-center justify-center rounded-full">
-                  <MdStar className="w-3 h-3 text-blue-600" />
+                <div className="w-5 h-5 bg-gray-100 flex items-center justify-center rounded-full">
+                  <MdStar className="w-3 h-3 text-gray-600" />
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                   Varianten
@@ -264,7 +264,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <CompactInfo content="Wählen Sie zwischen Starter (One-Page), Professional (One-Page mit erweiterten Features) oder Premium (Multi-Page mit allen Unterseiten)." />
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {bestellerVariants.map((variant) => (
                 <button
                   key={variant.id}
@@ -341,14 +341,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
             {/* Aufklappbarer Inhalt */}
             {isAdvancedConfigOpen && (
-              <div className="space-y-6 animate-in slide-in-from-top duration-200">
+              <div className="space-y-8 animate-in slide-in-from-top duration-200">
 
           {/* Hero-Typ */}
           <div className="space-y-4">
             <div className="mb-2">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 bg-green-100 flex items-center justify-center rounded-full">
-                  <MdImage className="w-4 h-4 text-green-600" />
+                <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
+                  <MdImage className="w-4 h-4 text-gray-600" />
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                   Hero-Typ
@@ -383,8 +383,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           <div className="space-y-4">
             <div className="mb-2">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 bg-orange-100 flex items-center justify-center rounded-full">
-                  <MdBrush className="w-4 h-4 text-orange-600" />
+                <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
+                  <MdBrush className="w-4 h-4 text-gray-600" />
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                   Stil-Pakete
@@ -473,8 +473,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           {/* Farbschema */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-purple-100 flex items-center justify-center rounded-full">
-                <MdPalette className="w-4 h-4 text-purple-600" />
+              <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
+                <MdPalette className="w-4 h-4 text-gray-600" />
               </div>
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Farbschema
@@ -510,8 +510,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           <div className="hidden lg:block space-y-4">
             <div className="mb-2">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 bg-indigo-100 flex items-center justify-center rounded-full">
-                  <MdSettings className="w-4 h-4 text-indigo-600" />
+                <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
+                  <MdSettings className="w-4 h-4 text-gray-600" />
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                   Desktop Features
@@ -554,8 +554,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             <div className="lg:hidden space-y-4">
               <div className="mb-2">
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="w-6 h-6 bg-blue-100 flex items-center justify-center rounded-full">
-                    <MdSettings className="w-4 h-4 text-blue-600" />
+                  <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
+                    <MdSettings className="w-4 h-4 text-gray-600" />
                   </div>
                   <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                     Mobile Features
