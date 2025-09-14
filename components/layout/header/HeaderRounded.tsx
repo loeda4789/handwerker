@@ -155,21 +155,21 @@ export default function HeaderRounded({ content }: HeaderRoundedProps) {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden w-16 h-16 flex items-center justify-center text-white hover:bg-white/20 rounded-xl transition-all duration-300 border-2 border-white/30 shadow-lg backdrop-blur-sm"
+            className="md:hidden w-12 h-12 flex items-center justify-center text-white hover:bg-white/20 rounded-xl transition-all duration-300 border-2 border-white/30 shadow-lg backdrop-blur-sm"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label="Menü"
           >
-            <div className="relative w-8 h-7 flex flex-col justify-center">
-              <span className={`absolute block h-2 w-8 bg-white rounded-full transition-all duration-300 ${
-                isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'
+            <div className="relative w-6 h-6 flex flex-col justify-center">
+              <span className={`absolute block h-1.5 w-6 bg-white rounded-full transition-all duration-300 ${
+                isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'
               }`}></span>
-              <span className={`absolute block h-2 w-8 bg-white rounded-full transition-all duration-300 ${
+              <span className={`absolute block h-1.5 w-6 bg-white rounded-full transition-all duration-300 ${
                 isMenuOpen ? 'opacity-0' : 'opacity-100'
               }`}></span>
-              <span className={`absolute block h-2 w-8 bg-white rounded-full transition-all duration-300 ${
-                isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-2'
+              <span className={`absolute block h-1.5 w-6 bg-white rounded-full transition-all duration-300 ${
+                isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1.5'
               }`}></span>
             </div>
           </button>

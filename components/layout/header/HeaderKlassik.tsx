@@ -192,21 +192,21 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
 
           {/* Optimierter Mobile Menu Button */}
           <button
-            className="md:hidden w-16 h-16 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl mobile-nav-animation border-2 border-gray-200 dark:border-gray-600 shadow-lg"
+            className="md:hidden w-12 h-12 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl mobile-nav-animation border-2 border-gray-200 dark:border-gray-600 shadow-lg"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label="Menü"
             style={{ willChange: 'transform' }}
           >
-            <div className="relative w-8 h-7 flex flex-col justify-center">
-              <span className={`absolute block h-2 w-8 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-1 ${
+            <div className="relative w-6 h-6 flex flex-col justify-center">
+              <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-1 ${
                 isMenuOpen ? 'open' : ''
               }`} style={{ willChange: 'transform, opacity' }}></span>
-              <span className={`absolute block h-2 w-8 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-2 ${
+              <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-2 ${
                 isMenuOpen ? 'open' : ''
               }`} style={{ willChange: 'transform, opacity' }}></span>
-              <span className={`absolute block h-2 w-8 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-3 ${
+              <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-3 ${
                 isMenuOpen ? 'open' : ''
               }`} style={{ willChange: 'transform, opacity' }}></span>
             </div>

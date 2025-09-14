@@ -162,21 +162,21 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden w-16 h-16 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all duration-300 border-2 border-gray-200 dark:border-gray-600 shadow-lg"
+              className="md:hidden w-12 h-12 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all duration-300 border-2 border-gray-200 dark:border-gray-600 shadow-lg"
               onClick={toggleMenu}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label="Menü"
             >
-              <div className="relative w-8 h-7 flex flex-col justify-center">
-                <span className={`absolute block h-2 w-8 bg-gray-900 dark:bg-gray-100 rounded-full transition-all duration-300 ${
-                  isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'
+              <div className="relative w-6 h-6 flex flex-col justify-center">
+                <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full transition-all duration-300 ${
+                  isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'
                 }`}></span>
-                <span className={`absolute block h-2 w-8 bg-gray-900 dark:bg-gray-100 rounded-full transition-all duration-300 ${
+                <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full transition-all duration-300 ${
                   isMenuOpen ? 'opacity-0' : 'opacity-100'
                 }`}></span>
-                <span className={`absolute block h-2 w-8 bg-gray-900 dark:bg-gray-100 rounded-full transition-all duration-300 ${
-                  isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-2'
+                <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full transition-all duration-300 ${
+                  isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1.5'
                 }`}></span>
               </div>
             </button>
