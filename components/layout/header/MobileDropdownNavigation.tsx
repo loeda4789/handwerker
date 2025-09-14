@@ -101,7 +101,7 @@ function MobileDropdownNavigation({
       {/* Dropdown Menu */}
       <div 
         ref={menuRef}
-        className={`fixed top-16 left-4 right-4 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 transform transition-all duration-300 ease-out ${
+        className={`fixed top-16 left-4 right-4 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-[99999] transform transition-all duration-300 ease-out ${
           isVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-95'
         }`}
         style={{

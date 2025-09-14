@@ -1,12 +1,15 @@
 'use client'
 
 import { ContentData } from '@/types/content'
-import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
+import { useLayoutConfig, useStyleConfig, useFeaturesConfig, useSiteVariant } from '@/contexts/AppConfigContext'
 import { useHeroConfig } from '@/contexts/AppConfigContext'
 import HeaderKlassik from './header/HeaderKlassik'
 import HeaderRounded from './header/HeaderRounded'
 import HeaderModern from './header/HeaderModern'
 import HeaderStandard from './header/HeaderStandard'
+import MobileNavigationFactory from './header/MobileNavigationFactory'
+import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationConfig'
+import { useState } from 'react'
 
 interface HeaderProps {
   content: ContentData

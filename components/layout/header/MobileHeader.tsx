@@ -101,7 +101,7 @@ function MobileHeader({
 
   return (
     <div 
-      className="fixed inset-0 z-[var(--z-mobile-overlay)] lg:hidden"
+      className="fixed inset-0 z-[99999] lg:hidden"
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Navigation"
@@ -117,7 +117,7 @@ function MobileHeader({
       {/* Overlay Panel - Zentrierte schöne Navigation */}
       <div 
         ref={focusTrapRef}
-        className="absolute inset-0 bg-white shadow-2xl animate-in slide-in-from-bottom duration-500 overflow-y-auto z-[var(--z-mobile-panel)]"
+        className="absolute inset-0 bg-white shadow-2xl animate-in slide-in-from-bottom duration-500 overflow-y-auto z-[100000]"
         tabIndex={-1}
       >
         {/* Header */}

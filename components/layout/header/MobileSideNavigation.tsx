@@ -122,7 +122,7 @@ function MobileSideNavigation({
 
   return (
     <div 
-      className="fixed inset-0 z-[var(--z-mobile-overlay)] lg:hidden"
+      className="fixed inset-0 z-[99999] lg:hidden"
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Side Navigation"
