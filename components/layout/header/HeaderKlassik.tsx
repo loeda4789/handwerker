@@ -199,16 +199,16 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
             aria-label="Menü"
             style={{ willChange: 'transform' }}
           >
-            <div className="relative w-6 h-6 flex flex-col justify-center">
-              <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-1 ${
-                isMenuOpen ? 'open' : ''
-              }`} style={{ willChange: 'transform, opacity' }}></span>
-              <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-2 ${
-                isMenuOpen ? 'open' : ''
-              }`} style={{ willChange: 'transform, opacity' }}></span>
-              <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-3 ${
-                isMenuOpen ? 'open' : ''
-              }`} style={{ willChange: 'transform, opacity' }}></span>
+            <div className="relative w-6 h-6 flex flex-col justify-center space-y-1">
+              <span className={`block h-0.5 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
+                isMenuOpen ? 'rotate-45 translate-y-1.5' : ''
+              }`}></span>
+              <span className={`block h-0.5 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
+                isMenuOpen ? 'opacity-0' : ''
+              }`}></span>
+              <span className={`block h-0.5 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
+                isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
+              }`}></span>
             </div>
           </button>
 

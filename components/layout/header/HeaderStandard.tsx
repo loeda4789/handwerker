@@ -168,15 +168,15 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
               aria-controls="mobile-menu"
               aria-label="Menü"
             >
-              <div className="relative w-6 h-6 flex flex-col justify-center">
-                <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full transition-all duration-300 ${
-                  isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'
+              <div className="relative w-6 h-6 flex flex-col justify-center space-y-1">
+                <span className={`block h-0.5 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
+                  isMenuOpen ? 'rotate-45 translate-y-1.5' : ''
                 }`}></span>
-                <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full transition-all duration-300 ${
-                  isMenuOpen ? 'opacity-0' : 'opacity-100'
+                <span className={`block h-0.5 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
+                  isMenuOpen ? 'opacity-0' : ''
                 }`}></span>
-                <span className={`absolute block h-1.5 w-6 bg-gray-900 dark:bg-gray-100 rounded-full transition-all duration-300 ${
-                  isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1.5'
+                <span className={`block h-0.5 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
+                  isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
                 }`}></span>
               </div>
             </button>

@@ -136,18 +136,19 @@ function MobileHeader({
           </button>
         </div>
         
-        {/* Navigation Items - Zentriert und größer */}
+        {/* Navigation Items - Vollständig zentriert */}
         <div 
           id="mobile-nav-description" 
           className="sr-only"
         >
           Hauptnavigation mit allen verfügbaren Menüpunkten
         </div>
-        <nav 
-          className="flex-1 flex flex-col justify-center px-10 py-16 space-y-8 text-center"
-          role="navigation"
-          aria-label="Hauptnavigation"
-        >
+        <div className="flex-1 flex items-center justify-center min-h-0">
+          <nav 
+            className="w-full max-w-md px-10 py-16 space-y-8 text-center"
+            role="navigation"
+            aria-label="Hauptnavigation"
+          >
           {processedNavItems.map((item, index) => (
             <div 
               key={item.id}
@@ -207,15 +208,16 @@ function MobileHeader({
               )}
             </div>
           ))}
-        </nav>
+          </nav>
+        </div>
         
-        {/* CTA Button */}
-        <div className="px-8 pb-12 animate-in fade-in-up duration-500" style={{ animationDelay: '800ms', animationFillMode: 'both' }}>
+        {/* CTA Button - Zentriert */}
+        <div className="flex justify-center px-8 pb-12 animate-in fade-in-up duration-500" style={{ animationDelay: '800ms', animationFillMode: 'both' }}>
           <Link
             ref={lastFocusableRef}
             href="#kontakt"
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
-            className={`block w-full py-4 px-8 text-white font-bold text-lg ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'} rounded-lg transition-colors duration-300 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
+            className={`block w-full max-w-sm py-4 px-8 text-white font-bold text-lg ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'} rounded-lg transition-colors duration-300 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
             style={{ 
               backgroundColor: 'var(--color-secondary)',
               borderRadius: 'var(--radius-button)'
