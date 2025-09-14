@@ -32,6 +32,7 @@ import ExpandableInfo from '@/components/ui/ExpandableInfo'
 import InlineExplanation from '@/components/ui/InlineExplanation'
 import ExpandableSection from '@/components/ui/ExpandableSection'
 import SimpleInfo from '@/components/ui/SimpleInfo'
+import CompactInfo from '@/components/ui/CompactInfo'
 
 interface ConfigSidebarProps {
   isOpen: boolean
@@ -259,7 +260,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Varianten
               </h3>
-              <SimpleInfo content="Wählen Sie zwischen Starter (One-Page), Professional (One-Page mit erweiterten Features) oder Premium (Multi-Page mit allen Unterseiten)." />
+              <CompactInfo content="Wählen Sie zwischen Starter (One-Page), Professional (One-Page mit erweiterten Features) oder Premium (Multi-Page mit allen Unterseiten)." />
             </div>
             <div className="space-y-2">
               {bestellerVariants.map((variant) => (
@@ -349,7 +350,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Hero-Typ
               </h3>
-              <SimpleInfo content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nCarousel: Mehrere Bilder im Wechsel" />
+              <CompactInfo content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nCarousel: Mehrere Bilder im Wechsel" />
             </div>
             <div className="grid grid-cols-2 gap-3">
               {heroTypes.map((type) => (
@@ -382,7 +383,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Mobile Navigation
               </h3>
-              <SimpleInfo content="Vollbild: Navigation übernimmt den gesamten Bildschirm\nSeitenleiste: Navigation schiebt sich von rechts ein\nDropdown: Navigation erscheint von oben als Dropdown" />
+              <CompactInfo content="Vollbild: Navigation übernimmt den gesamten Bildschirm\nSeitenleiste: Navigation schiebt sich von rechts ein\nDropdown: Navigation erscheint von oben als Dropdown" />
             </div>
             <div className="grid grid-cols-3 gap-3">
               {[
@@ -419,7 +420,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Stil-Pakete
               </h3>
-              <SimpleInfo content="Wählen Sie ein vordefiniertes Design-Paket mit passenden Farben, Schriftarten und Stilelementen für Ihre Branche." />
+              <CompactInfo content="Wählen Sie ein vordefiniertes Design-Paket mit passenden Farben, Schriftarten und Stilelementen für Ihre Branche." />
             </div>
             <div className="grid grid-cols-2 gap-3">
               {STYLE_PACKAGES.map((pkg) => {
@@ -544,7 +545,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Desktop Features
               </h3>
-              <SimpleInfo content="Features die nur auf Desktop-Geräten angezeigt werden:\n• Kontakt-Leiste: Feste Leiste am oberen Bildschirmrand\n• Seiten-Kontakt: Schwebender Kontakt-Button an der Seite" />
+              <CompactInfo content="Features die nur auf Desktop-Geräten angezeigt werden:\n• Kontakt-Leiste: Feste Leiste am oberen Bildschirmrand\n• Seiten-Kontakt: Schwebender Kontakt-Button an der Seite" />
             </div>
             <div className="space-y-3">
               {desktopFeatures.map((feature) => (
@@ -586,7 +587,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                   Mobile Features
                 </h3>
-                <SimpleInfo content="Features die nur auf mobilen Geräten angezeigt werden. Hier können zukünftig mobile-spezifische Funktionen hinzugefügt werden." />
+                <CompactInfo content="Features die nur auf mobilen Geräten angezeigt werden. Hier können zukünftig mobile-spezifische Funktionen hinzugefügt werden." />
               </div>
               <div className="space-y-3">
                 {mobileFeatures.map((feature) => (
