@@ -26,6 +26,7 @@ import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHe
 import { STYLE_PACKAGES, applyStylePackage } from '@/lib/config/stylePackages'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
+import InfoTooltip from '@/components/ui/InfoTooltip'
 
 interface ConfigSidebarProps {
   isOpen: boolean
@@ -253,6 +254,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Varianten
               </h3>
+              <InfoTooltip content="Wählen Sie zwischen Starter (One-Page), Professional (One-Page mit erweiterten Features) oder Premium (Multi-Page mit allen Unterseiten)." />
             </div>
             <div className="space-y-2">
               {bestellerVariants.map((variant) => (
@@ -342,6 +344,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Hero-Typ
               </h3>
+              <InfoTooltip content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nCarousel: Mehrere Bilder im Wechsel" />
             </div>
             <div className="grid grid-cols-2 gap-3">
               {heroTypes.map((type) => (
@@ -374,6 +377,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Mobile Navigation
               </h3>
+              <InfoTooltip content="Vollbild: Navigation übernimmt den gesamten Bildschirm\nSeitenleiste: Navigation schiebt sich von rechts ein\nDropdown: Navigation erscheint von oben als Dropdown" />
             </div>
             <div className="grid grid-cols-3 gap-3">
               {[
@@ -410,6 +414,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Stil-Pakete
               </h3>
+              <InfoTooltip content="Wählen Sie ein vordefiniertes Design-Paket mit passenden Farben, Schriftarten und Stilelementen für Ihre Branche." />
             </div>
             <div className="grid grid-cols-2 gap-3">
               {STYLE_PACKAGES.map((pkg) => {
