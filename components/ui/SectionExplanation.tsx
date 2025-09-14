@@ -3,16 +3,16 @@
 import { useState } from 'react'
 import { MdInfoOutline, MdExpandMore } from 'react-icons/md'
 
-interface InlineExplanationProps {
+interface SectionExplanationProps {
   content: string
   className?: string
 }
 
-export default function InlineExplanation({ content, className = '' }: InlineExplanationProps) {
+export default function SectionExplanation({ content, className = '' }: SectionExplanationProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`${className}`}>
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="p-1 text-gray-400 hover:text-gray-600 transition-colors flex items-center gap-1"
@@ -25,7 +25,7 @@ export default function InlineExplanation({ content, className = '' }: InlineExp
       </button>
 
       {isExpanded && (
-        <div className="absolute top-full left-0 right-0 mt-2 p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600 shadow-sm z-10">
+        <div className="absolute left-0 right-0 mt-2 p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600 shadow-sm z-10">
           <div className="whitespace-pre-wrap leading-relaxed">
             {content}
           </div>

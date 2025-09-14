@@ -30,6 +30,7 @@ import InfoTooltip from '@/components/ui/InfoTooltip'
 import InfoTooltipAdvanced from '@/components/ui/InfoTooltipAdvanced'
 import ExpandableInfo from '@/components/ui/ExpandableInfo'
 import InlineExplanation from '@/components/ui/InlineExplanation'
+import ExpandableSection from '@/components/ui/ExpandableSection'
 
 interface ConfigSidebarProps {
   isOpen: boolean
