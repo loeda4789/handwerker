@@ -361,18 +361,18 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <button
                   key={type.key}
                   onClick={() => setHeroType(type.key as any)}
-                  className={`flex items-center gap-2 p-3 border-2 transition-all config-sidebar-button ${
+                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all config-sidebar-button ${
                     heroType === type.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <div className={`w-6 h-6 flex items-center justify-center rounded-full ${
+                  <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
                     heroType === type.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
                   }`}>
-                    <type.icon className="w-3 h-3" />
+                    <type.icon className="w-4 h-4" />
                   </div>
-                  <span className="text-sm font-medium text-gray-900">{type.label}</span>
+                  <span className="text-xs font-medium text-gray-900 text-center">{type.label}</span>
                 </button>
               ))}
             </div>
@@ -447,7 +447,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       applyHeadingStyles(updatedConfig)
                     }
                   }}
-                  className={`flex items-center gap-2 p-3 border-2 transition-all cursor-pointer config-sidebar-button ${
+                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all cursor-pointer config-sidebar-button ${
                     stylePackage === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                   onMouseDown={(e) => {
@@ -455,15 +455,15 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     e.stopPropagation()
                   }}
                 >
-                  <div className={`w-6 h-6 flex items-center justify-center rounded-full ${
+                  <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
                     stylePackage === pkg.id ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
                   }`}>
                     {(() => {
                       const IconComponent = getStylePackageIcon(pkg.id)
-                      return <IconComponent className="w-3 h-3" />
+                      return <IconComponent className="w-4 h-4" />
                     })()}
                   </div>
-                  <span className="text-sm font-medium text-gray-900">{pkg.name}</span>
+                  <span className="text-xs font-medium text-gray-900 text-center">{pkg.name}</span>
                 </button>
                 )
               })}
@@ -480,7 +480,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 Farbschema
               </h3>
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 gap-3">
               {colorSchemes.map((scheme) => (
                 <button
                   key={scheme.key}
