@@ -200,13 +200,13 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
             style={{ willChange: 'transform' }}
           >
             <div className="relative w-8 h-7 flex flex-col justify-center">
-              <span className={`absolute block h-1.5 bg-gray-800 dark:bg-gray-200 rounded-full mobile-nav-animation hamburger-line hamburger-line-1 ${
+              <span className={`absolute block h-2 w-8 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-1 ${
                 isMenuOpen ? 'open' : ''
               }`} style={{ willChange: 'transform, opacity' }}></span>
-              <span className={`absolute block h-1.5 bg-gray-800 dark:bg-gray-200 rounded-full mobile-nav-animation hamburger-line hamburger-line-2 ${
+              <span className={`absolute block h-2 w-8 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-2 ${
                 isMenuOpen ? 'open' : ''
               }`} style={{ willChange: 'transform, opacity' }}></span>
-              <span className={`absolute block h-1.5 bg-gray-800 dark:bg-gray-200 rounded-full mobile-nav-animation hamburger-line hamburger-line-3 ${
+              <span className={`absolute block h-2 w-8 bg-gray-900 dark:bg-gray-100 rounded-full mobile-nav-animation hamburger-line hamburger-line-3 ${
                 isMenuOpen ? 'open' : ''
               }`} style={{ willChange: 'transform, opacity' }}></span>
             </div>

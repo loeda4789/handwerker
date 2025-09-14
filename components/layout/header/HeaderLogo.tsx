@@ -19,7 +19,7 @@ export default function HeaderLogo({ logoStyle, companyName }: HeaderLogoProps) 
   return (
     <Link href="/" className="flex items-center">
       <div 
-        className={`w-10 h-10 ${logoStyle} border-2 border-current flex items-center justify-center logo-font text-lg`}
+        className={`w-16 h-16 ${logoStyle} border-2 border-current flex items-center justify-center logo-font text-xl`}
         style={{ borderRadius: 'var(--radius-button)' }}
       >
         {getCompanyInitials(companyName)}
