@@ -19,10 +19,8 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [desktopDropdown, setDesktopDropdown] = useState<string | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const pathname = usePathname();
   
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const dropdownRef = useRef<{ [key: string]: HTMLDivElement | null }>({});
@@ -34,17 +32,16 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
   const { type: heroType } = useHeroConfig();
   
   // Text-Formatierung basierend auf Variante
-  const isStarter = siteVariant === 'starter';
-  const navTextClass = isStarter ? 'uppercase' : 'normal-case';
-
-  // Navigation Items
+  const navTextClass = siteVariant === 'starter' ? 'uppercase' : 'normal-case';
+  
+  const pathname = usePathname();
   const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, siteVariant);
+  
+  // Header-Styles basierend auf Design und Hero-Type
+  const headerStyles = getHeaderStyles(designStyle, false, headerVisible);
+  const dropdownStyles = getDropdownStyles(designStyle, false);
 
-  // Header-Stile basierend auf Design-Stil
-  const headerStyles = getHeaderStyles(designStyle, isScrolled, headerVisible);
-  const dropdownStyles = getDropdownStyles(designStyle, isScrolled);
-
-  // Funktion um zu prüfen ob ein Link aktiv ist
+  // Aktive Navigation ermitteln
   const isActive = (href: string) => {
     return pathname === href || pathname.startsWith(href + '/');
   };
@@ -53,12 +50,9 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const scrolled = currentScrollY > 50;
-      setIsScrolled(scrolled);
       
-      // Header visibility logic basierend auf Design-Stil
-      if (designStyle === 'rounded') {
-        // Bei rounded: Einblenden wenn nach oben gescrollt wird oder am Anfang der Seite
+      if (designStyle === 'modern' || designStyle === 'rounded') {
+        // Bei modern/rounded: Header bei Scroll nach oben einblenden, nach unten ausblenden
         if (currentScrollY < lastScrollY || currentScrollY < 100) {
           setHeaderVisible(true);
         } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -138,7 +132,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
   };
 
   // Smooth scroll handler
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleSmoothScroll = (e: React.MouseEvent, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
@@ -168,13 +162,13 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden w-20 h-20 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all duration-300 border-2 border-gray-200 dark:border-gray-600 shadow-lg"
+              className="md:hidden w-16 h-16 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all duration-300 border-2 border-gray-200 dark:border-gray-600 shadow-lg"
               onClick={toggleMenu}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label="Menü"
             >
-              <div className="relative w-10 h-8 flex flex-col justify-center">
+              <div className="relative w-8 h-7 flex flex-col justify-center">
                 <span className={`absolute block h-1.5 bg-gray-800 dark:bg-gray-200 rounded-full transition-all duration-300 ${
                   isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'
                 }`}></span>
@@ -258,9 +252,9 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
               </nav>
             </div>
 
-            {/* Desktop CTA */}
+            {/* CTA Button */}
             <div className="hidden md:block">
-              <HeaderCta 
+              <HeaderCta
                 ctaStyle={headerStyles.ctaStyle}
                 ctaStyleDynamic={headerStyles.ctaStyleDynamic}
                 ctaHoverStyle={headerStyles.ctaHoverStyle}
@@ -269,120 +263,6 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
           </nav>
         </header>
       </div>
-
-      {/* Mobile Menu - Standard Overlay */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-            onClick={closeMenu}
-          />
-
-          {/* Menu Panel */}
-          <div 
-            className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 transform transition-all duration-500 ease-out z-50 shadow-2xl"
-            style={{
-              transform: isMenuOpen ? 'translateY(0)' : 'translateY(-100%)'
-            }}
-          >
-            {/* Menu Header */}
-            <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
-              <span className="text-xl font-semibold text-gray-900 dark:text-white">Menü</span>
-              <button
-                onClick={closeMenu}
-                className="w-14 h-14 flex items-center justify-center text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300"
-              >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Menu Content */}
-            <div className="p-6 space-y-4">
-              {navItems.map((item) => (
-                <div key={item.id}>
-                  {item.hasDropdown ? (
-                    <>
-                      <button
-                        onClick={() => toggleDropdown(item.id)}
-                        className="w-full flex items-center justify-between py-3 text-left text-gray-900 dark:text-white"
-                      >
-                        <span className={`text-lg font-medium ${navTextClass}`}>{item.label}</span>
-                        <svg
-                          className={`w-5 h-5 transform transition-transform duration-300 ${
-                            openDropdown === item.id ? 'rotate-180' : ''
-                          }`}
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                      <div
-                        className={`overflow-hidden transition-all duration-300 ${
-                          openDropdown === item.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                        }`}
-                      >
-                        <div className="pl-4 py-2 space-y-2">
-                          {item.dropdownItems?.map((dropdownItem) => (
-                            <Link
-                              key={dropdownItem.href}
-                              href={dropdownItem.href || '#'}
-                              className={`block py-2 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-accent transition-colors ${navTextClass}`}
-                              onClick={(e) => {
-                                if (dropdownItem.href?.startsWith('#')) {
-                                  handleSmoothScroll(e, dropdownItem.href.substring(1));
-                                }
-                                closeMenu();
-                              }}
-                            >
-                              {dropdownItem.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <Link
-                      href={item.href || '#'}
-                      className={`block py-3 text-lg font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent transition-colors ${navTextClass}`}
-                      onClick={(e) => {
-                        if (item.href?.startsWith('#')) {
-                          handleSmoothScroll(e, item.href.substring(1));
-                        }
-                        closeMenu();
-                      }}
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
-
-              {/* Mobile CTA */}
-              <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-                <HeaderCta 
-                  ctaStyle="block w-full py-4 px-6 text-center bg-primary text-white text-lg font-bold rounded-xl hover:bg-primary/90 transition-colors uppercase flex items-center justify-center gap-2"
-                  ctaStyleDynamic={{
-                    backgroundColor: 'var(--color-primary)',
-                    borderColor: 'var(--color-primary)',
-                    borderRadius: 'var(--radius-xl)',
-                    padding: '1rem 1.5rem'
-                  }}
-                  ctaHoverStyle={{
-                    backgroundColor: 'var(--color-secondary)',
-                    borderColor: 'var(--color-secondary)',
-                    color: 'white'
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Mobile Navigation - Außerhalb des Headers für korrekte Positionierung */}
       <MobileNavigationFactory

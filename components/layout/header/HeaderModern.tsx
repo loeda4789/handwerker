@@ -142,13 +142,13 @@ export default function HeaderModern({ content }: HeaderModernProps) {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden w-20 h-20 flex items-center justify-center text-white hover:bg-white/20 rounded-2xl transition-all duration-300 border-2 border-white/30 shadow-lg backdrop-blur-sm"
+            className="md:hidden w-16 h-16 flex items-center justify-center text-white hover:bg-white/20 rounded-2xl transition-all duration-300 border-2 border-white/30 shadow-lg backdrop-blur-sm"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label="Menü"
           >
-            <div className="relative w-10 h-8 flex flex-col justify-center">
+            <div className="relative w-8 h-7 flex flex-col justify-center">
               <span className={`absolute block h-1.5 bg-white rounded-full transition-all duration-300 ${
                 isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'
               }`}></span>

@@ -192,14 +192,14 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
 
           {/* Optimierter Mobile Menu Button */}
           <button
-            className="md:hidden w-20 h-20 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl mobile-nav-animation border-2 border-gray-200 dark:border-gray-600 shadow-lg"
+            className="md:hidden w-16 h-16 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl mobile-nav-animation border-2 border-gray-200 dark:border-gray-600 shadow-lg"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label="Menü"
             style={{ willChange: 'transform' }}
           >
-            <div className="relative w-10 h-8 flex flex-col justify-center">
+            <div className="relative w-8 h-7 flex flex-col justify-center">
               <span className={`absolute block h-1.5 bg-gray-800 dark:bg-gray-200 rounded-full mobile-nav-animation hamburger-line hamburger-line-1 ${
                 isMenuOpen ? 'open' : ''
               }`} style={{ willChange: 'transform, opacity' }}></span>
@@ -288,118 +288,6 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
             />
           </nav>
 
-          {/* Enhanced Mobile Navigation */}
-          <div
-            className={`fixed inset-0 z-[999999] md:hidden transition-all duration-500 ease-in-out ${
-              isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-            }`}
-          >
-            {/* Overlay */}
-            <div
-              className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-all duration-500 ease-in-out ${
-                isMenuOpen ? 'opacity-100' : 'opacity-0'
-              }`}
-              onClick={closeMenu}
-            />
-
-            {/* Menu Panel */}
-            <div 
-              className={`absolute inset-0 bg-white dark:bg-gray-900 transform transition-all duration-500 ease-out flex flex-col ${
-                isMenuOpen ? 'translate-y-0 scale-100' : '-translate-y-full scale-95'
-              }`}
-            >
-              {/* Menu Header */}
-              <div className="flex justify-between items-center p-8 border-b border-gray-100 dark:border-gray-800">
-                <span className="text-lg font-medium text-text dark:text-light uppercase">Menü</span>
-                <button
-                  onClick={closeMenu}
-                  className="w-14 h-14 flex items-center justify-center text-text-secondary dark:text-light/70 hover:text-text dark:hover:text-light hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300"
-                >
-                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Menu Content */}
-              <div className="flex-1 overflow-y-auto">
-                <div className="p-8 space-y-3">
-                  {navItems.map((item) => (
-                    <div key={item.id}>
-                      {item.hasDropdown ? (
-                        <>
-                          <button
-                            onClick={() => toggleDropdown(item.id)}
-                            className="w-full flex items-center justify-between py-2 text-left text-text dark:text-light"
-                          >
-                            <span className={`text-2xl font-bold ${navTextClass}`}>{item.label}</span>
-                            <svg
-                              className={`w-6 h-6 transform transition-transform duration-300 ${
-                                openDropdown === item.id ? 'rotate-180' : ''
-                              }`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </button>
-                          <div
-                            className={`overflow-hidden transition-all duration-300 ${
-                              openDropdown === item.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                            }`}
-                          >
-                            <div className="pl-6 py-3 space-y-4">
-                              {item.dropdownItems?.map((dropdownItem) => (
-                                <Link
-                                  key={dropdownItem.href}
-                                  href={dropdownItem.href || '#'}
-                                  className={`block text-text-secondary dark:text-light/70 hover:text-primary text-lg font-medium ${navTextClass}`}
-                                  onClick={closeMenu}
-                                >
-                                  {dropdownItem.label}
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        </>
-                      ) : (
-                        <Link
-                          href={item.href || '#'}
-                          className={`block py-2 text-2xl font-bold text-text dark:text-light ${navTextClass}`}
-                          onClick={(e) => {
-                            if (item.href?.startsWith('#')) {
-                              e.preventDefault();
-                              handleSmoothScroll(e, item.href.substring(1));
-                            }
-                            closeMenu();
-                          }}
-                        >
-                          {item.label}
-                        </Link>
-                      )}
-                    </div>
-                  ))}
-
-                  {/* CTA Button */}
-                  <div className="border-t border-gray-100 dark:border-gray-800 pt-20 pb-16">
-                    <button
-                      className={`block w-full py-4 px-6 text-center bg-primary text-white text-xl font-bold rounded-xl hover:bg-primary/90 transition-colors ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'} flex items-center justify-center gap-2 button-shine`}
-                      onClick={(e) => {
-                        handleSmoothScroll(e, 'kontakt');
-                        closeMenu();
-                      }}
-                    >
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      Jetzt anfragen
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
