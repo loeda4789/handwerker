@@ -3,19 +3,25 @@
 import { useState, useRef, useEffect } from 'react'
 import { MdInfoOutline } from 'react-icons/md'
 
-interface InfoTooltipProps {
+interface InfoTooltipAdvancedProps {
   content: string
   className?: string
+  variant?: 'tooltip' | 'expandable'
 }
 
-export default function InfoTooltip({ content, className = '' }: InfoTooltipProps) {
+export default function InfoTooltipAdvanced({ 
+  content, 
+  className = '', 
+  variant = 'tooltip' 
+}: InfoTooltipAdvancedProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [position, setPosition] = useState({ top: 0, left: 0 })
   const tooltipRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
 
+  // Tooltip-Positionierung (nur für tooltip-Variante)
   useEffect(() => {
-    if (isOpen && triggerRef.current && tooltipRef.current) {
+    if (variant === 'tooltip' && isOpen && triggerRef.current && tooltipRef.current) {
       const triggerRect = triggerRef.current.getBoundingClientRect()
       const tooltipRect = tooltipRef.current.getBoundingClientRect()
       const viewportWidth = window.innerWidth
@@ -35,8 +41,9 @@ export default function InfoTooltip({ content, className = '' }: InfoTooltipProp
 
       setPosition({ top, left })
     }
-  }, [isOpen])
+  }, [isOpen, variant])
 
+  // Click-Outside-Handler
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (tooltipRef.current && !tooltipRef.current.contains(event.target as Node) &&
@@ -51,12 +58,39 @@ export default function InfoTooltip({ content, className = '' }: InfoTooltipProp
     }
   }, [isOpen])
 
+  if (variant === 'expandable') {
+    return (
+      <div className={`relative inline-block ${className}`}>
+        <button
+          ref={triggerRef}
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+          aria-label="Information anzeigen"
+        >
+          <MdInfoOutline className="w-4 h-4" />
+        </button>
+
+        {isOpen && (
+          <div
+            ref={tooltipRef}
+            className="absolute top-full left-0 mt-2 w-80 max-w-[90vw] bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-[10002]"
+          >
+            <div className="text-sm text-gray-700 whitespace-pre-wrap">
+              {content}
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  // Tooltip-Variante
   return (
-    <div className="relative inline-block">
+    <div className={`relative inline-block ${className}`}>
       <button
         ref={triggerRef}
         onClick={() => setIsOpen(!isOpen)}
-        className={`p-1 text-gray-400 hover:text-gray-600 transition-colors ${className}`}
+        className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
         aria-label="Information anzeigen"
       >
         <MdInfoOutline className="w-4 h-4" />

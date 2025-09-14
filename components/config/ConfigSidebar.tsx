@@ -27,6 +27,7 @@ import { STYLE_PACKAGES, applyStylePackage } from '@/lib/config/stylePackages'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import InfoTooltip from '@/components/ui/InfoTooltip'
+import InfoTooltipAdvanced from '@/components/ui/InfoTooltipAdvanced'
 
 interface ConfigSidebarProps {
   isOpen: boolean
@@ -254,7 +255,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Varianten
               </h3>
-              <InfoTooltip content="Wählen Sie zwischen Starter (One-Page), Professional (One-Page mit erweiterten Features) oder Premium (Multi-Page mit allen Unterseiten)." />
+              <InfoTooltipAdvanced 
+                content="Wählen Sie zwischen Starter (One-Page), Professional (One-Page mit erweiterten Features) oder Premium (Multi-Page mit allen Unterseiten)." 
+                variant="expandable"
+              />
             </div>
             <div className="space-y-2">
               {bestellerVariants.map((variant) => (
