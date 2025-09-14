@@ -356,7 +356,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <CompactInfo content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nSlider: Mehrere Bilder im Wechsel" />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               {heroTypes.map((type) => (
                 <button
                   key={type.key}
@@ -392,7 +392,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <CompactInfo content="Wählen Sie ein vordefiniertes Design-Paket mit passenden Farben, Schriftarten und Stilelementen für Ihre Branche." />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               {STYLE_PACKAGES.map((pkg) => {
                 return (
                 <button
@@ -480,7 +480,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 Farbschema
               </h3>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               {colorSchemes.map((scheme) => (
                 <button
                   key={scheme.key}
