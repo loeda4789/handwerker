@@ -107,7 +107,19 @@ const mobileFeatures = [
 - **Status**: Auskommentiert
 - **Grund**: Vereinfachung der Konfiguration
 - **Wiedereinblendung**: Einfach Kommentar entfernen in `ConfigSidebar.tsx`
-- **Zeile**: ~360-370 in `heroTypes` Array
+- **Zeile**: ~178 in `heroTypes` Array
+
+### Mobile Navigation
+- **Status**: Aus ConfigSidebar entfernt, in ConfigCard verschoben
+- **Grund**: Vereinfachung der Sidebar, mobile-spezifische Konfiguration
+- **Aktueller Stand**: Nur in ConfigCard sichtbar (nur auf Mobile)
+- **Design**: Gleiche Struktur wie andere Sektionen
+
+### Stil-Pakete (2 Varianten deaktiviert)
+- **Status**: 2 von 5 Varianten auskommentiert
+- **Grund**: Reduzierung der Komplexität
+- **Behalten**: Unterstreichung, Badges und andere Stil-Optionen
+- **Wiedereinblendung**: Kommentare in `ConfigSidebar.tsx` und `ConfigCard.tsx` entfernen
 
 ### Wiedereinblendung
 Um Video wieder zu aktivieren:

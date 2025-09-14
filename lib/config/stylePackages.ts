@@ -1,7 +1,7 @@
 import { AppConfig } from './types'
 
 export interface StylePackage {
-  id: 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic'
+  id: 'clean' | 'luxury' | 'warm' // | 'corporate' | 'dynamic' // TEMPORÄR DEAKTIVIERT
   name: string
   description: string
   icon: string
@@ -34,18 +34,18 @@ export const STYLE_PACKAGES: StylePackage[] = [
       style: { package: 'luxury', fontFamily: 'serif', badgeStyle: 'none', spacing: 'spacious' }
     }
   },
-  {
-    id: 'corporate',
-    name: 'Corporate',
-    description: 'Seriös, vertrauenswürdig',
-    icon: 'C',
-    color: 'bg-gray-50 border-gray-200',
-    config: {
-      layout: { design: 'rounded' } as any,
-      headings: { underline: false, style: 'none', color: 'primary' },
-      style: { package: 'corporate', fontFamily: 'sans', badgeStyle: 'outlined', spacing: 'compact' }
-    }
-  },
+  // {
+  //   id: 'corporate',
+  //   name: 'Corporate',
+  //   description: 'Seriös, vertrauenswürdig',
+  //   icon: 'C',
+  //   color: 'bg-gray-50 border-gray-200',
+  //   config: {
+  //     layout: { design: 'rounded' } as any,
+  //     headings: { underline: false, style: 'none', color: 'primary' },
+  //     style: { package: 'corporate', fontFamily: 'sans', badgeStyle: 'outlined', spacing: 'compact' }
+  //   }
+  // }, // TEMPORÄR DEAKTIVIERT - siehe CONFIGURATION_DOCS.md
   {
     id: 'warm',
     name: 'Warm',
@@ -58,18 +58,18 @@ export const STYLE_PACKAGES: StylePackage[] = [
       style: { package: 'warm', fontFamily: 'sans', badgeStyle: 'none', spacing: 'comfortable' }
     }
   },
-  {
-    id: 'dynamic',
-    name: 'Dynamisch',
-    description: 'Kraftvoll, aufmerksamkeitsstark',
-    icon: 'D',
-    color: 'bg-gray-50 border-gray-200',
-    config: {
-      layout: { design: 'angular' } as any,
-      headings: { underline: true, style: 'gradient', color: 'primary' },
-      style: { package: 'dynamic', fontFamily: 'display', badgeStyle: 'none', spacing: 'spacious' }
-    }
-  }
+  // {
+  //   id: 'dynamic',
+  //   name: 'Dynamisch',
+  //   description: 'Kraftvoll, aufmerksamkeitsstark',
+  //   icon: 'D',
+  //   color: 'bg-gray-50 border-gray-200',
+  //   config: {
+  //     layout: { design: 'angular' } as any,
+  //     headings: { underline: true, style: 'gradient', color: 'primary' },
+  //     style: { package: 'dynamic', fontFamily: 'display', badgeStyle: 'none', spacing: 'spacious' }
+  //   }
+  // } // TEMPORÄR DEAKTIVIERT - siehe CONFIGURATION_DOCS.md
 ]
 
 export const getStylePackage = (packageId: string): StylePackage | undefined => {
