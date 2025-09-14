@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { NavigationItem } from '@/lib/config/navigationConfig'
 import { ContentData } from '@/types/content'
@@ -99,7 +100,8 @@ function MobileHeader({
 
   if (siteMode !== 'onepage' || !isOpen) return null
 
-  return (
+  // Portal für vollflächige Navigation direkt in document.body
+  const mobileNavigation = (
     <div 
       className="fixed inset-0 z-[99999] lg:hidden"
       role="dialog"
@@ -231,6 +233,9 @@ function MobileHeader({
       </div>
     </div>
   )
+
+  // Portal direkt in document.body rendern
+  return createPortal(mobileNavigation, document.body)
 }
 
 export default React.memo(MobileHeader)

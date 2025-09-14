@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { ContentData } from '@/types/content';
 import { NavigationItem } from '@/lib/config/navigationConfig';
@@ -89,7 +90,8 @@ function MobileDropdownNavigation({
 
   if (!isOpen) return null;
 
-  return (
+  // Portal für vollflächige Navigation direkt in document.body
+  const dropdownNavigation = (
     <div className="md:hidden">
       {/* Backdrop */}
       <div 
@@ -203,6 +205,9 @@ function MobileDropdownNavigation({
       </div>
     </div>
   );
+
+  // Portal direkt in document.body rendern
+  return createPortal(dropdownNavigation, document.body);
 }
 
 export default React.memo(MobileDropdownNavigation);
