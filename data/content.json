@@ -276,6 +276,22 @@
       }
     ]
   },
+  "beforeAfter": [
+    {
+      "title": "Elektroinstallation Modernisierung",
+      "category": "Elektroinstallation",
+      "beforeImage": "/images/branchen/elektriker/before-after/alt.jpg",
+      "afterImage": "/images/branchen/elektriker/before-after/neu.jpg",
+      "description": "Komplette Modernisierung der Elektroinstallation mit neuer Hausverteilung und LED-Beleuchtung"
+    },
+    {
+      "title": "Smart Home Installation",
+      "category": "Smart Home",
+      "beforeImage": "/images/branchen/elektriker/before-after/smarthome-vorher.jpg",
+      "afterImage": "/images/branchen/elektriker/before-after/smarthome-nachher.jpg",
+      "description": "Nachrüstung eines kompletten KNX-Smart Home Systems mit intelligenter Beleuchtungssteuerung"
+    }
+  ],
   "faq": [
     {
       "question": "Wie lange dauert eine komplette Elektroinstallation?",

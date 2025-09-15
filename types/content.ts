@@ -157,6 +157,7 @@ export interface ContentData {
   reviews: Reviews;
   stats: Stats;
   contact: Contact;
+  jobs: Jobs;
   meta: Meta;
 }
 
@@ -177,6 +178,37 @@ export interface ColorScheme {
 export interface FAQ {
   question: string;
   answer: string;
+}
+
+export interface JobPosition {
+  id: number;
+  title: string;
+  type: string;
+  location: string;
+  experience: string;
+  description: string;
+  requirements: string[];
+  benefits: string[];
+  salary: string;
+  startDate: string;
+  icon: string;
+}
+
+export interface JobIntroduction {
+  title: string;
+  subtitle: string;
+  features: {
+    icon: string;
+    title: string;
+    description: string;
+  }[];
+}
+
+export interface Jobs {
+  title: string;
+  subtitle: string;
+  introduction: JobIntroduction;
+  positions: JobPosition[];
 }
 
 export interface ThemeConfig {
