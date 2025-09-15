@@ -119,13 +119,8 @@ export default function Stats({ content }: StatsProps) {
   }
   
   const getFontClass = () => {
-    const fontClasses = {
-      sans: "font-sans",
-      serif: "font-serif",
-      mono: "font-mono",
-      display: "font-display"
-    }
-    return fontClasses[fontFamily]
+    // Alle Headlines verwenden jetzt die dynamischen Fonts über CSS-Variablen
+    return "" // Keine spezielle Font-Klasse mehr nötig
   }
 
   return (

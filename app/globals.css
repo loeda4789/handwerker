@@ -356,7 +356,7 @@ h1, h2, h3, h4, h5, h6 {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-  --font-display: 'Dancing Script', cursive;
+  --font-display: var(--font-heading); /* Dynamisch basierend auf Stil */
   
   /* Badge Styles - vereinheitlicht */
   --badge-radius-sm: 4px;
@@ -923,7 +923,7 @@ html {
 
 /* Custom Logo Font */
 .logo-font {
-  font-family: 'Dancing Script', cursive;
+  font-family: var(--font-heading); /* Dynamisch basierend auf Stil */
   font-weight: 600;
   letter-spacing: 0.5px;
 }

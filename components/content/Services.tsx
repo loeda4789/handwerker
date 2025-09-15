@@ -52,13 +52,8 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
   }
   
   const getFontClass = () => {
-    const fontClasses = {
-      sans: "font-sans",
-      serif: "font-serif",
-      mono: "font-mono",
-      display: "font-display"
-    }
-    return fontClasses[fontFamily]
+    // Alle Headlines verwenden jetzt die dynamischen Fonts über CSS-Variablen
+    return "" // Keine spezielle Font-Klasse mehr nötig
   }
 
   // Gallery functions
