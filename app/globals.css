@@ -62,13 +62,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-body) !important; /* Inter */
 }
 
-/* Unterstreichung für alle Stile basierend auf data-style */
-body[data-style="standard"] h1,
+/* Unterstreichung nur für Sektions-Überschriften (h2) basierend auf Stil */
 body[data-style="standard"] h2,
-body[data-style="standard"] h3,
-body[data-style="modern"] h1,
-body[data-style="modern"] h2,
-body[data-style="modern"] h3 {
+body[data-style="modern"] h2 {
   text-decoration: underline;
   text-decoration-color: var(--color-primary);
   text-decoration-thickness: 2px;
@@ -76,12 +72,8 @@ body[data-style="modern"] h3 {
 }
 
 /* Keine Unterstreichung in ConfigCard und ConfigSidebar */
-.config-card h1,
 .config-card h2,
-.config-card h3,
-.config-sidebar h1,
-.config-sidebar h2,
-.config-sidebar h3 {
+.config-sidebar h2 {
   text-decoration: none !important;
 }
 
