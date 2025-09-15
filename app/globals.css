@@ -38,15 +38,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
-/* ConfigCard und ConfigSidebar verwenden immer Inter */
+/* ConfigCard und ConfigSidebar verwenden immer Inter - sehr spezifisch */
 .config-card,
 .config-card *,
 .config-sidebar,
-.config-sidebar * {
+.config-sidebar *,
+[class*="config-card"],
+[class*="config-sidebar"] {
   font-family: var(--font-body) !important; /* Inter */
 }
 
-/* Headlines in ConfigCard/ConfigSidebar auch Inter */
+/* Alle möglichen Headlines in ConfigCard/ConfigSidebar */
 .config-card h1,
 .config-card h2,
 .config-card h3,
@@ -58,7 +60,33 @@ h1, h2, h3, h4, h5, h6 {
 .config-sidebar h3,
 .config-sidebar h4,
 .config-sidebar h5,
-.config-sidebar h6 {
+.config-sidebar h6,
+[class*="config-card"] h1,
+[class*="config-card"] h2,
+[class*="config-card"] h3,
+[class*="config-sidebar"] h1,
+[class*="config-sidebar"] h2,
+[class*="config-sidebar"] h3 {
+  font-family: var(--font-body) !important; /* Inter */
+}
+
+/* Alle Texte in ConfigCard/ConfigSidebar */
+.config-card p,
+.config-card span,
+.config-card div,
+.config-card button,
+.config-sidebar p,
+.config-sidebar span,
+.config-sidebar div,
+.config-sidebar button,
+[class*="config-card"] p,
+[class*="config-card"] span,
+[class*="config-card"] div,
+[class*="config-card"] button,
+[class*="config-sidebar"] p,
+[class*="config-sidebar"] span,
+[class*="config-sidebar"] div,
+[class*="config-sidebar"] button {
   font-family: var(--font-body) !important; /* Inter */
 }
 
