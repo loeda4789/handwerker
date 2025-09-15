@@ -90,9 +90,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-body) !important; /* Inter */
 }
 
-/* Unterstreichung nur für Sektions-Überschriften (h2) basierend auf Stil */
+/* Unterstreichung für Sektions-Überschriften (h2) basierend auf Stil */
 body[data-style="standard"] h2,
 body[data-style="modern"] h2 {
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Zusätzliche Unterstreichung für FAQ-Sektion bei Modern (wie gewünscht) */
+body[data-style="modern"] .faq-section h2 {
   text-decoration: underline;
   text-decoration-color: var(--color-primary);
   text-decoration-thickness: 2px;
