@@ -188,12 +188,6 @@ export default function ServicePage({ params }: ServicePageProps) {
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             
-            {/* Service Title */}
-            <div className="text-center mb-8 animate-on-scroll">
-              <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 font-heading">
-                Über {service.title}
-              </h2>
-            </div>
 
             {/* Detail Text */}
             {service.detailText && (
