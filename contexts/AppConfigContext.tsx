@@ -176,11 +176,11 @@ export function useStyleConfig() {
     fontFamily: config.style.fontFamily,
     badgeStyle: config.style.badgeStyle,
     spacing: config.style.spacing,
-    setPackage: (packageId: 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic') => {
+    setPackage: (packageId: 'einfach' | 'standard' | 'modern') => {
       console.log('🎨 setPackage aufgerufen mit:', packageId)
       updateConfig({ style: { ...config.style, package: packageId } })
     },
-    setFontFamily: (fontFamily: 'sans' | 'serif' | 'mono' | 'display') => {
+    setFontFamily: (fontFamily: 'sans' | 'serif' | 'display') => {
       console.log('🎨 setFontFamily aufgerufen mit:', fontFamily)
       updateConfig({ style: { ...config.style, fontFamily } })
     },

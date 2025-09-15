@@ -23,7 +23,6 @@ import {
   MdFlashOn
 } from 'react-icons/md'
 import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig, useStyleConfig } from '@/contexts/AppConfigContext'
-import { STYLE_PACKAGES, applyStylePackage } from '@/lib/config/stylePackages'
 import { UNIFIED_STYLES, applyUnifiedStyle } from '@/lib/config/unifiedStyles'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
@@ -43,11 +42,9 @@ interface ConfigSidebarProps {
 // Icon-Mapping für Stil-Pakete
 const getStylePackageIcon = (packageId: string) => {
   switch (packageId) {
-    case 'clean': return MdCleaningServices
-    case 'luxury': return MdLuxury
-    case 'corporate': return MdBusinessCenter
-    case 'warm': return MdLocalFireDepartment
-    case 'dynamic': return MdFlashOn
+    case 'einfach': return MdCleaningServices
+    case 'standard': return MdLuxury
+    case 'modern': return MdFlashOn
     default: return MdBrush
   }
 }

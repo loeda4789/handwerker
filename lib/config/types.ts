@@ -33,12 +33,12 @@ export interface AppConfig {
   }
   headings: {
     underline: boolean
-    style: 'gradient' | 'solid' | 'dotted' | 'none'
+    style: 'solid' | 'none'
     color: 'primary' | 'secondary' | 'accent' | 'custom'
   }
   style: {
-    package: 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic'
-    fontFamily: 'sans' | 'serif' | 'mono' | 'display'
+    package: 'einfach' | 'standard' | 'modern'
+    fontFamily: 'sans' | 'serif' | 'display'
     badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none'
     spacing: 'compact' | 'comfortable' | 'spacious'
   }
@@ -83,11 +83,11 @@ export const DEFAULT_CONFIG: AppConfig = {
   },
   headings: {
     underline: true,
-    style: 'gradient',
+    style: 'solid',
     color: 'primary'
   },
   style: {
-    package: 'clean',
+    package: 'einfach',
     fontFamily: 'sans',
     badgeStyle: 'none',
     spacing: 'comfortable'

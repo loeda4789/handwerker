@@ -58,26 +58,30 @@ const bestellerVariants = [
 ]
 ```
 
-## Stil-Pakete Konfigurationen
+## Stil-Pakete Konfigurationen (Vereinheitlicht)
 
 ### Verfügbare Pakete
-- **Elektriker**: Speziell für Elektrohandwerk
-- **Dachdecker**: Speziell für Dachdeckerhandwerk
-- **Tischler**: Speziell für Tischlerhandwerk
-- **Fliesenleger**: Speziell für Fliesenlegerhandwerk
-- **Heizung**: Speziell für Heizungshandwerk
-- **Maler**: Speziell für Malerhandwerk
-- **Sanitär**: Speziell für Sanitärhandwerk
+- **Einfach**: Minimalistisches Design mit klaren Linien
+- **Standard**: Ausgewogenes Design mit subtilen Akzenten
+- **Modern**: Dynamisches Design mit Animationen und modernen Elementen
 
 ### Code-Referenz
 ```typescript
-// In lib/config/stylePackages.ts
-export const STYLE_PACKAGES = [
-  { id: 'elektriker', name: 'Elektriker', description: 'Elektrohandwerk', color: 'blue' },
-  { id: 'dachdecker', name: 'Dachdecker', description: 'Dachdeckerhandwerk', color: 'red' },
-  // ... weitere Pakete
+// In lib/config/unifiedStyles.ts
+export const UNIFIED_STYLES: UnifiedStyle[] = [
+  { id: 'einfach', name: 'Einfach', description: 'Minimalistisch und klar' },
+  { id: 'standard', name: 'Standard', description: 'Ausgewogen und professionell' },
+  { id: 'modern', name: 'Modern', description: 'Dynamisch und zeitgemäß' }
 ]
 ```
+
+### Automatische Anpassungen
+Bei der Auswahl eines Stils werden automatisch angepasst:
+- **Typography**: Schriftart, Größen, Zeilenhöhen
+- **Spacing**: Abstände zwischen Elementen
+- **Design**: Border-Radius, Schatten, Rahmen
+- **Interactive**: Badges, Unterstreichungen, Buttons, Hover-Effekte
+- **Animations**: Übergänge, Scroll-Effekte, Mikro-Interaktionen
 
 ## Features Konfigurationen
 
@@ -115,11 +119,11 @@ const mobileFeatures = [
 - **Aktueller Stand**: Nur in ConfigCard sichtbar (nur auf Mobile)
 - **Design**: Gleiche Struktur wie andere Sektionen
 
-### Stil-Pakete (2 Varianten deaktiviert)
-- **Status**: 2 von 5 Varianten auskommentiert
-- **Grund**: Reduzierung der Komplexität
-- **Behalten**: Unterstreichung, Badges und andere Stil-Optionen
-- **Wiedereinblendung**: Kommentare in `ConfigSidebar.tsx` und `ConfigCard.tsx` entfernen
+### Stil-Pakete (Vereinheitlicht)
+- **Status**: Vollständig auf unifiedStyles umgestellt
+- **Grund**: Vereinfachung und bessere Wartbarkeit
+- **Neue Struktur**: 3 Stile (Einfach/Standard/Modern) mit automatischen Anpassungen
+- **Vorteile**: Einheitliches System, weniger Code-Duplikation, einfachere Wartung
 
 ### Wiedereinblendung
 Um Video wieder zu aktivieren:

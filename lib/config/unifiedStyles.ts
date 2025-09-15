@@ -197,14 +197,15 @@ export const applyUnifiedStyle = (config: AppConfig, styleId: string): AppConfig
   return result
 }
 
-// Helper functions für CSS-Klassen basierend auf Stil
-export const getTypographyClasses = (styleId: string) => {
+// Konsolidierte Helper-Funktion für alle CSS-Klassen
+export const getStyleClasses = (styleId: string) => {
   const style = getUnifiedStyle(styleId)
   if (!style) return {}
 
-  const { typography } = style.config
+  const { typography, spacing, design, interactive } = style.config
 
   return {
+    // Typography
     fontFamily: typography.fontFamily === 'serif' ? 'font-serif' : 
                 typography.fontFamily === 'display' ? 'font-display' : 'font-sans',
     headingSize: typography.headingSize === 'small' ? 'text-2xl' :
@@ -212,54 +213,69 @@ export const getTypographyClasses = (styleId: string) => {
     textSize: typography.textSize === 'small' ? 'text-sm' :
               typography.textSize === 'medium' ? 'text-base' : 'text-lg',
     lineHeight: typography.lineHeight === 'tight' ? 'leading-tight' :
-                typography.lineHeight === 'normal' ? 'leading-normal' : 'leading-relaxed'
-  }
-}
-
-export const getSpacingClasses = (styleId: string) => {
-  const style = getUnifiedStyle(styleId)
-  if (!style) return {}
-
-  const { spacing } = style.config
-
-  return {
+                typography.lineHeight === 'normal' ? 'leading-normal' : 'leading-relaxed',
+    
+    // Spacing
     section: spacing.section === 'compact' ? 'py-8' :
              spacing.section === 'comfortable' ? 'py-12' : 'py-16',
     element: spacing.element === 'tight' ? 'space-y-2' :
              spacing.element === 'normal' ? 'space-y-4' : 'space-y-6',
     padding: spacing.padding === 'minimal' ? 'p-4' :
-             spacing.padding === 'standard' ? 'p-6' : 'p-8'
-  }
-}
-
-export const getDesignClasses = (styleId: string) => {
-  const style = getUnifiedStyle(styleId)
-  if (!style) return {}
-
-  const { design } = style.config
-
-  return {
+             spacing.padding === 'standard' ? 'p-6' : 'p-8',
+    
+    // Design
     borderRadius: design.borderRadius === 'none' ? 'rounded-none' :
                   design.borderRadius === 'subtle' ? 'rounded-lg' : 'rounded-2xl',
     shadows: design.shadows === 'none' ? 'shadow-none' :
              design.shadows === 'subtle' ? 'shadow-md' : 'shadow-2xl',
     borders: design.borders === 'none' ? 'border-0' :
-             design.borders === 'subtle' ? 'border' : 'border-2'
-  }
-}
-
-export const getInteractiveClasses = (styleId: string) => {
-  const style = getUnifiedStyle(styleId)
-  if (!style) return {}
-
-  const { interactive } = style.config
-
-  return {
+             design.borders === 'subtle' ? 'border' : 'border-2',
+    
+    // Interactive
     badges: interactive.badges === 'none' ? 'hidden' : 'opacity-100',
     underlines: interactive.underlines === 'none' ? 'no-underline' : 'underline decoration-2',
     buttons: interactive.buttons === 'minimal' ? 'px-3 py-1' :
              interactive.buttons === 'standard' ? 'px-4 py-2' : 'px-6 py-3',
     hoverEffects: interactive.hoverEffects === 'none' ? '' :
                   interactive.hoverEffects === 'subtle' ? 'hover:scale-105' : 'hover:scale-110 hover:shadow-lg'
+  }
+}
+
+// Backward compatibility - deprecated, use getStyleClasses instead
+export const getTypographyClasses = (styleId: string) => {
+  const classes = getStyleClasses(styleId)
+  return {
+    fontFamily: classes.fontFamily,
+    headingSize: classes.headingSize,
+    textSize: classes.textSize,
+    lineHeight: classes.lineHeight
+  }
+}
+
+export const getSpacingClasses = (styleId: string) => {
+  const classes = getStyleClasses(styleId)
+  return {
+    section: classes.section,
+    element: classes.element,
+    padding: classes.padding
+  }
+}
+
+export const getDesignClasses = (styleId: string) => {
+  const classes = getStyleClasses(styleId)
+  return {
+    borderRadius: classes.borderRadius,
+    shadows: classes.shadows,
+    borders: classes.borders
+  }
+}
+
+export const getInteractiveClasses = (styleId: string) => {
+  const classes = getStyleClasses(styleId)
+  return {
+    badges: classes.badges,
+    underlines: classes.underlines,
+    buttons: classes.buttons,
+    hoverEffects: classes.hoverEffects
   }
 }
