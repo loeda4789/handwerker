@@ -143,7 +143,7 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
     
     if (headerVariant === 'classic') {
       // Klassischer Header: Immer sichtbar, nie transparent
-      if (isScrollingUp && isScrolled) {
+      if (!isScrollingUp && isScrolled) {
         return {
           transform: 'translateY(-100%)',
           transition: 'transform 0.3s ease-in-out',
@@ -161,7 +161,7 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
       };
     } else if (headerVariant === 'modern') {
       // Moderner Header: Intelligente Transparenz
-      if (isScrollingUp && isScrolled) {
+      if (!isScrollingUp && isScrolled) {
         return {
           transform: 'translateY(-100%)',
           transition: 'transform 0.3s ease-in-out'
@@ -191,7 +191,7 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
       }
     } else {
       // Floating Header: Immer transparent mit intelligentem Kontrast
-      if (isScrollingUp && isScrolled) {
+      if (!isScrollingUp && isScrolled) {
         return {
           transform: 'translateY(-100%)',
           transition: 'transform 0.3s ease-in-out'
