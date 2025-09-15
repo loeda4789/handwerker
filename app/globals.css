@@ -38,6 +38,19 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
+/* Unterstreichung für alle Stile basierend auf data-style */
+body[data-style="standard"] h1,
+body[data-style="standard"] h2,
+body[data-style="standard"] h3,
+body[data-style="modern"] h1,
+body[data-style="modern"] h2,
+body[data-style="modern"] h3 {
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
 /* Hero Title */
 .hero-title {
   font-family: var(--font-heading);
