@@ -33,9 +33,33 @@ body {
   font-family: var(--font-body);
 }
 
-/* Headline Fonts */
+/* Headline Fonts - aber nicht für ConfigCard und ConfigSidebar */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+}
+
+/* ConfigCard und ConfigSidebar verwenden immer Inter */
+.config-card,
+.config-card *,
+.config-sidebar,
+.config-sidebar * {
+  font-family: var(--font-body) !important; /* Inter */
+}
+
+/* Headlines in ConfigCard/ConfigSidebar auch Inter */
+.config-card h1,
+.config-card h2,
+.config-card h3,
+.config-card h4,
+.config-card h5,
+.config-card h6,
+.config-sidebar h1,
+.config-sidebar h2,
+.config-sidebar h3,
+.config-sidebar h4,
+.config-sidebar h5,
+.config-sidebar h6 {
+  font-family: var(--font-body) !important; /* Inter */
 }
 
 /* Unterstreichung für alle Stile basierend auf data-style */
@@ -49,6 +73,16 @@ body[data-style="modern"] h3 {
   text-decoration-color: var(--color-primary);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
+}
+
+/* Keine Unterstreichung in ConfigCard und ConfigSidebar */
+.config-card h1,
+.config-card h2,
+.config-card h3,
+.config-sidebar h1,
+.config-sidebar h2,
+.config-sidebar h3 {
+  text-decoration: none !important;
 }
 
 /* Hero Title */
