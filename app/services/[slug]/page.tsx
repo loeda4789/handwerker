@@ -5,6 +5,7 @@ import { getContentDataByBranche } from '@/lib/config'
 import { ContentData } from '@/types/content'
 import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
+import { useThemeColors } from '@/app/hooks/useThemeColors'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
@@ -27,6 +28,7 @@ export default function ServicePage({ params }: ServicePageProps) {
 
   // Verwende den URL-Parameter-Hook für automatische URL-Parameter-Integration
   const content = useContentWithUrlParams(baseContent || {} as ContentData)
+  const { classes } = useThemeColors()
 
   // Design-Style aus localStorage laden
   useEffect(() => {
@@ -257,7 +259,8 @@ export default function ServicePage({ params }: ServicePageProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="#kontakt"
-              className="inline-block px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1 rounded-lg"
+              className={`inline-block px-8 py-4 ${classes.secondary} ${classes.hoverSecondary} ${classes.textLight} font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1`}
+              style={{ borderRadius: 'var(--radius-button)' }}
             >
               Jetzt anfragen
             </Link>
