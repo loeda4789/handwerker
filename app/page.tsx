@@ -25,7 +25,6 @@ import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 import { useFeaturesConfig } from '@/contexts/AppConfigContext'
 
 import ContactBar from '@/components/forms/ContactBar'
-import ConfigCard from '@/components/config/ConfigCard'
 
 interface ConfigState {
   layoutType: 'onepage' | 'multipage' | ''
@@ -491,8 +490,6 @@ export default function HomePage() {
         />
       )}
 
-      {/* ConfigCard - Website Designer Button */}
-      <ConfigCard />
       
 
 

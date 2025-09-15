@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { getContentData } from '@/lib/config'
 import { AppConfigProvider } from '@/contexts/AppConfigContext'
+import ConfigCard from '@/components/config/ConfigCard'
 import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -72,6 +73,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <AppConfigProvider>
           {children}
+          <ConfigCard />
         </AppConfigProvider>
         
         {/* Service Worker für Image Caching */}
