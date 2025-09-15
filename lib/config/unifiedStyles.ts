@@ -22,7 +22,8 @@ export interface UnifiedStyle {
     }
     // Design Elements
     design: {
-      headerStyle: 'angular' | 'rounded' | 'modern'
+      headerStyle: 'angular' | 'rounded' | 'modern' | 'klassik'
+      headerVariant: 'classic' | 'modern' | 'floating'
       borderRadius: 'none' | 'subtle' | 'pronounced'
       shadows: 'none' | 'subtle' | 'dramatic'
       borders: 'none' | 'subtle' | 'bold'
@@ -64,6 +65,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
       },
       design: {
         headerStyle: 'angular',
+        headerVariant: 'classic',
         borderRadius: 'none',
         shadows: 'none',
         borders: 'none'
@@ -101,6 +103,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
       },
       design: {
         headerStyle: 'rounded',
+        headerVariant: 'modern',
         borderRadius: 'subtle',
         shadows: 'subtle',
         borders: 'subtle'
@@ -138,6 +141,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
       },
       design: {
         headerStyle: 'modern',
+        headerVariant: 'floating',
         borderRadius: 'pronounced',
         shadows: 'dramatic',
         borders: 'bold'

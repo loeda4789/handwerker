@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useLayoutConfig, useFeaturesConfig, useHeroConfig, useSiteVariant } from '@/contexts/AppConfigContext';
+import { useLayoutConfig, useFeaturesConfig, useHeroConfig, useSiteVariant, useStyleConfig } from '@/contexts/AppConfigContext';
+import { UNIFIED_STYLES } from '@/lib/config/unifiedStyles';
 import MobileNavigationFactory from './MobileNavigationFactory';
 import { ContentData } from '@/types/content';
 import { getNavigationItems, addUrlParamsToHref } from '@/lib/config/navigationConfig';
@@ -31,6 +32,7 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
   const { features } = useFeaturesConfig();
   const { siteVariant } = useSiteVariant();
   const { type: heroType } = useHeroConfig();
+  const { package: stylePackage } = useStyleConfig();
   
   // Text-Formatierung basierend auf Variante
   const isStarter = siteVariant === 'starter';
@@ -130,12 +132,69 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
     }
   };
 
-  // Header Styling basierend auf Scroll-Status
+  // Intelligente Header-Styling basierend auf Stil und Hintergrund
   const getHeaderStyles = () => {
     const isHomepage = pathname === '/';
+    const currentStyle = UNIFIED_STYLES.find(style => style.id === (stylePackage as any)) || UNIFIED_STYLES[0];
+    const headerVariant = currentStyle.config.design.headerVariant;
     
-    if (isHomepage) {
-      // Startseite: Transparent oben, weiß beim Scrollen, versteckt beim Hochscrollen
+    // Intelligente Transparenz basierend auf Hero-Typ
+    const shouldUseTransparency = isHomepage && (heroType === 'single' || heroType === 'slider');
+    
+    if (headerVariant === 'classic') {
+      // Klassischer Header: Immer sichtbar, nie transparent
+      if (isScrollingUp && isScrolled) {
+        return {
+          transform: 'translateY(-100%)',
+          transition: 'transform 0.3s ease-in-out',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          borderColor: 'rgba(0, 0, 0, 0.1)',
+          color: 'black'
+        };
+      }
+      
+      return {
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(10px)',
+        borderColor: 'rgba(0, 0, 0, 0.1)',
+        color: 'black'
+      };
+    } else if (headerVariant === 'modern') {
+      // Moderner Header: Intelligente Transparenz
+      if (isScrollingUp && isScrolled) {
+        return {
+          transform: 'translateY(-100%)',
+          transition: 'transform 0.3s ease-in-out'
+        };
+      }
+      
+      if (isScrolled) {
+        return {
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          borderColor: 'rgba(0, 0, 0, 0.1)',
+          color: 'black'
+        };
+      }
+      
+      if (shouldUseTransparency) {
+        return {
+          backgroundColor: 'transparent',
+          backdropFilter: 'blur(10px)',
+          borderColor: 'rgba(255, 255, 255, 0.2)',
+          color: 'white'
+        };
+      } else {
+        return {
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          borderColor: 'rgba(0, 0, 0, 0.1)',
+          color: 'black'
+        };
+      }
+    } else {
+      // Floating Header: Immer transparent mit intelligentem Kontrast
       if (isScrollingUp && isScrolled) {
         return {
           transform: 'translateY(-100%)',
@@ -153,34 +212,89 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
       }
       
       return {
-        backgroundColor: 'transparent',
+        backgroundColor: 'rgba(0, 0, 0, 0.25)',
         backdropFilter: 'blur(10px)',
         borderColor: 'rgba(255, 255, 255, 0.2)',
         color: 'white'
-      };
-    } else {
-      // Unterseiten: Immer weiß
-      return {
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(10px)',
-        borderColor: 'rgba(0, 0, 0, 0.1)',
-        color: 'black'
       };
     }
   };
 
   const headerStyles = getHeaderStyles();
   const isHomepage = pathname === '/';
-  const textColor = isHomepage && !isScrolled ? 'text-white' : 'text-gray-900';
-  const hoverColor = isHomepage && !isScrolled ? 'hover:text-gray-200' : 'hover:text-gray-600';
+  const currentStyle = UNIFIED_STYLES.find(style => style.id === (stylePackage as any)) || UNIFIED_STYLES[0];
+  const headerVariant = currentStyle.config.design.headerVariant;
+  
+  // Intelligente Text-Farben basierend auf Header-Variante
+  const getTextColors = () => {
+    if (headerVariant === 'classic') {
+      return {
+        textColor: 'text-gray-900',
+        hoverColor: 'hover:text-gray-600'
+      };
+    } else if (headerVariant === 'modern') {
+      const shouldUseTransparency = isHomepage && (heroType === 'single' || heroType === 'slider');
+      if (isScrolled || !shouldUseTransparency) {
+        return {
+          textColor: 'text-gray-900',
+          hoverColor: 'hover:text-gray-600'
+        };
+      } else {
+        return {
+          textColor: 'text-white',
+          hoverColor: 'hover:text-gray-200'
+        };
+      }
+    } else {
+      // Floating
+      if (isScrolled) {
+        return {
+          textColor: 'text-gray-900',
+          hoverColor: 'hover:text-gray-600'
+        };
+      } else {
+        return {
+          textColor: 'text-white',
+          hoverColor: 'hover:text-gray-200'
+        };
+      }
+    }
+  };
+  
+  const { textColor, hoverColor } = getTextColors();
+
+  // Header-Container-Klassen basierend auf Variante
+  const getHeaderContainerClasses = () => {
+    if (headerVariant === 'classic') {
+      return 'fixed top-0 left-0 z-50 w-full transition-all duration-300';
+    } else if (headerVariant === 'modern') {
+      return 'fixed top-4 left-1/2 z-50 w-full max-w-5xl px-8 transform -translate-x-1/2 transition-all duration-300';
+    } else {
+      // Floating
+      return 'fixed top-4 left-1/2 z-50 w-full max-w-5xl px-8 transform -translate-x-1/2 transition-all duration-300';
+    }
+  };
+
+  const getHeaderInnerClasses = () => {
+    if (headerVariant === 'classic') {
+      return 'backdrop-blur-md shadow-lg border-b';
+    } else if (headerVariant === 'modern') {
+      return 'backdrop-blur-xl shadow-2xl border rounded-2xl';
+    } else {
+      // Floating
+      return 'backdrop-blur-xl shadow-2xl border rounded-3xl';
+    }
+  };
 
   return (
     <header 
-      className="fixed top-4 left-1/2 z-50 w-full max-w-5xl px-8 transform -translate-x-1/2 transition-all duration-300"
+      className={getHeaderContainerClasses()}
       style={headerStyles}
     >
-      <div className="backdrop-blur-xl shadow-2xl border rounded-3xl">
-        <div className="flex justify-between items-center px-12 py-2">
+      <div className={getHeaderInnerClasses()}>
+        <div className={`flex justify-between items-center ${
+          headerVariant === 'classic' ? 'px-4 py-4' : 'px-12 py-2'
+        }`}>
           {/* Logo */}
           <HeaderLogo 
             logoStyle={textColor}

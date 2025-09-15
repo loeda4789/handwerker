@@ -3,7 +3,7 @@ export interface AppConfig {
   version: string
   layout: {
     mode: 'onepage' | 'multipage'
-    design: 'angular' | 'rounded' | 'modern'
+    design: 'angular' | 'rounded' | 'modern' | 'klassik'
     variant: 'starter' | 'professional' | 'premium'
   }
   theme: {
