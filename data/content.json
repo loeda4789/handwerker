@@ -365,6 +365,108 @@
     "email": "info@mustermann-elektrotechnik.de",
     "openingHours": "Mo-Fr: 7:00-17:00 Uhr, Sa: 8:00-12:00 Uhr"
   },
+  "jobs": {
+    "title": "Karriere bei uns",
+    "subtitle": "Werden Sie Teil unseres erfolgreichen Teams! Wir bieten spannende Aufgaben, faire Bezahlung und beste Entwicklungsmöglichkeiten.",
+    "introduction": {
+      "title": "Warum bei uns arbeiten?",
+      "subtitle": "Wir sind ein modernes, familiengeführtes Unternehmen mit langjähriger Tradition und zukunftsorientierter Ausrichtung.",
+      "features": [
+        {
+          "icon": "⚡",
+          "title": "Moderne Technik",
+          "description": "Arbeiten Sie mit neuesten Technologien und modernsten Werkzeugen in einem zukunftsorientierten Umfeld."
+        },
+        {
+          "icon": "👥",
+          "title": "Teamarbeit",
+          "description": "In unserem familiären Arbeitsklima schätzen wir jeden Mitarbeiter und fördern eine offene Kommunikation."
+        },
+        {
+          "icon": "📚",
+          "title": "Weiterbildung",
+          "description": "Wir investieren in Ihre Zukunft mit regelmäßigen Schulungen und Weiterbildungsmöglichkeiten."
+        }
+      ]
+    },
+    "positions": [
+      {
+        "id": 1,
+        "title": "Elektromeister (m/w/d)",
+        "type": "Vollzeit",
+        "location": "Rheine und Umgebung",
+        "experience": "3-5 Jahre",
+        "description": "Wir suchen einen erfahrenen Elektromeister zur Verstärkung unseres Teams. Sie übernehmen die Leitung von Projekten und die Ausbildung unserer Azubis.",
+        "requirements": [
+          "Abgeschlossene Meisterprüfung im Elektrotechniker-Handwerk",
+          "Mindestens 3 Jahre Berufserfahrung",
+          "Führerschein Klasse B",
+          "Teamfähigkeit und Verantwortungsbewusstsein",
+          "Kenntnisse in Smart Home und Photovoltaik von Vorteil"
+        ],
+        "benefits": [
+          "Attraktive Vergütung nach Tarif",
+          "30 Tage Urlaub",
+          "Weiterbildungsmöglichkeiten",
+          "Firmenwagen möglich",
+          "Betriebliche Altersvorsorge"
+        ],
+        "salary": "ab 3.500€ brutto",
+        "startDate": "ab sofort",
+        "icon": "⚡"
+      },
+      {
+        "id": 2,
+        "title": "Elektriker (m/w/d)",
+        "type": "Vollzeit",
+        "location": "Rheine und Umgebung",
+        "experience": "1-3 Jahre",
+        "description": "Für unser wachsendes Team suchen wir einen motivierten Elektriker. Sie arbeiten an spannenden Projekten und entwickeln sich kontinuierlich weiter.",
+        "requirements": [
+          "Abgeschlossene Ausbildung als Elektriker",
+          "Mindestens 1 Jahr Berufserfahrung",
+          "Führerschein Klasse B",
+          "Zuverlässigkeit und handwerkliches Geschick",
+          "Bereitschaft zur Weiterbildung"
+        ],
+        "benefits": [
+          "Faire Bezahlung nach Tarif",
+          "30 Tage Urlaub",
+          "Interne Schulungen",
+          "Moderne Arbeitsausrüstung",
+          "Gute Aufstiegsmöglichkeiten"
+        ],
+        "salary": "ab 2.800€ brutto",
+        "startDate": "ab sofort",
+        "icon": "🔧"
+      },
+      {
+        "id": 3,
+        "title": "Auszubildende/r Elektriker (m/w/d)",
+        "type": "Ausbildung",
+        "location": "Rheine und Umgebung",
+        "experience": "Schulabschluss",
+        "description": "Starte deine Karriere bei uns! Wir bieten eine fundierte Ausbildung mit modernster Technik und besten Übernahmechancen.",
+        "requirements": [
+          "Guter Hauptschulabschluss oder höher",
+          "Interesse an Technik und Handwerk",
+          "Zuverlässigkeit und Lernbereitschaft",
+          "Teamfähigkeit",
+          "Mathematische Grundkenntnisse"
+        ],
+        "benefits": [
+          "Vergütung nach Tarif",
+          "30 Tage Urlaub",
+          "Übernahme nach erfolgreichem Abschluss",
+          "Moderne Ausbildungsstätte",
+          "Persönliche Betreuung durch Ausbilder"
+        ],
+        "salary": "1. Jahr: 1.050€, 2. Jahr: 1.100€, 3. Jahr: 1.200€",
+        "startDate": "01.08.2024",
+        "icon": "🎓"
+      }
+    ]
+  },
   "meta": {
     "language": "de",
     "generator": "ml | websolutions",
