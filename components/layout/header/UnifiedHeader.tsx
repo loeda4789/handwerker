@@ -303,7 +303,7 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
 
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden w-12 h-12 flex items-center justify-center ${textColor} hover:bg-black/10 rounded-2xl transition-all duration-300 border-2 border-current/30 shadow-lg backdrop-blur-sm`}
+            className={`md:hidden w-12 h-12 flex items-center justify-center ${textColor} hover:bg-black/10 rounded-2xl transition-all duration-300 shadow-lg backdrop-blur-sm`}
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
