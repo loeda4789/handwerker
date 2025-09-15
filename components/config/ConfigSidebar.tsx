@@ -24,6 +24,7 @@ import {
 } from 'react-icons/md'
 import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 import { STYLE_PACKAGES, applyStylePackage } from '@/lib/config/stylePackages'
+import { UNIFIED_STYLES, applyUnifiedStyle } from '@/lib/config/unifiedStyles'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import InfoTooltip from '@/components/ui/InfoTooltip'
@@ -379,7 +380,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           </div>
 
 
-          {/* Stil-Pakete */}
+          {/* Stil-System */}
           <div className="space-y-4">
             <div className="mb-2">
               <div className="flex items-center gap-2 mb-2">
@@ -387,26 +388,27 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   <MdBrush className="w-4 h-4 text-gray-600" />
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Stil-Pakete
+                  Stil
                 </h3>
-                <CompactInfo content="Wählen Sie ein vordefiniertes Design-Paket mit passenden Farben, Schriftarten und Stilelementen für Ihre Branche." />
+                <CompactInfo content="Wählen Sie einen Stil - alle Design-Elemente (Schrift, Abstände, Badges, Animationen) passen sich automatisch an." />
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-3">
-              {STYLE_PACKAGES.map((pkg) => {
+            <div className="space-y-3">
+              {UNIFIED_STYLES.map((style) => {
+                const IconComponent = getStylePackageIcon(style.id)
                 return (
                 <button
-                  key={pkg.id}
+                  key={style.id}
                   type="button"
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
                     
-                    // Apply style package using the centralized function
-                    const updatedConfig = applyStylePackage(config, pkg.id)
+                    // Apply unified style using the centralized function
+                    const updatedConfig = applyUnifiedStyle(config, style.id)
                     
                     // Update all style-related settings FIRST
-                    setStylePackage(pkg.id as any)
+                    setStylePackage(style.id as any)
                     if (updatedConfig.style) {
                       if (updatedConfig.style.fontFamily) {
                         setFontFamily(updatedConfig.style.fontFamily)
@@ -447,23 +449,32 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       applyHeadingStyles(updatedConfig)
                     }
                   }}
-                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all cursor-pointer config-sidebar-button ${
-                    stylePackage === pkg.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200 hover:border-gray-300'
+                  className={`w-full p-4 border-2 transition-all text-left h-20 flex items-center config-sidebar-variant ${
+                    (stylePackage as any) === style.id
+                      ? 'border-gray-900 bg-gray-50'
+                      : `${style.color} hover:border-gray-300`
                   }`}
-                  onMouseDown={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                  }}
                 >
-                  <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                    stylePackage === pkg.id ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}>
-                    {(() => {
-                      const IconComponent = getStylePackageIcon(pkg.id)
-                      return <IconComponent className="w-4 h-4" />
-                    })()}
+                  <div className="flex items-center gap-3 w-full">
+                    <div className={`w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0 ${
+                      (stylePackage as any) === style.id ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'
+                    }`}>
+                      <IconComponent className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-gray-900 text-sm mb-1">
+                        {style.name}
+                      </div>
+                      <div className="text-xs text-gray-500 leading-tight">
+                        {style.description}
+                      </div>
+                    </div>
+                    {(stylePackage as any) === style.id && (
+                      <div className="flex-shrink-0">
+                        <MdCheck className="w-5 h-5 text-gray-900" />
+                      </div>
+                    )}
                   </div>
-                  <span className="text-xs font-medium text-gray-900 text-center">{pkg.name}</span>
                 </button>
                 )
               })}

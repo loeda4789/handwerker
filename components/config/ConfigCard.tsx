@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { MdSettings } from 'react-icons/md'
 import { useAppConfig, useLayoutConfig, useHeroConfig, useStyleConfig } from '@/contexts/AppConfigContext'
+import { UNIFIED_STYLES } from '@/lib/config/unifiedStyles'
 import ConfigSidebar from './ConfigSidebar'
 
 export default function ConfigCard() {
@@ -12,15 +13,11 @@ export default function ConfigCard() {
   const { package: stylePackage } = useStyleConfig()
   const [isOpen, setIsOpen] = useState(false)
 
-  // Bestimme ob HeaderKlassik verwendet wird
-  const isKlassikHeader = heroType === 'split' || stylePackage === 'luxury'
-
+  // Bestimme den aktuellen Stil
+  const currentStyle = UNIFIED_STYLES.find(style => style.id === (stylePackage as any)) || UNIFIED_STYLES[0]
 
   const summary = {
-    design: isKlassikHeader ? 'Klassik' :
-            designStyle === 'angular' ? 'Eckig' : 
-            designStyle === 'rounded' ? 'Abgerundet' : 
-            designStyle === 'modern' ? 'Modern' : 'Modern',
+    style: currentStyle.name,
     color: config.theme.colorScheme === 'warm' ? 'Warm' : 
            config.theme.colorScheme === 'modern' ? 'Modern' : 
            config.theme.colorScheme === 'elegant' ? 'Elegant' : 'Nature',
@@ -44,7 +41,7 @@ export default function ConfigCard() {
                 Website Designer
               </div>
               <div className="text-sm text-gray-500">
-                {summary.design} • {summary.color} • {summary.mode}
+                {summary.style} • {summary.color} • {summary.mode}
               </div>
             </div>
             <div className="flex gap-1">
@@ -71,7 +68,7 @@ export default function ConfigCard() {
                 Website Designer
               </div>
               <div className="text-sm text-gray-500">
-                {summary.design} • {summary.color}
+                {summary.style} • {summary.color}
               </div>
             </div>
           </div>
