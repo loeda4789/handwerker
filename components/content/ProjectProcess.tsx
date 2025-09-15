@@ -132,12 +132,8 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
       <div className="max-w-screen-xl mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
-          {designStyle === 'rounded' && (
-            <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4"
-              style={{ 
-                borderRadius: 'var(--radius-button)',
-                backgroundColor: 'var(--color-secondary)'
-              }}>
+          {(designStyle === 'rounded' || designStyle === 'modern') && (
+            <span className={`${getBadgeClasses()}`}>
               Unser Prozess
             </span>
           )}
