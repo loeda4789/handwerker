@@ -51,7 +51,7 @@ const getStylePackageIcon = (packageId: string) => {
 
 export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { config, isConfigLoaded, updateConfig } = useAppConfig()
-  const { mode: siteMode, design: designStyle, variant, setMode: setSiteMode, setVariant } = useLayoutConfig()
+  const { mode: siteMode, design: designStyle, variant, mobileType, setMode: setSiteMode, setVariant, setMobileType } = useLayoutConfig()
   const { colorScheme, setColorScheme } = useThemeConfig()
   const { features, setFeature: toggleFeature } = useFeaturesConfig()
   const { type: heroType, setType: setHeroType } = useHeroConfig()
@@ -602,6 +602,56 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               </div>
             </div>
           )}
+
+          {/* Mobile Navigation - Nur auf Mobile */}
+          <div className="lg:hidden space-y-4">
+            <div className="mb-2">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
+                  <MdSettings className="w-4 h-4 text-gray-600" />
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                  Mobile Navigation
+                </h3>
+                <CompactInfo content="Wählen Sie den Typ der mobilen Navigation aus. Fullscreen öffnet das Menü über den gesamten Bildschirm, Sidebar öffnet es seitlich und Dropdown zeigt es als Dropdown-Menü." />
+              </div>
+            </div>
+            <div className="space-y-3">
+              {[
+                { key: 'fullscreen', label: 'Fullscreen', description: 'Menü über gesamten Bildschirm' },
+                { key: 'sidebar', label: 'Sidebar', description: 'Menü öffnet sich seitlich' },
+                { key: 'dropdown', label: 'Dropdown', description: 'Menü als Dropdown-Menü' }
+              ].map((option) => (
+                <div key={option.key} className="flex items-center justify-between p-3 border border-gray-200 config-sidebar-feature">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-full">
+                      <MdViewQuilt className="w-4 h-4 text-gray-600" />
+                    </div>
+                    <div>
+                      <span className="text-sm font-medium text-gray-900">{option.label}</span>
+                      <p className="text-xs text-gray-500">{option.description}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setMobileType(option.key as 'fullscreen' | 'sidebar' | 'dropdown')}
+                    className={`relative inline-flex h-5 w-9 items-center transition-colors ${
+                      mobileType === option.key
+                        ? 'bg-gray-900'
+                        : 'bg-gray-200'
+                    }`}
+                    style={{ borderRadius: '12px' }}
+                  >
+                    <span
+                      className={`inline-block h-3 w-3 transform bg-white transition-transform ${
+                        mobileType === option.key ? 'translate-x-5' : 'translate-x-1'
+                      }`}
+                      style={{ borderRadius: '50%' }}
+                    />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
 
 
           {/* Überschriften */}
