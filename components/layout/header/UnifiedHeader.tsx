@@ -147,6 +147,7 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
         return {
           transform: 'translateY(-100%)',
           transition: 'transform 0.3s ease-in-out',
+          opacity: 0,
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
           borderColor: 'rgba(0, 0, 0, 0.1)',
           color: 'black'
@@ -164,7 +165,8 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
       if (!isScrollingUp && isScrolled) {
         return {
           transform: 'translateY(-100%)',
-          transition: 'transform 0.3s ease-in-out'
+          transition: 'transform 0.3s ease-in-out',
+          opacity: 0
         };
       }
       
@@ -194,7 +196,8 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
       if (!isScrollingUp && isScrolled) {
         return {
           transform: 'translateY(-100%)',
-          transition: 'transform 0.3s ease-in-out'
+          transition: 'transform 0.3s ease-in-out',
+          opacity: 0
         };
       }
       
