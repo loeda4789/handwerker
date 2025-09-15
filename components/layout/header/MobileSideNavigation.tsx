@@ -195,7 +195,7 @@ function MobileSideNavigation({
                           <Link
                             key={dropdownIndex}
                             href={dropdownItem.href}
-                            className="block py-2 px-4 text-lg text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                            className="block py-2 px-4 text-lg text-gray-900 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200"
                             onClick={onClose}
                           >
                             {dropdownItem.label}

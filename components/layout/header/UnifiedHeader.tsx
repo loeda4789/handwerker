@@ -279,7 +279,7 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
     if (headerVariant === 'classic') {
       return 'backdrop-blur-md shadow-lg border-b';
     } else if (headerVariant === 'modern') {
-      return 'backdrop-blur-xl shadow-2xl border rounded-2xl';
+      return 'backdrop-blur-xl shadow-2xl border rounded-3xl';
     } else {
       // Floating
       return 'backdrop-blur-xl shadow-2xl border rounded-3xl';

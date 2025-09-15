@@ -174,7 +174,7 @@ function MobileHeader({
                           <Link
                             key={dropdownIndex}
                             href={dropdownItem.href}
-                            className="block text-xl text-gray-600 hover:text-orange-500 transition-colors duration-300 min-h-[50px] flex items-center"
+                            className="block text-xl text-gray-900 hover:text-orange-500 transition-colors duration-300 min-h-[50px] flex items-center"
                             onClick={onClose}
                           >
                             {dropdownItem.label}
