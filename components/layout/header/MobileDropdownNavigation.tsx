@@ -140,7 +140,7 @@ function MobileDropdownNavigation({
                     aria-expanded={openDropdown === item.id}
                     aria-controls={`dropdown-${item.id}`}
                   >
-                    <span className="text-base font-medium">{item.label}</span>
+                    <span className="text-lg font-medium">{item.label}</span>
                     <svg
                       className={`w-4 h-4 transform transition-transform duration-200 ${
                         openDropdown === item.id ? 'rotate-180' : ''
@@ -163,7 +163,7 @@ function MobileDropdownNavigation({
                         <Link
                           key={dropdownItem.href}
                           href={dropdownItem.href || '#'}
-                          className="block py-2 px-3 text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                          className="block py-2 px-3 text-base text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
                           onClick={(e) => handleItemClick(e, dropdownItem.href || '')}
                         >
                           {dropdownItem.label}
@@ -175,7 +175,7 @@ function MobileDropdownNavigation({
               ) : (
                 <Link
                   href={item.href || '#'}
-                  className="block py-3 px-3 text-base font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200"
+                  className="block py-3 px-3 text-lg font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200"
                   onClick={(e) => handleItemClick(e, item.href || '')}
                 >
                   {item.label}

@@ -143,9 +143,9 @@ function MobileHeader({
         >
           Hauptnavigation mit allen verfügbaren Menüpunkten
         </div>
-        <div className="flex-1 flex items-center justify-center min-h-0">
+        <div className="flex-1 flex items-center min-h-0">
           <nav 
-            className="w-full max-w-md px-10 py-16 space-y-8 text-center"
+            className="w-full max-w-md px-10 py-16 space-y-8 text-left"
             role="navigation"
             aria-label="Hauptnavigation"
           >
@@ -159,7 +159,7 @@ function MobileHeader({
                 <div className="space-y-2">
                   <button
                     onClick={() => toggleMobileDropdown(item.id)}
-                    className="text-3xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center justify-center"
+                    className="text-3xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center justify-center w-full"
                   >
                     {item.label}
                     <svg className="w-5 h-5 ml-2 inline transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -174,22 +174,16 @@ function MobileHeader({
                           <Link
                             key={dropdownIndex}
                             href={dropdownItem.href}
-                            className="block text-xl text-gray-600 hover:text-orange-500 transition-colors duration-300 min-h-[50px] flex items-center justify-center"
+                            className="block text-xl text-gray-600 hover:text-orange-500 transition-colors duration-300 min-h-[50px] flex items-center"
                             onClick={onClose}
                           >
-                            {'icon' in dropdownItem && dropdownItem.icon && (
-                              <span className="mr-2">{dropdownItem.icon}</span>
-                            )}
                             {dropdownItem.label}
                           </Link>
                         ) : (
                           <span
                             key={dropdownIndex}
-                            className="block text-xl text-gray-400 cursor-default min-h-[50px] flex items-center justify-center"
+                            className="block text-xl text-gray-400 cursor-default min-h-[50px] flex items-center"
                           >
-                            {'icon' in dropdownItem && dropdownItem.icon && (
-                              <span className="mr-2">{dropdownItem.icon}</span>
-                            )}
                             {dropdownItem.label}
                           </span>
                         )
@@ -201,7 +195,7 @@ function MobileHeader({
                 <Link
                   href={item.href || '#'}
                   onClick={item.isClickable && item.href?.startsWith('#') ? (e) => onSmoothScroll(e, item.id) : undefined}
-                  className="text-3xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center justify-center"
+                  className="text-3xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center"
                 >
                   {item.label}
                 </Link>
@@ -211,8 +205,8 @@ function MobileHeader({
           </nav>
         </div>
         
-        {/* CTA Button - Zentriert */}
-        <div className="flex justify-center px-8 pb-12 animate-in fade-in-up duration-500" style={{ animationDelay: '800ms', animationFillMode: 'both' }}>
+        {/* CTA Button - Linksbündig */}
+        <div className="px-8 pb-12 animate-in fade-in-up duration-500" style={{ animationDelay: '800ms', animationFillMode: 'both' }}>
           <Link
             ref={lastFocusableRef}
             href="#kontakt"

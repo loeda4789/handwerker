@@ -173,7 +173,7 @@ function MobileSideNavigation({
                     onClick={() => toggleMobileDropdown(item.id)}
                     className="w-full flex items-center justify-between py-3 px-4 text-left text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 group"
                   >
-                    <span className={`font-medium ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'}`}>
+                    <span className={`text-lg font-medium ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'}`}>
                       {item.label}
                     </span>
                     <svg 
@@ -195,22 +195,16 @@ function MobileSideNavigation({
                           <Link
                             key={dropdownIndex}
                             href={dropdownItem.href}
-                            className="block py-2 px-4 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                            className="block py-2 px-4 text-lg text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200"
                             onClick={onClose}
                           >
-                            {'icon' in dropdownItem && dropdownItem.icon && (
-                              <span className="mr-2">{dropdownItem.icon}</span>
-                            )}
                             {dropdownItem.label}
                           </Link>
                         ) : (
                           <span
                             key={dropdownIndex}
-                            className="block py-2 px-4 text-gray-400 cursor-default"
+                            className="block py-2 px-4 text-lg text-gray-400 cursor-default"
                           >
-                            {'icon' in dropdownItem && dropdownItem.icon && (
-                              <span className="mr-2">{dropdownItem.icon}</span>
-                            )}
                             {dropdownItem.label}
                           </span>
                         )
@@ -222,7 +216,7 @@ function MobileSideNavigation({
                 <Link
                   href={item.href || '#'}
                   onClick={item.isClickable && item.href?.startsWith('#') ? (e) => onSmoothScroll(e, item.id) : undefined}
-                  className={`block py-3 px-4 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'}`}
+                  className={`block py-3 px-4 text-lg text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'}`}
                 >
                   {item.label}
                 </Link>
