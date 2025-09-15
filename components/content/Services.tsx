@@ -2,9 +2,12 @@
 
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ContentData } from '@/types/content'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
+import { useFeatureGating } from '@/lib/hooks/useFeatureGating'
+import ModernImageGallery from '@/components/media/ModernImageGallery'
 
 interface ServicesProps {
   content: ContentData
@@ -16,13 +19,16 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
   // Aktiviere Scroll-Animationen
   useScrollAnimation()
 
-  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [galleryOpen, setGalleryOpen] = useState(false)
   const [currentService, setCurrentService] = useState<typeof content.services[0] | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   
   // Design-Style aus AppConfigContext
   const { design: designStyle } = useLayoutConfig()
   const { badgeStyle, fontFamily } = useStyleConfig()
+  
+  // Feature-Gating
+  const { hasFeatureAccess, isStarter, isProfessional, isPremium } = useFeatureGating()
   
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
@@ -55,33 +61,58 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
     return fontClasses[fontFamily]
   }
 
-  // Lightbox functions
-  const openLightbox = (service: typeof content.services[0]) => {
+  // Gallery functions
+  const openGallery = (service: typeof content.services[0]) => {
     setCurrentService(service)
     setCurrentImageIndex(0)
-    setLightboxOpen(true)
-    document.body.style.overflow = 'hidden'
+    setGalleryOpen(true)
   }
 
-  const closeLightbox = () => {
-    setLightboxOpen(false)
+  const closeGallery = () => {
+    setGalleryOpen(false)
     setCurrentService(null)
-    document.body.style.overflow = 'unset'
   }
 
-  const nextImage = () => {
-    if (currentService) {
-      // Total images = 1 (service image) + project images
-      const totalImages = 1 + (currentService.projects?.length || 0)
-      setCurrentImageIndex((prev) => (prev + 1) % totalImages)
+  // Convert service to gallery images
+  const getServiceGalleryImages = (service: typeof content.services[0]) => {
+    const images = []
+    
+    // Add main service image
+    if (service.image) {
+      images.push({
+        src: service.image,
+        alt: service.title,
+        title: service.title,
+        description: service.description
+      })
     }
+    
+    // Add project images
+    if (service.projects) {
+      service.projects.forEach(project => {
+        if (project.image) {
+          images.push({
+            src: project.image,
+            alt: project.title,
+            title: project.title,
+            description: project.description
+          })
+        }
+      })
+    }
+    
+    return images
   }
 
-  const prevImage = () => {
-    if (currentService) {
-      // Total images = 1 (service image) + project images
-      const totalImages = 1 + (currentService.projects?.length || 0)
-      setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages)
+  // Handle service click based on package
+  const handleServiceClick = (service: typeof content.services[0]) => {
+    if (hasFeatureAccess('servicesDetailPages')) {
+      // Professional/Premium: Navigate to detail page
+      // For now, we'll use the gallery as fallback
+      openGallery(service)
+    } else {
+      // Starter: Only show gallery
+      openGallery(service)
     }
   }
 
@@ -121,7 +152,7 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
               key={index}
               className="bg-surface dark:bg-dark overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 hover:scale-105 cursor-pointer animate-on-scroll"
               style={{ borderRadius: 'var(--radius-card)' }}
-              onClick={() => openLightbox(service)}
+              onClick={() => handleServiceClick(service)}
             >
               {/* Service Image */}
               <div className="relative h-48 overflow-hidden">
@@ -162,11 +193,22 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="text-white text-center p-4">
-                    <svg className="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                    </svg>
-                    <p className="text-lg font-medium">Mehr erfahren</p>
+                    {hasFeatureAccess('servicesDetailPages') ? (
+                      <>
+                        <svg className="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <p className="text-lg font-medium">Zur Detailseite</p>
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                        <p className="text-lg font-medium">Galerie öffnen</p>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -181,19 +223,33 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
                   {service.description}
                 </p>
                 
-                {/* Mehr erfahren Button */}
-                <button 
-                  className="inline-flex items-center text-primary dark:text-accent hover:text-primary/80 dark:hover:text-accent/80 font-medium transition-colors duration-200"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    openLightbox(service)
-                  }}
-                >
-                  Mehr erfahren
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
-                  </svg>
-                </button>
+                {/* Action Button based on package */}
+                {hasFeatureAccess('servicesDetailPages') ? (
+                  <Link 
+                    href={`/services/${service.slug || service.title.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="inline-flex items-center text-primary dark:text-accent hover:text-primary/80 dark:hover:text-accent/80 font-medium transition-colors duration-200"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Zur Detailseite
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </Link>
+                ) : (
+                  <button 
+                    className="inline-flex items-center text-primary dark:text-accent hover:text-primary/80 dark:hover:text-accent/80 font-medium transition-colors duration-200"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      openGallery(service)
+                    }}
+                  >
+                    Galerie öffnen
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -221,108 +277,14 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
           </div>
         )}
 
-        {/* Lightbox */}
-        {lightboxOpen && currentService && (
-          <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
-            {/* Close Button */}
-            <button
-              onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-
-            {/* Previous Button */}
-            {(1 + (currentService.projects?.length || 0)) > 1 && (
-              <button
-                onClick={prevImage}
-                className="absolute left-4 text-white hover:text-gray-300 z-10"
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
-                </svg>
-              </button>
-            )}
-
-            {/* Next Button */}
-            {(1 + (currentService.projects?.length || 0)) > 1 && (
-              <button
-                onClick={nextImage}
-                className="absolute right-4 text-white hover:text-gray-300 z-10"
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
-                </svg>
-              </button>
-            )}
-
-            {/* Service Title Header */}
-            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-center z-10">
-              <h3 className="text-2xl font-bold">{currentService.title}</h3>
-              <p className="text-white/80">Referenzen & Projekte</p>
-            </div>
-
-            {/* Image */}
-            <div className="max-w-4xl max-h-full w-full h-full flex items-center justify-center mt-16 mb-16">
-              {/* Service Main Image (Index 0) or Project Images (Index 1+) */}
-              {currentImageIndex === 0 && currentService.image ? (
-                <div className="relative w-full max-w-3xl h-[70vh]">
-                  <Image
-                    src={currentService.image}
-                    alt={currentService.title}
-                    fill
-                    className="object-contain"
-                    style={{ borderRadius: 'var(--radius-image)' }}
-                    sizes="(max-width: 768px) 100vw, 80vw"
-                    quality={90}
-                  />
-                </div>
-              ) : currentImageIndex > 0 && currentService.projects && currentService.projects[currentImageIndex - 1] ? (
-                <div className="relative w-full max-w-3xl h-[70vh]">
-                  {currentService.projects[currentImageIndex - 1].image ? (
-                    <Image
-                      src={currentService.projects[currentImageIndex - 1].image}
-                      alt={currentService.projects[currentImageIndex - 1].title}
-                      fill
-                      className="object-contain"
-                      style={{ borderRadius: 'var(--radius-image)' }}
-                      sizes="(max-width: 768px) 100vw, 80vw"
-                      quality={90}
-                    />
-                  ) : (
-                    <div className="relative w-full max-w-3xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center h-96"
-                      style={{ borderRadius: 'var(--radius-image)' }}>
-                      <div className="text-center text-white">
-                        <svg className="w-24 h-24 mx-auto mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <h4 className="text-2xl font-bold mb-2">{currentService.projects[currentImageIndex - 1]?.title}</h4>
-                        <p className="text-white/80 max-w-md mx-auto">{currentService.projects[currentImageIndex - 1]?.description}</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="relative w-full max-w-3xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center h-96"
-                  style={{ borderRadius: 'var(--radius-image)' }}>
-                  <div className="text-center text-white">
-                    <svg className="w-24 h-24 mx-auto mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    <h4 className="text-2xl font-bold mb-2">{currentService.title}</h4>
-                    <p className="text-white/80 max-w-md mx-auto">Kein Bild verfügbar</p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Image Counter */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
-              {currentImageIndex + 1} / {1 + (currentService.projects?.length || 0)}
-            </div>
-          </div>
+        {/* Modern Image Gallery */}
+        {galleryOpen && currentService && (
+          <ModernImageGallery
+            images={getServiceGalleryImages(currentService)}
+            isOpen={galleryOpen}
+            onClose={closeGallery}
+            initialIndex={currentImageIndex}
+          />
         )}
       </div>
     </section>

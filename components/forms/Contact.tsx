@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { useLayoutConfig, useStyleConfig, useHeadingsConfig } from '@/contexts/AppConfigContext'
+import { useFeatureGating } from '@/lib/hooks/useFeatureGating'
 
 interface ContactProps {
   content: any
@@ -13,6 +14,7 @@ interface FormData {
   email: string
   phone: string
   message: string
+  category?: string
   privacy: boolean
 }
 
@@ -28,7 +30,8 @@ export default function Contact({ content }: ContactProps) {
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
+    category: ''
   })
 
   const [isLoading, setIsLoading] = useState(false)
@@ -46,8 +49,23 @@ export default function Contact({ content }: ContactProps) {
   const { design: designStyle } = useLayoutConfig()
   const { badgeStyle, fontFamily } = useStyleConfig()
   
+  // Feature-Gating
+  const { hasFeatureAccess } = useFeatureGating()
+  
   // Moderne Ansichten (rounded, modern) verwenden modernen Badge-Stil
   const isModernStyle = designStyle === 'rounded' || designStyle === 'modern'
+  
+  // Kategorien für Formular (nur ab Professional)
+  const formCategories = [
+    'Allgemeine Anfrage',
+    'Beratung',
+    'Kostenvoranschlag',
+    'Notfall',
+    'Wartung',
+    'Reparatur',
+    'Neubau',
+    'Renovierung'
+  ]
   
   // Badge-Klassen basierend auf Stil-Paket
   const getBadgeClasses = () => {
@@ -102,7 +120,8 @@ export default function Contact({ content }: ContactProps) {
         name: '',
         email: '',
         phone: '',
-        message: ''
+        message: '',
+        category: ''
       })
       
     } catch (error) {
@@ -113,7 +132,7 @@ export default function Contact({ content }: ContactProps) {
   }
 
   // Input Handler
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
@@ -222,8 +241,31 @@ export default function Contact({ content }: ContactProps) {
                 style={{ borderRadius: 'var(--radius-input)' }}
                 placeholder="0123 456789"
               />
-
             </div>
+
+            {/* Category Field - nur ab Professional */}
+            {hasFeatureAccess('formCategories') && (
+              <div>
+                <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Kategorie (optional)
+                </label>
+                <select
+                  id="category"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-500 focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white transition-all duration-300"
+                  style={{ borderRadius: 'var(--radius-input)' }}
+                >
+                  <option value="">Bitte wählen Sie eine Kategorie</option>
+                  {formCategories.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
              
             {/* Message Field */}
             <div>

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { ContentData } from '@/types/content'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
+import ModernImageGallery from '@/components/media/ModernImageGallery'
 
 interface PortfolioProps {
   content: ContentData
@@ -58,28 +59,26 @@ export default function Portfolio({ content }: PortfolioProps) {
     ? content.portfolio.projects 
     : content.portfolio.projects.filter(project => project.category === activeFilter)
 
-  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [galleryOpen, setGalleryOpen] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   
-  // Lightbox functions
-  const openLightbox = (index: number) => {
+  // Gallery functions
+  const openGallery = (index: number) => {
     setCurrentImageIndex(index)
-    setLightboxOpen(true)
-    document.body.style.overflow = 'hidden'
+    setGalleryOpen(true)
   }
 
-  const closeLightbox = () => {
-    setLightboxOpen(false)
-    document.body.style.overflow = 'unset'
+  const closeGallery = () => {
+    setGalleryOpen(false)
   }
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % filteredProjects.length)
-  }
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length)
-  }
+  // Convert projects to gallery images
+  const galleryImages = filteredProjects.map(project => ({
+    src: project.image,
+    alt: project.title,
+    title: project.title,
+    description: project.description
+  }))
 
   return (
     <section id="referenzen" className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
@@ -154,7 +153,7 @@ export default function Portfolio({ content }: PortfolioProps) {
               key={index}
               className="group bg-background dark:bg-dark-secondary overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer animate-on-scroll"
               style={{ borderRadius: 'var(--radius-card)' }}
-              onClick={() => openLightbox(index)}
+              onClick={() => openGallery(index)}
             >
               {/* Project Image */}
                              <div className="relative h-64 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
@@ -199,60 +198,13 @@ export default function Portfolio({ content }: PortfolioProps) {
           ))}
         </div>
 
-        {/* Lightbox */}
-        {lightboxOpen && (
-          <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
-            {/* Close Button */}
-            <button
-              onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-
-            {/* Previous Button */}
-            <button
-              onClick={prevImage}
-              className="absolute left-4 text-white hover:text-gray-300 z-10"
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
-              </svg>
-            </button>
-
-            {/* Next Button */}
-            <button
-              onClick={nextImage}
-              className="absolute right-4 text-white hover:text-gray-300 z-10"
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </button>
-
-            {/* Image */}
-            <div className="max-w-4xl max-h-full w-full h-full flex items-center justify-center">
-              <div className="relative w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center"
-                style={{ borderRadius: 'var(--radius-image)' }}>
-                <div className="text-center text-white">
-                  <svg className="w-24 h-24 mx-auto mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                  </svg>
-                  <h3 className="text-2xl font-bold mb-2">{filteredProjects[currentImageIndex]?.title}</h3>
-                  <p className="text-lg mb-2">{filteredProjects[currentImageIndex]?.category}</p>
-                  <p className="text-white/80">{filteredProjects[currentImageIndex]?.description}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Image Counter */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
-              {currentImageIndex + 1} / {filteredProjects.length}
-            </div>
-          </div>
-        )}
+        {/* Modern Image Gallery */}
+        <ModernImageGallery
+          images={galleryImages}
+          isOpen={galleryOpen}
+          onClose={closeGallery}
+          initialIndex={currentImageIndex}
+        />
       </div>
     </section>
   )

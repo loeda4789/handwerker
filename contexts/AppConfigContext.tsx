@@ -13,7 +13,7 @@ interface AppConfigContextType {
   siteVariant: 'starter' | 'professional' | 'premium'
 }
 
-const AppConfigContext = createContext<AppConfigContextType | undefined>(undefined)
+export const AppConfigContext = createContext<AppConfigContextType | undefined>(undefined)
 
 export function AppConfigProvider({ children }: { children: React.ReactNode }) {
   const [config, setConfig] = useState<AppConfig>(configManager.getConfig())
