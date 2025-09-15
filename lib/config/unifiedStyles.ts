@@ -89,7 +89,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
     name: 'Standard',
     description: 'Ausgewogen, professionell, vertrauenswürdig',
     icon: 'S',
-    color: 'bg-blue-50 border-blue-200',
+    color: 'bg-gray-50 border-gray-200',
     config: {
       typography: {
         fontFamily: 'sans',
