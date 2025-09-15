@@ -259,7 +259,7 @@ export default function ServicePage({ params }: ServicePageProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="#kontakt"
-              className={`inline-block px-8 py-4 ${classes.secondary} ${classes.hoverSecondary} ${classes.textLight} font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1`}
+              className={`inline-block px-8 py-4 ${classes.secondary} hover:opacity-90 ${classes.textLight} font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1`}
               style={{ borderRadius: 'var(--radius-button)' }}
             >
               Jetzt anfragen
