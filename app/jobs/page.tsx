@@ -58,7 +58,6 @@ export default function JobsPage() {
           "Firmenwagen möglich",
           "Betriebliche Altersvorsorge"
         ],
-        salary: "ab 3.500€ brutto",
         startDate: "ab sofort",
         icon: "⚡"
       },
@@ -83,7 +82,6 @@ export default function JobsPage() {
           "Moderne Arbeitsausrüstung",
           "Gute Aufstiegsmöglichkeiten"
         ],
-        salary: "ab 2.800€ brutto",
         startDate: "ab sofort",
         icon: "🔧"
       },
@@ -108,7 +106,6 @@ export default function JobsPage() {
           "Moderne Ausbildungsstätte",
           "Persönliche Betreuung durch Ausbilder"
         ],
-        salary: "1. Jahr: 1.050€, 2. Jahr: 1.100€, 3. Jahr: 1.200€",
         startDate: "01.08.2024",
         icon: "🎓"
       }
@@ -137,7 +134,6 @@ export default function JobsPage() {
             "Firmenwagen möglich",
             "Betriebliche Altersvorsorge"
           ],
-          salary: "ab 3.200€ brutto",
           startDate: "ab sofort",
           icon: "🏠"
         },
@@ -162,7 +158,6 @@ export default function JobsPage() {
             "Moderne Arbeitsausrüstung",
             "Gute Aufstiegsmöglichkeiten"
           ],
-          salary: "ab 2.600€ brutto",
           startDate: "ab sofort",
           icon: "🔨"
         },
@@ -187,7 +182,6 @@ export default function JobsPage() {
             "Moderne Ausbildungsstätte",
             "Persönliche Betreuung durch Ausbilder"
           ],
-          salary: "1. Jahr: 950€, 2. Jahr: 1.000€, 3. Jahr: 1.100€",
           startDate: "01.08.2024",
           icon: "🎓"
         }
@@ -215,7 +209,6 @@ export default function JobsPage() {
             "Firmenwagen möglich",
             "Betriebliche Altersvorsorge"
           ],
-          salary: "ab 3.000€ brutto",
           startDate: "ab sofort",
           icon: "🧱"
         },
@@ -240,7 +233,6 @@ export default function JobsPage() {
             "Moderne Arbeitsausrüstung",
             "Gute Aufstiegsmöglichkeiten"
           ],
-          salary: "ab 2.500€ brutto",
           startDate: "ab sofort",
           icon: "🔨"
         },
@@ -265,7 +257,6 @@ export default function JobsPage() {
             "Moderne Ausbildungsstätte",
             "Persönliche Betreuung durch Ausbilder"
           ],
-          salary: "1. Jahr: 900€, 2. Jahr: 950€, 3. Jahr: 1.000€",
           startDate: "01.08.2024",
           icon: "🎓"
         }
@@ -447,21 +438,20 @@ export default function JobsPage() {
                     </div>
 
                     <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                      <div className="flex justify-between items-center mb-4">
-                        <div>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">Gehalt:</p>
-                          <p className="font-semibold text-gray-900 dark:text-white">{job.salary}</p>
-                        </div>
-                        <div className="text-right">
+                      <div className="flex justify-center items-center mb-4">
+                        <div className="text-center">
                           <p className="text-sm text-gray-500 dark:text-gray-400">Start:</p>
                           <p className="font-semibold text-gray-900 dark:text-white">{job.startDate}</p>
                         </div>
                       </div>
 
-                      <button className="w-full bg-primary hover:bg-accent text-white font-medium py-3 px-4 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                        style={{ borderRadius: 'var(--radius-button)' }}>
+                      <a
+                        href={`mailto:${content?.contact?.email || 'info@mustermann-elektrotechnik.de'}?subject=Bewerbung: ${job.title}&body=Sehr geehrte Damen und Herren,%0D%0A%0D%0Ahiermit bewerbe ich mich um die ausgeschriebene Stelle als ${job.title}.%0D%0A%0D%0AMit freundlichen Grüßen`}
+                        className="w-full bg-primary hover:bg-accent text-white font-medium py-3 px-4 transition-all duration-300 hover:scale-105 hover:shadow-lg inline-block text-center"
+                        style={{ borderRadius: 'var(--radius-button)' }}
+                      >
                         Jetzt bewerben
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </div>
