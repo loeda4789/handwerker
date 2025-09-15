@@ -163,7 +163,7 @@ function MobileDropdownNavigation({
                         <Link
                           key={dropdownItem.href}
                           href={dropdownItem.href || '#'}
-                          className="block py-2 px-3 text-base text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                          className="block py-2 px-3 text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
                           onClick={(e) => handleItemClick(e, dropdownItem.href || '')}
                         >
                           {dropdownItem.label}
