@@ -148,7 +148,6 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
           transform: 'translateY(-100%)',
           transition: 'transform 0.3s ease-in-out',
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(10px)',
           borderColor: 'rgba(0, 0, 0, 0.1)',
           color: 'black'
         };
@@ -172,7 +171,6 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
       if (isScrolled) {
         return {
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(10px)',
           borderColor: 'rgba(0, 0, 0, 0.1)',
           color: 'black'
         };
@@ -181,14 +179,12 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
       if (shouldUseTransparency) {
         return {
           backgroundColor: 'transparent',
-          backdropFilter: 'blur(10px)',
           borderColor: 'rgba(255, 255, 255, 0.2)',
           color: 'white'
         };
       } else {
         return {
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(10px)',
           borderColor: 'rgba(0, 0, 0, 0.1)',
           color: 'black'
         };
@@ -205,7 +201,6 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
       if (isScrolled) {
         return {
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(10px)',
           borderColor: 'rgba(0, 0, 0, 0.1)',
           color: 'black'
         };
@@ -277,12 +272,12 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
 
   const getHeaderInnerClasses = () => {
     if (headerVariant === 'classic') {
-      return 'backdrop-blur-md shadow-lg border-b';
+      return 'shadow-lg border-b';
     } else if (headerVariant === 'modern') {
-      return 'backdrop-blur-xl shadow-2xl border rounded-[3rem]';
+      return 'shadow-2xl border rounded-[3rem]';
     } else {
       // Floating
-      return 'backdrop-blur-xl shadow-2xl border rounded-[4rem]';
+      return 'shadow-2xl border rounded-[4rem]';
     }
   };
 
@@ -349,7 +344,7 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
                       </span>
                       <div
                         ref={(el) => { dropdownRef.current[item.id] = el }}
-                        className={`absolute left-0 mt-3 w-auto min-w-[240px] rounded-2xl shadow-2xl bg-white/95 backdrop-blur-xl border border-gray-200 transform transition-all duration-300 ease-out origin-top-left z-50 ${
+                        className={`absolute left-0 mt-3 w-auto min-w-[240px] rounded-2xl shadow-2xl bg-white border border-gray-200 transform transition-all duration-300 ease-out origin-top-left z-50 ${
                           desktopDropdown === item.id 
                             ? 'opacity-100 scale-100 translate-y-0' 
                             : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
@@ -364,8 +359,8 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
                               href={dropdownItem.href || '#'}
                               className={`group flex items-center px-4 py-3 text-sm font-medium ${navTextClass} transition-all duration-200 mx-2 relative border-l-4 ${
                                 isActive(dropdownItem.href || '')
-                                  ? 'border-l-blue-500 text-blue-600 bg-blue-50' 
-                                  : 'border-l-transparent text-gray-700 hover:text-blue-600 hover:border-l-blue-500 hover:bg-blue-50'
+                                  ? 'border-l-gray-900 text-gray-900 bg-gray-50' 
+                                  : 'border-l-transparent text-gray-700 hover:text-gray-900 hover:border-l-gray-900 hover:bg-gray-50'
                               }`}
                               onClick={dropdownItem.href?.startsWith('#') ? (e) => handleSmoothScroll(e, dropdownItem.href!.substring(1)) : undefined}
                             >
