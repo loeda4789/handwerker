@@ -72,11 +72,7 @@ export default function FAQ({ content }: FAQProps) {
           )}
           
           <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
-            {(designStyle === 'rounded' || designStyle === 'modern') ? (
-              <span className="heading-underline">Häufig gestellte Fragen</span>
-            ) : (
-              'Häufig gestellte Fragen'
-            )}
+            Häufig gestellte Fragen
           </h2>
           <p className={`text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto ${getFontClass()}`}>
             Hier finden Sie Antworten auf die wichtigsten Fragen zu unseren Dienstleistungen
