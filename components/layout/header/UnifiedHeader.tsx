@@ -284,9 +284,11 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
   return (
     <header 
       className={getHeaderContainerClasses()}
-      style={headerStyles}
     >
-      <div className={getHeaderInnerClasses()}>
+      <div 
+        className={getHeaderInnerClasses()}
+        style={headerStyles}
+      >
         <div className={`flex justify-between items-center ${
           headerVariant === 'classic' ? 'px-4 py-4' : 'px-12 py-2'
         }`}>
