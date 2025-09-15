@@ -255,6 +255,24 @@
         "category": "Elektro-Notdienst",
         "image": "/images/branchen/elektriker/portfolio/notdienst.jpg",
         "description": "Schnelle Reparatur eines Hauptverteilers nach Überspannung mit minimaler Ausfallzeit"
+      },
+      {
+        "title": "Elektro-Renovierung Altbau",
+        "category": "Elektroinstallation",
+        "image": "/images/branchen/elektriker/portfolio/renovierung.jpg",
+        "description": "Behutsame Elektro-Modernisierung mit Erhalt der Bausubstanz und modernen Standards"
+      },
+      {
+        "title": "Planung Neubau",
+        "category": "Elektroinstallation",
+        "image": "/images/branchen/elektriker/portfolio/planung.jpg",
+        "description": "Detaillierte Elektroplanung für Einfamilienhaus mit zukunftssicherer Verkabelung"
+      },
+      {
+        "title": "LED-Modernisierung",
+        "category": "Beleuchtung & LED",
+        "image": "/images/branchen/elektriker/portfolio/led-modernisierung.jpg",
+        "description": "Komplette Umstellung auf LED-Technik mit intelligenter Steuerung"
       }
     ]
   },
@@ -278,6 +296,14 @@
     {
       "question": "Welche Garantie geben Sie auf Ihre Arbeiten?",
       "answer": "Wir geben 2 Jahre Garantie auf alle unsere Elektroarbeiten. Bei Photovoltaikanlagen bieten wir bis zu 25 Jahre Leistungsgarantie auf die Module."
+    },
+    {
+      "question": "Können Sie auch bei Renovierungen helfen?",
+      "answer": "Selbstverständlich! Wir sind spezialisiert auf Elektro-Modernisierungen und Renovierungen. Dabei achten wir besonders auf den Erhalt der Bausubstanz und moderne Sicherheitsstandards."
+    },
+    {
+      "question": "Was ist bei der Planung einer Elektroinstallation wichtig?",
+      "answer": "Eine sorgfältige Planung ist das A und O. Wir berücksichtigen Ihre aktuellen Bedürfnisse, planen für zukünftige Erweiterungen und sorgen für eine normgerechte, sichere Installation."
     }
   ],
   "testimonials": [
