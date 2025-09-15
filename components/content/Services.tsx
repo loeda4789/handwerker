@@ -198,7 +198,7 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
                         <svg className="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
                         </svg>
-                        <p className="text-lg font-medium">Zur Detailseite</p>
+                        <p className="text-lg font-medium">Mehr erfahren</p>
                       </>
                     ) : (
                       <>
@@ -230,7 +230,7 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
                     className="inline-flex items-center text-primary dark:text-accent hover:text-primary/80 dark:hover:text-accent/80 font-medium transition-colors duration-200"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    Zur Detailseite
+                    Mehr erfahren
                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
                     </svg>
