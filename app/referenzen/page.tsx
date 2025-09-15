@@ -212,7 +212,7 @@ export default function ReferenzenPage() {
                   </div>
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 mb-4 italic">
-                  "Hervorragende Arbeit! Die Elektroinstallation wurde pünktlich und professionell durchgeführt. Sehr empfehlenswert!"
+                  &ldquo;Hervorragende Arbeit! Die Elektroinstallation wurde pünktlich und professionell durchgeführt. Sehr empfehlenswert!&rdquo;
                 </p>
                 <div className="font-semibold text-gray-900 dark:text-white">Maria Schmidt</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">Privathaushalt</div>
@@ -229,7 +229,7 @@ export default function ReferenzenPage() {
                   </div>
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 mb-4 italic">
-                  "Das Smart Home System funktioniert perfekt. Die Beratung war ausführlich und die Umsetzung top!"
+                  &ldquo;Das Smart Home System funktioniert perfekt. Die Beratung war ausführlich und die Umsetzung top!&rdquo;
                 </p>
                 <div className="font-semibold text-gray-900 dark:text-white">Thomas Weber</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">Gewerbe</div>
@@ -246,7 +246,7 @@ export default function ReferenzenPage() {
                   </div>
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 mb-4 italic">
-                  "Schnelle Hilfe bei einem Notfall am Wochenende. Kompetent und zuverlässig - genau was man braucht!"
+                  &ldquo;Schnelle Hilfe bei einem Notfall am Wochenende. Kompetent und zuverlässig - genau was man braucht!&rdquo;
                 </p>
                 <div className="font-semibold text-gray-900 dark:text-white">Anna Müller</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">Privathaushalt</div>
