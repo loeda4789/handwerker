@@ -28,11 +28,11 @@ function MobileHeader({
   const firstFocusableRef = useRef<HTMLButtonElement>(null)
   const lastFocusableRef = useRef<HTMLAnchorElement>(null)
 
-  // Memoized navigation items processing
+  // Memoized navigation items processing with staggered animation
   const processedNavItems = useMemo(() => {
     return navItems.map((item, index) => ({
       ...item,
-      animationDelay: `${index * 100}ms`
+      animationDelay: `${index * 150}ms` // Increased delay for better effect
     }))
   }, [navItems])
 
@@ -111,7 +111,11 @@ function MobileHeader({
     >
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-in fade-in duration-500"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm transition-all duration-700 ease-out"
+        style={{ 
+          opacity: isOpen ? 1 : 0,
+          animation: isOpen ? 'fadeIn 0.7s ease-out' : 'fadeOut 0.3s ease-in'
+        }}
         onClick={onClose}
         aria-hidden="true"
       ></div>
@@ -119,7 +123,12 @@ function MobileHeader({
       {/* Overlay Panel - Zentrierte schöne Navigation */}
       <div 
         ref={focusTrapRef}
-        className="absolute inset-0 bg-white shadow-2xl animate-in slide-in-from-bottom duration-500 overflow-y-auto z-[100000]"
+        className="absolute inset-0 bg-white shadow-2xl overflow-y-auto z-[100000] transition-all duration-700 ease-out"
+        style={{
+          transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
+          opacity: isOpen ? 1 : 0,
+          animation: isOpen ? 'slideInFromBottom 0.7s ease-out' : 'slideOutToBottom 0.3s ease-in'
+        }}
         tabIndex={-1}
       >
         {/* Header */}
@@ -152,8 +161,14 @@ function MobileHeader({
           {processedNavItems.map((item, index) => (
             <div 
               key={item.id}
-              className="animate-in fade-in-up duration-500"
-              style={{ animationDelay: `${200 + parseInt(item.animationDelay)}ms`, animationFillMode: 'both' }}
+              className="transition-all duration-500 ease-out"
+              style={{ 
+                animationDelay: `${300 + parseInt(item.animationDelay)}ms`,
+                animationFillMode: 'both',
+                opacity: isOpen ? 1 : 0,
+                transform: isOpen ? 'translateY(0)' : 'translateY(30px)',
+                animation: isOpen ? `fadeInUp 0.6s ease-out ${300 + parseInt(item.animationDelay)}ms both` : 'fadeOutDown 0.3s ease-in both'
+              }}
             >
               {item.hasDropdown ? (
                 <div className="space-y-2">

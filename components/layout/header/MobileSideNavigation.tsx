@@ -30,11 +30,11 @@ function MobileSideNavigation({
   const firstFocusableRef = useRef<HTMLButtonElement>(null)
   const lastFocusableRef = useRef<HTMLAnchorElement>(null)
 
-  // Memoized navigation items processing
+  // Memoized navigation items processing with staggered animation
   const processedNavItems = useMemo(() => {
     return navItems.map((item, index) => ({
       ...item,
-      animationDelay: `${index * 50}ms`
+      animationDelay: `${index * 120}ms` // Increased delay for better effect
     }))
   }, [navItems])
 

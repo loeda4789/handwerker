@@ -140,7 +140,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     {
       id: 'starter',
       name: 'Starter',
-      price: '79€',
+      price: '99€',
       period: '/Monat',
       description: 'One-Page Website für kleine Unternehmen',
       features: ['One-Page Layout', 'Basis-Features', 'Mobile optimiert'],
@@ -162,7 +162,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     {
       id: 'premium',
       name: 'Premium',
-      price: '149€',
+      price: '159€',
       period: '/Monat',
       description: 'Multi-Page Website für anspruchsvolle Projekte',
       features: ['Multi-Page Layout', 'Alle Unterseiten', 'Vollständig anpassbar'],
