@@ -5,7 +5,7 @@ import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../hooks/usePageContent'
 import { useDesignStyle } from '../hooks/useDesignStyle'
 import PageLayout from '../components/layout/PageLayout'
-import SectionHeading from '@/components/layout/SectionHeading'
+import { PageHero, SectionHeading } from '@/components/layout'
 import ConfigCard from '@/components/config/ConfigCard'
 
 export default function FAQPage() {
@@ -129,26 +129,10 @@ export default function FAQPage() {
       loadingText="FAQ wird geladen..."
     >
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 bg-gradient-to-br from-primary to-accent">
-        <div className="container mx-auto px-6 md:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <SectionHeading
-              title="Häufig gestellte Fragen"
-              subtitle="Hier finden Sie Antworten auf die am häufigsten gestellten Fragen. Falls Sie weitere Fragen haben, kontaktieren Sie uns gerne direkt."
-              badge={{
-                text: "Häufig gestellte Fragen",
-                icon: (
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                )
-              }}
-              level={1}
-              className="text-white"
-            />
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Häufig gestellte Fragen"
+        subtitle="Hier finden Sie Antworten auf die am häufigsten gestellten Fragen. Falls Sie weitere Fragen haben, kontaktieren Sie uns gerne direkt."
+      />
 
       {/* FAQ Section */}
       <section className="py-20 md:py-24 bg-background dark:bg-dark">
