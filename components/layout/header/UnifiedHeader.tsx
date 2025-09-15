@@ -392,11 +392,12 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
           {/* Desktop CTA */}
           <div className="hidden md:block">
             <HeaderCta 
-              ctaStyle={`${textColor} font-semibold transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden flex items-center gap-2 transform hover:scale-105`}
+              ctaStyle={`font-semibold transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden flex items-center gap-2 transform hover:scale-105`}
               ctaStyleDynamic={{
                 backgroundColor: 'var(--color-primary)',
                 borderColor: 'var(--color-primary)',
-                borderRadius: 'var(--radius-xl)',
+                color: 'white',
+                borderRadius: 'var(--radius-button)',
                 padding: '0.75rem 1.5rem'
               }}
               ctaHoverStyle={{
