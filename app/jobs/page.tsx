@@ -461,12 +461,87 @@ export default function JobsPage() {
         </div>
       </section>
 
+      {/* Bewerbungsprozess Section */}
+      <section className="py-20 md:py-24 bg-gray-50 dark:bg-gray-800">
+        <div className="container mx-auto px-6 md:px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <SectionHeading
+                title="So läuft deine Bewerbung ab"
+                subtitle="Einfach und unkompliziert - wir machen es dir leicht, bei uns durchzustarten!"
+                level={2}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Schritt 1 */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
+                  style={{ borderRadius: 'var(--radius-image)' }}>
+                  <span className="text-3xl font-bold text-white">1</span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Bewerbung senden</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                  Per E-Mail oder einfach anrufen - wir freuen uns auf deine Nachricht!
+                </p>
+                <div className="space-y-3">
+                  <a
+                    href={`mailto:${content?.contact?.email || 'info@mustermann-elektrotechnik.de'}?subject=Bewerbung&body=Hallo,%0D%0A%0D%0Aich interessiere mich für eine Stelle bei Ihnen.%0D%0A%0D%0AMit freundlichen Grüßen`}
+                    className="inline-flex items-center px-6 py-3 bg-primary hover:bg-accent text-white font-medium transition-all duration-300 hover:scale-105 text-sm"
+                    style={{ borderRadius: 'var(--radius-button)' }}
+                  >
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    E-Mail senden
+                  </a>
+                  <a
+                    href={`tel:${content?.contact?.phone || '+49123456789'}`}
+                    className="inline-flex items-center px-6 py-3 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium transition-all duration-300 text-sm"
+                    style={{ borderRadius: 'var(--radius-button)' }}
+                  >
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                    Anrufen
+                  </a>
+                </div>
+              </div>
+
+              {/* Schritt 2 */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
+                  style={{ borderRadius: 'var(--radius-image)' }}>
+                  <span className="text-3xl font-bold text-white">2</span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Persönliches Gespräch</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Wir lernen uns bei einem lockeren Gespräch kennen - keine Prüfung, nur ein nettes Kennenlernen!
+                </p>
+              </div>
+
+              {/* Schritt 3 */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-primary flex items-center justify-center mx-auto mb-6"
+                  style={{ borderRadius: 'var(--radius-image)' }}>
+                  <span className="text-3xl font-bold text-white">3</span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Arbeitsplatz sichern</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Bei gegenseitigem Interesse startest du bei uns durch - willkommen im Team!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Kontakt Section */}
       <section className="py-20 md:py-24 bg-background dark:bg-dark">
         <div className="container mx-auto px-6 md:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <SectionHeading
-              title="Interesse geweckt?"
+              title="Noch Fragen?"
               subtitle="Haben Sie Fragen zu unseren Stellenausschreibungen oder möchten Sie sich initiativ bewerben? Wir freuen uns auf Ihre Nachricht!"
               level={2}
             />
