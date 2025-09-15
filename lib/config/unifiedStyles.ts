@@ -181,7 +181,7 @@ export const applyUnifiedStyle = (config: AppConfig, styleId: string): AppConfig
     headings: {
       ...config.headings,
       underline: unifiedStyle.config.interactive.underlines !== 'none',
-      style: unifiedStyle.config.interactive.underlines as 'gradient' | 'solid' | 'dotted' | 'none',
+      style: unifiedStyle.config.interactive.underlines as 'solid' | 'none',
       color: 'primary' as 'primary' | 'secondary' | 'accent' | 'custom'
     },
     style: {

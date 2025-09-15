@@ -71,15 +71,23 @@ class ConfigManager {
       console.log('✅ Design-Style migriert:', designStyle)
     }
     
-    // Style-Package Migration - Fallback auf 'clean' wenn ungültig
+    // Style-Package Migration - Mapping von alten auf neue Stile
     const stylePackage = localStorage.getItem('style-package') as 'clean' | 'luxury' | 'corporate' | 'warm' | 'dynamic'
     if (stylePackage && ['clean', 'luxury', 'corporate', 'warm', 'dynamic'].includes(stylePackage)) {
-      migrated.style.package = stylePackage
-      console.log('✅ Style-Package migriert:', stylePackage)
+      // Mapping von alten auf neue Stile
+      const styleMapping: Record<string, 'einfach' | 'standard' | 'modern'> = {
+        'clean': 'einfach',
+        'luxury': 'standard', 
+        'corporate': 'standard',
+        'warm': 'standard',
+        'dynamic': 'modern'
+      }
+      migrated.style.package = styleMapping[stylePackage] || 'einfach'
+      console.log('✅ Style-Package migriert:', stylePackage, '→', migrated.style.package)
     } else {
-      // Fallback auf 'clean' wenn ungültiger Wert
-      migrated.style.package = 'clean'
-      console.log('⚠️ Ungültiger Style-Package-Wert, auf clean gesetzt')
+      // Fallback auf 'einfach' wenn ungültiger Wert
+      migrated.style.package = 'einfach'
+      console.log('⚠️ Ungültiger Style-Package-Wert, auf einfach gesetzt')
     }
     
     // Theme Migration

@@ -5,7 +5,7 @@ export const getHeadingStyles = (config: AppConfig) => {
   
   if (!underline || style === 'none') {
     return {
-      underline: 'none',
+      underline: 'no-underline',
       textDecoration: 'none'
     }
   }
@@ -40,38 +40,12 @@ export const getHeadingStyles = (config: AppConfig) => {
     }
   }
 
-  switch (style) {
-    case 'gradient':
-      return {
-        underline: 'underline',
-        textDecoration: 'underline',
-        textDecorationColor: 'transparent',
-        backgroundImage: `linear-gradient(to right, ${getSolidColor()}, ${getSolidColor()}80)`,
-        backgroundSize: '100% 2px',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: '0 100%',
-        textDecorationThickness: '2px'
-      }
-    case 'solid':
-      return {
-        underline: 'underline',
-        textDecoration: 'underline',
-        textDecorationColor: getSolidColor(),
-        textDecorationThickness: '2px'
-      }
-    case 'dotted':
-      return {
-        underline: 'underline',
-        textDecoration: 'underline',
-        textDecorationStyle: 'dotted',
-        textDecorationColor: getSolidColor(),
-        textDecorationThickness: '2px'
-      }
-    default:
-      return {
-        underline: 'none',
-        textDecoration: 'none'
-      }
+  // Nur 'solid' ist noch möglich nach der if-Prüfung
+  return {
+    underline: 'underline',
+    textDecoration: 'underline',
+    textDecorationColor: getSolidColor(),
+    textDecorationThickness: '2px'
   }
 }
 
@@ -85,13 +59,8 @@ export const applyHeadingStyles = (config: AppConfig) => {
     root.style.setProperty('--heading-text-decoration', styles.textDecoration)
     root.style.setProperty('--heading-text-decoration-color', styles.textDecorationColor || 'transparent')
     root.style.setProperty('--heading-text-decoration-thickness', styles.textDecorationThickness || '0px')
-    root.style.setProperty('--heading-text-decoration-style', styles.textDecorationStyle || 'solid')
+    root.style.setProperty('--heading-text-decoration-style', 'solid')
     
-    if (styles.backgroundImage) {
-      root.style.setProperty('--heading-background-image', styles.backgroundImage)
-      root.style.setProperty('--heading-background-size', styles.backgroundSize || '100% 2px')
-      root.style.setProperty('--heading-background-repeat', styles.backgroundRepeat || 'no-repeat')
-      root.style.setProperty('--heading-background-position', styles.backgroundPosition || '0 100%')
-    }
+    // Background-Image-Eigenschaften wurden entfernt (nur noch solid underline)
   }
 }

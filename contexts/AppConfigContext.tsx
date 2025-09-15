@@ -162,7 +162,7 @@ export function useHeadingsConfig() {
     color: config.headings.color,
     setUnderline: (underline: boolean) =>
       updateConfig({ headings: { ...config.headings, underline } }),
-    setStyle: (style: 'gradient' | 'solid' | 'dotted' | 'none') =>
+    setStyle: (style: 'solid' | 'none') =>
       updateConfig({ headings: { ...config.headings, style } }),
     setColor: (color: 'primary' | 'secondary' | 'accent' | 'custom') =>
       updateConfig({ headings: { ...config.headings, color } })
