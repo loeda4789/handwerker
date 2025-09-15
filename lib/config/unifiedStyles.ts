@@ -29,12 +29,12 @@ export interface UnifiedStyle {
       borders: 'none' | 'subtle' | 'bold'
     }
     // Interactive Elements
-    interactive: {
-      badges: 'none' | 'subtle' | 'prominent'
-      underlines: 'none' | 'subtle' | 'bold'
-      buttons: 'minimal' | 'standard' | 'dramatic'
-      hoverEffects: 'none' | 'subtle' | 'dynamic'
-    }
+      interactive: {
+        badges: 'none' | 'minimal' | 'rounded' | 'pill' | 'outlined'
+        underlines: 'none' | 'solid'
+        buttons: 'minimal' | 'standard' | 'dramatic'
+        hoverEffects: 'none' | 'subtle' | 'dynamic'
+      }
     // Animations
     animations: {
       transitions: 'none' | 'smooth' | 'dynamic'
@@ -109,8 +109,8 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
         borders: 'subtle'
       },
       interactive: {
-        badges: 'subtle',
-        underlines: 'subtle',
+        badges: 'minimal',
+        underlines: 'solid',
         buttons: 'standard',
         hoverEffects: 'subtle'
       },
@@ -147,8 +147,8 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
         borders: 'bold'
       },
       interactive: {
-        badges: 'prominent',
-        underlines: 'bold',
+        badges: 'pill',
+        underlines: 'solid',
         buttons: 'dramatic',
         hoverEffects: 'dynamic'
       },
@@ -181,16 +181,14 @@ export const applyUnifiedStyle = (config: AppConfig, styleId: string): AppConfig
     headings: {
       ...config.headings,
       underline: unifiedStyle.config.interactive.underlines !== 'none',
-      style: (unifiedStyle.config.interactive.underlines === 'bold' ? 'solid' : 
-             unifiedStyle.config.interactive.underlines === 'subtle' ? 'dotted' : 'none') as 'gradient' | 'solid' | 'dotted' | 'none',
+      style: unifiedStyle.config.interactive.underlines as 'gradient' | 'solid' | 'dotted' | 'none',
       color: 'primary' as 'primary' | 'secondary' | 'accent' | 'custom'
     },
     style: {
       ...config.style,
       package: styleId as any,
       fontFamily: unifiedStyle.config.typography.fontFamily,
-      badgeStyle: (unifiedStyle.config.interactive.badges === 'none' ? 'none' : 
-                  unifiedStyle.config.interactive.badges === 'subtle' ? 'outlined' : 'pill') as 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none',
+      badgeStyle: unifiedStyle.config.interactive.badges as 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none',
       spacing: unifiedStyle.config.spacing.section
     }
   }
@@ -257,10 +255,8 @@ export const getInteractiveClasses = (styleId: string) => {
   const { interactive } = style.config
 
   return {
-    badges: interactive.badges === 'none' ? 'hidden' :
-            interactive.badges === 'subtle' ? 'opacity-70' : 'opacity-100',
-    underlines: interactive.underlines === 'none' ? 'no-underline' :
-                interactive.underlines === 'subtle' ? 'underline decoration-1' : 'underline decoration-2',
+    badges: interactive.badges === 'none' ? 'hidden' : 'opacity-100',
+    underlines: interactive.underlines === 'none' ? 'no-underline' : 'underline decoration-2',
     buttons: interactive.buttons === 'minimal' ? 'px-3 py-1' :
              interactive.buttons === 'standard' ? 'px-4 py-2' : 'px-6 py-3',
     hoverEffects: interactive.hoverEffects === 'none' ? '' :
