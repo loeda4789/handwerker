@@ -132,7 +132,8 @@ function MobileHeader({
         tabIndex={-1}
       >
         {/* Header */}
-        <div className="flex items-center justify-end p-6 border-b border-gray-200 animate-in fade-in-up duration-500" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 animate-in fade-in-up duration-500" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
+          <h2 className="text-sm font-medium text-gray-600 uppercase tracking-wider">klein menü</h2>
           <button
             ref={firstFocusableRef}
             onClick={onClose}
@@ -220,13 +221,13 @@ function MobileHeader({
           </nav>
         </div>
         
-        {/* CTA Button - Linksbündig */}
-        <div className="px-10 pb-12 animate-in fade-in-up duration-500" style={{ animationDelay: '800ms', animationFillMode: 'both' }}>
+        {/* CTA Button - Sticky unten in der Mitte */}
+        <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4 animate-in fade-in-up duration-500" style={{ animationDelay: '800ms', animationFillMode: 'both' }}>
           <Link
             ref={lastFocusableRef}
             href="#kontakt"
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
-            className="block w-full max-w-sm py-4 px-8 text-white font-bold text-lg normal-case rounded-lg transition-colors duration-300 text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className="block w-full py-4 px-8 text-white font-bold text-lg uppercase text-center transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             style={{ 
               backgroundColor: 'var(--color-secondary)',
               borderRadius: 'var(--radius-button)'
@@ -238,7 +239,7 @@ function MobileHeader({
               e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
             }}
           >
-            Jetzt anfragen
+            JETZT ANFRAGEN
           </Link>
         </div>
       </div>
