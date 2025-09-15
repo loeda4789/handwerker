@@ -2,11 +2,13 @@
 
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../../hooks/usePageContent'
+import { useThemeColors } from '../../hooks/useThemeColors'
 import PageLayout from '../../components/layout/PageLayout'
 import { PageHero } from '@/components/layout'
 
 export default function PartnerPage() {
   const { content, loading, error } = usePageContent()
+  const { classes } = useThemeColors()
 
   // Aktiviere Scroll-Animationen
   useScrollAnimation()
@@ -39,18 +41,18 @@ export default function PartnerPage() {
       />
 
       {/* Partner Content */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className={`py-20 ${classes.background}`}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className={`text-3xl md:text-4xl font-bold ${classes.text} mb-6`}>
               Vertrauensvolle Zusammenarbeit
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-12">
+            <p className={`text-xl ${classes.textSecondary} mb-12`}>
               Unsere langjährigen Partnerschaften mit führenden Herstellern und Lieferanten ermöglichen es uns, Ihnen stets die neuesten Technologien und höchste Qualität zu bieten.
             </p>
             
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
-              <p className="text-lg text-gray-600 dark:text-gray-300">
+            <div className={`${classes.surface} rounded-lg p-8`}>
+              <p className={`text-lg ${classes.textSecondary}`}>
                 Partner-Informationen werden hier in Kürze verfügbar sein.
               </p>
             </div>

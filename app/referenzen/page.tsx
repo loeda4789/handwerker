@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../hooks/usePageContent'
 import { useDesignStyle } from '../hooks/useDesignStyle'
+import { useThemeColors } from '../hooks/useThemeColors'
 import PageLayout from '../components/layout/PageLayout'
 import { PageHero, SectionHeading } from '@/components/layout'
 import ConfigCard from '@/components/config/ConfigCard'
@@ -12,6 +13,7 @@ import Image from 'next/image'
 export default function ReferenzenPage() {
   const { content, loading, error } = usePageContent()
   const { designStyle } = useDesignStyle()
+  const { classes } = useThemeColors()
   const [activeCategory, setActiveCategory] = useState('alle')
 
   // Aktiviere Scroll-Animationen
@@ -62,7 +64,7 @@ export default function ReferenzenPage() {
       />
 
       {/* Statistiken */}
-      <section className="py-16 md:py-20 bg-white dark:bg-gray-900">
+      <section className={`py-16 md:py-20 ${classes.background}`}>
         <div className="container mx-auto px-6 md:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
@@ -74,20 +76,20 @@ export default function ReferenzenPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">500+</div>
-                <div className="text-gray-600 dark:text-gray-300 font-medium">Projekte</div>
+                <div className={`text-4xl md:text-5xl font-bold ${classes.primary} mb-2`}>500+</div>
+                <div className={`${classes.textSecondary} font-medium`}>Projekte</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">15+</div>
-                <div className="text-gray-600 dark:text-gray-300 font-medium">Jahre Erfahrung</div>
+                <div className={`text-4xl md:text-5xl font-bold ${classes.primary} mb-2`}>15+</div>
+                <div className={`${classes.textSecondary} font-medium`}>Jahre Erfahrung</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">98%</div>
-                <div className="text-gray-600 dark:text-gray-300 font-medium">Zufriedenheit</div>
+                <div className={`text-4xl md:text-5xl font-bold ${classes.primary} mb-2`}>98%</div>
+                <div className={`${classes.textSecondary} font-medium`}>Zufriedenheit</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">24/7</div>
-                <div className="text-gray-600 dark:text-gray-300 font-medium">Notdienst</div>
+                <div className={`text-4xl md:text-5xl font-bold ${classes.primary} mb-2`}>24/7</div>
+                <div className={`${classes.textSecondary} font-medium`}>Notdienst</div>
               </div>
             </div>
           </div>
@@ -95,7 +97,7 @@ export default function ReferenzenPage() {
       </section>
 
       {/* Filter */}
-      <section className="py-8 bg-gray-50 dark:bg-gray-800">
+      <section className={`py-8 ${classes.surface}`}>
         <div className="container mx-auto px-6 md:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-wrap gap-3 justify-center">
@@ -105,8 +107,8 @@ export default function ReferenzenPage() {
                   onClick={() => setActiveCategory(category.id)}
                   className={`px-6 py-3 font-medium transition-all duration-300 hover:scale-105 ${
                     activeCategory === category.id
-                      ? 'bg-primary text-white shadow-lg'
-                      : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md'
+                      ? `${classes.primary} ${classes.textLight} ${classes.shadow}`
+                      : `${classes.background} ${classes.textSecondary} ${classes.hoverSurface} ${classes.shadow}`
                   }`}
                   style={{ borderRadius: 'var(--radius-button)' }}
                 >
