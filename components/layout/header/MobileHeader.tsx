@@ -133,7 +133,7 @@ function MobileHeader({
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 animate-in fade-in-up duration-500" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
-          <h2 className="text-sm font-medium text-gray-600 uppercase tracking-wider">klein menü</h2>
+          <h2 className="text-sm font-medium text-gray-600 uppercase tracking-wider">menü</h2>
           <button
             ref={firstFocusableRef}
             onClick={onClose}
@@ -175,7 +175,7 @@ function MobileHeader({
                 <div className="space-y-2">
                   <button
                     onClick={() => toggleMobileDropdown(item.id)}
-                    className="text-3xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center w-full"
+                    className="text-lg font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center w-full"
                   >
                     {item.label}
                     <svg className="w-5 h-5 ml-2 inline transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -211,7 +211,7 @@ function MobileHeader({
                 <Link
                   href={item.href || '#'}
                   onClick={item.isClickable && item.href?.startsWith('#') ? (e) => onSmoothScroll(e, item.id) : undefined}
-                  className="text-3xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center"
+                  className="text-lg font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center"
                 >
                   {item.label}
                 </Link>
