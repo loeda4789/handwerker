@@ -34,7 +34,7 @@ export default function HeaderRounded({ content }: HeaderRoundedProps) {
   
   // Text-Formatierung basierend auf Variante
   const isStarter = siteVariant === 'starter';
-  const navTextClass = isStarter ? 'uppercase' : 'normal-case';
+  const navTextClass = 'normal-case'; // Alle Varianten verwenden normal-case
 
   // Navigation Items
   const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, siteVariant);

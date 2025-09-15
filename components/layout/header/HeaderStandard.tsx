@@ -32,7 +32,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
   const { type: heroType } = useHeroConfig();
   
   // Text-Formatierung basierend auf Variante
-  const navTextClass = siteVariant === 'starter' ? 'uppercase' : 'normal-case';
+  const navTextClass = 'normal-case'; // Alle Varianten verwenden normal-case
   
   const pathname = usePathname();
   const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, siteVariant);

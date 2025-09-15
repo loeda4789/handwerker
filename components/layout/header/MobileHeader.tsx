@@ -226,7 +226,7 @@ function MobileHeader({
             ref={lastFocusableRef}
             href="#kontakt"
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
-            className={`block w-full max-w-sm py-4 px-8 text-white font-bold text-lg ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'} rounded-lg transition-colors duration-300 text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
+            className="block w-full max-w-sm py-4 px-8 text-white font-bold text-lg normal-case rounded-lg transition-colors duration-300 text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             style={{ 
               backgroundColor: 'var(--color-secondary)',
               borderRadius: 'var(--radius-button)'

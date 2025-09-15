@@ -16,8 +16,8 @@ export default function HeaderCta({
 }: HeaderCtaProps) {
   const { siteVariant } = useSiteVariant()
   
-  // Nur in der Starter-Variante Großschrift verwenden
-  const textTransform = siteVariant === 'starter' ? 'uppercase' : 'normal-case'
+  // Alle Varianten verwenden normal-case
+  const textTransform = 'normal-case'
   
   return (
     <Link

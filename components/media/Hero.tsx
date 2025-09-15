@@ -83,8 +83,8 @@ function HeroSingle({ content }: HeroProps) {
   
   // Text-Formatierung basierend auf Variante
   const isStarter = siteVariant === 'starter'
-  const titleClass = isStarter ? 'uppercase' : 'normal-case'
-  const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
+  const titleClass = 'normal-case' // Alle Varianten verwenden normal-case
+  const subtitleClass = 'normal-case' // Alle Varianten verwenden normal-case
   
   useEffect(() => {
     const savedDesignStyle = localStorage.getItem('design-style')
@@ -241,8 +241,8 @@ function HeroSlider({ content }: HeroProps) {
   
   // Text-Formatierung basierend auf Variante
   const isStarter = siteVariant === 'starter'
-  const titleClass = isStarter ? 'uppercase' : 'normal-case'
-  const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
+  const titleClass = 'normal-case' // Alle Varianten verwenden normal-case
+  const subtitleClass = 'normal-case' // Alle Varianten verwenden normal-case
   
   const slides = [
     {
@@ -383,8 +383,8 @@ function HeroVideo({ content }: HeroProps) {
   
   // Text-Formatierung basierend auf Variante
   const isStarter = siteVariant === 'starter'
-  const titleClass = isStarter ? 'uppercase' : 'normal-case'
-  const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
+  const titleClass = 'normal-case' // Alle Varianten verwenden normal-case
+  const subtitleClass = 'normal-case' // Alle Varianten verwenden normal-case
 
   useEffect(() => {
     setIsLoaded(true)
@@ -498,8 +498,8 @@ function HeroSplit({ content }: HeroProps) {
   
   // Text-Formatierung basierend auf Variante
   const isStarter = siteVariant === 'starter'
-  const titleClass = isStarter ? 'uppercase' : 'normal-case'
-  const subtitleClass = isStarter ? 'uppercase' : 'normal-case'
+  const titleClass = 'normal-case' // Alle Varianten verwenden normal-case
+  const subtitleClass = 'normal-case' // Alle Varianten verwenden normal-case
 
   return (
     <section id="startseite" className="relative h-[95vh] lg:h-screen w-full overflow-hidden bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">

@@ -173,7 +173,7 @@ function MobileSideNavigation({
                     onClick={() => toggleMobileDropdown(item.id)}
                     className="w-full flex items-center justify-between py-3 px-4 text-left text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 group"
                   >
-                    <span className={`text-lg font-medium ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'}`}>
+                    <span className="text-lg font-medium normal-case">
                       {item.label}
                     </span>
                     <svg 
@@ -216,7 +216,7 @@ function MobileSideNavigation({
                 <Link
                   href={item.href || '#'}
                   onClick={item.isClickable && item.href?.startsWith('#') ? (e) => onSmoothScroll(e, item.id) : undefined}
-                  className={`block py-3 px-4 text-lg text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'}`}
+                  className="block py-3 px-4 text-lg text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium normal-case"
                 >
                   {item.label}
                 </Link>
@@ -231,7 +231,7 @@ function MobileSideNavigation({
             ref={lastFocusableRef}
             href="#kontakt"
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
-            className={`block w-full py-3 px-4 text-white font-medium text-center rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'}`}
+            className="block w-full py-3 px-4 text-white font-medium text-center rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 normal-case"
             style={{ 
               backgroundColor: 'var(--color-secondary)',
               borderRadius: 'var(--radius-button)'

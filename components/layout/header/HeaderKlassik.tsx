@@ -45,7 +45,7 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
   
   // Text-Formatierung basierend auf Variante
   const isStarter = siteVariant === 'starter';
-  const navTextClass = isStarter ? 'uppercase' : 'normal-case';
+  const navTextClass = 'normal-case'; // Alle Varianten verwenden normal-case
 
   // Navigation Items basierend auf Variante
   const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, siteVariant);
