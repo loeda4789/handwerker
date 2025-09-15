@@ -616,39 +616,28 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <CompactInfo content="Wählen Sie den Typ der mobilen Navigation aus. Fullscreen öffnet das Menü über den gesamten Bildschirm, Sidebar öffnet es seitlich und Dropdown zeigt es als Dropdown-Menü." />
               </div>
             </div>
-            <div className="space-y-3">
+            <div className="grid grid-cols-3 gap-3">
               {[
-                { key: 'fullscreen', label: 'Fullscreen', description: 'Menü über gesamten Bildschirm' },
-                { key: 'sidebar', label: 'Sidebar', description: 'Menü öffnet sich seitlich' },
-                { key: 'dropdown', label: 'Dropdown', description: 'Menü als Dropdown-Menü' }
+                { key: 'fullscreen', label: 'Fullscreen', icon: MdViewQuilt },
+                { key: 'sidebar', label: 'Sidebar', icon: MdViewQuilt },
+                { key: 'dropdown', label: 'Dropdown', icon: MdViewQuilt }
               ].map((option) => (
-                <div key={option.key} className="flex items-center justify-between p-3 border border-gray-200 config-sidebar-feature">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-full">
-                      <MdViewQuilt className="w-4 h-4 text-gray-600" />
-                    </div>
-                    <div>
-                      <span className="text-sm font-medium text-gray-900">{option.label}</span>
-                      <p className="text-xs text-gray-500">{option.description}</p>
-                    </div>
+                <button
+                  key={option.key}
+                  onClick={() => setMobileType(option.key as 'fullscreen' | 'sidebar' | 'dropdown')}
+                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all config-sidebar-button ${
+                    mobileType === option.key
+                      ? 'border-gray-900 bg-gray-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
+                    mobileType === option.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    <option.icon className="w-4 h-4" />
                   </div>
-                  <button
-                    onClick={() => setMobileType(option.key as 'fullscreen' | 'sidebar' | 'dropdown')}
-                    className={`relative inline-flex h-5 w-9 items-center transition-colors ${
-                      mobileType === option.key
-                        ? 'bg-gray-900'
-                        : 'bg-gray-200'
-                    }`}
-                    style={{ borderRadius: '12px' }}
-                  >
-                    <span
-                      className={`inline-block h-3 w-3 transform bg-white transition-transform ${
-                        mobileType === option.key ? 'translate-x-5' : 'translate-x-1'
-                      }`}
-                      style={{ borderRadius: '50%' }}
-                    />
-                  </button>
-                </div>
+                  <span className="text-xs font-medium text-gray-900 text-center">{option.label}</span>
+                </button>
               ))}
             </div>
           </div>
