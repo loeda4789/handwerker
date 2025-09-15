@@ -195,19 +195,6 @@ export default function ModernImageGallery({
             />
           </div>
 
-          {/* Image Info Overlay */}
-          {(currentImage.title || currentImage.description) && (
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-lg">
-              <div className="text-center text-white">
-                {currentImage.title && (
-                  <h3 className="text-xl font-bold mb-2">{currentImage.title}</h3>
-                )}
-                {currentImage.description && (
-                  <p className="text-white/90">{currentImage.description}</p>
-                )}
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
