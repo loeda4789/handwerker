@@ -47,27 +47,27 @@ export default function TeamPage() {
       </section>
 
       {/* Teamphilosophie */}
-      <section className="py-16 bg-white dark:bg-gray-900">
+      <section className="py-16 bg-background dark:bg-dark">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
               Gemeinsam stark
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-              <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              <div className="p-6 bg-surface dark:bg-dark-secondary" style={{ borderRadius: 'var(--radius-card)' }}>
+                <h3 className="text-xl font-bold text-text dark:text-light mb-3">
                   🤝 Teamwork im Mittelpunkt
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-text-secondary dark:text-light/80">
                   Bei uns arbeitet jeder Hand in Hand. Von der Planung bis zur Fertigstellung unterstützen sich unsere Fachkräfte gegenseitig, um das bestmögliche Ergebnis zu erzielen.
                 </p>
               </div>
               
-              <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              <div className="p-6 bg-surface dark:bg-dark-secondary" style={{ borderRadius: 'var(--radius-card)' }}>
+                <h3 className="text-xl font-bold text-text dark:text-light mb-3">
                   📚 Kontinuierliche Weiterbildung
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-text-secondary dark:text-light/80">
                   Handwerk entwickelt sich ständig weiter. Deshalb investieren wir in regelmäßige Schulungen und Fortbildungen, damit unser Team immer auf dem neuesten Stand der Technik ist.
                 </p>
               </div>

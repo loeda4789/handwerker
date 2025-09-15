@@ -151,22 +151,22 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 md:py-24 bg-white dark:bg-gray-900">
+      <section className="py-20 md:py-24 bg-background dark:bg-dark">
         <div className="container mx-auto px-6 md:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6">
               {faqData.map((faq, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-gray-800 shadow-lg overflow-hidden"
+                <div key={index} className="bg-surface dark:bg-dark-secondary shadow-lg overflow-hidden"
                   style={{ borderRadius: 'var(--radius-card)' }}>
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                    className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-surface/50 dark:hover:bg-dark-secondary/50 transition-colors duration-200"
                   >
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white pr-6">
+                    <h3 className="text-lg md:text-xl font-semibold text-text dark:text-light pr-6">
                       {faq.question}
                     </h3>
                     <svg
-                      className={`w-6 h-6 text-gray-500 dark:text-gray-400 transition-transform duration-200 flex-shrink-0 ${
+                      className={`w-6 h-6 text-text-secondary dark:text-light/60 transition-transform duration-200 flex-shrink-0 ${
                         openFAQ === index ? 'rotate-180' : ''
                       }`}
                       fill="none"
@@ -184,7 +184,7 @@ export default function FAQPage() {
                     } overflow-hidden`}
                   >
                     <div className="px-8 pb-6 pt-2">
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base md:text-lg">
+                      <p className="text-text-secondary dark:text-light/80 leading-relaxed text-base md:text-lg">
                         {faq.answer}
                       </p>
                     </div>

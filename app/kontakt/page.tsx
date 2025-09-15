@@ -48,14 +48,14 @@ export default function KontaktPage() {
       </section>
 
       {/* Kontaktinformationen */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-background dark:bg-dark">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-light mb-6">
                 Sprechen wir über Ihr Projekt
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              <p className="text-xl text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
                 Egal ob Neubau, Renovierung oder Reparatur – wir finden die beste Lösung für Sie.
               </p>
             </div>
@@ -64,7 +64,8 @@ export default function KontaktPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
               <a 
                 href={`tel:${content?.contact?.phone || ''}`}
-                className="group p-8 bg-gradient-to-br from-primary to-accent rounded-2xl text-white hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                className="group p-8 bg-gradient-to-br from-primary to-accent text-white hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                style={{ borderRadius: 'var(--radius-card)' }}
               >
                 <div className="flex items-center justify-between">
                   <div>
