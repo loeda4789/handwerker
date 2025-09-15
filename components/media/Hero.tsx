@@ -155,7 +155,7 @@ function HeroSingle({ content }: HeroProps) {
           <div className="container mx-auto px-6 md:px-8 lg:px-12">
             <div className="max-w-3xl lg:max-w-4xl">
               <h1 
-                className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards] ${titleClass}`}
+                className={`hero-title text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards] ${titleClass}`}
                 style={{ color: 'var(--color-heroText, #ffffff)' }}
               >
                 {formatHeroTitle(content.company.tagline)}
@@ -174,6 +174,7 @@ function HeroSingle({ content }: HeroProps) {
                 <Link
                   href="#kontakt"
                   className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium focus:ring-4 transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 min-h-[56px]"
+                  data-cta="true"
                   style={{ 
                     color: 'var(--color-background, #ffffff)', 
                     backgroundColor: 'var(--color-primary, #0ea5e9)',
@@ -314,7 +315,7 @@ function HeroSlider({ content }: HeroProps) {
           <div className="container mx-auto px-6 md:px-8 lg:px-12">
             <div className="max-w-3xl mx-auto">
               <h1 
-                className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight text-white ${titleClass}`}
+                className={`hero-title text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight text-white ${titleClass}`}
                 key={`title-${currentSlide}`}
               >
                 {slides[currentSlide].title}
@@ -332,6 +333,7 @@ function HeroSlider({ content }: HeroProps) {
                 <Link
                   href="#kontakt"
                   className="inline-flex items-center justify-center px-8 py-4 text-base font-medium transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 text-white"
+                  data-cta="true"
                   style={{ 
                     backgroundColor: 'var(--color-secondary)',
                     borderRadius: 'var(--radius-button)'
@@ -437,7 +439,7 @@ function HeroVideo({ content }: HeroProps) {
           >
             <div className="max-w-4xl mx-auto">
               <div className="transform-gpu hover:scale-105 transition-transform duration-300">
-                <h1 className={`text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-white drop-shadow-2xl ${titleClass}`}>
+                <h1 className={`hero-title text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-white drop-shadow-2xl ${titleClass}`}>
                   {formatHeroTitle(content.company.tagline)}
                 </h1>
                 
@@ -449,6 +451,7 @@ function HeroVideo({ content }: HeroProps) {
                   <Link
                     href="#kontakt"
                     className="group relative overflow-hidden px-8 py-4 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1 rounded-lg"
+                    data-cta="true"
                     style={{ 
                       backgroundColor: 'var(--color-secondary)',
                       borderRadius: 'var(--radius-button)'
@@ -508,7 +511,7 @@ function HeroSplit({ content }: HeroProps) {
           {/* Left Side - Content */}
           <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start">
             <div className="max-w-2xl">
-              <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white ${titleClass}`}>
+              <h1 className={`hero-title text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white ${titleClass}`}>
                 {formatHeroTitle(content.company.tagline)}
               </h1>
             
@@ -545,6 +548,7 @@ function HeroSplit({ content }: HeroProps) {
                 <Link
                   href="#kontakt"
                   className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200 shadow-lg hover:shadow-xl"
+                  data-cta="true"
                   style={{ borderRadius: 'var(--radius-button)' }}
                 >
                   Kostenloses Angebot

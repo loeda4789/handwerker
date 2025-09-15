@@ -4,10 +4,51 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== FONT SYSTEM ===== */
+/* CSS-Variablen für Fonts */
+:root {
+  --font-body: var(--font-body);
+  --font-heading: var(--font-heading-standard); /* Default */
+  --font-accent: var(--font-heading-standard); /* Default */
+}
+
+/* Font-Switching basierend auf data-style Attribut */
+body[data-style="einfach"] {
+  --font-heading: var(--font-heading-einfach);
+  --font-accent: var(--font-heading-einfach);
+}
+
+body[data-style="standard"] {
+  --font-heading: var(--font-heading-standard);
+  --font-accent: var(--font-heading-standard);
+}
+
+body[data-style="modern"] {
+  --font-heading: var(--font-heading-modern);
+  --font-accent: var(--font-heading-modern);
+}
+
 /* Global Font Family Application */
 body {
-  font-family: var(--font-current, var(--font-sans));
+  font-family: var(--font-body);
 }
+
+/* Headline Fonts */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Hero Title */
+.hero-title {
+  font-family: var(--font-heading);
+}
+
+/* Buttons und CTAs */
+.btn, button, [data-cta="true"] {
+  font-family: var(--font-accent);
+}
+
+/* ===== ENDE FONT SYSTEM ===== */
 
 /* Moderne Border-Radien fÃ¼r Designer-Sidebar und SideContact - Immer halbrund und minimalistisch */
 .design-preview-modal,

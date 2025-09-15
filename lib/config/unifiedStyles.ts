@@ -1,4 +1,5 @@
 import { AppConfig } from './types'
+import { setStyle } from '@/lib/style'
 
 export interface UnifiedStyle {
   id: 'einfach' | 'standard' | 'modern'
@@ -191,6 +192,11 @@ export const applyUnifiedStyle = (config: AppConfig, styleId: string): AppConfig
       badgeStyle: unifiedStyle.config.interactive.badges as 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none',
       spacing: unifiedStyle.config.spacing.section
     }
+  }
+
+  // Font-Style auf body setzen
+  if (typeof window !== 'undefined') {
+    setStyle(styleId as 'einfach' | 'standard' | 'modern')
   }
 
   console.log('🎨 applyUnifiedStyle - result:', result)

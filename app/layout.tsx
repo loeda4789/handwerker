@@ -1,12 +1,40 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Raleway, Montserrat, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import { getContentData } from '@/lib/config'
 import { AppConfigProvider } from '@/contexts/AppConfigContext'
 import ConfigCard from '@/components/config/ConfigCard'
 import Script from 'next/script'
+import FontStyleInitializer from '@/components/FontStyleInitializer'
 
-const inter = Inter({ subsets: ['latin'] })
+// Google Fonts laden
+const inter = Inter({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-body'
+})
+
+const raleway = Raleway({ 
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  display: 'swap',
+  variable: '--font-heading-einfach'
+})
+
+const montserrat = Montserrat({ 
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  display: 'swap',
+  variable: '--font-heading-standard'
+})
+
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  display: 'swap',
+  variable: '--font-heading-modern'
+})
 
 const content = getContentData()
 
@@ -70,8 +98,13 @@ export default function RootLayout({
         
         {/* Critical CSS ist bereits in globals.css definiert */}
       </head>
-      <body className={inter.className} suppressHydrationWarning>
+      <body 
+        className={`${inter.variable} ${raleway.variable} ${montserrat.variable} ${spaceGrotesk.variable}`}
+        data-style="standard"
+        suppressHydrationWarning
+      >
         <AppConfigProvider>
+          <FontStyleInitializer />
           {children}
           <ConfigCard />
         </AppConfigProvider>
