@@ -22,9 +22,9 @@ export const siteVariants: Record<string, SiteVariant> = {
     id: 'starter',
     name: 'Starter',
     description: 'One-Page Website für kleine Unternehmen',
-    features: ['onepage', 'basic-navigation', 'contact-section'],
+    features: ['onepage', 'basic-navigation', 'contact-section', 'referenzen'],
     navigation: {
-      items: ['ueber-uns', 'leistungen'],
+      items: ['ueber-uns', 'leistungen', 'referenzen'],
       hasDropdowns: false
     }
   },
