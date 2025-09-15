@@ -3,12 +3,16 @@
 import { useState } from 'react'
 import { ContentData } from '@/types/content'
 import { useLayoutConfig, useStyleConfig, useHeadingsConfig } from '@/contexts/AppConfigContext'
+import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 
 interface FAQProps {
   content: ContentData
 }
 
 export default function FAQ({ content }: FAQProps) {
+  // Aktiviere Scroll-Animationen
+  useScrollAnimation()
+  
   const [openFAQ, setOpenFAQ] = useState<number | null>(null)
   const { design: designStyle } = useLayoutConfig()
   const { badgeStyle, fontFamily } = useStyleConfig()
@@ -63,7 +67,7 @@ export default function FAQ({ content }: FAQProps) {
   return (
     <section className={`py-16 bg-background dark:bg-dark faq-section ${designStyle === 'modern' ? 'modern-style' : ''}`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-on-scroll">
           {/* Badge nur anzeigen wenn badgeStyle nicht 'none' ist */}
           {badgeStyle !== 'none' && (
             <div className={getBadgeClasses()}>
