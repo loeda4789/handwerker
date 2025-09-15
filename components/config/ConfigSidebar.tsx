@@ -250,7 +250,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-8 space-y-12">
+        <div className="flex-1 overflow-y-auto p-8 space-y-12 pb-0">
           
           {/* Varianten */}
           <div className="space-y-4">
@@ -651,8 +651,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             )}
           </div>
 
-          {/* Action Buttons */}
-          <div className="p-6 border-t border-gray-200 bg-gray-50 space-y-3">
+          {/* Action Buttons - Fixed at bottom */}
+          <div className="p-6 border-t border-gray-200 bg-gray-50 space-y-3 flex-shrink-0">
             {/* Anwenden Button */}
             <button
               onClick={onClose}
