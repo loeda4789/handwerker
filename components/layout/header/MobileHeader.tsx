@@ -136,16 +136,16 @@ function MobileHeader({
           </button>
         </div>
         
-        {/* Navigation Items - Vollständig zentriert */}
+        {/* Navigation Items - Linksbündig */}
         <div 
           id="mobile-nav-description" 
           className="sr-only"
         >
           Hauptnavigation mit allen verfügbaren Menüpunkten
         </div>
-        <div className="flex-1 flex items-center min-h-0">
+        <div className="flex-1 flex items-start min-h-0">
           <nav 
-            className="w-full max-w-md px-10 py-16 space-y-8 text-left"
+            className="w-full px-10 py-16 space-y-8 text-left"
             role="navigation"
             aria-label="Hauptnavigation"
           >
@@ -159,7 +159,7 @@ function MobileHeader({
                 <div className="space-y-2">
                   <button
                     onClick={() => toggleMobileDropdown(item.id)}
-                    className="text-3xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center justify-center w-full"
+                    className="text-3xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center w-full"
                   >
                     {item.label}
                     <svg className="w-5 h-5 ml-2 inline transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -206,12 +206,12 @@ function MobileHeader({
         </div>
         
         {/* CTA Button - Linksbündig */}
-        <div className="px-8 pb-12 animate-in fade-in-up duration-500" style={{ animationDelay: '800ms', animationFillMode: 'both' }}>
+        <div className="px-10 pb-12 animate-in fade-in-up duration-500" style={{ animationDelay: '800ms', animationFillMode: 'both' }}>
           <Link
             ref={lastFocusableRef}
             href="#kontakt"
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
-            className={`block w-full max-w-sm py-4 px-8 text-white font-bold text-lg ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'} rounded-lg transition-colors duration-300 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
+            className={`block w-full max-w-sm py-4 px-8 text-white font-bold text-lg ${siteVariant === 'starter' ? 'uppercase' : 'normal-case'} rounded-lg transition-colors duration-300 text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
             style={{ 
               backgroundColor: 'var(--color-secondary)',
               borderRadius: 'var(--radius-button)'
