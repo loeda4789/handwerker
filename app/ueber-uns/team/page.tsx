@@ -3,6 +3,7 @@
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../../hooks/usePageContent'
 import PageLayout from '../../components/layout/PageLayout'
+import { PageHero } from '@/components/layout'
 import Team from '@/components/content/Team'
 
 export default function TeamPage() {
@@ -33,18 +34,10 @@ export default function TeamPage() {
       loadingText="Team wird geladen..."
     >
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary to-accent">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Unser Team
-            </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Lernen Sie die Menschen kennen, die hinter jedem erfolgreichen Projekt stehen. Unser erfahrenes Team aus Fachkräften sorgt für Qualität und Zuverlässigkeit.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Unser Team"
+        subtitle="Lernen Sie die Menschen kennen, die hinter jedem erfolgreichen Projekt stehen. Unser erfahrenes Team aus Fachkräften sorgt für Qualität und Zuverlässigkeit."
+      />
 
       {/* Teamphilosophie */}
       <section className="py-16 bg-background dark:bg-dark">

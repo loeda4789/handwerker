@@ -4,6 +4,7 @@ import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../hooks/usePageContent'
 import { useDesignStyle } from '../hooks/useDesignStyle'
 import PageLayout from '../components/layout/PageLayout'
+import { PageHero } from '@/components/layout'
 import Services from '@/components/content/Services'
 import ConfigCard from '@/components/config/ConfigCard'
 import Link from 'next/link'
@@ -37,20 +38,10 @@ export default function ServicesPage() {
       loadingText="Services werden geladen..."
     >
       {/* Hero Section für Services */}
-      <section className="relative py-20 bg-gradient-to-br from-primary to-accent">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-heading">
-            {designStyle === 'modern' ? (
-              <span className="heading-underline-large">Unsere Leistungen</span>
-            ) : (
-              'Unsere Leistungen'
-            )}
-          </h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            Professionelle Handwerksarbeit in allen Bereichen - von der Planung bis zur Ausführung
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title="Unsere Leistungen"
+        subtitle="Professionelle Handwerksarbeit in allen Bereichen - von der Planung bis zur Ausführung"
+      />
 
       {/* Services mit der erweiterten Komponente */}
       <Services content={content} variant="full" />

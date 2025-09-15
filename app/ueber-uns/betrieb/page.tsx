@@ -3,6 +3,7 @@
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../../hooks/usePageContent'
 import PageLayout from '../../components/layout/PageLayout'
+import { PageHero } from '@/components/layout'
 import About from '@/components/content/About'
 import Stats from '@/components/content/Stats'
 
@@ -34,18 +35,10 @@ export default function BetriebPage() {
       loadingText="Betrieb wird geladen..."
     >
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary to-accent">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Unser Betrieb
-            </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Lernen Sie unseren Betrieb kennen - von der Firmengeschichte bis zu unseren Werten und der modernen Ausstattung.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Unser Betrieb"
+        subtitle="Lernen Sie unseren Betrieb kennen - von der Firmengeschichte bis zu unseren Werten und der modernen Ausstattung."
+      />
 
       {/* About Komponente */}
       <About content={content} />
