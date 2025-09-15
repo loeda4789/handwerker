@@ -274,10 +274,10 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
     if (headerVariant === 'classic') {
       return 'shadow-lg border-b';
     } else if (headerVariant === 'modern') {
-      return 'shadow-2xl border rounded-[3rem]';
+      return 'shadow-2xl border rounded-3xl';
     } else {
       // Floating
-      return 'shadow-2xl border rounded-[4rem]';
+      return 'shadow-2xl border rounded-full';
     }
   };
 
