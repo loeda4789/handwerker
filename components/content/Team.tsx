@@ -81,7 +81,7 @@ export default function Team({ content }: TeamProps) {
   }
 
   return (
-    <section id="team" className={`py-20 ${isModernStyle ? 'modern-style' : ''}`}>
+    <div id="team" className={`py-20 ${isModernStyle ? 'modern-style' : ''}`}>
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
@@ -346,6 +346,6 @@ export default function Team({ content }: TeamProps) {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   )
 } 
