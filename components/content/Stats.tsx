@@ -125,7 +125,7 @@ export default function Stats({ content }: StatsProps) {
 
   return (
     <>
-      <div className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
+      <div className={`py-16 bg-surface ${isModernStyle ? 'modern-style' : ''}`}>
         <div className="max-w-screen-xl mx-auto px-4">
           {/* Section Header */}
           <div className="text-center mb-12 animate-on-scroll">

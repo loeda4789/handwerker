@@ -141,7 +141,7 @@ export default function Contact({ content }: ContactProps) {
   }
 
   return (
-    <section id="kontakt" className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
+    <section id="kontakt" className={`py-16 bg-surface ${isModernStyle ? 'modern-style' : ''}`}>
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           
