@@ -155,7 +155,7 @@ function MobileHeader({
         </div>
         <div className="flex-1 flex items-start min-h-0">
           <nav 
-            className="w-full px-10 py-16 space-y-8 text-left"
+            className="w-full px-10 py-12 space-y-4 text-left"
             role="navigation"
             aria-label="Hauptnavigation"
           >
@@ -175,7 +175,7 @@ function MobileHeader({
                 <div className="space-y-2">
                   <button
                     onClick={() => toggleMobileDropdown(item.id)}
-                    className="text-lg font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center w-full"
+                    className="text-xl font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[50px] flex items-center w-full"
                   >
                     {item.label}
                     <svg className="w-5 h-5 ml-2 inline transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -184,13 +184,13 @@ function MobileHeader({
                   </button>
                   
                   {mobileDropdownOpen === item.id && item.dropdownItems && (
-                    <div className="space-y-4 pt-4">
+                    <div className="space-y-2 pt-2">
                       {item.dropdownItems.map((dropdownItem, dropdownIndex) => (
                         dropdownItem.href ? (
                           <Link
                             key={dropdownIndex}
                             href={dropdownItem.href}
-                            className="block text-xl text-gray-900 hover:text-orange-500 transition-colors duration-300 min-h-[50px] flex items-center"
+                            className="block text-lg text-gray-900 hover:text-orange-500 transition-colors duration-300 min-h-[40px] flex items-center"
                             onClick={onClose}
                           >
                             {dropdownItem.label}
@@ -198,7 +198,7 @@ function MobileHeader({
                         ) : (
                           <span
                             key={dropdownIndex}
-                            className="block text-xl text-gray-400 cursor-default min-h-[50px] flex items-center"
+                            className="block text-lg text-gray-400 cursor-default min-h-[40px] flex items-center"
                           >
                             {dropdownItem.label}
                           </span>
@@ -211,7 +211,7 @@ function MobileHeader({
                 <Link
                   href={item.href || '#'}
                   onClick={item.isClickable && item.href?.startsWith('#') ? (e) => onSmoothScroll(e, item.id) : undefined}
-                  className="text-lg font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[60px] flex items-center"
+                  className="text-xl font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[50px] flex items-center"
                 >
                   {item.label}
                 </Link>
