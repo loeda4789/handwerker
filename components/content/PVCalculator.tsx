@@ -74,37 +74,82 @@ export default function PVCalculator({ content }: PVCalculatorProps) {
       
       if (!orientation || !roofType) return
 
-      // Berechnungslogik
-      const roofEfficiency = orientation.efficiency
+      // === REALISTISCHE PV-BERECHNUNG ===
+      
+      // 1. Dachfläche berechnen
       const roofArea = inputs.houseSize * 0.8 // 80% des Hauses als Dachfläche
-      const usableArea = roofArea * roofEfficiency
       
-      // 1 kWp = ca. 6-8 m² Fläche
-      const maxSystemSize = Math.floor(usableArea / 7)
-      const recommendedSize = Math.min(maxSystemSize, Math.floor(inputs.electricityUsage / 1000))
+      // 2. Dachneigung-Faktor (optimal bei 30-35°)
+      const slopeFactor = Math.max(0.7, 1 - Math.abs(inputs.roofSlope - 32) / 50)
       
-      // Kosten: ca. 1400-1800 €/kWp
-      const costPerKw = 1600 * roofType.costFactor
+      // 3. Dachausrichtung-Faktor
+      const orientationFactor = orientation.efficiency
+      
+      // 4. Dachtyp-Faktor (Einfluss auf Installation)
+      const roofTypeFactor = roofType.costFactor
+      
+      // 5. Verfügbare Dachfläche für PV (berücksichtigt Dachneigung und Ausrichtung)
+      const usableArea = roofArea * orientationFactor * slopeFactor
+      
+      // 6. Maximal mögliche Anlagengröße (1 kWp = 6-8 m², je nach Dachneigung)
+      const areaPerKw = inputs.roofSlope > 45 ? 8 : 7 // Steilere Dächer brauchen mehr Fläche
+      const maxSystemSize = Math.floor(usableArea / areaPerKw)
+      
+      // 7. Empfohlene Anlagengröße basierend auf:
+      //    - Stromverbrauch (sollte 80-120% des Verbrauchs abdecken)
+      //    - Verfügbarer Dachfläche
+      //    - Budget (max. 20.000€ für 10 kWp)
+      const targetCoverage = 1.0 // 100% des Verbrauchs
+      const sizeByConsumption = Math.ceil(inputs.electricityUsage * targetCoverage / 1000)
+      const sizeByBudget = Math.floor(inputs.budget / (1600 * roofTypeFactor))
+      const sizeByArea = maxSystemSize
+      
+      // Empfohlene Größe = Minimum aller Faktoren
+      const recommendedSize = Math.max(1, Math.min(sizeByConsumption, sizeByArea, sizeByBudget))
+      
+      // 8. Kostenberechnung (realistischer)
+      const baseCostPerKw = 1400 // Basis-Kosten pro kWp
+      const roofTypeMultiplier = roofTypeFactor
+      const sizeDiscount = recommendedSize >= 10 ? 0.9 : recommendedSize >= 5 ? 0.95 : 1.0 // Mengenrabatt
+      const costPerKw = baseCostPerKw * roofTypeMultiplier * sizeDiscount
       const estimatedCost = Math.round(recommendedSize * costPerKw)
       
-      // Einsparungen: ca. 1000 kWh/kWp pro Jahr
-      const yearlyProduction = recommendedSize * 1000 * roofEfficiency
-      const yearlySavings = Math.round(yearlyProduction * 0.30) // 30 Cent/kWh
+      // 9. Stromproduktion (realistisch basierend auf Standort und Dach)
+      // Deutsche Durchschnittswerte: 800-1200 kWh/kWp pro Jahr
+      const baseProduction = 1000 // kWh/kWp pro Jahr
+      const locationFactor = 1.0 // Deutschland Durchschnitt
+      const roofEfficiency = orientationFactor * slopeFactor
+      const yearlyProduction = Math.round(recommendedSize * baseProduction * locationFactor * roofEfficiency)
+      
+      // 10. Einsparungen berechnen
+      const electricityPrice = 0.35 // 35 Cent/kWh (aktueller Durchschnitt)
+      const selfConsumptionRate = 0.3 // 30% Eigenverbrauch
+      const feedInTariff = 0.08 // 8 Cent/kWh Einspeisevergütung
+      
+      const selfConsumed = yearlyProduction * selfConsumptionRate
+      const fedIn = yearlyProduction * (1 - selfConsumptionRate)
+      
+      const yearlySavings = Math.round(
+        selfConsumed * electricityPrice + fedIn * feedInTariff
+      )
       const monthlySavings = Math.round(yearlySavings / 12)
       
-      // Amortisation
-      const paybackPeriod = Math.round(estimatedCost / yearlySavings)
+      // 11. Amortisation (realistischer)
+      const maintenanceCost = 50 // €/Jahr Wartung
+      const netYearlySavings = yearlySavings - maintenanceCost
+      const paybackPeriod = netYearlySavings > 0 ? Math.round(estimatedCost / netYearlySavings) : 99
       
-      // CO2-Einsparung: ca. 0.5 kg CO2/kWh
-      const co2Savings = Math.round(yearlyProduction * 0.5)
+      // 12. CO2-Einsparung (deutscher Strommix)
+      const co2Factor = 0.485 // kg CO2/kWh (deutscher Strommix 2023)
+      const co2Savings = Math.round(yearlyProduction * co2Factor)
 
       setResult({
         recommendedSize,
         estimatedCost,
-        yearlySavings,
-        paybackPeriod,
+        yearlySavings: Math.max(0, yearlySavings),
+        paybackPeriod: Math.min(99, paybackPeriod),
         co2Savings,
-        monthlySavings
+        monthlySavings: Math.max(0, monthlySavings)
       })
       
       setIsCalculating(false)
@@ -353,16 +398,37 @@ export default function PVCalculator({ content }: PVCalculatorProps) {
         <div className="mt-12 text-center">
           <div className="bg-surface p-6 rounded-lg" style={{ borderRadius: 'var(--radius-card)' }}>
             <h4 className="text-lg font-semibold text-text mb-4">Hinweise zur Berechnung</h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-text-secondary">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-text-secondary">
               <div>
-                <strong>Standort:</strong> Berechnung basiert auf deutschen Durchschnittswerten
+                <strong>Standort:</strong> Berechnung basiert auf deutschen Durchschnittswerten (1000 kWh/kWp)
+              </div>
+              <div>
+                <strong>Dachfaktoren:</strong> Berücksichtigt Dachneigung, Ausrichtung und Dachtyp
+              </div>
+              <div>
+                <strong>Eigenverbrauch:</strong> 30% Eigenverbrauch, 70% Einspeisung (8 Cent/kWh)
+              </div>
+              <div>
+                <strong>Strompreis:</strong> 35 Cent/kWh (aktueller Durchschnitt)
+              </div>
+              <div>
+                <strong>Kosten:</strong> 1400€/kWp Basis, Mengenrabatt ab 5 kWp
+              </div>
+              <div>
+                <strong>Wartung:</strong> 50€/Jahr Wartungskosten berücksichtigt
+              </div>
+              <div>
+                <strong>CO2-Faktor:</strong> 0,485 kg CO2/kWh (deutscher Strommix 2023)
               </div>
               <div>
                 <strong>Garantie:</strong> 25 Jahre Leistungsgarantie auf Module
               </div>
-              <div>
-                <strong>Wartung:</strong> Minimale Wartungskosten von ca. 50€/Jahr
-              </div>
+            </div>
+            <div className="mt-4 p-4 bg-primary/10 rounded-lg">
+              <p className="text-sm text-text">
+                <strong>Wichtiger Hinweis:</strong> Die Berechnung ist eine Schätzung. 
+                Für eine genaue Planung empfehlen wir eine Vor-Ort-Besichtigung.
+              </p>
             </div>
           </div>
         </div>
