@@ -41,7 +41,7 @@ export default function ConfigCard() {
                 Ihre Website anpassen
               </div>
               <div className="text-sm text-gray-500">
-                Paket und Stil
+                Farben, Stil und mehr
               </div>
             </div>
             <div className="flex gap-1">
@@ -68,7 +68,7 @@ export default function ConfigCard() {
                 Ihre Website anpassen
               </div>
               <div className="text-sm text-gray-500">
-                Paket und Stil
+                Farben, Stil und mehr
               </div>
             </div>
           </div>
