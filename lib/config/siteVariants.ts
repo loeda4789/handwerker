@@ -31,10 +31,10 @@ export const siteVariants: Record<string, SiteVariant> = {
   professional: {
     id: 'professional',
     name: 'Professional', 
-    description: 'One-Page mit Side-Contact, Projektablauf, Referenzen und FAQ',
-    features: ['onepage', 'side-contact', 'projektablauf', 'referenzen', 'faq', 'advanced-navigation'],
+    description: 'One-Page mit Side-Contact, Referenzen und FAQ',
+    features: ['onepage', 'side-contact', 'referenzen', 'faq', 'advanced-navigation'],
     navigation: {
-      items: ['ueber-uns', 'leistungen', 'referenzen', 'projektablauf', 'faq'],
+      items: ['ueber-uns', 'leistungen', 'referenzen', 'faq'],
       hasDropdowns: true
     }
   },
