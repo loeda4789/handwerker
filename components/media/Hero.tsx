@@ -249,7 +249,7 @@ function HeroSlider({ content }: HeroProps) {
     {
       desktop: content.hero.backgroundImages.desktop,
       mobile: content.hero.backgroundImages.mobile,
-      title: content.hero.title || formatHeroTitle(content.company.tagline),
+      title: "Meisterbetrieb für Elektroinstallationen & Photovoltaik.",
       subtitle: "", // Keine Subline für Slider
       cta: "Jetzt Termin vereinbaren",
       ctaLink: "#kontakt"
@@ -257,10 +257,18 @@ function HeroSlider({ content }: HeroProps) {
     {
       desktop: content.hero.backgroundImages.desktopAlt || content.hero.backgroundImages.desktop,
       mobile: content.hero.backgroundImages.mobileAlt || content.hero.backgroundImages.mobile,
-      title: content.hero.title || formatHeroTitle(content.company.tagline),
+      title: "Planung, Installation & Wartung",
       subtitle: "", // Keine Subline für Slider
       cta: "Zu unseren Leistungen",
       ctaLink: "#leistungen"
+    },
+    {
+      desktop: content.hero.backgroundImages.desktopAlt || content.hero.backgroundImages.desktop,
+      mobile: content.hero.backgroundImages.mobileAlt || content.hero.backgroundImages.mobile,
+      title: "Kompetenz, die elektrisiert.",
+      subtitle: "", // Keine Subline für Slider
+      cta: "Über uns",
+      ctaLink: "#ueber-uns"
     }
   ]
 
