@@ -177,7 +177,7 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
                   <div className="absolute top-4 right-4">
                     <span className="text-white px-3 py-1 text-sm font-medium"
                       style={{ 
-                        backgroundColor: 'var(--color-secondary)',
+                        backgroundColor: 'var(--color-accent)',
                         borderRadius: 'var(--radius-button)' 
                       }}>
                       {service.projects.length} Projekt{service.projects.length !== 1 ? 'e' : ''}

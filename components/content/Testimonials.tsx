@@ -288,7 +288,7 @@ export default function Testimonials({ content }: TestimonialsProps) {
                   }`}
                   style={{ 
                     borderRadius: 'var(--radius-button)',
-                    backgroundColor: index === currentSlide ? 'var(--color-secondary)' : undefined
+                    backgroundColor: index === currentSlide ? 'var(--color-accent)' : undefined
                   }}
                   aria-label={`Zu Bewertung ${index + 1} wechseln`}
                 />
@@ -388,14 +388,14 @@ export default function Testimonials({ content }: TestimonialsProps) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 text-white transition-colors duration-300 font-medium"
                   style={{ 
-                    backgroundColor: 'var(--color-secondary)',
+                    backgroundColor: 'var(--color-accent)',
                     borderRadius: 'var(--radius-button)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--color-primary)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                    e.currentTarget.style.backgroundColor = 'var(--color-accent)';
                   }}
                 >
                   Jetzt bewerten

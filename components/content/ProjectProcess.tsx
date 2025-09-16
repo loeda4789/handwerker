@@ -165,7 +165,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
               style={{ 
                 borderRadius: 'var(--radius-button)', 
                 height: `${timelineProgress}%`,
-                backgroundColor: 'var(--color-secondary)'
+                backgroundColor: 'var(--color-accent)'
               }}
             ></div>
           </div>
@@ -192,9 +192,9 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                     }`}
                     style={{ 
                       borderRadius: 'var(--radius-button)',
-                      backgroundColor: 'var(--color-secondary)',
+                      backgroundColor: 'var(--color-accent)',
                       boxShadow: isStrichReached ? 
-                        `0 0 0 4px rgba(var(--color-secondary-rgb), 0.2), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` : 
+                        `0 0 0 4px rgba(var(--color-accent-rgb), 0.2), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` : 
                         undefined
                     }}
                   >

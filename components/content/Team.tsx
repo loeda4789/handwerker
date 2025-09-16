@@ -90,7 +90,7 @@ export default function Team({ content }: TeamProps) {
             <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4"
               style={{ 
                 borderRadius: 'var(--radius-button)',
-                backgroundColor: 'var(--color-secondary)'
+                backgroundColor: 'var(--color-accent)'
               }}>
               Unser Team
             </span>
@@ -174,7 +174,7 @@ export default function Team({ content }: TeamProps) {
                       <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
                         <span className="inline-block px-4 py-1 text-white text-sm font-medium shadow-md"
                           style={{ 
-                            backgroundColor: 'var(--color-secondary)',
+                            backgroundColor: 'var(--color-accent)',
                             borderRadius: 'var(--radius-button)' 
                           }}>
                           {member.position}
@@ -288,7 +288,7 @@ export default function Team({ content }: TeamProps) {
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
                   <span className="inline-block px-4 py-1 text-white text-sm font-medium shadow-md"
                     style={{ 
-                      backgroundColor: 'var(--color-secondary)',
+                      backgroundColor: 'var(--color-accent)',
                       borderRadius: 'var(--radius-button)' 
                     }}>
                     {member.position}

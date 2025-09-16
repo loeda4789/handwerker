@@ -162,7 +162,7 @@ export default function Portfolio({ content }: PortfolioProps) {
                 <div className="absolute top-4 left-4">
                                       <span className="text-white px-3 py-1 text-sm font-medium"
                         style={{ 
-                          backgroundColor: 'var(--color-secondary)',
+                          backgroundColor: 'var(--color-accent)',
                           borderRadius: 'var(--radius-button)' 
                         }}>
                         {project.category}
