@@ -177,14 +177,14 @@ function HeroSingle({ content }: HeroProps) {
                   data-cta="true"
                   style={{ 
                     color: 'var(--color-background, #ffffff)', 
-                    backgroundColor: 'var(--color-accent)',
+                    backgroundColor: 'var(--color-secondary)',
                     borderRadius: 'var(--radius-button)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--color-primary)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                    e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
                   }}
                 >
                   Jetzt Termin vereinbaren
@@ -335,14 +335,14 @@ function HeroSlider({ content }: HeroProps) {
                   className="inline-flex items-center justify-center px-8 py-4 text-base font-medium transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 text-white"
                   data-cta="true"
                   style={{ 
-                    backgroundColor: 'var(--color-accent)',
+                    backgroundColor: 'var(--color-secondary)',
                     borderRadius: 'var(--radius-button)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--color-primary)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                    e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
                   }}
                 >
                   {slides[currentSlide].cta}
@@ -453,14 +453,14 @@ function HeroVideo({ content }: HeroProps) {
                     className="group relative overflow-hidden px-8 py-4 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1 rounded-lg"
                     data-cta="true"
                     style={{ 
-                      backgroundColor: 'var(--color-accent)',
+                      backgroundColor: 'var(--color-secondary)',
                       borderRadius: 'var(--radius-button)'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = 'var(--color-primary)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                      e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
                     }}
                   >
                     <span className="relative z-10">Jetzt Termin vereinbaren</span>
@@ -550,14 +550,14 @@ function HeroSplit({ content }: HeroProps) {
                   className="inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
                   data-cta="true"
                   style={{ 
-                    backgroundColor: 'var(--color-accent)',
+                    backgroundColor: 'var(--color-secondary)',
                     borderRadius: 'var(--radius-button)' 
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--color-primary)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                    e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
                   }}
                 >
                   Kostenloses Angebot
