@@ -467,10 +467,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     <div className="flex gap-1">
                       <div
                         className="w-4 h-4 rounded-full"
-                        style={{ backgroundColor: typedScheme.primary }}
-                      />
-                      <div
-                        className="w-4 h-4 rounded-full"
                         style={{ backgroundColor: typedScheme.secondary }}
                       />
                       <div
