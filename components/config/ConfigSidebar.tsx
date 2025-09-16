@@ -349,7 +349,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <CompactInfo content="Wählen Sie einen Stil - alle Design-Elemente (Schrift, Abstände, Badges, Animationen) passen sich automatisch an." />
               </div>
             </div>
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 gap-3">
               {UNIFIED_STYLES.map((style) => {
                 const IconComponent = getStylePackageIcon(style.id)
                 return (
@@ -405,31 +405,20 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       applyHeadingStyles(updatedConfig)
                     }
                   }}
-                  className={`w-full p-4 border-2 transition-all text-left h-20 flex items-center config-sidebar-variant ${
-                    (stylePackage as any) === style.id
+                  className={`flex items-center gap-3 p-3 border-2 transition-all config-sidebar-button ${
+                    stylePackage === style.id
                       ? 'border-gray-900 bg-gray-50'
-                      : `${style.color} hover:border-gray-300`
+                      : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <div className="flex items-center gap-3 w-full">
-                    <div className={`w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0 ${
-                      (stylePackage as any) === style.id ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'
-                    }`}>
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-gray-900 text-sm mb-1">
-                        {style.name}
-                      </div>
-                      <div className="text-xs text-gray-500 leading-tight">
-                        {style.description}
-                      </div>
-                    </div>
-                    {(stylePackage as any) === style.id && (
-                      <div className="flex-shrink-0">
-                        <MdCheck className="w-5 h-5 text-gray-900" />
-                      </div>
-                    )}
+                  <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
+                    stylePackage === style.id ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    <IconComponent className="w-4 h-4" />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <div className="font-medium text-gray-900">{style.name}</div>
+                    <div className="text-sm text-gray-500">{style.description}</div>
                   </div>
                 </button>
                 )
@@ -493,12 +482,12 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <CompactInfo content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nSlider: Mehrere Bilder im Wechsel" />
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 gap-3">
               {heroTypes.map((type) => (
                 <button
                   key={type.key}
                   onClick={() => setHeroType(type.key as any)}
-                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all config-sidebar-button ${
+                  className={`flex items-center gap-3 p-3 border-2 transition-all config-sidebar-button ${
                     heroType === type.key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
@@ -509,7 +498,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   }`}>
                     <type.icon className="w-4 h-4" />
                   </div>
-                  <span className="text-xs font-medium text-gray-900 text-center">{type.label}</span>
+                  <div className="flex-1 text-left">
+                    <div className="font-medium text-gray-900">{type.label}</div>
+                  </div>
                 </button>
               ))}
             </div>
