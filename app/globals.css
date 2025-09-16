@@ -102,11 +102,43 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Title */
 .hero-title {
   font-family: var(--font-heading);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
 }
 
 /* Buttons und CTAs */
 .btn, button, [data-cta="true"] {
   font-family: var(--font-accent);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* PageHero Überschriften - Spezielle Verbesserungen */
+.page-hero h1 {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.page-hero h2 {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
 /* ===== ENDE FONT SYSTEM ===== */
@@ -628,12 +660,42 @@ html {
 /* Mobile-first responsive breakpoints */
 html {
   font-size: 16px;
+  /* Verbesserte Textrendering-Qualität */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 @media (max-width: 768px) {
   html {
     font-size: 14px;
   }
+}
+
+/* Verbesserte Lesbarkeit für alle Überschriften */
+h1, h2, h3, h4, h5, h6 {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+/* Spezifische Verbesserungen für große Überschriften */
+h1, .text-4xl, .text-5xl, .text-6xl {
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+/* Verbesserte Lesbarkeit für alle Texte */
+body, p, span, div {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Fade animations */
