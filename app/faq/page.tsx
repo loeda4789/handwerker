@@ -180,7 +180,6 @@ export default function FAQPage() {
         </div>
       </section>
 
-
       {/* Kontakt Section */}
       <section className="py-20 md:py-24 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6 md:px-8">

@@ -41,10 +41,10 @@ export const siteVariants: Record<string, SiteVariant> = {
   premium: {
     id: 'premium',
     name: 'Premium',
-    description: 'Multi-Page Website mit Jobs und vollständiger Navigation',
-    features: ['multipage', 'full-navigation', 'dropdowns', 'jobs', 'all-sections'],
+    description: 'Multi-Page Website mit Jobs, PV-Rechner und vollständiger Navigation',
+    features: ['multipage', 'full-navigation', 'dropdowns', 'jobs', 'pv-calculator', 'all-sections'],
     navigation: {
-      items: ['ueber-uns', 'leistungen', 'referenzen', 'jobs', 'faq'],
+      items: ['ueber-uns', 'leistungen', 'referenzen', 'jobs', 'weiteres'],
       hasDropdowns: true
     }
   }

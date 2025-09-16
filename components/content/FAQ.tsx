@@ -91,13 +91,13 @@ export default function FAQ({ content }: FAQProps) {
           {faqData.map((faq, index) => (
             <div
               key={index}
-              className="bg-surface dark:bg-dark-secondary rounded-lg border border-border dark:border-dark-border"
+              className="bg-white dark:bg-dark-secondary rounded-lg border border-gray-200 dark:border-dark-border shadow-sm hover:shadow-md transition-shadow duration-200"
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-surface/50 dark:hover:bg-dark-secondary/50 transition-colors duration-200"
+                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-dark-secondary/50 transition-colors duration-200"
               >
-                <span className="text-lg font-semibold text-text dark:text-light pr-4">
+                <span className="text-lg font-semibold text-gray-900 dark:text-light pr-4">
                   {faq.question}
                 </span>
                 {openFAQ === index ? <ChevronUpIcon /> : <ChevronDownIcon />}
@@ -105,7 +105,7 @@ export default function FAQ({ content }: FAQProps) {
               
               {openFAQ === index && (
                 <div className="px-6 pb-4">
-                  <div className="text-text-secondary dark:text-light/80 leading-relaxed">
+                  <div className="text-gray-700 dark:text-light/80 leading-relaxed">
                     {faq.answer}
                   </div>
                 </div>

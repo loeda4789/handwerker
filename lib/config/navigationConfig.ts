@@ -77,6 +77,25 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     isClickable: true,
     dropdownItems: []
   }),
+  'pv-rechner': (content, addUrlParamsToHref, siteMode, packageType) => ({
+    href: '/pv-rechner',
+    label: 'PV-Rechner',
+    id: 'pv-rechner',
+    hasDropdown: false,
+    isClickable: true,
+    dropdownItems: []
+  }),
+  'weiteres': (content, addUrlParamsToHref, siteMode, packageType) => ({
+    href: null,
+    label: 'Weiteres',
+    id: 'weiteres',
+    hasDropdown: true,
+    isClickable: false,
+    dropdownItems: [
+      { href: '/faq', label: 'FAQ' },
+      { href: '/pv-rechner', label: 'PV-Rechner' }
+    ]
+  }),
   'faq': (content, addUrlParamsToHref, siteMode, packageType) => ({
     href: '/faq',
     label: 'FAQ',

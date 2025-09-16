@@ -151,10 +151,10 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
 
         {/* Vertikale Timeline für alle Bildschirmgrößen */}
         <div className="relative max-w-4xl mx-auto">
-          {/* Vertikale Hauptlinie - links positioniert */}
+          {/* Vertikale Hauptlinie - responsive positioniert */}
           <div 
             ref={timelineRef}
-            className="absolute left-8 lg:left-12 top-8 lg:top-10 bottom-8 lg:bottom-10 w-1 bg-border dark:bg-text-secondary/30"
+            className="absolute left-6 sm:left-8 lg:left-12 top-8 lg:top-10 bottom-8 lg:bottom-10 w-1 bg-border dark:bg-text-secondary/30"
             style={{ borderRadius: 'var(--radius-button)' }}
           >
             {/* Scroll-basierter Fortschrittsstrich */}
@@ -183,9 +183,9 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                   className="relative animate-on-scroll"
                   style={{ animationDelay: `${index * 200}ms` }}
                 >
-                  {/* Schritt-Nummer Kreis - links */}
+                  {/* Schritt-Nummer Kreis - responsive */}
                   <div 
-                    className={`absolute left-0 lg:left-4 w-16 h-16 lg:w-20 lg:h-20 flex items-center justify-center shadow-lg z-10 border-4 border-white dark:border-dark transition-all duration-700 ${
+                    className={`absolute left-2 sm:left-0 lg:left-4 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 flex items-center justify-center shadow-lg z-10 border-4 border-white dark:border-dark transition-all duration-700 ${
                       isStrichReached 
                         ? 'scale-110 shadow-xl' 
                         : 'scale-100'
@@ -198,29 +198,29 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                         undefined
                     }}
                   >
-                    <span className="text-xl lg:text-2xl font-bold text-white">
+                    <span className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
                       {step.number}
                     </span>
                   </div>
 
-                  {/* Content Box - rechts */}
+                  {/* Content Box - responsive */}
                   <div 
-                    className={`ml-24 lg:ml-32 bg-white dark:bg-dark-secondary p-6 lg:p-8 shadow-lg border border-border dark:border-text-secondary hover:shadow-xl transition-all duration-700 hover:transform hover:scale-105 ${
+                    className={`ml-16 sm:ml-24 lg:ml-32 bg-white dark:bg-dark-secondary p-4 sm:p-6 lg:p-8 shadow-lg border border-border dark:border-text-secondary hover:shadow-xl transition-all duration-700 hover:transform hover:scale-105 ${
                       isActive
                         ? 'opacity-100 transform translate-y-0'
                         : 'opacity-90 transform translate-y-0'
                     }`}
                     style={{ borderRadius: 'var(--radius-card)' }}
                   >
-                    <h3 className="text-xl lg:text-2xl font-bold text-text dark:text-light mb-3 lg:mb-4">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-text dark:text-light mb-3 lg:mb-4">
                       {step.title}
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base lg:text-lg">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base lg:text-lg">
                       {step.description}
                     </p>
                     
-                    {/* Kleiner Pfeil zur Verbindung */}
-                    <div className="absolute left-16 lg:left-20 top-6 lg:top-8 w-0 h-0 border-l-8 border-l-white dark:border-l-dark-secondary border-t-8 border-t-transparent border-b-8 border-b-transparent"></div>
+                    {/* Kleiner Pfeil zur Verbindung - responsive */}
+                    <div className="absolute left-12 sm:left-16 lg:left-20 top-4 sm:top-6 lg:top-8 w-0 h-0 border-l-6 sm:border-l-8 border-l-white dark:border-l-dark-secondary border-t-6 sm:border-t-8 border-t-transparent border-b-6 sm:border-b-8 border-b-transparent"></div>
                   </div>
                 </div>
               )
