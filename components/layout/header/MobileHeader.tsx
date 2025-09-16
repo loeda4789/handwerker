@@ -229,14 +229,14 @@ function MobileHeader({
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
             className="block w-full py-4 px-8 text-white font-bold text-lg uppercase text-center transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             style={{ 
-              backgroundColor: 'var(--color-accent)',
+              backgroundColor: 'var(--color-secondary)',
               borderRadius: 'var(--radius-button)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = 'var(--color-primary)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+              e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
             }}
           >
             JETZT ANFRAGEN

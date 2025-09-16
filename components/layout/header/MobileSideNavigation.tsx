@@ -233,14 +233,14 @@ function MobileSideNavigation({
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
             className="block w-full py-3 px-4 text-white font-medium text-center rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 normal-case"
             style={{ 
-              backgroundColor: 'var(--color-accent)',
+              backgroundColor: 'var(--color-secondary)',
               borderRadius: 'var(--radius-button)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = 'var(--color-primary)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+              e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
             }}
           >
             Jetzt anfragen
