@@ -79,6 +79,15 @@ export function getSiteVariant(
   if (explicitVariant) return explicitVariant
   
   if (siteMode === 'multipage') return 'premium'
+  
+  // Für One-Page: Prüfe localStorage für gespeicherte Variante
+  if (typeof window !== 'undefined') {
+    const savedVariant = localStorage.getItem('site-variant') as 'starter' | 'professional' | 'premium'
+    if (savedVariant && ['starter', 'professional', 'premium'].includes(savedVariant)) {
+      return savedVariant
+    }
+  }
+  
   // Starter ist der Standard für One-Page
   return 'starter'
 }

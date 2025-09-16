@@ -311,6 +311,14 @@ export default function HomePage() {
       // Site mode setzen
       setSiteMode(config.layoutType)
       localStorage.setItem('site-mode', config.layoutType)
+      
+      // Site variant basierend auf layout type setzen
+      const variantMap = {
+        'onepage': 'starter', // Standard für One-Page
+        'multipage': 'premium'
+      }
+      const siteVariant = variantMap[config.layoutType as keyof typeof variantMap] || 'starter'
+      localStorage.setItem('site-variant', siteVariant)
     
       // Design style setzen
       setDesignStyle(config.designStyle)

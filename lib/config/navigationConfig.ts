@@ -19,8 +19,8 @@ export interface DropdownItem {
 // Navigation-Item-Definitionen
 const navigationItemDefinitions: Record<string, (content: ContentData, addUrlParamsToHref: (href: string | null) => string | null, siteMode: 'onepage' | 'multipage', packageType?: 'starter' | 'professional' | 'premium') => NavigationItem> = {
   'ueber-uns': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: siteMode === 'multipage' ? '/ueber-uns' : '#ueber-uns',
-    label: siteMode === 'multipage' ? 'Über uns' : content.about.title,
+    href: packageType === 'starter' ? '#ueber-uns' : '/ueber-uns',
+    label: packageType === 'starter' ? content.about.title : 'Über uns',
     id: 'ueber-uns',
     hasDropdown: packageType === 'premium', // Nur Premium hat Dropdown
     isClickable: true,
@@ -32,12 +32,12 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     ] : undefined
   }),
   'leistungen': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: siteMode === 'multipage' ? null : '#leistungen',
+    href: packageType === 'starter' ? '#leistungen' : '/services',
     label: 'Leistungen',
     id: 'leistungen',
-      hasDropdown: packageType === 'professional' || packageType === 'premium', // Professional UND Premium haben Dropdown
+    hasDropdown: packageType === 'professional' || packageType === 'premium', // Professional UND Premium haben Dropdown
     isClickable: true, // Immer klickbar (One-Page: Scroll, Multi-Page: Link)
-      dropdownItems: (packageType === 'professional' || packageType === 'premium') ? content.services
+    dropdownItems: (packageType === 'professional' || packageType === 'premium') ? content.services
       .filter((service: any) => service.slug)
       .map((service: any) => ({
         href: `/services/${service.slug}`,
@@ -46,7 +46,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
       })) : undefined
   }),
   'projektablauf': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: siteMode === 'multipage' ? '/projektablauf' : '#projektablauf',
+    href: packageType === 'starter' ? '#projektablauf' : '/projektablauf',
     label: 'Projektablauf',
     id: 'projektablauf',
     hasDropdown: false,
@@ -54,7 +54,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     dropdownItems: []
   }),
   'kontakt': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: siteMode === 'multipage' ? '/kontakt' : '#kontakt',
+    href: packageType === 'starter' ? '#kontakt' : '/kontakt',
     label: 'Kontakt',
     id: 'kontakt',
     hasDropdown: false,
@@ -62,7 +62,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     dropdownItems: []
   }),
   'referenzen': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: siteMode === 'multipage' ? '/referenzen' : '#referenzen',
+    href: packageType === 'starter' ? '#referenzen' : '/referenzen',
     label: 'Referenzen',
     id: 'referenzen',
     hasDropdown: false,
