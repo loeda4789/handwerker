@@ -30,13 +30,13 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     name: 'Modern',
     description: 'Modern & technologisch',
     primary: '#000000',      // Schwarz
-    secondary: '#2563EB',    // Kräftiges Blau
-    accent: '#06B6D4',       // Cyan/Türkis
+    secondary: '#7C3AED',    // Kräftiges Lila
+    accent: '#EC4899',       // Pink/Magenta
     background: '#ffffff',   // Weiß
-    surface: '#F0F9FF',      // Helles Cyan
+    surface: '#FDF4FF',      // Helles Pink
     text: '#000000',         // Schwarz für Text
     textLight: '#ffffff',    // Weiß für dunkle Hintergründe
-    textSecondary: '#1E40AF' // Dunkelblau für sekundären Text
+    textSecondary: '#6B21A8' // Dunkellila für sekundären Text
   },
   elegant: {
     name: 'Elegant',
