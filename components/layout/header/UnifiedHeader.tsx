@@ -394,8 +394,8 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
             <HeaderCta 
               ctaStyle={`font-semibold transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden flex items-center gap-2 transform hover:scale-105`}
               ctaStyleDynamic={{
-                backgroundColor: 'var(--color-secondary)',
-                borderColor: 'var(--color-secondary)',
+                backgroundColor: 'var(--color-accent)',
+                borderColor: 'var(--color-accent)',
                 color: 'white',
                 borderRadius: 'var(--radius-button)',
                 padding: '0.75rem 1.5rem'

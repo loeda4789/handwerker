@@ -295,14 +295,14 @@ export default function Contact({ content }: ContactProps) {
                 disabled={isLoading}
                 className="w-full px-8 py-4 text-white hover:shadow-lg transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-lg"
                 style={{ 
-                  backgroundColor: 'var(--color-secondary)',
+                  backgroundColor: 'var(--color-accent)',
                   borderRadius: 'var(--radius-button)'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'var(--color-primary)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                  e.currentTarget.style.backgroundColor = 'var(--color-accent)';
                 }}
               >
                 {isLoading ? (
