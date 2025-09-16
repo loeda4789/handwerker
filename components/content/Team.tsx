@@ -308,13 +308,13 @@ export default function Team({ content }: TeamProps) {
           ))}
         </div>
 
-        {/* Team Expertise Section with Modern Icons */}
-        <div className="mt-20 border-t border-gray-200 dark:border-gray-700 pt-16">
+        {/* Team Expertise Section */}
+        <div className="mt-20 border-t border-gray-200 pt-16">
           <div className="text-center mb-12">
-            <h3 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-4 ${getFontClass()}`}>
+            <h3 className={`text-3xl md:text-4xl font-bold text-text mb-4 ${getFontClass()}`}>
               Unsere Expertise
             </h3>
-            <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto">
+            <p className="text-lg text-text-secondary max-w-2xl mx-auto">
               Mit jahrelanger Erfahrung und moderner Ausstattung garantieren wir höchste Qualität
             </p>
           </div>
@@ -322,50 +322,26 @@ export default function Team({ content }: TeamProps) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {/* Qualität */}
             <div className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-gray-200 dark:border-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-all duration-300"
-                style={{ borderRadius: 'var(--radius-button)' }}>
-                <svg className="w-7 h-7 text-gray-900 dark:text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/>
-                </svg>
-              </div>
-              <h4 className="font-semibold text-text dark:text-light mb-2">Qualität</h4>
-              <p className="text-sm text-text-secondary dark:text-light/70">Höchste Standards</p>
+              <h4 className="font-semibold text-text mb-2">Qualität</h4>
+              <p className="text-sm text-text-secondary">Höchste Standards</p>
             </div>
 
             {/* Zuverlässigkeit */}
             <div className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-gray-200 dark:border-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-all duration-300"
-                style={{ borderRadius: 'var(--radius-button)' }}>
-                <svg className="w-7 h-7 text-gray-900 dark:text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/>
-                </svg>
-              </div>
-              <h4 className="font-semibold text-text dark:text-light mb-2">Zuverlässigkeit</h4>
-              <p className="text-sm text-text-secondary dark:text-light/70">Termine werden eingehalten</p>
+              <h4 className="font-semibold text-text mb-2">Zuverlässigkeit</h4>
+              <p className="text-sm text-text-secondary">Termine werden eingehalten</p>
             </div>
 
             {/* Innovation */}
             <div className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-gray-200 dark:border-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-all duration-300"
-                style={{ borderRadius: 'var(--radius-button)' }}>
-                <svg className="w-7 h-7 text-gray-900 dark:text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75-7.478v-3.038c0-.235.19-.425.425-.425h.075A5.235 5.235 0 0116.5 9.375a5.235 5.235 0 00-4.738-5.236A5.238 5.238 0 016.5 9.375a5.235 5.235 0 004.25 5.136v.038l-.075-.001c-.235 0-.425.19-.425.425v3.038"/>
-                </svg>
-              </div>
-              <h4 className="font-semibold text-text dark:text-light mb-2">Innovation</h4>
-              <p className="text-sm text-text-secondary dark:text-light/70">Moderne Techniken</p>
+              <h4 className="font-semibold text-text mb-2">Innovation</h4>
+              <p className="text-sm text-text-secondary">Moderne Techniken</p>
             </div>
 
             {/* Nachhaltigkeit */}
             <div className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-gray-200 dark:border-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-all duration-300"
-                style={{ borderRadius: 'var(--radius-button)' }}>
-                <svg className="w-7 h-7 text-gray-900 dark:text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813c-.59-.737-.956-1.653-.956-2.636C2 4.253 3.213 3 4.69 3c1.237 0 2.28.83 2.654 1.96a50.7 50.7 0 00-3.082 5.187zm0 0a50.697 50.697 0 0115.482 0m-15.482 0L6.75 8.25m15.482 1.897L17.25 8.25m-7.5 0V6.375c0-1.036.84-1.875 1.875-1.875s1.875.84 1.875 1.875V8.25m-3.75 0h3.75"/>
-                </svg>
-              </div>
-              <h4 className="font-semibold text-text dark:text-light mb-2">Nachhaltigkeit</h4>
-              <p className="text-sm text-text-secondary dark:text-light/70">Umweltbewusst</p>
+              <h4 className="font-semibold text-text mb-2">Nachhaltigkeit</h4>
+              <p className="text-sm text-text-secondary">Umweltbewusst</p>
             </div>
           </div>
         </div>
