@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ContentData } from '@/types/content';
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation';
-import { useLayoutConfig, useStyleConfig, useHeadingsConfig } from '@/contexts/AppConfigContext';
+import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext';
 
 interface StatsProps {
   content: ContentData;
@@ -124,10 +124,11 @@ export default function Stats({ content }: StatsProps) {
   }
 
   return (
-    <div className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
-      <div className="max-w-screen-xl mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-12 animate-on-scroll">
+    <>
+      <div className={`py-16 ${isModernStyle ? 'modern-style' : ''}`}>
+        <div className="max-w-screen-xl mx-auto px-4">
+          {/* Section Header */}
+          <div className="text-center mb-12 animate-on-scroll">
           {/* Badge nur anzeigen wenn badgeStyle nicht 'none' ist */}
           {badgeStyle !== 'none' && (
             <div className={getBadgeClasses()}>
@@ -143,7 +144,7 @@ export default function Stats({ content }: StatsProps) {
             ) : (
               'Zahlen, die für sich sprechen'
             )}
-          </h2>
+          </h3>
           <p className={`text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto transition-colors duration-300 ${getFontClass()}`}>
             Diese Zahlen spiegeln unser Engagement für Qualität und Kundenzufriedenheit wider.
           </p>
@@ -166,8 +167,9 @@ export default function Stats({ content }: StatsProps) {
               />
             </div>
           ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 } 

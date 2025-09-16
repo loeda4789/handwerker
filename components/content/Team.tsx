@@ -81,10 +81,11 @@ export default function Team({ content }: TeamProps) {
   }
 
   return (
-    <div id="team" className={`py-20 ${isModernStyle ? 'modern-style' : ''}`}>
-      <div className="max-w-screen-xl mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-on-scroll">
+    <>
+      <div id="team" className={`py-20 ${isModernStyle ? 'modern-style' : ''}`}>
+        <div className="max-w-screen-xl mx-auto px-4">
+          {/* Section Header */}
+          <div className="text-center mb-16 animate-on-scroll">
           {designStyle === 'rounded' && (
             <span className="inline-block px-6 py-2 text-white text-sm font-medium mb-4"
               style={{ 
@@ -102,7 +103,7 @@ export default function Team({ content }: TeamProps) {
             ) : (
               designStyle === 'rounded' ? 'Unser Team' : 'Die Experten hinter jedem Projekt'
             )}
-          </h2>
+          </h3>
           <p className="text-lg text-text-secondary dark:text-light/80 max-w-2xl mx-auto mb-8">
             {isModernStyle 
               ? 'Lernen Sie unser erfahrenes Team kennen, das mit Leidenschaft und Fachwissen Ihre Projekte zum Erfolg führt.'
@@ -344,8 +345,9 @@ export default function Team({ content }: TeamProps) {
               <p className="text-sm text-text-secondary">Umweltbewusst</p>
             </div>
           </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 } 
