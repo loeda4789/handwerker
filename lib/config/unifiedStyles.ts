@@ -87,7 +87,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
   {
     id: 'standard',
     name: 'Standard',
-    description: 'Ausgewogen, professionell, vertrauenswürdig',
+    description: 'Professionell, vertrauenswürdig',
     icon: 'S',
     color: 'bg-gray-50 border-gray-200',
     config: {
@@ -125,7 +125,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
   {
     id: 'modern',
     name: 'Modern',
-    description: 'Stilvoll, dynamisch, aufmerksamkeitsstark',
+    description: 'Stilvoll, aufmerksamkeitsstark',
     icon: 'M',
     color: 'bg-purple-50 border-purple-200',
     config: {
