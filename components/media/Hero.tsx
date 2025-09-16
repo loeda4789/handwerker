@@ -177,14 +177,14 @@ function HeroSingle({ content }: HeroProps) {
                   data-cta="true"
                   style={{ 
                     color: 'var(--color-background, #ffffff)', 
-                    backgroundColor: 'var(--color-primary, #0ea5e9)',
+                    backgroundColor: 'var(--color-secondary)',
                     borderRadius: 'var(--radius-button)'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-accent, #38bdf8)';
+                    e.currentTarget.style.backgroundColor = 'var(--color-primary)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-primary, #0ea5e9)';
+                    e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
                   }}
                 >
                   Jetzt Termin vereinbaren
@@ -547,9 +547,18 @@ function HeroSplit({ content }: HeroProps) {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="#kontakt"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200 shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
                   data-cta="true"
-                  style={{ borderRadius: 'var(--radius-button)' }}
+                  style={{ 
+                    backgroundColor: 'var(--color-secondary)',
+                    borderRadius: 'var(--radius-button)' 
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                  }}
                 >
                   Kostenloses Angebot
                 </Link>
