@@ -20,11 +20,11 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     primary: '#000000',      // Schwarz
     secondary: '#E67E22',    // Kräftiges Orange
     accent: '#F39C12',       // Gold-Orange
-    background: '#ffffff',   // Weiß
-    surface: '#FDF2E9',      // Warmes Creme
-    text: '#000000',         // Schwarz für Text
+    background: '#F8F9FA',   // Sehr helles Grau statt Weiß
+    surface: '#E8E9EA',      // Helles Grau statt Creme
+    text: '#1A1A1A',         // Dunkles Grau statt Schwarz
     textLight: '#ffffff',    // Weiß für dunkle Hintergründe
-    textSecondary: '#8B4513' // Braun für sekundären Text
+    textSecondary: '#4A4A4A' // Mittleres Grau statt Braun
   },
   modern: {
     name: 'Modern',
@@ -32,11 +32,11 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     primary: '#1F2937',      // Dunkles Grau
     secondary: '#EF4444',    // Kräftiges Rot
     accent: '#F59E0B',       // Kräftiges Orange
-    background: '#F8FAFC',   // Sehr heller Hintergrund für bessere Lesbarkeit
-    surface: '#FFFFFF',      // Weiße Oberfläche
-    text: '#1F2937',         // Dunkles Grau für Text auf hellem Grund
+    background: '#F1F3F4',   // Helles Grau statt sehr hell
+    surface: '#E5E7EB',      // Mittleres Grau statt Weiß
+    text: '#111827',         // Sehr dunkles Grau für besseren Kontrast
     textLight: '#FFFFFF',    // Weiß für dunkle Hintergründe
-    textSecondary: '#6B7280' // Mittleres Grau für sekundären Text
+    textSecondary: '#374151' // Dunkleres Grau für besseren Kontrast
   },
   elegant: {
     name: 'Elegant',
@@ -44,11 +44,11 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     primary: '#18273A',      // Dunkles Navy
     secondary: '#987E4D',    // Goldbraun
     accent: '#213044',       // Mittleres Navy
-    background: '#ffffff',   // Weiß
-    surface: '#F7F8FA',      // Helles Grau-Blau
-    text: '#18273A',         // Dunkles Navy für Text
+    background: '#F4F6F8',   // Helles Grau-Blau statt Weiß
+    surface: '#E2E8F0',      // Mittleres Grau-Blau
+    text: '#0F172A',         // Sehr dunkles Navy für besseren Kontrast
     textLight: '#ffffff',    // Weiß für dunkle Hintergründe
-    textSecondary: '#4A5568' // Grau für sekundären Text
+    textSecondary: '#334155' // Dunkleres Grau für besseren Kontrast
   },
   nature: {
     name: 'Nature',
@@ -56,11 +56,11 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     primary: '#000000',      // Schwarz
     secondary: '#BCD7B6',    // Mintgrün
     accent: '#A8C99A',       // Grün
-    background: '#ffffff',   // Weiß
-    surface: '#F5F5F5',      // Helles Grau
-    text: '#000000',         // Schwarz für Text
+    background: '#F0F4F0',   // Sehr helles Grün-Grau statt Weiß
+    surface: '#E8F0E8',      // Helles Grün-Grau
+    text: '#0F1419',         // Sehr dunkles Grau für besseren Kontrast
     textLight: '#ffffff',    // Weiß für dunkle Hintergründe
-    textSecondary: '#666666' // Grau für sekundären Text
+    textSecondary: '#374151' // Dunkleres Grau für besseren Kontrast
   },
 
 }
