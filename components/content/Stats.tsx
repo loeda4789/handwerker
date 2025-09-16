@@ -137,7 +137,7 @@ export default function Stats({ content }: StatsProps) {
               Fakten & Zahlen
             </div>
           )}
-          <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 transition-colors duration-300 ${getFontClass()}`}>
+          <h3 className={`text-2xl md:text-3xl font-bold text-text dark:text-light mb-6 transition-colors duration-300 ${getFontClass()}`}>
             {designStyle === 'modern' ? (
               <span className="heading-underline-large">Zahlen, die für sich sprechen</span>
             ) : (

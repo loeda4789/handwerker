@@ -37,20 +37,62 @@ export default function UeberUnsPage() {
       loading={loading} 
       loadingText="Über uns wird geladen..."
     >
-      {/* Hero Section */}
+      {/* Hero Section - H1: Größte Überschrift */}
       <PageHero
         title="Über uns"
         subtitle="Lernen Sie unser Unternehmen kennen - von unserer Geschichte über unser Team bis hin zu unseren Werten und unserer modernen Ausstattung."
       />
 
-      {/* About Komponente */}
-      <About content={content} />
+      {/* About Komponente - H2: Hauptsektionen */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text mb-6">
+                Unsere Geschichte
+              </h2>
+              <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+                Erfahren Sie mehr über unsere Wurzeln, Werte und den Weg, der uns zu dem gemacht hat, was wir heute sind.
+              </p>
+            </div>
+            <About content={content} />
+          </div>
+        </div>
+      </section>
 
-      {/* Stats Komponente */}
-      <Stats content={content} />
+      {/* Stats Komponente - H2: Hauptsektionen */}
+      <section className="py-16 bg-surface">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text mb-6">
+                Unsere Erfolge in Zahlen
+              </h2>
+              <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+                Zahlen sprechen für sich - entdecken Sie unsere beeindruckenden Statistiken und Erfolge.
+              </p>
+            </div>
+            <Stats content={content} />
+          </div>
+        </div>
+      </section>
 
-      {/* Team Komponente */}
-      <Team content={content} />
+      {/* Team Komponente - H2: Hauptsektionen */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text mb-6">
+                Unser Team
+              </h2>
+              <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+                Lernen Sie die Menschen kennen, die hinter unserem Erfolg stehen - erfahrene Fachkräfte mit Leidenschaft für ihr Handwerk.
+              </p>
+            </div>
+            <Team content={content} />
+          </div>
+        </div>
+      </section>
 
     </PageLayout>
   )

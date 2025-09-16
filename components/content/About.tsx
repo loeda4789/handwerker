@@ -89,14 +89,14 @@ export default function About({ content }: AboutProps) {
           
           {/* Textbereich */}
           <div className="order-1 lg:order-2">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-text dark:text-light mb-4">
+            <h3 className="text-2xl md:text-3xl font-bold font-heading text-text dark:text-light mb-4">
               {content.welcome.headline.split('\n').map((line, index) => (
                 <React.Fragment key={index}>
                   {line}
                   {index < content.welcome.headline.split('\n').length - 1 && <br />}
                 </React.Fragment>
               ))}
-            </h2>
+            </h3>
             <p className="text-lg text-text-secondary dark:text-light/80 mb-8">
               {content.about.text}
             </p>
