@@ -36,7 +36,7 @@ const formatHeroTitle = (tagline: string) => {
   
   // Für Elektriker
   if (tagline.includes('Elektro-Partner')) {
-    return "Kompetenz, die elektrisiert."
+    return "Meisterbetrieb für Elektroinstallationen & Photovoltaik."
   }
   
   // Für Dachdecker
@@ -57,7 +57,7 @@ const formatHeroText = (tagline: string, cityName: string) => {
   
   // Für Elektriker
   if (tagline.includes('Elektro-Partner')) {
-    return "Meisterqualität für Ihre Elektroinstallationen"
+    return "Planung, Installation & Wartung – zuverlässig, präzise, mit geprüfter Meisterqualität."
   }
   
   // Für Dachdecker

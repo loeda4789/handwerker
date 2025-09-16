@@ -388,14 +388,14 @@ export default function Testimonials({ content }: TestimonialsProps) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 text-white transition-colors duration-300 font-medium"
                   style={{ 
-                    backgroundColor: 'var(--color-accent)',
+                    backgroundColor: 'var(--color-secondary)',
                     borderRadius: 'var(--radius-button)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--color-primary)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                    e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
                   }}
                 >
                   Jetzt bewerten
