@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { getContentDataByBranche } from '@/lib/config'
 import { ContentData } from '@/types/content'
-import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { useThemeColors } from '@/app/hooks/useThemeColors'
 import Header from '@/components/layout/Header'
@@ -26,8 +25,8 @@ export default function ServicePage({ params }: ServicePageProps) {
   const [slug, setSlug] = useState<string>('')
   const [designStyle, setDesignStyle] = useState<string>('rounded')
 
-  // Verwende den URL-Parameter-Hook für automatische URL-Parameter-Integration
-  const content = useContentWithUrlParams(baseContent || {} as ContentData)
+  // Verwende baseContent direkt, da URL-Parameter nicht mehr benötigt werden
+  const content = baseContent
   const { classes } = useThemeColors()
 
   // Design-Style aus localStorage laden
@@ -95,7 +94,6 @@ export default function ServicePage({ params }: ServicePageProps) {
     if (!content || !content.services || !slug) return
 
     const foundService = content.services.find(s => s.slug === slug)
-    console.log('Found service from content with URL params:', foundService)
     
     if (foundService) {
       setService(foundService)
