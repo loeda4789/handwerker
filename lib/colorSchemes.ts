@@ -85,8 +85,9 @@ export const applyColorScheme = (scheme: string) => {
     root.style.setProperty('--color-dark', '#0f172a')
     root.style.setProperty('--color-dark-secondary', '#1e293b')
     
-    // In localStorage speichern
+    // In localStorage speichern (beide Keys für Kompatibilität)
     localStorage.setItem('color-scheme', scheme)
+    localStorage.setItem('selected-color-scheme', scheme)
     localStorage.setItem('simple-colors', JSON.stringify({
       primary: colors.primary,
       secondary: colors.secondary,

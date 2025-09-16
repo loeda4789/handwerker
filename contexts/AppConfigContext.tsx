@@ -124,8 +124,13 @@ export function useThemeConfig() {
   return {
     colorScheme: config.theme.colorScheme,
     darkMode: config.theme.darkMode,
-    setColorScheme: (colorScheme: 'warm' | 'modern' | 'elegant' | 'nature') => 
-      updateConfig({ theme: { ...config.theme, colorScheme } }),
+    setColorScheme: (colorScheme: 'warm' | 'modern' | 'elegant' | 'nature') => {
+      updateConfig({ theme: { ...config.theme, colorScheme } })
+      // Farbschema in localStorage speichern
+      localStorage.setItem('selected-color-scheme', colorScheme)
+      // Event dispatchten für andere Komponenten
+      window.dispatchEvent(new Event('color-scheme-changed'))
+    },
     setDarkMode: (darkMode: boolean) => 
       updateConfig({ theme: { ...config.theme, darkMode } })
   }
