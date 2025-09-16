@@ -148,7 +148,7 @@ function HeroSingle({ content }: HeroProps) {
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/30 -z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40 -z-10"></div>
         </div>
         
         <div className="relative z-10 h-full flex items-center justify-center text-center lg:justify-start lg:text-left px-6 md:px-8 lg:px-12">
