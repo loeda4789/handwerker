@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../hooks/usePageContent'
 import { useDesignStyle } from '../hooks/useDesignStyle'
@@ -11,9 +11,21 @@ import ConfigCard from '@/components/config/ConfigCard'
 export default function JobsPage() {
   const { content, loading, error } = usePageContent()
   const { designStyle } = useDesignStyle()
+  const [location, setLocation] = useState('Rheine und Umgebung')
 
   // Aktiviere Scroll-Animationen
   useScrollAnimation()
+
+  // Dynamischen Standort aus URL-Parameter ermitteln
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search)
+      const ort = urlParams.get('ort')
+      if (ort) {
+        setLocation(`${ort} und Umgebung`)
+      }
+    }
+  }, [])
 
   if (error) {
     return (
@@ -41,7 +53,7 @@ export default function JobsPage() {
         id: 1,
         title: "Elektromeister (m/w/d)",
         type: "Vollzeit",
-        location: "Rheine und Umgebung",
+        location: location,
         experience: "3-5 Jahre",
         description: "Wir suchen einen erfahrenen Elektromeister zur Verstärkung unseres Teams. Sie übernehmen die Leitung von Projekten und die Ausbildung unserer Azubis.",
         requirements: [
@@ -65,7 +77,7 @@ export default function JobsPage() {
         id: 2,
         title: "Elektriker (m/w/d)",
         type: "Vollzeit",
-        location: "Rheine und Umgebung", 
+        location: location, 
         experience: "1-3 Jahre",
         description: "Für unser wachsendes Team suchen wir einen motivierten Elektriker. Sie arbeiten an spannenden Projekten und entwickeln sich kontinuierlich weiter.",
         requirements: [
@@ -89,7 +101,7 @@ export default function JobsPage() {
         id: 3,
         title: "Auszubildende/r Elektriker (m/w/d)",
         type: "Ausbildung",
-        location: "Rheine und Umgebung",
+        location: location,
         experience: "Schulabschluss",
         description: "Starte deine Karriere bei uns! Wir bieten eine fundierte Ausbildung mit modernster Technik und besten Übernahmechancen.",
         requirements: [
@@ -117,7 +129,7 @@ export default function JobsPage() {
           id: 1,
           title: "Dachdeckermeister (m/w/d)",
           type: "Vollzeit",
-          location: "Rheine und Umgebung",
+          location: location,
           experience: "3-5 Jahre",
           description: "Wir suchen einen erfahrenen Dachdeckermeister zur Verstärkung unseres Teams. Sie übernehmen die Leitung von Projekten und die Ausbildung unserer Azubis.",
           requirements: [
@@ -141,7 +153,7 @@ export default function JobsPage() {
           id: 2,
           title: "Dachdecker (m/w/d)",
           type: "Vollzeit",
-          location: "Rheine und Umgebung",
+          location: location,
           experience: "1-3 Jahre",
           description: "Für unser wachsendes Team suchen wir einen motivierten Dachdecker. Sie arbeiten an spannenden Projekten und entwickeln sich kontinuierlich weiter.",
           requirements: [
@@ -165,7 +177,7 @@ export default function JobsPage() {
           id: 3,
           title: "Auszubildende/r Dachdecker (m/w/d)",
           type: "Ausbildung",
-          location: "Rheine und Umgebung",
+          location: location,
           experience: "Schulabschluss",
           description: "Starte deine Karriere bei uns! Wir bieten eine fundierte Ausbildung mit modernster Technik und besten Übernahmechancen.",
           requirements: [
@@ -192,7 +204,7 @@ export default function JobsPage() {
           id: 1,
           title: "Fliesenlegermeister (m/w/d)",
           type: "Vollzeit",
-          location: "Rheine und Umgebung",
+          location: location,
           experience: "3-5 Jahre",
           description: "Wir suchen einen erfahrenen Fliesenlegermeister zur Verstärkung unseres Teams. Sie übernehmen die Leitung von Projekten und die Ausbildung unserer Azubis.",
           requirements: [
@@ -216,7 +228,7 @@ export default function JobsPage() {
           id: 2,
           title: "Fliesenleger (m/w/d)",
           type: "Vollzeit",
-          location: "Rheine und Umgebung",
+          location: location,
           experience: "1-3 Jahre",
           description: "Für unser wachsendes Team suchen wir einen motivierten Fliesenleger. Sie arbeiten an spannenden Projekten und entwickeln sich kontinuierlich weiter.",
           requirements: [
@@ -240,7 +252,7 @@ export default function JobsPage() {
           id: 3,
           title: "Auszubildende/r Fliesenleger (m/w/d)",
           type: "Ausbildung",
-          location: "Rheine und Umgebung",
+          location: location,
           experience: "Schulabschluss",
           description: "Starte deine Karriere bei uns! Wir bieten eine fundierte Ausbildung mit modernster Technik und besten Übernahmechancen.",
           requirements: [
@@ -351,15 +363,15 @@ export default function JobsPage() {
               {jobsData.map((job) => (
                 <div
                   key={job.id}
-                  className="bg-white dark:bg-gray-900 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                  className="bg-white dark:bg-gray-900 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col"
                   style={{ borderRadius: 'var(--radius-card)' }}
                 >
                   {/* Job Header */}
                   <div className="p-6 border-b border-gray-200 dark:border-gray-700">
                     <div className="flex items-center mb-4">
-                      <div className="w-12 h-12 bg-primary flex items-center justify-center mr-4"
+                      <div className="w-12 h-12 bg-black flex items-center justify-center mr-4"
                         style={{ borderRadius: 'var(--radius-image)' }}>
-                        <span className="text-2xl">{job.icon}</span>
+                        <span className="text-2xl text-white">{job.icon}</span>
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 dark:text-white">
@@ -376,11 +388,11 @@ export default function JobsPage() {
                     </div>
                     
                     <div className="flex flex-wrap gap-2 mb-4">
-                      <span className="px-3 py-1 bg-primary/10 text-primary text-sm font-medium"
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium"
                         style={{ borderRadius: 'var(--radius-button)' }}>
                         {job.type}
                       </span>
-                      <span className="px-3 py-1 bg-accent/10 text-accent text-sm font-medium"
+                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium"
                         style={{ borderRadius: 'var(--radius-button)' }}>
                         {job.experience}
                       </span>
@@ -392,13 +404,13 @@ export default function JobsPage() {
                   </div>
 
                   {/* Job Details */}
-                  <div className="p-6">
+                  <div className="p-6 flex-1 flex flex-col">
                     <div className="mb-6">
                       <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Anforderungen:</h4>
                       <ul className="space-y-2">
                         {job.requirements.map((req, index) => (
                           <li key={index} className="flex items-start text-sm text-gray-600 dark:text-gray-300">
-                            <svg className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
                             </svg>
                             {req}
@@ -412,7 +424,7 @@ export default function JobsPage() {
                       <ul className="space-y-2">
                         {job.benefits.map((benefit, index) => (
                           <li key={index} className="flex items-start text-sm text-gray-600 dark:text-gray-300">
-                            <svg className="w-4 h-4 text-accent mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
                             </svg>
                             {benefit}
@@ -421,17 +433,17 @@ export default function JobsPage() {
                       </ul>
                     </div>
 
-                    <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                      <div className="flex justify-center items-center mb-4">
-                        <div className="text-center">
-                          <p className="text-sm text-gray-500 dark:text-gray-400">Start:</p>
-                          <p className="font-semibold text-gray-900 dark:text-white">{job.startDate}</p>
-                        </div>
-                      </div>
+                    {/* Start Date */}
+                    <div className="mb-6">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Start:</p>
+                      <p className="font-semibold text-gray-900 dark:text-white">{job.startDate}</p>
+                    </div>
 
+                    {/* Bewerben Button - Immer unten */}
+                    <div className="mt-auto">
                       <a
                         href={`mailto:${content?.contact?.email || 'info@mustermann-elektrotechnik.de'}?subject=Bewerbung: ${job.title}&body=Sehr geehrte Damen und Herren,%0D%0A%0D%0Ahiermit bewerbe ich mich um die ausgeschriebene Stelle als ${job.title}.%0D%0A%0D%0AMit freundlichen Grüßen`}
-                        className="w-full bg-primary hover:bg-accent text-white font-medium py-3 px-4 transition-all duration-300 hover:scale-105 hover:shadow-lg inline-block text-center"
+                        className="w-full bg-black hover:bg-gray-800 text-white font-medium py-3 px-4 transition-all duration-300 hover:scale-105 hover:shadow-lg inline-block text-center"
                         style={{ borderRadius: 'var(--radius-button)' }}
                       >
                         Jetzt bewerben
