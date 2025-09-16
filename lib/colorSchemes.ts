@@ -54,8 +54,8 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     name: 'Nature',
     description: 'Frisch & nachhaltig',
     primary: '#000000',      // Schwarz
-    secondary: '#22C55E',    // Kräftiges Grün (vorher #BCD7B6)
-    accent: '#16A34A',       // Dunkleres Grün (vorher #A8C99A)
+    secondary: '#4ADE80',    // Mittleres Grün (zwischen blass und kräftig)
+    accent: '#22C55E',       // Kräftigeres Grün (aber nicht zu extrem)
     background: '#F0F4F0',   // Sehr helles Grün-Grau statt Weiß
     surface: '#E8F0E8',      // Helles Grün-Grau
     text: '#0F1419',         // Sehr dunkles Grau für besseren Kontrast
