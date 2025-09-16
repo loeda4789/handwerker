@@ -19,16 +19,16 @@ export interface DropdownItem {
 // Navigation-Item-Definitionen
 const navigationItemDefinitions: Record<string, (content: ContentData, addUrlParamsToHref: (href: string | null) => string | null, siteMode: 'onepage' | 'multipage', packageType?: 'starter' | 'professional' | 'premium') => NavigationItem> = {
   'ueber-uns': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: siteMode === 'multipage' ? addUrlParamsToHref('#ueber-uns') : '#ueber-uns',
+    href: siteMode === 'multipage' ? '/ueber-uns' : '#ueber-uns',
     label: siteMode === 'multipage' ? 'Über uns' : content.about.title,
     id: 'ueber-uns',
     hasDropdown: packageType === 'premium', // Nur Premium hat Dropdown
     isClickable: true,
     dropdownItems: packageType === 'premium' ? [
-      { href: addUrlParamsToHref('/ueber-uns/team'), label: 'Unser Team' },
-      { href: addUrlParamsToHref('/ueber-uns/betrieb'), label: 'Unser Betrieb' },
-      { href: addUrlParamsToHref('/ueber-uns/partner'), label: 'Partner & Zulieferer' },
-      { href: addUrlParamsToHref('/ueber-uns/zertifikate'), label: 'Zertifikate & Auszeichnungen' }
+      { href: '/ueber-uns/team', label: 'Unser Team' },
+      { href: '/ueber-uns/betrieb', label: 'Unser Betrieb' },
+      { href: '/ueber-uns/partner', label: 'Partner & Zulieferer' },
+      { href: '/ueber-uns/zertifikate', label: 'Zertifikate & Auszeichnungen' }
     ] : undefined
   }),
   'leistungen': (content, addUrlParamsToHref, siteMode, packageType) => ({
@@ -40,13 +40,13 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
       dropdownItems: (packageType === 'professional' || packageType === 'premium') ? content.services
       .filter((service: any) => service.slug)
       .map((service: any) => ({
-        href: addUrlParamsToHref(`/services/${service.slug}`),
+        href: `/services/${service.slug}`,
         label: service.title,
         icon: service.icon
       })) : undefined
   }),
   'projektablauf': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: siteMode === 'multipage' ? addUrlParamsToHref('#projektablauf') : '#projektablauf',
+    href: siteMode === 'multipage' ? '/projektablauf' : '#projektablauf',
     label: 'Projektablauf',
     id: 'projektablauf',
     hasDropdown: false,
@@ -54,7 +54,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     dropdownItems: []
   }),
   'kontakt': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: siteMode === 'multipage' ? addUrlParamsToHref('/kontakt') : '#kontakt',
+    href: siteMode === 'multipage' ? '/kontakt' : '#kontakt',
     label: 'Kontakt',
     id: 'kontakt',
     hasDropdown: false,
@@ -62,7 +62,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     dropdownItems: []
   }),
   'referenzen': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: siteMode === 'multipage' ? addUrlParamsToHref('/referenzen') : '#referenzen',
+    href: siteMode === 'multipage' ? '/referenzen' : '#referenzen',
     label: 'Referenzen',
     id: 'referenzen',
     hasDropdown: false,
@@ -70,7 +70,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     dropdownItems: []
   }),
   'jobs': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: addUrlParamsToHref('/jobs'),
+    href: '/jobs',
     label: 'Jobs',
     id: 'jobs',
     hasDropdown: false,
@@ -78,7 +78,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     dropdownItems: []
   }),
   'faq': (content, addUrlParamsToHref, siteMode, packageType) => ({
-    href: addUrlParamsToHref('/faq'),
+    href: '/faq',
     label: 'FAQ',
     id: 'faq',
     hasDropdown: false,
@@ -131,25 +131,6 @@ export const getNavigationItems = (
 }
 
 export const addUrlParamsToHref = (href: string | null): string | null => {
-  if (!href) return href
-  
-  const currentParams = typeof window !== 'undefined' ? window.location.search : ''
-  const isOnHomepage = typeof window !== 'undefined' ? window.location.pathname === '/' : true
-  
-  // Für Hash-Links: Intelligente Navigation basierend auf aktueller Seite
-  if (href.startsWith('#')) {
-    if (isOnHomepage) {
-      // Auf der Startseite: Direkter Hash-Link für Smooth Scrolling
-      console.log('On homepage - using direct hash link:', href)
-      return href
-    } else {
-      // Auf Unterseiten: Zur Startseite mit Parametern und Hash
-      const result = `/${currentParams}${href}`
-      console.log('On subpage - navigating to homepage with hash:', result)
-      return result
-    }
-  }
-  
-  // Für normale Links: Parameter anhängen
-  return `${href}${currentParams}`
+  // Da alles im localStorage gespeichert wird, sind URL-Parameter nicht mehr notwendig
+  return href
 }
