@@ -325,7 +325,7 @@ function HeroSlider({ content }: HeroProps) {
           <div className="container mx-auto px-6 md:px-8 lg:px-12">
             <div className="max-w-3xl mx-auto">
               <h1 
-                className={`hero-title text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight text-white ${titleClass}`}
+                className={`hero-title text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight text-white ${titleClass}`}
                 key={`title-${currentSlide}`}
               >
                 {slides[currentSlide].title}
