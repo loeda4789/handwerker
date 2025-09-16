@@ -81,14 +81,6 @@ export default function UeberUnsPage() {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text mb-6">
-                Unser Team
-              </h2>
-              <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-                Lernen Sie die Menschen kennen, die hinter unserem Erfolg stehen - erfahrene Fachkräfte mit Leidenschaft für ihr Handwerk.
-              </p>
-            </div>
             <Team content={content} />
           </div>
         </div>
