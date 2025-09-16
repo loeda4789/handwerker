@@ -30,7 +30,7 @@ export function extractUrlParams(): UrlParams {
 
   const searchParams = new URLSearchParams(window.location.search);
   
-  return {
+  const params = {
     firmenname: searchParams.get('firmenname') || undefined,
     strasse: searchParams.get('strasse') || undefined,
     plz: searchParams.get('plz') || undefined,
@@ -39,6 +39,9 @@ export function extractUrlParams(): UrlParams {
     telefon: searchParams.get('telefon') || undefined,
     branche: searchParams.get('branche') || undefined,
   };
+  
+  console.log('🔍 URL-Parameter extrahiert:', params);
+  return params;
 }
 
 // Funktion zum URL-Dekodieren der Parameter
@@ -161,6 +164,7 @@ export function mergeUrlDataWithContent(contentData: ContentData, urlParams: Url
   
   if (decodedParams.telefon) {
     mergedData.contact.phone = decodedParams.telefon;
+    console.log('📞 Telefonnummer aus URL-Parametern geladen:', decodedParams.telefon);
   }
   
   // Ort im About-Text dynamisch ersetzen
