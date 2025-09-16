@@ -44,7 +44,7 @@ export const siteVariants: Record<string, SiteVariant> = {
     description: 'Multi-Page Website mit Jobs, PV-Rechner und vollständiger Navigation',
     features: ['multipage', 'full-navigation', 'dropdowns', 'jobs', 'pv-calculator', 'all-sections'],
     navigation: {
-      items: ['ueber-uns', 'leistungen', 'referenzen', 'jobs', 'weiteres'],
+      items: ['ueber-uns', 'leistungen', 'referenzen', 'weiteres'],
       hasDropdowns: true
     }
   }

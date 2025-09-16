@@ -92,6 +92,7 @@ const navigationItemDefinitions: Record<string, (content: ContentData, addUrlPar
     hasDropdown: true,
     isClickable: false,
     dropdownItems: [
+      { href: '/jobs', label: 'Jobs' },
       { href: '/faq', label: 'FAQ' },
       { href: '/pv-rechner', label: 'PV-Rechner' }
     ]
