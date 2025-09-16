@@ -341,42 +341,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             {isAdvancedConfigOpen && (
               <div className="space-y-8 animate-in slide-in-from-top duration-200">
 
-          {/* Hero-Typ */}
-          <div className="space-y-4">
-            <div className="mb-2">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
-                  <MdImage className="w-4 h-4 text-gray-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Hero-Typ
-                </h3>
-                <CompactInfo content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nSlider: Mehrere Bilder im Wechsel" />
-              </div>
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              {heroTypes.map((type) => (
-                <button
-                  key={type.key}
-                  onClick={() => setHeroType(type.key as any)}
-                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all config-sidebar-button ${
-                    heroType === type.key
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                    heroType === type.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}>
-                    <type.icon className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs font-medium text-gray-900 text-center">{type.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-
           {/* Stil-System */}
           <div className="space-y-4">
             <div className="mb-2">
@@ -509,6 +473,41 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     ))}
                   </div>
                   <span className="text-sm font-medium text-gray-900">{scheme.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Hero-Typ */}
+          <div className="space-y-4">
+            <div className="mb-2">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
+                  <MdImage className="w-4 h-4 text-gray-600" />
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                  Hero-Typ
+                </h3>
+                <CompactInfo content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nSlider: Mehrere Bilder im Wechsel" />
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              {heroTypes.map((type) => (
+                <button
+                  key={type.key}
+                  onClick={() => setHeroType(type.key as any)}
+                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all config-sidebar-button ${
+                    heroType === type.key
+                      ? 'border-gray-900 bg-gray-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
+                    heroType === type.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    <type.icon className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-medium text-gray-900 text-center">{type.label}</span>
                 </button>
               ))}
             </div>
