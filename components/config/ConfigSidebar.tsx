@@ -453,26 +453,30 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              {colorSchemes.map((scheme) => (
+              {Object.entries(colorSchemes).map(([key, scheme]) => (
                 <button
-                  key={scheme.key}
-                  onClick={() => setColorScheme(scheme.key as any)}
+                  key={key}
+                  onClick={() => setColorScheme(key as any)}
                   className={`flex items-center gap-3 p-3 border-2 transition-all config-sidebar-button ${
-                    colorScheme === scheme.key
+                    colorScheme === key
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <div className="flex gap-1">
-                    {scheme.colors.map((color, index) => (
-                      <div
-                        key={index}
-                        className="w-4 h-4 rounded-full"
-                        style={{ backgroundColor: color }}
-                      />
-                    ))}
+                    <div
+                      className="w-4 h-4 rounded-full"
+                      style={{ backgroundColor: scheme.primary }}
+                    />
+                    <div
+                      className="w-4 h-4 rounded-full"
+                      style={{ backgroundColor: scheme.secondary }}
+                    />
+                    <div
+                      className="w-4 h-4 rounded-full"
+                      style={{ backgroundColor: scheme.accent }}
+                    />
                   </div>
-                  <span className="text-sm font-medium text-gray-900">{scheme.label}</span>
                 </button>
               ))}
             </div>

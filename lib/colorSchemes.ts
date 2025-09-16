@@ -15,49 +15,49 @@ interface SimpleColorScheme {
 
 export const colorSchemes: Record<string, SimpleColorScheme> = {
   warm: {
-    name: 'Business & Professional',
-    description: 'Modern & professionell',
-    primary: '#000000',      // Schwarz (aus Bild)
-    secondary: '#D05733',    // Orange/Rot (aus Bild)
-    accent: '#9A8F88',       // Dunkleres Grau (aus Bild)
+    name: 'Warm',
+    description: 'Warm & professionell',
+    primary: '#000000',      // Schwarz
+    secondary: '#D05733',    // Orange
+    accent: '#9A8F88',       // Grau
     background: '#ffffff',   // Weiß
-    surface: '#E5E2E0',      // Helles Grau (aus Bild)
+    surface: '#E5E2E0',      // Helles Grau
     text: '#000000',         // Schwarz für Text
     textLight: '#ffffff',    // Weiß für dunkle Hintergründe
-    textSecondary: '#6B635D' // Deutlich dunkleres Grau für bessere Lesbarkeit
+    textSecondary: '#6B635D' // Grau für sekundären Text
   },
   modern: {
-    name: 'Tech & Innovation',
+    name: 'Modern',
     description: 'Modern & technologisch',
-    primary: '#0F1A50',      // Navy Blue (aus Bild)
-    secondary: '#FD080F',    // Leuchtend Rot (aus Bild)
-    accent: '#8D8AD9',       // Lila/Violett (aus Bild)
+    primary: '#0F1A50',      // Navy Blue
+    secondary: '#FD080F',    // Rot
+    accent: '#8D8AD9',       // Lila
     background: '#ffffff',   // Weiß
-    surface: '#F5F6FF',      // Sehr helles Blau-Grau
+    surface: '#F5F6FF',      // Helles Blau
     text: '#0F1A50',         // Navy Blue für Text
     textLight: '#ffffff',    // Weiß für dunkle Hintergründe
-    textSecondary: '#6B7280' // Gedämpftes Grau für sekundären Text
+    textSecondary: '#6B7280' // Grau für sekundären Text
   },
   elegant: {
-    name: 'Elegant & Frisch',
-    description: 'Professionell & vertrauensvoll',
-    primary: '#18273A',      // Dunkles Navy (aus Bild)
-    secondary: '#987E4D',    // Goldbraun/Bronze (jetzt als Hauptkontrast!)
-    accent: '#213044',       // Mittleres Navy (jetzt als subtiler Akzent)
-    background: '#ffffff',
-    surface: '#F7F8FA',      // Sehr helles Grau-Blau
+    name: 'Elegant',
+    description: 'Elegant & vertrauensvoll',
+    primary: '#18273A',      // Dunkles Navy
+    secondary: '#987E4D',    // Goldbraun
+    accent: '#213044',       // Mittleres Navy
+    background: '#ffffff',   // Weiß
+    surface: '#F7F8FA',      // Helles Grau-Blau
     text: '#18273A',         // Dunkles Navy für Text
-    textLight: '#ffffff',
-    textSecondary: '#4A5568' // Gedämpftes Grau für sekundären Text
+    textLight: '#ffffff',    // Weiß für dunkle Hintergründe
+    textSecondary: '#4A5568' // Grau für sekundären Text
   },
   nature: {
-    name: 'Natur & Gesundheit',
+    name: 'Nature',
     description: 'Frisch & nachhaltig',
-    primary: '#000000',      // Schwarz (aus Bild)
-    secondary: '#BCD7B6',    // Mintgrün (aus Bild)
-    accent: '#A8C99A',       // Etwas dunkleres Grün für Akzente
+    primary: '#000000',      // Schwarz
+    secondary: '#BCD7B6',    // Mintgrün
+    accent: '#A8C99A',       // Grün
     background: '#ffffff',   // Weiß
-    surface: '#F5F5F5',      // Sehr helles Grau (aus Bild)
+    surface: '#F5F5F5',      // Helles Grau
     text: '#000000',         // Schwarz für Text
     textLight: '#ffffff',    // Weiß für dunkle Hintergründe
     textSecondary: '#666666' // Grau für sekundären Text
