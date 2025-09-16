@@ -466,15 +466,15 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   <div className="flex gap-1">
                     <div
                       className="w-4 h-4 rounded-full"
-                      style={{ backgroundColor: scheme.primary }}
+                      style={{ backgroundColor: (scheme as any).primary }}
                     />
                     <div
                       className="w-4 h-4 rounded-full"
-                      style={{ backgroundColor: scheme.secondary }}
+                      style={{ backgroundColor: (scheme as any).secondary }}
                     />
                     <div
                       className="w-4 h-4 rounded-full"
-                      style={{ backgroundColor: scheme.accent }}
+                      style={{ backgroundColor: (scheme as any).accent }}
                     />
                   </div>
                 </button>
