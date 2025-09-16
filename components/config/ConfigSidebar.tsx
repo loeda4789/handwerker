@@ -25,6 +25,7 @@ import {
 import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 import { UNIFIED_STYLES, applyUnifiedStyle } from '@/lib/config/unifiedStyles'
 import { applyColorScheme, applyBorderRadiusScheme, colorSchemes } from '@/lib/colorSchemes'
+import type { SimpleColorScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import InfoTooltip from '@/components/ui/InfoTooltip'
 import InfoTooltipAdvanced from '@/components/ui/InfoTooltipAdvanced'
@@ -455,6 +456,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             <div className="grid grid-cols-2 gap-3">
               {Object.entries(colorSchemes).map(([key, scheme]) => {
                 const colorSchemeKey = key as 'warm' | 'modern' | 'elegant' | 'nature'
+                const typedScheme = scheme as SimpleColorScheme
                 return (
                   <button
                     key={key}
@@ -471,15 +473,15 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     <div className="flex gap-1">
                       <div
                         className="w-4 h-4 rounded-full"
-                        style={{ backgroundColor: scheme.primary }}
+                        style={{ backgroundColor: typedScheme.primary }}
                       />
                       <div
                         className="w-4 h-4 rounded-full"
-                        style={{ backgroundColor: scheme.secondary }}
+                        style={{ backgroundColor: typedScheme.secondary }}
                       />
                       <div
                         className="w-4 h-4 rounded-full"
-                        style={{ backgroundColor: scheme.accent }}
+                        style={{ backgroundColor: typedScheme.accent }}
                       />
                     </div>
                   </button>

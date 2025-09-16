@@ -1,6 +1,6 @@
 // VEREINFACHTES FARBSYSTEM - Nur 8 essenzielle Farben
 
-interface SimpleColorScheme {
+export interface SimpleColorScheme {
   name: string
   description: string
   primary: string
