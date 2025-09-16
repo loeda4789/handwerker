@@ -41,7 +41,7 @@ export default function PageHero({ title, subtitle, className = '' }: PageHeroPr
   const decorColor = darkBackground ? 'bg-white/10' : 'bg-gray-900/10'
 
   return (
-    <section className={`page-hero relative pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 bg-gradient-to-br from-primary via-accent to-primary overflow-hidden ${className}`}>
+    <section className={`page-hero relative pt-32 pb-20 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 bg-gradient-to-br from-primary via-accent to-primary overflow-hidden ${className}`}>
       {/* Dekorative Elemente */}
       <div className={`absolute inset-0 ${overlayColor}`}></div>
       <div className={`absolute top-10 left-10 w-20 h-20 ${decorColor} rounded-full animate-pulse`}></div>
