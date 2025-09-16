@@ -230,7 +230,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               <MdSettings className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-lg font-semibold text-gray-900">
-              Website Designer
+              Ihre Website anpassen
             </h2>
           </div>
           <button

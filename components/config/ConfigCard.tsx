@@ -38,7 +38,7 @@ export default function ConfigCard() {
             </div>
             <div className="flex-1 text-left">
               <div className="font-semibold text-gray-900">
-                Website Designer
+                Ihre Website anpassen
               </div>
               <div className="text-sm text-gray-500">
                 {summary.style} • {summary.color} • {summary.mode}
@@ -65,7 +65,7 @@ export default function ConfigCard() {
             </div>
             <div className="text-left">
               <div className="font-semibold text-gray-900">
-                Website Designer
+                Ihre Website anpassen
               </div>
               <div className="text-sm text-gray-500">
                 {summary.style} • {summary.color}
