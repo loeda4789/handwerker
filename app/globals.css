@@ -612,6 +612,46 @@ html {
   outline-offset: 2px;
 }
 
+/* Konfigurator-Schriftart: Immer Inter verwenden */
+.config-card-button,
+.config-sidebar-variant,
+.config-sidebar-button,
+.config-sidebar-feature,
+.config-sidebar h1,
+.config-sidebar h2,
+.config-sidebar h3,
+.config-sidebar h4,
+.config-sidebar h5,
+.config-sidebar h6,
+.config-sidebar p,
+.config-sidebar span,
+.config-sidebar div,
+.config-sidebar button {
+  font-family: var(--font-body) !important; /* Inter */
+}
+
+/* Spezifische Regeln für Konfigurator-Text */
+.config-sidebar .font-semibold,
+.config-sidebar .font-medium,
+.config-sidebar .font-bold {
+  font-family: var(--font-body) !important;
+}
+
+/* Mobile und Desktop Konfigurator */
+@media (max-width: 1023px) {
+  .config-card-button,
+  .config-card-button * {
+    font-family: var(--font-body) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .config-card-button,
+  .config-card-button * {
+    font-family: var(--font-body) !important;
+  }
+}
+
 :root {
   /* VEREINFACHTES FARBSYSTEM - Nur 8 essenzielle Farben */
   
