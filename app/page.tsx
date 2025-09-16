@@ -752,7 +752,7 @@ export default function HomePage() {
                                 key: 'modern', 
                                 name: 'Modern & Energetisch', 
                                 desc: 'Kraftvoll & dynamisch',
-                                colors: ['#1C1C1C', '#FA3D3B', '#C6C6C6', '#f8f8f8'],
+                                colors: ['#1F2937', '#EF4444', '#F59E0B', '#F8FAFC'],
                                 accent: 'bg-red-600'
                               },
                               { 
