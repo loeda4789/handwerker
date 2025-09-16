@@ -24,7 +24,7 @@ import {
 } from 'react-icons/md'
 import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 import { UNIFIED_STYLES, applyUnifiedStyle } from '@/lib/config/unifiedStyles'
-import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
+import { applyColorScheme, applyBorderRadiusScheme, colorSchemes } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import InfoTooltip from '@/components/ui/InfoTooltip'
 import InfoTooltipAdvanced from '@/components/ui/InfoTooltipAdvanced'
