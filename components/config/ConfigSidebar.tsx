@@ -453,35 +453,38 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              {Object.entries(colorSchemes).map(([key, scheme]) => (
-                <button
-                  key={key}
-                  onClick={() => {
-                    console.log('🎨 Farbschema ausgewählt:', key)
-                    setColorScheme(key as 'warm' | 'modern' | 'elegant' | 'nature')
-                  }}
-                  className={`flex items-center gap-3 p-3 border-2 transition-all config-sidebar-button ${
-                    colorScheme === key
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <div className="flex gap-1">
-                    <div
-                      className="w-4 h-4 rounded-full"
-                      style={{ backgroundColor: (scheme as any).primary }}
-                    />
-                    <div
-                      className="w-4 h-4 rounded-full"
-                      style={{ backgroundColor: (scheme as any).secondary }}
-                    />
-                    <div
-                      className="w-4 h-4 rounded-full"
-                      style={{ backgroundColor: (scheme as any).accent }}
-                    />
-                  </div>
-                </button>
-              ))}
+              {Object.entries(colorSchemes).map(([key, scheme]) => {
+                const colorSchemeKey = key as 'warm' | 'modern' | 'elegant' | 'nature'
+                return (
+                  <button
+                    key={key}
+                    onClick={() => {
+                      console.log('🎨 Farbschema ausgewählt:', colorSchemeKey)
+                      setColorScheme(colorSchemeKey)
+                    }}
+                    className={`flex items-center gap-3 p-3 border-2 transition-all config-sidebar-button ${
+                      colorScheme === colorSchemeKey
+                        ? 'border-gray-900 bg-gray-50'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <div className="flex gap-1">
+                      <div
+                        className="w-4 h-4 rounded-full"
+                        style={{ backgroundColor: scheme.primary }}
+                      />
+                      <div
+                        className="w-4 h-4 rounded-full"
+                        style={{ backgroundColor: scheme.secondary }}
+                      />
+                      <div
+                        className="w-4 h-4 rounded-full"
+                        style={{ backgroundColor: scheme.accent }}
+                      />
+                    </div>
+                  </button>
+                )
+              })}
             </div>
           </div>
 

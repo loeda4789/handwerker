@@ -20,8 +20,14 @@ export default function ColorSchemeInitializer() {
       
       console.log('🎨 Initialisiere Farbschema:', savedColorScheme)
       
+      // Prüfen ob das Farbschema gültig ist
+      const validSchemes = ['warm', 'modern', 'elegant', 'nature']
+      const finalScheme = validSchemes.includes(savedColorScheme) ? savedColorScheme : 'warm'
+      
+      console.log('🎨 Verwende Farbschema:', finalScheme)
+      
       // Farbschema anwenden
-      applyColorScheme(savedColorScheme)
+      applyColorScheme(finalScheme)
     }
 
     // Sofort beim Mount ausführen
@@ -34,7 +40,13 @@ export default function ColorSchemeInitializer() {
                             'warm'
       
       console.log('🎨 Farbschema geändert, wende an:', newColorScheme)
-      applyColorScheme(newColorScheme)
+      
+      // Prüfen ob das Farbschema gültig ist
+      const validSchemes = ['warm', 'modern', 'elegant', 'nature']
+      const finalScheme = validSchemes.includes(newColorScheme) ? newColorScheme : 'warm'
+      
+      console.log('🎨 Verwende Farbschema:', finalScheme)
+      applyColorScheme(finalScheme)
     }
 
     // Storage Event Listener für Änderungen in anderen Tabs
