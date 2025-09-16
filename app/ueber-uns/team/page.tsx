@@ -6,10 +6,12 @@ import { useThemeColors } from '../../hooks/useThemeColors'
 import PageLayout from '../../components/layout/PageLayout'
 import { PageHero } from '@/components/layout'
 import Team from '@/components/content/Team'
+import { useSiteVariant } from '@/contexts/AppConfigContext'
 
 export default function TeamPage() {
   const { content, loading, error } = usePageContent()
   const { classes } = useThemeColors()
+  const { siteVariant } = useSiteVariant()
 
   // Aktiviere Scroll-Animationen
   useScrollAnimation()
@@ -207,22 +209,24 @@ export default function TeamPage() {
               </div>
             </div>
 
-            {/* Link zu Jobs */}
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-text mb-4">
-                Alle offenen Stellen ansehen
-              </h3>
-              <p className="text-text-secondary mb-6">
-                Entdecke alle aktuellen Stellenausschreibungen und finde deinen Traumjob!
-              </p>
-              <a 
-                href="/jobs"
-                className="inline-flex items-center px-8 py-4 bg-secondary hover:bg-accent text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                style={{ borderRadius: 'var(--radius-button)' }}
-              >
-                Alle Jobs ansehen
-              </a>
-            </div>
+            {/* Link zu Jobs - Nur bei Premium */}
+            {siteVariant === 'premium' && (
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-text mb-4">
+                  Alle offenen Stellen ansehen
+                </h3>
+                <p className="text-text-secondary mb-6">
+                  Entdecke alle aktuellen Stellenausschreibungen und finde deinen Traumjob!
+                </p>
+                <a 
+                  href="/jobs"
+                  className="inline-flex items-center px-8 py-4 bg-secondary hover:bg-accent text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                  style={{ borderRadius: 'var(--radius-button)' }}
+                >
+                  Alle Jobs ansehen
+                </a>
+              </div>
+            )}
 
             {/* Kontakt für Bewerbungen */}
             <div className="text-center">
