@@ -18,13 +18,13 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     name: 'Warm',
     description: 'Warm & professionell',
     primary: '#000000',      // Schwarz
-    secondary: '#D05733',    // Orange
-    accent: '#9A8F88',       // Grau
+    secondary: '#E67E22',    // Kräftiges Orange
+    accent: '#F39C12',       // Gold-Orange
     background: '#ffffff',   // Weiß
-    surface: '#E5E2E0',      // Helles Grau
+    surface: '#FDF2E9',      // Warmes Creme
     text: '#000000',         // Schwarz für Text
     textLight: '#ffffff',    // Weiß für dunkle Hintergründe
-    textSecondary: '#6B635D' // Grau für sekundären Text
+    textSecondary: '#8B4513' // Braun für sekundären Text
   },
   modern: {
     name: 'Modern',
