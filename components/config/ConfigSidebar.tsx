@@ -456,7 +456,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               {Object.entries(colorSchemes).map(([key, scheme]) => (
                 <button
                   key={key}
-                  onClick={() => setColorScheme(key as any)}
+                  onClick={() => {
+                    console.log('🎨 Farbschema ausgewählt:', key)
+                    setColorScheme(key as 'warm' | 'modern' | 'elegant' | 'nature')
+                  }}
                   className={`flex items-center gap-3 p-3 border-2 transition-all config-sidebar-button ${
                     colorScheme === key
                       ? 'border-gray-900 bg-gray-50'

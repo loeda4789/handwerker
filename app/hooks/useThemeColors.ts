@@ -1,72 +1,13 @@
 'use client'
 
 import { useThemeConfig } from '@/contexts/AppConfigContext'
+import { colorSchemes } from '@/lib/colorSchemes'
 
 export function useThemeColors() {
   const { colorScheme } = useThemeConfig()
 
-  // Farben basierend auf dem gewählten Farbschema
-  const getThemeColors = () => {
-    switch (colorScheme) {
-      case 'warm':
-        return {
-          primary: '#000000',
-          secondary: '#D05733',
-          accent: '#9A8F88',
-          background: '#ffffff',
-          surface: '#E5E2E0',
-          text: '#000000',
-          textLight: '#ffffff',
-          textSecondary: '#6B635D'
-        }
-      case 'modern':
-        return {
-          primary: '#0F1A50',
-          secondary: '#FD080F',
-          accent: '#8D8AD9',
-          background: '#ffffff',
-          surface: '#F5F6FF',
-          text: '#0F1A50',
-          textLight: '#ffffff',
-          textSecondary: '#6B7280'
-        }
-      case 'elegant':
-        return {
-          primary: '#18273A',
-          secondary: '#987E4D',
-          accent: '#213044',
-          background: '#ffffff',
-          surface: '#F7F8FA',
-          text: '#18273A',
-          textLight: '#ffffff',
-          textSecondary: '#4A5568'
-        }
-      case 'nature':
-        return {
-          primary: '#1B4332',
-          secondary: '#40916C',
-          accent: '#74C69D',
-          background: '#ffffff',
-          surface: '#F1F8F4',
-          text: '#1B4332',
-          textLight: '#ffffff',
-          textSecondary: '#52796F'
-        }
-      default:
-        return {
-          primary: '#18273A',
-          secondary: '#987E4D',
-          accent: '#213044',
-          background: '#ffffff',
-          surface: '#F7F8FA',
-          text: '#18273A',
-          textLight: '#ffffff',
-          textSecondary: '#4A5568'
-        }
-    }
-  }
-
-  const colors = getThemeColors()
+  // Farben aus dem zentralen colorSchemes laden
+  const colors = colorSchemes[colorScheme] || colorSchemes.warm
 
   // CSS-Klassen basierend auf dem Farbschema
   const getThemeClasses = () => {
