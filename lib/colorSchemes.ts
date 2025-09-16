@@ -29,14 +29,14 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
   modern: {
     name: 'Modern',
     description: 'Modern & technologisch',
-    primary: '#000000',      // Schwarz
-    secondary: '#6B7280',    // Kräftiges Grau
-    accent: '#9CA3AF',       // Helles Grau
-    background: '#ffffff',   // Weiß
-    surface: '#F9FAFB',      // Helles Grau
-    text: '#000000',         // Schwarz für Text
-    textLight: '#ffffff',    // Weiß für dunkle Hintergründe
-    textSecondary: '#374151' // Dunkelgrau für sekundären Text
+    primary: '#1F2937',      // Dunkles Grau
+    secondary: '#EF4444',    // Kräftiges Rot
+    accent: '#F59E0B',       // Kräftiges Orange
+    background: '#111827',   // Sehr dunkler Hintergrund
+    surface: '#1F2937',      // Dunkle Oberfläche
+    text: '#F9FAFB',         // Helles Grau für Text
+    textLight: '#FFFFFF',    // Weiß für dunkle Hintergründe
+    textSecondary: '#D1D5DB' // Helles Grau für sekundären Text
   },
   elegant: {
     name: 'Elegant',
