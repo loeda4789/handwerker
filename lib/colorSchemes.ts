@@ -32,11 +32,11 @@ export const colorSchemes: Record<string, SimpleColorScheme> = {
     primary: '#1F2937',      // Dunkles Grau
     secondary: '#EF4444',    // Kräftiges Rot
     accent: '#F59E0B',       // Kräftiges Orange
-    background: '#111827',   // Sehr dunkler Hintergrund
-    surface: '#1F2937',      // Dunkle Oberfläche
-    text: '#F9FAFB',         // Helles Grau für Text
+    background: '#F8FAFC',   // Sehr heller Hintergrund für bessere Lesbarkeit
+    surface: '#FFFFFF',      // Weiße Oberfläche
+    text: '#1F2937',         // Dunkles Grau für Text auf hellem Grund
     textLight: '#FFFFFF',    // Weiß für dunkle Hintergründe
-    textSecondary: '#D1D5DB' // Helles Grau für sekundären Text
+    textSecondary: '#6B7280' // Mittleres Grau für sekundären Text
   },
   elegant: {
     name: 'Elegant',
