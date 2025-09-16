@@ -1,20 +1,17 @@
 'use client'
 
-import { useState } from 'react'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../hooks/usePageContent'
-import { useDesignStyle } from '../hooks/useDesignStyle'
 import { useThemeColors } from '../hooks/useThemeColors'
 import PageLayout from '../components/layout/PageLayout'
-import { PageHero, SectionHeading } from '@/components/layout'
-import ConfigCard from '@/components/config/ConfigCard'
-import Image from 'next/image'
+import { PageHero } from '@/components/layout'
+import Portfolio from '@/components/content/Portfolio'
+import Testimonials from '@/components/content/Testimonials'
+import Stats from '@/components/content/Stats'
 
 export default function ReferenzenPage() {
   const { content, loading, error } = usePageContent()
-  const { designStyle } = useDesignStyle()
   const { classes } = useThemeColors()
-  const [activeCategory, setActiveCategory] = useState('alle')
 
   // Aktiviere Scroll-Animationen
   useScrollAnimation()
@@ -34,22 +31,6 @@ export default function ReferenzenPage() {
     )
   }
 
-  // Kategorien für Filter
-  const categories = [
-    { id: 'alle', label: 'Alle Projekte' },
-    ...(content?.services?.map(service => ({
-      id: service.title.toLowerCase().replace(/\s+/g, '-'),
-      label: service.title
-    })) || [])
-  ]
-
-  // Portfolio-Projekte filtern
-  const filteredProjects = activeCategory === 'alle' 
-    ? content?.portfolio?.projects || []
-    : (content?.portfolio?.projects || []).filter(project => 
-        project.category.toLowerCase().replace(/\s+/g, '-') === activeCategory
-      )
-
   return (
     <PageLayout 
       content={content} 
@@ -59,225 +40,83 @@ export default function ReferenzenPage() {
       {/* Hero Section */}
       <PageHero
         title="Unsere Referenzen"
-        subtitle="Entdecken Sie eine Auswahl unserer erfolgreich abgeschlossenen Projekte und überzeugen Sie sich von unserer Qualität und Expertise."
-        className="relative overflow-hidden"
+        subtitle="Entdecken Sie unsere erfolgreichen Projekte und lesen Sie, was unsere zufriedenen Kunden über unsere Arbeit sagen."
       />
 
-      {/* Statistiken */}
-      <section className={`py-16 md:py-20 ${classes.background}`}>
-        <div className="container mx-auto px-6 md:px-8">
+      {/* Stats Komponente - Zeigt unsere Erfolge */}
+      <Stats content={content} />
+
+      {/* Portfolio Komponente - Zeigt unsere Projekte */}
+      <Portfolio content={content} />
+
+      {/* Testimonials Komponente - Kundenbewertungen */}
+      <Testimonials content={content} />
+
+      {/* Zusätzlicher Bereich für weitere Referenzen */}
+      <section className="py-16 bg-surface">
+        <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <SectionHeading
-                title="Unsere Erfolge in Zahlen"
-                subtitle="Vertrauen Sie auf unsere langjährige Erfahrung und Expertise"
-                level={2}
-              />
+              <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
+                Warum Kunden uns vertrauen
+              </h2>
+              <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+                Über Jahre haben wir uns durch Qualität, Zuverlässigkeit und Kundenzufriedenheit einen ausgezeichneten Ruf erarbeitet.
+              </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className={`text-4xl md:text-5xl font-bold ${classes.primary} mb-2`}>500+</div>
-                <div className={`${classes.textSecondary} font-medium`}>Projekte</div>
-              </div>
-              <div className="text-center">
-                <div className={`text-4xl md:text-5xl font-bold ${classes.primary} mb-2`}>15+</div>
-                <div className={`${classes.textSecondary} font-medium`}>Jahre Erfahrung</div>
-              </div>
-              <div className="text-center">
-                <div className={`text-4xl md:text-5xl font-bold ${classes.primary} mb-2`}>98%</div>
-                <div className={`${classes.textSecondary} font-medium`}>Zufriedenheit</div>
-              </div>
-              <div className="text-center">
-                <div className={`text-4xl md:text-5xl font-bold ${classes.primary} mb-2`}>24/7</div>
-                <div className={`${classes.textSecondary} font-medium`}>Notdienst</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Filter */}
-      <section className={`py-8 ${classes.surface}`}>
-        <div className="container mx-auto px-6 md:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-wrap gap-3 justify-center">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`px-6 py-3 font-medium transition-all duration-300 hover:scale-105 ${
-                    activeCategory === category.id
-                      ? `${classes.primary} ${classes.textLight} ${classes.shadow}`
-                      : `${classes.background} ${classes.textSecondary} ${classes.hoverSurface} ${classes.shadow}`
-                  }`}
-                  style={{ borderRadius: 'var(--radius-button)' }}
-                >
-                  {category.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Portfolio Grid */}
-      <section className="py-16 md:py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-6 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project, index) => (
-                <div 
-                  key={index} 
-                  className="group bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-gray-100 dark:border-gray-700"
-                  style={{ borderRadius: 'var(--radius-card)' }}
-                >
-                  {project.image && (
-                    <div className="relative h-56 overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute top-4 right-4">
-                        <span className="px-3 py-1 bg-primary text-white text-xs font-medium rounded-full">
-                          {project.category}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">
-                        {project.category}
-                      </span>
-                      <div className="text-primary group-hover:translate-x-1 transition-transform duration-300">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Kundenstimmen */}
-      <section className="py-16 md:py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-6 md:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <SectionHeading
-                title="Was unsere Kunden sagen"
-                subtitle="Echte Erfahrungen von zufriedenen Kunden"
-                level={2}
-              />
-            </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
-                <div className="flex items-center mb-4">
-                  <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                      </svg>
-                    ))}
-                  </div>
+              {/* Qualität */}
+              <div className="text-center p-6 bg-background" style={{ borderRadius: 'var(--radius-card)' }}>
+                <div className="w-16 h-16 bg-primary/10 mx-auto mb-4 flex items-center justify-center"
+                  style={{ borderRadius: 'var(--radius-button)' }}>
+                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/>
+                  </svg>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 italic">
-                  &ldquo;Hervorragende Arbeit! Die Elektroinstallation wurde pünktlich und professionell durchgeführt. Sehr empfehlenswert!&rdquo;
+                <h3 className="text-xl font-bold text-text mb-3">
+                  Höchste Qualität
+                </h3>
+                <p className="text-text-secondary">
+                  Wir verwenden nur hochwertige Materialien und modernste Techniken für dauerhafte Ergebnisse.
                 </p>
-                <div className="font-semibold text-gray-900 dark:text-white">Maria Schmidt</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">Privathaushalt</div>
               </div>
-              
-              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
-                <div className="flex items-center mb-4">
-                  <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                      </svg>
-                    ))}
-                  </div>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 italic">
-                  &ldquo;Das Smart Home System funktioniert perfekt. Die Beratung war ausführlich und die Umsetzung top!&rdquo;
-                </p>
-                <div className="font-semibold text-gray-900 dark:text-white">Thomas Weber</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">Gewerbe</div>
-              </div>
-              
-              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
-                <div className="flex items-center mb-4">
-                  <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                      </svg>
-                    ))}
-                  </div>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 italic">
-                  &ldquo;Schnelle Hilfe bei einem Notfall am Wochenende. Kompetent und zuverlässig - genau was man braucht!&rdquo;
-                </p>
-                <div className="font-semibold text-gray-900 dark:text-white">Anna Müller</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">Privathaushalt</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Call-to-Action */}
-      <section className="py-16 md:py-20 bg-gradient-to-r from-primary to-accent">
-        <div className="container mx-auto px-6 md:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Lassen Sie uns Ihr nächstes Projekt realisieren
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Kontaktieren Sie uns für eine unverbindliche Beratung und ein kostenloses Angebot.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/kontakt"
-                className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg"
-                style={{ borderRadius: 'var(--radius-button)' }}
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-                Jetzt anfragen
-              </a>
-              <a
-                href={`tel:${content?.contact?.phone || '+49123456789'}`}
-                className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary transition-all duration-300 hover:scale-105"
-                style={{ borderRadius: 'var(--radius-button)' }}
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                </svg>
-                Anrufen
-              </a>
+              {/* Zuverlässigkeit */}
+              <div className="text-center p-6 bg-background" style={{ borderRadius: 'var(--radius-card)' }}>
+                <div className="w-16 h-16 bg-primary/10 mx-auto mb-4 flex items-center justify-center"
+                  style={{ borderRadius: 'var(--radius-button)' }}>
+                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/>
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-text mb-3">
+                  Termingerechte Ausführung
+                </h3>
+                <p className="text-text-secondary">
+                  Pünktlichkeit ist für uns selbstverständlich. Wir halten unsere Termine ein und informieren Sie über jeden Schritt.
+                </p>
+              </div>
+
+              {/* Kundenservice */}
+              <div className="text-center p-6 bg-background" style={{ borderRadius: 'var(--radius-card)' }}>
+                <div className="w-16 h-16 bg-primary/10 mx-auto mb-4 flex items-center justify-center"
+                  style={{ borderRadius: 'var(--radius-button)' }}>
+                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-text mb-3">
+                  Persönlicher Service
+                </h3>
+                <p className="text-text-secondary">
+                  Individuelle Beratung und maßgeschneiderte Lösungen für jeden Kunden und jedes Projekt.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      
-      {/* ConfigCard - Website Designer Button */}
-      <ConfigCard />
     </PageLayout>
   )
 }
