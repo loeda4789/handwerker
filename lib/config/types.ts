@@ -53,15 +53,15 @@ export const DEFAULT_CONFIG: AppConfig = {
   version: '2.0.0',
   layout: {
     mode: 'onepage',
-    design: 'rounded',
-    variant: 'starter'
+    design: 'modern',
+    variant: 'professional'
   },
   theme: {
-    colorScheme: 'warm',
+    colorScheme: 'nature',
     darkMode: false
   },
   features: {
-    contactBar: true,
+    contactBar: false,
     sideContact: true
   },
   header: {
@@ -87,7 +87,7 @@ export const DEFAULT_CONFIG: AppConfig = {
     color: 'primary'
   },
   style: {
-    package: 'einfach',
+    package: 'modern',
     fontFamily: 'sans',
     badgeStyle: 'none',
     spacing: 'comfortable'
