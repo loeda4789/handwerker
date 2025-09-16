@@ -24,7 +24,7 @@ import {
 } from 'react-icons/md'
 import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 import { UNIFIED_STYLES, applyUnifiedStyle } from '@/lib/config/unifiedStyles'
-import { applyColorScheme, applyBorderRadiusScheme, colorSchemes } from '@/lib/colorSchemes'
+import { applyColorScheme, applyBorderRadiusScheme, colorSchemes as colorSchemesData } from '@/lib/colorSchemes'
 import type { SimpleColorScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import InfoTooltip from '@/components/ui/InfoTooltip'
@@ -179,12 +179,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   ]
 
 
-  const colorSchemes = [
-    { key: 'warm', label: 'Warm', colors: ['#f97316', '#fb923c', '#fed7aa'] },
-    { key: 'modern', label: 'Modern', colors: ['#3b82f6', '#60a5fa', '#93c5fd'] },
-    { key: 'elegant', label: 'Elegant', colors: ['#6b7280', '#9ca3af', '#d1d5db'] },
-    { key: 'nature', label: 'Nature', colors: ['#059669', '#10b981', '#6ee7b7'] }
-  ]
 
   const desktopFeatures = [
     { key: 'contactBar', label: 'Kontakt-Leiste', icon: MdCall },
@@ -454,7 +448,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              {Object.entries(colorSchemes).map(([key, scheme]) => {
+              {Object.entries(colorSchemesData).map(([key, scheme]) => {
                 const colorSchemeKey = key as 'warm' | 'modern' | 'elegant' | 'nature'
                 const typedScheme = scheme as SimpleColorScheme
                 return (
