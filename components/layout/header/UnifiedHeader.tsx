@@ -36,7 +36,7 @@ export default function UnifiedHeader({ content }: UnifiedHeaderProps) {
   
   // Text-Formatierung basierend auf Variante
   const isStarter = siteVariant === 'starter';
-  const navTextClass = 'normal-case'; // Alle Varianten verwenden normal-case
+  const navTextClass = isStarter ? 'uppercase' : 'normal-case'; // Starter verwendet Großschrift
 
   // Navigation Items
   const navItems = getNavigationItems(siteMode, content, addUrlParamsToHref, heroType, siteVariant);

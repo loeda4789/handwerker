@@ -24,6 +24,10 @@ function MobileHeader({
 }: MobileHeaderProps) {
   const { siteVariant } = useSiteVariant()
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null)
+  
+  // Text-Formatierung basierend auf Variante
+  const isStarter = siteVariant === 'starter'
+  const navTextClass = isStarter ? 'uppercase' : 'normal-case'
   const focusTrapRef = useRef<HTMLDivElement>(null)
   const firstFocusableRef = useRef<HTMLButtonElement>(null)
   const lastFocusableRef = useRef<HTMLAnchorElement>(null)
@@ -175,7 +179,7 @@ function MobileHeader({
                 <div className="space-y-2">
                   <button
                     onClick={() => toggleMobileDropdown(item.id)}
-                    className="text-xl font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[50px] flex items-center w-full"
+                    className={`text-xl font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 ${navTextClass} min-h-[50px] flex items-center w-full`}
                   >
                     {item.label}
                     <svg className="w-5 h-5 ml-2 inline transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -211,7 +215,7 @@ function MobileHeader({
                 <Link
                   href={item.href || '#'}
                   onClick={item.isClickable && item.href?.startsWith('#') ? (e) => onSmoothScroll(e, item.id) : undefined}
-                  className="text-xl font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 uppercase min-h-[50px] flex items-center"
+                  className={`text-xl font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 ${navTextClass} min-h-[50px] flex items-center`}
                 >
                   {item.label}
                 </Link>

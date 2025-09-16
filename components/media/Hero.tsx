@@ -250,15 +250,17 @@ function HeroSlider({ content }: HeroProps) {
       desktop: content.hero.backgroundImages.desktop,
       mobile: content.hero.backgroundImages.mobile,
       title: content.hero.title || formatHeroTitle(content.company.tagline),
-      subtitle: content.hero.subtitle || formatHeroText(content.company.tagline, cityName),
-      cta: "Jetzt Termin vereinbaren"
+      subtitle: "", // Keine Subline für Slider
+      cta: "Jetzt Termin vereinbaren",
+      ctaLink: "#kontakt"
     },
     {
       desktop: content.hero.backgroundImages.desktopAlt || content.hero.backgroundImages.desktop,
       mobile: content.hero.backgroundImages.mobileAlt || content.hero.backgroundImages.mobile,
-      title: "Meisterqualität",
-      subtitle: "Wir machen Ihr Zuhause noch schöner",
-      cta: "Mehr erfahren"
+      title: content.hero.title || formatHeroTitle(content.company.tagline),
+      subtitle: "", // Keine Subline für Slider
+      cta: "Zu unseren Leistungen",
+      ctaLink: "#leistungen"
     }
   ]
 
@@ -321,17 +323,19 @@ function HeroSlider({ content }: HeroProps) {
                 {slides[currentSlide].title}
               </h1>
               
-              <p 
-                className={`text-lg md:text-xl mb-8 ${subtitleClass}`}
-                style={{ color: '#ffffff' }}
-                key={`subtitle-${currentSlide}`}
-              >
-                {slides[currentSlide].subtitle}
-              </p>
+              {slides[currentSlide].subtitle && (
+                <p 
+                  className={`text-lg md:text-xl mb-8 ${subtitleClass}`}
+                  style={{ color: '#ffffff' }}
+                  key={`subtitle-${currentSlide}`}
+                >
+                  {slides[currentSlide].subtitle}
+                </p>
+              )}
               
               <div>
                 <Link
-                  href="#kontakt"
+                  href={slides[currentSlide].ctaLink}
                   className="inline-flex items-center justify-center px-8 py-4 text-base font-medium transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 text-white"
                   data-cta="true"
                   style={{ 
