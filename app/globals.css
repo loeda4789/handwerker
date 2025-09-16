@@ -612,11 +612,17 @@ html {
   outline-offset: 2px;
 }
 
-/* Konfigurator-Schriftart: Immer Inter verwenden */
+/* Konfigurator-Schriftart: Immer Inter verwenden - HÖCHSTE PRIORITÄT */
 .config-card-button,
+.config-card-button *,
 .config-sidebar-variant,
+.config-sidebar-variant *,
 .config-sidebar-button,
+.config-sidebar-button *,
 .config-sidebar-feature,
+.config-sidebar-feature *,
+.config-sidebar,
+.config-sidebar *,
 .config-sidebar h1,
 .config-sidebar h2,
 .config-sidebar h3,
@@ -626,30 +632,65 @@ html {
 .config-sidebar p,
 .config-sidebar span,
 .config-sidebar div,
-.config-sidebar button {
-  font-family: var(--font-body) !important; /* Inter */
+.config-sidebar button,
+[class*="config-card"],
+[class*="config-card"] *,
+[class*="config-sidebar"],
+[class*="config-sidebar"] * {
+  font-family: var(--font-body) !important; /* Inter - IMMER */
 }
 
-/* Spezifische Regeln für Konfigurator-Text */
+/* Spezifische Regeln für Konfigurator-Text - HÖCHSTE PRIORITÄT */
 .config-sidebar .font-semibold,
 .config-sidebar .font-medium,
-.config-sidebar .font-bold {
-  font-family: var(--font-body) !important;
+.config-sidebar .font-bold,
+.config-sidebar .font-normal,
+.config-sidebar .font-light,
+.config-card .font-semibold,
+.config-card .font-medium,
+.config-card .font-bold,
+.config-card .font-normal,
+.config-card .font-light {
+  font-family: var(--font-body) !important; /* Inter - IMMER */
 }
 
-/* Mobile und Desktop Konfigurator */
+/* Mobile und Desktop Konfigurator - HÖCHSTE PRIORITÄT */
 @media (max-width: 1023px) {
   .config-card-button,
-  .config-card-button * {
-    font-family: var(--font-body) !important;
+  .config-card-button *,
+  .config-sidebar,
+  .config-sidebar * {
+    font-family: var(--font-body) !important; /* Inter - IMMER */
   }
 }
 
 @media (min-width: 1024px) {
   .config-card-button,
-  .config-card-button * {
-    font-family: var(--font-body) !important;
+  .config-card-button *,
+  .config-sidebar,
+  .config-sidebar * {
+    font-family: var(--font-body) !important; /* Inter - IMMER */
   }
+}
+
+/* Zusätzliche Sicherheit: Alle möglichen Selektoren */
+.config-card,
+.config-card *,
+.config-sidebar,
+.config-sidebar *,
+[class*="config-card"],
+[class*="config-card"] *,
+[class*="config-sidebar"],
+[class*="config-sidebar"] *,
+.config-card-button,
+.config-card-button *,
+.config-sidebar-variant,
+.config-sidebar-variant *,
+.config-sidebar-button,
+.config-sidebar-button *,
+.config-sidebar-feature,
+.config-sidebar-feature * {
+  font-family: var(--font-body) !important; /* Inter - IMMER */
 }
 
 :root {
