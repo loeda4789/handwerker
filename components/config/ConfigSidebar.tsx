@@ -285,7 +285,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     } else if (type === 'feature') {
       // Feature-Änderungen werden automatisch über den Context gehandhabt
     } else if (type === 'style') {
-      // Style-Änderungen werden automatisch über den Context gehandhabt
+      // Style-Änderungen manuell anwenden
+      applyHeadingStyles(config)
     } else if (type === 'variant') {
       // Variant-Änderungen werden automatisch über den Context gehandhabt
     }
@@ -634,6 +635,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 key={style.id}
                                 onClick={() => {
                                   setStylePackage(style.id as any)
+                                  // Sofortige Anwendung der Styles
+                                  setTimeout(() => {
+                                    applyHeadingStyles(config)
+                                  }, 100)
                                   handleApply('style', style.id)
                                 }}
                                 className={`p-2 rounded-xl border transition-all duration-300 text-left group ${

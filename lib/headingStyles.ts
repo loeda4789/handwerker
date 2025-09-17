@@ -91,5 +91,14 @@ export const applyHeadingStyles = (config: AppConfig) => {
         htmlElement.style.fontFamily = 'var(--font-heading)'
       })
     }
+    
+    // Debug-Logging
+    console.log('🎨 applyHeadingStyles aufgerufen:', {
+      underline: config.headings.underline,
+      style: config.headings.style,
+      color: config.headings.color,
+      textDecoration: styles.textDecoration,
+      textDecorationColor: styles.textDecorationColor
+    })
   }
 }
