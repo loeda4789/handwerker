@@ -28,7 +28,7 @@ function extractCityFromAddress(address: string): string {
   }
 }
 
-const formatHeroTitle = (tagline: string) => {
+const formatHeroTitle = (tagline: string, heroType: string = 'single') => {
   // Für Fliesenleger
   if (tagline.includes('Handwerks-Partner')) {
     return "Ihr verlässlicher Fliesenleger"
@@ -36,11 +36,14 @@ const formatHeroTitle = (tagline: string) => {
   
   // Für Elektriker
   if (tagline.includes('Elektro-Partner')) {
-    return (
-      <>
-        Meisterbetrieb für <span style={{ color: 'var(--color-secondary)' }}>Elektroinstallationen & Photovoltaik</span>.
-      </>
-    )
+    if (heroType === 'split') {
+      return (
+        <>
+          Meisterbetrieb für <span style={{ color: 'var(--color-secondary)' }}>Elektroinstallationen & Photovoltaik</span>
+        </>
+      )
+    }
+    return "Meisterbetrieb für Elektroinstallationen & Photovoltaik"
   }
   
   // Für Dachdecker
@@ -162,7 +165,7 @@ function HeroSingle({ content }: HeroProps) {
                 className={`hero-title text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards] ${titleClass}`}
                 style={{ color: 'var(--color-heroText, #ffffff)' }}
               >
-                {formatHeroTitle(content.company.tagline)}
+                {formatHeroTitle(content.company.tagline, 'single')}
               </h1>
               
               <p 
@@ -253,11 +256,7 @@ function HeroSlider({ content }: HeroProps) {
     {
       desktop: content.hero.backgroundImages.desktop,
       mobile: content.hero.backgroundImages.mobile,
-      title: (
-        <>
-          Meisterbetrieb für <span style={{ color: 'var(--color-secondary)' }}>Elektroinstallationen & Photovoltaik</span>.
-        </>
-      ),
+      title: formatHeroTitle(content.company.tagline, 'slider'),
       subtitle: "", // Keine Subline für Slider
       cta: "Jetzt Termin vereinbaren",
       ctaLink: "#kontakt"
@@ -460,7 +459,7 @@ function HeroVideo({ content }: HeroProps) {
             <div className="max-w-4xl mx-auto">
               <div className="transform-gpu hover:scale-105 transition-transform duration-300">
                 <h1 className={`hero-title text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-white drop-shadow-2xl ${titleClass}`}>
-                  {formatHeroTitle(content.company.tagline)}
+                  {formatHeroTitle(content.company.tagline, 'video')}
                 </h1>
                 
                 <p className={`text-xl md:text-2xl mb-8 drop-shadow-lg ${subtitleClass}`} style={{ color: '#ffffff' }}>
@@ -532,7 +531,7 @@ function HeroSplit({ content }: HeroProps) {
           <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start">
             <div className="max-w-2xl w-full">
               <h1 className={`hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 tracking-tight text-gray-900 dark:text-white ${titleClass}`}>
-                {formatHeroTitle(content.company.tagline)}
+                {formatHeroTitle(content.company.tagline, 'split')}
               </h1>
             
               <p className={`text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 text-gray-600 dark:text-gray-300 leading-relaxed ${subtitleClass}`}>
