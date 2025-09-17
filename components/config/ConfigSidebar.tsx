@@ -400,11 +400,13 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                           ? 'text-gray-800 font-bold' 
                           : 'text-gray-900'
                       }`} style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
-                      <div className={`text-[10px] leading-tight transition-colors duration-300 ${
-                        activeSection === section.id 
-                          ? 'text-gray-600' 
-                          : 'text-gray-400'
-                      }`} style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
+                      {(!isMobile || section.id === 'variant') && (
+                        <div className={`text-[10px] leading-tight transition-colors duration-300 ${
+                          activeSection === section.id 
+                            ? 'text-gray-600' 
+                            : 'text-gray-400'
+                        }`} style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
+                      )}
                     </div>
                   </div>
                   {activeSection === section.id ? (
