@@ -245,17 +245,23 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       icon: MdPhone,
       description: 'Navigation auf mobilen Geräten'
     }] : []),
-    {
-      id: 'variant',
-      title: 'Paket',
-      icon: MdStar,
-      description: 'Wählen Sie Ihr Paket'
-    },
+    ...(!isMobile ? [{
+      id: 'features',
+      title: 'Features',
+      icon: MdSettings,
+      description: 'Zusätzliche Funktionen'
+    }] : []),
     {
       id: 'style',
       title: 'Stil',
       icon: MdBrush,
       description: 'Design und Schriftarten'
+    },
+    {
+      id: 'variant',
+      title: 'Paket',
+      icon: MdStar,
+      description: 'Wählen Sie Ihr Paket'
     }
   ]
 
@@ -287,10 +293,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       <div 
         className={`fixed z-50 transition-all duration-300 ease-out ${
           isMobile 
-            ? `bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl ${
+            ? `bottom-0 left-0 right-0 bg-gradient-to-br from-white via-gray-50 to-white rounded-t-3xl shadow-2xl border-t border-gray-200 ${
                 isDragging ? 'transform translate-y-0' : 'transform translate-y-0'
               }` 
-            : 'top-0 right-0 w-96 h-full bg-white shadow-2xl'
+            : 'top-0 right-0 w-96 h-full bg-gradient-to-br from-white via-gray-50 to-white shadow-2xl border-l border-gray-200'
         }`}
         style={{
           transform: isMobile && isDragging ? `translateY(${dragOffset}px)` : 'translateY(0)',
@@ -301,22 +307,28 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         onTouchEnd={handleTouchEnd}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-              <MdSettings className="w-5 h-5 text-white" />
+        <div className="relative p-6 border-b border-gray-200 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5">
+          {/* Dekorative Elemente */}
+          <div className="absolute top-2 right-2 w-8 h-8 bg-primary/10 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-2 left-2 w-4 h-4 bg-accent/20 rounded-full animate-pulse delay-500"></div>
+          
+          <div className="flex items-center justify-between relative z-10">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
+                <MdSettings className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>Website anpassen</h2>
+                <p className="text-sm text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Farben, Stil und mehr</p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-xl font-bold text-gray-900">Website anpassen</h2>
-              <p className="text-sm text-gray-500">Farben, Stil und mehr</p>
-            </div>
+            <button
+              onClick={onClose}
+              className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all duration-300 hover:scale-110"
+            >
+              <MdClose className="w-6 h-6" />
+            </button>
           </div>
-          <button
-            onClick={onClose}
-            className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-colors"
-          >
-            <MdClose className="w-6 h-6" />
-          </button>
         </div>
 
         {/* Content */}
@@ -324,27 +336,38 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           <div className="p-4 space-y-3">
             {/* Accordion-Sektionen */}
             {sections.map((section) => (
-              <div key={section.id} className="border border-gray-200 rounded-xl overflow-hidden">
+              <div key={section.id} className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
                 <button
                   onClick={() => toggleSection(section.id)}
-                  className="w-full flex items-center justify-between p-3 text-left hover:bg-gray-50 transition-colors"
+                  className={`w-full flex items-center justify-between p-4 text-left transition-all duration-300 ${
+                    activeSection === section.id 
+                      ? 'bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10' 
+                      : 'hover:bg-gradient-to-r hover:from-gray-50 hover:via-gray-50 hover:to-gray-50'
+                  }`}
                 >
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <section.icon className="w-4 h-4 text-gray-600" />
+                  <div className="flex items-center gap-3">
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                      activeSection === section.id 
+                        ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg' 
+                        : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
+                    }`}>
+                      <section.icon className="w-5 h-5" />
                     </div>
-                    <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
+                    <div>
+                      <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
+                      <div className="text-xs text-gray-500" style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
+                    </div>
                   </div>
                   {activeSection === section.id ? (
-                    <MdExpandLess className="w-4 h-4 text-gray-400" />
+                    <MdExpandLess className="w-5 h-5 text-primary" />
                   ) : (
-                    <MdExpandMore className="w-4 h-4 text-gray-400" />
+                    <MdExpandMore className="w-5 h-5 text-gray-400" />
                   )}
                 </button>
 
                 {/* Sektion-Inhalt */}
                 {activeSection === section.id && (
-                  <div className="p-3 border-t border-gray-200 bg-gray-50">
+                  <div className="p-4 border-t border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-50">
                     {section.id === 'colors' && (
                       <div className="space-y-3">
                         <h3 className="font-semibold text-gray-900 mb-2">Farbschema</h3>
@@ -514,6 +537,45 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       </div>
                     )}
 
+                    {section.id === 'features' && (
+                      <div className="space-y-4">
+                        <h3 className="font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Features</h3>
+                        <div className="grid grid-cols-1 gap-4">
+                          {desktopFeatures.map((feature) => (
+                            <button
+                              key={feature.key}
+                              onClick={() => {
+                                toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])
+                                handleApply('feature', feature.key)
+                              }}
+                              className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
+                                features[feature.key as keyof typeof features]
+                                  ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                  : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
+                              }`}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                  features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
+                                }`}>
+                                  <feature.icon className="w-6 h-6" />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{feature.label}</div>
+                                  <div className="text-sm text-gray-700" style={{ fontFamily: 'var(--font-body)' }}>Zusätzliche Kontaktmöglichkeiten</div>
+                                </div>
+                                {features[feature.key as keyof typeof features] && (
+                                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                    <MdCheck className="w-5 h-5 text-white" />
+                                  </div>
+                                )}
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
                     {section.id === 'style' && (
                       <div className="space-y-4">
                         <h3 className="font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Stil wählen</h3>
@@ -584,8 +646,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 {lastApplied === 'color' && 'Farbschema angewendet'}
                 {lastApplied === 'hero' && 'Hero-Typ angewendet'}
                 {lastApplied === 'mobile-nav' && 'Navigation angewendet'}
-                {lastApplied === 'variant' && 'Paket angewendet'}
+                {lastApplied === 'feature' && 'Feature angewendet'}
                 {lastApplied === 'style' && 'Stil angewendet'}
+                {lastApplied === 'variant' && 'Paket angewendet'}
                 {lastApplied === 'all' && 'Alle Änderungen angewendet'}
               </div>
             ) : (
