@@ -386,29 +386,48 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   aria-expanded={activeSection === section.id}
                   aria-controls={`section-${section.id}`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                      activeSection === section.id 
-                        ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
-                        : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:scale-110'
-                    }`}>
-                      <section.icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
-                    </div>
-                    <div>
+                  {isMobile && section.id !== 'colors' && section.id !== 'variant' ? (
+                    // Mobile Layout: Icon oben, Text darunter (außer Farben und Pakete)
+                    <div className="flex flex-col items-center text-center gap-2">
+                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                        activeSection === section.id 
+                          ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
+                          : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:scale-110'
+                      }`}>
+                        <section.icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
+                      </div>
                       <div className={`font-semibold transition-colors duration-300 ${
                         activeSection === section.id 
                           ? 'text-gray-800 font-bold' 
                           : 'text-gray-900'
                       }`} style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
-                      {(!isMobile || section.id === 'variant') && (
-                        <div className={`text-[10px] leading-tight transition-colors duration-300 ${
-                          activeSection === section.id 
-                            ? 'text-gray-600' 
-                            : 'text-gray-400'
-                        }`} style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
-                      )}
                     </div>
-                  </div>
+                  ) : (
+                    // Desktop Layout oder Farben/Pakete: Icon links, Text rechts
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                        activeSection === section.id 
+                          ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
+                          : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:scale-110'
+                      }`}>
+                        <section.icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
+                      </div>
+                      <div>
+                        <div className={`font-semibold transition-colors duration-300 ${
+                          activeSection === section.id 
+                            ? 'text-gray-800 font-bold' 
+                            : 'text-gray-900'
+                        }`} style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
+                        {(!isMobile || section.id === 'variant') && (
+                          <div className={`text-[10px] leading-tight transition-colors duration-300 ${
+                            activeSection === section.id 
+                              ? 'text-gray-600' 
+                              : 'text-gray-400'
+                          }`} style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
+                        )}
+                      </div>
+                    </div>
+                  )}
                   {activeSection === section.id ? (
                     <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
                       <MdExpandLess className="w-4 h-4 text-gray-600" />
