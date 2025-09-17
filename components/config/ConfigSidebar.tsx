@@ -382,11 +382,11 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                 {/* Sektion-Inhalt */}
                 {activeSection === section.id && (
-                  <div className="p-4 border-t border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+                  <div className="p-3 border-t border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-50">
                     {section.id === 'colors' && (
-                      <div className="space-y-3">
-                        <h3 className="font-semibold text-gray-900 mb-2">Farbschema</h3>
-                        <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Farbschema</h3>
+                        <div className="grid grid-cols-2 gap-3">
                           {Object.entries(colorSchemesData).map(([key, scheme]) => (
                             <button
                               key={key}
@@ -394,27 +394,27 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setColorScheme(key as any)
                                 handleApply('color', key)
                               }}
-                              className={`p-4 rounded-xl border-2 transition-all duration-300 group text-center ${
+                              className={`p-3 rounded-xl border-2 transition-all duration-300 group text-center ${
                                 colorScheme === key 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
-                              <div className="flex justify-center gap-3 mb-3">
+                              <div className="flex justify-center gap-2 mb-2">
                                 <div 
-                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
+                                  className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
                                   style={{ backgroundColor: scheme.primary }}
                                 />
                                 <div 
-                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
+                                  className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
                                   style={{ backgroundColor: scheme.secondary }}
                                 />
                                 <div 
-                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
+                                  className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
                                   style={{ backgroundColor: scheme.accent }}
                                 />
                               </div>
-                              <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{scheme.name}</div>
+                              <div className="text-[10px] font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{scheme.name}</div>
                             </button>
                           ))}
                         </div>
@@ -422,9 +422,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     )}
 
                     {section.id === 'hero' && (
-                      <div className="space-y-3">
-                        <h3 className="font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Hero-Typ</h3>
-                        <div className="grid grid-cols-1 gap-3">
+                      <div className="space-y-2">
+                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Hero-Typ</h3>
+                        <div className="grid grid-cols-1 gap-2">
                           {heroTypes.map((hero) => (
                             <button
                               key={hero.key}
@@ -432,27 +432,27 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setHeroType(hero.key as any)
                                 handleApply('hero', hero.key)
                               }}
-                              className={`p-3 rounded-xl border-2 transition-all duration-300 text-left group ${
+                              className={`p-2 rounded-xl border-2 transition-all duration-300 text-left group ${
                                 heroType === hero.key 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
-                              <div className="flex items-center gap-3">
-                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                              <div className="flex items-center gap-2">
+                                <div className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 ${
                                   heroType === hero.key 
                                     ? 'bg-primary text-white shadow-lg' 
                                     : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                 }`}>
-                                  <hero.icon className="w-4 h-4" />
+                                  <hero.icon className="w-3 h-3" />
                                 </div>
                                 <div className="flex-1">
-                                  <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{hero.label}</div>
-                                  <div className="text-xs text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{hero.description}</div>
+                                  <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{hero.label}</div>
+                                  <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{hero.description}</div>
                                 </div>
                                 {heroType === hero.key && (
-                                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                                    <MdCheck className="w-4 h-4 text-white" />
+                                  <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                    <MdCheck className="w-3 h-3 text-white" />
                                   </div>
                                 )}
                               </div>
@@ -463,9 +463,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     )}
 
                     {section.id === 'mobile-nav' && (
-                      <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Mobile Navigation</h3>
-                        <div className="grid grid-cols-1 gap-4">
+                      <div className="space-y-2">
+                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Mobile Navigation</h3>
+                        <div className="grid grid-cols-1 gap-2">
                           {mobileNavTypes.map((nav) => (
                             <button
                               key={nav.key}
@@ -473,27 +473,27 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setMobileType(nav.key as any)
                                 handleApply('mobile-nav', nav.key)
                               }}
-                              className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
+                              className={`p-2 rounded-xl border-2 transition-all duration-300 text-left group ${
                                 mobileType === nav.key 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
-                              <div className="flex items-center gap-4">
-                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                              <div className="flex items-center gap-2">
+                                <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
                                   mobileType === nav.key 
                                     ? 'bg-primary text-white shadow-lg' 
                                     : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                 }`}>
-                                  <nav.icon className="w-6 h-6" />
+                                  <nav.icon className="w-3 h-3" />
                                 </div>
                                 <div className="flex-1">
-                                  <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{nav.label}</div>
-                                  <div className="text-sm text-gray-700" style={{ fontFamily: 'var(--font-body)' }}>{nav.description}</div>
+                                  <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{nav.label}</div>
+                                  <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{nav.description}</div>
                                 </div>
                                 {mobileType === nav.key && (
-                                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                                    <MdCheck className="w-5 h-5 text-white" />
+                                  <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                    <MdCheck className="w-3 h-3 text-white" />
                                   </div>
                                 )}
                               </div>
@@ -504,9 +504,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     )}
 
                     {section.id === 'variant' && (
-                      <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Paket wählen</h3>
-                        <div className="space-y-4">
+                      <div className="space-y-2">
+                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Paket wählen</h3>
+                        <div className="space-y-2">
                           {bestellerVariants.map((variant) => (
                             <button
                               key={variant.id}
@@ -514,35 +514,35 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setVariant(variant.id as any)
                                 handleApply('variant', variant.id)
                               }}
-                              className={`w-full p-5 rounded-2xl border-2 transition-all duration-300 text-left relative group ${
+                              className={`w-full p-3 rounded-xl border-2 transition-all duration-300 text-left relative group ${
                                 variant.selected 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
                               {variant.recommended && (
-                                <div className="absolute -top-2 -right-2 bg-primary text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">
+                                <div className="absolute -top-1 -right-1 bg-primary text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-lg">
                                   Empfohlen
                                 </div>
                               )}
-                              <div className="flex items-center gap-4">
-                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                              <div className="flex items-center gap-2">
+                                <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
                                   variant.selected ? 'bg-primary text-white shadow-lg' : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
                                 }`}>
-                                  <variant.icon className="w-6 h-6" />
+                                  <variant.icon className="w-3 h-3" />
                                 </div>
                                 <div className="flex-1">
-                                  <div className="flex items-center justify-between mb-2">
-                                    <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{variant.name}</div>
-                                    <div className="text-lg font-bold text-primary" style={{ fontFamily: 'var(--font-body)' }}>
-                                      {variant.price}<span className="text-sm font-normal text-gray-600">{variant.period}</span>
+                                  <div className="flex items-center justify-between mb-1">
+                                    <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{variant.name}</div>
+                                    <div className="text-sm font-bold text-primary" style={{ fontFamily: 'var(--font-body)' }}>
+                                      {variant.price}<span className="text-[10px] font-normal text-gray-600">{variant.period}</span>
                                     </div>
                                   </div>
-                                  <div className="text-sm text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{variant.description}</div>
+                                  <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{variant.description}</div>
                                 </div>
                                 {variant.selected && (
-                                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                                    <MdCheck className="w-5 h-5 text-white" />
+                                  <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                    <MdCheck className="w-3 h-3 text-white" />
                                   </div>
                                 )}
                               </div>
@@ -553,9 +553,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     )}
 
                     {section.id === 'features' && (
-                      <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Features</h3>
-                        <div className="grid grid-cols-1 gap-4">
+                      <div className="space-y-2">
+                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Features</h3>
+                        <div className="grid grid-cols-1 gap-2">
                           {desktopFeatures.map((feature) => (
                             <button
                               key={feature.key}
@@ -563,25 +563,25 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])
                                 handleApply('feature', feature.key)
                               }}
-                              className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
+                              className={`p-2 rounded-xl border-2 transition-all duration-300 text-left group ${
                                 features[feature.key as keyof typeof features]
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
-                              <div className="flex items-center gap-4">
-                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                              <div className="flex items-center gap-2">
+                                <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
                                   features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                 }`}>
-                                  <feature.icon className="w-6 h-6" />
+                                  <feature.icon className="w-3 h-3" />
                                 </div>
                                 <div className="flex-1">
-                                  <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{feature.label}</div>
-                                  <div className="text-sm text-gray-700" style={{ fontFamily: 'var(--font-body)' }}>Zusätzliche Kontaktmöglichkeiten</div>
+                                  <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{feature.label}</div>
+                                  <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Zusätzliche Kontaktmöglichkeiten</div>
                                 </div>
                                 {features[feature.key as keyof typeof features] && (
-                                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                                    <MdCheck className="w-5 h-5 text-white" />
+                                  <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                    <MdCheck className="w-3 h-3 text-white" />
                                   </div>
                                 )}
                               </div>
@@ -592,9 +592,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     )}
 
                     {section.id === 'style' && (
-                      <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Stil wählen</h3>
-                        <div className="grid grid-cols-1 gap-4">
+                      <div className="space-y-2">
+                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Stil wählen</h3>
+                        <div className="grid grid-cols-1 gap-2">
                           {UNIFIED_STYLES.map((style) => {
                             const Icon = getStylePackageIcon(style.id)
                             return (
@@ -604,25 +604,25 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   setStylePackage(style.id as any)
                                   handleApply('style', style.id)
                                 }}
-                                className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
+                                className={`p-2 rounded-xl border-2 transition-all duration-300 text-left group ${
                                   stylePackage === style.id 
                                     ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                     : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                                 }`}
                               >
-                                <div className="flex items-center gap-4">
-                                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                <div className="flex items-center gap-2">
+                                  <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
                                     stylePackage === style.id ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                   }`}>
-                                    <Icon className="w-6 h-6" />
+                                    <Icon className="w-3 h-3" />
                                   </div>
                                   <div className="flex-1">
-                                    <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{style.name}</div>
-                                    <div className="text-sm text-gray-700" style={{ fontFamily: 'var(--font-body)' }}>{style.description}</div>
+                                    <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{style.name}</div>
+                                    <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{style.description}</div>
                                   </div>
                                   {stylePackage === style.id && (
-                                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                                      <MdCheck className="w-5 h-5 text-white" />
+                                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                      <MdCheck className="w-3 h-3 text-white" />
                                     </div>
                                   )}
                                 </div>
