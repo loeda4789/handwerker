@@ -187,7 +187,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       name: 'Starter',
       price: '99€',
       period: '/Monat',
-      description: 'One-Page Website für kleine Unternehmen',
+      description: 'Perfekt für Einzelunternehmer und kleine Betriebe',
       features: ['One-Page Layout', 'Basis-Features', 'Mobile optimiert'],
       icon: MdBusiness,
       color: 'bg-gray-50 border-gray-200',
@@ -199,7 +199,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       name: 'Professionell',
       price: '119€',
       period: '/Monat',
-      description: 'One-Page mit Leistungssektor',
+      description: 'Ideal für wachsende Unternehmen mit Service-Portfolio',
       features: ['One-Page Layout', 'Leistungssektor', 'Alle Features'],
       icon: MdTrendingUp,
       color: 'bg-blue-50 border-blue-200',
@@ -211,7 +211,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       name: 'Premium',
       price: '159€',
       period: '/Monat',
-      description: 'Multi-Page Website für anspruchsvolle Projekte',
+      description: 'Maximale Reichweite mit vollständiger Website',
       features: ['Multi-Page Layout', 'Alle Unterseiten', 'Vollständig anpassbar'],
       icon: MdDiamond,
       color: 'bg-gray-50 border-gray-200',
@@ -516,11 +516,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
-                              {variant.recommended && (
-                                <div className="absolute -top-1 -right-1 bg-primary text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-lg">
-                                  Empfohlen
-                                </div>
-                              )}
                               <div className="flex items-center gap-2">
                                 <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
                                   variant.selected ? 'bg-primary text-white shadow-lg' : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
@@ -529,7 +524,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 </div>
                                 <div className="flex-1">
                                   <div className="flex items-center justify-between mb-1">
-                                    <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{variant.name}</div>
+                                    <div className="flex items-center gap-2">
+                                      <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{variant.name}</div>
+                                      {variant.recommended && (
+                                        <div className="bg-primary text-white text-[9px] px-2 py-0.5 rounded-full font-bold">
+                                          Empfohlen
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="text-sm font-bold text-primary" style={{ fontFamily: 'var(--font-body)' }}>
                                       {variant.price}<span className="text-[10px] font-normal text-gray-600">{variant.period}</span>
                                     </div>
