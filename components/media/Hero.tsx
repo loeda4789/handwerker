@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import { ContentData } from '@/types/content'
 import { useState, useEffect } from 'react'
-import { MdVerified, MdAccessTime, MdSupportAgent } from 'react-icons/md'
+import { MdVerified, MdAccessTime, MdSupportAgent, MdStar, MdCheck, MdArrowForward, MdInfo } from 'react-icons/md'
 import { useHeroConfig, useLayoutConfig, useFeaturesConfig, useSiteVariant } from '@/contexts/AppConfigContext'
 
 interface HeroProps {
@@ -530,82 +530,122 @@ function HeroSplit({ content }: HeroProps) {
           {/* Left Side - Content */}
           <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start">
             <div className="max-w-2xl w-full">
-              <h1 className={`hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 tracking-tight text-gray-900 dark:text-white ${titleClass}`}>
+              <h1 className={`hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 tracking-tight text-gray-900 dark:text-white ${titleClass}`}
+                  style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
                 {formatHeroTitle(content.company.tagline, 'split')}
               </h1>
             
-              <p className={`text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 text-gray-600 dark:text-gray-300 leading-relaxed ${subtitleClass}`}>
-                {formatHeroText(content.company.tagline, cityName)}
+              <p className={`text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-600 dark:text-gray-300 leading-relaxed ${subtitleClass} max-w-lg`}
+                 style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.05)' }}>
+                Planung, Installation & Wartung – zuverlässig, präzise, mit geprüfter Meisterqualität.
               </p>
               
             
-            <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-10">
-              <div className="flex items-center space-x-3 sm:space-x-4">
-                <MdVerified 
-                  className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 flex-shrink-0"
-                  style={{ color: 'var(--color-primary)' }}
-                />
-                <span className="text-base sm:text-lg text-gray-600 dark:text-gray-400">Meisterqualität seit Jahren</span>
+            {/* Kompakte Feature-Liste mit 3D Effekt */}
+            <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-10">
+              <div className="flex items-center space-x-3 sm:space-x-4 group">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <MdVerified className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                </div>
+                <span className="text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">Meisterqualität seit Jahren</span>
               </div>
-              <div className="flex items-center space-x-3 sm:space-x-4">
-                <MdAccessTime 
-                  className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 flex-shrink-0"
-                  style={{ color: 'var(--color-primary)' }}
-                />
-                <span className="text-base sm:text-lg text-gray-600 dark:text-gray-400">24/7 Notdienst verfügbar</span>
-              </div>
-              <div className="flex items-center space-x-3 sm:space-x-4">
-                <MdSupportAgent 
-                  className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 flex-shrink-0"
-                  style={{ color: 'var(--color-primary)' }}
-                />
-                <span className="text-base sm:text-lg text-gray-600 dark:text-gray-400">Kostenlose Beratung</span>
+              <div className="flex items-center space-x-3 sm:space-x-4 group">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <MdSupportAgent className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                </div>
+                <span className="text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">Kostenlose Beratung</span>
               </div>
             </div>
             
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              {/* 3D CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <Link
                   href="#kontakt"
-                  className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base"
+                  className="group inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-base sm:text-lg"
                   data-cta="true"
                   style={{ 
                     backgroundColor: 'var(--color-secondary)',
-                    borderRadius: 'var(--radius-button)' 
+                    borderRadius: 'var(--radius-button)',
+                    boxShadow: `
+                      0 10px 25px -5px rgba(0, 0, 0, 0.2),
+                      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.2)
+                    `
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                    e.currentTarget.style.boxShadow = `
+                      0 20px 40px -10px rgba(0, 0, 0, 0.3),
+                      0 8px 12px -2px rgba(0, 0, 0, 0.15),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.3)
+                    `;
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                    e.currentTarget.style.boxShadow = `
+                      0 10px 25px -5px rgba(0, 0, 0, 0.2),
+                      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.2)
+                    `;
                   }}
                 >
-                  Kostenloses Angebot
+                  <span className="mr-2">Kostenloses Angebot</span>
+                  <MdArrowForward className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
                 <Link
                   href="#ueber-uns"
-                  className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors duration-200 text-sm sm:text-base"
-                  style={{ borderRadius: 'var(--radius-button)' }}
+                  className="group inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 border-2 border-primary text-primary font-bold rounded-2xl hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-base sm:text-lg"
+                  style={{ 
+                    borderRadius: 'var(--radius-button)',
+                    boxShadow: `
+                      0 4px 15px -3px rgba(0, 0, 0, 0.1),
+                      0 2px 4px -1px rgba(0, 0, 0, 0.06)
+                    `
+                  }}
                 >
-                  Mehr erfahren
+                  <span className="mr-2">Mehr erfahren</span>
+                  <MdInfo className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                 </Link>
               </div>
           </div>
         </div>
 
-          {/* Right Side - Rounded Image */}
+          {/* Right Side - 3D Rounded Image */}
           <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
-            <div className="relative w-[500px] h-[500px]">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl"></div>
-              <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl">
+            <div className="relative w-[500px] h-[500px] group">
+              {/* 3D Schatten-Layer */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl transform translate-y-2"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900/10 to-gray-900/20 rounded-full blur-2xl transform translate-y-4 scale-105"></div>
+              
+              {/* Haupt-Container mit 3D Effekt */}
+              <div className="relative w-full h-full rounded-full overflow-hidden transform group-hover:scale-105 transition-all duration-500"
+                   style={{
+                     boxShadow: `
+                       0 25px 50px -12px rgba(0, 0, 0, 0.25),
+                       0 0 0 1px rgba(255, 255, 255, 0.1),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.2)
+                     `
+                   }}>
                 <Image
                   src={content.hero.backgroundImages.desktop}
                   alt="Hero Split Image"
                   fill
                   priority
-                  quality={85}
-                  className="object-cover"
+                  quality={90}
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
+                
+                {/* Glassmorphism Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 rounded-full"></div>
+              </div>
+              
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl shadow-xl transform rotate-12 group-hover:rotate-0 transition-transform duration-500 flex items-center justify-center">
+                <MdStar className="w-8 h-8 text-white" />
+              </div>
+              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-xl shadow-lg transform -rotate-12 group-hover:rotate-0 transition-transform duration-500 flex items-center justify-center">
+                <MdCheck className="w-6 h-6 text-white" />
               </div>
             </div>
           </div>
