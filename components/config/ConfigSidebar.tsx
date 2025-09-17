@@ -157,14 +157,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     setDragOffset(0)
   }
 
-  // Apply CSS schemes when config is loaded
+  // Apply CSS schemes when config is loaded (only once)
   useEffect(() => {
     if (isConfigLoaded) {
       applyColorScheme(colorScheme)
       applyBorderRadiusScheme(designStyle)
       applyHeadingStyles(config)
     }
-  }, [isConfigLoaded, colorScheme, designStyle, config])
+  }, [isConfigLoaded, designStyle, config]) // colorScheme entfernt aus dependencies
 
   // Prevent body scroll when sidebar is open
   useEffect(() => {
@@ -269,6 +269,21 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const handleApply = (type: string, value: any) => {
     setLastApplied(type)
     setHasChanges(false)
+    
+    // Manuell die entsprechenden Styles anwenden
+    if (type === 'color') {
+      applyColorScheme(value)
+    } else if (type === 'hero') {
+      // Hero-Änderungen werden automatisch über den Context gehandhabt
+    } else if (type === 'mobile-nav') {
+      // Mobile Nav-Änderungen werden automatisch über den Context gehandhabt
+    } else if (type === 'feature') {
+      // Feature-Änderungen werden automatisch über den Context gehandhabt
+    } else if (type === 'style') {
+      // Style-Änderungen werden automatisch über den Context gehandhabt
+    } else if (type === 'variant') {
+      // Variant-Änderungen werden automatisch über den Context gehandhabt
+    }
     
     // Micro-Animation für Feedback
     setTimeout(() => {
