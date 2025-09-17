@@ -381,7 +381,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   className={`w-full flex items-center justify-between p-4 text-left transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-gray-300 ${
                     activeSection === section.id 
                       ? 'bg-gradient-to-r from-gray-100 via-gray-200/80 to-gray-100 shadow-lg border-l-3 border-gray-500 ring-1 ring-gray-300' 
-                      : 'hover:bg-gradient-to-r hover:from-gray-50 hover:via-gray-50 hover:to-gray-50 hover:shadow-sm'
+                      : 'bg-gradient-to-r from-gray-50 via-gray-100/50 to-gray-50 hover:from-gray-100 hover:via-gray-150/50 hover:to-gray-100 hover:shadow-sm'
                   }`}
                   aria-expanded={activeSection === section.id}
                   aria-controls={`section-${section.id}`}
@@ -390,7 +390,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
                       activeSection === section.id 
                         ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
-                        : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:scale-110'
+                        : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300 group-hover:scale-110'
                     }`}>
                       <section.icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
                     </div>
@@ -398,13 +398,13 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       <div className={`font-semibold transition-colors duration-300 ${
                         activeSection === section.id 
                           ? 'text-gray-800 font-bold' 
-                          : 'text-gray-900'
+                          : 'text-gray-700'
                       }`} style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
                       {(!isMobile || section.id === 'variant') && (
                         <div className={`text-[10px] leading-tight transition-colors duration-300 ${
                           activeSection === section.id 
                             ? 'text-gray-600' 
-                            : 'text-gray-400'
+                            : 'text-gray-500'
                         }`} style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
                       )}
                     </div>
