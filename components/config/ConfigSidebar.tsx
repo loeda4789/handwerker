@@ -385,7 +385,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   <div className="p-3 border-t border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-50">
                     {section.id === 'colors' && (
                       <div className="space-y-2">
-                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Farbschema</h3>
                         <div className="grid grid-cols-2 gap-3">
                           {Object.entries(colorSchemesData).map(([key, scheme]) => (
                             <button
@@ -423,7 +422,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'hero' && (
                       <div className="space-y-2">
-                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Hero-Typ</h3>
                         <div className="grid grid-cols-1 gap-2">
                           {heroTypes.map((hero) => (
                             <button
@@ -464,7 +462,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'mobile-nav' && (
                       <div className="space-y-2">
-                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Mobile Navigation</h3>
                         <div className="grid grid-cols-1 gap-2">
                           {mobileNavTypes.map((nav) => (
                             <button
@@ -505,7 +502,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'variant' && (
                       <div className="space-y-2">
-                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Paket wählen</h3>
                         <div className="space-y-2">
                           {bestellerVariants.map((variant) => (
                             <button
@@ -554,7 +550,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'features' && (
                       <div className="space-y-2">
-                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Features</h3>
                         <div className="grid grid-cols-1 gap-2">
                           {desktopFeatures.map((feature) => (
                             <button
@@ -593,7 +588,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'style' && (
                       <div className="space-y-2">
-                        <h3 className="text-sm font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Stil wählen</h3>
                         <div className="grid grid-cols-1 gap-2">
                           {UNIFIED_STYLES.map((style) => {
                             const Icon = getStylePackageIcon(style.id)
