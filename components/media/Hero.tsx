@@ -36,7 +36,11 @@ const formatHeroTitle = (tagline: string) => {
   
   // Für Elektriker
   if (tagline.includes('Elektro-Partner')) {
-    return "Meisterbetrieb für Elektroinstallationen & Photovoltaik."
+    return (
+      <>
+        Meisterbetrieb für <span style={{ color: 'var(--color-secondary)' }}>Elektroinstallationen & Photovoltaik</span>.
+      </>
+    )
   }
   
   // Für Dachdecker
@@ -249,7 +253,11 @@ function HeroSlider({ content }: HeroProps) {
     {
       desktop: content.hero.backgroundImages.desktop,
       mobile: content.hero.backgroundImages.mobile,
-      title: "Meisterbetrieb für Elektroinstallationen & Photovoltaik.",
+      title: (
+        <>
+          Meisterbetrieb für <span style={{ color: 'var(--color-secondary)' }}>Elektroinstallationen & Photovoltaik</span>.
+        </>
+      ),
       subtitle: "", // Keine Subline für Slider
       cta: "Jetzt Termin vereinbaren",
       ctaLink: "#kontakt"
