@@ -62,22 +62,19 @@ const heroTypes = [
     key: 'single', 
     label: 'Single', 
     icon: MdImage,
-    description: 'Klassisches Hero mit einem Bild',
-    preview: 'Ein großes Hintergrundbild mit Text und Button'
+    description: 'Klassisches Hero mit einem Bild'
   },
   { 
     key: 'slider', 
     label: 'Slider', 
     icon: MdViewCarousel,
-    description: 'Mehrere Slides mit automatischem Wechsel',
-    preview: 'Mehrere Bilder wechseln automatisch'
+    description: 'Mehrere Slides mit automatischem Wechsel'
   },
   { 
     key: 'split', 
     label: 'Split', 
     icon: MdViewQuilt,
-    description: 'Geteiltes Layout mit Content und Bild',
-    preview: 'Content links, Bild rechts'
+    description: 'Geteiltes Layout mit Content und Bild'
   }
 ]
 
@@ -365,7 +362,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               className={`p-4 rounded-2xl border-2 transition-all duration-300 group ${
                                 colorScheme === key 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
+                                  : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
                               <div className="flex items-center gap-3 mb-3">
@@ -411,23 +408,20 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
                                 heroType === hero.key 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
+                                  : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
                               <div className="flex items-center gap-4">
                                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                                   heroType === hero.key 
                                     ? 'bg-primary text-white shadow-lg' 
-                                    : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
+                                    : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                 }`}>
                                   <hero.icon className="w-6 h-6" />
                                 </div>
                                 <div className="flex-1">
                                   <div className="font-bold text-gray-900 text-lg mb-1">{hero.label}</div>
-                                  <div className="text-sm text-gray-600 mb-2">{hero.description}</div>
-                                  <div className="text-xs text-gray-500 bg-gray-50 px-3 py-1 rounded-lg inline-block">
-                                    {hero.preview}
-                                  </div>
+                                  <div className="text-sm text-gray-700">{hero.description}</div>
                                 </div>
                                 {heroType === hero.key && (
                                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
@@ -455,20 +449,20 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
                                 mobileType === nav.key 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
+                                  : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
                               <div className="flex items-center gap-4">
                                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                                   mobileType === nav.key 
                                     ? 'bg-primary text-white shadow-lg' 
-                                    : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
+                                    : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                 }`}>
                                   <nav.icon className="w-6 h-6" />
                                 </div>
                                 <div className="flex-1">
                                   <div className="font-bold text-gray-900 text-lg mb-1">{nav.label}</div>
-                                  <div className="text-sm text-gray-600">{nav.description}</div>
+                                  <div className="text-sm text-gray-700">{nav.description}</div>
                                 </div>
                                 {mobileType === nav.key && (
                                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
@@ -496,7 +490,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               className={`w-full p-5 rounded-2xl border-2 transition-all duration-300 text-left relative group ${
                                 variant.selected 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
+                                  : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
                               {variant.recommended && (
@@ -554,18 +548,18 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
                                   stylePackage === style.id 
                                     ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                    : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
+                                    : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                                 }`}
                               >
                                 <div className="flex items-center gap-4">
                                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                                    stylePackage === style.id ? 'bg-primary text-white shadow-lg' : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
+                                    stylePackage === style.id ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                   }`}>
                                     <Icon className="w-6 h-6" />
                                   </div>
                                   <div className="flex-1">
                                     <div className="font-bold text-gray-900 text-lg mb-1">{style.name}</div>
-                                    <div className="text-sm text-gray-600">{style.description}</div>
+                                    <div className="text-sm text-gray-700">{style.description}</div>
                                   </div>
                                   {stylePackage === style.id && (
                                     <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
