@@ -348,7 +348,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     {section.id === 'colors' && (
                       <div className="space-y-3">
                         <h3 className="font-semibold text-gray-900 mb-2">Farbschema</h3>
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-2 gap-4">
                           {Object.entries(colorSchemesData).map(([key, scheme]) => (
                             <button
                               key={key}
@@ -356,32 +356,27 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setColorScheme(key as any)
                                 handleApply('color', key)
                               }}
-                              className={`p-3 rounded-xl border-2 transition-all duration-300 group relative ${
+                              className={`p-4 rounded-xl border-2 transition-all duration-300 group text-center ${
                                 colorScheme === key 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
-                              <div className="flex items-center gap-2 mb-2">
+                              <div className="flex justify-center gap-3 mb-3">
                                 <div 
-                                  className="w-4 h-4 rounded-full border border-white shadow-sm"
+                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
                                   style={{ backgroundColor: scheme.primary }}
                                 />
                                 <div 
-                                  className="w-4 h-4 rounded-full border border-white shadow-sm"
+                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
                                   style={{ backgroundColor: scheme.secondary }}
                                 />
                                 <div 
-                                  className="w-4 h-4 rounded-full border border-white shadow-sm"
+                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
                                   style={{ backgroundColor: scheme.accent }}
                                 />
                               </div>
-                              <div className="text-sm font-semibold text-gray-900">{scheme.name}</div>
-                              {colorScheme === key && (
-                                <div className="absolute top-2 right-2 w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                                  <MdCheck className="w-3 h-3 text-white" />
-                                </div>
-                              )}
+                              <div className="text-base font-bold text-gray-900">{scheme.name}</div>
                             </button>
                           ))}
                         </div>
@@ -390,7 +385,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'hero' && (
                       <div className="space-y-3">
-                        <h3 className="font-semibold text-gray-900 mb-2">Hero-Typ</h3>
+                        <h3 className="font-bold text-gray-900 mb-3 text-lg">Hero-Typ</h3>
                         <div className="grid grid-cols-1 gap-3">
                           {heroTypes.map((hero) => (
                             <button
@@ -414,8 +409,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   <hero.icon className="w-4 h-4" />
                                 </div>
                                 <div className="flex-1">
-                                  <div className="font-semibold text-gray-900">{hero.label}</div>
-                                  <div className="text-xs text-gray-600">{hero.description}</div>
+                                  <div className="font-bold text-gray-900 text-lg">{hero.label}</div>
+                                  <div className="text-sm text-gray-600">{hero.description}</div>
                                 </div>
                                 {heroType === hero.key && (
                                   <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
@@ -431,7 +426,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'mobile-nav' && (
                       <div className="space-y-4">
-                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Mobile Navigation</h3>
+                        <h3 className="font-bold text-gray-900 mb-3 text-lg">Mobile Navigation</h3>
                         <div className="grid grid-cols-1 gap-4">
                           {mobileNavTypes.map((nav) => (
                             <button
@@ -456,7 +451,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 </div>
                                 <div className="flex-1">
                                   <div className="font-bold text-gray-900 text-lg mb-1">{nav.label}</div>
-                                  <div className="text-sm text-gray-700">{nav.description}</div>
+                                  <div className="text-base text-gray-700">{nav.description}</div>
                                 </div>
                                 {mobileType === nav.key && (
                                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
@@ -472,7 +467,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'variant' && (
                       <div className="space-y-4">
-                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Paket wählen</h3>
+                        <h3 className="font-bold text-gray-900 mb-3 text-lg">Paket wählen</h3>
                         <div className="space-y-4">
                           {bestellerVariants.map((variant) => (
                             <button
@@ -500,12 +495,12 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 </div>
                                 <div className="flex-1">
                                   <div className="flex items-center justify-between mb-2">
-                                    <div className="font-bold text-gray-900 text-lg">{variant.name}</div>
-                                    <div className="text-xl font-bold text-primary">
-                                      {variant.price}<span className="text-sm font-normal text-gray-600">{variant.period}</span>
+                                    <div className="font-bold text-gray-900 text-xl">{variant.name}</div>
+                                    <div className="text-2xl font-bold text-primary">
+                                      {variant.price}<span className="text-base font-normal text-gray-600">{variant.period}</span>
                                     </div>
                                   </div>
-                                  <div className="text-sm text-gray-600 mb-3">{variant.description}</div>
+                                  <div className="text-base text-gray-600 mb-3">{variant.description}</div>
                                   <div className="flex flex-wrap gap-2">
                                     {variant.features.map((feature, index) => (
                                       <span key={index} className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-lg font-medium">
@@ -528,7 +523,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'style' && (
                       <div className="space-y-4">
-                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Stil wählen</h3>
+                        <h3 className="font-bold text-gray-900 mb-3 text-lg">Stil wählen</h3>
                         <div className="grid grid-cols-1 gap-4">
                           {UNIFIED_STYLES.map((style) => {
                             const Icon = getStylePackageIcon(style.id)
@@ -552,8 +547,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                     <Icon className="w-6 h-6" />
                                   </div>
                                   <div className="flex-1">
-                                    <div className="font-bold text-gray-900 text-lg mb-1">{style.name}</div>
-                                    <div className="text-sm text-gray-700">{style.description}</div>
+                                    <div className="font-bold text-gray-900 text-xl mb-1">{style.name}</div>
+                                    <div className="text-base text-gray-700">{style.description}</div>
                                   </div>
                                   {stylePackage === style.id && (
                                     <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
