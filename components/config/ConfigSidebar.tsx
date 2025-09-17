@@ -56,14 +56,13 @@ const getStylePackageIcon = (packageId: string) => {
   }
 }
 
-// Hero-Varianten mit Thumbnails
+// Hero-Varianten mit AI-Style Icons
 const heroTypes = [
   { 
     key: 'single', 
     label: 'Single', 
     icon: MdImage,
     description: 'Klassisches Hero mit einem Bild',
-    thumbnail: '🖼️',
     preview: 'Ein großes Hintergrundbild mit Text und Button'
   },
   { 
@@ -71,7 +70,6 @@ const heroTypes = [
     label: 'Slider', 
     icon: MdViewCarousel,
     description: 'Mehrere Slides mit automatischem Wechsel',
-    thumbnail: '🎠',
     preview: 'Mehrere Bilder wechseln automatisch'
   },
   { 
@@ -79,33 +77,29 @@ const heroTypes = [
     label: 'Split', 
     icon: MdViewQuilt,
     description: 'Geteiltes Layout mit Content und Bild',
-    thumbnail: '📱',
     preview: 'Content links, Bild rechts'
   }
 ]
 
-// Mobile Navigation Typen mit Icons
+// Mobile Navigation Typen mit AI-Style Icons
 const mobileNavTypes = [
   { 
     key: 'fullscreen', 
     label: 'Fullscreen', 
     icon: MdApps,
-    description: 'Vollbild-Navigation',
-    thumbnail: '📱'
+    description: 'Vollbild-Navigation'
   },
   { 
     key: 'sidebar', 
     label: 'Sidebar', 
     icon: MdMenu,
-    description: 'Seitliche Navigation',
-    thumbnail: '📋'
+    description: 'Seitliche Navigation'
   },
   { 
     key: 'dropdown', 
     label: 'Dropdown', 
     icon: MdExpandMore,
-    description: 'Dropdown-Menü',
-    thumbnail: '📂'
+    description: 'Dropdown-Menü'
   }
 ]
 
@@ -359,8 +353,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   <div className="p-4 border-t border-gray-200 bg-gray-50">
                     {section.id === 'colors' && (
                       <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900 mb-3">Farbschema wählen</h3>
-                        <div className="grid grid-cols-2 gap-3">
+                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Farbschema wählen</h3>
+                        <div className="grid grid-cols-2 gap-4">
                           {Object.entries(colorSchemesData).map(([key, scheme]) => (
                             <button
                               key={key}
@@ -368,28 +362,35 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setColorScheme(key as any)
                                 handleApply('color', key)
                               }}
-                              className={`p-3 rounded-xl border-2 transition-all ${
+                              className={`p-4 rounded-2xl border-2 transition-all duration-300 group ${
                                 colorScheme === key 
-                                  ? 'border-primary bg-primary/10' 
-                                  : 'border-gray-200 bg-white hover:border-gray-300'
+                                  ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                  : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
                               }`}
                             >
-                              <div className="flex items-center gap-2 mb-2">
+                              <div className="flex items-center gap-3 mb-3">
                                 <div 
-                                  className="w-4 h-4 rounded-full border border-gray-300"
+                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
                                   style={{ backgroundColor: scheme.primary }}
                                 />
                                 <div 
-                                  className="w-4 h-4 rounded-full border border-gray-300"
+                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
                                   style={{ backgroundColor: scheme.secondary }}
                                 />
                                 <div 
-                                  className="w-4 h-4 rounded-full border border-gray-300"
+                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
                                   style={{ backgroundColor: scheme.accent }}
                                 />
                               </div>
-                              <div className="text-sm font-medium text-gray-900">{scheme.name}</div>
-                              <div className="text-xs text-gray-500">{scheme.description}</div>
+                              <div className="text-sm font-bold text-gray-900 mb-1">{scheme.name}</div>
+                              <div className="text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-lg">
+                                {scheme.description}
+                              </div>
+                              {colorScheme === key && (
+                                <div className="absolute top-2 right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                                  <MdCheck className="w-4 h-4 text-white" />
+                                </div>
+                              )}
                             </button>
                           ))}
                         </div>
@@ -398,8 +399,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'hero' && (
                       <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900 mb-3">Hero-Typ wählen</h3>
-                        <div className="grid grid-cols-1 gap-3">
+                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Hero-Typ wählen</h3>
+                        <div className="grid grid-cols-1 gap-4">
                           {heroTypes.map((hero) => (
                             <button
                               key={hero.key}
@@ -407,21 +408,31 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setHeroType(hero.key as any)
                                 handleApply('hero', hero.key)
                               }}
-                              className={`p-4 rounded-xl border-2 transition-all text-left ${
+                              className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
                                 heroType === hero.key 
-                                  ? 'border-primary bg-primary/10' 
-                                  : 'border-gray-200 bg-white hover:border-gray-300'
+                                  ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                  : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
                               }`}
                             >
-                              <div className="flex items-center gap-3">
-                                <div className="text-2xl">{hero.thumbnail}</div>
+                              <div className="flex items-center gap-4">
+                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                  heroType === hero.key 
+                                    ? 'bg-primary text-white shadow-lg' 
+                                    : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
+                                }`}>
+                                  <hero.icon className="w-6 h-6" />
+                                </div>
                                 <div className="flex-1">
-                                  <div className="font-semibold text-gray-900">{hero.label}</div>
-                                  <div className="text-sm text-gray-500">{hero.description}</div>
-                                  <div className="text-xs text-gray-400 mt-1">{hero.preview}</div>
+                                  <div className="font-bold text-gray-900 text-lg mb-1">{hero.label}</div>
+                                  <div className="text-sm text-gray-600 mb-2">{hero.description}</div>
+                                  <div className="text-xs text-gray-500 bg-gray-50 px-3 py-1 rounded-lg inline-block">
+                                    {hero.preview}
+                                  </div>
                                 </div>
                                 {heroType === hero.key && (
-                                  <MdCheck className="w-5 h-5 text-primary" />
+                                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                    <MdCheck className="w-5 h-5 text-white" />
+                                  </div>
                                 )}
                               </div>
                             </button>
@@ -432,8 +443,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'mobile-nav' && (
                       <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900 mb-3">Mobile Navigation</h3>
-                        <div className="grid grid-cols-1 gap-3">
+                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Mobile Navigation</h3>
+                        <div className="grid grid-cols-1 gap-4">
                           {mobileNavTypes.map((nav) => (
                             <button
                               key={nav.key}
@@ -441,20 +452,28 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setMobileType(nav.key as any)
                                 handleApply('mobile-nav', nav.key)
                               }}
-                              className={`p-4 rounded-xl border-2 transition-all text-left ${
+                              className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
                                 mobileType === nav.key 
-                                  ? 'border-primary bg-primary/10' 
-                                  : 'border-gray-200 bg-white hover:border-gray-300'
+                                  ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                  : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
                               }`}
                             >
-                              <div className="flex items-center gap-3">
-                                <div className="text-2xl">{nav.thumbnail}</div>
+                              <div className="flex items-center gap-4">
+                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                  mobileType === nav.key 
+                                    ? 'bg-primary text-white shadow-lg' 
+                                    : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
+                                }`}>
+                                  <nav.icon className="w-6 h-6" />
+                                </div>
                                 <div className="flex-1">
-                                  <div className="font-semibold text-gray-900">{nav.label}</div>
-                                  <div className="text-sm text-gray-500">{nav.description}</div>
+                                  <div className="font-bold text-gray-900 text-lg mb-1">{nav.label}</div>
+                                  <div className="text-sm text-gray-600">{nav.description}</div>
                                 </div>
                                 {mobileType === nav.key && (
-                                  <MdCheck className="w-5 h-5 text-primary" />
+                                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                    <MdCheck className="w-5 h-5 text-white" />
+                                  </div>
                                 )}
                               </div>
                             </button>
@@ -465,8 +484,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'variant' && (
                       <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900 mb-3">Paket wählen</h3>
-                        <div className="space-y-3">
+                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Paket wählen</h3>
+                        <div className="space-y-4">
                           {bestellerVariants.map((variant) => (
                             <button
                               key={variant.id}
@@ -474,41 +493,43 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setVariant(variant.id as any)
                                 handleApply('variant', variant.id)
                               }}
-                              className={`w-full p-4 rounded-xl border-2 transition-all text-left relative ${
+                              className={`w-full p-5 rounded-2xl border-2 transition-all duration-300 text-left relative group ${
                                 variant.selected 
-                                  ? 'border-primary bg-primary/10' 
-                                  : 'border-gray-200 bg-white hover:border-gray-300'
+                                  ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                  : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
                               }`}
                             >
                               {variant.recommended && (
-                                <div className="absolute -top-2 -right-2 bg-primary text-white text-xs px-2 py-1 rounded-full font-semibold">
+                                <div className="absolute -top-2 -right-2 bg-primary text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">
                                   Empfohlen
                                 </div>
                               )}
-                              <div className="flex items-center gap-3">
-                                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                                  variant.selected ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'
+                              <div className="flex items-center gap-4">
+                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                  variant.selected ? 'bg-primary text-white shadow-lg' : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
                                 }`}>
-                                  <variant.icon className="w-5 h-5" />
+                                  <variant.icon className="w-6 h-6" />
                                 </div>
                                 <div className="flex-1">
-                                  <div className="flex items-center justify-between">
-                                    <div className="font-semibold text-gray-900">{variant.name}</div>
-                                    <div className="text-lg font-bold text-primary">
-                                      {variant.price}<span className="text-sm font-normal text-gray-500">{variant.period}</span>
+                                  <div className="flex items-center justify-between mb-2">
+                                    <div className="font-bold text-gray-900 text-lg">{variant.name}</div>
+                                    <div className="text-xl font-bold text-primary">
+                                      {variant.price}<span className="text-sm font-normal text-gray-600">{variant.period}</span>
                                     </div>
                                   </div>
-                                  <div className="text-sm text-gray-500 mt-1">{variant.description}</div>
-                                  <div className="flex flex-wrap gap-1 mt-2">
+                                  <div className="text-sm text-gray-600 mb-3">{variant.description}</div>
+                                  <div className="flex flex-wrap gap-2">
                                     {variant.features.map((feature, index) => (
-                                      <span key={index} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                                      <span key={index} className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-lg font-medium">
                                         {feature}
                                       </span>
                                     ))}
                                   </div>
                                 </div>
                                 {variant.selected && (
-                                  <MdCheck className="w-5 h-5 text-primary" />
+                                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                    <MdCheck className="w-5 h-5 text-white" />
+                                  </div>
                                 )}
                               </div>
                             </button>
@@ -519,8 +540,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'style' && (
                       <div className="space-y-4">
-                        <h3 className="font-semibold text-gray-900 mb-3">Stil wählen</h3>
-                        <div className="grid grid-cols-1 gap-3">
+                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Stil wählen</h3>
+                        <div className="grid grid-cols-1 gap-4">
                           {UNIFIED_STYLES.map((style) => {
                             const Icon = getStylePackageIcon(style.id)
                             return (
@@ -530,24 +551,26 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   setStylePackage(style.id as any)
                                   handleApply('style', style.id)
                                 }}
-                                className={`p-4 rounded-xl border-2 transition-all text-left ${
+                                className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
                                   stylePackage === style.id 
-                                    ? 'border-primary bg-primary/10' 
-                                    : 'border-gray-200 bg-white hover:border-gray-300'
+                                    ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                    : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
                                 }`}
                               >
-                                <div className="flex items-center gap-3">
-                                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                                    stylePackage === style.id ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'
+                                <div className="flex items-center gap-4">
+                                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                    stylePackage === style.id ? 'bg-primary text-white shadow-lg' : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
                                   }`}>
-                                    <Icon className="w-5 h-5" />
+                                    <Icon className="w-6 h-6" />
                                   </div>
                                   <div className="flex-1">
-                                    <div className="font-semibold text-gray-900">{style.name}</div>
-                                    <div className="text-sm text-gray-500">{style.description}</div>
+                                    <div className="font-bold text-gray-900 text-lg mb-1">{style.name}</div>
+                                    <div className="text-sm text-gray-600">{style.description}</div>
                                   </div>
                                   {stylePackage === style.id && (
-                                    <MdCheck className="w-5 h-5 text-primary" />
+                                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                      <MdCheck className="w-5 h-5 text-white" />
+                                    </div>
                                   )}
                                 </div>
                               </button>

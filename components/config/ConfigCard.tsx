@@ -19,23 +19,23 @@ export default function ConfigCard() {
   const currentStyle = UNIFIED_STYLES.find(style => style.id === (stylePackage as any)) || UNIFIED_STYLES[0]
   const currentColorScheme = colorSchemes[colorScheme as keyof typeof colorSchemes]
 
-  // Hero-Icons für Visualisierung
+  // Hero-Icons für AI-Style
   const getHeroIcon = (type: string) => {
     switch (type) {
-      case 'single': return '🖼️'
-      case 'slider': return '🎠'
-      case 'split': return '📱'
-      default: return '🖼️'
+      case 'single': return 'Single'
+      case 'slider': return 'Slider'
+      case 'split': return 'Split'
+      default: return 'Single'
     }
   }
 
-  // Variant-Icons
+  // Variant-Icons für AI-Style
   const getVariantIcon = (variant: string) => {
     switch (variant) {
-      case 'starter': return '🚀'
-      case 'professional': return '⭐'
-      case 'premium': return '💎'
-      default: return '🚀'
+      case 'starter': return 'Starter'
+      case 'professional': return 'Professional'
+      case 'premium': return 'Premium'
+      default: return 'Starter'
     }
   }
 
@@ -56,22 +56,28 @@ export default function ConfigCard() {
               <div className="font-bold text-gray-900 text-lg">
                 Website anpassen
               </div>
-              <div className="text-sm text-gray-600">
-                {currentStyle.name} • {currentColorScheme?.name} • {getVariantIcon(variant)}
+              <div className="text-sm text-gray-700 font-medium">
+                {currentStyle.name} • {currentColorScheme?.name}
+              </div>
+              <div className="text-xs text-gray-600 mt-1">
+                {getHeroIcon(heroType)} • {getVariantIcon(variant)}
               </div>
             </div>
-            <div className="flex flex-col gap-1">
-              <div className="flex gap-1">
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-2">
                 <div 
-                  className="w-3 h-3 rounded-full border border-gray-300"
+                  className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
                   style={{ backgroundColor: currentColorScheme?.primary }}
                 />
                 <div 
-                  className="w-3 h-3 rounded-full border border-gray-300"
+                  className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
                   style={{ backgroundColor: currentColorScheme?.secondary }}
                 />
+                <div 
+                  className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
+                  style={{ backgroundColor: currentColorScheme?.accent }}
+                />
               </div>
-              <div className="text-xs text-gray-500">{getHeroIcon(heroType)}</div>
             </div>
           </div>
         </button>
@@ -92,26 +98,27 @@ export default function ConfigCard() {
               <div className="font-bold text-gray-900 text-lg">
                 Website anpassen
               </div>
-              <div className="text-sm text-gray-600 mb-2">
+              <div className="text-sm text-gray-700 font-medium mb-2">
                 {currentStyle.name} • {currentColorScheme?.name}
               </div>
+              <div className="text-xs text-gray-600 mb-3">
+                {getHeroIcon(heroType)} • {getVariantIcon(variant)}
+              </div>
               <div className="flex items-center gap-2">
-                <div className="flex gap-1">
+                <div className="flex gap-2">
                   <div 
-                    className="w-3 h-3 rounded-full border border-gray-300"
+                    className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
                     style={{ backgroundColor: currentColorScheme?.primary }}
                   />
                   <div 
-                    className="w-3 h-3 rounded-full border border-gray-300"
+                    className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
                     style={{ backgroundColor: currentColorScheme?.secondary }}
                   />
                   <div 
-                    className="w-3 h-3 rounded-full border border-gray-300"
+                    className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
                     style={{ backgroundColor: currentColorScheme?.accent }}
                   />
                 </div>
-                <span className="text-lg">{getHeroIcon(heroType)}</span>
-                <span className="text-lg">{getVariantIcon(variant)}</span>
               </div>
             </div>
           </div>
