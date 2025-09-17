@@ -44,6 +44,7 @@ interface ConfigState {
 interface FeaturesState {
   promoBanner: boolean
   contactBar: boolean
+  sideContact: boolean
   notdienstAlert: boolean
   whatsappWidget: boolean
   callbackPopup: boolean
@@ -298,7 +299,7 @@ export default function HomePage() {
       } else if (key === 'designStyle' && value && !prev.colorScheme) {
         newConfig.colorExpanded = true
       } else if (key === 'colorScheme' && value) {
-        newConfig.packageExpanded = true
+        newConfig.featuresExpanded = true
       }
       
       return newConfig
@@ -800,44 +801,8 @@ export default function HomePage() {
                     </div>
                   )}
 
-                  {/* Schritt 3: Paket-Auswahl */}
-                  {config.designStyle && (
-                    <div className="border border-gray-200 dark:border-gray-600 mb-4 md:mb-6 transition-all duration-500 animate-in slide-in-from-top-2"
-                      style={{ borderRadius: 'var(--radius-card)' }}>
-                      <button
-                        onClick={() => setConfig(prev => ({ ...prev, packageExpanded: !prev.packageExpanded }))}
-                        className="w-full p-4 md:p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
-                      >
-                        <div className="flex items-center">
-                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
-                            style={{ borderRadius: 'var(--radius-button)' }}>
-                            3
-                          </div>
-                          <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
-                            Paket wählen
-                          </h2>
-                        </div>
-                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.packageExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                      </button>
-                      
-                      {config.packageExpanded && (
-                        <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
-                          <PackageSelection onPackageSelect={(packageId) => {
-                            console.log('Selected package:', packageId)
-                            // Automatisch das nächste Akkordeon (Features) öffnen
-                            setTimeout(() => {
-                              setConfig(prev => ({ ...prev, featuresExpanded: true, packageExpanded: false }))
-                            }, 300)
-                          }} />
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Schritt 4: Features */}
-                  {config.packageExpanded && (
+                  {/* Schritt 3: Features */}
+                  {config.colorScheme && (
                     <div className="border border-gray-200 dark:border-gray-600 mb-4 md:mb-6 transition-all duration-500 animate-in slide-in-from-top-2"
                       style={{ borderRadius: 'var(--radius-card)' }}>
                       <button
@@ -879,6 +844,16 @@ export default function HomePage() {
                                 icon: (
                                   <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                  </svg>
+                                )
+                              },
+                              { 
+                                key: 'sideContact', 
+                                name: 'Seitenkontakt', 
+                                desc: 'Floating Kontakt-Button am rechten Bildschirmrand für schnelle Anfragen',
+                                icon: (
+                                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
                                   </svg>
                                 )
                               },
@@ -945,7 +920,13 @@ export default function HomePage() {
                             ].map((feature) => (
                               <button
                                 key={feature.key}
-                                onClick={() => toggleFeature(feature.key as keyof typeof contextFeatures)}
+                                onClick={() => {
+                                  toggleFeature(feature.key as keyof typeof contextFeatures)
+                                  // Automatisch Paket-Akkordeon öffnen nach Feature-Auswahl
+                                  setTimeout(() => {
+                                    setConfig(prev => ({ ...prev, packageExpanded: true, featuresExpanded: false }))
+                                  }, 300)
+                                }}
                                 className={`group p-3 md:p-6 border-2 transition-all duration-500 text-center transform hover:scale-105 min-h-[120px] md:min-h-auto ${
                                   contextFeatures[feature.key as keyof typeof contextFeatures]
                                     ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 shadow-xl scale-105'
@@ -971,6 +952,38 @@ export default function HomePage() {
                     </div>
                   )}
 
+                  {/* Schritt 4: Paket-Auswahl */}
+                  {config.featuresExpanded && (
+                    <div className="border border-gray-200 dark:border-gray-600 mb-4 md:mb-6 transition-all duration-500 animate-in slide-in-from-top-2"
+                      style={{ borderRadius: 'var(--radius-card)' }}>
+                      <button
+                        onClick={() => setConfig(prev => ({ ...prev, packageExpanded: !prev.packageExpanded }))}
+                        className="w-full p-4 md:p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                      >
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
+                            style={{ borderRadius: 'var(--radius-button)' }}>
+                            4
+                          </div>
+                          <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
+                            Paket wählen
+                          </h2>
+                        </div>
+                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.packageExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </button>
+                      
+                      {config.packageExpanded && (
+                        <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
+                          <PackageSelection onPackageSelect={(packageId) => {
+                            console.log('Selected package:', packageId)
+                            // Hier kann die Paket-Auswahl verarbeitet werden
+                          }} />
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                 </div>
 
