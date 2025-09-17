@@ -480,8 +480,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               }`}
                             >
                               {isMobile ? (
-                                // Mobile Layout: Icon oben, Text darunter
-                                <div className="flex flex-col items-center text-center gap-1">
+                                // Mobile Layout: Icon oben, Text darunter, Haken rechts
+                                <div className="flex flex-col items-center text-center gap-1 relative">
                                   <div className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 ${
                                     heroType === hero.key 
                                       ? 'bg-primary text-white shadow-lg' 
@@ -491,7 +491,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   </div>
                                   <div className="text-xs font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{hero.label}</div>
                                   {heroType === hero.key && (
-                                    <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                    <div className="absolute top-0 right-0 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
                                       <MdCheck className="w-2 h-2 text-white" />
                                     </div>
                                   )}
@@ -540,8 +540,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               }`}
                             >
                               {isMobile ? (
-                                // Mobile Layout: Icon oben, Text darunter
-                                <div className="flex flex-col items-center text-center gap-1">
+                                // Mobile Layout: Icon oben, Text darunter, Haken rechts
+                                <div className="flex flex-col items-center text-center gap-1 relative">
                                   <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
                                     mobileType === nav.key 
                                       ? 'bg-primary text-white shadow-lg' 
@@ -551,7 +551,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   </div>
                                   <div className="text-xs font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{nav.label}</div>
                                   {mobileType === nav.key && (
-                                    <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                    <div className="absolute top-0 right-0 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
                                       <MdCheck className="w-2 h-2 text-white" />
                                     </div>
                                   )}
@@ -664,8 +664,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               }`}
                             >
                               {isMobile ? (
-                                // Mobile Layout: Icon oben, Text darunter
-                                <div className="flex flex-col items-center text-center gap-1">
+                                // Mobile Layout: Icon oben, Text darunter, Haken rechts
+                                <div className="flex flex-col items-center text-center gap-1 relative">
                                   <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
                                     features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                   }`}>
@@ -673,7 +673,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   </div>
                                   <div className="text-xs font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{feature.label}</div>
                                   {features[feature.key as keyof typeof features] && (
-                                    <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                    <div className="absolute top-0 right-0 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
                                       <MdCheck className="w-2 h-2 text-white" />
                                     </div>
                                   )}
@@ -726,8 +726,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 }`}
                               >
                                 {isMobile ? (
-                                  // Mobile Layout: Icon oben, Text darunter
-                                  <div className="flex flex-col items-center text-center gap-1">
+                                  // Mobile Layout: Icon oben, Text darunter, Haken rechts
+                                  <div className="flex flex-col items-center text-center gap-1 relative">
                                     <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
                                       stylePackage === style.id ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                     }`}>
@@ -735,7 +735,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                     </div>
                                     <div className="text-xs font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{style.name}</div>
                                     {stylePackage === style.id && (
-                                      <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                      <div className="absolute top-0 right-0 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
                                         <MdCheck className="w-2 h-2 text-white" />
                                       </div>
                                     )}
