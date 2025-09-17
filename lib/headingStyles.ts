@@ -61,6 +61,35 @@ export const applyHeadingStyles = (config: AppConfig) => {
     root.style.setProperty('--heading-text-decoration-thickness', styles.textDecorationThickness || '0px')
     root.style.setProperty('--heading-text-decoration-style', 'solid')
     
-    // Background-Image-Eigenschaften wurden entfernt (nur noch solid underline)
+    // Direkt alle h2 Elemente anwenden (außer ConfigCard/ConfigSidebar)
+    const h2Elements = document.querySelectorAll('h2:not(.config-card h2):not(.config-sidebar h2)')
+    h2Elements.forEach((element) => {
+      const htmlElement = element as HTMLElement
+      if (styles.textDecoration === 'none') {
+        htmlElement.style.textDecoration = 'none'
+        htmlElement.style.textDecorationColor = 'transparent'
+        htmlElement.style.textDecorationThickness = '0px'
+      } else {
+        htmlElement.style.textDecoration = styles.textDecoration
+        htmlElement.style.textDecorationColor = styles.textDecorationColor || 'transparent'
+        htmlElement.style.textDecorationThickness = styles.textDecorationThickness || '0px'
+        htmlElement.style.textDecorationStyle = 'solid'
+      }
+    })
+    
+    // Font-Style direkt anwenden
+    const { style } = config.headings
+    if (style && style !== 'none') {
+      // data-style Attribut am body setzen
+      document.body.setAttribute('data-style', style)
+      
+      // Alle Headlines direkt aktualisieren
+      const allHeadlines = document.querySelectorAll('h1, h2, h3, h4, h5, h6:not(.config-card h1, .config-card h2, .config-card h3, .config-card h4, .config-card h5, .config-card h6, .config-sidebar h1, .config-sidebar h2, .config-sidebar h3, .config-sidebar h4, .config-sidebar h5, .config-sidebar h6)')
+      allHeadlines.forEach((element) => {
+        const htmlElement = element as HTMLElement
+        // Font-Family wird über CSS-Variablen gesteuert, aber wir können es auch direkt setzen
+        htmlElement.style.fontFamily = 'var(--font-heading)'
+      })
+    }
   }
 }
