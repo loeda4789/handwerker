@@ -297,6 +297,8 @@ export default function HomePage() {
         newConfig.designExpanded = true
       } else if (key === 'designStyle' && value && !prev.colorScheme) {
         newConfig.colorExpanded = true
+      } else if (key === 'colorScheme' && value) {
+        newConfig.packageExpanded = true
       }
       
       return newConfig
@@ -798,8 +800,44 @@ export default function HomePage() {
                     </div>
                   )}
 
+                  {/* Schritt 3: Paket-Auswahl */}
+                  {config.designStyle && (
+                    <div className="border border-gray-200 dark:border-gray-600 mb-4 md:mb-6 transition-all duration-500 animate-in slide-in-from-top-2"
+                      style={{ borderRadius: 'var(--radius-card)' }}>
+                      <button
+                        onClick={() => setConfig(prev => ({ ...prev, packageExpanded: !prev.packageExpanded }))}
+                        className="w-full p-4 md:p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                      >
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
+                            style={{ borderRadius: 'var(--radius-button)' }}>
+                            3
+                          </div>
+                          <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
+                            Paket wählen
+                          </h2>
+                        </div>
+                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.packageExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </button>
+                      
+                      {config.packageExpanded && (
+                        <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
+                          <PackageSelection onPackageSelect={(packageId) => {
+                            console.log('Selected package:', packageId)
+                            // Automatisch das nächste Akkordeon (Features) öffnen
+                            setTimeout(() => {
+                              setConfig(prev => ({ ...prev, featuresExpanded: true, packageExpanded: false }))
+                            }, 300)
+                          }} />
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {/* Schritt 4: Features */}
-                  {config.colorScheme && (
+                  {config.packageExpanded && (
                     <div className="border border-gray-200 dark:border-gray-600 mb-4 md:mb-6 transition-all duration-500 animate-in slide-in-from-top-2"
                       style={{ borderRadius: 'var(--radius-card)' }}>
                       <button
@@ -933,38 +971,6 @@ export default function HomePage() {
                     </div>
                   )}
 
-                  {/* Schritt 5: Paket-Auswahl */}
-                  {config.colorScheme && (
-                    <div className="border border-gray-200 dark:border-gray-600 mb-4 md:mb-6 transition-all duration-500 animate-in slide-in-from-top-2"
-                      style={{ borderRadius: 'var(--radius-card)' }}>
-                      <button
-                        onClick={() => setConfig(prev => ({ ...prev, packageExpanded: !prev.packageExpanded }))}
-                        className="w-full p-4 md:p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
-                      >
-                        <div className="flex items-center">
-                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
-                            style={{ borderRadius: 'var(--radius-button)' }}>
-                            5
-                          </div>
-                          <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
-                            Paket wählen
-                          </h2>
-                        </div>
-                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.packageExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                      </button>
-                      
-                      {config.packageExpanded && (
-                        <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
-                          <PackageSelection onPackageSelect={(packageId) => {
-                            console.log('Selected package:', packageId)
-                            // Hier kann die Paket-Auswahl verarbeitet werden
-                          }} />
-                        </div>
-                      )}
-                    </div>
-                  )}
 
                 </div>
 
