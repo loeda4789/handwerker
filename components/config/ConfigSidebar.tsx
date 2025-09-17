@@ -20,7 +20,13 @@ import {
   MdDiamond as MdLuxury,
   MdBusinessCenter,
   MdLocalFireDepartment,
-  MdFlashOn
+  MdFlashOn,
+  MdInfo,
+  MdExpandMore,
+  MdExpandLess,
+  MdPhone,
+  MdMenu,
+  MdApps
 } from 'react-icons/md'
 import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 import { UNIFIED_STYLES, applyUnifiedStyle } from '@/lib/config/unifiedStyles'
@@ -50,6 +56,59 @@ const getStylePackageIcon = (packageId: string) => {
   }
 }
 
+// Hero-Varianten mit Thumbnails
+const heroTypes = [
+  { 
+    key: 'single', 
+    label: 'Single', 
+    icon: MdImage,
+    description: 'Klassisches Hero mit einem Bild',
+    thumbnail: '🖼️',
+    preview: 'Ein großes Hintergrundbild mit Text und Button'
+  },
+  { 
+    key: 'slider', 
+    label: 'Slider', 
+    icon: MdViewCarousel,
+    description: 'Mehrere Slides mit automatischem Wechsel',
+    thumbnail: '🎠',
+    preview: 'Mehrere Bilder wechseln automatisch'
+  },
+  { 
+    key: 'split', 
+    label: 'Split', 
+    icon: MdViewQuilt,
+    description: 'Geteiltes Layout mit Content und Bild',
+    thumbnail: '📱',
+    preview: 'Content links, Bild rechts'
+  }
+]
+
+// Mobile Navigation Typen mit Icons
+const mobileNavTypes = [
+  { 
+    key: 'fullscreen', 
+    label: 'Fullscreen', 
+    icon: MdApps,
+    description: 'Vollbild-Navigation',
+    thumbnail: '📱'
+  },
+  { 
+    key: 'sidebar', 
+    label: 'Sidebar', 
+    icon: MdMenu,
+    description: 'Seitliche Navigation',
+    thumbnail: '📋'
+  },
+  { 
+    key: 'dropdown', 
+    label: 'Dropdown', 
+    icon: MdExpandMore,
+    description: 'Dropdown-Menü',
+    thumbnail: '📂'
+  }
+]
+
 export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { config, isConfigLoaded, updateConfig } = useAppConfig()
   const { mode: siteMode, design: designStyle, variant, mobileType, setMode: setSiteMode, setVariant, setMobileType } = useLayoutConfig()
@@ -59,15 +118,15 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { underline: headingUnderline, style: headingStyle, color: headingColor, setUnderline: setHeadingUnderline, setStyle: setHeadingStyle, setColor: setHeadingColor } = useHeadingsConfig()
   const { package: stylePackage, fontFamily, badgeStyle, spacing, setPackage: setStylePackage, setFontFamily, setBadgeStyle, setSpacing } = useStyleConfig()
   
-  
-  // Debug-Log für stylePackage
-  
   const [isMobile, setIsMobile] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const [startY, setStartY] = useState(0)
   const [currentY, setCurrentY] = useState(0)
   const [dragOffset, setDragOffset] = useState(0)
   const [isAdvancedConfigOpen, setIsAdvancedConfigOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState<string | null>('colors')
+  const [lastApplied, setLastApplied] = useState<string | null>(null)
+  const [hasChanges, setHasChanges] = useState(false)
 
   // Check if mobile
   useEffect(() => {
@@ -119,7 +178,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   // Prevent body scroll when sidebar is open
   useEffect(() => {
     if (isOpen) {
-      // Store original overflow value
       const originalOverflow = document.body.style.overflow
       document.body.style.overflow = 'hidden'
       
@@ -131,9 +189,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
   if (!isOpen) return null
 
-  // Debug: Aktuelle Variante
-  
-  // Besteller-Varianten - Einheitliche Farben
+  // Besteller-Varianten mit "Empfohlen" Badge
   const bestellerVariants = [
     {
       id: 'starter',
@@ -144,7 +200,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       features: ['One-Page Layout', 'Basis-Features', 'Mobile optimiert'],
       icon: MdBusiness,
       color: 'bg-gray-50 border-gray-200',
-      selected: variant === 'starter'
+      selected: variant === 'starter',
+      recommended: false
     },
     {
       id: 'professional',
@@ -154,8 +211,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       description: 'One-Page mit Leistungssektor',
       features: ['One-Page Layout', 'Leistungssektor', 'Alle Features'],
       icon: MdTrendingUp,
-      color: 'bg-gray-50 border-gray-200', // Einheitliche Farbe wie Starter
-      selected: variant === 'professional'
+      color: 'bg-blue-50 border-blue-200',
+      selected: variant === 'professional',
+      recommended: true // Empfohlen
     },
     {
       id: 'premium',
@@ -165,30 +223,66 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       description: 'Multi-Page Website für anspruchsvolle Projekte',
       features: ['Multi-Page Layout', 'Alle Unterseiten', 'Vollständig anpassbar'],
       icon: MdDiamond,
-      color: 'bg-gray-50 border-gray-200', // Einheitliche Farbe wie Starter
-      selected: variant === 'premium'
+      color: 'bg-gray-50 border-gray-200',
+      selected: variant === 'premium',
+      recommended: false
     }
   ]
-
-
-  const heroTypes = [
-    { key: 'single', label: 'Single', icon: MdImage },
-    { key: 'slider', label: 'Slider', icon: MdViewCarousel },
-    // { key: 'video', label: 'Video', icon: MdCall }, // TEMPORÄR DEAKTIVIERT - siehe CONFIGURATION_DOCS.md
-    { key: 'split', label: 'Split', icon: MdViewQuilt }
-  ]
-
-
 
   const desktopFeatures = [
     { key: 'contactBar', label: 'Kontakt-Leiste', icon: MdCall },
     { key: 'sideContact', label: 'Seiten-Kontakt', icon: MdCall }
   ]
 
-  const mobileFeatures: Array<{ key: string; label: string; icon: any }> = [
-    // Hier können später mobile-spezifische Features hinzugefügt werden
+  // Accordion-Sektionen
+  const sections = [
+    {
+      id: 'colors',
+      title: 'Farbschema',
+      icon: MdPalette,
+      description: 'Wählen Sie Ihr Farbschema'
+    },
+    {
+      id: 'hero',
+      title: 'Hero-Typ',
+      icon: MdImage,
+      description: 'Art der Hauptsektion'
+    },
+    ...(isMobile ? [{
+      id: 'mobile-nav',
+      title: 'Mobile Navigation',
+      icon: MdPhone,
+      description: 'Navigation auf mobilen Geräten'
+    }] : []),
+    {
+      id: 'variant',
+      title: 'Paket',
+      icon: MdStar,
+      description: 'Wählen Sie Ihr Paket'
+    },
+    {
+      id: 'style',
+      title: 'Stil',
+      icon: MdBrush,
+      description: 'Design und Schriftarten'
+    }
   ]
 
+  // Anwenden-Funktion mit Feedback
+  const handleApply = (type: string, value: any) => {
+    setLastApplied(type)
+    setHasChanges(false)
+    
+    // Micro-Animation für Feedback
+    setTimeout(() => {
+      setLastApplied(null)
+    }, 2000)
+  }
+
+  // Sektion-Toggle
+  const toggleSection = (sectionId: string) => {
+    setActiveSection(activeSection === sectionId ? null : sectionId)
+  }
 
   return (
     <>
@@ -200,465 +294,305 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       
       {/* Desktop Sidebar / Mobile Bottom Card */}
       <div 
-        className={`
-          fixed bg-white shadow-xl z-50 transform transition-all duration-300 ease-in-out flex flex-col
-          ${isMobile 
-            ? `bottom-0 left-0 right-0 h-[85vh] ${isOpen ? 'translate-y-0' : 'translate-y-full'}`
-            : `top-0 right-0 h-full w-96 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`
-          }
-          ${isDragging ? 'transition-none' : ''}
-        `}
-        style={{ 
-          borderRadius: isMobile ? '20px 20px 0 0' : '0px',
-          transform: isMobile && isDragging ? `translateY(${dragOffset}px)` : undefined
+        className={`fixed z-50 transition-all duration-300 ease-out ${
+          isMobile 
+            ? `bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl ${
+                isDragging ? 'transform translate-y-0' : 'transform translate-y-0'
+              }` 
+            : 'top-0 right-0 w-96 h-full bg-white shadow-2xl'
+        }`}
+        style={{
+          transform: isMobile && isDragging ? `translateY(${dragOffset}px)` : 'translateY(0)',
+          paddingBottom: isMobile ? 'env(safe-area-inset-bottom)' : '0'
         }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Mobile Drag Handle */}
-        {isMobile && (
-          <div className="flex justify-center py-3 border-b border-gray-100 flex-shrink-0">
-            <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
-          </div>
-        )}
-
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-100 flex-shrink-0">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gray-900 flex items-center justify-center rounded-full">
+            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
               <MdSettings className="w-5 h-5 text-white" />
             </div>
-            <h2 className="text-lg font-semibold text-gray-900">
-              Ihre Website anpassen
-            </h2>
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">Website anpassen</h2>
+              <p className="text-sm text-gray-500">Farben, Stil und mehr</p>
+            </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-50 transition-colors rounded-full"
+            className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-colors"
           >
-            <MdClose className="w-5 h-5 text-gray-400" />
+            <MdClose className="w-6 h-6" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-8 space-y-12 pb-0">
-          
-          {/* Varianten */}
-          <div className="space-y-4">
-            <div className="mb-2">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-5 h-5 bg-gray-100 flex items-center justify-center rounded-full">
-                  <MdStar className="w-3 h-3 text-gray-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Varianten
-                </h3>
-                <CompactInfo content="Wählen Sie zwischen Starter (One-Page), Professional (One-Page mit erweiterten Features) oder Premium (Multi-Page mit allen Unterseiten)." />
-              </div>
-            </div>
-            <div className="space-y-3">
-              {bestellerVariants.map((variant) => (
+        <div className={`${isMobile ? 'max-h-[70vh]' : 'h-full'} overflow-y-auto`}>
+          <div className="p-6 space-y-4">
+            {/* Accordion-Sektionen */}
+            {sections.map((section) => (
+              <div key={section.id} className="border border-gray-200 rounded-xl overflow-hidden">
                 <button
-                  key={variant.id}
-                  onClick={() => {
-                    if (variant.id === 'starter') {
-                      // Starter: One-Page
-                      setSiteMode('onepage')
-                      setVariant('starter')
-                    } else if (variant.id === 'professional') {
-                      // Professionell: One-Page mit erweiterten Features
-                      setSiteMode('onepage')
-                      setVariant('professional')
-                    } else if (variant.id === 'premium') {
-                      // Premium: Multi-Page
-                      setSiteMode('multipage')
-                      setVariant('premium')
-                    }
-                  }}
-                  className={`w-full p-4 border-2 transition-all text-left h-20 flex items-center config-sidebar-variant ${
-                    variant.selected
-                      ? 'border-gray-900 bg-gray-50'
-                      : `${variant.color} hover:border-gray-300`
-                  }`}
+                  onClick={() => toggleSection(section.id)}
+                  className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
                 >
-                  <div className="flex items-center gap-3 w-full">
-                    <div className={`w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0 ${
-                      variant.selected ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'
-                    }`}>
-                      <variant.icon className="w-5 h-5" />
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <section.icon className="w-4 h-4 text-gray-600" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <h4 className="text-sm font-semibold text-gray-900">{variant.name}</h4>
-                        <div className="text-right">
-                          <span className="text-base font-bold text-gray-900">{variant.price}</span>
-                          <span className="text-xs text-gray-500 ml-1">{variant.period}</span>
+                    <div>
+                      <div className="font-semibold text-gray-900">{section.title}</div>
+                      <div className="text-sm text-gray-500">{section.description}</div>
+                    </div>
+                  </div>
+                  {activeSection === section.id ? (
+                    <MdExpandLess className="w-5 h-5 text-gray-400" />
+                  ) : (
+                    <MdExpandMore className="w-5 h-5 text-gray-400" />
+                  )}
+                </button>
+
+                {/* Sektion-Inhalt */}
+                {activeSection === section.id && (
+                  <div className="p-4 border-t border-gray-200 bg-gray-50">
+                    {section.id === 'colors' && (
+                      <div className="space-y-4">
+                        <h3 className="font-semibold text-gray-900 mb-3">Farbschema wählen</h3>
+                        <div className="grid grid-cols-2 gap-3">
+                          {Object.entries(colorSchemesData).map(([key, scheme]) => (
+                            <button
+                              key={key}
+                              onClick={() => {
+                                setColorScheme(key as any)
+                                handleApply('color', key)
+                              }}
+                              className={`p-3 rounded-xl border-2 transition-all ${
+                                colorScheme === key 
+                                  ? 'border-primary bg-primary/10' 
+                                  : 'border-gray-200 bg-white hover:border-gray-300'
+                              }`}
+                            >
+                              <div className="flex items-center gap-2 mb-2">
+                                <div 
+                                  className="w-4 h-4 rounded-full border border-gray-300"
+                                  style={{ backgroundColor: scheme.primary }}
+                                />
+                                <div 
+                                  className="w-4 h-4 rounded-full border border-gray-300"
+                                  style={{ backgroundColor: scheme.secondary }}
+                                />
+                                <div 
+                                  className="w-4 h-4 rounded-full border border-gray-300"
+                                  style={{ backgroundColor: scheme.accent }}
+                                />
+                              </div>
+                              <div className="text-sm font-medium text-gray-900">{scheme.name}</div>
+                              <div className="text-xs text-gray-500">{scheme.description}</div>
+                            </button>
+                          ))}
                         </div>
                       </div>
-                      <p className="text-xs text-gray-600 mt-1 line-clamp-1">{variant.description}</p>
-                    </div>
-                    {variant.selected && (
-                      <MdCheck className="w-5 h-5 text-gray-900 flex-shrink-0" />
+                    )}
+
+                    {section.id === 'hero' && (
+                      <div className="space-y-4">
+                        <h3 className="font-semibold text-gray-900 mb-3">Hero-Typ wählen</h3>
+                        <div className="grid grid-cols-1 gap-3">
+                          {heroTypes.map((hero) => (
+                            <button
+                              key={hero.key}
+                              onClick={() => {
+                                setHeroType(hero.key as any)
+                                handleApply('hero', hero.key)
+                              }}
+                              className={`p-4 rounded-xl border-2 transition-all text-left ${
+                                heroType === hero.key 
+                                  ? 'border-primary bg-primary/10' 
+                                  : 'border-gray-200 bg-white hover:border-gray-300'
+                              }`}
+                            >
+                              <div className="flex items-center gap-3">
+                                <div className="text-2xl">{hero.thumbnail}</div>
+                                <div className="flex-1">
+                                  <div className="font-semibold text-gray-900">{hero.label}</div>
+                                  <div className="text-sm text-gray-500">{hero.description}</div>
+                                  <div className="text-xs text-gray-400 mt-1">{hero.preview}</div>
+                                </div>
+                                {heroType === hero.key && (
+                                  <MdCheck className="w-5 h-5 text-primary" />
+                                )}
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {section.id === 'mobile-nav' && (
+                      <div className="space-y-4">
+                        <h3 className="font-semibold text-gray-900 mb-3">Mobile Navigation</h3>
+                        <div className="grid grid-cols-1 gap-3">
+                          {mobileNavTypes.map((nav) => (
+                            <button
+                              key={nav.key}
+                              onClick={() => {
+                                setMobileType(nav.key as any)
+                                handleApply('mobile-nav', nav.key)
+                              }}
+                              className={`p-4 rounded-xl border-2 transition-all text-left ${
+                                mobileType === nav.key 
+                                  ? 'border-primary bg-primary/10' 
+                                  : 'border-gray-200 bg-white hover:border-gray-300'
+                              }`}
+                            >
+                              <div className="flex items-center gap-3">
+                                <div className="text-2xl">{nav.thumbnail}</div>
+                                <div className="flex-1">
+                                  <div className="font-semibold text-gray-900">{nav.label}</div>
+                                  <div className="text-sm text-gray-500">{nav.description}</div>
+                                </div>
+                                {mobileType === nav.key && (
+                                  <MdCheck className="w-5 h-5 text-primary" />
+                                )}
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {section.id === 'variant' && (
+                      <div className="space-y-4">
+                        <h3 className="font-semibold text-gray-900 mb-3">Paket wählen</h3>
+                        <div className="space-y-3">
+                          {bestellerVariants.map((variant) => (
+                            <button
+                              key={variant.id}
+                              onClick={() => {
+                                setVariant(variant.id as any)
+                                handleApply('variant', variant.id)
+                              }}
+                              className={`w-full p-4 rounded-xl border-2 transition-all text-left relative ${
+                                variant.selected 
+                                  ? 'border-primary bg-primary/10' 
+                                  : 'border-gray-200 bg-white hover:border-gray-300'
+                              }`}
+                            >
+                              {variant.recommended && (
+                                <div className="absolute -top-2 -right-2 bg-primary text-white text-xs px-2 py-1 rounded-full font-semibold">
+                                  Empfohlen
+                                </div>
+                              )}
+                              <div className="flex items-center gap-3">
+                                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                                  variant.selected ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'
+                                }`}>
+                                  <variant.icon className="w-5 h-5" />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="flex items-center justify-between">
+                                    <div className="font-semibold text-gray-900">{variant.name}</div>
+                                    <div className="text-lg font-bold text-primary">
+                                      {variant.price}<span className="text-sm font-normal text-gray-500">{variant.period}</span>
+                                    </div>
+                                  </div>
+                                  <div className="text-sm text-gray-500 mt-1">{variant.description}</div>
+                                  <div className="flex flex-wrap gap-1 mt-2">
+                                    {variant.features.map((feature, index) => (
+                                      <span key={index} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                                        {feature}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                                {variant.selected && (
+                                  <MdCheck className="w-5 h-5 text-primary" />
+                                )}
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {section.id === 'style' && (
+                      <div className="space-y-4">
+                        <h3 className="font-semibold text-gray-900 mb-3">Stil wählen</h3>
+                        <div className="grid grid-cols-1 gap-3">
+                          {UNIFIED_STYLES.map((style) => {
+                            const Icon = getStylePackageIcon(style.id)
+                            return (
+                              <button
+                                key={style.id}
+                                onClick={() => {
+                                  setStylePackage(style.id as any)
+                                  handleApply('style', style.id)
+                                }}
+                                className={`p-4 rounded-xl border-2 transition-all text-left ${
+                                  stylePackage === style.id 
+                                    ? 'border-primary bg-primary/10' 
+                                    : 'border-gray-200 bg-white hover:border-gray-300'
+                                }`}
+                              >
+                                <div className="flex items-center gap-3">
+                                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                                    stylePackage === style.id ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'
+                                  }`}>
+                                    <Icon className="w-5 h-5" />
+                                  </div>
+                                  <div className="flex-1">
+                                    <div className="font-semibold text-gray-900">{style.name}</div>
+                                    <div className="text-sm text-gray-500">{style.description}</div>
+                                  </div>
+                                  {stylePackage === style.id && (
+                                    <MdCheck className="w-5 h-5 text-primary" />
+                                  )}
+                                </div>
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </div>
                     )}
                   </div>
-                </button>
-              ))}
-            </div>
+                )}
+              </div>
+            ))}
           </div>
+        </div>
 
-          {/* Weitere Konfiguration - Aufklappbarer Bereich */}
-          <div className="space-y-4">
-            <button
-              onClick={() => setIsAdvancedConfigOpen(!isAdvancedConfigOpen)}
-              className="w-full flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-                <span className="font-medium text-gray-900">Weitere Konfiguration</span>
+        {/* Sticky Anwenden-Button */}
+        <div className={`sticky bottom-0 bg-white border-t border-gray-200 p-4 ${
+          isMobile ? 'pb-safe' : ''
+        }`}>
+          <button
+            onClick={() => {
+              // Hier würde die Anwendung der Konfiguration stattfinden
+              handleApply('all', 'applied')
+            }}
+            className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
+              hasChanges 
+                ? 'bg-primary text-white hover:bg-primary/90' 
+                : 'bg-gray-100 text-gray-500 cursor-not-allowed'
+            }`}
+            disabled={!hasChanges}
+          >
+            {lastApplied ? (
+              <div className="flex items-center justify-center gap-2">
+                <MdCheck className="w-5 h-5" />
+                {lastApplied === 'color' && 'Farbschema angewendet'}
+                {lastApplied === 'hero' && 'Hero-Typ angewendet'}
+                {lastApplied === 'mobile-nav' && 'Navigation angewendet'}
+                {lastApplied === 'variant' && 'Paket angewendet'}
+                {lastApplied === 'style' && 'Stil angewendet'}
+                {lastApplied === 'all' && 'Alle Änderungen angewendet'}
               </div>
-              <svg 
-                className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
-                  isAdvancedConfigOpen ? 'rotate-180' : ''
-                }`} 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-
-            {/* Aufklappbarer Inhalt */}
-            {isAdvancedConfigOpen && (
-              <div className="space-y-8 animate-in slide-in-from-top duration-200">
-
-          {/* Stil-System */}
-          <div className="space-y-4">
-            <div className="mb-2">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
-                  <MdBrush className="w-4 h-4 text-gray-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Stil
-                </h3>
-                <CompactInfo content="Wählen Sie einen Stil - alle Design-Elemente (Schrift, Abstände, Badges, Animationen) passen sich automatisch an." />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-3">
-              {UNIFIED_STYLES.map((style) => {
-                const IconComponent = getStylePackageIcon(style.id)
-                return (
-                <button
-                  key={style.id}
-                  type="button"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    
-                    // Apply unified style using the centralized function
-                    const updatedConfig = applyUnifiedStyle(config, style.id)
-                    
-                    // Update all style-related settings FIRST
-                    setStylePackage(style.id as any)
-                    if (updatedConfig.style) {
-                      if (updatedConfig.style.fontFamily) {
-                        setFontFamily(updatedConfig.style.fontFamily)
-                      }
-                      if (updatedConfig.style.badgeStyle) {
-                        setBadgeStyle(updatedConfig.style.badgeStyle)
-                      }
-                      if (updatedConfig.style.spacing) {
-                        setSpacing(updatedConfig.style.spacing)
-                      }
-                    }
-                    
-                    if (updatedConfig.headings) {
-                      if (updatedConfig.headings.underline !== undefined) {
-                        setHeadingUnderline(updatedConfig.headings.underline)
-                      }
-                      if (updatedConfig.headings.style) {
-                        setHeadingStyle(updatedConfig.headings.style)
-                      }
-                      if (updatedConfig.headings.color) {
-                        setHeadingColor(updatedConfig.headings.color)
-                      }
-                    }
-                    
-                    // Update the configuration LAST
-                    updateConfig(updatedConfig)
-                    
-                    // Apply the updated configuration
-                    if (updatedConfig.layout) {
-                      if (updatedConfig.layout.design) {
-                        // Apply border radius scheme
-                        applyBorderRadiusScheme(updatedConfig.layout.design)
-                      }
-                    }
-                    
-                    if (updatedConfig.headings) {
-                      // Apply heading styles using the full config
-                      applyHeadingStyles(updatedConfig)
-                    }
-                  }}
-                  className={`flex items-center gap-3 p-3 border-2 transition-all config-sidebar-button ${
-                    stylePackage === style.id
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                    stylePackage === style.id ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}>
-                    <IconComponent className="w-4 h-4" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <div className="font-medium text-gray-900">{style.name}</div>
-                    <div className="text-sm text-gray-500">{style.description}</div>
-                  </div>
-                </button>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Farbschema */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
-                <MdPalette className="w-4 h-4 text-gray-600" />
-              </div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                Farbschema
-              </h3>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {Object.entries(colorSchemesData).map(([key, scheme]) => {
-                const colorSchemeKey = key as 'warm' | 'modern' | 'elegant' | 'nature'
-                const typedScheme = scheme as SimpleColorScheme
-                return (
-                  <button
-                    key={key}
-                    onClick={() => {
-                      console.log('🎨 Farbschema ausgewählt:', colorSchemeKey)
-                      setColorScheme(colorSchemeKey)
-                    }}
-                    className={`flex items-center gap-3 p-3 border-2 transition-all config-sidebar-button ${
-                      colorScheme === colorSchemeKey
-                        ? 'border-gray-900 bg-gray-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="flex gap-1">
-                      <div
-                        className="w-4 h-4 rounded-full"
-                        style={{ backgroundColor: typedScheme.secondary }}
-                      />
-                      <div
-                        className="w-4 h-4 rounded-full"
-                        style={{ backgroundColor: typedScheme.accent }}
-                      />
-                    </div>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Hero-Typ */}
-          <div className="space-y-4">
-            <div className="mb-2">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
-                  <MdImage className="w-4 h-4 text-gray-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Hero-Typ
-                </h3>
-                <CompactInfo content="Split: Bild links, Text rechts\nSingle: Vollbild mit Text überlagert\nSlider: Mehrere Bilder im Wechsel" />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-3">
-              {heroTypes.map((type) => (
-                <button
-                  key={type.key}
-                  onClick={() => setHeroType(type.key as any)}
-                  className={`flex items-center gap-3 p-3 border-2 transition-all config-sidebar-button ${
-                    heroType === type.key
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                    heroType === type.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}>
-                    <type.icon className="w-4 h-4" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <div className="font-medium text-gray-900">{type.label}</div>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-
-
-          {/* Desktop Features - Nur auf Desktop */}
-          <div className="hidden lg:block space-y-4">
-            <div className="mb-2">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
-                  <MdSettings className="w-4 h-4 text-gray-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Desktop Features
-                </h3>
-                <CompactInfo content="Features die nur auf Desktop-Geräten angezeigt werden:\n• Kontakt-Leiste: Feste Leiste am oberen Bildschirmrand\n• Seiten-Kontakt: Schwebender Kontakt-Button an der Seite" />
-              </div>
-            </div>
-            <div className="space-y-3">
-              {desktopFeatures.map((feature) => (
-                <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200 config-sidebar-feature">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-full">
-                      <feature.icon className="w-4 h-4 text-gray-600" />
-                    </div>
-                    <span className="text-sm font-medium text-gray-900">{feature.label}</span>
-                  </div>
-                  <button
-                    onClick={() => toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])}
-                    className={`relative inline-flex h-5 w-9 items-center transition-colors ${
-                      features[feature.key as keyof typeof features]
-                        ? 'bg-gray-900'
-                        : 'bg-gray-200'
-                    }`}
-                    style={{ borderRadius: '12px' }}
-                  >
-                    <span
-                      className={`inline-block h-3 w-3 transform bg-white transition-transform ${
-                        features[feature.key as keyof typeof features] ? 'translate-x-5' : 'translate-x-1'
-                      }`}
-                      style={{ borderRadius: '50%' }}
-                    />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile Features - Nur auf Mobile */}
-          {mobileFeatures.length > 0 && (
-            <div className="lg:hidden space-y-4">
-              <div className="mb-2">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
-                    <MdSettings className="w-4 h-4 text-gray-600" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                    Mobile Features
-                  </h3>
-                  <CompactInfo content="Features die nur auf mobilen Geräten angezeigt werden. Hier können zukünftig mobile-spezifische Funktionen hinzugefügt werden." />
-                </div>
-              </div>
-              <div className="space-y-3">
-                {mobileFeatures.map((feature) => (
-                  <div key={feature.key} className="flex items-center justify-between p-3 border border-gray-200 config-sidebar-feature">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-full">
-                        <feature.icon className="w-4 h-4 text-gray-600" />
-                      </div>
-                      <span className="text-sm font-medium text-gray-900">{feature.label}</span>
-                    </div>
-                    <button
-                      onClick={() => toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])}
-                      className={`relative inline-flex h-5 w-9 items-center transition-colors ${
-                        features[feature.key as keyof typeof features]
-                          ? 'bg-gray-900'
-                          : 'bg-gray-200'
-                      }`}
-                      style={{ borderRadius: '12px' }}
-                    >
-                      <span
-                        className={`inline-block h-3 w-3 transform bg-white transition-transform ${
-                          features[feature.key as keyof typeof features] ? 'translate-x-5' : 'translate-x-1'
-                        }`}
-                        style={{ borderRadius: '50%' }}
-                      />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Mobile Navigation - Nur auf Mobile */}
-          <div className="lg:hidden space-y-4">
-            <div className="mb-2">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 bg-gray-100 flex items-center justify-center rounded-full">
-                  <MdSettings className="w-4 h-4 text-gray-600" />
-                </div>
-                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Mobile Navigation
-                </h3>
-                <CompactInfo content="Wählen Sie den Typ der mobilen Navigation aus. Fullscreen öffnet das Menü über den gesamten Bildschirm, Sidebar öffnet es seitlich und Dropdown zeigt es als Dropdown-Menü." />
-              </div>
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { key: 'fullscreen', label: 'Fullscreen', icon: MdViewQuilt },
-                { key: 'sidebar', label: 'Sidebar', icon: MdViewQuilt },
-                { key: 'dropdown', label: 'Dropdown', icon: MdViewQuilt }
-              ].map((option) => (
-                <button
-                  key={option.key}
-                  onClick={() => setMobileType(option.key as 'fullscreen' | 'sidebar' | 'dropdown')}
-                  className={`flex flex-col items-center gap-2 p-3 border-2 transition-all config-sidebar-button ${
-                    mobileType === option.key
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                    mobileType === option.key ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
-                  }`}>
-                    <option.icon className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs font-medium text-gray-900 text-center">{option.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-
-          {/* Überschriften */}
-
-              </div>
+            ) : (
+              'Anwenden'
             )}
-          </div>
-
-          {/* Action Buttons - Fixed at bottom */}
-          <div className="p-6 border-t border-gray-200 bg-gray-50 space-y-3 flex-shrink-0">
-            {/* Anwenden Button */}
-            <button
-              onClick={onClose}
-              className="w-full py-3 px-6 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              style={{ borderRadius: 'var(--radius-button)' }}
-            >
-              <MdCheck className="w-5 h-5" />
-              Anwenden
-            </button>
-            
-            
-            <p className="text-xs text-gray-500 text-center">
-              Ihre Änderungen werden sofort angewendet
-            </p>
-          </div>
-
+          </button>
         </div>
       </div>
     </>
