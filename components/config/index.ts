@@ -2,3 +2,4 @@
 export { default as ConfigCard } from './ConfigCard'
 export { default as ConfigSidebar } from './ConfigSidebar'
 export { default as UrlParamsDebug } from './UrlParamsDebug'
+export { default as PackageSelection } from './PackageSelection'

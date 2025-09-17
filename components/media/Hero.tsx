@@ -517,49 +517,49 @@ function HeroSplit({ content }: HeroProps) {
   const subtitleClass = 'normal-case' // Alle Varianten verwenden normal-case
 
   return (
-    <section id="startseite" className="relative h-[95vh] lg:h-screen w-full overflow-hidden bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-6 lg:px-8 h-full">
+    <section id="startseite" className="relative h-[95vh] lg:h-screen w-full overflow-hidden bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4 lg:px-8 h-full">
         <div className="flex h-full items-center">
           {/* Left Side - Content */}
           <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start">
-            <div className="max-w-2xl">
-              <h1 className={`hero-title text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white ${titleClass}`}>
+            <div className="max-w-2xl w-full">
+              <h1 className={`hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 tracking-tight text-gray-900 dark:text-white ${titleClass}`}>
                 {formatHeroTitle(content.company.tagline)}
               </h1>
             
-              <p className={`text-xl md:text-2xl mb-6 text-gray-600 dark:text-gray-300 leading-relaxed ${subtitleClass}`}>
+              <p className={`text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 text-gray-600 dark:text-gray-300 leading-relaxed ${subtitleClass}`}>
                 {formatHeroText(content.company.tagline, cityName)}
               </p>
               
             
-            <div className="space-y-6 mb-10">
-              <div className="flex items-center space-x-4">
+            <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-10">
+              <div className="flex items-center space-x-3 sm:space-x-4">
                 <MdVerified 
-                  className="w-7 h-7"
+                  className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 flex-shrink-0"
                   style={{ color: 'var(--color-primary)' }}
                 />
-                <span className="text-lg text-gray-600 dark:text-gray-400">Meisterqualität seit Jahren</span>
+                <span className="text-base sm:text-lg text-gray-600 dark:text-gray-400">Meisterqualität seit Jahren</span>
               </div>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3 sm:space-x-4">
                 <MdAccessTime 
-                  className="w-7 h-7"
+                  className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 flex-shrink-0"
                   style={{ color: 'var(--color-primary)' }}
                 />
-                <span className="text-lg text-gray-600 dark:text-gray-400">24/7 Notdienst verfügbar</span>
+                <span className="text-base sm:text-lg text-gray-600 dark:text-gray-400">24/7 Notdienst verfügbar</span>
               </div>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3 sm:space-x-4">
                 <MdSupportAgent 
-                  className="w-7 h-7"
+                  className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 flex-shrink-0"
                   style={{ color: 'var(--color-primary)' }}
                 />
-                <span className="text-lg text-gray-600 dark:text-gray-400">Kostenlose Beratung</span>
+                <span className="text-base sm:text-lg text-gray-600 dark:text-gray-400">Kostenlose Beratung</span>
               </div>
             </div>
             
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   href="#kontakt"
-                  className="inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base"
                   data-cta="true"
                   style={{ 
                     backgroundColor: 'var(--color-secondary)',
@@ -576,7 +576,7 @@ function HeroSplit({ content }: HeroProps) {
                 </Link>
                 <Link
                   href="#ueber-uns"
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors duration-200"
+                  className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors duration-200 text-sm sm:text-base"
                   style={{ borderRadius: 'var(--radius-button)' }}
                 >
                   Mehr erfahren
@@ -603,18 +603,7 @@ function HeroSplit({ content }: HeroProps) {
             </div>
           </div>
 
-          {/* Mobile Background */}
-          <div className="absolute inset-0 lg:hidden -z-10">
-            <Image
-              src={content.hero.backgroundImages.mobile}
-              alt="Hero Split Mobile"
-              fill
-              priority
-              quality={85}
-              className="object-cover opacity-20"
-              sizes="100vw"
-            />
-          </div>
+          {/* Mobile: Kein Hintergrundbild - nur weißer Hintergrund */}
         </div>
       </div>
     </section>

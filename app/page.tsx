@@ -21,6 +21,7 @@ import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import UrlParamsDebug from '@/components/config/UrlParamsDebug'
+import { PackageSelection } from '@/components/config'
 import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
 import { useFeaturesConfig } from '@/contexts/AppConfigContext'
 
@@ -33,10 +34,11 @@ interface ConfigState {
   designExpanded: boolean
   colorExpanded: boolean
   featuresExpanded: boolean
+  packageExpanded: boolean
   // Adaptive Modi-System
   isFirstVisit: boolean
   quickEditMode: boolean
-  activeTab: 'layout' | 'design' | 'color' | 'features'
+  activeTab: 'layout' | 'design' | 'color' | 'features' | 'package'
 }
 
 interface FeaturesState {
@@ -96,6 +98,7 @@ export default function HomePage() {
     designExpanded: false,
     colorExpanded: false,
     featuresExpanded: false,
+    packageExpanded: false,
     isFirstVisit: true,
     quickEditMode: false,
     activeTab: 'layout'
@@ -151,7 +154,8 @@ export default function HomePage() {
         // In Quick-Edit mode, don't auto-expand sections
         designExpanded: false,
         colorExpanded: false,
-        featuresExpanded: false
+        featuresExpanded: false,
+        packageExpanded: false
       }))
     } else {
       // New user - setup mode
@@ -924,6 +928,39 @@ export default function HomePage() {
                               </button>
                             ))}
                           </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Schritt 5: Paket-Auswahl */}
+                  {config.colorScheme && (
+                    <div className="border border-gray-200 dark:border-gray-600 mb-4 md:mb-6 transition-all duration-500 animate-in slide-in-from-top-2"
+                      style={{ borderRadius: 'var(--radius-card)' }}>
+                      <button
+                        onClick={() => setConfig(prev => ({ ...prev, packageExpanded: !prev.packageExpanded }))}
+                        className="w-full p-4 md:p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                      >
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 bg-gray-600 dark:bg-gray-400 text-white dark:text-gray-900 flex items-center justify-center font-medium mr-4 text-sm"
+                            style={{ borderRadius: 'var(--radius-button)' }}>
+                            5
+                          </div>
+                          <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
+                            Paket wählen
+                          </h2>
+                        </div>
+                        <svg className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${config.packageExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </button>
+                      
+                      {config.packageExpanded && (
+                        <div className="px-4 pb-4 md:px-6 md:pb-6 animate-in slide-in-from-top-2 duration-300">
+                          <PackageSelection onPackageSelect={(packageId) => {
+                            console.log('Selected package:', packageId)
+                            // Hier kann die Paket-Auswahl verarbeitet werden
+                          }} />
                         </div>
                       )}
                     </div>
