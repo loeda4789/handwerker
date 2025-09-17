@@ -180,18 +180,33 @@ function HeroSingle({ content }: HeroProps) {
               <div className="opacity-0 animate-[fadeInUp_1s_ease-out_1s_forwards]">
                 <Link
                   href="#kontakt"
-                  className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium focus:ring-4 transition-all duration-300 group hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 min-h-[56px]"
+                  className="inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-bold focus:ring-4 transition-all duration-300 group hover:scale-105 transform hover:-translate-y-1"
                   data-cta="true"
                   style={{ 
                     color: 'var(--color-background, #ffffff)', 
                     backgroundColor: 'var(--color-secondary)',
-                    borderRadius: 'var(--radius-button)'
+                    borderRadius: 'var(--radius-button)',
+                    boxShadow: `
+                      0 10px 25px -5px rgba(0, 0, 0, 0.2),
+                      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.2)
+                    `
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                    e.currentTarget.style.boxShadow = `
+                      0 20px 40px -10px rgba(0, 0, 0, 0.3),
+                      0 8px 12px -2px rgba(0, 0, 0, 0.15),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.3)
+                    `;
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                    e.currentTarget.style.boxShadow = `
+                      0 10px 25px -5px rgba(0, 0, 0, 0.2),
+                      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.2)
+                    `;
                   }}
                 >
                   Jetzt Termin vereinbaren
@@ -469,17 +484,32 @@ function HeroVideo({ content }: HeroProps) {
                 <div className="flex flex-col gap-4 justify-center items-center">
                   <Link
                     href="#kontakt"
-                    className="group relative overflow-hidden px-8 py-4 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1 rounded-lg"
+                    className="group relative overflow-hidden px-8 py-4 sm:px-10 sm:py-5 text-white font-bold transition-all duration-300 hover:scale-105 transform hover:-translate-y-1 text-base sm:text-lg"
                     data-cta="true"
                     style={{ 
                       backgroundColor: 'var(--color-secondary)',
-                      borderRadius: 'var(--radius-button)'
+                      borderRadius: 'var(--radius-button)',
+                      boxShadow: `
+                        0 10px 25px -5px rgba(0, 0, 0, 0.2),
+                        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2)
+                      `
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                      e.currentTarget.style.boxShadow = `
+                        0 20px 40px -10px rgba(0, 0, 0, 0.3),
+                        0 8px 12px -2px rgba(0, 0, 0, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3)
+                      `;
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                      e.currentTarget.style.boxShadow = `
+                        0 10px 25px -5px rgba(0, 0, 0, 0.2),
+                        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2)
+                      `;
                     }}
                   >
                     <span className="relative z-10">Jetzt Termin vereinbaren</span>
@@ -488,8 +518,14 @@ function HeroVideo({ content }: HeroProps) {
                   
                   <Link
                     href="#ueber-uns"
-                    className="px-8 py-4 border-2 border-white text-white font-medium transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105 transform hover:-translate-y-1"
-                    style={{ borderRadius: 'var(--radius-button)' }}
+                    className="px-8 py-4 sm:px-10 sm:py-5 border-2 border-white text-white font-bold transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105 transform hover:-translate-y-1 text-base sm:text-lg"
+                    style={{ 
+                      borderRadius: 'var(--radius-button)',
+                      boxShadow: `
+                        0 4px 15px -3px rgba(0, 0, 0, 0.1),
+                        0 2px 4px -1px rgba(0, 0, 0, 0.06)
+                      `
+                    }}
                   >
                     Mehr erfahren
                   </Link>

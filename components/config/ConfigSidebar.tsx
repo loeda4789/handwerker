@@ -380,7 +380,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   onKeyDown={(e) => handleKeyDown(e, () => toggleSection(section.id))}
                   className={`w-full flex items-center justify-between p-4 text-left transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-gray-300 ${
                     activeSection === section.id 
-                      ? 'bg-gradient-to-r from-gray-50 via-gray-100/50 to-gray-50 shadow-md border-l-3 border-gray-400 ring-1 ring-gray-200' 
+                      ? 'bg-gradient-to-r from-gray-100 via-gray-200/80 to-gray-100 shadow-lg border-l-3 border-gray-500 ring-1 ring-gray-300' 
                       : 'hover:bg-gradient-to-r hover:from-gray-50 hover:via-gray-50 hover:to-gray-50 hover:shadow-sm'
                   }`}
                   aria-expanded={activeSection === section.id}
