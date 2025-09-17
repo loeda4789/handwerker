@@ -118,6 +118,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const [activeSection, setActiveSection] = useState<string | null>('colors')
   const [lastApplied, setLastApplied] = useState<string | null>(null)
   const [hasChanges, setHasChanges] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   // Check if mobile
   useEffect(() => {
@@ -266,9 +267,13 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   ]
 
   // Anwenden-Funktion mit Feedback
-  const handleApply = (type: string, value: any) => {
+  const handleApply = async (type: string, value: any) => {
+    setIsLoading(true)
     setLastApplied(type)
     setHasChanges(false)
+    
+    // Simuliere kurze Ladezeit für bessere UX
+    await new Promise(resolve => setTimeout(resolve, 300))
     
     // Manuell die entsprechenden Styles anwenden
     if (type === 'color') {
@@ -285,6 +290,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       // Variant-Änderungen werden automatisch über den Context gehandhabt
     }
     
+    setIsLoading(false)
+    
     // Micro-Animation für Feedback
     setTimeout(() => {
       setLastApplied(null)
@@ -294,6 +301,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   // Sektion-Toggle
   const toggleSection = (sectionId: string) => {
     setActiveSection(activeSection === sectionId ? null : sectionId)
+  }
+
+  // Keyboard Navigation
+  const handleKeyDown = (e: React.KeyboardEvent, action: () => void) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      action()
+    }
   }
 
   return (
@@ -347,26 +362,34 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         </div>
 
         {/* Content */}
-        <div className={`${isMobile ? 'max-h-[60vh]' : 'h-full'} overflow-y-auto pb-20`}>
+        <div className={`${isMobile ? 'max-h-[60vh]' : 'h-full'} overflow-y-auto pb-20 relative`}>
+          {/* Scroll Indicator */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 opacity-0 transition-opacity duration-300" 
+               style={{ opacity: 'var(--scroll-indicator-opacity, 0)' }} />
           <div className="p-4 space-y-3">
             {/* Accordion-Sektionen */}
             {sections.map((section) => (
-              <div key={section.id} className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+              <div key={section.id} className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-white via-gray-50/30 to-white">
                 <button
                   onClick={() => toggleSection(section.id)}
-                  className={`w-full flex items-center justify-between p-4 text-left transition-all duration-300 ${
+                  onKeyDown={(e) => handleKeyDown(e, () => toggleSection(section.id))}
+                  className={`w-full flex items-center justify-between p-4 text-left transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/50 ${
                     activeSection === section.id 
-                      ? 'bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10' 
-                      : 'hover:bg-gradient-to-r hover:from-gray-50 hover:via-gray-50 hover:to-gray-50'
+                      ? 'bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 shadow-sm' 
+                      : 'hover:bg-gradient-to-r hover:from-gray-50 hover:via-gray-50 hover:to-gray-50 hover:shadow-sm'
                   }`}
+                  aria-expanded={activeSection === section.id}
+                  aria-controls={`section-${section.id}`}
                 >
                   <div className="flex items-center gap-3">
                     <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
                       activeSection === section.id 
-                        ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg' 
-                        : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
+                        ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg animate-pulse' 
+                        : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:scale-110'
                     }`}>
-                      <section.icon className="w-5 h-5" />
+                      <section.icon className={`w-5 h-5 transition-transform duration-300 ${
+                        activeSection === section.id ? 'animate-spin' : 'group-hover:rotate-12'
+                      }`} />
                     </div>
                     <div>
                       <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
@@ -381,7 +404,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 </button>
 
                 {/* Sektion-Inhalt */}
-                {activeSection === section.id && (
+                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  activeSection === section.id ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+                }`}>
                   <div className="p-3 border-t border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-50">
                     {section.id === 'colors' && (
                       <div className="space-y-2">
@@ -393,10 +418,11 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setColorScheme(key as any)
                                 handleApply('color', key)
                               }}
-                              className={`p-2 rounded-xl border transition-all duration-300 group text-center ${
+                              disabled={isLoading}
+                              className={`p-2 rounded-xl border transition-all duration-300 group text-center transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${
                                 colorScheme === key 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
+                                  : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md hover:bg-gray-50'
                               }`}
                             >
                               <div className="flex justify-center gap-1 mb-1">
@@ -631,7 +657,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       </div>
                     )}
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
