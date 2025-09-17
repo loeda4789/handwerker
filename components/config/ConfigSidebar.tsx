@@ -393,10 +393,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setColorScheme(key as any)
                                 handleApply('color', key)
                               }}
-                              className={`p-3 rounded-xl border-2 transition-all duration-300 group text-center ${
+                              className={`p-3 rounded-xl border transition-all duration-300 group text-center ${
                                 colorScheme === key 
-                                  ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
+                                  ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                  : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
                               <div className="flex justify-center gap-2 mb-2">
@@ -430,10 +430,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setHeroType(hero.key as any)
                                 handleApply('hero', hero.key)
                               }}
-                              className={`p-2 rounded-xl border-2 transition-all duration-300 text-left group ${
+                              className={`p-2 rounded-xl border transition-all duration-300 text-left group ${
                                 heroType === hero.key 
-                                  ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
+                                  ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                  : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
                               <div className="flex items-center gap-2">
@@ -470,10 +470,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setMobileType(nav.key as any)
                                 handleApply('mobile-nav', nav.key)
                               }}
-                              className={`p-2 rounded-xl border-2 transition-all duration-300 text-left group ${
+                              className={`p-2 rounded-xl border transition-all duration-300 text-left group ${
                                 mobileType === nav.key 
-                                  ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
+                                  ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                  : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
                               <div className="flex items-center gap-2">
@@ -510,10 +510,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setVariant(variant.id as any)
                                 handleApply('variant', variant.id)
                               }}
-                              className={`w-full p-3 rounded-xl border-2 transition-all duration-300 text-left relative group ${
+                              className={`w-full p-3 rounded-xl border transition-all duration-300 text-left relative group ${
                                 variant.selected 
-                                  ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
+                                  ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                  : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
                               {variant.recommended && (
@@ -558,10 +558,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])
                                 handleApply('feature', feature.key)
                               }}
-                              className={`p-2 rounded-xl border-2 transition-all duration-300 text-left group ${
+                              className={`p-2 rounded-xl border transition-all duration-300 text-left group ${
                                 features[feature.key as keyof typeof features]
-                                  ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
+                                  ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                  : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
                               <div className="flex items-center gap-2">
@@ -598,10 +598,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   setStylePackage(style.id as any)
                                   handleApply('style', style.id)
                                 }}
-                                className={`p-2 rounded-xl border-2 transition-all duration-300 text-left group ${
+                                className={`p-2 rounded-xl border transition-all duration-300 text-left group ${
                                   stylePackage === style.id 
-                                    ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                    : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
+                                    ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                    : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                                 }`}
                               >
                                 <div className="flex items-center gap-2">
