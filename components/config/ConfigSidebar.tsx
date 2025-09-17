@@ -393,27 +393,29 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setColorScheme(key as any)
                                 handleApply('color', key)
                               }}
-                              className={`p-3 rounded-xl border transition-all duration-300 group text-center ${
+                              className={`p-2 rounded-xl border transition-all duration-300 group text-center ${
                                 colorScheme === key 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
-                              <div className="flex justify-center gap-2 mb-2">
+                              <div className="flex justify-center gap-1 mb-1">
                                 <div 
-                                  className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
+                                  className="w-6 h-6 rounded-lg border-2 border-white shadow-md"
                                   style={{ backgroundColor: scheme.primary }}
                                 />
                                 <div 
-                                  className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
+                                  className="w-6 h-6 rounded-lg border-2 border-white shadow-md"
                                   style={{ backgroundColor: scheme.secondary }}
                                 />
                                 <div 
-                                  className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
+                                  className="w-6 h-6 rounded-lg border-2 border-white shadow-md"
                                   style={{ backgroundColor: scheme.accent }}
                                 />
                               </div>
-                              <div className="text-[10px] font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{scheme.name}</div>
+                              {!isMobile && (
+                                <div className="text-[9px] font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{scheme.name}</div>
+                              )}
                             </button>
                           ))}
                         </div>
