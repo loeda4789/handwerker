@@ -370,7 +370,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     </div>
                     <div>
                       <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
-                      <div className="text-xs text-gray-500" style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
+                      <div className="text-[10px] text-gray-400 leading-tight" style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
                     </div>
                   </div>
                   {activeSection === section.id ? (

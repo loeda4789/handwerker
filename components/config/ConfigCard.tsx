@@ -37,7 +37,7 @@ export default function ConfigCard() {
               <div className="font-bold text-gray-900 text-lg" style={{ fontFamily: 'var(--font-body)' }}>
                 Website anpassen
               </div>
-              <div className="text-sm text-gray-700 font-medium" style={{ fontFamily: 'var(--font-body)' }}>
+              <div className="text-[10px] text-gray-500 font-medium leading-tight" style={{ fontFamily: 'var(--font-body)' }}>
                 {currentStyle.name} • {currentColorScheme?.name}
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function ConfigCard() {
               <div className="font-bold text-gray-900 text-lg" style={{ fontFamily: 'var(--font-body)' }}>
                 Website anpassen
               </div>
-              <div className="text-sm text-gray-700 font-medium mb-2" style={{ fontFamily: 'var(--font-body)' }}>
+              <div className="text-[10px] text-gray-500 font-medium mb-2 leading-tight" style={{ fontFamily: 'var(--font-body)' }}>
                 {currentStyle.name} • {currentColorScheme?.name}
               </div>
               <div className="flex items-center gap-2">
