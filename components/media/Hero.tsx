@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import { ContentData } from '@/types/content'
 import { useState, useEffect } from 'react'
-import { MdVerified, MdAccessTime, MdSupportAgent, MdStar, MdCheck, MdArrowForward, MdInfo } from 'react-icons/md'
+import { MdVerified, MdAccessTime, MdSupportAgent, MdArrowForward, MdInfo } from 'react-icons/md'
 import { useHeroConfig, useLayoutConfig, useFeaturesConfig, useSiteVariant } from '@/contexts/AppConfigContext'
 
 interface HeroProps {
@@ -525,7 +525,15 @@ function HeroSplit({ content }: HeroProps) {
 
   return (
     <section id="startseite" className="relative h-[95vh] lg:h-screen w-full overflow-hidden bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 lg:px-8 h-full">
+      {/* Moderne Hintergrund-Akzente */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-primary/3 to-accent/3 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-secondary/2 to-primary/2 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-gradient-to-br from-accent/4 to-primary/4 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-full blur-xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 lg:px-8 h-full relative z-10">
         <div className="flex h-full items-center">
           {/* Left Side - Content */}
           <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start">
@@ -640,13 +648,10 @@ function HeroSplit({ content }: HeroProps) {
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 rounded-full"></div>
               </div>
               
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl shadow-xl transform rotate-12 group-hover:rotate-0 transition-transform duration-500 flex items-center justify-center">
-                <MdStar className="w-8 h-8 text-white" />
-              </div>
-              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-xl shadow-lg transform -rotate-12 group-hover:rotate-0 transition-transform duration-500 flex items-center justify-center">
-                <MdCheck className="w-6 h-6 text-white" />
-              </div>
+              {/* Moderne Hintergrund-Akzente */}
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-2xl"></div>
+              <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-br from-secondary/5 to-primary/5 rounded-full blur-xl"></div>
+              <div className="absolute top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-accent/3 to-primary/3 rounded-full blur-lg"></div>
             </div>
           </div>
 
