@@ -670,13 +670,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               onClick={() => {
                 // Hier würde die Anwendung der Konfiguration stattfinden
                 handleApply('all', 'applied')
+                // ConfigCard schließen
+                onClose()
               }}
-              className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                hasChanges 
-                  ? 'bg-primary text-white hover:bg-primary/90' 
-                  : 'bg-gray-100 text-gray-500 cursor-not-allowed'
-              }`}
-              disabled={!hasChanges}
+              className="w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 bg-primary text-white hover:bg-primary/90 hover:scale-105 active:scale-95 transform"
             >
               {lastApplied ? (
                 <div className="flex items-center justify-center gap-2">
@@ -687,10 +684,13 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   {lastApplied === 'feature' && 'Feature angewendet'}
                   {lastApplied === 'style' && 'Stil angewendet'}
                   {lastApplied === 'variant' && 'Paket angewendet'}
-                  {lastApplied === 'all' && 'Alle Änderungen angewendet'}
+                  {lastApplied === 'all' && 'Änderungen angewendet'}
                 </div>
               ) : (
-                'Anwenden'
+                <div className="flex items-center justify-center gap-2">
+                  <MdCheck className="w-5 h-5" />
+                  Anwenden & Schließen
+                </div>
               )}
             </button>
           </div>
