@@ -375,7 +375,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   onKeyDown={(e) => handleKeyDown(e, () => toggleSection(section.id))}
                   className={`w-full flex items-center justify-between p-4 text-left transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/50 ${
                     activeSection === section.id 
-                      ? 'bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 shadow-sm' 
+                      ? 'bg-gradient-to-r from-primary/15 via-accent/15 to-primary/15 shadow-lg border-l-4 border-primary' 
                       : 'hover:bg-gradient-to-r hover:from-gray-50 hover:via-gray-50 hover:to-gray-50 hover:shadow-sm'
                   }`}
                   aria-expanded={activeSection === section.id}
@@ -384,20 +384,33 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   <div className="flex items-center gap-3">
                     <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
                       activeSection === section.id 
-                        ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg animate-pulse' 
+                        ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
                         : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:scale-110'
                     }`}>
-                      <section.icon className={`w-5 h-5 transition-transform duration-300 ${
+                      <section.icon className={`w-5 h-5 transition-transform duration-500 ${
                         activeSection === section.id ? 'animate-spin' : 'group-hover:rotate-12'
-                      }`} />
+                      }`} 
+                      style={{
+                        animationDuration: activeSection === section.id ? '3s' : '0.3s'
+                      }} />
                     </div>
                     <div>
-                      <div className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
-                      <div className="text-[10px] text-gray-400 leading-tight" style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
+                      <div className={`font-semibold transition-colors duration-300 ${
+                        activeSection === section.id 
+                          ? 'text-primary font-bold' 
+                          : 'text-gray-900'
+                      }`} style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
+                      <div className={`text-[10px] leading-tight transition-colors duration-300 ${
+                        activeSection === section.id 
+                          ? 'text-primary/70' 
+                          : 'text-gray-400'
+                      }`} style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
                     </div>
                   </div>
                   {activeSection === section.id ? (
-                    <MdExpandLess className="w-5 h-5 text-primary" />
+                    <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
+                      <MdExpandLess className="w-4 h-4 text-primary" />
+                    </div>
                   ) : (
                     <MdExpandMore className="w-5 h-5 text-gray-400" />
                   )}
