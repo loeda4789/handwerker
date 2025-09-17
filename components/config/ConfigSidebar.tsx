@@ -385,7 +385,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   <div className="p-3 border-t border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-50">
                     {section.id === 'colors' && (
                       <div className="space-y-2">
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className={`grid gap-3 ${isMobile ? 'grid-cols-3' : 'grid-cols-2'}`}>
                           {Object.entries(colorSchemesData).map(([key, scheme]) => (
                             <button
                               key={key}
@@ -422,7 +422,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'hero' && (
                       <div className="space-y-2">
-                        <div className="grid grid-cols-1 gap-2">
+                        <div className={`grid gap-2 ${isMobile ? 'grid-cols-3' : 'grid-cols-1'}`}>
                           {heroTypes.map((hero) => (
                             <button
                               key={hero.key}
@@ -462,7 +462,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'mobile-nav' && (
                       <div className="space-y-2">
-                        <div className="grid grid-cols-1 gap-2">
+                        <div className={`grid gap-2 ${isMobile ? 'grid-cols-3' : 'grid-cols-1'}`}>
                           {mobileNavTypes.map((nav) => (
                             <button
                               key={nav.key}
@@ -550,7 +550,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'features' && (
                       <div className="space-y-2">
-                        <div className="grid grid-cols-1 gap-2">
+                        <div className={`grid gap-2 ${isMobile ? 'grid-cols-2' : 'grid-cols-1'}`}>
                           {desktopFeatures.map((feature) => (
                             <button
                               key={feature.key}
@@ -588,7 +588,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'style' && (
                       <div className="space-y-2">
-                        <div className="grid grid-cols-1 gap-2">
+                        <div className={`grid gap-2 ${isMobile ? 'grid-cols-3' : 'grid-cols-1'}`}>
                           {UNIFIED_STYLES.map((style) => {
                             const Icon = getStylePackageIcon(style.id)
                             return (
@@ -633,38 +633,38 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           </div>
         </div>
 
-        {/* Sticky Anwenden-Button */}
-        <div className={`sticky bottom-0 bg-white border-t border-gray-200 p-4 ${
-          isMobile ? 'pb-safe' : ''
-        }`}>
-          <button
-            onClick={() => {
-              // Hier würde die Anwendung der Konfiguration stattfinden
-              handleApply('all', 'applied')
-            }}
-            className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
-              hasChanges 
-                ? 'bg-primary text-white hover:bg-primary/90' 
-                : 'bg-gray-100 text-gray-500 cursor-not-allowed'
-            }`}
-            disabled={!hasChanges}
-          >
-            {lastApplied ? (
-              <div className="flex items-center justify-center gap-2">
-                <MdCheck className="w-5 h-5" />
-                {lastApplied === 'color' && 'Farbschema angewendet'}
-                {lastApplied === 'hero' && 'Hero-Typ angewendet'}
-                {lastApplied === 'mobile-nav' && 'Navigation angewendet'}
-                {lastApplied === 'feature' && 'Feature angewendet'}
-                {lastApplied === 'style' && 'Stil angewendet'}
-                {lastApplied === 'variant' && 'Paket angewendet'}
-                {lastApplied === 'all' && 'Alle Änderungen angewendet'}
-              </div>
-            ) : (
-              'Anwenden'
-            )}
-          </button>
-        </div>
+        {/* Sticky Anwenden-Button - nur auf Mobile */}
+        {isMobile && (
+          <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 pb-safe">
+            <button
+              onClick={() => {
+                // Hier würde die Anwendung der Konfiguration stattfinden
+                handleApply('all', 'applied')
+              }}
+              className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                hasChanges 
+                  ? 'bg-primary text-white hover:bg-primary/90' 
+                  : 'bg-gray-100 text-gray-500 cursor-not-allowed'
+              }`}
+              disabled={!hasChanges}
+            >
+              {lastApplied ? (
+                <div className="flex items-center justify-center gap-2">
+                  <MdCheck className="w-5 h-5" />
+                  {lastApplied === 'color' && 'Farbschema angewendet'}
+                  {lastApplied === 'hero' && 'Hero-Typ angewendet'}
+                  {lastApplied === 'mobile-nav' && 'Navigation angewendet'}
+                  {lastApplied === 'feature' && 'Feature angewendet'}
+                  {lastApplied === 'style' && 'Stil angewendet'}
+                  {lastApplied === 'variant' && 'Paket angewendet'}
+                  {lastApplied === 'all' && 'Alle Änderungen angewendet'}
+                </div>
+              ) : (
+                'Anwenden'
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </>
   )
