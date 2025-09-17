@@ -165,7 +165,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       applyBorderRadiusScheme(designStyle)
       applyHeadingStyles(config)
     }
-  }, [isConfigLoaded, designStyle, config]) // colorScheme entfernt aus dependencies
+  }, [isConfigLoaded]) // Nur isConfigLoaded als dependency
 
   // Prevent body scroll when sidebar is open
   useEffect(() => {
@@ -387,12 +387,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                         ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
                         : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:scale-110'
                     }`}>
-                      <section.icon className={`w-5 h-5 transition-transform duration-500 ${
-                        activeSection === section.id ? 'animate-spin' : 'group-hover:rotate-12'
-                      }`} 
-                      style={{
-                        animationDuration: activeSection === section.id ? '3s' : '0.3s'
-                      }} />
+                      <section.icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
                     </div>
                     <div>
                       <div className={`font-semibold transition-colors duration-300 ${
