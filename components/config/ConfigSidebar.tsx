@@ -386,48 +386,29 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   aria-expanded={activeSection === section.id}
                   aria-controls={`section-${section.id}`}
                 >
-                  {isMobile && section.id !== 'colors' && section.id !== 'variant' ? (
-                    // Mobile Layout: Icon oben, Text darunter (außer Farben und Pakete)
-                    <div className="flex flex-col items-center text-center gap-2">
-                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                        activeSection === section.id 
-                          ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
-                          : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:scale-110'
-                      }`}>
-                        <section.icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
-                      </div>
+                  <div className="flex items-center gap-3">
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                      activeSection === section.id 
+                        ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
+                        : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:scale-110'
+                    }`}>
+                      <section.icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
+                    </div>
+                    <div>
                       <div className={`font-semibold transition-colors duration-300 ${
                         activeSection === section.id 
                           ? 'text-gray-800 font-bold' 
                           : 'text-gray-900'
                       }`} style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
-                    </div>
-                  ) : (
-                    // Desktop Layout oder Farben/Pakete: Icon links, Text rechts
-                    <div className="flex items-center gap-3">
-                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                        activeSection === section.id 
-                          ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
-                          : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:scale-110'
-                      }`}>
-                        <section.icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
-                      </div>
-                      <div>
-                        <div className={`font-semibold transition-colors duration-300 ${
+                      {(!isMobile || section.id === 'variant') && (
+                        <div className={`text-[10px] leading-tight transition-colors duration-300 ${
                           activeSection === section.id 
-                            ? 'text-gray-800 font-bold' 
-                            : 'text-gray-900'
-                        }`} style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
-                        {(!isMobile || section.id === 'variant') && (
-                          <div className={`text-[10px] leading-tight transition-colors duration-300 ${
-                            activeSection === section.id 
-                              ? 'text-gray-600' 
-                              : 'text-gray-400'
-                          }`} style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
-                        )}
-                      </div>
+                            ? 'text-gray-600' 
+                            : 'text-gray-400'
+                        }`} style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
+                      )}
                     </div>
-                  )}
+                  </div>
                   {activeSection === section.id ? (
                     <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
                       <MdExpandLess className="w-4 h-4 text-gray-600" />
@@ -492,30 +473,50 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setHeroType(hero.key as any)
                                 handleApply('hero', hero.key)
                               }}
-                              className={`p-2 rounded-xl border transition-all duration-300 text-left group ${
+                              className={`p-2 rounded-xl border transition-all duration-300 group ${
                                 heroType === hero.key 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
-                              <div className="flex items-center gap-2">
-                                <div className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                                  heroType === hero.key 
-                                    ? 'bg-primary text-white shadow-lg' 
-                                    : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
-                                }`}>
-                                  <hero.icon className="w-3 h-3" />
-                                </div>
-                                <div className="flex-1">
-                                  <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{hero.label}</div>
-                                  <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{hero.description}</div>
-                                </div>
-                                {heroType === hero.key && (
-                                  <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                                    <MdCheck className="w-3 h-3 text-white" />
+                              {isMobile ? (
+                                // Mobile Layout: Icon oben, Text darunter
+                                <div className="flex flex-col items-center text-center gap-1">
+                                  <div className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                                    heroType === hero.key 
+                                      ? 'bg-primary text-white shadow-lg' 
+                                      : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
+                                  }`}>
+                                    <hero.icon className="w-3 h-3" />
                                   </div>
-                                )}
-                              </div>
+                                  <div className="text-xs font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{hero.label}</div>
+                                  {heroType === hero.key && (
+                                    <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                      <MdCheck className="w-2 h-2 text-white" />
+                                    </div>
+                                  )}
+                                </div>
+                              ) : (
+                                // Desktop Layout: Icon links, Text rechts
+                                <div className="flex items-center gap-2 text-left">
+                                  <div className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                                    heroType === hero.key 
+                                      ? 'bg-primary text-white shadow-lg' 
+                                      : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
+                                  }`}>
+                                    <hero.icon className="w-3 h-3" />
+                                  </div>
+                                  <div className="flex-1">
+                                    <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{hero.label}</div>
+                                    <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{hero.description}</div>
+                                  </div>
+                                  {heroType === hero.key && (
+                                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                      <MdCheck className="w-3 h-3 text-white" />
+                                    </div>
+                                  )}
+                                </div>
+                              )}
                             </button>
                           ))}
                         </div>
@@ -532,30 +533,50 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setMobileType(nav.key as any)
                                 handleApply('mobile-nav', nav.key)
                               }}
-                              className={`p-2 rounded-xl border transition-all duration-300 text-left group ${
+                              className={`p-2 rounded-xl border transition-all duration-300 group ${
                                 mobileType === nav.key 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
-                              <div className="flex items-center gap-2">
-                                <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                                  mobileType === nav.key 
-                                    ? 'bg-primary text-white shadow-lg' 
-                                    : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
-                                }`}>
-                                  <nav.icon className="w-3 h-3" />
-                                </div>
-                                <div className="flex-1">
-                                  <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{nav.label}</div>
-                                  <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{nav.description}</div>
-                                </div>
-                                {mobileType === nav.key && (
-                                  <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                                    <MdCheck className="w-3 h-3 text-white" />
+                              {isMobile ? (
+                                // Mobile Layout: Icon oben, Text darunter
+                                <div className="flex flex-col items-center text-center gap-1">
+                                  <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                    mobileType === nav.key 
+                                      ? 'bg-primary text-white shadow-lg' 
+                                      : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
+                                  }`}>
+                                    <nav.icon className="w-3 h-3" />
                                   </div>
-                                )}
-                              </div>
+                                  <div className="text-xs font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{nav.label}</div>
+                                  {mobileType === nav.key && (
+                                    <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                      <MdCheck className="w-2 h-2 text-white" />
+                                    </div>
+                                  )}
+                                </div>
+                              ) : (
+                                // Desktop Layout: Icon links, Text rechts
+                                <div className="flex items-center gap-2 text-left">
+                                  <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                    mobileType === nav.key 
+                                      ? 'bg-primary text-white shadow-lg' 
+                                      : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
+                                  }`}>
+                                    <nav.icon className="w-3 h-3" />
+                                  </div>
+                                  <div className="flex-1">
+                                    <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{nav.label}</div>
+                                    <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{nav.description}</div>
+                                  </div>
+                                  {mobileType === nav.key && (
+                                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                      <MdCheck className="w-3 h-3 text-white" />
+                                    </div>
+                                  )}
+                                </div>
+                              )}
                             </button>
                           ))}
                         </div>
@@ -636,28 +657,46 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])
                                 handleApply('feature', feature.key)
                               }}
-                              className={`p-2 rounded-xl border transition-all duration-300 text-left group ${
+                              className={`p-2 rounded-xl border transition-all duration-300 group ${
                                 features[feature.key as keyof typeof features]
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
-                              <div className="flex items-center gap-2">
-                                <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                                  features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
-                                }`}>
-                                  <feature.icon className="w-3 h-3" />
-                                </div>
-                                <div className="flex-1">
-                                  <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{feature.label}</div>
-                                  <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Zusätzliche Kontaktmöglichkeiten</div>
-                                </div>
-                                {features[feature.key as keyof typeof features] && (
-                                  <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                                    <MdCheck className="w-3 h-3 text-white" />
+                              {isMobile ? (
+                                // Mobile Layout: Icon oben, Text darunter
+                                <div className="flex flex-col items-center text-center gap-1">
+                                  <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                    features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
+                                  }`}>
+                                    <feature.icon className="w-3 h-3" />
                                   </div>
-                                )}
-                              </div>
+                                  <div className="text-xs font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{feature.label}</div>
+                                  {features[feature.key as keyof typeof features] && (
+                                    <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                      <MdCheck className="w-2 h-2 text-white" />
+                                    </div>
+                                  )}
+                                </div>
+                              ) : (
+                                // Desktop Layout: Icon links, Text rechts
+                                <div className="flex items-center gap-2 text-left">
+                                  <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                    features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
+                                  }`}>
+                                    <feature.icon className="w-3 h-3" />
+                                  </div>
+                                  <div className="flex-1">
+                                    <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{feature.label}</div>
+                                    <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Zusätzliche Kontaktmöglichkeiten</div>
+                                  </div>
+                                  {features[feature.key as keyof typeof features] && (
+                                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                      <MdCheck className="w-3 h-3 text-white" />
+                                    </div>
+                                  )}
+                                </div>
+                              )}
                             </button>
                           ))}
                         </div>
@@ -680,28 +719,46 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   }, 100)
                                   handleApply('style', style.id)
                                 }}
-                                className={`p-2 rounded-xl border transition-all duration-300 text-left group ${
+                                className={`p-2 rounded-xl border transition-all duration-300 group ${
                                   stylePackage === style.id 
                                     ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                     : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                                 }`}
                               >
-                                <div className="flex items-center gap-2">
-                                  <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                                    stylePackage === style.id ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
-                                  }`}>
-                                    <Icon className="w-3 h-3" />
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{style.name}</div>
-                                    <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{style.description}</div>
-                                  </div>
-                                  {stylePackage === style.id && (
-                                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                                      <MdCheck className="w-3 h-3 text-white" />
+                                {isMobile ? (
+                                  // Mobile Layout: Icon oben, Text darunter
+                                  <div className="flex flex-col items-center text-center gap-1">
+                                    <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                      stylePackage === style.id ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
+                                    }`}>
+                                      <Icon className="w-3 h-3" />
                                     </div>
-                                  )}
-                                </div>
+                                    <div className="text-xs font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{style.name}</div>
+                                    {stylePackage === style.id && (
+                                      <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                        <MdCheck className="w-2 h-2 text-white" />
+                                      </div>
+                                    )}
+                                  </div>
+                                ) : (
+                                  // Desktop Layout: Icon links, Text rechts
+                                  <div className="flex items-center gap-2 text-left">
+                                    <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                      stylePackage === style.id ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
+                                    }`}>
+                                      <Icon className="w-3 h-3" />
+                                    </div>
+                                    <div className="flex-1">
+                                      <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{style.name}</div>
+                                      <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{style.description}</div>
+                                    </div>
+                                    {stylePackage === style.id && (
+                                      <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                        <MdCheck className="w-3 h-3 text-white" />
+                                      </div>
+                                    )}
+                                  </div>
+                                )}
                               </button>
                             )
                           })}
