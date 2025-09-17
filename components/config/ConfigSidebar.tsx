@@ -583,11 +583,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setVariant(variant.id as any)
                                 handleApply('variant', variant.id)
                                 
-                                // Bei Professionell oder Premium: Unterseiten öffnen
+                                // Bei Professionell oder Premium: Features aktivieren (ohne Sektion zu wechseln)
                                 if (variant.id === 'professional' || variant.id === 'premium') {
-                                  // Features-Sektion öffnen
-                                  setActiveSection('features')
-                                  
                                   // Features aktivieren
                                   setTimeout(() => {
                                     // Kontakt-Leiste aktivieren
