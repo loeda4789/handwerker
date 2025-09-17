@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import { ContentData } from '@/types/content'
 import { useState, useEffect } from 'react'
-import { MdVerified, MdAccessTime, MdSupportAgent, MdArrowForward, MdInfo } from 'react-icons/md'
+import { MdArrowForward, MdInfo } from 'react-icons/md'
 import { useHeroConfig, useLayoutConfig, useFeaturesConfig, useSiteVariant } from '@/contexts/AppConfigContext'
 
 interface HeroProps {
@@ -548,22 +548,6 @@ function HeroSplit({ content }: HeroProps) {
                 Planung, Installation & Wartung – zuverlässig, präzise, mit geprüfter Meisterqualität.
               </p>
               
-            
-            {/* Kompakte Feature-Liste mit 3D Effekt */}
-            <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-10">
-              <div className="flex items-center space-x-3 sm:space-x-4 group">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <MdVerified className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <span className="text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">Meisterqualität seit Jahren</span>
-              </div>
-              <div className="flex items-center space-x-3 sm:space-x-4 group">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <MdSupportAgent className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <span className="text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">Kostenlose Beratung</span>
-              </div>
-            </div>
             
               {/* 3D CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
