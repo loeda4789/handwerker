@@ -370,13 +370,17 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           <div className="p-4 space-y-3">
             {/* Accordion-Sektionen */}
             {sections.map((section) => (
-              <div key={section.id} className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-white via-gray-50/30 to-white">
+              <div key={section.id} className={`border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-white via-gray-50/30 to-white ${
+                activeSection === section.id 
+                  ? 'border-primary/30 ring-1 ring-primary/10' 
+                  : 'border-gray-200'
+              }`}>
                 <button
                   onClick={() => toggleSection(section.id)}
                   onKeyDown={(e) => handleKeyDown(e, () => toggleSection(section.id))}
                   className={`w-full flex items-center justify-between p-4 text-left transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/50 ${
                     activeSection === section.id 
-                      ? 'bg-gradient-to-r from-primary/15 via-accent/15 to-primary/15 shadow-lg border-l-4 border-primary' 
+                      ? 'bg-gradient-to-r from-primary/15 via-accent/15 to-primary/15 shadow-lg border-l-4 border-primary ring-1 ring-primary/20' 
                       : 'hover:bg-gradient-to-r hover:from-gray-50 hover:via-gray-50 hover:to-gray-50 hover:shadow-sm'
                   }`}
                   aria-expanded={activeSection === section.id}
