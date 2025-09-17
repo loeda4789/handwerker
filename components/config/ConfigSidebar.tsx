@@ -320,38 +320,35 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         </div>
 
         {/* Content */}
-        <div className={`${isMobile ? 'max-h-[70vh]' : 'h-full'} overflow-y-auto`}>
-          <div className="p-6 space-y-4">
+        <div className={`${isMobile ? 'max-h-[60vh]' : 'h-full'} overflow-y-auto pb-20`}>
+          <div className="p-4 space-y-3">
             {/* Accordion-Sektionen */}
             {sections.map((section) => (
               <div key={section.id} className="border border-gray-200 rounded-xl overflow-hidden">
                 <button
                   onClick={() => toggleSection(section.id)}
-                  className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+                  className="w-full flex items-center justify-between p-3 text-left hover:bg-gray-50 transition-colors"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-gray-100 rounded-lg flex items-center justify-center">
                       <section.icon className="w-4 h-4 text-gray-600" />
                     </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">{section.title}</div>
-                      <div className="text-sm text-gray-500">{section.description}</div>
-                    </div>
+                    <div className="font-semibold text-gray-900">{section.title}</div>
                   </div>
                   {activeSection === section.id ? (
-                    <MdExpandLess className="w-5 h-5 text-gray-400" />
+                    <MdExpandLess className="w-4 h-4 text-gray-400" />
                   ) : (
-                    <MdExpandMore className="w-5 h-5 text-gray-400" />
+                    <MdExpandMore className="w-4 h-4 text-gray-400" />
                   )}
                 </button>
 
                 {/* Sektion-Inhalt */}
                 {activeSection === section.id && (
-                  <div className="p-4 border-t border-gray-200 bg-gray-50">
+                  <div className="p-3 border-t border-gray-200 bg-gray-50">
                     {section.id === 'colors' && (
-                      <div className="space-y-4">
-                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Farbschema wählen</h3>
-                        <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-3">
+                        <h3 className="font-semibold text-gray-900 mb-2">Farbschema</h3>
+                        <div className="grid grid-cols-2 gap-3">
                           {Object.entries(colorSchemesData).map(([key, scheme]) => (
                             <button
                               key={key}
@@ -359,33 +356,30 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setColorScheme(key as any)
                                 handleApply('color', key)
                               }}
-                              className={`p-4 rounded-2xl border-2 transition-all duration-300 group ${
+                              className={`p-3 rounded-xl border-2 transition-all duration-300 group relative ${
                                 colorScheme === key 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
-                              <div className="flex items-center gap-3 mb-3">
+                              <div className="flex items-center gap-2 mb-2">
                                 <div 
-                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
+                                  className="w-4 h-4 rounded-full border border-white shadow-sm"
                                   style={{ backgroundColor: scheme.primary }}
                                 />
                                 <div 
-                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
+                                  className="w-4 h-4 rounded-full border border-white shadow-sm"
                                   style={{ backgroundColor: scheme.secondary }}
                                 />
                                 <div 
-                                  className="w-6 h-6 rounded-full border-2 border-white shadow-lg"
+                                  className="w-4 h-4 rounded-full border border-white shadow-sm"
                                   style={{ backgroundColor: scheme.accent }}
                                 />
                               </div>
-                              <div className="text-sm font-bold text-gray-900 mb-1">{scheme.name}</div>
-                              <div className="text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-lg">
-                                {scheme.description}
-                              </div>
+                              <div className="text-sm font-semibold text-gray-900">{scheme.name}</div>
                               {colorScheme === key && (
-                                <div className="absolute top-2 right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                                  <MdCheck className="w-4 h-4 text-white" />
+                                <div className="absolute top-2 right-2 w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                  <MdCheck className="w-3 h-3 text-white" />
                                 </div>
                               )}
                             </button>
@@ -395,9 +389,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     )}
 
                     {section.id === 'hero' && (
-                      <div className="space-y-4">
-                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Hero-Typ wählen</h3>
-                        <div className="grid grid-cols-1 gap-4">
+                      <div className="space-y-3">
+                        <h3 className="font-semibold text-gray-900 mb-2">Hero-Typ</h3>
+                        <div className="grid grid-cols-1 gap-3">
                           {heroTypes.map((hero) => (
                             <button
                               key={hero.key}
@@ -405,27 +399,27 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setHeroType(hero.key as any)
                                 handleApply('hero', hero.key)
                               }}
-                              className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left group ${
+                              className={`p-3 rounded-xl border-2 transition-all duration-300 text-left group ${
                                 heroType === hero.key 
                                   ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-gray-400 bg-white hover:border-gray-500 hover:shadow-md'
                               }`}
                             >
-                              <div className="flex items-center gap-4">
-                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                              <div className="flex items-center gap-3">
+                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
                                   heroType === hero.key 
                                     ? 'bg-primary text-white shadow-lg' 
                                     : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                 }`}>
-                                  <hero.icon className="w-6 h-6" />
+                                  <hero.icon className="w-4 h-4" />
                                 </div>
                                 <div className="flex-1">
-                                  <div className="font-bold text-gray-900 text-lg mb-1">{hero.label}</div>
-                                  <div className="text-sm text-gray-700">{hero.description}</div>
+                                  <div className="font-semibold text-gray-900">{hero.label}</div>
+                                  <div className="text-xs text-gray-600">{hero.description}</div>
                                 </div>
                                 {heroType === hero.key && (
-                                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                                    <MdCheck className="w-5 h-5 text-white" />
+                                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                                    <MdCheck className="w-4 h-4 text-white" />
                                   </div>
                                 )}
                               </div>
