@@ -19,6 +19,8 @@ body[data-style="einfach"] {
   /* Einfach: Keine Unterstreichungen, keine Badges */
   --heading-underline: none;
   --heading-text-decoration: none;
+  --heading-text-decoration-color: transparent;
+  --heading-text-decoration-thickness: 0px;
   --badge-style: none;
 }
 
@@ -28,6 +30,8 @@ body[data-style="standard"] {
   /* Standard: Einfache Unterstreichungen, minimale Badges */
   --heading-underline: solid;
   --heading-text-decoration: underline;
+  --heading-text-decoration-color: var(--color-primary);
+  --heading-text-decoration-thickness: 2px;
   --badge-style: minimal;
 }
 
@@ -37,6 +41,8 @@ body[data-style="modern"] {
   /* Modern: Dramatische Unterstreichungen, Pill-Badges */
   --heading-underline: solid;
   --heading-text-decoration: underline;
+  --heading-text-decoration-color: var(--color-secondary);
+  --heading-text-decoration-thickness: 4px;
   --badge-style: pill;
 }
 

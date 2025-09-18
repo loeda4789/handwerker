@@ -90,6 +90,14 @@ export const applyHeadingStyles = (config: AppConfig) => {
         // Font-Family wird über CSS-Variablen gesteuert, aber wir können es auch direkt setzen
         htmlElement.style.fontFamily = 'var(--font-heading)'
       })
+      
+      // Alle Badges aktualisieren
+      const allBadges = document.querySelectorAll('.badge:not(.config-card .badge, .config-sidebar .badge)')
+      allBadges.forEach((element) => {
+        const htmlElement = element as HTMLElement
+        // Badge-Styles werden über CSS-Variablen gesteuert
+        htmlElement.style.fontFamily = 'var(--font-heading)'
+      })
     }
     
     // Debug-Logging
