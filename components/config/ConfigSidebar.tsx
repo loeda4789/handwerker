@@ -696,12 +696,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 key={style.id}
                                 onClick={() => {
                                   setStylePackage(style.id as any)
-                                  // KORRIGIERT: applyUnifiedStyle sofort aufrufen und neue Config verwenden
-                                  const newConfig = applyUnifiedStyle(config, style.id)
-                                  // Sofortige Anwendung der Heading-Styles mit neuer Config
-                                  setTimeout(() => {
-                                    applyHeadingStyles(newConfig)
-                                  }, 100)
                                   handleApply('style', style.id)
                                 }}
                                 className={`p-2 rounded-xl border transition-all duration-300 group ${
