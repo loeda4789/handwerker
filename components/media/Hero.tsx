@@ -574,7 +574,7 @@ function HeroSplit({ content }: HeroProps) {
           {/* Left Side - Content */}
           <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start">
             <div className="max-w-2xl w-full">
-              <h1 className={`hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 tracking-tight text-gray-900 dark:text-white ${titleClass}`}
+              <h1 className={`hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 tracking-tight text-gray-900 dark:text-white ${titleClass}`}
                   style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
                 {formatHeroTitle(content.company.tagline, 'split')}
               </h1>
@@ -586,10 +586,10 @@ function HeroSplit({ content }: HeroProps) {
               
             
               {/* 3D CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
                 <Link
                   href="#kontakt"
-                  className="group inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-base sm:text-lg"
+                  className="group inline-flex items-center justify-center px-6 py-3 sm:px-10 sm:py-5 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-sm sm:text-lg"
                   data-cta="true"
                   style={{ 
                     backgroundColor: 'var(--color-secondary)',
@@ -622,7 +622,7 @@ function HeroSplit({ content }: HeroProps) {
                 </Link>
                 <Link
                   href="#ueber-uns"
-                  className="group inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 border-2 border-primary text-primary font-bold rounded-2xl hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-base sm:text-lg"
+                  className="group inline-flex items-center justify-center px-6 py-3 sm:px-10 sm:py-5 border-2 border-primary text-primary font-bold rounded-2xl hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-sm sm:text-lg"
                   style={{ 
                     borderRadius: 'var(--radius-button)',
                     boxShadow: `
