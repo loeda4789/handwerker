@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface HeaderLogoProps {
   logoStyle: string
@@ -16,14 +17,34 @@ export default function HeaderLogo({ logoStyle, companyName }: HeaderLogoProps) 
       .slice(0, 2) // Max 2 Buchstaben
   }
 
+  // Check if company name contains "Elektro" to show the new logo
+  const isElektroCompany = companyName.toLowerCase().includes('elektro') || 
+                          companyName.toLowerCase().includes('elektriker') ||
+                          companyName.toLowerCase().includes('elektroinstallation')
+
   return (
     <Link href="/" className="flex items-center">
-      <div 
-        className={`w-12 h-12 ${logoStyle} border-2 border-current flex items-center justify-center logo-font text-lg`}
-        style={{ borderRadius: 'var(--radius-button)' }}
-      >
-        {getCompanyInitials(companyName)}
-      </div>
+      {isElektroCompany ? (
+        // New Elektro Logo
+        <div className="h-12 w-auto">
+          <Image
+            src="/images/logos/elektro-logo-compact.svg"
+            alt={`${companyName} Logo`}
+            width={120}
+            height={40}
+            className="h-full w-auto object-contain"
+            priority
+          />
+        </div>
+      ) : (
+        // Original initials logo
+        <div 
+          className={`w-12 h-12 ${logoStyle} border-2 border-current flex items-center justify-center logo-font text-lg`}
+          style={{ borderRadius: 'var(--radius-button)' }}
+        >
+          {getCompanyInitials(companyName)}
+        </div>
+      )}
     </Link>
   )
 }
