@@ -149,13 +149,13 @@ export default function HeaderModern({ content }: HeaderModernProps) {
             aria-label="Menü"
           >
             <div className="relative w-6 h-6 flex flex-col justify-center space-y-1">
-              <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+              <span className={`block h-1 w-6 bg-white transition-all duration-300 ${
                 isMenuOpen ? 'rotate-45 translate-y-1.5' : ''
               }`}></span>
-              <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+              <span className={`block h-1 w-6 bg-white transition-all duration-300 ${
                 isMenuOpen ? 'opacity-0' : ''
               }`}></span>
-              <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+              <span className={`block h-1 w-6 bg-white transition-all duration-300 ${
                 isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
               }`}></span>
             </div>

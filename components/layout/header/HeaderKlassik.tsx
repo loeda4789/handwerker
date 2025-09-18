@@ -200,13 +200,13 @@ export default function HeaderKlassik({ content }: HeaderKlassikProps) {
             style={{ willChange: 'transform' }}
           >
             <div className="relative w-6 h-6 flex flex-col justify-center space-y-1">
-              <span className={`block h-0.5 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
+              <span className={`block h-1 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
                 isMenuOpen ? 'rotate-45 translate-y-1.5' : ''
               }`}></span>
-              <span className={`block h-0.5 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
+              <span className={`block h-1 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
                 isMenuOpen ? 'opacity-0' : ''
               }`}></span>
-              <span className={`block h-0.5 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
+              <span className={`block h-1 w-6 bg-gray-900 dark:bg-gray-100 transition-all duration-300 ${
                 isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
               }`}></span>
             </div>
