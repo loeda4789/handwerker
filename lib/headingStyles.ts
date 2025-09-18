@@ -79,7 +79,7 @@ export const applyHeadingStyles = (config: AppConfig) => {
     
     // Font-Style direkt anwenden
     const { package: stylePackage } = config.style
-    if (stylePackage && stylePackage !== 'none') {
+    if (stylePackage) {
       // data-style Attribut am body setzen
       document.body.setAttribute('data-style', stylePackage)
       
