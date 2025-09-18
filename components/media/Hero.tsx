@@ -579,7 +579,7 @@ function HeroSplit({ content }: HeroProps) {
                 {formatHeroTitle(content.company.tagline, 'split')}
               </h1>
             
-              <p className={`text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-600 dark:text-gray-300 leading-relaxed ${subtitleClass} max-w-lg`}
+              <p className={`text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 text-gray-600 dark:text-gray-300 leading-relaxed ${subtitleClass} max-w-lg`}
                  style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.05)' }}>
                 Planung, Installation & Wartung – zuverlässig, präzise, mit geprüfter Meisterqualität.
               </p>
