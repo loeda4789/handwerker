@@ -21,6 +21,7 @@ body[data-style="einfach"] {
   --heading-text-decoration: none;
   --heading-text-decoration-color: transparent;
   --heading-text-decoration-thickness: 0px;
+  --badge-display: none;
   --badge-style: none;
 }
 
@@ -32,6 +33,7 @@ body[data-style="standard"] {
   --heading-text-decoration: underline;
   --heading-text-decoration-color: var(--color-primary);
   --heading-text-decoration-thickness: 2px;
+  --badge-display: block;
   --badge-style: minimal;
 }
 
@@ -43,7 +45,8 @@ body[data-style="modern"] {
   --heading-text-decoration: underline;
   --heading-text-decoration-color: var(--color-secondary);
   --heading-text-decoration-thickness: 4px;
-  --badge-style: pill;
+  --badge-display: none;
+  --badge-style: none;
 }
 
 /* Global Font Family Application */
@@ -1644,34 +1647,18 @@ body[data-style="standard"] h2:not(.config-card h2):not(.config-sidebar h2) .hea
   text-decoration-thickness: var(--heading-text-decoration-thickness) !important;
 }
 
-body[data-style="einfach"] .badge,
-body[data-style="einfach"] .badge-minimal,
-body[data-style="einfach"] .badge-rounded,
-body[data-style="einfach"] .badge-pill {
-  display: none !important;
+/* Badge-System basierend auf CSS-Variablen - wie Unterstreichungen */
+.badge,
+.badge-minimal,
+.badge-rounded,
+.badge-pill {
+  display: var(--badge-display) !important;
 }
 
-body[data-style="standard"] .badge,
-body[data-style="standard"] .badge-minimal,
-body[data-style="standard"] .badge-rounded,
-body[data-style="standard"] .badge-pill {
-  display: block !important;
-  border-radius: var(--badge-radius-sm) !important;
-  padding: 0.25rem 0.5rem !important;
-  font-size: 0.75rem !important;
-  font-weight: 500 !important;
-}
 
 body[data-style="modern"] h2:not(.config-card h2):not(.config-sidebar h2),
 body[data-style="modern"] h2:not(.config-card h2):not(.config-sidebar h2) .heading-underline {
   text-decoration: var(--heading-text-decoration) !important;
   text-decoration-color: var(--heading-text-decoration-color) !important;
   text-decoration-thickness: var(--heading-text-decoration-thickness) !important;
-}
-
-body[data-style="modern"] .badge,
-body[data-style="modern"] .badge-minimal,
-body[data-style="modern"] .badge-rounded,
-body[data-style="modern"] .badge-pill {
-  display: none !important;
 }

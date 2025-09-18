@@ -116,15 +116,13 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
-          {/* Badge nur anzeigen wenn badgeStyle nicht 'none' ist */}
-          {badgeStyle !== 'none' && (
-            <div className={getBadgeClasses()}>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              Unser Service
-            </div>
-          )}
+          {/* Badge wird über CSS-Variablen gesteuert */}
+          <div className="badge badge-minimal">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Unser Service
+          </div>
           <h2 className={`text-3xl md:text-4xl font-bold text-text dark:text-light mb-6 text-center font-heading animate-on-scroll ${getFontClass()}`}>
             {designStyle === 'modern' ? (
               <span className="heading-underline">Was wir anbieten</span>
