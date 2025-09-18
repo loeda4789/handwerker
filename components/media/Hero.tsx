@@ -586,10 +586,10 @@ function HeroSplit({ content }: HeroProps) {
               
             
               {/* 3D CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start">
                 <Link
                   href="#kontakt"
-                  className="group inline-flex items-center justify-center px-6 py-3 sm:px-10 sm:py-5 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-sm sm:text-lg"
+                  className="group inline-flex items-center justify-center px-6 py-3 sm:px-10 sm:py-5 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-sm sm:text-lg w-fit sm:w-48"
                   data-cta="true"
                   style={{ 
                     backgroundColor: 'var(--color-secondary)',
@@ -622,7 +622,7 @@ function HeroSplit({ content }: HeroProps) {
                 </Link>
                 <Link
                   href="#ueber-uns"
-                  className="group inline-flex items-center justify-center px-6 py-3 sm:px-10 sm:py-5 border-2 border-primary text-primary font-bold rounded-2xl hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-sm sm:text-lg"
+                  className="group inline-flex items-center justify-center px-6 py-3 sm:px-10 sm:py-5 border-2 border-primary text-primary font-bold rounded-2xl hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-sm sm:text-lg w-fit sm:w-48"
                   style={{ 
                     borderRadius: 'var(--radius-button)',
                     boxShadow: `
