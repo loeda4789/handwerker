@@ -285,7 +285,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     } else if (type === 'feature') {
       // Feature-Änderungen werden automatisch über den Context gehandhabt
     } else if (type === 'style') {
-      // Style-Änderungen manuell anwenden
+      // Style-Änderungen manuell anwenden - KORRIGIERT: applyUnifiedStyle hinzugefügt
+      applyUnifiedStyle(config, value)
       applyHeadingStyles(config)
     } else if (type === 'variant') {
       // Variant-Änderungen werden automatisch über den Context gehandhabt
@@ -695,7 +696,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 key={style.id}
                                 onClick={() => {
                                   setStylePackage(style.id as any)
-                                  // Sofortige Anwendung der Styles
+                  // KORRIGIERT: applyUnifiedStyle sofort aufrufen
+                  applyUnifiedStyle(config, style.id)
+                                  // Sofortige Anwendung der Heading-Styles
                                   setTimeout(() => {
                                     applyHeadingStyles(config)
                                   }, 100)

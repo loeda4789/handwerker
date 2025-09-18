@@ -39,11 +39,11 @@ const formatHeroTitle = (tagline: string, heroType: string = 'single') => {
     if (heroType === 'split') {
       return (
         <>
-          Meisterbetrieb für <span style={{ color: 'var(--color-secondary)' }}>Elektroinstallationen & Photovoltaik</span>
+          Meisterbetrieb für <span style={{ color: 'var(--color-secondary)' }}>Elektro & Photovoltaik</span>
         </>
       )
     }
-    return "Meisterbetrieb für Elektroinstallationen & Photovoltaik"
+    return "Meisterbetrieb für Elektro & Photovoltaik"
   }
   
   // Für Dachdecker
