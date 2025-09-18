@@ -21,8 +21,8 @@ const ElektroLogoMinimal: React.FC<ElektroLogoMinimalProps> = ({
   }
 
   const logoSrc = {
-    minimal: '/images/logos/elektro-logo-minimal.svg',
-    'with-e': '/images/logos/elektro-logo-with-e.svg'
+    minimal: '/images/logos/elektro-logo-minimal-e.svg',
+    'with-e': '/images/logos/elektro-logo-elegant.svg'
   }
 
   const logoSize = {
