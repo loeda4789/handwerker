@@ -420,13 +420,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Farbverlauf-Unterstreichungen nur bei modern Style */
-body[data-style="modern"] .heading-underline::after,
 body.gradient-underlines .heading-underline::after {
   background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   opacity: 1;
 }
 
-body[data-style="modern"] .animate-on-scroll.animate-in .heading-underline::after,
 body.gradient-underlines .animate-on-scroll.animate-in .heading-underline::after {
   width: 100%;
   opacity: 1;
@@ -458,13 +456,11 @@ body.gradient-underlines .animate-on-scroll.animate-in .heading-underline::after
 }
 
 /* Farbverlauf für große Unterstreichungen nur bei modern Style */
-body[data-style="modern"] .heading-underline-large::after,
 body.gradient-underlines .heading-underline-large::after {
   background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   opacity: 1;
 }
 
-body[data-style="modern"] .animate-on-scroll.animate-in .heading-underline-large::after,
 body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-large::after {
   width: 100%;
   opacity: 1;
@@ -495,14 +491,12 @@ body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-large:
 }
 
 /* Wellen-Effekt nur bei modern Style */
-body[data-style="modern"] .heading-underline-wave::after,
 body.gradient-underlines .heading-underline-wave::after {
   background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary));
   background-size: 200% 100%;
   opacity: 1;
 }
 
-body[data-style="modern"] .animate-on-scroll.animate-in .heading-underline-wave::after,
 body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-wave::after {
   animation: underline-wave 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards,
              gradient-shift 3s ease-in-out 1.9s infinite;
