@@ -173,7 +173,7 @@ function MobileSideNavigation({
                     onClick={() => toggleMobileDropdown(item.id)}
                     className="w-full flex items-center justify-between py-3 px-4 text-left text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 group"
                   >
-                    <span className="text-lg font-medium normal-case">
+                    <span className="text-xl font-medium normal-case">
                       {item.label}
                     </span>
                     <svg 
@@ -195,7 +195,7 @@ function MobileSideNavigation({
                           <Link
                             key={dropdownIndex}
                             href={dropdownItem.href}
-                            className="block py-2 px-4 text-lg text-gray-900 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                            className="block py-2 px-4 text-xl text-gray-900 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200"
                             onClick={onClose}
                           >
                             {dropdownItem.label}
@@ -203,7 +203,7 @@ function MobileSideNavigation({
                         ) : (
                           <span
                             key={dropdownIndex}
-                            className="block py-2 px-4 text-lg text-gray-400 cursor-default"
+                            className="block py-2 px-4 text-xl text-gray-400 cursor-default"
                           >
                             {dropdownItem.label}
                           </span>
@@ -216,7 +216,7 @@ function MobileSideNavigation({
                 <Link
                   href={item.href || '#'}
                   onClick={item.isClickable && item.href?.startsWith('#') ? (e) => onSmoothScroll(e, item.id) : undefined}
-                  className="block py-3 px-4 text-lg text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium normal-case"
+                  className="block py-3 px-4 text-xl text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium normal-case"
                 >
                   {item.label}
                 </Link>

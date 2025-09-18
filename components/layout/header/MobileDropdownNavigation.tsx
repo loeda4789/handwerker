@@ -116,7 +116,7 @@ function MobileDropdownNavigation({
       >
         {/* Menu Header */}
         <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
-          <span className="text-lg font-semibold text-gray-900 dark:text-white">Menü</span>
+          <span className="text-xl font-semibold text-gray-900 dark:text-white">Menü</span>
           <button
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all duration-200"
@@ -140,7 +140,7 @@ function MobileDropdownNavigation({
                     aria-expanded={openDropdown === item.id}
                     aria-controls={`dropdown-${item.id}`}
                   >
-                    <span className="text-lg font-medium">{item.label}</span>
+                    <span className="text-xl font-medium">{item.label}</span>
                     <svg
                       className={`w-4 h-4 transform transition-transform duration-200 ${
                         openDropdown === item.id ? 'rotate-180' : ''
@@ -163,7 +163,7 @@ function MobileDropdownNavigation({
                         <Link
                           key={dropdownItem.href}
                           href={dropdownItem.href || '#'}
-                          className="block py-2 px-3 text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                          className="block py-2 px-3 text-xl font-medium text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
                           onClick={(e) => handleItemClick(e, dropdownItem.href || '')}
                         >
                           {dropdownItem.label}
@@ -175,7 +175,7 @@ function MobileDropdownNavigation({
               ) : (
                 <Link
                   href={item.href || '#'}
-                  className="block py-3 px-3 text-lg font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200"
+                  className="block py-3 px-3 text-xl font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200"
                   onClick={(e) => handleItemClick(e, item.href || '')}
                 >
                   {item.label}
