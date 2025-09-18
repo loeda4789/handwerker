@@ -574,12 +574,12 @@ function HeroSplit({ content }: HeroProps) {
           {/* Left Side - Content */}
           <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start">
             <div className="max-w-2xl w-full">
-              <h1 className={`hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 tracking-tight text-gray-900 dark:text-white ${titleClass}`}
+              <h1 className={`hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 tracking-tight text-gray-900 dark:text-white ${titleClass}`}
                   style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
                 {formatHeroTitle(content.company.tagline, 'split')}
               </h1>
             
-              <p className={`text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 text-gray-600 dark:text-gray-300 leading-relaxed ${subtitleClass} max-w-lg`}
+              <p className={`text-base sm:text-lg md:text-xl mb-8 sm:mb-12 text-gray-600 dark:text-gray-300 leading-relaxed ${subtitleClass} max-w-lg`}
                  style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.05)' }}>
                 Planung, Installation & Wartung – zuverlässig, präzise, mit geprüfter Meisterqualität.
               </p>
