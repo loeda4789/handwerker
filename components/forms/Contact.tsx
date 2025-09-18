@@ -75,6 +75,7 @@ export default function Contact({ content }: ContactProps) {
       rounded: "badge-rounded", 
       pill: "badge-pill",
       outlined: "badge-outlined",
+      gradient: "badge-gradient",
       none: "badge-none"
     }
     return `${baseClasses} ${badgeClasses[badgeStyle]}`

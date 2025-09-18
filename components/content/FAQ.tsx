@@ -35,6 +35,7 @@ export default function FAQ({ content }: FAQProps) {
       rounded: "badge-rounded", 
       pill: "badge-pill",
       outlined: "badge-outlined",
+      gradient: "badge-gradient",
       none: "badge-none"
     }
     return `${baseClasses} ${badgeClasses[badgeStyle]}`

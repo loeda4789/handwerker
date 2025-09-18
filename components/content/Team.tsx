@@ -33,6 +33,7 @@ export default function Team({ content }: TeamProps) {
       rounded: "badge-rounded", 
       pill: "badge-pill",
       outlined: "badge-outlined",
+      gradient: "badge-gradient",
       none: "badge-none"
     }
     return `${baseClasses} ${badgeClasses[badgeStyle]}`

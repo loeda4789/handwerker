@@ -108,6 +108,7 @@ export default function Stats({ content }: StatsProps) {
       rounded: "badge-rounded", 
       pill: "badge-pill",
       outlined: "badge-outlined",
+      gradient: "badge-gradient",
       none: "badge-none"
     }
     return `${baseClasses} ${badgeClasses[badgeStyle]}`
