@@ -4,7 +4,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { AppConfig } from '@/lib/config/types'
 import { configManager } from '@/lib/config/ConfigManager'
 import { getSiteVariant } from '@/lib/config/siteVariants'
-import { applyHeadingStyles } from '@/lib/headingStyles'
 
 interface AppConfigContextType {
   config: AppConfig
@@ -43,8 +42,6 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
       console.log('🎨 Initiale Font-Familie gesetzt:', initialConfig.style.fontFamily, '→', fontValue)
     }
 
-    // Initiale Heading-Styles anwenden
-    applyHeadingStyles(initialConfig)
 
     // Listener für Änderungen
     const unsubscribe = configManager.subscribe((newConfig) => {
@@ -64,8 +61,6 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
         console.log('🎨 Font-Familie gesetzt:', newConfig.style.fontFamily, '→', fontValue)
       }
 
-      // Heading-Styles bei Konfigurationsänderungen anwenden
-      applyHeadingStyles(newConfig)
     })
 
     return unsubscribe
