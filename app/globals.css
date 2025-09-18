@@ -16,16 +16,28 @@
 body[data-style="einfach"] {
   --font-heading: var(--font-heading-einfach);
   --font-accent: var(--font-heading-einfach);
+  /* Einfach: Keine Unterstreichungen, keine Badges */
+  --heading-underline: none;
+  --heading-text-decoration: none;
+  --badge-style: none;
 }
 
 body[data-style="standard"] {
   --font-heading: var(--font-heading-standard);
   --font-accent: var(--font-heading-standard);
+  /* Standard: Einfache Unterstreichungen, minimale Badges */
+  --heading-underline: solid;
+  --heading-text-decoration: underline;
+  --badge-style: minimal;
 }
 
 body[data-style="modern"] {
   --font-heading: var(--font-heading-modern);
   --font-accent: var(--font-heading-modern);
+  /* Modern: Dramatische Unterstreichungen, Pill-Badges */
+  --heading-underline: solid;
+  --heading-text-decoration: underline;
+  --badge-style: pill;
 }
 
 /* Global Font Family Application */
@@ -1607,4 +1619,40 @@ body, p, span, div {
     width: 100vw;
     max-width: 100vw;
   }
+}
+
+/* Style-basierte Anwendung von Unterstreichungen und Badges */
+body[data-style="einfach"] h2:not(.config-card h2):not(.config-sidebar h2) {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+body[data-style="einfach"] .badge {
+  display: none !important;
+}
+
+body[data-style="standard"] h2:not(.config-card h2):not(.config-sidebar h2) {
+  text-decoration: var(--heading-text-decoration) !important;
+  text-decoration-color: var(--heading-text-decoration-color) !important;
+  text-decoration-thickness: var(--heading-text-decoration-thickness) !important;
+}
+
+body[data-style="standard"] .badge {
+  border-radius: var(--badge-radius-sm) !important;
+  padding: 0.25rem 0.5rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+}
+
+body[data-style="modern"] h2:not(.config-card h2):not(.config-sidebar h2) {
+  text-decoration: var(--heading-text-decoration) !important;
+  text-decoration-color: var(--heading-text-decoration-color) !important;
+  text-decoration-thickness: var(--heading-text-decoration-thickness) !important;
+}
+
+body[data-style="modern"] .badge {
+  border-radius: var(--badge-radius-lg) !important;
+  padding: 0.5rem 1.25rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
 }

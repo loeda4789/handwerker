@@ -78,10 +78,10 @@ export const applyHeadingStyles = (config: AppConfig) => {
     })
     
     // Font-Style direkt anwenden
-    const { style } = config.headings
-    if (style && style !== 'none') {
+    const { package: stylePackage } = config.style
+    if (stylePackage && stylePackage !== 'none') {
       // data-style Attribut am body setzen
-      document.body.setAttribute('data-style', style)
+      document.body.setAttribute('data-style', stylePackage)
       
       // Alle Headlines direkt aktualisieren
       const allHeadlines = document.querySelectorAll('h1, h2, h3, h4, h5, h6:not(.config-card h1, .config-card h2, .config-card h3, .config-card h4, .config-card h5, .config-card h6, .config-sidebar h1, .config-sidebar h2, .config-sidebar h3, .config-sidebar h4, .config-sidebar h5, .config-sidebar h6)')

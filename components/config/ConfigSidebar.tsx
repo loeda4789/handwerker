@@ -286,8 +286,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       // Feature-Änderungen werden automatisch über den Context gehandhabt
     } else if (type === 'style') {
       // Style-Änderungen manuell anwenden - KORRIGIERT: applyUnifiedStyle hinzugefügt
-      applyUnifiedStyle(config, value)
-      applyHeadingStyles(config)
+      const newConfig = applyUnifiedStyle(config, value)
+      applyHeadingStyles(newConfig)
     } else if (type === 'variant') {
       // Variant-Änderungen werden automatisch über den Context gehandhabt
     }
@@ -696,11 +696,11 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 key={style.id}
                                 onClick={() => {
                                   setStylePackage(style.id as any)
-                  // KORRIGIERT: applyUnifiedStyle sofort aufrufen
-                  applyUnifiedStyle(config, style.id)
-                                  // Sofortige Anwendung der Heading-Styles
+                                  // KORRIGIERT: applyUnifiedStyle sofort aufrufen und neue Config verwenden
+                                  const newConfig = applyUnifiedStyle(config, style.id)
+                                  // Sofortige Anwendung der Heading-Styles mit neuer Config
                                   setTimeout(() => {
-                                    applyHeadingStyles(config)
+                                    applyHeadingStyles(newConfig)
                                   }, 100)
                                   handleApply('style', style.id)
                                 }}
