@@ -40,7 +40,7 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
   
   // Badge-Klassen basierend auf Stil-Paket
   const getBadgeClasses = () => {
-    const baseClasses = "inline-flex items-center gap-2 text-white px-4 py-2 text-sm font-medium mb-4"
+    const baseClasses = "inline-flex items-center gap-2 text-white text-sm font-medium mb-4"
     const badgeClasses = {
       minimal: "badge-minimal",
       rounded: "badge-rounded", 
@@ -118,7 +118,7 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
         {/* Section Header */}
         <div className="text-center mb-12 animate-on-scroll">
           {/* Badge wird über CSS-Variablen gesteuert */}
-          <div className="badge badge-minimal">
+          <div className={getBadgeClasses()}>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
