@@ -695,8 +695,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               <button
                                 key={style.id}
                                 onClick={() => {
+                                  console.log('🎨 Style-Klick:', style.id)
+                                  console.log('🎨 Aktueller body data-style:', document.body.getAttribute('data-style'))
                                   setStylePackage(style.id as any)
                                   handleApply('style', style.id)
+                                  setTimeout(() => {
+                                    console.log('🎨 Nach Änderung body data-style:', document.body.getAttribute('data-style'))
+                                    console.log('🎨 Badges gefunden:', document.querySelectorAll('.badge').length)
+                                  }, 100)
                                 }}
                                 className={`p-2 rounded-xl border transition-all duration-300 group ${
                                   stylePackage === style.id 

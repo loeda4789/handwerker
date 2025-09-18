@@ -1644,10 +1644,18 @@ body[data-style="standard"] h2:not(.config-card h2):not(.config-sidebar h2) .hea
   text-decoration-thickness: var(--heading-text-decoration-thickness) !important;
 }
 
+body[data-style="einfach"] .badge,
+body[data-style="einfach"] .badge-minimal,
+body[data-style="einfach"] .badge-rounded,
+body[data-style="einfach"] .badge-pill {
+  display: none !important;
+}
+
 body[data-style="standard"] .badge,
 body[data-style="standard"] .badge-minimal,
 body[data-style="standard"] .badge-rounded,
 body[data-style="standard"] .badge-pill {
+  display: block !important;
   border-radius: var(--badge-radius-sm) !important;
   padding: 0.25rem 0.5rem !important;
   font-size: 0.75rem !important;
@@ -1665,8 +1673,5 @@ body[data-style="modern"] .badge,
 body[data-style="modern"] .badge-minimal,
 body[data-style="modern"] .badge-rounded,
 body[data-style="modern"] .badge-pill {
-  border-radius: var(--badge-radius-lg) !important;
-  padding: 0.5rem 1.25rem !important;
-  font-size: 0.875rem !important;
-  font-weight: 600 !important;
+  display: none !important;
 }
