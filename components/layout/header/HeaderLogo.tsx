@@ -25,14 +25,15 @@ export default function HeaderLogo({ logoStyle, companyName }: HeaderLogoProps) 
   return (
     <Link href="/" className="flex items-center">
       {isElektroCompany ? (
-        // New Elektro Logo
-        <div className="h-12 w-auto">
+        // New minimal Elektro Logo with current color
+        <div className="h-12 w-12 flex items-center justify-center" style={{ color: 'currentColor' }}>
           <Image
-            src="/images/logos/elektro-logo-compact.svg"
+            src="/images/logos/elektro-logo-minimal.svg"
             alt={`${companyName} Logo`}
-            width={120}
-            height={40}
-            className="h-full w-auto object-contain"
+            width={60}
+            height={60}
+            className="w-full h-full object-contain"
+            style={{ color: 'currentColor' }}
             priority
           />
         </div>

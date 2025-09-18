@@ -1,0 +1,32 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Moderne Glühbirne -->
+  <g id="lightbulb">
+    <!-- Glühbirnen-Körper -->
+    <ellipse cx="30" cy="30" rx="12" ry="18" fill="currentColor" stroke="currentColor" stroke-width="1.5" opacity="0.9"/>
+    
+    <!-- Glühbirnen-Spitze -->
+    <rect x="26" y="12" width="8" height="6" rx="1" fill="currentColor" opacity="0.7"/>
+    
+    <!-- Glühbirnen-Faden -->
+    <path d="M30 20 Q28 22 30 24 Q32 22 30 20" stroke="currentColor" stroke-width="1" fill="none" opacity="0.6"/>
+    <path d="M30 24 Q28 26 30 28 Q32 26 30 28" stroke="currentColor" stroke-width="1" fill="none" opacity="0.6"/>
+    
+    <!-- Glühbirnen-Basis -->
+    <rect x="25" y="45" width="10" height="3" rx="1" fill="currentColor" opacity="0.5"/>
+    
+    <!-- Moderne Lichtstrahlen -->
+    <g opacity="0.4">
+      <line x1="18" y1="25" x2="12" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="18" y1="30" x2="10" y2="30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="18" y1="35" x2="12" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="42" y1="25" x2="48" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="42" y1="30" x2="50" y2="30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="42" y1="35" x2="48" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Moderne Akzente -->
+    <circle cx="30" cy="30" r="2" fill="currentColor" opacity="0.3"/>
+    <circle cx="30" cy="25" r="1" fill="currentColor" opacity="0.2"/>
+    <circle cx="30" cy="35" r="1" fill="currentColor" opacity="0.2"/>
+  </g>
+</svg>
