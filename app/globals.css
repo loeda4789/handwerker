@@ -40,13 +40,13 @@ body[data-style="standard"] {
 body[data-style="modern"] {
   --font-heading: var(--font-heading-modern);
   --font-accent: var(--font-heading-modern);
-  /* Modern: Dramatische Unterstreichungen, Pill-Badges */
+  /* Modern: Dramatische Unterstreichungen, Gradient-Badges */
   --heading-underline: solid;
   --heading-text-decoration: underline;
   --heading-text-decoration-color: var(--color-secondary);
   --heading-text-decoration-thickness: 4px;
-  --badge-display: none;
-  --badge-style: none;
+  --badge-display: block;
+  --badge-style: gradient;
 }
 
 /* Global Font Family Application */
@@ -574,6 +574,33 @@ body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-wave::
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-secondary);
+}
+
+.badge-gradient {
+  border-radius: var(--badge-radius-lg);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.badge-gradient:hover::before {
+  left: 100%;
 }
 
 /* Spacing Classes */
@@ -1695,8 +1722,23 @@ body[data-style="standard"] h2:not(.config-card h2):not(.config-sidebar h2) .hea
 .badge,
 .badge-minimal,
 .badge-rounded,
-.badge-pill {
+.badge-pill,
+.badge-outlined,
+.badge-gradient {
   display: var(--badge-display) !important;
+}
+
+/* Badge-Style basierend auf CSS-Variable */
+body[data-style="modern"] .badge {
+  /* Gradient-Badges für Modern Style */
+}
+
+body[data-style="standard"] .badge {
+  /* Minimal-Badges für Standard Style */
+}
+
+body[data-style="einfach"] .badge {
+  /* Keine Badges für Einfach Style */
 }
 
 

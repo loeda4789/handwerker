@@ -46,6 +46,7 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
       rounded: "badge-rounded", 
       pill: "badge-pill",
       outlined: "badge-outlined",
+      gradient: "badge-gradient",
       none: "badge-none"
     }
     return `${baseClasses} ${badgeClasses[badgeStyle]}`

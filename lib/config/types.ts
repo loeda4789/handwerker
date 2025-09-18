@@ -40,7 +40,7 @@ export interface AppConfig {
   style: {
     package: 'einfach' | 'standard' | 'modern'
     fontFamily: 'sans' | 'serif' | 'display'
-    badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none'
+    badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none' | 'gradient'
     spacing: 'compact' | 'comfortable' | 'spacious'
   }
   system: {

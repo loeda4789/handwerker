@@ -31,7 +31,7 @@ export interface UnifiedStyle {
     }
     // Interactive Elements
       interactive: {
-        badges: 'none' | 'minimal' | 'rounded' | 'pill' | 'outlined'
+        badges: 'none' | 'minimal' | 'rounded' | 'pill' | 'outlined' | 'gradient'
         underlines: 'none' | 'solid' | 'gradient'
         buttons: 'minimal' | 'standard' | 'dramatic'
         hoverEffects: 'none' | 'subtle' | 'dynamic'
@@ -125,7 +125,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
   {
     id: 'modern',
     name: 'Modern',
-    description: 'Stilvoll, aufmerksamkeitsstark mit Farbverlauf-Unterstreichungen',
+    description: 'Stilvoll, aufmerksamkeitsstark mit Farbverlauf-Unterstreichungen und Gradient-Badges',
     icon: 'M',
     color: 'bg-purple-50 border-purple-200',
     config: {
@@ -148,7 +148,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
         borders: 'bold'
       },
       interactive: {
-        badges: 'pill',
+        badges: 'gradient',
         underlines: 'gradient',
         buttons: 'dramatic',
         hoverEffects: 'dynamic'
@@ -190,7 +190,7 @@ export const applyUnifiedStyle = (config: AppConfig, styleId: string): AppConfig
       ...config.style,
       package: styleId as any,
       fontFamily: unifiedStyle.config.typography.fontFamily,
-      badgeStyle: unifiedStyle.config.interactive.badges as 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none',
+      badgeStyle: unifiedStyle.config.interactive.badges as 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none' | 'gradient',
       spacing: unifiedStyle.config.spacing.section
     }
   }
