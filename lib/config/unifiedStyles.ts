@@ -111,7 +111,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
       },
       interactive: {
         badges: 'minimal',
-        underlines: 'solid',
+        underlines: 'none',
         buttons: 'standard',
         hoverEffects: 'subtle'
       },
