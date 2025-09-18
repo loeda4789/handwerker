@@ -142,7 +142,7 @@ export default function HeaderModern({ content }: HeaderModernProps) {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden w-12 h-12 flex items-center justify-center text-white hover:bg-white/20 rounded-2xl transition-all duration-300 border-2 border-white/30 shadow-lg backdrop-blur-sm"
+            className="md:hidden w-12 h-12 flex items-center justify-center text-white hover:bg-white/20 rounded-2xl transition-all duration-300"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"

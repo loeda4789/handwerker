@@ -162,7 +162,7 @@ export default function HeaderStandard({ content }: HeaderStandardProps) {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden w-12 h-12 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all duration-300 border-2 border-gray-200 dark:border-gray-600 shadow-lg"
+              className="md:hidden w-12 h-12 flex items-center justify-center text-text dark:text-light hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all duration-300"
               onClick={toggleMenu}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
