@@ -394,27 +394,42 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(0);
 }
 
-/* Heading underline animation - wird NUR bei modernen Styles aktiviert */
-.modern-style .heading-underline {
+/* Heading underline animation - wird über CSS-Variable gesteuert */
+.heading-underline {
   position: relative;
   display: inline-block;
 }
 
-.modern-style .heading-underline::after {
+.heading-underline::after {
   content: '';
   position: absolute;
   bottom: -4px;
   left: 0;
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  background: var(--color-primary);
   border-radius: 2px;
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   transition-delay: 0.3s;
+  opacity: 0;
 }
 
-.modern-style .animate-on-scroll.animate-in .heading-underline::after {
+.animate-on-scroll.animate-in .heading-underline::after {
   width: 100%;
+  opacity: 1;
+}
+
+/* Farbverlauf-Unterstreichungen nur bei modern Style */
+body[data-style="modern"] .heading-underline::after,
+body.gradient-underlines .heading-underline::after {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  opacity: 1;
+}
+
+body[data-style="modern"] .animate-on-scroll.animate-in .heading-underline::after,
+body.gradient-underlines .animate-on-scroll.animate-in .heading-underline::after {
+  width: 100%;
+  opacity: 1;
 }
 
 /* Variante fÃ¼r grÃ¶ÃŸere Ãœberschriften */
@@ -430,36 +445,65 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  background: var(--color-primary);
   border-radius: 3px;
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   transition-delay: 0.3s;
+  opacity: 0;
 }
 
-.modern-style .animate-on-scroll.animate-in .heading-underline-large::after {
+.animate-on-scroll.animate-in .heading-underline-large::after {
   width: 100%;
+  opacity: 1;
 }
 
-/* Animierte Unterstreichung mit "Wellen"-Effekt fÃ¼r moderne Styles */
-.modern-style .heading-underline-wave {
+/* Farbverlauf für große Unterstreichungen nur bei modern Style */
+body[data-style="modern"] .heading-underline-large::after,
+body.gradient-underlines .heading-underline-large::after {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  opacity: 1;
+}
+
+body[data-style="modern"] .animate-on-scroll.animate-in .heading-underline-large::after,
+body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-large::after {
+  width: 100%;
+  opacity: 1;
+}
+
+/* Animierte Unterstreichung mit "Wellen"-Effekt nur bei modern Style */
+.heading-underline-wave {
   position: relative;
   display: inline-block;
 }
 
-.modern-style .heading-underline-wave::after {
+.heading-underline-wave::after {
   content: '';
   position: absolute;
   bottom: -4px;
   left: 0;
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary));
-  background-size: 200% 100%;
+  background: var(--color-primary);
   border-radius: 2px;
   animation: none;
+  opacity: 0;
 }
 
-.modern-style .animate-on-scroll.animate-in .heading-underline-wave::after {
+.animate-on-scroll.animate-in .heading-underline-wave::after {
+  width: 100%;
+  opacity: 1;
+}
+
+/* Wellen-Effekt nur bei modern Style */
+body[data-style="modern"] .heading-underline-wave::after,
+body.gradient-underlines .heading-underline-wave::after {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+  background-size: 200% 100%;
+  opacity: 1;
+}
+
+body[data-style="modern"] .animate-on-scroll.animate-in .heading-underline-wave::after,
+body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-wave::after {
   animation: underline-wave 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards,
              gradient-shift 3s ease-in-out 1.9s infinite;
 }

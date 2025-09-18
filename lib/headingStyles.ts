@@ -1,7 +1,7 @@
 import { AppConfig } from '@/lib/config/types'
 
 export const getHeadingStyles = (config: AppConfig) => {
-  const { underline, style, color } = config.headings
+  const { underline, style, color, gradient } = config.headings
   
   if (!underline || style === 'none') {
     return {
@@ -45,7 +45,8 @@ export const getHeadingStyles = (config: AppConfig) => {
     underline: 'underline',
     textDecoration: 'underline',
     textDecorationColor: getSolidColor(),
-    textDecorationThickness: '2px'
+    textDecorationThickness: '2px',
+    gradient: gradient || false
   }
 }
 
@@ -82,6 +83,13 @@ export const applyHeadingStyles = (config: AppConfig) => {
     if (stylePackage) {
       // data-style Attribut am body setzen
       document.body.setAttribute('data-style', stylePackage)
+      
+      // Farbverlauf-Unterstreichungen aktivieren/deaktivieren
+      if (styles.gradient) {
+        document.body.classList.add('gradient-underlines')
+      } else {
+        document.body.classList.remove('gradient-underlines')
+      }
       
       // Alle Headlines direkt aktualisieren
       const allHeadlines = document.querySelectorAll('h1, h2, h3, h4, h5, h6:not(.config-card h1, .config-card h2, .config-card h3, .config-card h4, .config-card h5, .config-card h6, .config-sidebar h1, .config-sidebar h2, .config-sidebar h3, .config-sidebar h4, .config-sidebar h5, .config-sidebar h6)')

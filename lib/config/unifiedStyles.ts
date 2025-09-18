@@ -32,7 +32,7 @@ export interface UnifiedStyle {
     // Interactive Elements
       interactive: {
         badges: 'none' | 'minimal' | 'rounded' | 'pill' | 'outlined'
-        underlines: 'none' | 'solid'
+        underlines: 'none' | 'solid' | 'gradient'
         buttons: 'minimal' | 'standard' | 'dramatic'
         hoverEffects: 'none' | 'subtle' | 'dynamic'
       }
@@ -125,7 +125,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
   {
     id: 'modern',
     name: 'Modern',
-    description: 'Stilvoll, aufmerksamkeitsstark',
+    description: 'Stilvoll, aufmerksamkeitsstark mit Farbverlauf-Unterstreichungen',
     icon: 'M',
     color: 'bg-purple-50 border-purple-200',
     config: {
@@ -149,7 +149,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
       },
       interactive: {
         badges: 'pill',
-        underlines: 'solid',
+        underlines: 'gradient',
         buttons: 'dramatic',
         hoverEffects: 'dynamic'
       },
@@ -182,8 +182,9 @@ export const applyUnifiedStyle = (config: AppConfig, styleId: string): AppConfig
     headings: {
       ...config.headings,
       underline: unifiedStyle.config.interactive.underlines !== 'none',
-      style: unifiedStyle.config.interactive.underlines as 'solid' | 'none',
-      color: 'primary' as 'primary' | 'secondary' | 'accent' | 'custom'
+      style: unifiedStyle.config.interactive.underlines === 'gradient' ? 'solid' : unifiedStyle.config.interactive.underlines as 'solid' | 'none',
+      color: 'primary' as 'primary' | 'secondary' | 'accent' | 'custom',
+      gradient: unifiedStyle.config.interactive.underlines === 'gradient'
     },
     style: {
       ...config.style,

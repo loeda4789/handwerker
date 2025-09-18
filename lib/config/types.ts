@@ -35,6 +35,7 @@ export interface AppConfig {
     underline: boolean
     style: 'solid' | 'none'
     color: 'primary' | 'secondary' | 'accent' | 'custom'
+    gradient?: boolean
   }
   style: {
     package: 'einfach' | 'standard' | 'modern'
