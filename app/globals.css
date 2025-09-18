@@ -1696,21 +1696,11 @@ body, p, span, div {
 }
 
 /* Style-basierte Anwendung von Unterstreichungen und Badges */
-body[data-style="einfach"] h2:not(.config-card h2):not(.config-sidebar h2) {
-  text-decoration: none !important;
-  border-bottom: none !important;
-}
 
 body[data-style="einfach"] .badge {
   display: none !important;
 }
 
-body[data-style="standard"] h2:not(.config-card h2):not(.config-sidebar h2),
-body[data-style="standard"] h2:not(.config-card h2):not(.config-sidebar h2) .heading-underline {
-  text-decoration: none !important;
-  text-decoration-color: transparent !important;
-  text-decoration-thickness: 0px !important;
-}
 
 /* Badge-System basierend auf CSS-Variablen - wie Unterstreichungen */
 .badge,
@@ -1736,9 +1726,3 @@ body[data-style="einfach"] .badge {
 }
 
 
-body[data-style="modern"] h2:not(.config-card h2):not(.config-sidebar h2),
-body[data-style="modern"] h2:not(.config-card h2):not(.config-sidebar h2) .heading-underline {
-  text-decoration: none !important;
-  text-decoration-color: transparent !important;
-  text-decoration-thickness: 0px !important;
-}
