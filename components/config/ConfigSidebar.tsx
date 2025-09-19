@@ -34,6 +34,7 @@ import { applyColorScheme, applyBorderRadiusScheme, colorSchemes as colorSchemes
 import type { SimpleColorScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import { applyBadgeStyles } from '@/lib/badgeStyles'
+import { applyBorderRadiusStyles } from '@/lib/borderRadiusStyles'
 import InfoTooltip from '@/components/ui/InfoTooltip'
 import InfoTooltipAdvanced from '@/components/ui/InfoTooltipAdvanced'
 import ExpandableInfo from '@/components/ui/ExpandableInfo'
@@ -166,6 +167,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       applyBorderRadiusScheme(designStyle)
       applyHeadingStyles(config)
       applyBadgeStyles(config)
+      applyBorderRadiusStyles(config)
     }
   }, [isConfigLoaded]) // Nur isConfigLoaded als dependency
 
@@ -292,6 +294,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       updateConfig(newConfig) // Context aktualisieren
       applyHeadingStyles(newConfig)
       applyBadgeStyles(newConfig)
+      applyBorderRadiusStyles(newConfig)
     } else if (type === 'variant') {
       // Variant-Änderungen werden automatisch über den Context gehandhabt
     }
