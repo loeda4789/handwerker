@@ -191,7 +191,8 @@ export const applyUnifiedStyle = (config: AppConfig, styleId: string): AppConfig
       package: styleId as any,
       fontFamily: unifiedStyle.config.typography.fontFamily,
       badgeStyle: unifiedStyle.config.interactive.badges as 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none' | 'gradient',
-      spacing: unifiedStyle.config.spacing.section
+      spacing: unifiedStyle.config.spacing.section,
+      borderRadius: unifiedStyle.config.design.borderRadius as 'none' | 'subtle' | 'pronounced'
     }
   }
 

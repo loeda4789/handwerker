@@ -16,37 +16,52 @@
 body[data-style="einfach"] {
   --font-heading: var(--font-heading-einfach);
   --font-accent: var(--font-heading-einfach);
-  /* Einfach: Keine Unterstreichungen, keine Badges */
+  /* Einfach: Keine Unterstreichungen, keine Badges, keine Border-Radius */
   --heading-underline: none;
   --heading-text-decoration: none;
   --heading-text-decoration-color: transparent;
   --heading-text-decoration-thickness: 0px;
   --badge-display: none;
   --badge-style: none;
+  --radius-button: 0.25rem;
+  --radius-card: 0.375rem;
+  --radius-input: 0.25rem;
+  --radius-modal: 0.5rem;
+  --radius-badge: 0.25rem;
 }
 
 body[data-style="standard"] {
   --font-heading: var(--font-heading-standard);
   --font-accent: var(--font-heading-standard);
-  /* Standard: Keine Unterstreichungen, minimale Badges */
+  /* Standard: Keine Unterstreichungen, minimale Badges, subtile Border-Radius */
   --heading-underline: none;
   --heading-text-decoration: none;
   --heading-text-decoration-color: transparent;
   --heading-text-decoration-thickness: 0px;
   --badge-display: block;
   --badge-style: minimal;
+  --radius-button: 0.5rem;
+  --radius-card: 0.75rem;
+  --radius-input: 0.375rem;
+  --radius-modal: 1rem;
+  --radius-badge: 0.5rem;
 }
 
 body[data-style="modern"] {
   --font-heading: var(--font-heading-modern);
   --font-accent: var(--font-heading-modern);
-  /* Modern: Nur Gradient-Unterstreichungen, keine Badges */
+  /* Modern: Nur Gradient-Unterstreichungen, keine Badges, ausgeprägte Border-Radius */
   --heading-underline: none;
   --heading-text-decoration: none;
   --heading-text-decoration-color: transparent;
   --heading-text-decoration-thickness: 0px;
   --badge-display: none;
   --badge-style: none;
+  --radius-button: 1rem;
+  --radius-card: 1.25rem;
+  --radius-input: 0.75rem;
+  --radius-modal: 1.5rem;
+  --radius-badge: 1rem;
 }
 
 /* Global Font Family Application */

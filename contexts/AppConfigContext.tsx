@@ -4,6 +4,9 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { AppConfig } from '@/lib/config/types'
 import { configManager } from '@/lib/config/ConfigManager'
 import { getSiteVariant } from '@/lib/config/siteVariants'
+import { applyHeadingStyles } from '@/lib/headingStyles'
+import { applyBadgeStyles } from '@/lib/badgeStyles'
+import { applyBorderRadiusStyles } from '@/lib/borderRadiusStyles'
 
 interface AppConfigContextType {
   config: AppConfig
@@ -42,6 +45,11 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
       console.log('🎨 Initiale Font-Familie gesetzt:', initialConfig.style.fontFamily, '→', fontValue)
     }
 
+    // Initiale Styles anwenden
+    applyHeadingStyles(initialConfig)
+    applyBadgeStyles(initialConfig)
+    applyBorderRadiusStyles(initialConfig)
+
 
     // Listener für Änderungen
     const unsubscribe = configManager.subscribe((newConfig) => {
@@ -60,6 +68,11 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
         document.documentElement.style.setProperty('--font-current', fontValue)
         console.log('🎨 Font-Familie gesetzt:', newConfig.style.fontFamily, '→', fontValue)
       }
+
+      // Styles bei Konfigurationsänderungen anwenden
+      applyHeadingStyles(newConfig)
+      applyBadgeStyles(newConfig)
+      applyBorderRadiusStyles(newConfig)
 
     })
 

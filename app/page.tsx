@@ -333,7 +333,8 @@ export default function HomePage() {
         package: (savedDesignStyle as any) || 'einfach',
         fontFamily: 'sans' as const,
         badgeStyle: 'minimal' as const,
-        spacing: 'comfortable' as const
+        spacing: 'comfortable' as const,
+        borderRadius: 'subtle' as const
       },
       system: {
         isFirstVisit: false,
@@ -455,7 +456,8 @@ export default function HomePage() {
           package: (config.designStyle as any) || 'einfach',
           fontFamily: 'sans' as const,
           badgeStyle: 'minimal' as const,
-          spacing: 'comfortable' as const
+          spacing: 'comfortable' as const,
+          borderRadius: 'subtle' as const
         },
         system: {
           isFirstVisit: false,
