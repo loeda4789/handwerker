@@ -74,7 +74,6 @@ export default function SectionHeading({
       {badge && (
         <div className={getBadgeClasses()}
           style={{ backgroundColor: 'var(--color-secondary)' }}>
-          {badge.icon}
           {badge.text}
         </div>
       )}
