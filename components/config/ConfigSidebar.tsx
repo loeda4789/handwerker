@@ -587,60 +587,24 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     )}
 
                     {section.id === 'mobile-features' && (
-                      <div className="space-y-4">
-                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-                          <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                              <MdPhone className="w-4 h-4 text-white" />
-                            </div>
-                            <div className="flex-1">
-                              <h3 className="font-semibold text-blue-900 text-sm mb-1">Mobile Kontakt-Features</h3>
-                              <p className="text-blue-700 text-xs mb-3">Schwebender Kontakt-Button mit 4 Optionen</p>
-                              <div className="grid grid-cols-2 gap-2 text-xs">
-                                <div className="flex items-center gap-2 text-blue-600">
-                                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                  <span>WhatsApp</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-blue-600">
-                                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                  <span>Anrufen</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-blue-600">
-                                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                  <span>Angebot</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-blue-600">
-                                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                                  <span>Route</span>
-                                </div>
-                              </div>
-                            </div>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 p-3 bg-blue-50 border border-blue-200 rounded-xl">
+                          <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                            <MdPhone className="w-4 h-4 text-white" />
+                          </div>
+                          <div>
+                            <div className="font-semibold text-blue-900 text-sm">Mobile Kontakt</div>
+                            <div className="text-blue-700 text-xs">Schwebender Button mit 4 Optionen</div>
                           </div>
                         </div>
                         
-                        <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
-                          <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                              <MdSettings className="w-4 h-4 text-white" />
-                            </div>
-                            <div className="flex-1">
-                              <h3 className="font-semibold text-gray-900 text-sm mb-1">Status-Indikatoren</h3>
-                              <p className="text-gray-600 text-xs mb-2">Zeigt Service-Informationen an</p>
-                              <div className="space-y-1 text-xs">
-                                <div className="flex items-center gap-2 text-gray-600">
-                                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                  <span>24/7 Service</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                  <span>Vor Ort</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                                  <span>Schnell</span>
-                                </div>
-                              </div>
-                            </div>
+                        <div className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                          <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
+                            <MdSettings className="w-4 h-4 text-white" />
+                          </div>
+                          <div>
+                            <div className="font-semibold text-gray-900 text-sm">Status-Info</div>
+                            <div className="text-gray-600 text-xs">Service-Informationen anzeigen</div>
                           </div>
                         </div>
                       </div>
