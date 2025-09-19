@@ -1774,19 +1774,23 @@ body[data-style="einfach"] .badge {
 
 /* ===== CONFIG COMPONENTS PROTECTION ===== */
 /* Config-Komponenten sollen nicht von globalen Border-Radius-Änderungen betroffen sein */
-.config-card-button,
-.config-sidebar,
-.config-sidebar *,
-[class*="config-"],
-[class*="Config"] {
-  border-radius: 0.75rem !important; /* Feste Border-Radius für Config-Komponenten */
-}
 
-/* Spezifische Überschreibungen für Config-Elemente */
+/* ConfigCard spezifische Überschreibungen */
 .config-card-button {
   border-radius: 1rem !important; /* ConfigCard Button */
 }
 
+/* ConfigSidebar Container */
+.config-sidebar {
+  border-radius: 0.75rem !important;
+}
+
+/* Alle Elemente innerhalb der ConfigSidebar */
+.config-sidebar * {
+  border-radius: inherit !important;
+}
+
+/* Spezifische Überschreibungen für ConfigSidebar Elemente */
 .config-sidebar .rounded-xl {
   border-radius: 0.75rem !important;
 }
@@ -1803,8 +1807,81 @@ body[data-style="einfach"] .badge {
   border-radius: 50% !important;
 }
 
-/* Package Selection spezifische Überschreibungen */
+/* Package Selection Container und alle Kinder */
+[class*="PackageSelection"] {
+  border-radius: 0.75rem !important;
+}
+
 [class*="PackageSelection"] * {
   border-radius: inherit !important;
+}
+
+/* Weitere Config-Komponenten */
+[class*="config-"],
+[class*="Config"],
+[class*="ConfigCard"],
+[class*="ConfigSidebar"] {
+  border-radius: 0.75rem !important;
+}
+
+[class*="config-"] *,
+[class*="Config"] *,
+[class*="ConfigCard"] *,
+[class*="ConfigSidebar"] * {
+  border-radius: inherit !important;
+}
+
+/* Mobile Config Card spezifisch */
+.lg\\:hidden .config-card-button {
+  border-radius: 1rem !important;
+}
+
+/* Desktop Config Card spezifisch */
+.hidden .config-card-button {
+  border-radius: 1rem !important;
+}
+
+/* ULTIMATIVE CONFIG PROTECTION - Überschreibt ALLE globalen Border-Radius-Regeln */
+body[data-style="modern"] .config-card-button,
+body[data-style="standard"] .config-card-button,
+body[data-style="einfach"] .config-card-button {
+  border-radius: 1rem !important;
+}
+
+body[data-style="modern"] .config-sidebar,
+body[data-style="standard"] .config-sidebar,
+body[data-style="einfach"] .config-sidebar {
+  border-radius: 0.75rem !important;
+}
+
+body[data-style="modern"] .config-sidebar *,
+body[data-style="standard"] .config-sidebar *,
+body[data-style="einfach"] .config-sidebar * {
+  border-radius: inherit !important;
+}
+
+/* Spezifische Überschreibungen für alle Design-Styles */
+body[data-style="modern"] .config-sidebar .rounded-xl,
+body[data-style="standard"] .config-sidebar .rounded-xl,
+body[data-style="einfach"] .config-sidebar .rounded-xl {
+  border-radius: 0.75rem !important;
+}
+
+body[data-style="modern"] .config-sidebar .rounded-lg,
+body[data-style="standard"] .config-sidebar .rounded-lg,
+body[data-style="einfach"] .config-sidebar .rounded-lg {
+  border-radius: 0.5rem !important;
+}
+
+body[data-style="modern"] .config-sidebar .rounded-2xl,
+body[data-style="standard"] .config-sidebar .rounded-2xl,
+body[data-style="einfach"] .config-sidebar .rounded-2xl {
+  border-radius: 1rem !important;
+}
+
+body[data-style="modern"] .config-sidebar .rounded-full,
+body[data-style="standard"] .config-sidebar .rounded-full,
+body[data-style="einfach"] .config-sidebar .rounded-full {
+  border-radius: 50% !important;
 }
 
