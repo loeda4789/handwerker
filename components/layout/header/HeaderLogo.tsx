@@ -24,12 +24,12 @@ export default function HeaderLogo({ logoStyle, companyName }: HeaderLogoProps) 
   return (
     <Link href="/" className="flex items-center">
       {isElektroCompany ? (
-        // Simple 2-letter logo with border for color adaptation
+        // ELEKTRO logo with border for color adaptation
         <div 
-          className={`w-12 h-12 ${logoStyle} border-2 border-current flex items-center justify-center logo-font text-lg`}
+          className={`px-3 py-2 ${logoStyle} border-2 border-current flex items-center justify-center logo-font text-sm font-bold`}
           style={{ borderRadius: 'var(--radius-button)' }}
         >
-          E
+          ELEKTRO
         </div>
       ) : (
         // Original initials logo
