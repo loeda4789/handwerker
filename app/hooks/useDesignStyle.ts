@@ -1,9 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { applyHeadingStyles } from '@/lib/headingStyles'
-import { applyBadgeStyles } from '@/lib/badgeStyles'
-import { applyBorderRadiusStyles } from '@/lib/borderRadiusStyles'
+import { styleManager } from '@/lib/unifiedStyleManager'
 
 export function useDesignStyle() {
   const [designStyle, setDesignStyle] = useState<string>('rounded')
@@ -67,10 +65,8 @@ export function useDesignStyle() {
         }
       }
       
-      // Styles anwenden
-      applyHeadingStyles(config)
-      applyBadgeStyles(config)
-      applyBorderRadiusStyles(config)
+      // Styles über UnifiedStyleManager anwenden
+      styleManager.updateConfig(config)
     }
     
     const handleDesignStyleChange = () => {
@@ -131,10 +127,8 @@ export function useDesignStyle() {
           }
         }
         
-        // Styles anwenden
-        applyHeadingStyles(config)
-        applyBadgeStyles(config)
-        applyBorderRadiusStyles(config)
+        // Styles über UnifiedStyleManager anwenden
+        styleManager.updateConfig(config)
       }
     }
     

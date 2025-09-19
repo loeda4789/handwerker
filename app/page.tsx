@@ -21,6 +21,7 @@ import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import { applyBadgeStyles } from '@/lib/badgeStyles'
 import { applyBorderRadiusStyles } from '@/lib/borderRadiusStyles'
+import { styleManager } from '@/lib/unifiedStyleManager'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import UrlParamsDebug from '@/components/config/UrlParamsDebug'
@@ -343,9 +344,8 @@ export default function HomePage() {
         activeTab: 'layout' as const
       }
     }
-    applyHeadingStyles(savedConfig)
-    applyBadgeStyles(savedConfig)
-    applyBorderRadiusStyles(savedConfig)
+    // Styles über UnifiedStyleManager anwenden
+    styleManager.updateConfig(savedConfig)
   }, []) // Nur einmal beim Mount ausführen
 
   const handleConfigChange = (key: keyof ConfigState, value: string) => {
@@ -416,9 +416,8 @@ export default function HomePage() {
         }
         
         // Styles sofort anwenden
-        applyHeadingStyles(updatedConfig)
-        applyBadgeStyles(updatedConfig)
-        applyBorderRadiusStyles(updatedConfig)
+        // Styles über UnifiedStyleManager anwenden
+        styleManager.updateConfig(updatedConfig)
       }
       
       return newConfig
@@ -527,9 +526,8 @@ export default function HomePage() {
           activeTab: 'layout' as const
         }
       }
-      applyHeadingStyles(headingConfig)
-      applyBadgeStyles(headingConfig)
-      applyBorderRadiusStyles(headingConfig)
+      // Styles über UnifiedStyleManager anwenden
+      styleManager.updateConfig(headingConfig)
     
       // Event dispatchen für andere Komponenten
       window.dispatchEvent(new Event('site-mode-changed'))

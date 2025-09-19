@@ -191,7 +191,7 @@ h1, h2, h3, h4, h5, h6 {
 .design-preview-modal *,
 .side-contact,
 .side-contact * {
-  border-radius: 1.5rem !important; /* Moderne halbrunde Border-Radien */
+  border-radius: 1.5rem !important; /* Moderne halbrunde Border-Radien - nur für Config */
 }
 
 /* Responsive Modal-Verhalten */

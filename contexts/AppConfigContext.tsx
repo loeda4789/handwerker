@@ -7,6 +7,7 @@ import { getSiteVariant } from '@/lib/config/siteVariants'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import { applyBadgeStyles } from '@/lib/badgeStyles'
 import { applyBorderRadiusStyles } from '@/lib/borderRadiusStyles'
+import { styleManager } from '@/lib/unifiedStyleManager'
 
 interface AppConfigContextType {
   config: AppConfig
@@ -45,10 +46,8 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
       console.log('🎨 Initiale Font-Familie gesetzt:', initialConfig.style.fontFamily, '→', fontValue)
     }
 
-    // Initiale Styles anwenden
-    applyHeadingStyles(initialConfig)
-    applyBadgeStyles(initialConfig)
-    applyBorderRadiusStyles(initialConfig)
+    // Initiale Styles über UnifiedStyleManager anwenden
+    styleManager.initialize(initialConfig)
 
 
     // Listener für Änderungen
@@ -69,10 +68,8 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
         console.log('🎨 Font-Familie gesetzt:', newConfig.style.fontFamily, '→', fontValue)
       }
 
-      // Styles bei Konfigurationsänderungen anwenden
-      applyHeadingStyles(newConfig)
-      applyBadgeStyles(newConfig)
-      applyBorderRadiusStyles(newConfig)
+      // Styles bei Konfigurationsänderungen über UnifiedStyleManager anwenden
+      styleManager.updateConfig(newConfig)
 
     })
 
