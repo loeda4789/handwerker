@@ -307,7 +307,9 @@ export default function HomePage() {
       },
       features: {
         contactBar: true,
-        sideContact: true
+        sideContact: true,
+        mobileContact: false,
+        statusInfo: false
       },
       header: {
         variant: 'adaptive' as const,
@@ -377,7 +379,9 @@ export default function HomePage() {
           },
           features: {
             contactBar: false,
-            sideContact: false
+            sideContact: false,
+            mobileContact: false,
+            statusInfo: false
           },
           header: {
             variant: 'adaptive' as const,
@@ -489,7 +493,9 @@ export default function HomePage() {
         },
         features: {
           contactBar: true,
-          sideContact: true
+          sideContact: true,
+          mobileContact: false,
+          statusInfo: false
         },
         header: {
           variant: 'adaptive' as const,

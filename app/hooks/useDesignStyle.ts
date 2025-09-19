@@ -26,7 +26,9 @@ export function useDesignStyle() {
         },
         features: {
           contactBar: false,
-          sideContact: false
+          sideContact: false,
+          mobileContact: false,
+          statusInfo: false
         },
         header: {
           variant: 'adaptive' as const,
@@ -88,7 +90,9 @@ export function useDesignStyle() {
           },
           features: {
             contactBar: false,
-            sideContact: false
+            sideContact: false,
+            mobileContact: false,
+            statusInfo: false
           },
           header: {
             variant: 'adaptive' as const,
