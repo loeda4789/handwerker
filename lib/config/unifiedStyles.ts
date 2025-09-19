@@ -125,7 +125,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
   {
     id: 'modern',
     name: 'Modern',
-    description: 'Stilvoll, aufmerksamkeitsstark mit Farbverlauf-Unterstreichungen, ohne Badges',
+    description: 'Stilvoll und aufmerksamkeitsstark',
     icon: 'M',
     color: 'bg-purple-50 border-purple-200',
     config: {

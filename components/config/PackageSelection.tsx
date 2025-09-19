@@ -103,14 +103,14 @@ export default function PackageSelection({ onPackageSelect }: PackageSelectionPr
                 ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
                 : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
             }`}
-            style={{ borderRadius: 'var(--radius-card)' }}
+            style={{ borderRadius: '0.75rem' }}
             onClick={() => handlePackageSelect(pkg.id)}
           >
             {/* Empfohlen Badge */}
             {pkg.recommended && (
               <div 
                 className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-medium px-3 py-1 z-10"
-                style={{ borderRadius: 'var(--radius-button)' }}
+                style={{ borderRadius: '0.5rem' }}
               >
                 Empfohlen
               </div>
@@ -198,7 +198,7 @@ export default function PackageSelection({ onPackageSelect }: PackageSelectionPr
       <div className="text-center mt-6">
         <button 
           className="bg-blue-500 text-white px-8 py-3 font-semibold hover:bg-blue-600 transition-colors duration-200"
-          style={{ borderRadius: 'var(--radius-button)' }}
+          style={{ borderRadius: '0.5rem' }}
         >
           Paket auswählen
         </button>
