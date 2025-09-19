@@ -27,6 +27,7 @@ import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import UrlParamsDebug from '@/components/config/UrlParamsDebug'
 import { PackageSelection } from '@/components/config'
 import { useContentWithUrlParams } from '@/lib/hooks/useUrlParams'
+import { MobileFeaturesNav } from '@/components/mobile'
 import { useFeaturesConfig } from '@/contexts/AppConfigContext'
 
 import ContactBar from '@/components/forms/ContactBar'
@@ -1198,8 +1199,8 @@ export default function HomePage() {
         </div>
       )}
 
-
-
+      {/* Mobile Features Navigation */}
+      <MobileFeaturesNav />
 
     </div>
   )
