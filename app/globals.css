@@ -28,6 +28,8 @@ body[data-style="einfach"] {
   --radius-input: 0.25rem;
   --radius-modal: 0.5rem;
   --radius-badge: 0.25rem;
+  --radius-image: 0.25rem;
+  --radius-xl: 0.5rem;
 }
 
 body[data-style="standard"] {
@@ -45,6 +47,8 @@ body[data-style="standard"] {
   --radius-input: 0.375rem;
   --radius-modal: 1rem;
   --radius-badge: 0.5rem;
+  --radius-image: 0.5rem;
+  --radius-xl: 0.75rem;
 }
 
 body[data-style="modern"] {
@@ -57,11 +61,13 @@ body[data-style="modern"] {
   --heading-text-decoration-thickness: 0px;
   --badge-display: none;
   --badge-style: none;
-  --radius-button: 1rem;
-  --radius-card: 1.25rem;
-  --radius-input: 0.75rem;
-  --radius-modal: 1.5rem;
-  --radius-badge: 1rem;
+  --radius-button: 1.5rem;
+  --radius-card: 1.75rem;
+  --radius-input: 1rem;
+  --radius-modal: 2rem;
+  --radius-badge: 1.25rem;
+  --radius-image: 1.25rem;
+  --radius-xl: 2rem;
 }
 
 /* Global Font Family Application */
