@@ -55,17 +55,20 @@ export default function HeaderLogo({ logoStyle, companyName }: HeaderLogoProps) 
   return (
     <Link href="/" className="flex items-center">
       {isElektroCompany ? (
-        // New E + Elektro Logo with current color
+        // New E + Elektro Logo as text/HTML for color adaptation
         <div className="h-12 w-auto flex items-center justify-center" style={{ color: textColor }}>
-          <Image
-            src="/images/logos/elektro-logo-e-text-compact.svg"
-            alt={`${companyName} Logo`}
-            width={100}
-            height={50}
-            className="h-full w-auto object-contain"
-            style={{ color: textColor }}
-            priority
-          />
+          <div className="flex items-center space-x-2">
+            {/* E-Symbol als HTML */}
+            <div className="flex flex-col justify-center">
+              <div className="w-6 h-1 bg-current mb-1"></div>
+              <div className="w-6 h-1 bg-current mb-1"></div>
+              <div className="w-6 h-1 bg-current"></div>
+            </div>
+            {/* Text */}
+            <span className="text-xl font-bold tracking-wider" style={{ color: textColor }}>
+              ELEKTRO
+            </span>
+          </div>
         </div>
       ) : (
         // Original initials logo
