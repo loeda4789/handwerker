@@ -289,6 +289,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     } else if (type === 'style') {
       // Style-Änderungen manuell anwenden - KORRIGIERT: applyUnifiedStyle hinzugefügt
       const newConfig = applyUnifiedStyle(config, value)
+      updateConfig(newConfig) // Context aktualisieren
       applyHeadingStyles(newConfig)
       applyBadgeStyles(newConfig)
     } else if (type === 'variant') {
