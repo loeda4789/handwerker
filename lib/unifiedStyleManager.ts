@@ -4,6 +4,7 @@ import { AppConfig } from '@/lib/config/types'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import { applyBadgeStyles } from '@/lib/badgeStyles'
 import { applyBorderRadiusStyles } from '@/lib/borderRadiusStyles'
+import { applyBorderStyles } from '@/lib/borderStyles'
 import { applyColorScheme } from '@/lib/colorSchemes'
 
 /**
@@ -71,7 +72,10 @@ export class UnifiedStyleManager {
         // 4. Border-Radius-Styles anwenden
         applyBorderRadiusStyles(config)
 
-        // 5. Zusätzliche CSS-Variablen für Design-Style setzen
+        // 5. Border-Styles anwenden
+        applyBorderStyles(config)
+
+        // 6. Zusätzliche CSS-Variablen für Design-Style setzen
         this.setDesignStyleVariables(config)
 
         console.log('🎨 UnifiedStyleManager: Alle Styles angewendet für', config.style?.package || 'unbekannt')

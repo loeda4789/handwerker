@@ -45,6 +45,7 @@ export interface AppConfig {
     badgeStyle: 'minimal' | 'rounded' | 'pill' | 'outlined' | 'none' | 'gradient'
     spacing: 'compact' | 'comfortable' | 'spacious'
     borderRadius: 'none' | 'subtle' | 'pronounced'
+    borders: 'none' | 'subtle' | 'bold'
   }
   system: {
     isFirstVisit: boolean
@@ -97,7 +98,8 @@ export const DEFAULT_CONFIG: AppConfig = {
     fontFamily: 'sans',
     badgeStyle: 'none',
     spacing: 'comfortable',
-    borderRadius: 'pronounced'
+    borderRadius: 'pronounced',
+    borders: 'subtle'
   },
   system: {
     isFirstVisit: true,

@@ -244,6 +244,8 @@ export function useStyleConfig() {
     fontFamily: config.style.fontFamily,
     badgeStyle: config.style.badgeStyle,
     spacing: config.style.spacing,
+    borderRadius: config.style.borderRadius,
+    borders: config.style.borders,
     setPackage: (packageId: 'einfach' | 'standard' | 'modern') => {
       console.log('🎨 setPackage aufgerufen mit:', packageId)
       updateConfig({ style: { ...config.style, package: packageId } })
@@ -259,6 +261,14 @@ export function useStyleConfig() {
     setSpacing: (spacing: 'compact' | 'comfortable' | 'spacious') => {
       console.log('🎨 setSpacing aufgerufen mit:', spacing)
       updateConfig({ style: { ...config.style, spacing } })
+    },
+    setBorderRadius: (borderRadius: 'none' | 'subtle' | 'pronounced') => {
+      console.log('🎨 setBorderRadius aufgerufen mit:', borderRadius)
+      updateConfig({ style: { ...config.style, borderRadius } })
+    },
+    setBorders: (borders: 'none' | 'subtle' | 'bold') => {
+      console.log('🎨 setBorders aufgerufen mit:', borders)
+      updateConfig({ style: { ...config.style, borders } })
     }
   }
 }

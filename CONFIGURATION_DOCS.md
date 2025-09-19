@@ -79,9 +79,28 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
 Bei der Auswahl eines Stils werden automatisch angepasst:
 - **Typography**: Schriftart, Größen, Zeilenhöhen
 - **Spacing**: Abstände zwischen Elementen
-- **Design**: Border-Radius, Schatten, Rahmen
+- **Design**: Border-Radius, Schatten, Rahmen, Border-Styles
 - **Interactive**: Badges, Unterstreichungen, Buttons, Hover-Effekte
 - **Animations**: Übergänge, Scroll-Effekte, Mikro-Interaktionen
+
+## Border-Styles Konfiguration
+
+### Verfügbare Border-Varianten
+- **None**: Keine Borders (border-0)
+- **Subtle**: Dünne Borders (1px solid)
+- **Bold**: Dicke Borders (2px solid)
+
+### Code-Referenz
+```typescript
+// In lib/config/types.ts
+style: {
+  borders: 'none' | 'subtle' | 'bold'
+}
+
+// In contexts/AppConfigContext.tsx
+const { borders, setBorders } = useStyleConfig()
+setBorders('subtle') // Border-Style ändern
+```
 
 ## Features Konfigurationen
 
