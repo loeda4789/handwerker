@@ -20,6 +20,7 @@ import SideContact from '@/components/forms/SideContact'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import { applyBadgeStyles } from '@/lib/badgeStyles'
+import { applyBorderRadiusStyles } from '@/lib/borderRadiusStyles'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import UrlParamsDebug from '@/components/config/UrlParamsDebug'
@@ -334,7 +335,7 @@ export default function HomePage() {
         fontFamily: 'sans' as const,
         badgeStyle: 'minimal' as const,
         spacing: 'comfortable' as const,
-        borderRadius: 'subtle' as const
+        borderRadius: (savedDesignStyle === 'modern' ? 'pronounced' : savedDesignStyle === 'standard' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
       },
       system: {
         isFirstVisit: false,
@@ -344,6 +345,7 @@ export default function HomePage() {
     }
     applyHeadingStyles(savedConfig)
     applyBadgeStyles(savedConfig)
+    applyBorderRadiusStyles(savedConfig)
   }, []) // Nur einmal beim Mount ausführen
 
   const handleConfigChange = (key: keyof ConfigState, value: string) => {
@@ -357,6 +359,66 @@ export default function HomePage() {
         newConfig.colorExpanded = true
       } else if (key === 'colorScheme' && value) {
         newConfig.featuresExpanded = true
+      }
+      
+      // Styles sofort anwenden bei Design-Änderungen
+      if (key === 'designStyle') {
+        const updatedConfig = {
+          version: '1.0.0',
+          layout: {
+            mode: newConfig.layoutType as any || 'onepage',
+            design: (value as any) || 'einfach',
+            variant: 'professional' as const
+          },
+          theme: {
+            colorScheme: 'warm' as const,
+            darkMode: false
+          },
+          features: {
+            contactBar: false,
+            sideContact: false
+          },
+          header: {
+            variant: 'adaptive' as const,
+            behavior: {
+              hideOnScroll: false,
+              floating: false,
+              transparent: false
+            },
+            navigation: {
+              showLogo: true,
+              showCta: true,
+              showMobileMenu: true,
+              mobileType: 'sidebar' as const
+            }
+          },
+          hero: {
+            type: 'single' as const
+          },
+          headings: {
+            underline: true,
+            style: 'solid' as const,
+            color: 'primary' as const,
+            gradient: value === 'modern'
+          },
+          style: {
+            package: (value as any) || 'einfach',
+            fontFamily: 'sans' as const,
+            badgeStyle: 'minimal' as const,
+            spacing: 'comfortable' as const,
+            borderRadius: (value === 'modern' ? 'pronounced' : value === 'standard' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
+          },
+          system: {
+            isFirstVisit: false,
+            quickEditMode: false,
+            activeTab: 'layout' as const
+          }
+        }
+        
+        // Styles sofort anwenden
+        applyHeadingStyles(updatedConfig)
+        applyBadgeStyles(updatedConfig)
+        applyBorderRadiusStyles(updatedConfig)
       }
       
       return newConfig
@@ -457,7 +519,7 @@ export default function HomePage() {
           fontFamily: 'sans' as const,
           badgeStyle: 'minimal' as const,
           spacing: 'comfortable' as const,
-          borderRadius: 'subtle' as const
+          borderRadius: (config.designStyle === 'modern' ? 'pronounced' : config.designStyle === 'standard' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
         },
         system: {
           isFirstVisit: false,
@@ -467,6 +529,7 @@ export default function HomePage() {
       }
       applyHeadingStyles(headingConfig)
       applyBadgeStyles(headingConfig)
+      applyBorderRadiusStyles(headingConfig)
     
       // Event dispatchen für andere Komponenten
       window.dispatchEvent(new Event('site-mode-changed'))
