@@ -335,7 +335,7 @@ export default function HomePage() {
         fontFamily: 'sans' as const,
         badgeStyle: 'minimal' as const,
         spacing: 'comfortable' as const,
-        borderRadius: (savedDesignStyle === 'modern' ? 'pronounced' : savedDesignStyle === 'standard' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
+        borderRadius: (savedDesignStyle === 'modern' ? 'pronounced' : savedDesignStyle === 'rounded' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
       },
       system: {
         isFirstVisit: false,
@@ -406,7 +406,7 @@ export default function HomePage() {
             fontFamily: 'sans' as const,
             badgeStyle: 'minimal' as const,
             spacing: 'comfortable' as const,
-            borderRadius: (value === 'modern' ? 'pronounced' : value === 'standard' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
+            borderRadius: (value === 'modern' ? 'pronounced' : value === 'rounded' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
           },
           system: {
             isFirstVisit: false,
@@ -519,7 +519,7 @@ export default function HomePage() {
           fontFamily: 'sans' as const,
           badgeStyle: 'minimal' as const,
           spacing: 'comfortable' as const,
-          borderRadius: (config.designStyle === 'modern' ? 'pronounced' : config.designStyle === 'standard' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
+          borderRadius: (config.designStyle === 'modern' ? 'pronounced' : config.designStyle === 'rounded' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
         },
         system: {
           isFirstVisit: false,
