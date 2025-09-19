@@ -2,6 +2,7 @@
 
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import { usePageContent } from '../hooks/usePageContent'
+import { useDesignStyle } from '../hooks/useDesignStyle'
 import { useThemeColors } from '../hooks/useThemeColors'
 import PageLayout from '../components/layout/PageLayout'
 import { PageHero } from '@/components/layout'
@@ -11,6 +12,7 @@ import Team from '@/components/content/Team'
 
 export default function UeberUnsPage() {
   const { content, loading, error } = usePageContent()
+  const { designStyle } = useDesignStyle()
   const { classes } = useThemeColors()
 
   // Aktiviere Scroll-Animationen

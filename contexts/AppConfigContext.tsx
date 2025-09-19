@@ -29,9 +29,32 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Initiale Konfiguration laden
     const initialConfig = configManager.getConfig()
-    setConfig(initialConfig)
+    
+    // Prüfe localStorage für Design-Style (für Unterseiten)
+    const savedDesignStyle = localStorage.getItem('design-style')
+    if (savedDesignStyle) {
+      // Aktualisiere die Konfiguration mit dem gespeicherten Design-Style
+      const updatedConfig = {
+        ...initialConfig,
+        layout: {
+          ...initialConfig.layout,
+          design: savedDesignStyle as any
+        },
+        style: {
+          ...initialConfig.style,
+          package: savedDesignStyle as any,
+          badgeStyle: savedDesignStyle === 'modern' ? 'none' : 'minimal' as any,
+          borderRadius: (savedDesignStyle === 'modern' ? 'pronounced' : savedDesignStyle === 'rounded' ? 'subtle' : 'none') as any
+        }
+      }
+      setConfig(updatedConfig)
+      console.log('🎯 AppConfigProvider initialisiert mit localStorage Design-Style:', savedDesignStyle, updatedConfig)
+    } else {
+      setConfig(initialConfig)
+      console.log('🎯 AppConfigProvider initialisiert mit:', initialConfig)
+    }
+    
     setIsConfigLoaded(true)
-    console.log('🎯 AppConfigProvider initialisiert mit:', initialConfig)
 
     // Initiale Font-Familie setzen
     if (initialConfig.style?.fontFamily) {
@@ -51,6 +74,31 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
 
 
     // Listener für Änderungen
+    // Event-Listener für Design-Style-Änderungen aus localStorage
+    const handleDesignStyleChange = () => {
+      const savedDesignStyle = localStorage.getItem('design-style')
+      if (savedDesignStyle) {
+        const updatedConfig = {
+          ...config,
+          layout: {
+            ...config.layout,
+            design: savedDesignStyle as any
+          },
+          style: {
+            ...config.style,
+            package: savedDesignStyle as any,
+            badgeStyle: savedDesignStyle === 'modern' ? 'none' : 'minimal' as any,
+            borderRadius: (savedDesignStyle === 'modern' ? 'pronounced' : savedDesignStyle === 'rounded' ? 'subtle' : 'none') as any
+          }
+        }
+        setConfig(updatedConfig)
+        styleManager.updateConfig(updatedConfig)
+        console.log('🔄 AppConfigProvider: Design-Style geändert:', savedDesignStyle, updatedConfig)
+      }
+    }
+    
+    window.addEventListener('storage', handleDesignStyleChange)
+    
     const unsubscribe = configManager.subscribe((newConfig) => {
       console.log('🔄 Konfiguration aktualisiert:', newConfig)
       setConfig(newConfig)
@@ -73,7 +121,10 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
 
     })
 
-    return unsubscribe
+    return () => {
+      unsubscribe()
+      window.removeEventListener('storage', handleDesignStyleChange)
+    }
   }, [])
 
   const updateConfig = (updates: Partial<AppConfig>) => {
