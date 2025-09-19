@@ -1772,4 +1772,39 @@ body[data-style="einfach"] .badge {
   /* Keine Badges für Einfach Style */
 }
 
+/* ===== CONFIG COMPONENTS PROTECTION ===== */
+/* Config-Komponenten sollen nicht von globalen Border-Radius-Änderungen betroffen sein */
+.config-card-button,
+.config-sidebar,
+.config-sidebar *,
+[class*="config-"],
+[class*="Config"] {
+  border-radius: 0.75rem !important; /* Feste Border-Radius für Config-Komponenten */
+}
+
+/* Spezifische Überschreibungen für Config-Elemente */
+.config-card-button {
+  border-radius: 1rem !important; /* ConfigCard Button */
+}
+
+.config-sidebar .rounded-xl {
+  border-radius: 0.75rem !important;
+}
+
+.config-sidebar .rounded-lg {
+  border-radius: 0.5rem !important;
+}
+
+.config-sidebar .rounded-2xl {
+  border-radius: 1rem !important;
+}
+
+.config-sidebar .rounded-full {
+  border-radius: 50% !important;
+}
+
+/* Package Selection spezifische Überschreibungen */
+[class*="PackageSelection"] * {
+  border-radius: inherit !important;
+}
 
