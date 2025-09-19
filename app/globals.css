@@ -1972,3 +1972,64 @@ body[data-style="einfach"] .config-sidebar .rounded-full {
   --color-border: #e5e7eb !important;
 }
 
+/* SPEZIFISCHE SCHUTZREGELN FÜR STIL-KARTEN */
+.config-sidebar button {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  color: #374151 !important;
+  border-radius: 0.75rem !important;
+  padding: 0.5rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  line-height: 1.25rem !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.config-sidebar button:hover {
+  background: #f9fafb !important;
+  border-color: #d1d5db !important;
+  color: #111827 !important;
+}
+
+/* SCHUTZ FÜR AUSGEWÄHLTE STIL-KARTEN */
+.config-sidebar button[class*="border-2 border-primary"] {
+  background: white !important;
+  border: 2px solid #3b82f6 !important;
+  color: #374151 !important;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1) !important;
+}
+
+.config-sidebar button[class*="bg-primary"] {
+  background: white !important;
+  color: #374151 !important;
+}
+
+/* SCHUTZ FÜR ICONS IN STIL-KARTEN */
+.config-sidebar button div[class*="bg-primary"] {
+  background: #3b82f6 !important;
+  color: white !important;
+}
+
+.config-sidebar button div[class*="bg-gray-200"] {
+  background: #e5e7eb !important;
+  color: #374151 !important;
+}
+
+/* SCHUTZ FÜR TEXT IN STIL-KARTEN */
+.config-sidebar button .text-gray-900 {
+  color: #111827 !important;
+}
+
+.config-sidebar button .text-gray-600 {
+  color: #4b5563 !important;
+}
+
+/* SCHUTZ FÜR CHECKMARK ICONS */
+.config-sidebar button div[class*="bg-primary rounded-full"] {
+  background: #3b82f6 !important;
+  color: white !important;
+}
+
