@@ -125,7 +125,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
   {
     id: 'modern',
     name: 'Modern',
-    description: 'Stilvoll, aufmerksamkeitsstark mit Farbverlauf-Unterstreichungen und Gradient-Badges',
+    description: 'Stilvoll, aufmerksamkeitsstark mit Farbverlauf-Unterstreichungen, ohne Badges',
     icon: 'M',
     color: 'bg-purple-50 border-purple-200',
     config: {
@@ -148,7 +148,7 @@ export const UNIFIED_STYLES: UnifiedStyle[] = [
         borders: 'bold'
       },
       interactive: {
-        badges: 'gradient',
+        badges: 'none',
         underlines: 'gradient',
         buttons: 'dramatic',
         hoverEffects: 'dynamic'

@@ -40,13 +40,13 @@ body[data-style="standard"] {
 body[data-style="modern"] {
   --font-heading: var(--font-heading-modern);
   --font-accent: var(--font-heading-modern);
-  /* Modern: Nur Gradient-Unterstreichungen, Gradient-Badges */
+  /* Modern: Nur Gradient-Unterstreichungen, keine Badges */
   --heading-underline: none;
   --heading-text-decoration: none;
   --heading-text-decoration-color: transparent;
   --heading-text-decoration-thickness: 0px;
-  --badge-display: block;
-  --badge-style: gradient;
+  --badge-display: none;
+  --badge-style: none;
 }
 
 /* Global Font Family Application */
