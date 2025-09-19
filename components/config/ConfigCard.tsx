@@ -1,11 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { MdSettings, MdPalette, MdImage, MdStar, MdBrush } from 'react-icons/md'
+import { MdSettings, MdPalette, MdImage, MdStar, MdBrush, MdPhone } from 'react-icons/md'
 import { useAppConfig, useLayoutConfig, useHeroConfig, useStyleConfig, useThemeConfig } from '@/contexts/AppConfigContext'
 import { UNIFIED_STYLES } from '@/lib/config/unifiedStyles'
 import { colorSchemes } from '@/lib/colorSchemes'
 import ConfigSidebar from './ConfigSidebar'
+import { MobileFeaturesNav } from '@/components/mobile'
 
 export default function ConfigCard() {
   const { config } = useAppConfig()
@@ -102,6 +103,9 @@ export default function ConfigCard() {
 
       {/* Sidebar */}
       <ConfigSidebar isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      
+      {/* Mobile Features */}
+      <MobileFeaturesNav />
     </>
   )
 }
