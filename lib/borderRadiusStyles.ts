@@ -38,7 +38,7 @@ export const applyBorderRadiusStyles = (config: AppConfig) => {
     // Verzögerung hinzufügen, um Hydration-Probleme zu vermeiden
     setTimeout(() => {
       const root = document.documentElement
-      
+
       // CSS-Variablen für Border-Radius setzen
       root.style.setProperty('--radius-button', styles.button)
       root.style.setProperty('--radius-card', styles.card)
@@ -46,10 +46,39 @@ export const applyBorderRadiusStyles = (config: AppConfig) => {
       root.style.setProperty('--radius-modal', styles.modal)
       root.style.setProperty('--radius-badge', styles.badge)
 
+      // Direkt alle relevanten Elemente aktualisieren
+      const buttons = document.querySelectorAll('button, .btn, [data-cta="true"]')
+      buttons.forEach((element) => {
+        const htmlElement = element as HTMLElement
+        htmlElement.style.borderRadius = styles.button
+      })
+
+      const inputs = document.querySelectorAll('input, select, textarea')
+      inputs.forEach((element) => {
+        const htmlElement = element as HTMLElement
+        htmlElement.style.borderRadius = styles.input
+      })
+
+      const cards = document.querySelectorAll('[class*="card"], .bg-surface, .shadow-lg')
+      cards.forEach((element) => {
+        const htmlElement = element as HTMLElement
+        htmlElement.style.borderRadius = styles.card
+      })
+
+      const badges = document.querySelectorAll('.badge, .badge-minimal, .badge-rounded, .badge-pill, .badge-outlined, .badge-gradient')
+      badges.forEach((element) => {
+        const htmlElement = element as HTMLElement
+        htmlElement.style.borderRadius = styles.badge
+      })
+
       // Debug-Logging
       console.log('🔲 applyBorderRadiusStyles aufgerufen:', {
         borderRadius: config.style.borderRadius,
-        values: styles
+        values: styles,
+        buttonsUpdated: buttons.length,
+        inputsUpdated: inputs.length,
+        cardsUpdated: cards.length,
+        badgesUpdated: badges.length
       })
     }, 0)
   }
