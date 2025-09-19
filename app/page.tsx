@@ -19,6 +19,7 @@ import Footer from '@/components/layout/Footer'
 import SideContact from '@/components/forms/SideContact'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
+import { applyBadgeStyles } from '@/lib/badgeStyles'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import UrlParamsDebug from '@/components/config/UrlParamsDebug'
@@ -341,6 +342,7 @@ export default function HomePage() {
       }
     }
     applyHeadingStyles(savedConfig)
+    applyBadgeStyles(savedConfig)
   }, []) // Nur einmal beim Mount ausführen
 
   const handleConfigChange = (key: keyof ConfigState, value: string) => {
@@ -462,6 +464,7 @@ export default function HomePage() {
         }
       }
       applyHeadingStyles(headingConfig)
+      applyBadgeStyles(headingConfig)
     
       // Event dispatchen für andere Komponenten
       window.dispatchEvent(new Event('site-mode-changed'))

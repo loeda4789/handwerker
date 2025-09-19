@@ -33,6 +33,7 @@ import { UNIFIED_STYLES, applyUnifiedStyle } from '@/lib/config/unifiedStyles'
 import { applyColorScheme, applyBorderRadiusScheme, colorSchemes as colorSchemesData } from '@/lib/colorSchemes'
 import type { SimpleColorScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
+import { applyBadgeStyles } from '@/lib/badgeStyles'
 import InfoTooltip from '@/components/ui/InfoTooltip'
 import InfoTooltipAdvanced from '@/components/ui/InfoTooltipAdvanced'
 import ExpandableInfo from '@/components/ui/ExpandableInfo'
@@ -164,6 +165,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       applyColorScheme(colorScheme)
       applyBorderRadiusScheme(designStyle)
       applyHeadingStyles(config)
+      applyBadgeStyles(config)
     }
   }, [isConfigLoaded]) // Nur isConfigLoaded als dependency
 
@@ -288,6 +290,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       // Style-Änderungen manuell anwenden - KORRIGIERT: applyUnifiedStyle hinzugefügt
       const newConfig = applyUnifiedStyle(config, value)
       applyHeadingStyles(newConfig)
+      applyBadgeStyles(newConfig)
     } else if (type === 'variant') {
       // Variant-Änderungen werden automatisch über den Context gehandhabt
     }
