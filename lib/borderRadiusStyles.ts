@@ -24,13 +24,13 @@ export const getBorderRadiusStyles = (config: AppConfig) => {
       xl: '0.75rem'         // 12px
     },
     pronounced: {
-      button: '1rem',       // 16px
-      card: '1.25rem',      // 20px
-      input: '0.75rem',     // 12px
-      modal: '1.5rem',      // 24px
-      badge: '1rem',        // 16px
-      image: '1rem',        // 16px
-      xl: '1.5rem'          // 24px
+      button: '1.5rem',     // 24px - sehr rund wie FAQ
+      card: '1.75rem',      // 28px - sehr rund wie FAQ
+      input: '1rem',        // 16px - rund
+      modal: '2rem',        // 32px - sehr rund
+      badge: '1.25rem',     // 20px - rund
+      image: '1.25rem',     // 20px - rund
+      xl: '2rem'            // 32px - sehr rund
     }
   }
 
