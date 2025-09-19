@@ -18,6 +18,7 @@ import Contact from '@/components/forms/Contact'
 import Footer from '@/components/layout/Footer'
 import SideContact from '@/components/forms/SideContact'
 import { applyColorScheme, applyBorderRadiusScheme } from '@/lib/colorSchemes'
+import { applyHeadingStyles } from '@/lib/headingStyles'
 import { MdCrop32, MdRoundedCorner, MdWaves, MdCircle, MdViewQuilt, MdImage, MdViewCarousel, MdPlayCircleFilled } from 'react-icons/md'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
 import UrlParamsDebug from '@/components/config/UrlParamsDebug'
@@ -287,6 +288,59 @@ export default function HomePage() {
       applyColorScheme(savedColorScheme)
       console.log('🎨 Farbschema beim Laden angewendet:', savedColorScheme)
     }
+
+    // Heading-Styles basierend auf gespeicherter Konfiguration anwenden
+    const savedConfig = {
+      version: '1.0.0',
+      layout: {
+        mode: 'onepage' as const,
+        design: (savedDesignStyle as any) || 'angular',
+        variant: 'starter' as const
+      },
+      theme: {
+        colorScheme: (savedColorScheme as any) || 'warm',
+        darkMode: false
+      },
+      features: {
+        contactBar: true,
+        sideContact: true
+      },
+      header: {
+        variant: 'adaptive' as const,
+        behavior: {
+          hideOnScroll: false,
+          floating: false,
+          transparent: false
+        },
+        navigation: {
+          showLogo: true,
+          showCta: true,
+          showMobileMenu: true,
+          mobileType: 'sidebar' as const
+        }
+      },
+      hero: {
+        type: 'single' as const
+      },
+      headings: {
+        underline: true,
+        style: 'solid' as const,
+        color: 'primary' as const,
+        gradient: savedDesignStyle === 'modern'
+      },
+      style: {
+        package: (savedDesignStyle as any) || 'einfach',
+        fontFamily: 'sans' as const,
+        badgeStyle: 'minimal' as const,
+        spacing: 'comfortable' as const
+      },
+      system: {
+        isFirstVisit: false,
+        quickEditMode: false,
+        activeTab: 'layout' as const
+      }
+    }
+    applyHeadingStyles(savedConfig)
   }, []) // Nur einmal beim Mount ausführen
 
   const handleConfigChange = (key: keyof ConfigState, value: string) => {
@@ -355,6 +409,59 @@ export default function HomePage() {
       
       // Color scheme anwenden
       applyColorScheme(config.colorScheme)
+
+      // Heading-Styles anwenden
+      const headingConfig = {
+        version: '1.0.0',
+        layout: {
+          mode: 'onepage' as const,
+          design: (config.designStyle as any) || 'angular',
+          variant: 'starter' as const
+        },
+        theme: {
+          colorScheme: (config.colorScheme as any) || 'warm',
+          darkMode: false
+        },
+        features: {
+          contactBar: true,
+          sideContact: true
+        },
+        header: {
+          variant: 'adaptive' as const,
+          behavior: {
+            hideOnScroll: false,
+            floating: false,
+            transparent: false
+          },
+          navigation: {
+            showLogo: true,
+            showCta: true,
+            showMobileMenu: true,
+            mobileType: 'sidebar' as const
+          }
+        },
+        hero: {
+          type: 'single' as const
+        },
+        headings: {
+          underline: true,
+          style: 'solid' as const,
+          color: 'primary' as const,
+          gradient: config.designStyle === 'modern'
+        },
+        style: {
+          package: (config.designStyle as any) || 'einfach',
+          fontFamily: 'sans' as const,
+          badgeStyle: 'minimal' as const,
+          spacing: 'comfortable' as const
+        },
+        system: {
+          isFirstVisit: false,
+          quickEditMode: false,
+          activeTab: 'layout' as const
+        }
+      }
+      applyHeadingStyles(headingConfig)
     
       // Event dispatchen für andere Komponenten
       window.dispatchEvent(new Event('site-mode-changed'))
