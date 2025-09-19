@@ -169,7 +169,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       applyBadgeStyles(config)
       applyBorderRadiusStyles(config)
     }
-  }, [isConfigLoaded]) // Nur isConfigLoaded als dependency
+  }, [isConfigLoaded, colorScheme, designStyle, config])
 
   // Prevent body scroll when sidebar is open
   useEffect(() => {

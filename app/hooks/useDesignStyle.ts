@@ -58,7 +58,8 @@ export function useDesignStyle() {
           fontFamily: 'sans' as const,
           badgeStyle: 'minimal' as const,
           spacing: 'comfortable' as const,
-          borderRadius: (savedDesignStyle === 'modern' ? 'pronounced' : savedDesignStyle === 'rounded' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
+          borderRadius: (savedDesignStyle === 'modern' ? 'pronounced' : savedDesignStyle === 'rounded' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced',
+          borders: 'subtle' as const
         },
         system: {
           isFirstVisit: false,
@@ -122,7 +123,8 @@ export function useDesignStyle() {
             fontFamily: 'sans' as const,
             badgeStyle: 'minimal' as const,
             spacing: 'comfortable' as const,
-            borderRadius: (newDesignStyle === 'modern' ? 'pronounced' : newDesignStyle === 'rounded' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced'
+            borderRadius: (newDesignStyle === 'modern' ? 'pronounced' : newDesignStyle === 'rounded' ? 'subtle' : 'none') as 'none' | 'subtle' | 'pronounced',
+            borders: 'subtle' as const
           },
           system: {
             isFirstVisit: false,

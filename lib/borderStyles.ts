@@ -41,7 +41,7 @@ export const applyBorderStyles = (config: AppConfig) => {
   root.style.setProperty('--border-bold', `2px solid ${borderStyles.color}`)
   root.style.setProperty('--border-none', 'none')
 
-  console.log('🎨 Border-Styles angewendet:', borders, borderStyles)
+  console.log('🎨 Border-Styles angewendet:', config.style.borders, borderStyles)
 }
 
 // CSS-Klassen basierend auf Border-Konfiguration
