@@ -409,7 +409,13 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 activeSection === section.id 
                   ? 'border-gray-300 ring-1 ring-gray-100' 
                   : 'border-gray-200'
-              }`}>
+              }`} style={{
+                borderRadius: '1rem',
+                background: 'linear-gradient(to bottom right, #ffffff, rgba(249, 250, 251, 0.3), #ffffff)',
+                border: activeSection === section.id ? '1px solid #d1d5db' : '1px solid #e5e7eb',
+                boxShadow: activeSection === section.id ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+                fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
+              }}>
                 <button
                   onClick={() => toggleSection(section.id)}
                   onKeyDown={(e) => handleKeyDown(e, () => toggleSection(section.id))}
@@ -434,13 +440,21 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                         activeSection === section.id 
                           ? 'text-gray-800 font-bold' 
                           : 'text-gray-700'
-                      }`} style={{ fontFamily: 'var(--font-body)' }}>{section.title}</div>
+                      }`} style={{ 
+                        fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                        fontWeight: activeSection === section.id ? '700' : '600',
+                        color: activeSection === section.id ? '#1f2937' : '#374151'
+                      }}>{section.title}</div>
                       {(!isMobile || section.id === 'variant') && (
                         <div className={`text-[10px] leading-tight transition-colors duration-300 ${
                           activeSection === section.id 
                             ? 'text-gray-600' 
                             : 'text-gray-500'
-                        }`} style={{ fontFamily: 'var(--font-body)' }}>{section.description}</div>
+                        }`} style={{ 
+                          fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                          fontWeight: '400',
+                          color: activeSection === section.id ? '#4b5563' : '#6b7280'
+                        }}>{section.description}</div>
                       )}
                     </div>
                   </div>
@@ -498,7 +512,11 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 />
                               </div>
                               {!isMobile && (
-                                <div className="text-[9px] font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{scheme.name}</div>
+                                <div className="text-[9px] font-semibold text-gray-900" style={{ 
+                                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                                  fontWeight: '600',
+                                  color: '#111827'
+                                }}>{scheme.name}</div>
                               )}
                             </button>
                           ))}
@@ -521,6 +539,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
+                              style={{
+                                fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                                borderRadius: '0.75rem',
+                                background: heroType === hero.key ? 'rgba(59, 130, 246, 0.15)' : '#ffffff',
+                                border: heroType === hero.key ? '2px solid #3b82f6' : '1px solid #e5e7eb',
+                                color: '#374151',
+                                fontWeight: '500'
+                              }}
                             >
                               {isMobile ? (
                                 // Mobile Layout: Icon oben, Text darunter
@@ -532,7 +558,11 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   }`}>
                                     <hero.icon className="w-3 h-3" />
                                   </div>
-                                  <div className="text-xs font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{hero.label}</div>
+                                  <div className="text-xs font-semibold text-gray-900" style={{ 
+                                    fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                                    fontWeight: '600',
+                                    color: '#111827'
+                                  }}>{hero.label}</div>
                                 </div>
                               ) : (
                                 // Desktop Layout: Icon links, Text rechts
@@ -545,8 +575,16 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                     <hero.icon className="w-3 h-3" />
                                   </div>
                                   <div className="flex-1">
-                                    <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{hero.label}</div>
-                                    <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{hero.description}</div>
+                                    <div className="text-sm font-semibold text-gray-900" style={{ 
+                                      fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                                      fontWeight: '600',
+                                      color: '#111827'
+                                    }}>{hero.label}</div>
+                                    <div className="text-[10px] text-gray-600" style={{ 
+                                      fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                                      fontWeight: '400',
+                                      color: '#4b5563'
+                                    }}>{hero.description}</div>
                                   </div>
                                   {heroType === hero.key && (
                                     <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
@@ -576,6 +614,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
+                              style={{
+                                fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                                borderRadius: '0.75rem',
+                                background: mobileType === nav.key ? 'rgba(59, 130, 246, 0.15)' : '#ffffff',
+                                border: mobileType === nav.key ? '2px solid #3b82f6' : '1px solid #e5e7eb',
+                                color: '#374151',
+                                fontWeight: '500'
+                              }}
                             >
                               {isMobile ? (
                                 // Mobile Layout: Icon oben, Text darunter
