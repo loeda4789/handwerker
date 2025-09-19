@@ -13,6 +13,8 @@ export interface AppConfig {
   features: {
     contactBar: boolean
     sideContact: boolean
+    mobileContact: boolean
+    statusInfo: boolean
   }
   header: {
     variant: 'desktop' | 'mobile' | 'adaptive'
@@ -64,7 +66,9 @@ export const DEFAULT_CONFIG: AppConfig = {
   },
   features: {
     contactBar: false,
-    sideContact: true
+    sideContact: true,
+    mobileContact: false,
+    statusInfo: false
   },
   header: {
     variant: 'adaptive',

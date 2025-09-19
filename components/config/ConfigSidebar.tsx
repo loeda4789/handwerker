@@ -588,23 +588,62 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'mobile-features' && (
                       <div className="space-y-3">
-                        <div className="flex items-center gap-3 p-3 bg-blue-50 border border-blue-200 rounded-xl">
-                          <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-                            <MdPhone className="w-4 h-4 text-white" />
+                        <div className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                              <MdPhone className="w-4 h-4 text-white" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-900 text-sm">Mobile Kontakt</div>
+                              <div className="text-gray-600 text-xs">Schwebender Button mit 4 Optionen</div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="font-semibold text-blue-900 text-sm">Mobile Kontakt</div>
-                            <div className="text-blue-700 text-xs">Schwebender Button mit 4 Optionen</div>
-                          </div>
+                          <button
+                            onClick={() => toggleFeature('mobileContact', !features.mobileContact)}
+                            className={`w-12 h-6 rounded-full transition-colors duration-200 ${
+                              features.mobileContact ? 'bg-primary' : 'bg-gray-300'
+                            }`}
+                          >
+                            <div className={`w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 ${
+                              features.mobileContact ? 'translate-x-6' : 'translate-x-0.5'
+                            }`} />
+                          </button>
                         </div>
                         
-                        <div className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl">
-                          <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
-                            <MdSettings className="w-4 h-4 text-white" />
+                        <div className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                              <MdSettings className="w-4 h-4 text-white" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-900 text-sm">Status-Info</div>
+                              <div className="text-gray-600 text-xs">Service-Informationen anzeigen</div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="font-semibold text-gray-900 text-sm">Status-Info</div>
-                            <div className="text-gray-600 text-xs">Service-Informationen anzeigen</div>
+                          <button
+                            onClick={() => toggleFeature('statusInfo', !features.statusInfo)}
+                            className={`w-12 h-6 rounded-full transition-colors duration-200 ${
+                              features.statusInfo ? 'bg-primary' : 'bg-gray-300'
+                            }`}
+                          >
+                            <div className={`w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 ${
+                              features.statusInfo ? 'translate-x-6' : 'translate-x-0.5'
+                            }`} />
+                          </button>
+                        </div>
+                        
+                        {/* Status-Anzeige */}
+                        <div className="mt-4 p-3 bg-gray-100 border border-gray-200 rounded-xl">
+                          <div className="text-xs text-gray-600 mb-2">Aktuelle Einstellungen:</div>
+                          <div className="space-y-1 text-xs">
+                            <div className="flex items-center gap-2">
+                              <div className={`w-2 h-2 rounded-full ${features.mobileContact ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                              <span>Mobile Kontakt: {features.mobileContact ? 'Aktiviert' : 'Deaktiviert'}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className={`w-2 h-2 rounded-full ${features.statusInfo ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                              <span>Status-Info: {features.statusInfo ? 'Aktiviert' : 'Deaktiviert'}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
