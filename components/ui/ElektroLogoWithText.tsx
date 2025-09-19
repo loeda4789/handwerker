@@ -33,26 +33,35 @@ const ElektroLogoWithText: React.FC<ElektroLogoWithTextProps> = ({
   }
 
   useEffect(() => {
-    if (forceColor === 'auto') {
-      // Automatische Farbbestimmung basierend auf dem Hintergrund
-      const element = document.querySelector('[data-logo-container]')
-      if (element) {
-        const computedStyle = window.getComputedStyle(element)
-        const backgroundColor = computedStyle.backgroundColor
-        
-        // Einfache Heuristik für helle/dunkle Hintergründe
-        if (backgroundColor.includes('255, 255, 255') || 
-            backgroundColor.includes('white') ||
-            backgroundColor.includes('rgb(255, 255, 255)')) {
-          setTextColor('#000000') // Schwarz auf weißem Hintergrund
-        } else {
-          setTextColor('#ffffff') // Weiß auf dunklem Hintergrund
-        }
+    const updateColor = () => {
+      if (forceColor === 'auto') {
+        // Verwende CSS-Variablen für automatische Farbanpassung
+        const root = document.documentElement
+        const computedStyle = getComputedStyle(root)
+        const textColor = computedStyle.getPropertyValue('--color-text').trim()
+        setTextColor(textColor || 'var(--color-text)')
+      } else if (forceColor === 'white') {
+        setTextColor('#ffffff')
+      } else if (forceColor === 'black') {
+        setTextColor('#000000')
       }
-    } else if (forceColor === 'white') {
-      setTextColor('#ffffff')
-    } else if (forceColor === 'black') {
-      setTextColor('#000000')
+    }
+
+    // Initiale Farbe setzen
+    updateColor()
+
+    // Auf Farbschema-Änderungen hören
+    const handleColorSchemeChange = () => {
+      updateColor()
+    }
+
+    // Event-Listener für Farbschema-Änderungen
+    window.addEventListener('storage', handleColorSchemeChange)
+    window.addEventListener('color-scheme-changed', handleColorSchemeChange)
+
+    return () => {
+      window.removeEventListener('storage', handleColorSchemeChange)
+      window.removeEventListener('color-scheme-changed', handleColorSchemeChange)
     }
   }, [forceColor])
 

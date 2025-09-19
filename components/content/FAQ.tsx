@@ -92,7 +92,8 @@ export default function FAQ({ content }: FAQProps) {
           {faqData.map((faq, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-dark-secondary rounded-lg border border-gray-200 dark:border-dark-border shadow-sm hover:shadow-md transition-shadow duration-200"
+              className="bg-white dark:bg-dark-secondary border border-gray-200 dark:border-dark-border shadow-sm hover:shadow-md transition-shadow duration-200"
+              style={{ borderRadius: 'var(--radius-card)' }}
             >
               <button
                 onClick={() => toggleFAQ(index)}

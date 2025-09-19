@@ -55,6 +55,11 @@ export class UnifiedStyleManager {
         // 1. Farbschema anwenden
         if (config.theme?.colorScheme) {
           applyColorScheme(config.theme.colorScheme)
+          
+          // Event dispatchen für Logo-Komponenten
+          window.dispatchEvent(new CustomEvent('color-scheme-changed', {
+            detail: { colorScheme: config.theme.colorScheme }
+          }))
         }
 
         // 2. Heading-Styles anwenden
