@@ -28,17 +28,32 @@ export default function ConfigCard() {
         <button
           onClick={() => setIsOpen(true)}
           className="w-full bg-gradient-to-br from-white via-gray-50 to-white shadow-xl border border-gray-200 p-4 hover:shadow-2xl transition-all duration-300 config-card-button rounded-2xl hover:scale-105"
-          style={{ minHeight: '44px' }}
+          style={{ 
+            minHeight: '44px',
+            fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+            borderRadius: '1rem',
+            background: 'linear-gradient(to bottom right, #ffffff, #f9fafb, #ffffff)',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+          }}
         >
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
               <MdSettings className="w-6 h-6 text-white" />
             </div>
             <div className="flex-1 text-left">
-              <div className="font-bold text-gray-900 text-lg" style={{ fontFamily: 'var(--font-body)' }}>
+              <div className="font-bold text-gray-900 text-lg" style={{ 
+                fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                fontWeight: '700',
+                color: '#111827'
+              }}>
                 Website anpassen
               </div>
-              <div className="text-[10px] text-gray-500 font-medium leading-tight" style={{ fontFamily: 'var(--font-body)' }}>
+              <div className="text-[10px] text-gray-500 font-medium leading-tight" style={{ 
+                fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                fontWeight: '500',
+                color: '#6b7280'
+              }}>
                 {currentStyle.name} • {currentColorScheme?.name}
               </div>
             </div>
@@ -67,17 +82,33 @@ export default function ConfigCard() {
         <button
           onClick={() => setIsOpen(true)}
           className="group bg-gradient-to-br from-white via-gray-50 to-white shadow-xl border border-gray-200 p-5 hover:shadow-2xl transition-all duration-300 hover:scale-105 config-card-button rounded-2xl"
-          style={{ minHeight: '44px', minWidth: '44px' }}
+          style={{ 
+            minHeight: '44px', 
+            minWidth: '44px',
+            fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+            borderRadius: '1rem',
+            background: 'linear-gradient(to bottom right, #ffffff, #f9fafb, #ffffff)',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+          }}
         >
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
               <MdSettings className="w-6 h-6 text-white" />
             </div>
             <div className="text-left">
-              <div className="font-bold text-gray-900 text-lg" style={{ fontFamily: 'var(--font-body)' }}>
+              <div className="font-bold text-gray-900 text-lg" style={{ 
+                fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                fontWeight: '700',
+                color: '#111827'
+              }}>
                 Website anpassen
               </div>
-              <div className="text-[10px] text-gray-500 font-medium mb-2 leading-tight" style={{ fontFamily: 'var(--font-body)' }}>
+              <div className="text-[10px] text-gray-500 font-medium mb-2 leading-tight" style={{ 
+                fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                fontWeight: '500',
+                color: '#6b7280'
+              }}>
                 {currentStyle.name} • {currentColorScheme?.name}
               </div>
               <div className="flex items-center gap-2">

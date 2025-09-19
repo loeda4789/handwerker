@@ -344,14 +344,23 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
         }`}
         style={{
           transform: isMobile && isDragging ? `translateY(${dragOffset}px)` : 'translateY(0)',
-          paddingBottom: isMobile ? 'env(safe-area-inset-bottom)' : '0'
+          paddingBottom: isMobile ? 'env(safe-area-inset-bottom)' : '0',
+          fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+          borderRadius: isMobile ? '1.5rem 1.5rem 0 0' : '0',
+          background: 'linear-gradient(to bottom right, #ffffff, #f9fafb, #ffffff)',
+          border: isMobile ? '1px solid #e5e7eb' : '1px solid #e5e7eb',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          color: '#374151'
         }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         {/* Header */}
-        <div className="relative p-6 border-b border-gray-200 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5">
+        <div className="relative p-6 border-b border-gray-200 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5" style={{
+          borderBottom: '1px solid #e5e7eb',
+          background: 'linear-gradient(to right, rgba(59, 130, 246, 0.05), rgba(245, 164, 84, 0.05), rgba(59, 130, 246, 0.05))'
+        }}>
           {/* Dekorative Elemente */}
           <div className="absolute top-2 right-2 w-8 h-8 bg-primary/10 rounded-full animate-pulse"></div>
           <div className="absolute bottom-2 left-2 w-4 h-4 bg-accent/20 rounded-full animate-pulse delay-500"></div>
@@ -362,13 +371,26 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 <MdSettings className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>Website anpassen</h2>
-                <p className="text-sm text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Farben, Stil und mehr</p>
+                <h2 className="text-xl font-bold text-gray-900" style={{ 
+                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                  fontWeight: '700',
+                  color: '#111827'
+                }}>Website anpassen</h2>
+                <p className="text-sm text-gray-600" style={{ 
+                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                  fontWeight: '400',
+                  color: '#6b7280'
+                }}>Farben, Stil und mehr</p>
               </div>
             </div>
             <button
               onClick={onClose}
               className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all duration-300 hover:scale-110"
+              style={{
+                borderRadius: '0.75rem',
+                color: '#9ca3af',
+                fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
+              }}
             >
               <MdClose className="w-6 h-6" />
             </button>
@@ -452,6 +474,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md hover:bg-gray-50'
                               }`}
+                              style={{
+                                fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                                borderRadius: '0.75rem',
+                                background: colorScheme === key ? 'rgba(59, 130, 246, 0.15)' : '#ffffff',
+                                border: colorScheme === key ? '2px solid #3b82f6' : '1px solid #e5e7eb',
+                                color: '#374151',
+                                fontWeight: '500'
+                              }}
                             >
                               <div className="flex justify-center gap-1 mb-1">
                                 <div 
@@ -784,6 +814,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                     ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                     : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                                 }`}
+                                style={{
+                                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                                  borderRadius: '0.75rem',
+                                  background: stylePackage === style.id ? 'rgba(59, 130, 246, 0.15)' : '#ffffff',
+                                  border: stylePackage === style.id ? '2px solid #3b82f6' : '1px solid #e5e7eb',
+                                  color: '#374151',
+                                  fontWeight: '500'
+                                }}
                               >
                                 {isMobile ? (
                                   // Mobile Layout: Icon oben, Text darunter
