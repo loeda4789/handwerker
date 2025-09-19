@@ -55,7 +55,7 @@ export const applyBorderRadiusStyles = (config: AppConfig) => {
       root.style.setProperty('--radius-xl', styles.xl)
 
       // Direkt alle relevanten Elemente aktualisieren
-      const buttons = document.querySelectorAll('button, .btn, [data-cta="true"]')
+      const buttons = document.querySelectorAll('button, .btn, [data-cta="true"], [role="button"], .button, [class*="button"], [class*="btn"]')
       buttons.forEach((element) => {
         const htmlElement = element as HTMLElement
         htmlElement.style.borderRadius = styles.button
@@ -91,6 +91,27 @@ export const applyBorderRadiusStyles = (config: AppConfig) => {
         htmlElement.style.borderRadius = styles.xl
       })
 
+      // Zusätzlich: Alle Elemente mit var(--radius-button) Style-Attribut aktualisieren
+      const elementsWithButtonRadius = document.querySelectorAll('[style*="--radius-button"]')
+      elementsWithButtonRadius.forEach((element) => {
+        const htmlElement = element as HTMLElement
+        htmlElement.style.borderRadius = styles.button
+      })
+
+      // Zusätzlich: Alle Elemente mit var(--radius-card) Style-Attribut aktualisieren
+      const elementsWithCardRadius = document.querySelectorAll('[style*="--radius-card"]')
+      elementsWithCardRadius.forEach((element) => {
+        const htmlElement = element as HTMLElement
+        htmlElement.style.borderRadius = styles.card
+      })
+
+      // Zusätzlich: Alle Elemente mit var(--radius-image) Style-Attribut aktualisieren
+      const elementsWithImageRadius = document.querySelectorAll('[style*="--radius-image"]')
+      elementsWithImageRadius.forEach((element) => {
+        const htmlElement = element as HTMLElement
+        htmlElement.style.borderRadius = styles.image
+      })
+
       // Debug-Logging
       console.log('🔲 applyBorderRadiusStyles aufgerufen:', {
         borderRadius: config.style.borderRadius,
@@ -100,7 +121,10 @@ export const applyBorderRadiusStyles = (config: AppConfig) => {
         cardsUpdated: cards.length,
         badgesUpdated: badges.length,
         imagesUpdated: images.length,
-        xlElementsUpdated: xlElements.length
+        xlElementsUpdated: xlElements.length,
+        elementsWithButtonRadius: elementsWithButtonRadius.length,
+        elementsWithCardRadius: elementsWithCardRadius.length,
+        elementsWithImageRadius: elementsWithImageRadius.length
       })
     }, 0)
   }
