@@ -542,6 +542,9 @@ body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-wave::
   color: white;
   width: fit-content;
   margin: 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .badge-rounded {
@@ -553,6 +556,9 @@ body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-wave::
   color: white;
   width: fit-content;
   margin: 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .badge-pill {
@@ -564,6 +570,9 @@ body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-wave::
   color: white;
   width: fit-content;
   margin: 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .badge-outlined {
@@ -576,6 +585,9 @@ body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-wave::
   color: var(--color-secondary);
   width: fit-content;
   margin: 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .badge-gradient {
@@ -590,6 +602,9 @@ body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-wave::
   overflow: hidden;
   width: fit-content;
   margin: 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .badge-gradient::before {
