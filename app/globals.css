@@ -1773,16 +1773,22 @@ body[data-style="einfach"] .badge {
 }
 
 /* ===== CONFIG COMPONENTS PROTECTION ===== */
-/* Config-Komponenten sollen nicht von globalen Border-Radius-Änderungen betroffen sein */
+/* Config-Komponenten sollen nicht von globalen Design-Änderungen betroffen sein */
 
 /* ConfigCard spezifische Überschreibungen */
 .config-card-button {
   border-radius: 1rem !important; /* ConfigCard Button */
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
 }
 
 /* ConfigSidebar Container */
 .config-sidebar {
   border-radius: 0.75rem !important;
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Alle Elemente innerhalb der ConfigSidebar */
@@ -1841,23 +1847,73 @@ body[data-style="einfach"] .badge {
   border-radius: 1rem !important;
 }
 
-/* ULTIMATIVE CONFIG PROTECTION - Überschreibt ALLE globalen Border-Radius-Regeln */
+/* ULTIMATIVE CONFIG PROTECTION - Überschreibt ALLE globalen Design-Regeln */
 body[data-style="modern"] .config-card-button,
 body[data-style="standard"] .config-card-button,
 body[data-style="einfach"] .config-card-button {
   border-radius: 1rem !important;
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+  color: #374151 !important;
 }
 
 body[data-style="modern"] .config-sidebar,
 body[data-style="standard"] .config-sidebar,
 body[data-style="einfach"] .config-sidebar {
   border-radius: 0.75rem !important;
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
 }
 
 body[data-style="modern"] .config-sidebar *,
 body[data-style="standard"] .config-sidebar *,
 body[data-style="einfach"] .config-sidebar * {
   border-radius: inherit !important;
+}
+
+/* Schutz vor allen möglichen Design-Änderungen */
+.config-sidebar,
+.config-sidebar *,
+.config-card-button,
+[class*="ConfigCard"],
+[class*="ConfigSidebar"],
+[class*="PackageSelection"] {
+  /* Verhindere alle Design-Änderungen */
+  background: white !important;
+  border-color: #e5e7eb !important;
+  color: #374151 !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  line-height: normal !important;
+}
+
+/* Spezifische Überschreibungen für Buttons in Config-Komponenten */
+.config-sidebar button,
+.config-card-button {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  color: #374151 !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  line-height: 1.25rem !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.config-sidebar button:hover,
+.config-card-button:hover {
+  background: #f9fafb !important;
+  border-color: #d1d5db !important;
+  color: #111827 !important;
 }
 
 /* Spezifische Überschreibungen für alle Design-Styles */
@@ -1883,5 +1939,36 @@ body[data-style="modern"] .config-sidebar .rounded-full,
 body[data-style="standard"] .config-sidebar .rounded-full,
 body[data-style="einfach"] .config-sidebar .rounded-full {
   border-radius: 50% !important;
+}
+
+/* ABSOLUTE CONFIG PROTECTION - Überschreibt ALLE CSS-Variablen */
+.config-sidebar,
+.config-sidebar *,
+.config-card-button,
+[class*="ConfigCard"],
+[class*="ConfigSidebar"],
+[class*="PackageSelection"] {
+  /* Überschreibe alle CSS-Variablen */
+  --radius-button: 0.5rem !important;
+  --radius-card: 0.75rem !important;
+  --radius-input: 0.5rem !important;
+  --radius-modal: 0.75rem !important;
+  --radius-badge: 0.5rem !important;
+  --radius-image: 0.5rem !important;
+  --radius-xl: 0.75rem !important;
+  
+  /* Überschreibe alle Design-Variablen */
+  --badge-style: none !important;
+  --badge-display: block !important;
+  --gradient-underline-enabled: false !important;
+  
+  /* Überschreibe alle Farb-Variablen */
+  --color-primary: #3b82f6 !important;
+  --color-secondary: #6b7280 !important;
+  --color-accent: #f59e0b !important;
+  --color-text: #374151 !important;
+  --color-background: white !important;
+  --color-surface: #f9fafb !important;
+  --color-border: #e5e7eb !important;
 }
 
