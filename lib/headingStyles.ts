@@ -55,12 +55,14 @@ export const applyHeadingStyles = (config: AppConfig) => {
   
   // CSS Custom Properties setzen
   if (typeof window !== 'undefined') {
-    const root = document.documentElement
-    root.style.setProperty('--heading-underline', styles.underline)
-    root.style.setProperty('--heading-text-decoration', styles.textDecoration)
-    root.style.setProperty('--heading-text-decoration-color', styles.textDecorationColor || 'transparent')
-    root.style.setProperty('--heading-text-decoration-thickness', styles.textDecorationThickness || '0px')
-    root.style.setProperty('--heading-text-decoration-style', 'solid')
+    // Verzögerung hinzufügen, um Hydration-Probleme zu vermeiden
+    setTimeout(() => {
+      const root = document.documentElement
+      root.style.setProperty('--heading-underline', styles.underline)
+      root.style.setProperty('--heading-text-decoration', styles.textDecoration)
+      root.style.setProperty('--heading-text-decoration-color', styles.textDecorationColor || 'transparent')
+      root.style.setProperty('--heading-text-decoration-thickness', styles.textDecorationThickness || '0px')
+      root.style.setProperty('--heading-text-decoration-style', 'solid')
     
     // Direkt alle h2 Elemente anwenden (außer ConfigCard/ConfigSidebar)
     const h2Elements = document.querySelectorAll('h2:not(.config-card h2):not(.config-sidebar h2)')
@@ -116,5 +118,6 @@ export const applyHeadingStyles = (config: AppConfig) => {
       textDecoration: styles.textDecoration,
       textDecorationColor: styles.textDecorationColor
     })
+    }, 0)
   }
 }

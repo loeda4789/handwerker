@@ -14,9 +14,11 @@ export const applyBadgeStyles = (config: AppConfig) => {
   
   // CSS Custom Properties setzen
   if (typeof window !== 'undefined') {
-    const root = document.documentElement
-    root.style.setProperty('--badge-display', styles.display)
-    root.style.setProperty('--badge-style', styles.style)
+    // Verzögerung hinzufügen, um Hydration-Probleme zu vermeiden
+    setTimeout(() => {
+      const root = document.documentElement
+      root.style.setProperty('--badge-display', styles.display)
+      root.style.setProperty('--badge-style', styles.style)
     
     // Badge-Styles direkt anwenden
     const badgeElements = document.querySelectorAll('.badge:not(.config-card .badge, .config-sidebar .badge)')
@@ -51,5 +53,6 @@ export const applyBadgeStyles = (config: AppConfig) => {
       display: styles.display,
       style: styles.style
     })
+    }, 0)
   }
 }

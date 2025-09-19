@@ -35,19 +35,22 @@ export const applyBorderRadiusStyles = (config: AppConfig) => {
   const styles = getBorderRadiusStyles(config)
 
   if (typeof window !== 'undefined') {
-    const root = document.documentElement
-    
-    // CSS-Variablen für Border-Radius setzen
-    root.style.setProperty('--radius-button', styles.button)
-    root.style.setProperty('--radius-card', styles.card)
-    root.style.setProperty('--radius-input', styles.input)
-    root.style.setProperty('--radius-modal', styles.modal)
-    root.style.setProperty('--radius-badge', styles.badge)
+    // Verzögerung hinzufügen, um Hydration-Probleme zu vermeiden
+    setTimeout(() => {
+      const root = document.documentElement
+      
+      // CSS-Variablen für Border-Radius setzen
+      root.style.setProperty('--radius-button', styles.button)
+      root.style.setProperty('--radius-card', styles.card)
+      root.style.setProperty('--radius-input', styles.input)
+      root.style.setProperty('--radius-modal', styles.modal)
+      root.style.setProperty('--radius-badge', styles.badge)
 
-    // Debug-Logging
-    console.log('🔲 applyBorderRadiusStyles aufgerufen:', {
-      borderRadius: config.style.borderRadius,
-      values: styles
-    })
+      // Debug-Logging
+      console.log('🔲 applyBorderRadiusStyles aufgerufen:', {
+        borderRadius: config.style.borderRadius,
+        values: styles
+      })
+    }, 0)
   }
 }
