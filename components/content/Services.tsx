@@ -250,7 +250,7 @@ export default function Services({ content, variant = 'full', maxItems = 3 }: Se
         {variant === 'preview' && content.services.length > maxItems && (
           <div className="text-center mt-12">
             <button 
-              className="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200"
+              className="inline-flex items-center px-6 py-3 bg-primary text-white font-medium hover:bg-primary/90 transition-colors duration-200"
               style={{ borderRadius: 'var(--radius-button)' }}
               onClick={() => {
                 // Scroll to services section or navigate to services page

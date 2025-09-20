@@ -123,7 +123,7 @@ export default function ServicePage({ params }: ServicePageProps) {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-text dark:text-light mb-4">Service nicht gefunden</h1>
           <p className="text-text-secondary dark:text-light/80 mb-6">Der angeforderte Service konnte nicht gefunden werden.</p>
-          <Link href="/" className="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
+          <Link href="/" className="px-6 py-3 bg-orange-500 text-white hover:bg-orange-600 transition-colors" style={{ borderRadius: 'var(--radius-button)' }}>
             Zurück zur Startseite
           </Link>
         </div>
@@ -258,7 +258,8 @@ export default function ServicePage({ params }: ServicePageProps) {
             </Link>
             <Link
               href={`tel:${content.contact.phone}`}
-              className="inline-flex items-center px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-primary rounded-lg font-medium transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-primary font-medium transition-all duration-300 hover:scale-105"
+              style={{ borderRadius: 'var(--radius-button)' }}
             >
               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
@@ -373,8 +374,11 @@ export default function ServicePage({ params }: ServicePageProps) {
           <div className="text-center mt-12">
             <Link
               href="/services"
-              className="inline-flex items-center px-6 py-3 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              style={{ backgroundColor: 'var(--color-secondary)' }}
+              className="inline-flex items-center px-6 py-3 text-white font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{ 
+                backgroundColor: 'var(--color-secondary)',
+                borderRadius: 'var(--radius-button)'
+              }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = 'var(--color-primary)';
               }}

@@ -60,13 +60,15 @@ export default function ServicesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/kontakt"
-              className={`inline-block px-8 py-4 ${classes.secondary} ${classes.hoverPrimary} ${classes.textLight} font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1 rounded-lg`}
+              className={`inline-block px-8 py-4 ${classes.secondary} ${classes.hoverPrimary} ${classes.textLight} font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl transform hover:-translate-y-1`}
+              style={{ borderRadius: 'var(--radius-button)' }}
             >
               Jetzt anfragen
             </Link>
             <Link
               href={`tel:${content?.contact?.phone || ''}`}
-              className={`inline-flex items-center px-8 py-4 border-2 ${classes.border} ${classes.textLight} ${classes.hoverSurface} ${classes.text} rounded-lg font-medium transition-all duration-300 hover:scale-105`}
+              className={`inline-flex items-center px-8 py-4 border-2 ${classes.border} ${classes.textLight} ${classes.hoverSurface} ${classes.text} font-medium transition-all duration-300 hover:scale-105`}
+              style={{ borderRadius: 'var(--radius-button)' }}
             >
               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
