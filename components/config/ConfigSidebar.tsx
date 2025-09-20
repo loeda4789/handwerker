@@ -746,14 +746,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                           onClick={() => toggleFeature('whatsapp', !features.whatsapp)}
                           className={`w-full p-2 rounded-2xl border-2 transition-all duration-300 group ${
                             features.whatsapp 
-                              ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                              ? 'border-red-500 bg-red-500/15 shadow-lg shadow-red-500/20' 
                               : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                           }`}
                         >
                           <div className="flex items-center gap-2 text-left">
                             <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                               features.whatsapp 
-                                ? 'bg-primary text-white shadow-lg' 
+                                ? 'bg-red-500 text-white shadow-lg' 
                                 : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                             }`}>
                               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
@@ -765,7 +765,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Direkt zu WhatsApp springen</div>
                             </div>
                             {features.whatsapp && (
-                              <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
+                              <div className="w-5 h-5 bg-red-500 rounded-2xl flex items-center justify-center">
                                 <MdCheck className="w-3 h-3 text-white" />
                               </div>
                             )}
