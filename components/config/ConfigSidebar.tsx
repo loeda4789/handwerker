@@ -256,7 +256,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     // Trennstrich für Zusatz-Features
     {
       id: 'separator',
-      title: 'Zusatz',
+      title: 'Zusätzliche Optionen',
       icon: null,
       description: 'Zusätzliche Funktionen',
       isSeparator: true
@@ -379,7 +379,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
                   fontWeight: '700',
                   color: '#111827'
-                }}>Website anpassen</h2>
+                }}>Webseite anpassen</h2>
                 <p className="text-sm text-gray-600" style={{ 
                   fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
                   fontWeight: '400',
