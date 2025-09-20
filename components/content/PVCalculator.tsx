@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { ContentData } from '@/types/content'
 import { useLayoutConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation'
@@ -46,7 +46,7 @@ export default function PVCalculator({ content }: PVCalculatorProps) {
   // Aktiviere Scroll-Animationen
   useScrollAnimation()
 
-  const roofOrientations = [
+  const roofOrientations = useMemo(() => [
     { value: 'south', label: 'Süd', efficiency: 1.0 },
     { value: 'southeast', label: 'Südost', efficiency: 0.95 },
     { value: 'southwest', label: 'Südwest', efficiency: 0.95 },
@@ -55,14 +55,14 @@ export default function PVCalculator({ content }: PVCalculatorProps) {
     { value: 'northeast', label: 'Nordost', efficiency: 0.75 },
     { value: 'northwest', label: 'Nordwest', efficiency: 0.75 },
     { value: 'north', label: 'Nord', efficiency: 0.65 }
-  ]
+  ], [])
 
-  const roofTypes = [
+  const roofTypes = useMemo(() => [
     { value: 'tile', label: 'Ziegeldach', costFactor: 1.0 },
     { value: 'metal', label: 'Metalldach', costFactor: 0.9 },
     { value: 'flat', label: 'Flachdach', costFactor: 1.2 },
     { value: 'slate', label: 'Schieferdach', costFactor: 1.1 }
-  ]
+  ], [])
 
   const calculatePV = useCallback(() => {
     setIsCalculating(true)
