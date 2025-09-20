@@ -163,6 +163,25 @@ function MobileHeader({
             role="navigation"
             aria-label="Hauptnavigation"
           >
+          {/* Startseite Link */}
+          <div 
+            className="transition-all duration-500 ease-out"
+            style={{ 
+              animationDelay: '200ms',
+              animationFillMode: 'both',
+              opacity: isOpen ? 1 : 0,
+              transform: isOpen ? 'translateY(0)' : 'translateY(30px)',
+              animation: isOpen ? 'fadeInUp 0.6s ease-out 200ms both' : 'fadeOutDown 0.3s ease-in both'
+            }}
+          >
+            <Link
+              href="/"
+              className={`text-xl font-medium text-gray-900 hover:text-orange-500 transition-colors duration-300 ${navTextClass} min-h-[50px] flex items-center`}
+            >
+              Startseite
+            </Link>
+          </div>
+          
           {processedNavItems.map((item, index) => (
             <div 
               key={item.id}

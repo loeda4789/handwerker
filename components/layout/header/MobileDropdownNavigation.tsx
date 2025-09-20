@@ -130,6 +130,16 @@ function MobileDropdownNavigation({
 
         {/* Menu Content */}
         <div className="p-4 space-y-2">
+          {/* Startseite Link */}
+          <div className="animate-in fade-in-up duration-300" style={{ animationDelay: '50ms', animationFillMode: 'both' }}>
+            <Link
+              href="/"
+              className="block py-3 px-3 text-lg font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200"
+            >
+              Startseite
+            </Link>
+          </div>
+          
           {processedNavItems.map((item) => (
             <div key={item.id}>
               {item.hasDropdown ? (

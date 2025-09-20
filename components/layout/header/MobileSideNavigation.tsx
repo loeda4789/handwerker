@@ -161,6 +161,19 @@ function MobileSideNavigation({
         
         {/* Navigation Items - Scrollable */}
         <div className="flex-1 px-6 py-6 space-y-2">
+          {/* Startseite Link */}
+          <div 
+            className="animate-in fade-in-up duration-300"
+            style={{ animationDelay: '50ms', animationFillMode: 'both' }}
+          >
+            <Link
+              href="/"
+              className="block py-3 px-4 text-lg text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium normal-case"
+            >
+              Startseite
+            </Link>
+          </div>
+          
           {processedNavItems.map((item, index) => (
             <div 
               key={item.id}
