@@ -192,7 +192,7 @@ export default function ProjectProcess({ content }: ProjectProcessProps) {
                         : 'scale-100'
                     }`}
                     style={{ 
-                      borderRadius: '50%',
+                      borderRadius: 'var(--radius-button)',
                       backgroundColor: 'var(--color-accent)',
                       boxShadow: isStrichReached ? 
                         `0 0 0 4px rgba(var(--color-accent-rgb), 0.2), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` : 
