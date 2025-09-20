@@ -27,7 +27,7 @@ export default function ConfigCard() {
       <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
         <button
           onClick={() => setIsOpen(true)}
-          className="w-full bg-white border border-gray-200 p-3 hover:bg-gray-50 transition-all duration-200 config-card-button rounded-2xl"
+          className="w-full bg-white border-2 border-gray-200 p-3 hover:bg-gray-50 transition-all duration-200 config-card-button rounded-2xl"
           style={{ 
             minHeight: '44px',
             fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
@@ -78,7 +78,7 @@ export default function ConfigCard() {
       <div className="hidden lg:block fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(true)}
-          className="group bg-white border border-gray-200 p-4 hover:bg-gray-50 transition-all duration-200 config-card-button rounded-2xl"
+          className="group bg-white border-2 border-gray-200 p-4 hover:bg-gray-50 transition-all duration-200 config-card-button rounded-2xl"
           style={{ 
             minHeight: '44px', 
             minWidth: '44px',

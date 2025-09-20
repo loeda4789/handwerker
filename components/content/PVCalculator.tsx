@@ -161,7 +161,7 @@ export default function PVCalculator({ content }: PVCalculatorProps) {
   }, [calculatePV])
 
   const getBadgeClasses = () => {
-    const baseClasses = "inline-flex items-center gap-2 text-white text-sm font-medium mb-4"
+    const baseClasses = "inline-flex items-center gap-2 text-white text-sm font-medium mb-6"
     const badgeClasses = {
       minimal: "badge-minimal",
       rounded: "badge-rounded", 
