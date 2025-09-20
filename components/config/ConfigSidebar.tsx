@@ -659,7 +659,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     )}
 
                     {section.id === 'mobile-features' && (
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         <button
                           onClick={() => toggleFeature('mobileContact', !features.mobileContact)}
                           className={`p-2 rounded-2xl border transition-all duration-300 group ${
@@ -672,7 +672,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                             <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                               features.mobileContact 
                                 ? 'bg-primary text-white shadow-lg' 
-                                : 'bg-green-500 text-white group-hover:bg-green-600'
+                                : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                             }`}>
                               <MdPhone className="w-3 h-3" />
                             </div>
@@ -700,7 +700,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                             <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                               features.statusInfo 
                                 ? 'bg-primary text-white shadow-lg' 
-                                : 'bg-purple-500 text-white group-hover:bg-purple-600'
+                                : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                             }`}>
                               <MdSettings className="w-3 h-3" />
                             </div>
@@ -715,21 +715,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                             )}
                           </div>
                         </button>
-                        
-                        {/* Status-Anzeige */}
-                        <div className="mt-4 p-3 bg-gray-100 border border-gray-200 rounded-2xl">
-                          <div className="text-xs text-gray-600 mb-2">Aktuelle Einstellungen:</div>
-                          <div className="space-y-1 text-xs">
-                            <div className="flex items-center gap-2">
-                              <div className={`w-2 h-2 rounded-2xl ${features.mobileContact ? 'bg-green-500' : 'bg-gray-400'}`}></div>
-                              <span>Mobile Kontakt: {features.mobileContact ? 'Aktiviert' : 'Deaktiviert'}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <div className={`w-2 h-2 rounded-2xl ${features.statusInfo ? 'bg-green-500' : 'bg-gray-400'}`}></div>
-                              <span>Status-Info: {features.statusInfo ? 'Aktiviert' : 'Deaktiviert'}</span>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     )}
 
