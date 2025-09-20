@@ -4,9 +4,9 @@ import { useMobileFeatures } from '@/lib/hooks/useMobileFeatures'
 import MobileContactModal from './MobileContactModal'
 
 export default function MobileFeaturesNav() {
-  const { isMobile, showContactModal, openContactModal, closeContactModal } = useMobileFeatures()
+  const { isMobile, showContactModal, openContactModal, closeContactModal, isMobileContactEnabled } = useMobileFeatures()
 
-  if (!isMobile) return null
+  if (!isMobile || !isMobileContactEnabled) return null
 
   return (
     <>

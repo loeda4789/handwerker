@@ -1,10 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useFeaturesConfig } from '@/contexts/AppConfigContext'
 
 export function useMobileFeatures() {
   const [isMobile, setIsMobile] = useState(false)
   const [showContactModal, setShowContactModal] = useState(false)
+  const { features } = useFeaturesConfig()
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -34,6 +36,7 @@ export function useMobileFeatures() {
     isMobile,
     showContactModal,
     openContactModal,
-    closeContactModal
+    closeContactModal,
+    isMobileContactEnabled: features.mobileContact
   }
 }
