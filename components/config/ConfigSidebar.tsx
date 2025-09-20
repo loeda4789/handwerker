@@ -337,7 +337,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       <div 
         className={`fixed z-50 transition-all duration-300 ease-out ${
           isMobile 
-            ? `bottom-0 left-0 right-0 bg-gradient-to-br from-white via-gray-50 to-white rounded-t-3xl shadow-2xl border-t border-gray-200 ${
+            ? `bottom-0 left-0 right-0 bg-gradient-to-br from-white via-gray-50 to-white rounded-t-2xl shadow-2xl border-t border-gray-200 ${
                 isDragging ? 'transform translate-y-0' : 'transform translate-y-0'
               }` 
             : 'top-0 right-0 w-96 h-full bg-gradient-to-br from-white via-gray-50 to-white shadow-2xl border-l border-gray-200'
@@ -346,7 +346,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
           transform: isMobile && isDragging ? `translateY(${dragOffset}px)` : 'translateY(0)',
           paddingBottom: isMobile ? 'env(safe-area-inset-bottom)' : '0',
           fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-          borderRadius: isMobile ? '1.5rem 1.5rem 0 0' : '0',
+          borderRadius: isMobile ? '1rem 1rem 0 0' : '0',
           background: 'linear-gradient(to bottom right, #ffffff, #f9fafb, #ffffff)',
           border: isMobile ? '1px solid #e5e7eb' : '1px solid #e5e7eb',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
@@ -385,9 +385,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
             </div>
             <button
               onClick={onClose}
-              className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all duration-300 hover:scale-110"
+              className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-2xl transition-all duration-300 hover:scale-110"
               style={{
-                borderRadius: '0.75rem',
+                borderRadius: '1rem',
                 color: '#9ca3af',
                 fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
               }}
@@ -428,7 +428,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                   aria-controls={`section-${section.id}`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                    <div className={`w-8 h-8 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                       activeSection === section.id 
                         ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
                         : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300 group-hover:scale-110'
@@ -459,7 +459,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     </div>
                   </div>
                   {activeSection === section.id ? (
-                    <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                    <div className="w-6 h-6 bg-gray-200 rounded-2xl flex items-center justify-center">
                       <MdExpandLess className="w-4 h-4 text-gray-600" />
                     </div>
                   ) : (
@@ -483,14 +483,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 handleApply('color', key)
                               }}
                               disabled={isLoading}
-                              className={`p-2 rounded-xl border transition-all duration-300 group text-center transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${
+                              className={`p-2 rounded-2xl border transition-all duration-300 group text-center transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${
                                 colorScheme === key 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md hover:bg-gray-50'
                               }`}
                               style={{
                                 fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-                                borderRadius: '0.75rem',
+                                borderRadius: '1rem',
                                 background: colorScheme === key ? 'rgba(59, 130, 246, 0.15)' : '#ffffff',
                                 border: colorScheme === key ? '2px solid #3b82f6' : '1px solid #e5e7eb',
                                 color: '#374151',
@@ -499,15 +499,15 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                             >
                               <div className="flex justify-center gap-1 mb-1">
                                 <div 
-                                  className="w-6 h-6 rounded-lg border-2 border-white shadow-md"
+                                  className="w-6 h-6 rounded-2xl border-2 border-white shadow-md"
                                   style={{ backgroundColor: scheme.primary }}
                                 />
                                 <div 
-                                  className="w-6 h-6 rounded-lg border-2 border-white shadow-md"
+                                  className="w-6 h-6 rounded-2xl border-2 border-white shadow-md"
                                   style={{ backgroundColor: scheme.secondary }}
                                 />
                                 <div 
-                                  className="w-6 h-6 rounded-lg border-2 border-white shadow-md"
+                                  className="w-6 h-6 rounded-2xl border-2 border-white shadow-md"
                                   style={{ backgroundColor: scheme.accent }}
                                 />
                               </div>
@@ -534,14 +534,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setHeroType(hero.key as any)
                                 handleApply('hero', hero.key)
                               }}
-                              className={`p-2 rounded-xl border transition-all duration-300 group ${
+                              className={`p-2 rounded-2xl border transition-all duration-300 group ${
                                 heroType === hero.key 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                               style={{
                                 fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-                                borderRadius: '0.75rem',
+                                borderRadius: '1rem',
                                 background: heroType === hero.key ? 'rgba(59, 130, 246, 0.15)' : '#ffffff',
                                 border: heroType === hero.key ? '2px solid #3b82f6' : '1px solid #e5e7eb',
                                 color: '#374151',
@@ -551,7 +551,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               {isMobile ? (
                                 // Mobile Layout: Icon oben, Text darunter
                                 <div className="flex flex-col items-center text-center gap-1">
-                                  <div className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                                  <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                                     heroType === hero.key 
                                       ? 'bg-primary text-white shadow-lg' 
                                       : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
@@ -567,7 +567,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               ) : (
                                 // Desktop Layout: Icon links, Text rechts
                                 <div className="flex items-center gap-2 text-left">
-                                  <div className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                                  <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                                     heroType === hero.key 
                                       ? 'bg-primary text-white shadow-lg' 
                                       : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
@@ -587,7 +587,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                     }}>{hero.description}</div>
                                   </div>
                                   {heroType === hero.key && (
-                                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                    <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
                                       <MdCheck className="w-3 h-3 text-white" />
                                     </div>
                                   )}
@@ -609,14 +609,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setMobileType(nav.key as any)
                                 handleApply('mobile-nav', nav.key)
                               }}
-                              className={`p-2 rounded-xl border transition-all duration-300 group ${
+                              className={`p-2 rounded-2xl border transition-all duration-300 group ${
                                 mobileType === nav.key 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                               style={{
                                 fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-                                borderRadius: '0.75rem',
+                                borderRadius: '1rem',
                                 background: mobileType === nav.key ? 'rgba(59, 130, 246, 0.15)' : '#ffffff',
                                 border: mobileType === nav.key ? '2px solid #3b82f6' : '1px solid #e5e7eb',
                                 color: '#374151',
@@ -626,7 +626,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               {isMobile ? (
                                 // Mobile Layout: Icon oben, Text darunter
                                 <div className="flex flex-col items-center text-center gap-1">
-                                  <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                  <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                                     mobileType === nav.key 
                                       ? 'bg-primary text-white shadow-lg' 
                                       : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
@@ -638,7 +638,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               ) : (
                                 // Desktop Layout: Icon links, Text rechts
                                 <div className="flex items-center gap-2 text-left">
-                                  <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                  <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                                     mobileType === nav.key 
                                       ? 'bg-primary text-white shadow-lg' 
                                       : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
@@ -650,7 +650,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                     <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{nav.description}</div>
                                   </div>
                                   {mobileType === nav.key && (
-                                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                    <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
                                       <MdCheck className="w-3 h-3 text-white" />
                                     </div>
                                   )}
@@ -664,60 +664,76 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'mobile-features' && (
                       <div className="space-y-3">
-                        <div className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                        <button
+                          onClick={() => toggleFeature('mobileContact', !features.mobileContact)}
+                          className={`w-full flex items-center justify-between p-3 border transition-all duration-300 rounded-2xl ${
+                            features.mobileContact 
+                              ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                              : 'bg-gray-50 border border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                          }`}
+                        >
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
-                              <MdPhone className="w-4 h-4 text-white" />
+                            <div className={`w-8 h-8 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                              features.mobileContact 
+                                ? 'bg-primary text-white shadow-lg' 
+                                : 'bg-green-500 text-white'
+                            }`}>
+                              <MdPhone className="w-4 h-4" />
                             </div>
                             <div>
                               <div className="font-semibold text-gray-900 text-sm">Mobile Kontakt</div>
                               <div className="text-gray-600 text-xs">Schwebender Button mit 4 Optionen</div>
                             </div>
                           </div>
-                          <button
-                            onClick={() => toggleFeature('mobileContact', !features.mobileContact)}
-                            className={`w-12 h-6 rounded-full transition-colors duration-200 ${
-                              features.mobileContact ? 'bg-primary' : 'bg-gray-300'
-                            }`}
-                          >
-                            <div className={`w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 ${
+                          <div className={`w-12 h-6 rounded-2xl transition-colors duration-200 ${
+                            features.mobileContact ? 'bg-primary' : 'bg-gray-300'
+                          }`}>
+                            <div className={`w-5 h-5 bg-white rounded-2xl shadow-md transition-transform duration-200 ${
                               features.mobileContact ? 'translate-x-6' : 'translate-x-0.5'
                             }`} />
-                          </button>
-                        </div>
+                          </div>
+                        </button>
                         
-                        <div className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                        <button
+                          onClick={() => toggleFeature('statusInfo', !features.statusInfo)}
+                          className={`w-full flex items-center justify-between p-3 border transition-all duration-300 rounded-2xl ${
+                            features.statusInfo 
+                              ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                              : 'bg-gray-50 border border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                          }`}
+                        >
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
-                              <MdSettings className="w-4 h-4 text-white" />
+                            <div className={`w-8 h-8 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                              features.statusInfo 
+                                ? 'bg-primary text-white shadow-lg' 
+                                : 'bg-purple-500 text-white'
+                            }`}>
+                              <MdSettings className="w-4 h-4" />
                             </div>
                             <div>
                               <div className="font-semibold text-gray-900 text-sm">Status-Info</div>
                               <div className="text-gray-600 text-xs">Service-Informationen anzeigen</div>
                             </div>
                           </div>
-                          <button
-                            onClick={() => toggleFeature('statusInfo', !features.statusInfo)}
-                            className={`w-12 h-6 rounded-full transition-colors duration-200 ${
-                              features.statusInfo ? 'bg-primary' : 'bg-gray-300'
-                            }`}
-                          >
-                            <div className={`w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 ${
+                          <div className={`w-12 h-6 rounded-2xl transition-colors duration-200 ${
+                            features.statusInfo ? 'bg-primary' : 'bg-gray-300'
+                          }`}>
+                            <div className={`w-5 h-5 bg-white rounded-2xl shadow-md transition-transform duration-200 ${
                               features.statusInfo ? 'translate-x-6' : 'translate-x-0.5'
                             }`} />
-                          </button>
-                        </div>
+                          </div>
+                        </button>
                         
                         {/* Status-Anzeige */}
-                        <div className="mt-4 p-3 bg-gray-100 border border-gray-200 rounded-xl">
+                        <div className="mt-4 p-3 bg-gray-100 border border-gray-200 rounded-2xl">
                           <div className="text-xs text-gray-600 mb-2">Aktuelle Einstellungen:</div>
                           <div className="space-y-1 text-xs">
                             <div className="flex items-center gap-2">
-                              <div className={`w-2 h-2 rounded-full ${features.mobileContact ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                              <div className={`w-2 h-2 rounded-2xl ${features.mobileContact ? 'bg-green-500' : 'bg-gray-400'}`}></div>
                               <span>Mobile Kontakt: {features.mobileContact ? 'Aktiviert' : 'Deaktiviert'}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <div className={`w-2 h-2 rounded-full ${features.statusInfo ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                              <div className={`w-2 h-2 rounded-2xl ${features.statusInfo ? 'bg-green-500' : 'bg-gray-400'}`}></div>
                               <span>Status-Info: {features.statusInfo ? 'Aktiviert' : 'Deaktiviert'}</span>
                             </div>
                           </div>
@@ -746,14 +762,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   }, 100)
                                 }
                               }}
-                              className={`w-full p-3 rounded-xl border transition-all duration-300 text-left relative group ${
+                              className={`w-full p-3 rounded-2xl border transition-all duration-300 text-left relative group ${
                                 variant.selected 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                               }`}
                             >
                               <div className="flex items-center gap-2">
-                                <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                                   variant.selected ? 'bg-primary text-white shadow-lg' : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
                                 }`}>
                                   <variant.icon className="w-3 h-3" />
@@ -763,7 +779,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                     <div className="flex items-center gap-2">
                                       <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{variant.name}</div>
                                       {variant.recommended && (
-                                        <div className="bg-primary text-white text-[9px] px-2 py-0.5 rounded-full font-bold">
+                                        <div className="bg-primary text-white text-[9px] px-2 py-0.5 rounded-2xl font-bold">
                                           Empfohlen
                                         </div>
                                       )}
@@ -775,7 +791,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{variant.description}</div>
                                 </div>
                                 {variant.selected && (
-                                  <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                  <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
                                     <MdCheck className="w-3 h-3 text-white" />
                                   </div>
                                 )}
@@ -796,7 +812,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])
                                 handleApply('feature', feature.key)
                               }}
-                              className={`p-2 rounded-xl border transition-all duration-300 group ${
+                              className={`p-2 rounded-2xl border transition-all duration-300 group ${
                                 features[feature.key as keyof typeof features]
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
@@ -805,7 +821,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               {isMobile ? (
                                 // Mobile Layout: Icon oben, Text darunter
                                 <div className="flex flex-col items-center text-center gap-1">
-                                  <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                  <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                                     features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                   }`}>
                                     <feature.icon className="w-3 h-3" />
@@ -815,7 +831,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               ) : (
                                 // Desktop Layout: Icon links, Text rechts
                                 <div className="flex items-center gap-2 text-left">
-                                  <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                  <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                                     features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                   }`}>
                                     <feature.icon className="w-3 h-3" />
@@ -825,7 +841,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                     <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Zusätzliche Kontaktmöglichkeiten</div>
                                   </div>
                                   {features[feature.key as keyof typeof features] && (
-                                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                    <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
                                       <MdCheck className="w-3 h-3 text-white" />
                                     </div>
                                   )}
@@ -855,14 +871,14 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                     console.log('🎨 Badges gefunden:', document.querySelectorAll('.badge').length)
                                   }, 100)
                                 }}
-                                className={`p-2 rounded-xl border transition-all duration-300 group ${
+                                className={`p-2 rounded-2xl border transition-all duration-300 group ${
                                   stylePackage === style.id 
                                     ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                     : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                                 }`}
                                 style={{
                                   fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-                                  borderRadius: '0.75rem',
+                                  borderRadius: '1rem',
                                   background: stylePackage === style.id ? 'rgba(59, 130, 246, 0.15)' : '#ffffff',
                                   border: stylePackage === style.id ? '2px solid #3b82f6' : '1px solid #e5e7eb',
                                   color: '#374151',
@@ -872,7 +888,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 {isMobile ? (
                                   // Mobile Layout: Icon oben, Text darunter
                                   <div className="flex flex-col items-center text-center gap-1">
-                                    <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                    <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                                       stylePackage === style.id ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                     }`}>
                                       <Icon className="w-3 h-3" />
@@ -882,7 +898,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 ) : (
                                   // Desktop Layout: Icon links, Text rechts
                                   <div className="flex items-center gap-2 text-left">
-                                    <div className={`w-6 h-6 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                                    <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                                       stylePackage === style.id ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                     }`}>
                                       <Icon className="w-3 h-3" />
@@ -892,7 +908,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                       <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>{style.description}</div>
                                     </div>
                                     {stylePackage === style.id && (
-                                      <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                      <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
                                         <MdCheck className="w-3 h-3 text-white" />
                                       </div>
                                     )}
@@ -921,7 +937,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                 // ConfigCard schließen
                 onClose()
               }}
-              className="w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 bg-primary text-white hover:bg-primary/90 hover:scale-105 active:scale-95 transform"
+              className="w-full py-3 px-6 rounded-2xl font-semibold transition-all duration-300 bg-primary text-white hover:bg-primary/90 hover:scale-105 active:scale-95 transform"
             >
               {lastApplied ? (
                 <div className="flex items-center justify-center gap-2">
