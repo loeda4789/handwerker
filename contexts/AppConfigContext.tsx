@@ -48,9 +48,13 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
         }
       }
       setConfig(updatedConfig)
+      // Body data-style Attribut setzen
+      document.body.setAttribute('data-style', savedDesignStyle)
       console.log('🎯 AppConfigProvider initialisiert mit localStorage Design-Style:', savedDesignStyle, updatedConfig)
     } else {
       setConfig(initialConfig)
+      // Body data-style Attribut mit Standard-Wert setzen
+      document.body.setAttribute('data-style', initialConfig.layout.design)
       console.log('🎯 AppConfigProvider initialisiert mit:', initialConfig)
     }
     
@@ -93,6 +97,8 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
         }
         setConfig(updatedConfig)
         styleManager.updateConfig(updatedConfig)
+        // Body data-style Attribut aktualisieren
+        document.body.setAttribute('data-style', savedDesignStyle)
         console.log('🔄 AppConfigProvider: Design-Style geändert:', savedDesignStyle, updatedConfig)
       }
     }

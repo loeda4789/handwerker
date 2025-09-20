@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { styleManager } from '@/lib/unifiedStyleManager'
 
 export function useDesignStyle() {
   const [designStyle, setDesignStyle] = useState<string>('rounded')
@@ -69,8 +68,7 @@ export function useDesignStyle() {
         }
       }
       
-      // Styles über UnifiedStyleManager anwenden
-      styleManager.updateConfig(config)
+      // Styles werden bereits über AppConfigProvider verwaltet
     }
     
     const handleDesignStyleChange = () => {
@@ -135,8 +133,7 @@ export function useDesignStyle() {
           }
         }
         
-        // Styles über UnifiedStyleManager anwenden
-        styleManager.updateConfig(config)
+        // Styles werden bereits über AppConfigProvider verwaltet
       }
     }
     
