@@ -30,11 +30,10 @@ import {
 } from 'react-icons/md'
 import { useAppConfig, useLayoutConfig, useThemeConfig, useFeaturesConfig, useHeroConfig, useHeadingsConfig, useStyleConfig } from '@/contexts/AppConfigContext'
 import { UNIFIED_STYLES, applyUnifiedStyle } from '@/lib/config/unifiedStyles'
-import { applyColorScheme, applyBorderRadiusScheme, colorSchemes as colorSchemesData } from '@/lib/colorSchemes'
+import { applyColorScheme, colorSchemes as colorSchemesData } from '@/lib/colorSchemes'
 import type { SimpleColorScheme } from '@/lib/colorSchemes'
 import { applyHeadingStyles } from '@/lib/headingStyles'
 import { applyBadgeStyles } from '@/lib/badgeStyles'
-import { applyBorderRadiusStyles } from '@/lib/borderRadiusStyles'
 import InfoTooltip from '@/components/ui/InfoTooltip'
 import InfoTooltipAdvanced from '@/components/ui/InfoTooltipAdvanced'
 import ExpandableInfo from '@/components/ui/ExpandableInfo'
@@ -164,10 +163,8 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   useEffect(() => {
     if (isConfigLoaded) {
       applyColorScheme(colorScheme)
-      applyBorderRadiusScheme(designStyle)
       applyHeadingStyles(config)
       applyBadgeStyles(config)
-      applyBorderRadiusStyles(config)
     }
   }, [isConfigLoaded, colorScheme, designStyle, config])
 
@@ -299,7 +296,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
       updateConfig(newConfig) // Context aktualisieren
       applyHeadingStyles(newConfig)
       applyBadgeStyles(newConfig)
-      applyBorderRadiusStyles(newConfig)
     } else if (type === 'variant') {
       // Variant-Änderungen werden automatisch über den Context gehandhabt
     }
