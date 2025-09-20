@@ -556,7 +556,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setHeroType(hero.key as any)
                                 handleApply('hero', hero.key)
                               }}
-                              className={`p-2 rounded-2xl border transition-all duration-300 group ${
+                              className={`p-2 rounded-2xl border-2 transition-all duration-300 group ${
                                 heroType === hero.key 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-2 border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
@@ -631,7 +631,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                 setMobileType(nav.key as any)
                                 handleApply('mobile-nav', nav.key)
                               }}
-                              className={`p-2 rounded-2xl border transition-all duration-300 group ${
+                              className={`p-2 rounded-2xl border-2 transition-all duration-300 group ${
                                 mobileType === nav.key 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-2 border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
@@ -795,7 +795,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   }, 100)
                                 }
                               }}
-                              className={`w-full p-2 rounded-2xl border transition-all duration-300 text-left relative group ${
+                              className={`w-full p-2 rounded-2xl border-2 transition-all duration-300 text-left relative group ${
                                 variant.selected 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-2 border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
@@ -844,7 +844,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])
                               handleApply('feature', feature.key)
                             }}
-                            className={`w-full p-2 rounded-2xl border transition-all duration-300 group ${
+                            className={`w-full p-2 rounded-2xl border-2 transition-all duration-300 group ${
                               features[feature.key as keyof typeof features]
                                 ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                 : 'border-2 border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
@@ -889,7 +889,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                     console.log('🎨 Badges gefunden:', document.querySelectorAll('.badge').length)
                                   }, 100)
                                 }}
-                                className={`p-2 rounded-2xl border transition-all duration-300 group ${
+                                className={`p-2 rounded-2xl border-2 transition-all duration-300 group ${
                                   stylePackage === style.id 
                                     ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                     : 'border-2 border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'

@@ -22,7 +22,7 @@ export default function MobileWhatsAppButton() {
   return (
     <button
       onClick={handleWhatsAppClick}
-      className="fixed bottom-32 right-6 z-40 bg-green-500 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
+      className="fixed bottom-40 right-6 z-40 bg-green-500 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
       style={{ borderRadius: '50%' }}
       aria-label="WhatsApp Kontakt"
     >
