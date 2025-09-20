@@ -662,61 +662,57 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       <div className="space-y-3">
                         <button
                           onClick={() => toggleFeature('mobileContact', !features.mobileContact)}
-                          className={`w-full flex items-center justify-between p-3 border transition-all duration-300 rounded-2xl ${
+                          className={`p-2 rounded-2xl border transition-all duration-300 group ${
                             features.mobileContact 
                               ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                              : 'bg-gray-50 border border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                              : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                           }`}
                         >
-                          <div className="flex items-center gap-3">
-                            <div className={`w-8 h-8 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                          <div className="flex items-center gap-2 text-left">
+                            <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                               features.mobileContact 
                                 ? 'bg-primary text-white shadow-lg' 
-                                : 'bg-green-500 text-white'
+                                : 'bg-green-500 text-white group-hover:bg-green-600'
                             }`}>
-                              <MdPhone className="w-4 h-4" />
+                              <MdPhone className="w-3 h-3" />
                             </div>
-                            <div>
-                              <div className="font-semibold text-gray-900 text-sm">Mobile Kontakt</div>
-                              <div className="text-gray-600 text-xs">Schwebender Button mit 4 Optionen</div>
+                            <div className="flex-1">
+                              <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>Mobile Kontakt</div>
+                              <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Schwebender Button mit 4 Optionen</div>
                             </div>
-                          </div>
-                          <div className={`w-12 h-6 rounded-2xl transition-colors duration-200 ${
-                            features.mobileContact ? 'bg-primary' : 'bg-gray-300'
-                          }`}>
-                            <div className={`w-5 h-5 bg-white rounded-2xl shadow-md transition-transform duration-200 ${
-                              features.mobileContact ? 'translate-x-6' : 'translate-x-0.5'
-                            }`} />
+                            {features.mobileContact && (
+                              <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
+                                <MdCheck className="w-3 h-3 text-white" />
+                              </div>
+                            )}
                           </div>
                         </button>
                         
                         <button
                           onClick={() => toggleFeature('statusInfo', !features.statusInfo)}
-                          className={`w-full flex items-center justify-between p-3 border transition-all duration-300 rounded-2xl ${
+                          className={`p-2 rounded-2xl border transition-all duration-300 group ${
                             features.statusInfo 
                               ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                              : 'bg-gray-50 border border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                              : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                           }`}
                         >
-                          <div className="flex items-center gap-3">
-                            <div className={`w-8 h-8 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                          <div className="flex items-center gap-2 text-left">
+                            <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                               features.statusInfo 
                                 ? 'bg-primary text-white shadow-lg' 
-                                : 'bg-purple-500 text-white'
+                                : 'bg-purple-500 text-white group-hover:bg-purple-600'
                             }`}>
-                              <MdSettings className="w-4 h-4" />
+                              <MdSettings className="w-3 h-3" />
                             </div>
-                            <div>
-                              <div className="font-semibold text-gray-900 text-sm">Status-Info</div>
-                              <div className="text-gray-600 text-xs">Service-Informationen anzeigen</div>
+                            <div className="flex-1">
+                              <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>Status-Info</div>
+                              <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Service-Informationen anzeigen</div>
                             </div>
-                          </div>
-                          <div className={`w-12 h-6 rounded-2xl transition-colors duration-200 ${
-                            features.statusInfo ? 'bg-primary' : 'bg-gray-300'
-                          }`}>
-                            <div className={`w-5 h-5 bg-white rounded-2xl shadow-md transition-transform duration-200 ${
-                              features.statusInfo ? 'translate-x-6' : 'translate-x-0.5'
-                            }`} />
+                            {features.statusInfo && (
+                              <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
+                                <MdCheck className="w-3 h-3 text-white" />
+                              </div>
+                            )}
                           </div>
                         </button>
                         
