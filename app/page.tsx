@@ -184,10 +184,12 @@ export default function HomePage() {
     }
     loadContent()
 
-    // Design-Style aus localStorage laden
+    // Design-Style aus localStorage laden und anwenden
     const savedDesignStyle = localStorage.getItem('design-style')
     if (savedDesignStyle) {
       setDesignStyle(savedDesignStyle)
+      // Body data-style Attribut setzen
+      document.body.setAttribute('data-style', savedDesignStyle)
     }
 
     // ColorScheme anwenden - Standard 'warm'

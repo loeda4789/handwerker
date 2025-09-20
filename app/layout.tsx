@@ -7,6 +7,7 @@ import ConfigCard from '@/components/config/ConfigCard'
 import Script from 'next/script'
 import FontStyleInitializer from '@/components/FontStyleInitializer'
 import ColorSchemeInitializer from '@/components/ColorSchemeInitializer'
+import DesignStyleInitializer from '@/components/DesignStyleInitializer'
 
 // Google Fonts laden
 const inter = Inter({ 
@@ -107,6 +108,7 @@ export default function RootLayout({
         <AppConfigProvider>
           <FontStyleInitializer />
           <ColorSchemeInitializer />
+          <DesignStyleInitializer />
           {children}
           <ConfigCard />
         </AppConfigProvider>

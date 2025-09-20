@@ -249,6 +249,14 @@ export function useStyleConfig() {
     setPackage: (packageId: 'einfach' | 'standard' | 'modern') => {
       console.log('🎨 setPackage aufgerufen mit:', packageId)
       updateConfig({ style: { ...config.style, package: packageId } })
+      
+      // Design-Style in localStorage speichern
+      localStorage.setItem('design-style', packageId)
+      
+      // Body data-style Attribut aktualisieren
+      if (typeof window !== 'undefined') {
+        document.body.setAttribute('data-style', packageId)
+      }
     },
     setFontFamily: (fontFamily: 'sans' | 'serif' | 'display') => {
       console.log('🎨 setFontFamily aufgerufen mit:', fontFamily)
