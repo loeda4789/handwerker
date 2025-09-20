@@ -788,7 +788,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                               toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])
                               handleApply('feature', feature.key)
                             }}
-                            className={`p-2 rounded-2xl border transition-all duration-300 group ${
+                            className={`w-full p-2 rounded-2xl border transition-all duration-300 group ${
                               features[feature.key as keyof typeof features]
                                 ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                 : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'

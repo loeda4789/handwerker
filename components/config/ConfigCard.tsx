@@ -27,19 +27,16 @@ export default function ConfigCard() {
       <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
         <button
           onClick={() => setIsOpen(true)}
-          className="w-full bg-gradient-to-br from-white via-gray-50 to-white shadow-xl border border-gray-200 p-4 hover:shadow-2xl transition-all duration-300 config-card-button rounded-2xl hover:scale-105"
+          className="w-full bg-white border border-gray-200 p-3 hover:bg-gray-50 transition-all duration-200 config-card-button rounded-2xl"
           style={{ 
             minHeight: '44px',
             fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-            borderRadius: '1rem',
-            background: 'linear-gradient(to bottom right, #ffffff, #f9fafb, #ffffff)',
-            border: '1px solid #e5e7eb',
-            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+            borderRadius: '1rem'
           }}
         >
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
-              <MdSettings className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gray-100 rounded-2xl flex items-center justify-center">
+              <MdSettings className="w-5 h-5 text-gray-600" />
             </div>
             <div className="flex-1 text-left">
               <div className="font-bold text-gray-900 text-lg" style={{ 
@@ -47,7 +44,7 @@ export default function ConfigCard() {
                 fontWeight: '700',
                 color: '#111827'
               }}>
-                Website anpassen
+                Webseite anpassen
               </div>
               <div className="text-[10px] text-gray-500 font-medium leading-tight" style={{ 
                 fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
@@ -81,20 +78,17 @@ export default function ConfigCard() {
       <div className="hidden lg:block fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(true)}
-          className="group bg-gradient-to-br from-white via-gray-50 to-white shadow-xl border border-gray-200 p-5 hover:shadow-2xl transition-all duration-300 hover:scale-105 config-card-button rounded-2xl"
+          className="group bg-white border border-gray-200 p-4 hover:bg-gray-50 transition-all duration-200 config-card-button rounded-2xl"
           style={{ 
             minHeight: '44px', 
             minWidth: '44px',
             fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-            borderRadius: '1rem',
-            background: 'linear-gradient(to bottom right, #ffffff, #f9fafb, #ffffff)',
-            border: '1px solid #e5e7eb',
-            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+            borderRadius: '1rem'
           }}
         >
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <MdSettings className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gray-100 rounded-2xl flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+              <MdSettings className="w-5 h-5 text-gray-600" />
             </div>
             <div className="text-left">
               <div className="font-bold text-gray-900 text-lg" style={{ 
@@ -102,7 +96,7 @@ export default function ConfigCard() {
                 fontWeight: '700',
                 color: '#111827'
               }}>
-                Website anpassen
+                Webseite anpassen
               </div>
               <div className="text-[10px] text-gray-500 font-medium mb-2 leading-tight" style={{ 
                 fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
