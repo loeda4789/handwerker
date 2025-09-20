@@ -14,7 +14,7 @@ export default function MobileFeaturesNav() {
       {/* Mobile Contact Button */}
       <button
         onClick={openContactModal}
-        className="fixed bottom-20 right-6 z-40 bg-accent text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
+        className="fixed bottom-20 right-6 z-40 bg-primary text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
         style={{ borderRadius: 'var(--radius-button)' }}
         aria-label="Kontakt aufnehmen"
       >
