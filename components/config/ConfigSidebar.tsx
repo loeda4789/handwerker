@@ -781,52 +781,37 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
 
                     {section.id === 'features' && (
                       <div className="space-y-2">
-                        <div className={`grid gap-2 ${isMobile ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                          {desktopFeatures.map((feature) => (
-                            <button
-                              key={feature.key}
-                              onClick={() => {
-                                toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])
-                                handleApply('feature', feature.key)
-                              }}
-                              className={`p-2 rounded-2xl border transition-all duration-300 group ${
-                                features[feature.key as keyof typeof features]
-                                  ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                                  : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
-                              }`}
-                            >
-                              {isMobile ? (
-                                // Mobile Layout: Icon oben, Text darunter
-                                <div className="flex flex-col items-center text-center gap-1">
-                                  <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
-                                    features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
-                                  }`}>
-                                    <feature.icon className="w-3 h-3" />
-                                  </div>
-                                  <div className="text-xs font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{feature.label}</div>
-                                </div>
-                              ) : (
-                                // Desktop Layout: Icon links, Text rechts
-                                <div className="flex items-center gap-2 text-left">
-                                  <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
-                                    features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
-                                  }`}>
-                                    <feature.icon className="w-3 h-3" />
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{feature.label}</div>
-                                    <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Zusätzliche Kontaktmöglichkeiten</div>
-                                  </div>
-                                  {features[feature.key as keyof typeof features] && (
-                                    <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
-                                      <MdCheck className="w-3 h-3 text-white" />
-                                    </div>
-                                  )}
+                        {desktopFeatures.map((feature) => (
+                          <button
+                            key={feature.key}
+                            onClick={() => {
+                              toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])
+                              handleApply('feature', feature.key)
+                            }}
+                            className={`p-2 rounded-2xl border transition-all duration-300 group ${
+                              features[feature.key as keyof typeof features]
+                                ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                                : 'border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2 text-left">
+                              <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                                features[feature.key as keyof typeof features] ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
+                              }`}>
+                                <feature.icon className="w-3 h-3" />
+                              </div>
+                              <div className="flex-1">
+                                <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>{feature.label}</div>
+                                <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Zusätzliche Kontaktmöglichkeiten</div>
+                              </div>
+                              {features[feature.key as keyof typeof features] && (
+                                <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
+                                  <MdCheck className="w-3 h-3 text-white" />
                                 </div>
                               )}
-                            </button>
-                          ))}
-                        </div>
+                            </div>
+                          </button>
+                        ))}
                       </div>
                     )}
 
@@ -919,18 +904,18 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
               {lastApplied ? (
                 <div className="flex items-center justify-center gap-2">
                   <MdCheck className="w-5 h-5" />
-                  {lastApplied === 'color' && 'Farbschema angewendet'}
-                  {lastApplied === 'hero' && 'Hero-Typ angewendet'}
-                  {lastApplied === 'mobile-nav' && 'Navigation angewendet'}
-                  {lastApplied === 'feature' && 'Feature angewendet'}
-                  {lastApplied === 'style' && 'Stil angewendet'}
-                  {lastApplied === 'variant' && 'Paket angewendet'}
-                  {lastApplied === 'all' && 'Änderungen angewendet'}
+                  {lastApplied === 'color' && 'Webseite anzeigen'}
+                  {lastApplied === 'hero' && 'Webseite anzeigen'}
+                  {lastApplied === 'mobile-nav' && 'Webseite anzeigen'}
+                  {lastApplied === 'feature' && 'Webseite anzeigen'}
+                  {lastApplied === 'style' && 'Webseite anzeigen'}
+                  {lastApplied === 'variant' && 'Webseite anzeigen'}
+                  {lastApplied === 'all' && 'Webseite anzeigen'}
                 </div>
               ) : (
                 <div className="flex items-center justify-center gap-2">
                   <MdCheck className="w-5 h-5" />
-                  Anwenden & Schließen
+                  Webseite anzeigen
                 </div>
               )}
             </button>
