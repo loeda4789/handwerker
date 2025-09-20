@@ -688,10 +688,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                       <div className="space-y-2">
                         <button
                           onClick={() => toggleFeature('mobileContact', !features.mobileContact)}
-                          className={`p-2 rounded-2xl border transition-all duration-300 group ${
+                          className={`p-2 rounded-2xl border-2 transition-all duration-300 group ${
                             features.mobileContact 
-                              ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                              : 'border-2 border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
+                              ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                              : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                           }`}
                         >
                           <div className="flex items-center gap-2 text-left">
@@ -716,10 +716,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                         
                         <button
                           onClick={() => toggleFeature('statusInfo', !features.statusInfo)}
-                          className={`p-2 rounded-2xl border transition-all duration-300 group ${
+                          className={`p-2 rounded-2xl border-2 transition-all duration-300 group ${
                             features.statusInfo 
-                              ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                              : 'border-2 border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
+                              ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
+                              : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                           }`}
                         >
                           <div className="flex items-center gap-2 text-left">
@@ -744,10 +744,10 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                         
                         <button
                           onClick={() => toggleFeature('whatsapp', !features.whatsapp)}
-                          className={`p-2 rounded-2xl border transition-all duration-300 group ${
+                          className={`p-2 rounded-2xl border-2 transition-all duration-300 group ${
                             features.whatsapp 
-                              ? 'border-2 border-secondary bg-secondary/15 shadow-lg shadow-secondary/20' 
-                              : 'border-2 border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
+                              ? 'border-secondary bg-secondary/15 shadow-lg shadow-secondary/20' 
+                              : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                           }`}
                         >
                           <div className="flex items-center gap-2 text-left">
