@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useStyleConfig } from '@/contexts/AppConfigContext'
+import { useStyleConfig, useThemeConfig } from '@/contexts/AppConfigContext'
 
 interface MobileContactModalProps {
   isOpen: boolean
@@ -10,6 +10,7 @@ interface MobileContactModalProps {
 
 export default function MobileContactModal({ isOpen, onClose }: MobileContactModalProps) {
   const { package: designStyle } = useStyleConfig()
+  const { colorScheme } = useThemeConfig()
 
   // Modal schließen bei Escape-Taste
   useEffect(() => {
@@ -71,7 +72,7 @@ export default function MobileContactModal({ isOpen, onClose }: MobileContactMod
           <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
         </svg>
       ),
-      color: 'bg-blue-500',
+      color: 'bg-primary',
       action: () => {
         // Scroll to contact form or open contact page
         const contactSection = document.getElementById('contact')
@@ -92,7 +93,7 @@ export default function MobileContactModal({ isOpen, onClose }: MobileContactMod
           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
         </svg>
       ),
-      color: 'bg-purple-500',
+      color: 'bg-accent',
       action: () => {
         window.open('https://maps.google.com/?q=Elektro+Service+Adresse', '_blank')
       }
@@ -161,23 +162,6 @@ export default function MobileContactModal({ isOpen, onClose }: MobileContactMod
           </div>
         </div>
 
-        {/* Status Indicators */}
-        <div className="px-6 pb-6">
-          <div className="flex items-center space-x-6 text-xs text-gray-600">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span>24/7 Service</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span>Vor Ort</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-              <span>Schnell</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   )
