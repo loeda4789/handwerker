@@ -154,7 +154,7 @@ export default function PVCalculator({ content }: PVCalculatorProps) {
       
       setIsCalculating(false)
     }, 1500)
-  }, [inputs])
+  }, [inputs, roofOrientations, roofTypes])
 
   useEffect(() => {
     calculatePV()

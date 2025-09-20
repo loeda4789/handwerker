@@ -28,7 +28,8 @@ export function useDesignStyle() {
           contactBar: false,
           sideContact: false,
           mobileContact: false,
-          statusInfo: false
+          statusInfo: false,
+          whatsapp: true
         },
         header: {
           variant: 'adaptive' as const,
@@ -93,7 +94,8 @@ export function useDesignStyle() {
             contactBar: false,
             sideContact: false,
             mobileContact: false,
-            statusInfo: false
+            statusInfo: false,
+            whatsapp: true
           },
           header: {
             variant: 'adaptive' as const,
