@@ -14,8 +14,32 @@ export default function MobileFeaturesNav() {
       {/* Mobile Contact Button */}
       <button
         onClick={openContactModal}
-        className="fixed bottom-20 right-6 z-40 bg-primary text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
-        style={{ borderRadius: 'var(--radius-button)' }}
+        className="fixed bottom-20 right-6 z-40 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
+        style={{ 
+          borderRadius: 'var(--radius-button)',
+          backgroundColor: 'var(--color-secondary)',
+          boxShadow: `
+            0 10px 25px -5px rgba(0, 0, 0, 0.2),
+            0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2)
+          `
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+          e.currentTarget.style.boxShadow = `
+            0 20px 40px -10px rgba(0, 0, 0, 0.3),
+            0 8px 12px -2px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3)
+          `;
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+          e.currentTarget.style.boxShadow = `
+            0 10px 25px -5px rgba(0, 0, 0, 0.2),
+            0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2)
+          `;
+        }}
         aria-label="Kontakt aufnehmen"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
