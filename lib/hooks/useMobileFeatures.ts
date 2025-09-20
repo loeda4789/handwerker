@@ -10,7 +10,9 @@ export function useMobileFeatures() {
 
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+      const mobile = window.innerWidth < 768
+      console.log('🔍 Mobile Check:', { width: window.innerWidth, isMobile: mobile })
+      setIsMobile(mobile)
     }
 
     // Initial check
@@ -31,6 +33,13 @@ export function useMobileFeatures() {
   const closeContactModal = () => {
     setShowContactModal(false)
   }
+
+  // Debug logging
+  console.log('🔍 MobileFeatures Debug:', { 
+    isMobile, 
+    mobileContact: features.mobileContact, 
+    shouldShow: isMobile && features.mobileContact 
+  })
 
   return {
     isMobile,

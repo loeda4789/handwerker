@@ -68,7 +68,7 @@ export const DEFAULT_CONFIG: AppConfig = {
   features: {
     contactBar: false,
     sideContact: true,
-    mobileContact: false,
+    mobileContact: true,
     statusInfo: false
   },
   header: {
