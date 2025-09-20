@@ -119,7 +119,8 @@ function MobileDropdownNavigation({
           <span className="text-lg font-semibold text-gray-900 dark:text-white">Menü</span>
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all duration-200"
+            className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+            style={{ borderRadius: 'var(--radius-button)' }}
             aria-label="Menü schließen"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -134,7 +135,8 @@ function MobileDropdownNavigation({
           <div className="animate-in fade-in-up duration-300" style={{ animationDelay: '50ms', animationFillMode: 'both' }}>
             <Link
               href="/"
-              className="block py-3 px-3 text-lg font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200"
+              className="block py-3 px-3 text-lg font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
+              style={{ borderRadius: 'var(--radius-button)' }}
             >
               Startseite
             </Link>
@@ -146,7 +148,8 @@ function MobileDropdownNavigation({
                 <>
                   <button
                     onClick={() => toggleDropdown(item.id)}
-                    className="w-full flex items-center justify-between py-3 px-3 text-left text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200"
+                    className="w-full flex items-center justify-between py-3 px-3 text-left text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
+                    style={{ borderRadius: 'var(--radius-button)' }}
                     aria-expanded={openDropdown === item.id}
                     aria-controls={`dropdown-${item.id}`}
                   >
@@ -173,7 +176,8 @@ function MobileDropdownNavigation({
                         <Link
                           key={dropdownItem.href}
                           href={dropdownItem.href || '#'}
-                          className="block py-2 px-3 text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                          className="block py-2 px-3 text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
+                          style={{ borderRadius: 'var(--radius-button)' }}
                           onClick={(e) => handleItemClick(e, dropdownItem.href || '')}
                         >
                           {dropdownItem.label}
@@ -185,7 +189,8 @@ function MobileDropdownNavigation({
               ) : (
                 <Link
                   href={item.href || '#'}
-                  className="block py-3 px-3 text-lg font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200"
+                  className="block py-3 px-3 text-lg font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
+              style={{ borderRadius: 'var(--radius-button)' }}
                   onClick={(e) => handleItemClick(e, item.href || '')}
                 >
                   {item.label}

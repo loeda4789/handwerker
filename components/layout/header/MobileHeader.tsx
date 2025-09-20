@@ -141,7 +141,8 @@ function MobileHeader({
           <button
             ref={firstFocusableRef}
             onClick={onClose}
-            className="w-12 h-12 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className="w-12 h-12 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            style={{ borderRadius: 'var(--radius-button)' }}
             aria-label="Navigation schließen"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

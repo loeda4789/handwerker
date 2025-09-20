@@ -142,7 +142,8 @@ export default function HeaderModern({ content }: HeaderModernProps) {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden w-12 h-12 flex items-center justify-center text-white hover:bg-white/20 rounded-2xl transition-all duration-300"
+            className="md:hidden w-12 h-12 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+            style={{ borderRadius: 'var(--radius-button)' }}
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -172,7 +173,8 @@ export default function HeaderModern({ content }: HeaderModernProps) {
                       onMouseEnter={() => handleDesktopMouseEnter(item.id)}
                       onMouseLeave={() => handleDesktopMouseLeave(item.id)}
                     >
-                      <span className={`cursor-pointer flex items-center text-white hover:text-gray-200 transition-all duration-300 py-2 px-4 rounded-2xl hover:bg-white/10 relative overflow-hidden ${navTextClass}`}>
+                      <span className={`cursor-pointer flex items-center text-white hover:text-gray-200 transition-all duration-300 py-2 px-4 hover:bg-white/10 relative overflow-hidden ${navTextClass}`}
+                            style={{ borderRadius: 'var(--radius-button)' }}>
                         <span className="relative z-10">{item.label}</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +220,8 @@ export default function HeaderModern({ content }: HeaderModernProps) {
                 ) : (
                   <Link 
                     href={item.href || '#'}
-                    className={`text-white hover:text-gray-200 font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-2 px-4 rounded-2xl hover:bg-white/10 relative overflow-hidden`}
+                    className={`text-white hover:text-gray-200 font-medium flex items-center gap-2 ${navTextClass} transition-all duration-300 py-2 px-4 hover:bg-white/10 relative overflow-hidden`}
+                    style={{ borderRadius: 'var(--radius-button)' }}
                     onClick={item.href?.startsWith('#') ? (e) => handleSmoothScroll(e, item.href!.substring(1)) : undefined}
                   >
                     <span className="relative z-10">{item.label}</span>

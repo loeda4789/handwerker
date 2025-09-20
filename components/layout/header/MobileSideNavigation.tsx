@@ -150,7 +150,8 @@ function MobileSideNavigation({
           <button
             ref={firstFocusableRef}
             onClick={onClose}
-            className="p-2 text-gray-500 hover:text-gray-700 transition-colors rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className="p-2 text-gray-500 hover:text-gray-700 transition-colors hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            style={{ borderRadius: 'var(--radius-button)' }}
             aria-label="Navigation schließen"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -168,7 +169,8 @@ function MobileSideNavigation({
           >
             <Link
               href="/"
-              className="block py-3 px-4 text-lg text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium normal-case"
+              className="block py-3 px-4 text-lg text-gray-900 hover:bg-gray-100 transition-colors duration-200 font-medium normal-case"
+              style={{ borderRadius: 'var(--radius-button)' }}
             >
               Startseite
             </Link>
@@ -184,7 +186,8 @@ function MobileSideNavigation({
                 <div className="space-y-1">
                   <button
                     onClick={() => toggleMobileDropdown(item.id)}
-                    className="w-full flex items-center justify-between py-3 px-4 text-left text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 group"
+                    className="w-full flex items-center justify-between py-3 px-4 text-left text-gray-900 hover:bg-gray-100 transition-colors duration-200 group"
+                    style={{ borderRadius: 'var(--radius-button)' }}
                   >
                     <span className="text-lg font-medium normal-case">
                       {item.label}
@@ -208,7 +211,8 @@ function MobileSideNavigation({
                           <Link
                             key={dropdownIndex}
                             href={dropdownItem.href}
-                            className="block py-2 px-4 text-lg text-gray-900 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                            className="block py-2 px-4 text-lg text-gray-900 hover:text-primary hover:bg-gray-50 transition-colors duration-200"
+                            style={{ borderRadius: 'var(--radius-button)' }}
                             onClick={onClose}
                           >
                             {dropdownItem.label}
@@ -229,7 +233,8 @@ function MobileSideNavigation({
                 <Link
                   href={item.href || '#'}
                   onClick={item.isClickable && item.href?.startsWith('#') ? (e) => onSmoothScroll(e, item.id) : undefined}
-                  className="block py-3 px-4 text-lg text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium normal-case"
+                  className="block py-3 px-4 text-lg text-gray-900 hover:bg-gray-100 transition-colors duration-200 font-medium normal-case"
+              style={{ borderRadius: 'var(--radius-button)' }}
                 >
                   {item.label}
                 </Link>
@@ -244,7 +249,7 @@ function MobileSideNavigation({
             ref={lastFocusableRef}
             href="#kontakt"
             onClick={(e) => onSmoothScroll(e, 'kontakt')}
-            className="block w-full py-3 px-4 text-white font-medium text-center rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 normal-case"
+            className="block w-full py-3 px-4 text-white font-medium text-center transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 normal-case"
             style={{ 
               backgroundColor: 'var(--color-secondary)',
               borderRadius: 'var(--radius-button)'
