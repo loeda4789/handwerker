@@ -795,7 +795,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   }, 100)
                                 }
                               }}
-                              className={`w-full p-3 rounded-2xl border transition-all duration-300 text-left relative group ${
+                              className={`w-full p-2 rounded-2xl border transition-all duration-300 text-left relative group ${
                                 variant.selected 
                                   ? 'border-2 border-primary bg-primary/15 shadow-lg shadow-primary/20' 
                                   : 'border-2 border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
@@ -803,7 +803,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                             >
                               <div className="flex items-center gap-2">
                                 <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
-                                  variant.selected ? 'bg-primary text-white shadow-lg' : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
+                                  variant.selected ? 'bg-primary text-white shadow-lg' : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
                                 }`}>
                                   <variant.icon className="w-3 h-3" />
                                 </div>
