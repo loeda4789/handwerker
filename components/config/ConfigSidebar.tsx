@@ -455,7 +455,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                         ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg ring-2 ring-primary/30 scale-110' 
                         : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300 group-hover:scale-110'
                     }`}>
-                      <section.icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
+                      {section.icon && <section.icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />}
                     </div>
                     <div>
                       <div className={`font-semibold transition-colors duration-300 ${
