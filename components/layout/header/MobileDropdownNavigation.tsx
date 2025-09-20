@@ -197,11 +197,11 @@ function MobileDropdownNavigation({
           {/* Mobile CTA */}
           <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
             <HeaderCta 
-              ctaStyle="block w-full py-3 px-4 text-center bg-primary text-white text-base font-bold rounded-xl hover:bg-primary/90 transition-colors uppercase flex items-center justify-center gap-2"
+              ctaStyle="block w-full py-3 px-4 text-center bg-primary text-white text-base font-bold hover:bg-primary/90 transition-colors uppercase flex items-center justify-center gap-2"
               ctaStyleDynamic={{
                 backgroundColor: 'var(--color-primary)',
                 borderColor: 'var(--color-primary)',
-                borderRadius: 'var(--radius-xl)',
+                borderRadius: 'var(--radius-button)',
                 padding: '0.75rem 1rem'
               }}
               ctaHoverStyle={{

@@ -1949,7 +1949,7 @@ body[data-style="einfach"] .config-sidebar .rounded-full {
 [class*="ConfigSidebar"],
 [class*="PackageSelection"] {
   /* Überschreibe alle CSS-Variablen */
-  --radius-button: 0.5rem !important;
+  --radius-button: 1rem !important; /* Halbrund für Paket-Buttons */
   --radius-card: 0.75rem !important;
   --radius-input: 0.5rem !important;
   --radius-modal: 0.75rem !important;
@@ -2031,6 +2031,20 @@ body[data-style="einfach"] .config-sidebar .rounded-full {
 .config-sidebar button div[class*="bg-primary rounded-full"] {
   background: #3b82f6 !important;
   color: white !important;
+}
+
+/* PAKET-BUTTONS IMMER HALBRUND - unabhängig vom Design-Style */
+.config-sidebar .rounded-2xl {
+  border-radius: 1rem !important; /* Immer halbrund */
+}
+
+/* Spezifisch für Paket-Sektion */
+.config-sidebar [class*="variant"] button {
+  border-radius: 1rem !important; /* Immer halbrund */
+}
+
+.config-sidebar [class*="variant"] button div {
+  border-radius: 1rem !important; /* Immer halbrund */
 }
 
 

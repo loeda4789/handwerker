@@ -235,7 +235,7 @@ export default function HeaderModern({ content }: HeaderModernProps) {
               ctaStyleDynamic={{
                 backgroundColor: 'var(--color-primary)',
                 borderColor: 'var(--color-primary)',
-                borderRadius: 'var(--radius-xl)',
+                borderRadius: 'var(--radius-button)',
                 padding: '0.75rem 1.5rem'
               }}
               ctaHoverStyle={{
