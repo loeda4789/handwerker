@@ -61,13 +61,13 @@ body[data-style="modern"] {
   --heading-text-decoration-thickness: 0px;
   --badge-display: none;
   --badge-style: none;
-  --radius-button: 1.5rem;
+  --radius-button: 2rem;
   --radius-card: 1.75rem;
-  --radius-input: 1rem;
+  --radius-input: 1.5rem;
   --radius-modal: 2rem;
-  --radius-badge: 1.25rem;
-  --radius-image: 1.25rem;
-  --radius-xl: 2rem;
+  --radius-badge: 1.5rem;
+  --radius-image: 1.5rem;
+  --radius-xl: 2.5rem;
 }
 
 /* Global Font Family Application */
@@ -159,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  border-radius: var(--radius-button);
+  border-radius: var(--radius-button) !important;
 }
 
 /* PageHero Überschriften - Spezielle Verbesserungen */
@@ -687,7 +687,7 @@ body.gradient-underlines .animate-on-scroll.animate-in .heading-underline-wave::
 /* Button hover effects */
 .btn-primary {
   @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary hover:bg-secondary transition-all duration-300;
-  border-radius: var(--radius-button);
+  border-radius: var(--radius-button) !important;
   transform: translateY(0);
 }
 
