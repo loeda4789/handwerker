@@ -173,9 +173,10 @@ export function mergeUrlDataWithContent(contentData: ContentData, urlParams: Url
     const ortPattern = /in\s+[A-Za-zäöüß\s-]+\s+und\s+Umgebung/g;
     mergedData.about.text = mergedData.about.text.replace(ortPattern, `in ${decodedParams.ort} und Umgebung`);
     
-    // Falls kein "in [Stadt] und Umgebung" Muster gefunden wird, füge es am Ende des Textes hinzu
+    // Falls kein "in [Stadt] und Umgebung" Muster gefunden wird, füge es direkt nach dem ersten Satz hinzu
     if (!ortPattern.test(mergedData.about.text)) {
-      mergedData.about.text = mergedData.about.text.replace(/\.$/, ` in ${decodedParams.ort} und Umgebung.`);
+      // Ersetze den ersten Punkt durch ", in [Ort] und Umgebung."
+      mergedData.about.text = mergedData.about.text.replace(/^([^.]*\.)/, `$1 in ${decodedParams.ort} und Umgebung.`);
     }
   }
   
