@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 interface ElektroLogoWithTextProps {
   variant?: 'full' | 'compact'
@@ -71,13 +72,14 @@ const ElektroLogoWithText: React.FC<ElektroLogoWithTextProps> = ({
       data-logo-container
       style={{ color: textColor }}
     >
-      <img
+      <Image
         src={logoSrc[variant]}
         alt="Elektro Logo"
         width={logoSize[variant].width}
         height={logoSize[variant].height}
         className="w-full h-full object-contain"
         style={{ color: textColor }}
+        priority
       />
     </div>
   )

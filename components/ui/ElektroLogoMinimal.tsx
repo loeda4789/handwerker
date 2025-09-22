@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 interface ElektroLogoMinimalProps {
   variant?: 'minimal' | 'with-e'
@@ -35,13 +36,14 @@ const ElektroLogoMinimal: React.FC<ElektroLogoMinimalProps> = ({
       className={`${sizeClasses[size]} ${className}`}
       style={{ color: color || 'currentColor' }}
     >
-      <img
+      <Image
         src={logoSrc[variant]}
         alt="Elektro Logo"
         width={logoSize[variant].width}
         height={logoSize[variant].height}
         className="w-full h-full object-contain"
         style={{ color: color || 'currentColor' }}
+        priority
       />
     </div>
   )

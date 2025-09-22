@@ -53,7 +53,7 @@ class EventManager {
   /**
    * Entfernt alle Listener für ein Event
    */
-  removeAllListeners(event: string): void {
+  removeAllListenersForEvent(event: string): void {
     this.listeners.delete(event)
   }
 

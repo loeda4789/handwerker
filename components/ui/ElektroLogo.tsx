@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 interface ElektroLogoProps {
   variant?: 'full' | 'compact' | 'mono'
@@ -26,10 +27,13 @@ const ElektroLogo: React.FC<ElektroLogoProps> = ({
 
   return (
     <div className={`${sizeClasses[size]} ${className}`}>
-      <img
+      <Image
         src={logoSrc[variant]}
         alt="Elektro Logo"
+        width={128}
+        height={40}
         className="w-full h-full object-contain"
+        priority
       />
     </div>
   )
