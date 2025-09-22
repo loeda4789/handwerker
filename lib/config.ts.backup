@@ -1,36 +1,32 @@
-﻿import { ContentData, ThemeConfig } from '@/types/content';
+import { ContentData, ThemeConfig } from '@/types/content';
 import contentData from '@/data/content.json';
 import dachdeckerContent from '@/data/dachdecker_content.json';
 import elektrikerContent from '@/data/elektriker_content.json';
 import tischlerContent from '@/data/tischler_content.json';
-import fliesenlegerContent from '@/data/fliesenleger_content.json';
 import themeData from '@/data/theme.json';
 import { getEffectiveUrlParams, mergeUrlDataWithContent, hasUrlParams } from '@/lib/url-params';
-
-// Konstante für Branche-LocalStorage
-const BRANCHE_STORAGE_KEY = 'handwerker-branche';
 
 // Statische Content-Dateien für verschiedene Branchen
 const contentMap: Record<string, ContentData> = {
   'dachdecker': dachdeckerContent as ContentData,
   'elektriker': elektrikerContent as ContentData,
   'tischler': tischlerContent as ContentData,
-  'fliesenleger': fliesenlegerContent as ContentData,
   // Weitere Branchen können hier hinzugefügt werden:
   // 'maler': malerContent as ContentData,
   // 'sanitaer': sanitaerContent as ContentData,
   // 'heizung': heizungContent as ContentData,
+  // 'fliesenleger': fliesenlegerContent as ContentData,
 };
 
 // Funktion zum Laden von Content-Dateien basierend auf Branche
 function loadContentByBranche(branche: string): ContentData | null {
   const content = contentMap[branche.toLowerCase()];
   if (content) {
-    console.log(` Content für Branche "${branche}" geladen`);
+    console.log(`🎯 Content für Branche "${branche}" geladen`);
     return content;
   }
   
-  console.warn(` Content-Datei für Branche "${branche}" nicht gefunden. Fallback zu Standard-Content.`);
+  console.warn(`⚠️ Content-Datei für Branche "${branche}" nicht gefunden. Fallback zu Standard-Content.`);
   return null;
 }
 
@@ -62,29 +58,10 @@ export function getContentDataByBranche(): ContentData {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const branche = urlSearchParams.get('branche');
     
-    // Wenn Branche-Parameter vorhanden ist, speichere sie in localStorage
-    if (branche) {
-      try {
-        localStorage.setItem(BRANCHE_STORAGE_KEY, branche);
-        console.log(' Branche gespeichert:', branche);
-      } catch (error) {
-        console.warn('Fehler beim Speichern der Branche:', error);
-      }
-    } else {
-      // Wenn keine Branche in URL, versuche aus localStorage zu laden
-      const storedBranche = localStorage.getItem(BRANCHE_STORAGE_KEY);
-      if (storedBranche) {
-        console.log(' Branche aus localStorage geladen:', storedBranche);
-      }
-    }
-    
-    // Verwende Branche aus URL oder localStorage
-    const brancheToUse = branche || localStorage.getItem(BRANCHE_STORAGE_KEY);
-    
     // Wenn Branche-Parameter vorhanden ist, versuche branchenspezifische Content-Datei zu laden
     let contentToUse = baseContent;
-    if (brancheToUse) {
-      const branchenContent = loadContentByBranche(brancheToUse);
+    if (branche) {
+      const branchenContent = loadContentByBranche(branche);
       if (branchenContent) {
         contentToUse = branchenContent;
       }
@@ -101,53 +78,6 @@ export function getContentDataByBranche(): ContentData {
   
   // Fallback zu Standard-Content
   return baseContent;
-}
-
-// Neue Funktion: Branche aus localStorage löschen
-export function clearBrancheFromStorage(): void {
-  if (typeof window !== 'undefined') {
-    try {
-      localStorage.removeItem(BRANCHE_STORAGE_KEY);
-      console.log(' Branche aus localStorage gelöscht');
-    } catch (error) {
-      console.warn('Fehler beim Löschen der Branche:', error);
-    }
-  }
-}
-
-// Neue Funktion: Aktuelle Branche abrufen
-export function getCurrentBranche(): string | null {
-  if (typeof window !== 'undefined') {
-    return localStorage.getItem(BRANCHE_STORAGE_KEY);
-  }
-  return null;
-}
-
-// Neue Funktion: Branche setzen
-export function setBranche(branche: string): void {
-  if (typeof window !== 'undefined') {
-    try {
-      localStorage.setItem(BRANCHE_STORAGE_KEY, branche);
-      console.log(' Branche gesetzt:', branche);
-      
-      // Event dispatchen für andere Komponenten
-      window.dispatchEvent(new CustomEvent('branche-changed', {
-        detail: { branche }
-      }));
-    } catch (error) {
-      console.warn('Fehler beim Setzen der Branche:', error);
-    }
-  }
-}
-
-// Neue Funktion: Verfügbare Branchen abrufen
-export function getAvailableBranches(): string[] {
-  return Object.keys(contentMap);
-}
-
-// Neue Funktion: Prüfen ob Branche verfügbar ist
-export function isBrancheAvailable(branche: string): boolean {
-  return Object.keys(contentMap).includes(branche.toLowerCase());
 }
 
 export function getThemeConfig(): ThemeConfig {
@@ -175,7 +105,12 @@ export function useTheme() {
   return getThemeConfig();
 } 
 
+// Funktion zum Abrufen aller verfügbaren Branchen
+export function getAvailableBranches(): string[] {
+  return Object.keys(contentMap);
+}
+
 // Funktion zum Abrufen der Standard-Branche
 export function getDefaultBranche(): string {
   return 'dachdecker'; // Standard-Branche
-}
+} 

@@ -1,0 +1,299 @@
+{
+  "company": {
+    "name": "Mustermann Fliesen GmbH",
+    "tagline": "Ihr zuverlässiger Fliesen-Partner",
+    "logo": "/images/logo.png"
+  },
+  "hero": {
+    "backgroundImages": {
+      "desktop": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop.jpg",
+      "mobile": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile.jpg",
+      "desktopAlt": "/images/branchen/fliesenleger/hero/desktop/hero_background_desktop_alt.jpg",
+      "mobileAlt": "/images/branchen/fliesenleger/hero/mobile/hero_background_mobile_alt.jpg"
+    }
+  },
+  "about": {
+    "title": "Über uns",
+    "text": "Wir sind Ihr zuverlässiger Partner für professionelle Dacharbeiten. Mit Meisterqualität, modernster Technik und jahrzehntelanger Erfahrung verwandeln wir Ihr Dach in ein Meisterwerk der Handwerkskunst und schaffen dauerhafte, wetterfeste Lösungen.",
+    "image": "/images/branchen/fliesenleger/about/about_firma.jpg"
+  },
+  "welcome": {
+    "headline": "Willkommen bei\nMustermann Fliesen GmbH",
+    "subline": "Meisterqualität für Ihre Fliesenprojekte",
+    "features": [
+      {
+        "icon": "✅",
+        "title": "fliesenleger-Meisterbetrieb",
+        "text": "Zertifizierte Qualität und jahrzehntelange Erfahrung im Fliesenhandwerk"
+      },
+      {
+        "icon": "🏗️",
+        "title": "Komplettservice Dach",
+        "text": "Von der Fliesensanierung bis zum Neubau - alles aus einer Hand"
+      },
+      {
+        "icon": "🛟",
+        "title": "24/7 Fliesen-Notdienst",
+        "text": "Schnelle Hilfe bei Sturmschäden und Undichtigkeiten rund um die Uhr"
+      }
+    ]
+  },
+  "projectProcess": {
+    "title": "So läuft Ihr Fliesenprojekt bei uns ab",
+    "subtitle": "Von der ersten Dachinspektion bis zur finalen Abnahme - unser bewährter Prozess garantiert sichere und langlebige Dächer.",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Dachinspektion & Beratung",
+        "description": "Wir kommen zu Ihnen und führen eine gründliche Dachinspektion durch. Gemeinsam besprechen wir Ihre Wünsche und erstellen eine fundierte Bestandsaufnahme."
+      },
+      {
+        "number": 2,
+        "title": "Detailplanung & Kostenvoranschlag",
+        "description": "Basierend auf der Inspektion erstellen wir einen detaillierten Plan mit allen Materialien und Arbeitsschritten. Sie erhalten einen transparenten Kostenvoranschlag."
+      },
+      {
+        "number": 3,
+        "title": "Professionelle Dachausführung",
+        "description": "Unsere erfahrenen fliesenleger führen alle Arbeiten sicher und termingerecht aus. Wir halten Sie über jeden Arbeitsschritt auf dem Laufenden."
+      }
+    ]
+  },
+  "services": [
+    {
+      "title": "Fliesensanierung",
+      "icon": "🏠",
+      "description": "Komplette Sanierung Ihres Daches - von der Dämmung bis zur neuen Dacheindeckung mit modernen Materialien.",
+      "image": "/images/services/Fliesensanierung.png",
+      "projects": [
+        {
+          "title": "Einfamilienhaus Fliesensanierung",
+          "image": "/images/portfolio/Fliesen-sanierung-einfamilienhaus.jpg",
+          "description": "Komplette Fliesensanierung mit neuer Dämmung und Ziegeleindeckung für optimalen Wetterschutz"
+        },
+        {
+          "title": "Altbau Dachmodernisierung",
+          "image": "/images/portfolio/altbau-dach.jpg",
+          "description": "Behutsame Modernisierung eines denkmalgeschützten Altbaus mit traditionellen Materialien"
+        }
+      ]
+    },
+    {
+      "title": "Dachneubau",
+      "icon": "🔨",
+      "description": "Neubau von Dachstühlen und komplette Dachkonstruktionen - individuell geplant und solide ausgeführt.",
+      "image": "/images/services/dachneubau.png",
+      "projects": [
+        {
+          "title": "Modernes Satteldach",
+          "image": "/images/portfolio/neubau-satteldach.jpg",
+          "description": "Neubau eines modernen Satteldaches mit optimaler Energieeffizienz und elegantem Design"
+        }
+      ]
+    },
+    {
+      "title": "Dachrinnen & Entwässerung",
+      "icon": "💧",
+      "description": "Installation und Wartung von Dachrinnen, Fallrohren und kompletten Entwässerungssystemen.",
+      "image": "/images/services/dachrinnen.png",
+      "projects": [
+        {
+          "title": "Kupfer-Dachrinnen System",
+          "image": "/images/portfolio/kupfer-dachrinnen.jpg",
+          "description": "Hochwertiges Kupfer-Entwässerungssystem mit langer Lebensdauer und elegantem Erscheinungsbild"
+        }
+      ]
+    },
+    {
+      "title": "Dachfenster & Gauben",
+      "icon": "🪟",
+      "description": "Einbau von Dachfenstern, Velux-Fenstern und Gauben für mehr Licht und Wohnraum unterm Dach.",
+      "image": "/images/services/dachfenster.png",
+      "projects": [
+        {
+          "title": "Dachgeschoss-Ausbau mit Gauben",
+          "image": "/images/portfolio/gauben-ausbau.jpg",
+          "description": "Kompletter Dachgeschoss-Ausbau mit neuen Gauben und großzügigen Dachfenstern"
+        }
+      ]
+    },
+    {
+      "title": "Sturmschäden & Reparaturen",
+      "icon": "⛈️",
+      "description": "Schnelle Reparaturen nach Sturmschäden, Undichtigkeiten und allen anderen Dachproblemen.",
+      "image": "/images/services/dachreparatur.png",
+      "projects": [
+        {
+          "title": "Sturmschaden-Reparatur",
+          "image": "/images/portfolio/sturmschaden.jpg",
+          "description": "Professionelle Reparatur nach Sturm mit schneller Abdichtung und dauerhafter Lösung"
+        }
+      ]
+    }
+  ],
+  "team": [
+    {
+      "name": "Klaus Mustermann",
+      "position": "Geschäftsführer",
+      "photo": "/images/team/person1.png",
+      "specialization": "Dachplanung & Projektleitung"
+    },
+    {
+      "name": "Stefan Dachmann",
+      "position": "fliesenlegermeister",
+      "photo": "/images/team/person2.png",
+      "specialization": "Steildach & Schieferarbeiten"
+    },
+    {
+      "name": "Michael Zimmermann",
+      "position": "Zimmerermeister",
+      "photo": "/images/team/person3.png",
+      "specialization": "Dachstuhl & Holzkonstruktion"
+    },
+    {
+      "name": "Andrea Schmidt",
+      "position": "Büroleiterin",
+      "photo": "/images/team/person4.png",
+      "specialization": "Projektkoordination & Terminplanung"
+    },
+    {
+      "name": "Thomas Schieferstein",
+      "position": "fliesenleger",
+      "photo": "/images/team/person5.png",
+      "specialization": "Flachdach & Abdichtung"
+    },
+    {
+      "name": "Julia Dachstein",
+      "position": "fliesenlegerin",
+      "photo": "/images/team/person6.png",
+      "specialization": "Dachfenster & Gauben"
+    },
+    {
+      "name": "Robert Ziegel",
+      "position": "fliesenleger",
+      "photo": "/images/team/person7.png",
+      "specialization": "Ziegelarbeiten & Reparaturen"
+    },
+    {
+      "name": "Lisa Hoffmann",
+      "position": "Auszubildende",
+      "photo": "/images/team/person8.png",
+      "specialization": "fliesenlegerei & Grundlagen"
+    }
+  ],
+  "portfolio": {
+    "title": "Unsere Fliesen-Referenzen",
+    "subtitle": "Überzeugen Sie sich von der Qualität unserer Dacharbeiten",
+    "projects": [
+      {
+        "title": "Einfamilienhaus Fliesensanierung",
+        "category": "Fliesensanierung",
+        "image": "/images/portfolio/Fliesen-sanierung-einfamilienhaus.jpg",
+        "description": "Komplette Fliesensanierung mit neuer Dämmung und Ziegeleindeckung für optimalen Wetterschutz"
+      },
+      {
+        "title": "Modernes Satteldach",
+        "category": "Dachneubau",
+        "image": "/images/portfolio/neubau-satteldach.jpg",
+        "description": "Neubau eines modernen Satteldaches mit optimaler Energieeffizienz und elegantem Design"
+      },
+      {
+        "title": "Altbau Dachmodernisierung",
+        "category": "Fliesensanierung",
+        "image": "/images/portfolio/altbau-dach.jpg",
+        "description": "Behutsame Modernisierung eines denkmalgeschützten Altbaus mit traditionellen Materialien"
+      },
+      {
+        "title": "Dachgeschoss-Ausbau mit Gauben",
+        "category": "Dachfenster & Gauben",
+        "image": "/images/portfolio/gauben-ausbau.jpg",
+        "description": "Kompletter Dachgeschoss-Ausbau mit neuen Gauben und großzügigen Dachfenstern"
+      },
+      {
+        "title": "Kupfer-Dachrinnen System",
+        "category": "Dachrinnen & Entwässerung",
+        "image": "/images/portfolio/kupfer-dachrinnen.jpg",
+        "description": "Hochwertiges Kupfer-Entwässerungssystem mit langer Lebensdauer und elegantem Erscheinungsbild"
+      },
+      {
+        "title": "Sturmschaden-Reparatur",
+        "category": "Sturmschäden & Reparaturen",
+        "image": "/images/portfolio/sturmschaden.jpg",
+        "description": "Professionelle Reparatur nach Sturm mit schneller Abdichtung und dauerhafter Lösung"
+      }
+    ]
+  },
+  "beforeAfter": [
+    {
+      "title": "Fliesensanierung Einfamilienhaus",
+      "category": "Fliesensanierung",
+      "beforeImage": "/images/before-after/dach_vorher.png",
+      "afterImage": "/images/before-after/dach_nachher.png",
+      "description": "Transformation eines alten Daches mit neuer Dämmung, Ziegeleindeckung und modernen Dachfenstern."
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Familie Weber",
+      "text": "Mustermann Dachbau hat unser 40 Jahre altes Dach komplett saniert. Von der ersten Beratung bis zur Fertigstellung war alles perfekt organisiert. Das neue Dach sieht fantastisch aus und hält dicht - auch bei den letzten Stürmen!"
+    },
+    {
+      "name": "Architekt Dr. Schneider",
+      "text": "Als Architekt arbeite ich regelmäßig mit verschiedenen fliesenlegerbetrieben zusammen. Mustermann Dachbau überzeugt durch außergewöhnliche Fachkompetenz und Präzision. Die Umsetzung komplexer Dachformen gelingt immer einwandfrei."
+    },
+    {
+      "name": "Hausverwaltung Müller & Co",
+      "text": "Für unsere Wohnungsgesellschaft ist Mustermann Dachbau der Partner der ersten Wahl. Zuverlässig, fair im Preis und immer termingerecht. Besonders bei Notfällen können wir uns 100%ig auf das Team verlassen!"
+    }
+  ],
+  "socials": {
+    "facebook": "https://facebook.com/mustermann-dachbau",
+    "instagram": "https://instagram.com/mustermann_dachbau",
+    "youtube": null,
+    "tiktok": null,
+    "linkedin": null
+  },
+  "reviews": {
+    "google": "https://www.google.com/maps/place/?q=place_id:EXAMPLE_DACHBAU"
+  },
+  "stats": {
+    "projectsCompleted": 800,
+    "happyClients": 750,
+    "yearsExperience": 35,
+    "teamSize": 8,
+    "projectsPerYear": 120,
+    "starRating": 4.9,
+    "customStats": [
+      {
+        "number": 35,
+        "label": "Jahre Erfahrung",
+        "suffix": "",
+        "duration": 2000
+      },
+      {
+        "number": 120,
+        "label": "Dächer pro Jahr",
+        "suffix": "",
+        "duration": 2500
+      },
+      {
+        "number": 4.9,
+        "label": "Sterne Bewertung",
+        "suffix": "",
+        "duration": 1800,
+        "decimal": true
+      }
+    ]
+  },
+  "contact": {
+    "address": "Dachstraße 25, 48429 Rheine",
+    "phone": "+49 123 456 789",
+    "email": "info@mustermann-dachbau.de",
+    "openingHours": "Mo-Fr: 7:00-17:00 Uhr, Sa: 8:00-12:00 Uhr"
+  },
+  "meta": {
+    "language": "de",
+    "generator": "ml | websolutions",
+    "lastUpdated": "2025-06-05"
+  }
+} 
