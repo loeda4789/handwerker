@@ -175,8 +175,8 @@ export function mergeUrlDataWithContent(contentData: ContentData, urlParams: Url
     
     // Falls kein "in [Stadt] und Umgebung" Muster gefunden wird, füge es direkt nach dem ersten Satz hinzu
     if (!ortPattern.test(mergedData.about.text)) {
-      // Ersetze den ersten Punkt durch ", in [Ort] und Umgebung."
-      mergedData.about.text = mergedData.about.text.replace(/^([^.]*\.)/, `$1 in ${decodedParams.ort} und Umgebung.`);
+      // Ersetze den ersten Punkt durch ", in [Ort] und Umgebung" (ohne Punkt)
+      mergedData.about.text = mergedData.about.text.replace(/^([^.]*)\./, `$1 in ${decodedParams.ort} und Umgebung.`);
     }
   }
   
