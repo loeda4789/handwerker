@@ -14,7 +14,7 @@
   },
   "about": {
     "title": "Über uns",
-    "text": "Wir sind Ihr zuverlässiger Partner für professionelle Dacharbeiten. Mit Meisterqualität, modernster Technik und jahrzehntelanger Erfahrung verwandeln wir Ihr Dach in ein Meisterwerk der Handwerkskunst und schaffen dauerhafte, wetterfeste Lösungen.",
+    "text": "Wir sind Ihr zuverlässiger Partner für professionelle Fliesenarbeiten. Mit Meisterqualität, modernster Technik und jahrzehntelanger Erfahrung verwandeln wir Ihr Ihre R�ume in wahre Meisterwerke der Handwerkskunst und schaffen dauerhafte, wetterfeste Lösungen.",
     "image": "/images/branchen/fliesenleger/about/about_firma.jpg"
   },
   "welcome": {
@@ -23,12 +23,12 @@
     "features": [
       {
         "icon": "✅",
-        "title": "fliesenleger-Meisterbetrieb",
+        "title": "Fliesenleger-Meisterbetrieb",
         "text": "Zertifizierte Qualität und jahrzehntelange Erfahrung im Fliesenhandwerk"
       },
       {
         "icon": "🏗️",
-        "title": "Komplettservice Dach",
+        "title": "Komplettservice Fliesen",
         "text": "Von der Fliesensanierung bis zum Neubau - alles aus einer Hand"
       },
       {
@@ -40,12 +40,12 @@
   },
   "projectProcess": {
     "title": "So läuft Ihr Fliesenprojekt bei uns ab",
-    "subtitle": "Von der ersten Dachinspektion bis zur finalen Abnahme - unser bewährter Prozess garantiert sichere und langlebige Dächer.",
+    "subtitle": "Von der ersten Fliesenberatung bis zur finalen Abnahme - unser bewährter Prozess garantiert sichere und langlebige Dächer.",
     "steps": [
       {
         "number": 1,
-        "title": "Dachinspektion & Beratung",
-        "description": "Wir kommen zu Ihnen und führen eine gründliche Dachinspektion durch. Gemeinsam besprechen wir Ihre Wünsche und erstellen eine fundierte Bestandsaufnahme."
+        "title": "Fliesenberatung & Beratung",
+        "description": "Wir kommen zu Ihnen und führen eine gründliche Fliesenberatung durch. Gemeinsam besprechen wir Ihre Wünsche und erstellen eine fundierte Bestandsaufnahme."
       },
       {
         "number": 2,
@@ -183,7 +183,7 @@
   ],
   "portfolio": {
     "title": "Unsere Fliesen-Referenzen",
-    "subtitle": "Überzeugen Sie sich von der Qualität unserer Dacharbeiten",
+    "subtitle": "Überzeugen Sie sich von der Qualität unserer Fliesenarbeiten",
     "projects": [
       {
         "title": "Einfamilienhaus Fliesensanierung",
