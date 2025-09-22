@@ -51,6 +51,7 @@ export default function Portfolio({ content }: PortfolioProps) {
   const categories = allCategories.slice(0, 5) // Maximal 5 Kategorien für bessere UX
 
   // Projekte basierend auf aktivem Filter filtern
+  // Auf mobilen Geräten werden alle Projekte angezeigt (keine Filter-Buttons)
   const filteredProjects = activeFilter === 'Alle' 
     ? content.portfolio.projects 
     : content.portfolio.projects.filter(project => project.category === activeFilter)
@@ -98,28 +99,8 @@ export default function Portfolio({ content }: PortfolioProps) {
           </p>
         </div>
 
-        {/* Filter Buttons - Einheitliches Design */}
+        {/* Filter Buttons - Nur Desktop */}
         <div className="mb-12">
-          {/* Mobile: Horizontal Scroll */}
-          <div className="md:hidden overflow-x-auto pb-2 scrollbar-hide max-w-lg mx-auto">
-            <div className="flex gap-3 px-4" style={{ width: 'max-content' }}>
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveFilter(category)}
-                  className={`flex-shrink-0 px-6 py-2 transition-all duration-300 whitespace-nowrap ${
-                    activeFilter === category
-                      ? 'bg-primary text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                  }`}
-                  style={{ borderRadius: 'var(--radius-button)' }}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-          
           {/* Desktop: Centered Wrap */}
           <div className="hidden md:flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
