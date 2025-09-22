@@ -8,6 +8,7 @@ import { applyHeadingStyles } from '@/lib/headingStyles'
 import { applyBadgeStyles } from '@/lib/badgeStyles'
 import { applyBorderRadiusStyles } from '@/lib/borderRadiusStyles'
 import { styleManager } from '@/lib/unifiedStyleManager'
+import { eventManager, APP_EVENTS, setupOptimizedStorageListener } from '@/lib/eventManager'
 
 interface AppConfigContextType {
   config: AppConfig
@@ -22,6 +23,7 @@ export const AppConfigContext = createContext<AppConfigContextType | undefined>(
 export function AppConfigProvider({ children }: { children: React.ReactNode }) {
   const [config, setConfig] = useState<AppConfig>(configManager.getConfig())
   const [isConfigLoaded, setIsConfigLoaded] = useState(false)
+  const [localStorageCache, setLocalStorageCache] = useState<Record<string, string>>({})
   
   // Site-Variante aus expliziter Konfiguration
   const siteVariant = getSiteVariant(config.layout.mode, config.layout.variant)
@@ -30,8 +32,22 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
     // Initiale Konfiguration laden
     const initialConfig = configManager.getConfig()
     
+    // localStorage-Cache initialisieren (einmalig)
+    const initializeLocalStorageCache = () => {
+      const cache: Record<string, string> = {}
+      const keys = ['design-style', 'selected-color-scheme', 'color-scheme', 'font-style']
+      keys.forEach(key => {
+        const value = localStorage.getItem(key)
+        if (value) cache[key] = value
+      })
+      setLocalStorageCache(cache)
+      return cache
+    }
+    
+    const cache = initializeLocalStorageCache()
+    
     // Prüfe localStorage für Design-Style (für Unterseiten)
-    const savedDesignStyle = localStorage.getItem('design-style')
+    const savedDesignStyle = cache['design-style']
     if (savedDesignStyle) {
       // Aktualisiere die Konfiguration mit dem gespeicherten Design-Style
       const updatedConfig = {
@@ -77,40 +93,46 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
     styleManager.initialize(initialConfig)
 
 
-    // Listener für Änderungen
-    // Event-Listener für Design-Style-Änderungen aus localStorage
-    const handleDesignStyleChange = () => {
-      const savedDesignStyle = localStorage.getItem('design-style')
-      if (savedDesignStyle) {
-        const updatedConfig = {
-          ...config,
-          layout: {
-            ...config.layout,
-            design: savedDesignStyle as any
-          },
-          style: {
-            ...config.style,
-            package: savedDesignStyle as any,
-            badgeStyle: savedDesignStyle === 'modern' ? 'none' : 'minimal' as any,
-            borderRadius: (savedDesignStyle === 'modern' ? 'pronounced' : savedDesignStyle === 'rounded' ? 'subtle' : 'none') as any
+    // Optimierte Event-Listener mit Event-Manager
+    const handleDesignStyleChange = (eventData: any) => {
+      if (eventData.key === 'design-style') {
+        const savedDesignStyle = eventData.newValue
+        if (savedDesignStyle && savedDesignStyle !== localStorageCache['design-style']) {
+          // Cache aktualisieren
+          setLocalStorageCache(prev => ({ ...prev, 'design-style': savedDesignStyle }))
+          
+          const updatedConfig = {
+            ...config,
+            layout: {
+              ...config.layout,
+              design: savedDesignStyle as any
+            },
+            style: {
+              ...config.style,
+              package: savedDesignStyle as any,
+              badgeStyle: savedDesignStyle === 'modern' ? 'none' : 'minimal' as any,
+              borderRadius: (savedDesignStyle === 'modern' ? 'pronounced' : savedDesignStyle === 'rounded' ? 'subtle' : 'none') as any
+            }
           }
+          setConfig(updatedConfig)
+          styleManager.updateConfig(updatedConfig)
+          // Body data-style Attribut aktualisieren
+          document.body.setAttribute('data-style', savedDesignStyle)
+          console.log('🔄 AppConfigProvider: Design-Style geändert:', savedDesignStyle, updatedConfig)
         }
-        setConfig(updatedConfig)
-        styleManager.updateConfig(updatedConfig)
-        // Body data-style Attribut aktualisieren
-        document.body.setAttribute('data-style', savedDesignStyle)
-        console.log('🔄 AppConfigProvider: Design-Style geändert:', savedDesignStyle, updatedConfig)
       }
     }
     
-    window.addEventListener('storage', handleDesignStyleChange)
+    // Event-Listener über Event-Manager registrieren
+    const unsubscribeStorage = eventManager.addEventListener(APP_EVENTS.STORAGE_CHANGED, handleDesignStyleChange)
+    const cleanupStorageListener = setupOptimizedStorageListener()
     
     const unsubscribe = configManager.subscribe((newConfig) => {
       console.log('🔄 Konfiguration aktualisiert:', newConfig)
       setConfig(newConfig)
       
-      // Font-Familie in CSS-Variablen übertragen
-      if (newConfig.style?.fontFamily) {
+      // Font-Familie in CSS-Variablen übertragen (nur wenn geändert)
+      if (newConfig.style?.fontFamily && newConfig.style.fontFamily !== config.style?.fontFamily) {
         const fontMap = {
           'sans': 'var(--font-sans)',
           'serif': 'var(--font-serif)',
@@ -129,7 +151,8 @@ export function AppConfigProvider({ children }: { children: React.ReactNode }) {
 
     return () => {
       unsubscribe()
-      window.removeEventListener('storage', handleDesignStyleChange)
+      unsubscribeStorage()
+      cleanupStorageListener()
     }
   }, [])
 

@@ -10,6 +10,17 @@
   --font-body: var(--font-body);
   --font-heading: var(--font-heading-standard); /* Default */
   --font-accent: var(--font-heading-standard); /* Default */
+  
+  /* Performance-optimierte CSS-Variablen */
+  --current-design-style: modern;
+  --current-color-scheme: nature;
+  --current-font-family: sans;
+  --current-badge-style: none;
+  --current-border-radius: pronounced;
+  --current-borders: subtle;
+  
+  /* Font-Mapping für bessere Performance */
+  --font-current: var(--font-sans);
 }
 
 /* Font-Switching basierend auf data-style Attribut */

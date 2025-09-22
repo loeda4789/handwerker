@@ -6,6 +6,7 @@ import { applyBadgeStyles } from '@/lib/badgeStyles'
 import { applyBorderRadiusStyles } from '@/lib/borderRadiusStyles'
 import { applyBorderStyles } from '@/lib/borderStyles'
 import { applyColorScheme } from '@/lib/colorSchemes'
+import { cssVariableManager } from '@/lib/cssVariables'
 
 /**
  * Zentraler Style-Manager, der alle Style-Funktionen koordiniert
@@ -15,6 +16,8 @@ export class UnifiedStyleManager {
   private static instance: UnifiedStyleManager
   private currentConfig: AppConfig | null = null
   private isInitialized = false
+  private debounceTimer: NodeJS.Timeout | null = null
+  private styleCache = new Map<string, any>()
 
   private constructor() {}
 
@@ -41,7 +44,16 @@ export class UnifiedStyleManager {
    */
   updateConfig(config: AppConfig) {
     this.currentConfig = config
-    this.applyAllStyles(config)
+    
+    // Debounced style application
+    if (this.debounceTimer) {
+      clearTimeout(this.debounceTimer)
+    }
+    
+    this.debounceTimer = setTimeout(() => {
+      this.applyAllStyles(config)
+      this.debounceTimer = null
+    }, 16) // ~60fps
   }
 
   /**
@@ -50,53 +62,92 @@ export class UnifiedStyleManager {
   private applyAllStyles(config: AppConfig) {
     if (typeof window === 'undefined') return
 
-    // Verzögerung hinzufügen, um Hydration-Probleme zu vermeiden
-    setTimeout(() => {
-      try {
-        // 1. Farbschema anwenden
-        if (config.theme?.colorScheme) {
-          applyColorScheme(config.theme.colorScheme)
-          
-          // Event dispatchen für Logo-Komponenten
-          window.dispatchEvent(new CustomEvent('color-scheme-changed', {
-            detail: { colorScheme: config.theme.colorScheme }
-          }))
-        }
+    try {
+      // 1. CSS-Variablen für Design-Style setzen (sofort, ohne setTimeout)
+      this.setDesignStyleVariables(config)
 
-        // 2. Heading-Styles anwenden
-        applyHeadingStyles(config)
-
-        // 3. Badge-Styles anwenden
-        applyBadgeStyles(config)
-
-        // 4. Border-Radius-Styles anwenden
-        applyBorderRadiusStyles(config)
-
-        // 5. Border-Styles anwenden
-        applyBorderStyles(config)
-
-        // 6. Zusätzliche CSS-Variablen für Design-Style setzen
-        this.setDesignStyleVariables(config)
-
-        console.log('🎨 UnifiedStyleManager: Alle Styles angewendet für', config.style?.package || 'unbekannt')
-      } catch (error) {
-        console.error('❌ UnifiedStyleManager: Fehler beim Anwenden der Styles:', error)
+      // 2. Farbschema anwenden
+      if (config.theme?.colorScheme) {
+        this.applyColorSchemeOptimized(config.theme.colorScheme)
+        
+        // Event dispatchen für Logo-Komponenten
+        window.dispatchEvent(new CustomEvent('color-scheme-changed', {
+          detail: { colorScheme: config.theme.colorScheme }
+        }))
       }
-    }, 0)
+
+      // 3. Weitere Styles mit Caching
+      this.applyStylesWithCache(config)
+
+      console.log('🎨 UnifiedStyleManager: Alle Styles angewendet für', config.style?.package || 'unbekannt')
+    } catch (error) {
+      console.error('❌ UnifiedStyleManager: Fehler beim Anwenden der Styles:', error)
+    }
+  }
+
+  /**
+   * Optimierte Farbschema-Anwendung mit CSS-Variablen
+   */
+  private applyColorSchemeOptimized(colorScheme: string) {
+    // CSS-Variable über den optimierten Manager setzen
+    cssVariableManager.setColorScheme(colorScheme)
+    
+    // Cache für bessere Performance
+    if (!this.styleCache.has('colorScheme')) {
+      applyColorScheme(colorScheme)
+      this.styleCache.set('colorScheme', colorScheme)
+    } else if (this.styleCache.get('colorScheme') !== colorScheme) {
+      applyColorScheme(colorScheme)
+      this.styleCache.set('colorScheme', colorScheme)
+    }
+  }
+
+  /**
+   * Wendet Styles mit Caching an
+   */
+  private applyStylesWithCache(config: AppConfig) {
+    const configKey = JSON.stringify({
+      package: config.style?.package,
+      fontFamily: config.style?.fontFamily,
+      badgeStyle: config.style?.badgeStyle,
+      borderRadius: config.style?.borderRadius,
+      borders: config.style?.borders,
+      headings: config.headings
+    })
+
+    if (this.styleCache.get('lastConfig') !== configKey) {
+      // Heading-Styles anwenden
+      applyHeadingStyles(config)
+
+      // Badge-Styles anwenden
+      applyBadgeStyles(config)
+
+      // Border-Radius-Styles anwenden
+      applyBorderRadiusStyles(config)
+
+      // Border-Styles anwenden
+      applyBorderStyles(config)
+
+      this.styleCache.set('lastConfig', configKey)
+    }
   }
 
   /**
    * Setzt CSS-Variablen basierend auf dem Design-Style
    */
   private setDesignStyleVariables(config: AppConfig) {
-    const root = document.documentElement
     const designStyle = config.style?.package || 'einfach'
 
-    // Design-Style als data-Attribut setzen
-    document.body.setAttribute('data-style', designStyle)
-
-    // Zusätzliche CSS-Variablen für bessere Kompatibilität
-    root.style.setProperty('--current-design-style', designStyle)
+    // CSS-Variablen über den optimierten Manager setzen
+    cssVariableManager.setDesignStyle(designStyle)
+    
+    // Zusätzliche Variablen setzen
+    cssVariableManager.setVariables({
+      fontFamily: config.style?.fontFamily || 'sans',
+      badgeStyle: config.style?.badgeStyle || 'minimal',
+      borderRadius: config.style?.borderRadius || 'subtle',
+      borders: config.style?.borders || 'subtle'
+    })
     
     // Debug-Logging
     console.log('🔧 Design-Style gesetzt:', designStyle)

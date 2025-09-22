@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { applyColorScheme } from '@/lib/colorSchemes'
+import { eventManager, APP_EVENTS, setupOptimizedStorageListener } from '@/lib/eventManager'
 
 /**
  * ColorSchemeInitializer Component
@@ -34,10 +35,18 @@ export default function ColorSchemeInitializer() {
     initializeColorScheme()
 
     // Event Listener für Änderungen des Farbschemas
-    const handleColorSchemeChange = () => {
-      const newColorScheme = localStorage.getItem('selected-color-scheme') || 
-                            localStorage.getItem('color-scheme') || 
-                            'warm'
+    const handleColorSchemeChange = (eventData?: any) => {
+      let newColorScheme: string
+      
+      if (eventData && eventData.key) {
+        // Event von Event-Manager
+        newColorScheme = eventData.newValue || 'warm'
+      } else {
+        // Direkter Aufruf
+        newColorScheme = localStorage.getItem('selected-color-scheme') || 
+                        localStorage.getItem('color-scheme') || 
+                        'warm'
+      }
       
       console.log('🎨 Farbschema geändert, wende an:', newColorScheme)
       
@@ -49,20 +58,23 @@ export default function ColorSchemeInitializer() {
       applyColorScheme(finalScheme)
     }
 
-    // Storage Event Listener für Änderungen in anderen Tabs
-    window.addEventListener('storage', (e) => {
-      if (e.key === 'selected-color-scheme' || e.key === 'color-scheme') {
-        handleColorSchemeChange()
+    // Event-Listener über Event-Manager registrieren
+    const unsubscribeStorage = eventManager.addEventListener(APP_EVENTS.STORAGE_CHANGED, (eventData) => {
+      if (eventData.key === 'selected-color-scheme' || eventData.key === 'color-scheme') {
+        handleColorSchemeChange(eventData)
       }
     })
 
+    const cleanupStorageListener = setupOptimizedStorageListener()
+
     // Custom Event Listener für Änderungen im gleichen Tab
-    window.addEventListener('color-scheme-changed', handleColorSchemeChange)
+    const unsubscribeCustom = eventManager.addEventListener(APP_EVENTS.COLOR_SCHEME_CHANGED, handleColorSchemeChange)
 
     // Cleanup
     return () => {
-      window.removeEventListener('storage', handleColorSchemeChange)
-      window.removeEventListener('color-scheme-changed', handleColorSchemeChange)
+      unsubscribeStorage()
+      unsubscribeCustom()
+      cleanupStorageListener()
     }
   }, [])
 

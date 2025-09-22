@@ -1,10 +1,14 @@
 import { AppConfig, DEFAULT_CONFIG, LEGACY_STORAGE_KEYS } from './types'
+import { performanceMonitor } from '@/lib/performanceMonitor'
 
 class ConfigManager {
   private static instance: ConfigManager
   private config: AppConfig
   private listeners: Set<(config: AppConfig) => void> = new Set()
   private readonly STORAGE_KEY = 'app-config-v2'
+  private isInitialized = false
+  private debounceTimer: NodeJS.Timeout | null = null
+  private configCache: AppConfig | null = null
 
   private constructor() {
     this.config = this.loadFromStorage()
@@ -18,17 +22,42 @@ class ConfigManager {
   }
 
   getConfig(): AppConfig {
-    return { ...this.config }
+    performanceMonitor.startMeasurement('configLoad')
+    
+    if (!this.isInitialized) {
+      this.configCache = this.loadFromStorage()
+      this.isInitialized = true
+    }
+    
+    const result = this.configCache || { ...this.config }
+    performanceMonitor.endMeasurement('configLoad')
+    
+    return result
   }
 
   updateConfig(updates: Partial<AppConfig>): void {
     console.log('🔧 ConfigManager.updateConfig - Vorher:', this.config)
     console.log('🔧 ConfigManager.updateConfig - Updates:', updates)
+    
     // Deep merge instead of shallow merge
     this.config = this.deepMerge(this.config, updates)
+    this.configCache = { ...this.config }
     console.log('🔧 ConfigManager.updateConfig - Nachher:', this.config)
-    this.saveToStorage()
-    this.notifyListeners()
+    
+    // Debounced save and notify
+    this.debouncedSaveAndNotify()
+  }
+
+  private debouncedSaveAndNotify(): void {
+    if (this.debounceTimer) {
+      clearTimeout(this.debounceTimer)
+    }
+    
+    this.debounceTimer = setTimeout(() => {
+      this.saveToStorage()
+      this.notifyListeners()
+      this.debounceTimer = null
+    }, 16) // ~60fps
   }
 
   // Deep merge helper function
@@ -48,8 +77,8 @@ class ConfigManager {
 
   resetToDefaults(): void {
     this.config = { ...DEFAULT_CONFIG }
-    this.saveToStorage()
-    this.notifyListeners()
+    this.configCache = { ...this.config }
+    this.debouncedSaveAndNotify()
   }
 
   // Migration von alter localStorage-Struktur
@@ -131,6 +160,8 @@ class ConfigManager {
   private loadFromStorage(): AppConfig {
     if (typeof window === 'undefined') return DEFAULT_CONFIG
     
+    performanceMonitor.recordLocalStorageAccess()
+    
     try {
       const stored = localStorage.getItem(this.STORAGE_KEY)
       if (stored) {
@@ -138,20 +169,25 @@ class ConfigManager {
         // Version-Check für Migration
         if (parsed.version === '2.0.0') {
           console.log('📦 Neue Konfiguration aus localStorage geladen')
+          performanceMonitor.recordCacheHit()
           return { ...DEFAULT_CONFIG, ...parsed }
         }
       }
       
       // Migration von alter Struktur
+      performanceMonitor.recordCacheMiss()
       return this.migrateFromOldStorage()
     } catch (error) {
       console.warn('⚠️ Fehler beim Laden der Konfiguration:', error)
+      performanceMonitor.recordCacheMiss()
       return DEFAULT_CONFIG
     }
   }
 
   private saveToStorage(): void {
     if (typeof window === 'undefined') return
+    
+    performanceMonitor.recordLocalStorageAccess()
     
     try {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.config))
