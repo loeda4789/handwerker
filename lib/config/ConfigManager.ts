@@ -54,8 +54,8 @@ class ConfigManager {
     }
     
     this.debounceTimer = setTimeout(() => {
-      this.saveToStorage()
-      this.notifyListeners()
+    this.saveToStorage()
+    this.notifyListeners()
       this.debounceTimer = null
     }, 16) // ~60fps
   }
