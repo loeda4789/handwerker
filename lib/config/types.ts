@@ -62,7 +62,7 @@ export const DEFAULT_CONFIG: AppConfig = {
     variant: 'professional'
   },
   theme: {
-    colorScheme: 'nature',
+    colorScheme: 'elegant',
     darkMode: false
   },
   features: {
@@ -86,7 +86,7 @@ export const DEFAULT_CONFIG: AppConfig = {
     }
   },
   hero: {
-    type: 'single'
+    type: 'slider'
   },
   headings: {
     underline: true,

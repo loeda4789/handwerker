@@ -299,17 +299,17 @@ export default function HomePage() {
       version: '1.0.0',
       layout: {
         mode: 'onepage' as const,
-        design: (savedDesignStyle as any) || 'angular',
-        variant: 'starter' as const
+        design: (savedDesignStyle as any) || 'modern',
+        variant: 'professional' as const
       },
       theme: {
-        colorScheme: (savedColorScheme as any) || 'warm',
+        colorScheme: (savedColorScheme as any) || 'elegant',
         darkMode: false
       },
       features: {
-        contactBar: true,
+        contactBar: false,
         sideContact: true,
-        mobileContact: false,
+        mobileContact: true,
         whatsapp: true
       },
       header: {
@@ -508,11 +508,11 @@ export default function HomePage() {
             showLogo: true,
             showCta: true,
             showMobileMenu: true,
-            mobileType: 'sidebar' as const
+            mobileType: 'fullscreen' as const
           }
         },
         hero: {
-          type: 'single' as const
+          type: 'slider' as const
         },
         headings: {
           underline: true,
