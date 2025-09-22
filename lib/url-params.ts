@@ -172,6 +172,11 @@ export function mergeUrlDataWithContent(contentData: ContentData, urlParams: Url
     // Suche nach Mustern wie "in [Stadt] und Umgebung" und ersetze [Stadt] durch den URL-Parameter
     const ortPattern = /in\s+[A-Za-zäöüß\s-]+\s+und\s+Umgebung/g;
     mergedData.about.text = mergedData.about.text.replace(ortPattern, `in ${decodedParams.ort} und Umgebung`);
+    
+    // Falls kein "in [Stadt] und Umgebung" Muster gefunden wird, füge es am Ende des Textes hinzu
+    if (!ortPattern.test(mergedData.about.text)) {
+      mergedData.about.text = mergedData.about.text.replace(/\.$/, ` in ${decodedParams.ort} und Umgebung.`);
+    }
   }
   
   // Adresse zusammensetzen
