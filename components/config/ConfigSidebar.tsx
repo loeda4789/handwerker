@@ -105,7 +105,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
   const { config, isConfigLoaded, updateConfig } = useAppConfig()
   const { mode: siteMode, design: designStyle, variant, mobileType, setMode: setSiteMode, setVariant, setMobileType } = useLayoutConfig()
   const { colorScheme, setColorScheme } = useThemeConfig()
-  const { features, setFeature: toggleFeature } = useFeaturesConfig()
+  const { features, setFeature, toggleFeature } = useFeaturesConfig()
   const { type: heroType, setType: setHeroType } = useHeroConfig()
   const { underline: headingUnderline, style: headingStyle, color: headingColor, setUnderline: setHeadingUnderline, setStyle: setHeadingStyle, setColor: setHeadingColor } = useHeadingsConfig()
   const { package: stylePackage, fontFamily, badgeStyle, spacing, setPackage: setStylePackage, setFontFamily, setBadgeStyle, setSpacing } = useStyleConfig()
@@ -687,7 +687,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                     {section.id === 'mobile-features' && (
                       <div className="space-y-2">
                         <button
-                          onClick={() => toggleFeature('mobileContact', !features.mobileContact)}
+                          onClick={() => toggleFeature('mobileContact')}
                           className={`w-full p-2 rounded-2xl border-2 transition-all duration-300 group ${
                             features.mobileContact 
                               ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
@@ -715,7 +715,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                         </button>
                         
                         <button
-                          onClick={() => toggleFeature('statusInfo', !features.statusInfo)}
+                          onClick={() => toggleFeature('statusInfo')}
                           className={`w-full p-2 rounded-2xl border-2 transition-all duration-300 group ${
                             features.statusInfo 
                               ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
@@ -743,7 +743,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                         </button>
                         
                         <button
-                          onClick={() => toggleFeature('whatsapp', !features.whatsapp)}
+                          onClick={() => toggleFeature('whatsapp')}
                           className={`w-full p-2 rounded-2xl border-2 transition-all duration-300 group ${
                             features.whatsapp 
                               ? 'border-accent bg-accent/15 shadow-lg shadow-accent/20' 
@@ -789,9 +789,9 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                                   // Features aktivieren
                                   setTimeout(() => {
                                     // Kontakt-Leiste aktivieren
-                                    toggleFeature('contactBar', true)
+                                    setFeature('contactBar', true)
                                     // Seiten-Kontakt aktivieren  
-                                    toggleFeature('sideContact', true)
+                                    setFeature('sideContact', true)
                                   }, 100)
                                 }
                               }}
@@ -841,7 +841,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                           <button
                             key={feature.key}
                             onClick={() => {
-                              toggleFeature(feature.key as any, !features[feature.key as keyof typeof features])
+                              toggleFeature(feature.key as any)
                               handleApply('feature', feature.key)
                             }}
                             className={`w-full p-2 rounded-2xl border-2 transition-all duration-300 group ${
