@@ -13,6 +13,7 @@ import Services from '@/components/content/Services'
 import BeforeAfter from '@/components/media/BeforeAfter'
 import FAQ from '@/components/content/FAQ'
 import Testimonials from '@/components/content/Testimonials'
+import ProjectProcess from '@/components/content/ProjectProcess'
 import Contact from '@/components/forms/Contact'
 import Footer from '@/components/layout/Footer'
 import SideContact from '@/components/forms/SideContact'
@@ -602,8 +603,11 @@ export default function HomePage() {
               <Services content={content} />
             </SectionWrapper>
             
-            
             <SectionWrapper index={3} designStyle={designStyle}>
+            <ProjectProcess content={content} />
+            </SectionWrapper>
+            
+            <SectionWrapper index={4} designStyle={designStyle}>
               {content.faq && content.faq.length > 0 ? (
                 <FAQ content={content} />
               ) : (
@@ -611,11 +615,11 @@ export default function HomePage() {
               )}
             </SectionWrapper>
             
-            <SectionWrapper index={4} designStyle={designStyle}>
+            <SectionWrapper index={5} designStyle={designStyle}>
             <Testimonials content={content} />
             </SectionWrapper>
             
-            <SectionWrapper index={5} designStyle={designStyle}>
+            <SectionWrapper index={6} designStyle={designStyle}>
             <Contact content={content} />
             </SectionWrapper>
           </>
