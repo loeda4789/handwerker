@@ -14,7 +14,6 @@ export interface AppConfig {
     contactBar: boolean
     sideContact: boolean
     mobileContact: boolean
-    statusInfo: boolean
     whatsapp: boolean
   }
   header: {
@@ -70,7 +69,6 @@ export const DEFAULT_CONFIG: AppConfig = {
     contactBar: false,
     sideContact: true,
     mobileContact: true,
-    statusInfo: false,
     whatsapp: true
   },
   header: {

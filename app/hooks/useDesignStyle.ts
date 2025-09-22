@@ -27,7 +27,6 @@ export function useDesignStyle() {
           contactBar: false,
           sideContact: false,
           mobileContact: false,
-          statusInfo: false,
           whatsapp: true
         },
         header: {
@@ -92,7 +91,6 @@ export function useDesignStyle() {
             contactBar: false,
             sideContact: false,
             mobileContact: false,
-            statusInfo: false,
             whatsapp: true
           },
           header: {

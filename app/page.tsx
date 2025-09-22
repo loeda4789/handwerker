@@ -310,7 +310,6 @@ export default function HomePage() {
         contactBar: true,
         sideContact: true,
         mobileContact: false,
-        statusInfo: false,
         whatsapp: true
       },
       header: {
@@ -383,7 +382,6 @@ export default function HomePage() {
             contactBar: false,
             sideContact: false,
             mobileContact: false,
-            statusInfo: false,
             whatsapp: true
           },
           header: {
@@ -497,7 +495,6 @@ export default function HomePage() {
           contactBar: true,
           sideContact: true,
           mobileContact: false,
-          statusInfo: false,
           whatsapp: true
         },
         header: {

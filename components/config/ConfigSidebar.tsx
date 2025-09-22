@@ -714,33 +714,6 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
                           </div>
                         </button>
                         
-                        <button
-                          onClick={() => toggleFeature('statusInfo')}
-                          className={`w-full p-2 rounded-2xl border-2 transition-all duration-300 group ${
-                            features.statusInfo 
-                              ? 'border-primary bg-primary/15 shadow-lg shadow-primary/20' 
-                              : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
-                          }`}
-                        >
-                          <div className="flex items-center gap-2 text-left">
-                            <div className={`w-6 h-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
-                              features.statusInfo 
-                                ? 'bg-primary text-white shadow-lg' 
-                                : 'bg-gray-200 text-gray-700 group-hover:bg-gray-300'
-                            }`}>
-                              <MdSettings className="w-3 h-3" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>Status-Info</div>
-                              <div className="text-[10px] text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>Service-Informationen anzeigen</div>
-                            </div>
-                            {features.statusInfo && (
-                              <div className="w-5 h-5 bg-primary rounded-2xl flex items-center justify-center">
-                                <MdCheck className="w-3 h-3 text-white" />
-                              </div>
-                            )}
-                          </div>
-                        </button>
                         
                         <button
                           onClick={() => toggleFeature('whatsapp')}
