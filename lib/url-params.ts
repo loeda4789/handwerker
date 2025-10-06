@@ -22,6 +22,35 @@ export interface ExtractedUrlData {
 // Konstante für LocalStorage-Key
 const URL_PARAMS_STORAGE_KEY = 'handwerker-url-params';
 
+// Funktion zum Extrahieren der Branche aus Subdomain
+export function extractBrancheFromSubdomain(): string | undefined {
+  if (typeof window === 'undefined') {
+    return undefined;
+  }
+
+  const hostname = window.location.hostname;
+  console.log('🔍 Prüfe Hostname für Subdomain:', hostname);
+  
+  // Prüfe ob es eine Subdomain gibt (nicht localhost oder IP)
+  if (hostname.includes('localhost') || hostname.match(/^\d+\.\d+\.\d+\.\d+$/)) {
+    console.log('⚠️ Keine Subdomain erkannt (localhost oder IP)');
+    return undefined;
+  }
+
+  // Extrahiere Subdomain (z.B. "dachdecker" aus "dachdecker.ml-websolutions.de")
+  const parts = hostname.split('.');
+  console.log('🔍 Hostname-Teile:', parts);
+  
+  if (parts.length > 2) {
+    const subdomain = parts[0].toLowerCase();
+    console.log('✅ Subdomain erkannt:', subdomain);
+    return subdomain;
+  }
+
+  console.log('⚠️ Keine Subdomain gefunden');
+  return undefined;
+}
+
 // Funktion zum Extrahieren der URL-Parameter
 export function extractUrlParams(): UrlParams {
   if (typeof window === 'undefined') {
@@ -30,6 +59,9 @@ export function extractUrlParams(): UrlParams {
 
   const searchParams = new URLSearchParams(window.location.search);
   
+  // Extrahiere Branche nur aus Subdomain
+  const subdomainBranche = extractBrancheFromSubdomain();
+  
   const params = {
     firmenname: searchParams.get('firmenname') || undefined,
     strasse: searchParams.get('strasse') || undefined,
@@ -37,7 +69,8 @@ export function extractUrlParams(): UrlParams {
     ort: searchParams.get('ort') || undefined,
     email: searchParams.get('email') || undefined,
     telefon: searchParams.get('telefon') || undefined,
-    branche: searchParams.get('branche') || undefined,
+    // Nur Subdomain für Branche verwenden
+    branche: subdomainBranche || undefined,
   };
   
   console.log('🔍 URL-Parameter extrahiert:', params);

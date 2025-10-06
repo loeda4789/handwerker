@@ -137,6 +137,14 @@ export default function HomePage() {
 
   // Verwende den URL-Parameter-Hook für automatische URL-Parameter-Integration
   const content = useContentWithUrlParams(baseContent || {} as ContentData)
+  
+  // Debug-Informationen für Subdomain
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      console.log('🌐 Aktuelle Subdomain:', window.location.hostname)
+      console.log('📄 Geladener Content:', baseContent?.company.name)
+    }
+  }, [baseContent])
 
   // Check if user has visited before and set appropriate mode
   useEffect(() => {
@@ -176,12 +184,27 @@ export default function HomePage() {
     const loadContent = () => {
       try {
         const loadedContent = getContentDataByBranche()
+        console.log('🏢 Content geladen für Subdomain:', window.location.hostname)
+        console.log('📄 Content-Details:', loadedContent.company.name)
         setBaseContent(loadedContent)
       } catch (error) {
         console.error('Fehler beim Laden des Contents:', error)
       }
     }
     loadContent()
+
+    // Event Listener für Subdomain-Änderungen
+    const handleSubdomainChange = () => {
+      loadContent()
+    }
+
+    window.addEventListener('popstate', handleSubdomainChange)
+    window.addEventListener('storage', handleSubdomainChange)
+    
+    return () => {
+      window.removeEventListener('popstate', handleSubdomainChange)
+      window.removeEventListener('storage', handleSubdomainChange)
+    }
 
     // Design-Style aus localStorage laden und anwenden
     const savedDesignStyle = localStorage.getItem('design-style')

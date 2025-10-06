@@ -1,16 +1,17 @@
 # Branchenspezifisches Content-System
 
-Das Handwerker-Template unterstützt jetzt verschiedene Branchen über URL-Parameter und spezifische Content-Dateien.
+Das Handwerker-Template unterstützt jetzt verschiedene Branchen über Subdomains und spezifische Content-Dateien.
 
 ## Funktionsweise
 
-### URL-Parameter
-Das System erkennt den URL-Parameter `branche` und lädt automatisch die entsprechende Content-Datei:
+### Subdomains
+Das System erkennt die Subdomain und lädt automatisch die entsprechende Content-Datei:
 
 ```
-https://ihre-domain.de/?branche=dachdecker
-https://ihre-domain.de/?branche=elektriker
-https://ihre-domain.de/?branche=maler
+https://dachdecker.ml-websolutions.de
+https://elektriker.ml-websolutions.de
+https://tischler.ml-websolutions.de
+https://fliesenleger.ml-websolutions.de
 ```
 
 ### Content-Dateien
@@ -114,32 +115,65 @@ export default function Home() {
 
 ### Standard (Fliesenleger)
 ```
-https://handwerker-template.de/
+https://ml-websolutions.de/
 ```
 
 ### Dachdecker
 ```
-https://handwerker-template.de/?branche=dachdecker
+https://dachdecker.ml-websolutions.de
+```
+
+### Elektriker
+```
+https://elektriker.ml-websolutions.de
+```
+
+### Tischler
+```
+https://tischler.ml-websolutions.de
+```
+
+### Fliesenleger
+```
+https://fliesenleger.ml-websolutions.de
 ```
 
 ### Zukünftige Branchen
 ```
-https://handwerker-template.de/?branche=elektriker
-https://handwerker-template.de/?branche=maler
-https://handwerker-template.de/?branche=sanitaer
-https://handwerker-template.de/?branche=heizung
+https://maler.ml-websolutions.de
+https://sanitaer.ml-websolutions.de
+https://heizung.ml-websolutions.de
 ```
 
 ## Fallback-Verhalten
-- Wenn keine `branche` angegeben wird → Standard `content.json`
-- Wenn `branche` nicht existiert → Fallback zu Standard `content.json`
+- Wenn keine Subdomain erkannt wird → Standard `content.json`
+- Wenn Subdomain nicht existiert → Fallback zu Standard `content.json`
 - Console-Warnung bei fehlenden Content-Dateien
+- LocalStorage speichert die letzte erkannte Branche für bessere Performance
 
-## SEO-Optimierung
-Für bessere SEO können Sie später separate Routen implementieren:
+## Subdomain-Konfiguration
+
+### DNS-Einstellungen
+Jede Subdomain muss auf die gleiche IP-Adresse zeigen:
 ```
-/dachdecker
-/elektriker
-/maler
+dachdecker.ml-websolutions.de → 76.76.21.21
+elektriker.ml-websolutions.de → 76.76.21.21
+tischler.ml-websolutions.de → 76.76.21.21
+fliesenleger.ml-websolutions.de → 76.76.21.21
 ```
-Diese würden intern die gleichen Content-Parameter setzen. 
+
+### Next.js Konfiguration
+Die `next.config.js` muss für Subdomains konfiguriert werden:
+```javascript
+module.exports = {
+  // ... andere Konfigurationen
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination: '/:path*',
+      },
+    ];
+  },
+};
+``` 

@@ -37,6 +37,7 @@ const spaceGrotesk = Space_Grotesk({
   variable: '--font-heading-modern'
 })
 
+// Content wird dynamisch basierend auf Subdomain geladen
 const content = getContentData()
 
 export const metadata: Metadata = {
