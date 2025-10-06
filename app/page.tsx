@@ -143,6 +143,11 @@ export default function HomePage() {
     if (typeof window !== 'undefined') {
       console.log('🌐 Aktuelle Subdomain:', window.location.hostname)
       console.log('📄 Geladener Content:', baseContent?.company.name)
+      console.log('🔍 Content-Details:', {
+        companyName: baseContent?.company.name,
+        tagline: baseContent?.company.tagline,
+        heroTitle: baseContent?.hero.title
+      });
     }
   }, [baseContent])
 
@@ -183,6 +188,29 @@ export default function HomePage() {
   useEffect(() => {
     const loadContent = () => {
       try {
+        // Direkte Subdomain-Erkennung
+        const hostname = window.location.hostname;
+        console.log('🔍 Prüfe Hostname direkt:', hostname);
+        
+        let branche = null;
+        if (hostname.includes('dachdecker')) {
+          branche = 'dachdecker';
+        } else if (hostname.includes('elektriker')) {
+          branche = 'elektriker';
+        } else if (hostname.includes('tischler')) {
+          branche = 'tischler';
+        } else if (hostname.includes('fliesenleger')) {
+          branche = 'fliesenleger';
+        }
+        
+        console.log('🎯 Direkt erkannte Branche:', branche);
+        
+        // Branche in localStorage setzen
+        if (branche) {
+          localStorage.setItem('handwerker-branche', branche);
+          console.log('💾 Branche gespeichert:', branche);
+        }
+        
         const loadedContent = getContentDataByBranche()
         console.log('🏢 Content geladen für Subdomain:', window.location.hostname)
         console.log('📄 Content-Details:', loadedContent.company.name)

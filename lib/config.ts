@@ -64,7 +64,21 @@ export function getContentDataByBranche(): ContentData {
     
     // Verwende die Subdomain-Extraktion
     const urlParams = getEffectiveUrlParams();
-    const branche = urlParams.branche;
+    let branche = urlParams.branche;
+    
+    // Fallback: Direkte Subdomain-Erkennung
+    if (!branche) {
+      const hostname = window.location.hostname;
+      if (hostname.includes('dachdecker')) {
+        branche = 'dachdecker';
+      } else if (hostname.includes('elektriker')) {
+        branche = 'elektriker';
+      } else if (hostname.includes('tischler')) {
+        branche = 'tischler';
+      } else if (hostname.includes('fliesenleger')) {
+        branche = 'fliesenleger';
+      }
+    }
     
     console.log('🔍 Extrahierte URL-Parameter:', urlParams);
     console.log('🏢 Erkannte Branche:', branche);
