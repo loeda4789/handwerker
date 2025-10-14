@@ -220,31 +220,38 @@ export default function LocationMap({
 
       {/* Dialog Modal */}
       {dialogOpen && (
-        <div className="fixed inset-0 z-[9999] bg-black/80 flex items-center justify-center p-4">
-          {/* Close Button */}
-          <button
-            onClick={closeDialog}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
+        <div 
+          className="fixed inset-0 z-[9999] bg-black/80 flex items-center justify-center p-4"
+          onClick={closeDialog}
+        >
+          {/* Map Dialog */}
+          <div 
+            className="dialog-map bg-white dark:bg-gray-800 overflow-hidden w-full max-w-4xl h-96 md:h-[500px] relative"
+            style={{ borderRadius: 'var(--radius-modal)' }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
+            {/* Close Button */}
+            <button
+              onClick={closeDialog}
+              className="absolute top-2 right-2 z-[10000] bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
+              title="Schließen"
+            >
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
 
-                     {/* Map Dialog */}
-           <div className="dialog-map bg-white dark:bg-gray-800 overflow-hidden w-full max-w-4xl h-96 md:h-[500px] relative"
-             style={{ borderRadius: 'var(--radius-modal)' }}>
-             {/* Header */}
-             <div className="bg-primary dark:bg-accent text-white p-4">
-               <h3 className="text-lg font-semibold">{companyName}</h3>
-               <p className="text-sm opacity-90">{address}</p>
-             </div>
-             
-             {/* Map */}
-             <div className="h-full pb-16">
-               {renderMap(true)}
-             </div>
-           </div>
+            {/* Header */}
+            <div className="bg-primary dark:bg-accent text-white p-4" style={{ backgroundColor: 'var(--color-primary)' }}>
+              <h3 className="text-lg font-semibold">{companyName}</h3>
+              <p className="text-sm opacity-90">{address}</p>
+            </div>
+            
+            {/* Map */}
+            <div className="h-full pb-16">
+              {renderMap(true)}
+            </div>
+          </div>
         </div>
       )}
     </>
