@@ -187,7 +187,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     {
       id: 'starter',
       name: 'Starter',
-      price: '99€',
+      price: '79€',
       period: '/Monat',
       description: 'Perfekt für Einzelunternehmer und kleine Betriebe',
       features: ['One-Page Layout', 'Basis-Features', 'Mobile optimiert'],
@@ -199,7 +199,7 @@ export default function ConfigSidebar({ isOpen, onClose }: ConfigSidebarProps) {
     {
       id: 'professional',
       name: 'Professionell',
-      price: '119€',
+      price: '99€',
       period: '/Monat',
       description: 'Ideal für wachsende Unternehmen mit Service-Portfolio',
       features: ['One-Page Layout', 'Leistungssektor', 'Alle Features'],

@@ -198,16 +198,22 @@ export default function LocationMap({
   return (
     <>
       <div 
-        className={`footer-map overflow-hidden h-48 relative z-0 ${isClickable && !showDialog ? 'cursor-pointer hover:opacity-90 transition-opacity' : ''}`}
-        onClick={handleMapClick}
+        className={`footer-map overflow-hidden h-48 relative z-0`}
         style={{ borderRadius: 'var(--radius-image)' }}
       >
         {renderMap(false)}
         
-        {/* Click Hint */}
+        {/* Click Overlay - catches clicks before they reach the map */}
         {isClickable && !showDialog && (
-          <div className="absolute top-2 left-2 bg-black/60 text-white px-2 py-1 rounded text-xs z-10">
-            Klicken für größere Ansicht
+          <div 
+            className="absolute inset-0 cursor-pointer hover:bg-black/5 transition-all z-20"
+            onClick={handleMapClick}
+            title="Klicken für größere Ansicht"
+          >
+            {/* Click Hint */}
+            <div className="absolute top-2 left-2 bg-black/60 text-white px-2 py-1 rounded text-xs pointer-events-none">
+              Klicken für größere Ansicht
+            </div>
           </div>
         )}
       </div>

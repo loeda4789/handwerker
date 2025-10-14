@@ -13,7 +13,7 @@ export default function PackageSelection({ onPackageSelect }: PackageSelectionPr
     {
       id: 'starter',
       name: 'Starter',
-      price: '99€/Monat',
+      price: '79€/Monat',
       description: 'One-Page Website für kleine Unternehmen',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -33,7 +33,7 @@ export default function PackageSelection({ onPackageSelect }: PackageSelectionPr
     {
       id: 'professionell',
       name: 'Professionell',
-      price: '119€/Monat',
+      price: '99€/Monat',
       description: 'One-Page mit Leistungssektor',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
