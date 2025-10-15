@@ -202,7 +202,10 @@ export default function LocationMap({
     <>
       <div 
         className={`footer-map overflow-hidden h-48 relative z-0`}
-        style={{ borderRadius: 'var(--radius-image)' }}
+        style={{ 
+          borderRadius: 'var(--radius-image)',
+          pointerEvents: 'none' // Blockiert alle Klicks auf Desktop
+        }}
       >
         {renderMap(false)}
         
