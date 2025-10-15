@@ -122,13 +122,16 @@ export default function LocationMap({
   }, [])
 
   const handleMapClick = () => {
+    console.log('🗺️ Map clicked!', { isClickable, showDialog, dialogOpen })
     if (isClickable && !showDialog) {
       setDialogOpen(true)
       document.body.style.overflow = 'hidden'
+      console.log('🗺️ Dialog opened')
     }
   }
 
   const closeDialog = () => {
+    console.log('🗺️ Closing dialog')
     setDialogOpen(false)
     document.body.style.overflow = 'unset'
     if (onDialogClose) {
@@ -212,56 +215,84 @@ export default function LocationMap({
           >
             {/* Click Hint */}
             <div className="absolute top-2 left-2 bg-black/60 text-white px-2 py-1 rounded text-xs pointer-events-none">
-              Klicken für größere Ansicht
+            Klicken für größere Ansicht
             </div>
           </div>
         )}
       </div>
 
-      {/* Dialog Modal */}
+      {/* Dialog Modal - SIMPLE VERSION */}
       {dialogOpen && (
         <div 
-          className="fixed inset-0 flex items-center justify-center p-4"
+          id="map-modal-backdrop"
           style={{
-            zIndex: 9999,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            backdropFilter: 'blur(4px)'
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+            zIndex: 99999
           }}
           onClick={closeDialog}
         >
           {/* Map Dialog */}
           <div 
-            className="bg-white overflow-hidden w-full max-w-4xl h-96 md:h-[500px] relative"
-            style={{ 
+            id="map-modal-content"
+            style={{
+              backgroundColor: 'white',
+              width: '100%',
+              maxWidth: '900px',
+              height: '500px',
               borderRadius: '12px',
+              position: 'relative',
               boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-              zIndex: 10000
+              zIndex: 100000
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
-            <button
-              onClick={closeDialog}
-              className="absolute top-3 right-3 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
-              style={{ zIndex: 10001 }}
+          {/* Close Button */}
+          <button
+              id="map-modal-close"
+            onClick={closeDialog}
+              style={{
+                position: 'absolute',
+                top: '12px',
+                right: '12px',
+                backgroundColor: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                width: '40px',
+                height: '40px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                zIndex: 100001
+              }}
               title="Schließen"
             >
-              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
+              <svg width="20" height="20" fill="none" stroke="#374151" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
 
-            {/* Header */}
-            <div className="text-white p-4" style={{ backgroundColor: '#3b82f6' }}>
-              <h3 className="text-lg font-semibold">{companyName}</h3>
-              <p className="text-sm opacity-90">{address}</p>
-            </div>
-            
-            {/* Map */}
-            <div className="h-full" style={{ height: 'calc(100% - 80px)' }}>
-              {renderMap(true)}
-            </div>
-          </div>
+             {/* Header */}
+            <div style={{ backgroundColor: '#3b82f6', color: 'white', padding: '16px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '600', margin: 0 }}>{companyName}</h3>
+              <p style={{ fontSize: '14px', opacity: 0.9, margin: '4px 0 0 0' }}>{address}</p>
+             </div>
+             
+             {/* Map */}
+            <div style={{ height: 'calc(100% - 80px)' }}>
+               {renderMap(true)}
+             </div>
+           </div>
         </div>
       )}
     </>
