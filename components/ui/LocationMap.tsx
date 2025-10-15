@@ -27,7 +27,7 @@ export default function LocationMap({
   companyName, 
   showDialog = false, 
   onDialogClose, 
-  isClickable = true 
+  isClickable = false 
 }: LocationMapProps) {
   const [coordinates, setCoordinates] = useState<Coordinates | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -206,95 +206,8 @@ export default function LocationMap({
       >
         {renderMap(false)}
         
-        {/* Click Overlay - catches clicks before they reach the map */}
-        {isClickable && !showDialog && (
-          <div 
-            className="absolute inset-0 cursor-pointer hover:bg-black/5 transition-all z-20"
-            onClick={handleMapClick}
-            title="Klicken für größere Ansicht"
-          >
-            {/* Click Hint */}
-            <div className="absolute top-2 left-2 bg-black/60 text-white px-2 py-1 rounded text-xs pointer-events-none">
-            Klicken für größere Ansicht
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Dialog Modal - SIMPLE VERSION */}
-      {dialogOpen && (
-        <div 
-          id="map-modal-backdrop"
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '16px',
-            zIndex: 99999
-          }}
-          onClick={closeDialog}
-        >
-          {/* Map Dialog */}
-          <div 
-            id="map-modal-content"
-            style={{
-              backgroundColor: 'white',
-              width: '100%',
-              maxWidth: '900px',
-              height: '500px',
-              borderRadius: '12px',
-              position: 'relative',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-              zIndex: 100000
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-          {/* Close Button */}
-          <button
-              id="map-modal-close"
-            onClick={closeDialog}
-              style={{
-                position: 'absolute',
-                top: '12px',
-                right: '12px',
-                backgroundColor: 'white',
-                border: 'none',
-                borderRadius: '50%',
-                width: '40px',
-                height: '40px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                zIndex: 100001
-              }}
-              title="Schließen"
-            >
-              <svg width="20" height="20" fill="none" stroke="#374151" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-
-             {/* Header */}
-            <div style={{ backgroundColor: '#3b82f6', color: 'white', padding: '16px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: '600', margin: 0 }}>{companyName}</h3>
-              <p style={{ fontSize: '14px', opacity: 0.9, margin: '4px 0 0 0' }}>{address}</p>
-             </div>
-             
-             {/* Map */}
-            <div style={{ height: 'calc(100% - 80px)' }}>
-               {renderMap(true)}
-             </div>
-           </div>
-        </div>
-      )}
     </>
   )
 } 
